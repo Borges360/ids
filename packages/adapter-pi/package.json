@@ -1,0 +1,9 @@
+{
+  "name": "@inteiro/adapter-pi",
+  "version": "1.0.0",
+  "description": "Adaptador INTEIRO para Pi Coding Agent (AGENTS.md + skills em .pi/skills e .agents/skills)",
+  "license": "MIT",
+  "pi": {
+    "skills": ["./skills"]
+  }
+}

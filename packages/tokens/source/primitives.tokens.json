@@ -1,0 +1,3195 @@
+{
+  "$description": "INTEIRO Identity Design System — fonte DTCG 2025.10",
+  "color": {
+    "neutral": {
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.957,
+            0.945,
+            0.918
+          ],
+          "hex": "#F4F1EA"
+        },
+        "$description": "Warm Frost. Texto principal no dark.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.neutral.100",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-neutral-100",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Matéria cromática quente. O branco é levemente quente e o preto nunca é preto absoluto.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.906,
+            0.886,
+            0.855
+          ],
+          "hex": "#E7E2DA"
+        },
+        "$description": "Primitivo neutral 200. Canvas, texto, bordas e superfícies. Neutros não são frios.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.neutral.200",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-neutral-200",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Matéria cromática quente. O branco é levemente quente e o preto nunca é preto absoluto.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.816,
+            0.788,
+            0.761
+          ],
+          "hex": "#D0C9C2"
+        },
+        "$description": "Primitivo neutral 300. Canvas, texto, bordas e superfícies. Neutros não são frios.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.neutral.300",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-neutral-300",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Matéria cromática quente. O branco é levemente quente e o preto nunca é preto absoluto.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.667,
+            0.639,
+            0.651
+          ],
+          "hex": "#AAA3A6"
+        },
+        "$description": "Primitivo neutral 400. Canvas, texto, bordas e superfícies. Neutros não são frios.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.neutral.400",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-neutral-400",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Matéria cromática quente. O branco é levemente quente e o preto nunca é preto absoluto.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.51,
+            0.486,
+            0.525
+          ],
+          "hex": "#827C86"
+        },
+        "$description": "Primitivo neutral 500. Canvas, texto, bordas e superfícies. Neutros não são frios.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.neutral.500",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-neutral-500",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Matéria cromática quente. O branco é levemente quente e o preto nunca é preto absoluto.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.384,
+            0.365,
+            0.408
+          ],
+          "hex": "#625D68"
+        },
+        "$description": "Primitivo neutral 600. Canvas, texto, bordas e superfícies. Neutros não são frios.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.neutral.600",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-neutral-600",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Matéria cromática quente. O branco é levemente quente e o preto nunca é preto absoluto.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.271,
+            0.255,
+            0.298
+          ],
+          "hex": "#45414C"
+        },
+        "$description": "Primitivo neutral 700. Canvas, texto, bordas e superfícies. Neutros não são frios.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.neutral.700",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-neutral-700",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Matéria cromática quente. O branco é levemente quente e o preto nunca é preto absoluto.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.173,
+            0.165,
+            0.2
+          ],
+          "hex": "#2C2A33"
+        },
+        "$description": "Borda sutil no dark.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.neutral.800",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-neutral-800",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Matéria cromática quente. O branco é levemente quente e o preto nunca é preto absoluto.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.102,
+            0.098,
+            0.125
+          ],
+          "hex": "#1A1920"
+        },
+        "$description": "Primitivo neutral 900. Canvas, texto, bordas e superfícies. Neutros não são frios.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.neutral.900",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-neutral-900",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Matéria cromática quente. O branco é levemente quente e o preto nunca é preto absoluto.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "950": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.047,
+            0.051,
+            0.071
+          ],
+          "hex": "#0C0D12"
+        },
+        "$description": "Obsidian. Canvas dark. Interior, silêncio.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.neutral.950",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-neutral-950",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Matéria cromática quente. O branco é levemente quente e o preto nunca é preto absoluto.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "050": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.98,
+            0.973,
+            0.957
+          ],
+          "hex": "#FAF8F4"
+        },
+        "$description": "Near-white quente de referência.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.neutral.050",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-neutral-050",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Matéria cromática quente. O branco é levemente quente e o preto nunca é preto absoluto.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      }
+    },
+    "violet": {
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.929,
+            0.906,
+            1
+          ],
+          "hex": "#EDE7FF"
+        },
+        "$description": "Primitivo violet 100. Seleção, identidade, foco, ação primária deliberada.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.violet.100",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-violet-100",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Consciência deliberada. Violeta = estou escolhendo.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.867,
+            0.824,
+            1
+          ],
+          "hex": "#DDD2FF"
+        },
+        "$description": "Primitivo violet 200. Seleção, identidade, foco, ação primária deliberada.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.violet.200",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-violet-200",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Consciência deliberada. Violeta = estou escolhendo.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.773,
+            0.706,
+            1
+          ],
+          "hex": "#C5B4FF"
+        },
+        "$description": "Primitivo violet 300. Seleção, identidade, foco, ação primária deliberada.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.violet.300",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-violet-300",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Consciência deliberada. Violeta = estou escolhendo.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.655,
+            0.545,
+            0.98
+          ],
+          "hex": "#A78BFA"
+        },
+        "$description": "Identidade dark. Consciência, intenção.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.violet.400",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-violet-400",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Consciência deliberada. Violeta = estou escolhendo.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.545,
+            0.424,
+            0.949
+          ],
+          "hex": "#8B6CF2"
+        },
+        "$description": "Primitivo violet 500. Seleção, identidade, foco, ação primária deliberada.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.violet.500",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-violet-500",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Consciência deliberada. Violeta = estou escolhendo.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.439,
+            0.306,
+            0.878
+          ],
+          "hex": "#704EE0"
+        },
+        "$description": "Identidade light.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.violet.600",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-violet-600",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Consciência deliberada. Violeta = estou escolhendo.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.349,
+            0.231,
+            0.761
+          ],
+          "hex": "#593BC2"
+        },
+        "$description": "Primitivo violet 700. Seleção, identidade, foco, ação primária deliberada.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.violet.700",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-violet-700",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Consciência deliberada. Violeta = estou escolhendo.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.271,
+            0.184,
+            0.6
+          ],
+          "hex": "#452F99"
+        },
+        "$description": "Primitivo violet 800. Seleção, identidade, foco, ação primária deliberada.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.violet.800",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-violet-800",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Consciência deliberada. Violeta = estou escolhendo.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.208,
+            0.141,
+            0.447
+          ],
+          "hex": "#352472"
+        },
+        "$description": "Primitivo violet 900. Seleção, identidade, foco, ação primária deliberada.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.violet.900",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-violet-900",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Consciência deliberada. Violeta = estou escolhendo.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "950": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.129,
+            0.094,
+            0.29
+          ],
+          "hex": "#21184A"
+        },
+        "$description": "Primitivo violet 950. Seleção, identidade, foco, ação primária deliberada.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.violet.950",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-violet-950",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Consciência deliberada. Violeta = estou escolhendo.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "050": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.969,
+            0.957,
+            1
+          ],
+          "hex": "#F7F4FF"
+        },
+        "$description": "Primitivo violet 050. Seleção, identidade, foco, ação primária deliberada.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.violet.050",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-violet-050",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Consciência deliberada. Violeta = estou escolhendo.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      }
+    },
+    "orange": {
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.906,
+            0.831
+          ],
+          "hex": "#FFE7D4"
+        },
+        "$description": "Primitivo orange 100. Commit, deploy, publicar, aplicar mudança externa.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.orange.100",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-orange-100",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Decisão que atravessa o limite. Laranja = estou tornando real.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.804,
+            0.667
+          ],
+          "hex": "#FFCDAA"
+        },
+        "$description": "Primitivo orange 200. Commit, deploy, publicar, aplicar mudança externa.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.orange.200",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-orange-200",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Decisão que atravessa o limite. Laranja = estou tornando real.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.698,
+            0.498
+          ],
+          "hex": "#FFB27F"
+        },
+        "$description": "Primitivo orange 300. Commit, deploy, publicar, aplicar mudança externa.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.orange.300",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-orange-300",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Decisão que atravessa o limite. Laranja = estou tornando real.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.604,
+            0.337
+          ],
+          "hex": "#FF9A56"
+        },
+        "$description": "Commit dark. Atravessar o limite.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.orange.400",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-orange-400",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Decisão que atravessa o limite. Laranja = estou tornando real.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.957,
+            0.494,
+            0.173
+          ],
+          "hex": "#F47E2C"
+        },
+        "$description": "Primitivo orange 500. Commit, deploy, publicar, aplicar mudança externa.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.orange.500",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-orange-500",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Decisão que atravessa o limite. Laranja = estou tornando real.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.851,
+            0.384,
+            0.071
+          ],
+          "hex": "#D96212"
+        },
+        "$description": "Primitivo orange 600. Commit, deploy, publicar, aplicar mudança externa.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.orange.600",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-orange-600",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Decisão que atravessa o limite. Laranja = estou tornando real.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.71,
+            0.29,
+            0.02
+          ],
+          "hex": "#B54A05"
+        },
+        "$description": "Commit light.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.orange.700",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-orange-700",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Decisão que atravessa o limite. Laranja = estou tornando real.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.557,
+            0.224,
+            0.016
+          ],
+          "hex": "#8E3904"
+        },
+        "$description": "Primitivo orange 800. Commit, deploy, publicar, aplicar mudança externa.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.orange.800",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-orange-800",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Decisão que atravessa o limite. Laranja = estou tornando real.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.412,
+            0.169,
+            0.031
+          ],
+          "hex": "#692B08"
+        },
+        "$description": "Primitivo orange 900. Commit, deploy, publicar, aplicar mudança externa.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.orange.900",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-orange-900",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Decisão que atravessa o limite. Laranja = estou tornando real.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "950": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.239,
+            0.094,
+            0.024
+          ],
+          "hex": "#3D1806"
+        },
+        "$description": "Primitivo orange 950. Commit, deploy, publicar, aplicar mudança externa.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.orange.950",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-orange-950",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Decisão que atravessa o limite. Laranja = estou tornando real.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "050": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.961,
+            0.925
+          ],
+          "hex": "#FFF5EC"
+        },
+        "$description": "Primitivo orange 050. Commit, deploy, publicar, aplicar mudança externa.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.orange.050",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-orange-050",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Decisão que atravessa o limite. Laranja = estou tornando real.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      }
+    },
+    "mint": {
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.804,
+            0.976,
+            0.925
+          ],
+          "hex": "#CDF9EC"
+        },
+        "$description": "Primitivo mint 100. Status de sucesso e confirmação factual.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.mint.100",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-mint-100",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Resolução. Sucesso real, não celebração decorativa.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.616,
+            0.925,
+            0.843
+          ],
+          "hex": "#9DECD7"
+        },
+        "$description": "Primitivo mint 200. Status de sucesso e confirmação factual.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.mint.200",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-mint-200",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Resolução. Sucesso real, não celebração decorativa.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.431,
+            0.875,
+            0.769
+          ],
+          "hex": "#6EDFC4"
+        },
+        "$description": "Primitivo mint 300. Status de sucesso e confirmação factual.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.mint.300",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-mint-300",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Resolução. Sucesso real, não celebração decorativa.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.31,
+            0.82,
+            0.71
+          ],
+          "hex": "#4FD1B5"
+        },
+        "$description": "Sucesso dark.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.mint.400",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-mint-400",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Resolução. Sucesso real, não celebração decorativa.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.169,
+            0.725,
+            0.616
+          ],
+          "hex": "#2BB99D"
+        },
+        "$description": "Primitivo mint 500. Status de sucesso e confirmação factual.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.mint.500",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-mint-500",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Resolução. Sucesso real, não celebração decorativa.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.098,
+            0.557,
+            0.475
+          ],
+          "hex": "#198E79"
+        },
+        "$description": "Primitivo mint 600. Status de sucesso e confirmação factual.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.mint.600",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-mint-600",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Resolução. Sucesso real, não celebração decorativa.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.071,
+            0.424,
+            0.361
+          ],
+          "hex": "#126C5C"
+        },
+        "$description": "Sucesso light.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.mint.700",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-mint-700",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Resolução. Sucesso real, não celebração decorativa.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.063,
+            0.322,
+            0.275
+          ],
+          "hex": "#105246"
+        },
+        "$description": "Primitivo mint 800. Status de sucesso e confirmação factual.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.mint.800",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-mint-800",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Resolução. Sucesso real, não celebração decorativa.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.047,
+            0.227,
+            0.196
+          ],
+          "hex": "#0C3A32"
+        },
+        "$description": "Primitivo mint 900. Status de sucesso e confirmação factual.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.mint.900",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-mint-900",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Resolução. Sucesso real, não celebração decorativa.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "950": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.031,
+            0.145,
+            0.122
+          ],
+          "hex": "#08251F"
+        },
+        "$description": "Primitivo mint 950. Status de sucesso e confirmação factual.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.mint.950",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-mint-950",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Resolução. Sucesso real, não celebração decorativa.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "050": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.929,
+            1,
+            0.976
+          ],
+          "hex": "#EDFFF9"
+        },
+        "$description": "Primitivo mint 050. Status de sucesso e confirmação factual.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.mint.050",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-mint-050",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Resolução. Sucesso real, não celebração decorativa.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      }
+    },
+    "red": {
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.851,
+            0.875
+          ],
+          "hex": "#FFD9DF"
+        },
+        "$description": "Primitivo red 100. Erro, perigo, exclusão, falha.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.red.100",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-red-100",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Ruptura, risco, quebra.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.706,
+            0.749
+          ],
+          "hex": "#FFB4BF"
+        },
+        "$description": "Primitivo red 200. Erro, perigo, exclusão, falha.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.red.200",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-red-200",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Ruptura, risco, quebra.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.549,
+            0.604
+          ],
+          "hex": "#FF8C9A"
+        },
+        "$description": "Primitivo red 300. Erro, perigo, exclusão, falha.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.red.300",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-red-300",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Ruptura, risco, quebra.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.42,
+            0.478
+          ],
+          "hex": "#FF6B7A"
+        },
+        "$description": "Rupture dark.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.red.400",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-red-400",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Ruptura, risco, quebra.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.922,
+            0.302,
+            0.38
+          ],
+          "hex": "#EB4D61"
+        },
+        "$description": "Primitivo red 500. Erro, perigo, exclusão, falha.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.red.500",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-red-500",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Ruptura, risco, quebra.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.788,
+            0.212,
+            0.298
+          ],
+          "hex": "#C9364C"
+        },
+        "$description": "Primitivo red 600. Erro, perigo, exclusão, falha.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.red.600",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-red-600",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Ruptura, risco, quebra.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.631,
+            0.161,
+            0.235
+          ],
+          "hex": "#A1293C"
+        },
+        "$description": "Danger light.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.red.700",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-red-700",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Ruptura, risco, quebra.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.49,
+            0.137,
+            0.192
+          ],
+          "hex": "#7D2331"
+        },
+        "$description": "Primitivo red 800. Erro, perigo, exclusão, falha.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.red.800",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-red-800",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Ruptura, risco, quebra.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.361,
+            0.114,
+            0.153
+          ],
+          "hex": "#5C1D27"
+        },
+        "$description": "Primitivo red 900. Erro, perigo, exclusão, falha.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.red.900",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-red-900",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Ruptura, risco, quebra.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "950": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.216,
+            0.059,
+            0.086
+          ],
+          "hex": "#370F16"
+        },
+        "$description": "Primitivo red 950. Erro, perigo, exclusão, falha.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.red.950",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-red-950",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Ruptura, risco, quebra.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "050": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.941,
+            0.949
+          ],
+          "hex": "#FFF0F2"
+        },
+        "$description": "Primitivo red 050. Erro, perigo, exclusão, falha.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.red.050",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-red-050",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Ruptura, risco, quebra.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      }
+    },
+    "amber": {
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.992,
+            0.925,
+            0.753
+          ],
+          "hex": "#FDECC0"
+        },
+        "$description": "Primitivo amber 100. Warning e cautela.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.amber.100",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-amber-100",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Atenção sem ruptura.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.973,
+            0.851,
+            0.557
+          ],
+          "hex": "#F8D98E"
+        },
+        "$description": "Primitivo amber 200. Warning e cautela.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.amber.200",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-amber-200",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Atenção sem ruptura.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.949,
+            0.776,
+            0.427
+          ],
+          "hex": "#F2C66D"
+        },
+        "$description": "Warning dark (status.warning).",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.amber.300",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-amber-300",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Atenção sem ruptura.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.902,
+            0.706,
+            0.29
+          ],
+          "hex": "#E6B44A"
+        },
+        "$description": "Primitivo amber 400. Warning e cautela.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.amber.400",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-amber-400",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Atenção sem ruptura.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.808,
+            0.588,
+            0.153
+          ],
+          "hex": "#CE9627"
+        },
+        "$description": "Primitivo amber 500. Warning e cautela.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.amber.500",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-amber-500",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Atenção sem ruptura.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.663,
+            0.451,
+            0.071
+          ],
+          "hex": "#A97312"
+        },
+        "$description": "Primitivo amber 600. Warning e cautela.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.amber.600",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-amber-600",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Atenção sem ruptura.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.514,
+            0.341,
+            0.051
+          ],
+          "hex": "#83570D"
+        },
+        "$description": "Warning light.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.amber.700",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-amber-700",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Atenção sem ruptura.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.388,
+            0.255,
+            0.051
+          ],
+          "hex": "#63410D"
+        },
+        "$description": "Primitivo amber 800. Warning e cautela.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.amber.800",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-amber-800",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Atenção sem ruptura.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.275,
+            0.184,
+            0.051
+          ],
+          "hex": "#462F0D"
+        },
+        "$description": "Primitivo amber 900. Warning e cautela.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.amber.900",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-amber-900",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Atenção sem ruptura.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "950": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.169,
+            0.114,
+            0.027
+          ],
+          "hex": "#2B1D07"
+        },
+        "$description": "Primitivo amber 950. Warning e cautela.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.amber.950",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-amber-950",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Atenção sem ruptura.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "050": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.973,
+            0.91
+          ],
+          "hex": "#FFF8E8"
+        },
+        "$description": "Primitivo amber 050. Warning e cautela.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.amber.050",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-amber-050",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Atenção sem ruptura.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      }
+    },
+    "blue": {
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.863,
+            0.918,
+            1
+          ],
+          "hex": "#DCEAFF"
+        },
+        "$description": "Primitivo blue 100. Info, dados vindos de fora, referência neutra.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.blue.100",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-blue-100",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Informação externa ao sistema.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "200": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.722,
+            0.835,
+            1
+          ],
+          "hex": "#B8D5FF"
+        },
+        "$description": "Primitivo blue 200. Info, dados vindos de fora, referência neutra.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.blue.200",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-blue-200",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Informação externa ao sistema.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.573,
+            0.733,
+            1
+          ],
+          "hex": "#92BBFF"
+        },
+        "$description": "Primitivo blue 300. Info, dados vindos de fora, referência neutra.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.blue.300",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-blue-300",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Informação externa ao sistema.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "400": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.447,
+            0.655,
+            1
+          ],
+          "hex": "#72A7FF"
+        },
+        "$description": "Info dark.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.blue.400",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-blue-400",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Informação externa ao sistema.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.306,
+            0.545,
+            0.929
+          ],
+          "hex": "#4E8BED"
+        },
+        "$description": "Primitivo blue 500. Info, dados vindos de fora, referência neutra.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.blue.500",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-blue-500",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Informação externa ao sistema.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.196,
+            0.42,
+            0.796
+          ],
+          "hex": "#326BCB"
+        },
+        "$description": "Primitivo blue 600. Info, dados vindos de fora, referência neutra.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.blue.600",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-blue-600",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Informação externa ao sistema.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.157,
+            0.325,
+            0.627
+          ],
+          "hex": "#2853A0"
+        },
+        "$description": "Info light.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.blue.700",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-blue-700",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Informação externa ao sistema.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.137,
+            0.255,
+            0.486
+          ],
+          "hex": "#23417C"
+        },
+        "$description": "Primitivo blue 800. Info, dados vindos de fora, referência neutra.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.blue.800",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-blue-800",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Informação externa ao sistema.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.114,
+            0.192,
+            0.353
+          ],
+          "hex": "#1D315A"
+        },
+        "$description": "Primitivo blue 900. Info, dados vindos de fora, referência neutra.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.blue.900",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-blue-900",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Informação externa ao sistema.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "950": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.063,
+            0.114,
+            0.212
+          ],
+          "hex": "#101D36"
+        },
+        "$description": "Primitivo blue 950. Info, dados vindos de fora, referência neutra.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.blue.950",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-blue-950",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Informação externa ao sistema.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "050": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.937,
+            0.965,
+            1
+          ],
+          "hex": "#EFF6FF"
+        },
+        "$description": "Primitivo blue 050. Info, dados vindos de fora, referência neutra.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "color.blue.050",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-ref-color-blue-050",
+            "sourceSection": "Arquitetura e especificação completa de tokens / Primitivos cromáticos",
+            "consumerFacing": false,
+            "intent": "Informação externa ao sistema.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      }
+    }
+  },
+  "space": {
+    "100": {
+      "$type": "dimension",
+      "$value": {
+        "value": 4,
+        "unit": "px"
+      },
+      "$description": "Micro gap. Micrograde 4px com passo 2px óptico.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "space.100",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-space-100",
+          "sourceSection": "Arquitetura e especificação completa de tokens / Espaçamento",
+          "consumerFacing": true,
+          "intent": "Espaço entre coisas semanticamente relacionadas nunca maior que o espaço entre o grupo e o próximo grupo.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "150": {
+      "$type": "dimension",
+      "$value": {
+        "value": 6,
+        "unit": "px"
+      },
+      "$description": "Ícone/texto pequeno. Micrograde 4px com passo 2px óptico.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "space.150",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-space-150",
+          "sourceSection": "Arquitetura e especificação completa de tokens / Espaçamento",
+          "consumerFacing": true,
+          "intent": "Espaço entre coisas semanticamente relacionadas nunca maior que o espaço entre o grupo e o próximo grupo.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "200": {
+      "$type": "dimension",
+      "$value": {
+        "value": 8,
+        "unit": "px"
+      },
+      "$description": "Unidade básica. Micrograde 4px com passo 2px óptico.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "space.200",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-space-200",
+          "sourceSection": "Arquitetura e especificação completa de tokens / Espaçamento",
+          "consumerFacing": true,
+          "intent": "Espaço entre coisas semanticamente relacionadas nunca maior que o espaço entre o grupo e o próximo grupo.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "300": {
+      "$type": "dimension",
+      "$value": {
+        "value": 12,
+        "unit": "px"
+      },
+      "$description": "Elementos internos. Micrograde 4px com passo 2px óptico.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "space.300",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-space-300",
+          "sourceSection": "Arquitetura e especificação completa de tokens / Espaçamento",
+          "consumerFacing": true,
+          "intent": "Espaço entre coisas semanticamente relacionadas nunca maior que o espaço entre o grupo e o próximo grupo.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "400": {
+      "$type": "dimension",
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$description": "Padding padrão. Micrograde 4px com passo 2px óptico.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "space.400",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-space-400",
+          "sourceSection": "Arquitetura e especificação completa de tokens / Espaçamento",
+          "consumerFacing": true,
+          "intent": "Espaço entre coisas semanticamente relacionadas nunca maior que o espaço entre o grupo e o próximo grupo.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "500": {
+      "$type": "dimension",
+      "$value": {
+        "value": 20,
+        "unit": "px"
+      },
+      "$description": "Agrupamento. Micrograde 4px com passo 2px óptico.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "space.500",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-space-500",
+          "sourceSection": "Arquitetura e especificação completa de tokens / Espaçamento",
+          "consumerFacing": true,
+          "intent": "Espaço entre coisas semanticamente relacionadas nunca maior que o espaço entre o grupo e o próximo grupo.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "600": {
+      "$type": "dimension",
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      },
+      "$description": "Card/input amplo. Micrograde 4px com passo 2px óptico.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "space.600",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-space-600",
+          "sourceSection": "Arquitetura e especificação completa de tokens / Espaçamento",
+          "consumerFacing": true,
+          "intent": "Espaço entre coisas semanticamente relacionadas nunca maior que o espaço entre o grupo e o próximo grupo.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "800": {
+      "$type": "dimension",
+      "$value": {
+        "value": 32,
+        "unit": "px"
+      },
+      "$description": "Seção curta. Micrograde 4px com passo 2px óptico.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "space.800",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-space-800",
+          "sourceSection": "Arquitetura e especificação completa de tokens / Espaçamento",
+          "consumerFacing": true,
+          "intent": "Espaço entre coisas semanticamente relacionadas nunca maior que o espaço entre o grupo e o próximo grupo.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "1000": {
+      "$type": "dimension",
+      "$value": {
+        "value": 40,
+        "unit": "px"
+      },
+      "$description": "Seção. Micrograde 4px com passo 2px óptico.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "space.1000",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-space-1000",
+          "sourceSection": "Arquitetura e especificação completa de tokens / Espaçamento",
+          "consumerFacing": true,
+          "intent": "Espaço entre coisas semanticamente relacionadas nunca maior que o espaço entre o grupo e o próximo grupo.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "1200": {
+      "$type": "dimension",
+      "$value": {
+        "value": 48,
+        "unit": "px"
+      },
+      "$description": "Separação estrutural. Micrograde 4px com passo 2px óptico.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "space.1200",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-space-1200",
+          "sourceSection": "Arquitetura e especificação completa de tokens / Espaçamento",
+          "consumerFacing": true,
+          "intent": "Espaço entre coisas semanticamente relacionadas nunca maior que o espaço entre o grupo e o próximo grupo.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "1600": {
+      "$type": "dimension",
+      "$value": {
+        "value": 64,
+        "unit": "px"
+      },
+      "$description": "Blocos. Micrograde 4px com passo 2px óptico.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "space.1600",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-space-1600",
+          "sourceSection": "Arquitetura e especificação completa de tokens / Espaçamento",
+          "consumerFacing": true,
+          "intent": "Espaço entre coisas semanticamente relacionadas nunca maior que o espaço entre o grupo e o próximo grupo.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "2000": {
+      "$type": "dimension",
+      "$value": {
+        "value": 80,
+        "unit": "px"
+      },
+      "$description": "Seções editoriais. Micrograde 4px com passo 2px óptico.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "space.2000",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-space-2000",
+          "sourceSection": "Arquitetura e especificação completa de tokens / Espaçamento",
+          "consumerFacing": true,
+          "intent": "Espaço entre coisas semanticamente relacionadas nunca maior que o espaço entre o grupo e o próximo grupo.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "2400": {
+      "$type": "dimension",
+      "$value": {
+        "value": 96,
+        "unit": "px"
+      },
+      "$description": "Hero. Micrograde 4px com passo 2px óptico.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "space.2400",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-space-2400",
+          "sourceSection": "Arquitetura e especificação completa de tokens / Espaçamento",
+          "consumerFacing": true,
+          "intent": "Espaço entre coisas semanticamente relacionadas nunca maior que o espaço entre o grupo e o próximo grupo.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "3200": {
+      "$type": "dimension",
+      "$value": {
+        "value": 128,
+        "unit": "px"
+      },
+      "$description": "Macro rhythm. Micrograde 4px com passo 2px óptico.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "space.3200",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-space-3200",
+          "sourceSection": "Arquitetura e especificação completa de tokens / Espaçamento",
+          "consumerFacing": true,
+          "intent": "Espaço entre coisas semanticamente relacionadas nunca maior que o espaço entre o grupo e o próximo grupo.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "000": {
+      "$type": "dimension",
+      "$value": {
+        "value": 0,
+        "unit": "px"
+      },
+      "$description": "Reset. Micrograde 4px com passo 2px óptico.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "space.000",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-space-000",
+          "sourceSection": "Arquitetura e especificação completa de tokens / Espaçamento",
+          "consumerFacing": true,
+          "intent": "Espaço entre coisas semanticamente relacionadas nunca maior que o espaço entre o grupo e o próximo grupo.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "050": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      },
+      "$description": "Ajuste óptico. Micrograde 4px com passo 2px óptico.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "space.050",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-space-050",
+          "sourceSection": "Arquitetura e especificação completa de tokens / Espaçamento",
+          "consumerFacing": true,
+          "intent": "Espaço entre coisas semanticamente relacionadas nunca maior que o espaço entre o grupo e o próximo grupo.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    }
+  },
+  "font": {
+    "family": {
+      "sans": {
+        "$type": "fontFamily",
+        "$value": "\"Recursive\", ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "$description": "Recursive como voz central. Fallback system-ui / Segoe UI.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "font.family.sans",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-font-family-sans",
+            "sourceSection": "Identidade / Tipografia",
+            "consumerFacing": true,
+            "intent": "O lado racional e o lado expressivo deixam de ser fontes diferentes e viram estados da mesma fonte.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "machine": {
+        "$type": "fontFamily",
+        "$value": "\"Recursive\", \"SFMono-Regular\", Consolas, \"Liberation Mono\", monospace",
+        "$description": "Recursive mono + fallbacks de código.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "font.family.machine",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-font-family-machine",
+            "sourceSection": "Identidade / Tipografia",
+            "consumerFacing": true,
+            "intent": "Precisão. Código, IDs, métricas, timestamps.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      }
+    },
+    "weight": {
+      "regular": {
+        "$type": "fontWeight",
+        "$value": 400,
+        "$description": "Peso 400. Corpo. Recursive wght 300–1000.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "font.weight.regular",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-font-weight-regular",
+            "sourceSection": "Arquitetura / Tipografia / Pesos",
+            "consumerFacing": true,
+            "intent": "Hierarquia por peso da mesma família, não por troca de fonte.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "medium": {
+        "$type": "fontWeight",
+        "$value": 500,
+        "$description": "Peso 500. Ênfase leve. Recursive wght 300–1000.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "font.weight.medium",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-font-weight-medium",
+            "sourceSection": "Arquitetura / Tipografia / Pesos",
+            "consumerFacing": true,
+            "intent": "Hierarquia por peso da mesma família, não por troca de fonte.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "semibold": {
+        "$type": "fontWeight",
+        "$value": 600,
+        "$description": "Peso 600. Labels e títulos médios. Recursive wght 300–1000.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "font.weight.semibold",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-font-weight-semibold",
+            "sourceSection": "Arquitetura / Tipografia / Pesos",
+            "consumerFacing": true,
+            "intent": "Hierarquia por peso da mesma família, não por troca de fonte.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "bold": {
+        "$type": "fontWeight",
+        "$value": 700,
+        "$description": "Peso 700. Display e h1. Recursive wght 300–1000.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "font.weight.bold",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-font-weight-bold",
+            "sourceSection": "Arquitetura / Tipografia / Pesos",
+            "consumerFacing": true,
+            "intent": "Hierarquia por peso da mesma família, não por troca de fonte.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "strong": {
+        "$type": "fontWeight",
+        "$value": 800,
+        "$description": "Peso 800. Ênfase máxima rara. Recursive wght 300–1000.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "font.weight.strong",
+            "layer": "primitive",
+            "status": "source",
+            "cssVar": "--in-font-weight-strong",
+            "sourceSection": "Arquitetura / Tipografia / Pesos",
+            "consumerFacing": true,
+            "intent": "Hierarquia por peso da mesma família, não por troca de fonte.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      }
+    }
+  },
+  "radius": {
+    "none": {
+      "$type": "dimension",
+      "$value": {
+        "value": 0,
+        "unit": "px"
+      },
+      "$description": "Tabelas/grids. 0px.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "radius.none",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-radius-none",
+          "sourceSection": "Arquitetura / Radii",
+          "consumerFacing": true,
+          "intent": "INTEIRO não deve virar uma coleção de cápsulas. Pill não é a forma padrão de um botão.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "xs": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      },
+      "$description": "Indicadores técnicos. 2px.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "radius.xs",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-radius-xs",
+          "sourceSection": "Arquitetura / Radii",
+          "consumerFacing": true,
+          "intent": "INTEIRO não deve virar uma coleção de cápsulas. Pill não é a forma padrão de um botão.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": {
+        "value": 6,
+        "unit": "px"
+      },
+      "$description": "Tags/controles pequenos. 6px.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "radius.sm",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-radius-sm",
+          "sourceSection": "Arquitetura / Radii",
+          "consumerFacing": true,
+          "intent": "INTEIRO não deve virar uma coleção de cápsulas. Pill não é a forma padrão de um botão.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": {
+        "value": 10,
+        "unit": "px"
+      },
+      "$description": "Inputs/buttons. 10px.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "radius.md",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-radius-md",
+          "sourceSection": "Arquitetura / Radii",
+          "consumerFacing": true,
+          "intent": "INTEIRO não deve virar uma coleção de cápsulas. Pill não é a forma padrão de um botão.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$description": "Cards. 16px.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "radius.lg",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-radius-lg",
+          "sourceSection": "Arquitetura / Radii",
+          "consumerFacing": true,
+          "intent": "INTEIRO não deve virar uma coleção de cápsulas. Pill não é a forma padrão de um botão.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      },
+      "$description": "Hero/dialog especial. 24px.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "radius.xl",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-radius-xl",
+          "sourceSection": "Arquitetura / Radii",
+          "consumerFacing": true,
+          "intent": "INTEIRO não deve virar uma coleção de cápsulas. Pill não é a forma padrão de um botão.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "full": {
+      "$type": "dimension",
+      "$value": {
+        "value": 999,
+        "unit": "px"
+      },
+      "$description": "Badge/avatar apenas. 999px.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "radius.full",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-radius-full",
+          "sourceSection": "Arquitetura / Radii",
+          "consumerFacing": true,
+          "intent": "INTEIRO não deve virar uma coleção de cápsulas. Pill não é a forma padrão de um botão.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    }
+  },
+  "border": {
+    "none": {
+      "$type": "dimension",
+      "$value": {
+        "value": 0,
+        "unit": "px"
+      },
+      "$description": "Sem borda. 0px.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "border.none",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-border-none",
+          "sourceSection": "Arquitetura / Bordas",
+          "consumerFacing": true,
+          "intent": "Estrutura silenciosa.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "hairline": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1,
+        "unit": "px"
+      },
+      "$description": "Borda padrão. 1px.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "border.hairline",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-border-hairline",
+          "sourceSection": "Arquitetura / Bordas",
+          "consumerFacing": true,
+          "intent": "Estrutura silenciosa.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "emphasis": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      },
+      "$description": "Ênfase. 2px.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "border.emphasis",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-border-emphasis",
+          "sourceSection": "Arquitetura / Bordas",
+          "consumerFacing": true,
+          "intent": "Estrutura silenciosa.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "focus": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      },
+      "$description": "Focus ring. 2px.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "border.focus",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-border-focus",
+          "sourceSection": "Arquitetura / Bordas",
+          "consumerFacing": true,
+          "intent": "Estrutura silenciosa.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "seam": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      },
+      "$description": "Costura. 2px.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "border.seam",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-border-seam",
+          "sourceSection": "Arquitetura / Bordas",
+          "consumerFacing": true,
+          "intent": "A Costura é assinatura, não decoração.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "style": {
+      "$type": "strokeStyle",
+      "$value": "solid",
+      "$description": "Estilo de borda sólido.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "border.style",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-border-style",
+          "sourceSection": "Arquitetura / Bordas",
+          "consumerFacing": true,
+          "intent": "Sólido. Sem dashed como linguagem padrão.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    }
+  },
+  "opacity": {
+    "100": {
+      "$type": "number",
+      "$value": 1,
+      "$description": "Opaco. 1.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "opacity.100",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-opacity-100",
+          "sourceSection": "Arquitetura / Opacidade",
+          "consumerFacing": true,
+          "intent": "Não se reduz opacidade de texto ativo para criar hierarquia; usa-se text.secondary/tertiary.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "000": {
+      "$type": "number",
+      "$value": 0,
+      "$description": "Invisível. 0.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "opacity.000",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-opacity-000",
+          "sourceSection": "Arquitetura / Opacidade",
+          "consumerFacing": true,
+          "intent": "Não se reduz opacidade de texto ativo para criar hierarquia; usa-se text.secondary/tertiary.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "008": {
+      "$type": "number",
+      "$value": 0.08,
+      "$description": "Wash mínimo. 0.08.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "opacity.008",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-opacity-008",
+          "sourceSection": "Arquitetura / Opacidade",
+          "consumerFacing": true,
+          "intent": "Não se reduz opacidade de texto ativo para criar hierarquia; usa-se text.secondary/tertiary.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "016": {
+      "$type": "number",
+      "$value": 0.16,
+      "$description": "Wash. 0.16.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "opacity.016",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-opacity-016",
+          "sourceSection": "Arquitetura / Opacidade",
+          "consumerFacing": true,
+          "intent": "Não se reduz opacidade de texto ativo para criar hierarquia; usa-se text.secondary/tertiary.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "024": {
+      "$type": "number",
+      "$value": 0.24,
+      "$description": "Overlay leve. 0.24.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "opacity.024",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-opacity-024",
+          "sourceSection": "Arquitetura / Opacidade",
+          "consumerFacing": true,
+          "intent": "Não se reduz opacidade de texto ativo para criar hierarquia; usa-se text.secondary/tertiary.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "040": {
+      "$type": "number",
+      "$value": 0.4,
+      "$description": "Overlay. 0.4.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "opacity.040",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-opacity-040",
+          "sourceSection": "Arquitetura / Opacidade",
+          "consumerFacing": true,
+          "intent": "Não se reduz opacidade de texto ativo para criar hierarquia; usa-se text.secondary/tertiary.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "056": {
+      "$type": "number",
+      "$value": 0.56,
+      "$description": "Scrim parcial. 0.56.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "opacity.056",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-opacity-056",
+          "sourceSection": "Arquitetura / Opacidade",
+          "consumerFacing": true,
+          "intent": "Não se reduz opacidade de texto ativo para criar hierarquia; usa-se text.secondary/tertiary.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "072": {
+      "$type": "number",
+      "$value": 0.72,
+      "$description": "Scrim dark. 0.72.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "opacity.072",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-opacity-072",
+          "sourceSection": "Arquitetura / Opacidade",
+          "consumerFacing": true,
+          "intent": "Não se reduz opacidade de texto ativo para criar hierarquia; usa-se text.secondary/tertiary.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "088": {
+      "$type": "number",
+      "$value": 0.88,
+      "$description": "Quase opaco. 0.88.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "opacity.088",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-opacity-088",
+          "sourceSection": "Arquitetura / Opacidade",
+          "consumerFacing": true,
+          "intent": "Não se reduz opacidade de texto ativo para criar hierarquia; usa-se text.secondary/tertiary.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    }
+  },
+  "motion": {
+    "none": {
+      "$type": "duration",
+      "$value": {
+        "value": 0,
+        "unit": "ms"
+      },
+      "$description": "Sem movimento. 0ms.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "motion.none",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-motion-none",
+          "sourceSection": "Arquitetura / Motion",
+          "consumerFacing": true,
+          "intent": "Motion expressa causalidade. Não há bouncing como linguagem padrão.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "snap": {
+      "$type": "duration",
+      "$value": {
+        "value": 90,
+        "unit": "ms"
+      },
+      "$description": "Press/hover. 90ms.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "motion.snap",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-motion-snap",
+          "sourceSection": "Arquitetura / Motion",
+          "consumerFacing": true,
+          "intent": "Motion expressa causalidade. Não há bouncing como linguagem padrão.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "fast": {
+      "$type": "duration",
+      "$value": {
+        "value": 140,
+        "unit": "ms"
+      },
+      "$description": "Mudança pequena. 140ms.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "motion.fast",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-motion-fast",
+          "sourceSection": "Arquitetura / Motion",
+          "consumerFacing": true,
+          "intent": "Motion expressa causalidade. Não há bouncing como linguagem padrão.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "normal": {
+      "$type": "duration",
+      "$value": {
+        "value": 200,
+        "unit": "ms"
+      },
+      "$description": "UI padrão. 200ms.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "motion.normal",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-motion-normal",
+          "sourceSection": "Arquitetura / Motion",
+          "consumerFacing": true,
+          "intent": "Motion expressa causalidade. Não há bouncing como linguagem padrão.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "deliberate": {
+      "$type": "duration",
+      "$value": {
+        "value": 320,
+        "unit": "ms"
+      },
+      "$description": "Expandir/alterar contexto. 320ms.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "motion.deliberate",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-motion-deliberate",
+          "sourceSection": "Arquitetura / Motion",
+          "consumerFacing": true,
+          "intent": "Motion expressa causalidade. Não há bouncing como linguagem padrão.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "slow": {
+      "$type": "duration",
+      "$value": {
+        "value": 480,
+        "unit": "ms"
+      },
+      "$description": "Transição grande. 480ms.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "motion.slow",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-motion-slow",
+          "sourceSection": "Arquitetura / Motion",
+          "consumerFacing": true,
+          "intent": "Motion expressa causalidade. Não há bouncing como linguagem padrão.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "ambient": {
+      "$type": "duration",
+      "$value": {
+        "value": 700,
+        "unit": "ms"
+      },
+      "$description": "Apenas decorativo. 700ms.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "motion.ambient",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-motion-ambient",
+          "sourceSection": "Arquitetura / Motion",
+          "consumerFacing": true,
+          "intent": "Motion expressa causalidade. Não há bouncing como linguagem padrão.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    }
+  },
+  "ease": {
+    "standard": {
+      "$type": "cubicBezier",
+      "$value": [
+        0.2,
+        0,
+        0,
+        1
+      ],
+      "$description": "Padrão. cubic-bezier(0.2, 0, 0, 1).",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "ease.standard",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-ease-standard",
+          "sourceSection": "Arquitetura / Motion / Easing",
+          "consumerFacing": true,
+          "intent": "Entrada desacelera, saída é mais rápida, commit é deliberado.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "enter": {
+      "$type": "cubicBezier",
+      "$value": [
+        0,
+        0,
+        0.2,
+        1
+      ],
+      "$description": "Entrada desacelera. cubic-bezier(0, 0, 0.2, 1).",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "ease.enter",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-ease-enter",
+          "sourceSection": "Arquitetura / Motion / Easing",
+          "consumerFacing": true,
+          "intent": "Entrada desacelera, saída é mais rápida, commit é deliberado.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "exit": {
+      "$type": "cubicBezier",
+      "$value": [
+        0.4,
+        0,
+        1,
+        1
+      ],
+      "$description": "Saída mais rápida. cubic-bezier(0.4, 0, 1, 1).",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "ease.exit",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-ease-exit",
+          "sourceSection": "Arquitetura / Motion / Easing",
+          "consumerFacing": true,
+          "intent": "Entrada desacelera, saída é mais rápida, commit é deliberado.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "emphasis": {
+      "$type": "cubicBezier",
+      "$value": [
+        0.2,
+        0.8,
+        0.2,
+        1
+      ],
+      "$description": "Commit deliberado. cubic-bezier(0.2, 0.8, 0.2, 1).",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "ease.emphasis",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-ease-emphasis",
+          "sourceSection": "Arquitetura / Motion / Easing",
+          "consumerFacing": true,
+          "intent": "Entrada desacelera, saída é mais rápida, commit é deliberado.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "linear": {
+      "$type": "cubicBezier",
+      "$value": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "$description": "Linear. cubic-bezier(0, 0, 1, 1).",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "ease.linear",
+          "layer": "primitive",
+          "status": "source",
+          "cssVar": "--in-ease-linear",
+          "sourceSection": "Arquitetura / Motion / Easing",
+          "consumerFacing": true,
+          "intent": "Entrada desacelera, saída é mais rápida, commit é deliberado.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    }
+  }
+}

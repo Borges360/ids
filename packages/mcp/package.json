@@ -1,0 +1,16 @@
+{
+  "name": "@inteiro/mcp",
+  "version": "1.0.0",
+  "description": "INTEIRO MCP server — tokens, guidelines, recipes, audit",
+  "type": "module",
+  "bin": {
+    "inteiro-mcp": "./src/server.ts"
+  },
+  "scripts": { "build": "node --experimental-strip-types ./src/server.ts --help" },
+  "dependencies": {
+    "@inteiro/agent-core": "1.0.0",
+    "@inteiro/tokens": "1.0.0"
+  },
+  "engines": { "node": ">=22.14" },
+  "license": "MIT"
+}

@@ -1,0 +1,33 @@
+{
+  "name": "inteiro",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "INTEIRO — Identity Design System pessoal, completo e production-ready",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=22.14"
+  },
+  "scripts": {
+    "build": "npm run build -w @inteiro/tokens && npm run build -w @inteiro/agent-core && npm run build -w @inteiro/cli && npm run build -w @inteiro/mcp && npm run build -w @inteiro/design-system && npm run build -w @inteiro/react && npm run build -w @inteiro/skills",
+    "validate": "npm run validate -w @inteiro/tokens",
+    "test": "vitest run",
+    "test:contrast": "vitest run tests/contrast",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit -p tsconfig.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "pack:check": "npm pack --dry-run -w @inteiro/tokens && npm pack --dry-run -w @inteiro/cli && npm pack --dry-run -w @inteiro/design-system",
+    "generate": "npm run build -w @inteiro/tokens && npm run generate -w @inteiro/skills",
+    "demo": "node scripts/serve-demo.mjs",
+    "ci": "npm run lint && npm run validate && npm run test && npm run test:contrast && npm run build && npm run pack:check"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  },
+  "license": "MIT"
+}

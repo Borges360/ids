@@ -1,0 +1,12 @@
+{
+  "name": "@inteiro/integrations",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    "./tailwind": "./src/tailwind.js",
+    "./vue": "./src/vue.js",
+    "./svelte": "./src/svelte.js"
+  },
+  "scripts": { "build": "node -e \"console.log('integrations ok')\"" },
+  "license": "MIT"
+}

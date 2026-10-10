@@ -1,0 +1,114 @@
+# Relatório de validação
+
+Data: 2026-10-10. Ambiente: Windows, Node v24.14.0, npm 11.9.0.
+
+## Testes automatizados
+
+```
+npx vitest run
+Test Files  6 passed (6)
+Tests       28 passed (28)
+```
+
+Arquivos:
+
+- `tests/catalog.test.ts` — 7 testes (integridade, DTCG, aliases, primitivos)
+- `tests/contrast/contrast.test.ts` — 3 testes (AA, botões, fails)
+- `tests/exports.test.ts` — 4 testes (CSS/JSON/TS)
+- `tests/skills.test.ts` — 3 testes (1:1 token↔skill, frontmatter, skills de nível)
+- `tests/cli/cli.test.ts` — 7 testes (help, list/explain, validate, export, init idempotente, agents dry-run, install/uninstall cursor)
+- `tests/agent-core.test.ts` — 4 testes (explain, suggest, microcopy, recipes)
+
+Falhos: **0**.
+
+## Typecheck e catálogo
+
+```
+npx tsc --noEmit -p tsconfig.json   → exit 0
+npm run validate                    → 0 errors, 0 warnings, 0 contrastFails
+```
+
+316 tokens. 254 source, 62 derived. Temas contrast-* são extensão de **valores** (não criam ids novos).
+
+## Contraste medido (WCAG 2.2, relativo sRGB)
+
+| Par | Dark | Light | Mín. | Status |
+|---|---:|---:|---:|---|
+| text.primary / canvas | 17.21 | 16.81 | 4.5 | AA |
+| text.secondary / canvas | 9.61 | 6.48 | 4.5 | AA |
+| identity.primary / canvas | 7.13 | 5.01 | 4.5 | AA |
+| button.primary | 6.72 | 5.45 | 4.5 | AA |
+| button.commit | 8.94 | 5.32 | 4.5 | AA |
+
+O documento citava 6.89:1 no botão violet dark; o valor medido é **6.72:1** (ainda AA). Diferença registrada, sem alterar o hex da fonte.
+
+Status colors sobre canvas usam mínimo gráfico 3:1 e exigem ícone+texto. Ver `packages/tokens/dist/json/contrast.json`.
+
+## Empacotamento
+
+```
+npm pack --dry-run -w @inteiro/tokens
+npm pack --dry-run -w @inteiro/cli
+npm pack --dry-run -w @inteiro/design-system
+```
+
+Tarballs reais em `artifacts/`:
+
+- `artifacts/inteiro-tokens-1.0.0.tgz`
+- `artifacts/inteiro-cli-1.0.0.tgz`
+- `artifacts/inteiro-design-system-1.0.0.tgz`
+
+Instalação local do tarball de tokens (projeto temporário):
+
+```
+npm install artifacts/inteiro-tokens-1.0.0.tgz
+node --input-type=module -e "import { catalogStats } from '@inteiro/tokens/runtime'"
+→ runtime 316
+import '@inteiro/tokens/json' → 316 chaves em dark
+```
+
+Nota: Node 24 **não** faz type-stripping dentro de `node_modules`. O entry de consumo do tarball é `@inteiro/tokens/runtime` (JS) e os subpaths `./css` e `./json`. No monorepo, `@inteiro/tokens` aponta para o TypeScript fonte.
+
+## CLI executada
+
+- `inteiro doctor --json` — catálogo válido; AGENTS.md ausente na raiz do DS (esperado)
+- `inteiro tokens list --layer primitive --json` — 134 primitivos
+- `inteiro agents list --json` — 6 harnesses
+- `inteiro skills list --json` — 10 canônicas, 316 geradas
+- `inteiro skills generate` — 326 SKILL.md
+- testes de `init`, `agents install cursor`, `uninstall` em diretórios temporários
+
+## Demonstração
+
+`npm run demo` → `http://127.0.0.1:4173/`
+
+Verificado no browser: página carrega, botões primary/commit, formulário com erro textual, dashboard, Costura no card de reflexão. Tema light aplicado (`--in-color-background-canvas: #f7f5f1`, fundo `rgb(247, 245, 241)`). Toggle de densidade `calm`/`focus` presente.
+
+## Harnesses
+
+| Harness | Implementação | Verificação |
+|---|---|---|
+| Codex | plugin.json Agent Plugins 1.0.0, `.codex-plugin`, skills, MCP | parcialmente testada (arquivos + install simulado) |
+| Claude Code | `.claude-plugin/plugin.json`, skills, `.mcp.json` | parcialmente testada |
+| Devin | skills + playbook/knowledge markdown | não verificada no app Devin |
+| Cursor | rules `.mdc`, skills, `.cursor-plugin`, MCP | parcialmente testada (install/uninstall em tmp) |
+| Pi | `.pi/skills`, `.agents/skills` | parcialmente testada |
+| Hermes | HERMES.md, Agent Plugin, MCP | não verificada no binário Hermes |
+
+Nenhum harness foi declarado “testado” no produto nativo (Codex CLI, `claude plugin validate`, Devin web, Cursor marketplace, Pi runtime, Hermes). Os adaptadores seguem a documentação oficial consultada em 2026-10-10.
+
+## Skills e docs gerados
+
+- 326 skills em `packages/skills/generated` (10 canônicas + 316 tokens)
+- 316 páginas em `docs/tokens/generated`
+
+## Limitações conhecidas
+
+1. Pacotes não publicados no npm/marketplaces (autorização não concedida).
+2. CLI tarball depende de workspaces `@inteiro/tokens` e `@inteiro/agent-core`; uso recomendado: monorepo ou `node packages/cli/src/cli.ts`.
+3. Playbooks Devin e plugin Python Hermes exigem passo manual na UI/home do harness.
+4. Recursive na demo vem do Google Fonts (rede). Self-host OFL não está empacotado.
+5. `@inteiro/react` é source-only; Emotion é peer opcional.
+6. Não há adaptador Android Compose; Flutter e Swift cobrem a plataforma não-web.
+7. `color.accent` existe apenas como exemplo `$deprecated`.
+8. ZIP do monorepo em `artifacts/inteiro-monorepo-1.0.0.zip` não inclui `node_modules`.

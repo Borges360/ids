@@ -1,0 +1,7 @@
+{
+  "name": "inteiro",
+  "version": "1.0.0",
+  "description": "INTEIRO for Codex (compatibilidade .codex-plugin)",
+  "skills": "./skills/",
+  "mcpServers": "./mcp.json"
+}

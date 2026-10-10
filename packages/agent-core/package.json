@@ -1,0 +1,21 @@
+{
+  "name": "@inteiro/agent-core",
+  "version": "1.0.0",
+  "description": "INTEIRO Agent Core — consulta de tokens, guidelines, recipes, auditoria e sugestão semântica",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    }
+  },
+  "files": ["src", "dist", "README.md"],
+  "scripts": {
+    "build": "node --experimental-strip-types ../tokens/src/build.ts"
+  },
+  "dependencies": {
+    "@inteiro/tokens": "1.0.0"
+  },
+  "engines": { "node": ">=22.14" },
+  "license": "MIT"
+}

@@ -1,0 +1,3773 @@
+{
+  "$description": "INTEIRO temas — dark, light e extensão contrast",
+  "theme": {
+    "dark": {
+      "$description": "INTEIRO tokens — tema dark",
+      "color": {
+        "background": {
+          "canvas": {
+            "$type": "color",
+            "$value": "{color.neutral.950}",
+            "$description": "Canvas da página. Dark: Obsidian. Light: off-white quente.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.background.canvas",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-background-canvas",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Interior e silêncio. Fundo sobre o qual a hierarquia se revela.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "surface": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.075,
+                0.082,
+                0.114
+              ],
+              "hex": "#13151D"
+            },
+            "$description": "Superfície padrão de cards e painéis.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.background.surface",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-background-surface",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Camada imediatamente acima do canvas, sem flutuação teatral.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "raised": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.102,
+                0.114,
+                0.157
+              ],
+              "hex": "#1A1D28"
+            },
+            "$description": "Superfície elevada (dropdown, popover, sticky).",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.background.raised",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-background-raised",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Elevação por diferença de superfície + borda, não por sombra enorme.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "sunken": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.035,
+                0.039,
+                0.059
+              ],
+              "hex": "#090A0F"
+            },
+            "$description": "Superfície rebaixada. Campos readonly, wells, áreas de recuo.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.background.sunken",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-background-sunken",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Recuo perceptivo para conteúdo não editável ou agrupado.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "text": {
+          "primary": {
+            "$type": "color",
+            "$value": "{color.neutral.100}",
+            "$description": "Texto principal. Dark: Warm Frost. Light: quase-preto quente.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.text.primary",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-text-primary",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Voz racional da interface. Humano, não frio.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "secondary": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.725,
+                0.706,
+                0.773
+              ],
+              "hex": "#B9B4C5"
+            },
+            "$description": "Texto secundário. Metadados e apoio.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.text.secondary",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-text-secondary",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Hierarquia por cor semântica, não por opacity.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "tertiary": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.545,
+                0.529,
+                0.573
+              ],
+              "hex": "#8B8792"
+            },
+            "$description": "Texto terciário. Menor prioridade perceptiva.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.text.tertiary",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-text-tertiary",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Ainda deve ser legível. Densidade permitida; desordem não.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "inverse": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.086,
+                0.078,
+                0.102
+              ],
+              "hex": "#16141A"
+            },
+            "$description": "Texto sobre superfícies invertidas (botões filled, chips sólidos).",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.text.inverse",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-text-inverse",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Garante contraste sobre identity e commit.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "border": {
+          "subtle": {
+            "$type": "color",
+            "$value": "{color.neutral.800}",
+            "$description": "Borda silenciosa. Estrutura que não chama atenção.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.border.subtle",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-border-subtle",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "A estrutura deve ser silenciosa.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "interactive": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.439,
+                0.42,
+                0.463
+              ],
+              "hex": "#706B76"
+            },
+            "$description": "Borda de controles em rest.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.border.interactive",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-border-interactive",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Sinaliza que o objeto é acionável sem gritar.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "strong": {
+            "$type": "color",
+            "$value": "{color.neutral.400}",
+            "$description": "Borda enfática. Hover de input, ênfase estrutural.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.border.strong",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-border-strong",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Aumento de contraste sob intenção, não decoração.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "identity": {
+          "primary": {
+            "$type": "color",
+            "$value": "{color.violet.400}",
+            "$description": "Violeta de identidade. Consciência deliberada.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.identity.primary",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-identity-primary",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Violeta = estou escolhendo. Seleção, identidade, foco.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "primary-hover": {
+            "$type": "color",
+            "$value": "{color.violet.300}",
+            "$description": "Hover da identidade. Intenção ainda deliberada, um passo mais clara.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.identity.primary-hover",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-identity-primary-hover",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Hover comunica affordance, não urgência.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "commit": {
+            "$type": "color",
+            "$value": "{color.orange.400}",
+            "$description": "Laranja de decisão. Atravessar o limite e tornar real.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.identity.commit",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-identity-commit",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Laranja = estou tornando real. Deploy, publicar, aplicar.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "commit-hover": {
+            "$type": "color",
+            "$value": "{color.orange.300}",
+            "$description": "Hover do commit. A decisão fica mais próxima.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.identity.commit-hover",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-identity-commit-hover",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Hover de commit, não de primary.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "subtle": {
+            "$type": "color",
+            "$value": "{color.violet.950}",
+            "$description": "Fundo sutil de identidade.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.identity.subtle",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-identity-subtle",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Seleção/contexto INTEIRO sem Costura decorativa.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "status": {
+          "success": {
+            "$type": "color",
+            "$value": "{color.mint.400}",
+            "$description": "Mint. Resolução. Sucesso real.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.success",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-success",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Confirmação factual, não celebração.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "warning": {
+            "$type": "color",
+            "$value": "{color.amber.300}",
+            "$description": "Amber. Atenção.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.warning",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-warning",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Cautela sem ruptura. Não é laranja de commit.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "danger": {
+            "$type": "color",
+            "$value": "{color.red.400}",
+            "$description": "Rupture. Quebra, risco, erro.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.danger",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-danger",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Excluir, falha, invalid.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "info": {
+            "$type": "color",
+            "$value": "{color.blue.400}",
+            "$description": "Blue. Informação externa.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.info",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-info",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Dado que entra no sistema, não identidade.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "success-subtle": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.075,
+                0.165,
+                0.145
+              ],
+              "hex": "#132A25"
+            },
+            "$description": "Fundo sutil de sucesso.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.success-subtle",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-success-subtle",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Estado sem gritar. Resolução em segundo plano perceptivo.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "warning-subtle": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.165,
+                0.145,
+                0.082
+              ],
+              "hex": "#2A2515"
+            },
+            "$description": "Fundo sutil de warning.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.warning-subtle",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-warning-subtle",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Atenção contida.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "danger-subtle": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.188,
+                0.098,
+                0.114
+              ],
+              "hex": "#30191D"
+            },
+            "$description": "Fundo sutil de perigo.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.danger-subtle",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-danger-subtle",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Ruptura visível sem inundar a tela de vermelho.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "info-subtle": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.086,
+                0.133,
+                0.22
+              ],
+              "hex": "#162238"
+            },
+            "$description": "Fundo sutil de informação.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.info-subtle",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-info-subtle",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Informação externa, silenciada.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "focus": {
+          "ring": {
+            "$type": "color",
+            "$value": "{color.violet.400}",
+            "$description": "Anel de foco visível. 2px, offset 2px.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.focus.ring",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-focus-ring",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Foco ≠ seleção. Navegação atual deve ser distinguível.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "selection": {
+          "background": {
+            "$type": "color",
+            "$value": "{color.violet.900}",
+            "$description": "Fundo de seleção persistente.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.selection.background",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-selection-background",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Seleção é estado persistente, distinto de foco.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "overlay": {
+          "scrim": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.016,
+                0.02,
+                0.031
+              ],
+              "hex": "#040508",
+              "alpha": 0.72
+            },
+            "$description": "Scrim de overlay. Permite opacidade; texto ativo não.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.overlay.scrim",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-overlay-scrim",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Modal e command palette precisam de recuo do contexto.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "action": {
+          "primary": {
+            "background": {
+              "$type": "color",
+              "$value": "{color.identity.primary}",
+              "$description": "Fundo do botão primary. Ação deliberada principal.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.primary.background",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-primary-background",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Primary = escolher. Nunca quatro botões violet na mesma fileira.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{color.identity.primary-hover}",
+              "$description": "Hover do botão primary.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.primary.hover",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-primary-hover",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Affordance, não urgência.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "foreground": {
+              "$type": "color",
+              "$value": "{color.text.inverse}",
+              "$description": "Texto do botão primary.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.primary.foreground",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-primary-foreground",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Foreground escuro no dark sobre violeta; claro no light.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            }
+          },
+          "commit": {
+            "background": {
+              "$type": "color",
+              "$value": "{color.identity.commit}",
+              "$description": "Fundo do botão commit. Fazer algo sair do sistema para o mundo.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.commit.background",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-commit-background",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Publicar, deploy, aplicar mudança externa.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{color.identity.commit-hover}",
+              "$description": "Hover do botão commit.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.commit.hover",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-commit-hover",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "A decisão se aproxima.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "foreground": {
+              "$type": "color",
+              "$value": "{color.text.inverse}",
+              "$description": "Texto do botão commit.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.commit.foreground",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-commit-foreground",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Foreground escuro no dark; branco no light.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            }
+          },
+          "danger": {
+            "background": {
+              "$type": "color",
+              "$value": "{color.status.danger}",
+              "$description": "Fundo da ação destrutiva.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.danger.background",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-danger-background",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Excluir, ruptura.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "foreground": {
+              "$type": "color",
+              "$value": "{color.text.inverse}",
+              "$description": "Texto da ação destrutiva.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.danger.foreground",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-danger-foreground",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Legível sobre rupture.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            }
+          },
+          "disabled": {
+            "background": {
+              "$type": "color",
+              "$value": "{color.neutral.800}",
+              "$description": "Fundo de controle desabilitado.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.disabled.background",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-disabled-background",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Disabled é estado real, distinto de readonly.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "foreground": {
+              "$type": "color",
+              "$value": "{color.neutral.500}",
+              "$description": "Texto de controle desabilitado.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.disabled.foreground",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-disabled-foreground",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Ainda precisa ser perceptível como desabilitado, não invisível.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            }
+          }
+        },
+        "dataviz": {
+          "categorical": {
+            "01": {
+              "$type": "color",
+              "$value": "{color.violet.400}",
+              "$description": "Série categórica 01. Identidade. Primeira série, não decoração.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.01",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-01",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "02": {
+              "$type": "color",
+              "$value": "{color.orange.400}",
+              "$description": "Série categórica 02. Commit/decisão. Só quando a série significa atravessar.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.02",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-02",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "03": {
+              "$type": "color",
+              "$value": "{color.blue.400}",
+              "$description": "Série categórica 03. Informação externa.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.03",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-03",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "04": {
+              "$type": "color",
+              "$value": "{color.mint.400}",
+              "$description": "Série categórica 04. Resolução.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.04",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-04",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "05": {
+              "$type": "color",
+              "$value": "{color.red.400}",
+              "$description": "Série categórica 05. Ruptura.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.05",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-05",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "06": {
+              "$type": "color",
+              "$value": "{color.amber.300}",
+              "$description": "Série categórica 06. Atenção.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.06",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-06",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "07": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.898,
+                  0.549,
+                  0.91
+                ],
+                "hex": "#E58CE8"
+              },
+              "$description": "Série categórica 07. Série extra especificada na fonte. Não é identidade.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.07",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-07",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "08": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.725,
+                  0.706,
+                  0.773
+                ],
+                "hex": "#B9B4C5"
+              },
+              "$description": "Série categórica 08. Neutro de apoio. Fecha a escala.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.08",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-08",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "light": {
+      "$description": "INTEIRO tokens — tema light",
+      "color": {
+        "background": {
+          "canvas": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.969,
+                0.961,
+                0.945
+              ],
+              "hex": "#F7F5F1"
+            },
+            "$description": "Canvas da página. Dark: Obsidian. Light: off-white quente.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.background.canvas",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-background-canvas",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Interior e silêncio. Fundo sobre o qual a hierarquia se revela.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "surface": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "hex": "#FFFFFF"
+            },
+            "$description": "Superfície padrão de cards e painéis.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.background.surface",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-background-surface",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Camada imediatamente acima do canvas, sem flutuação teatral.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "raised": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "hex": "#FFFFFF"
+            },
+            "$description": "Superfície elevada (dropdown, popover, sticky).",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.background.raised",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-background-raised",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Elevação por diferença de superfície + borda, não por sombra enorme.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "sunken": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.933,
+                0.918,
+                0.894
+              ],
+              "hex": "#EEEAE4"
+            },
+            "$description": "Superfície rebaixada. Campos readonly, wells, áreas de recuo.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.background.sunken",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-background-sunken",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Recuo perceptivo para conteúdo não editável ou agrupado.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "text": {
+          "primary": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.086,
+                0.078,
+                0.102
+              ],
+              "hex": "#16141A"
+            },
+            "$description": "Texto principal. Dark: Warm Frost. Light: quase-preto quente.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.text.primary",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-text-primary",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Voz racional da interface. Humano, não frio.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "secondary": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.361,
+                0.337,
+                0.4
+              ],
+              "hex": "#5C5666"
+            },
+            "$description": "Texto secundário. Metadados e apoio.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.text.secondary",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-text-secondary",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Hierarquia por cor semântica, não por opacity.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "tertiary": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.427,
+                0.404,
+                0.459
+              ],
+              "hex": "#6D6775"
+            },
+            "$description": "Texto terciário. Menor prioridade perceptiva.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.text.tertiary",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-text-tertiary",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Ainda deve ser legível. Densidade permitida; desordem não.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "inverse": {
+            "$type": "color",
+            "$value": "{color.neutral.100}",
+            "$description": "Texto sobre superfícies invertidas (botões filled, chips sólidos).",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.text.inverse",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-text-inverse",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Garante contraste sobre identity e commit.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "border": {
+          "subtle": {
+            "$type": "color",
+            "$value": "{color.neutral.300}",
+            "$description": "Borda silenciosa. Estrutura que não chama atenção.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.border.subtle",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-border-subtle",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "A estrutura deve ser silenciosa.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "interactive": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.427,
+                0.404,
+                0.459
+              ],
+              "hex": "#6D6775"
+            },
+            "$description": "Borda de controles em rest.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.border.interactive",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-border-interactive",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Sinaliza que o objeto é acionável sem gritar.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "strong": {
+            "$type": "color",
+            "$value": "{color.neutral.700}",
+            "$description": "Borda enfática. Hover de input, ênfase estrutural.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.border.strong",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-border-strong",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Aumento de contraste sob intenção, não decoração.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "identity": {
+          "primary": {
+            "$type": "color",
+            "$value": "{color.violet.600}",
+            "$description": "Violeta de identidade. Consciência deliberada.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.identity.primary",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-identity-primary",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Violeta = estou escolhendo. Seleção, identidade, foco.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "primary-hover": {
+            "$type": "color",
+            "$value": "{color.violet.700}",
+            "$description": "Hover da identidade. Intenção ainda deliberada, um passo mais clara.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.identity.primary-hover",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-identity-primary-hover",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Hover comunica affordance, não urgência.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "commit": {
+            "$type": "color",
+            "$value": "{color.orange.700}",
+            "$description": "Laranja de decisão. Atravessar o limite e tornar real.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.identity.commit",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-identity-commit",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Laranja = estou tornando real. Deploy, publicar, aplicar.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "commit-hover": {
+            "$type": "color",
+            "$value": "{color.orange.800}",
+            "$description": "Hover do commit. A decisão fica mais próxima.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.identity.commit-hover",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-identity-commit-hover",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Hover de commit, não de primary.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "subtle": {
+            "$type": "color",
+            "$value": "{color.violet.050}",
+            "$description": "Fundo sutil de identidade.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.identity.subtle",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-identity-subtle",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Seleção/contexto INTEIRO sem Costura decorativa.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "status": {
+          "success": {
+            "$type": "color",
+            "$value": "{color.mint.700}",
+            "$description": "Mint. Resolução. Sucesso real.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.success",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-success",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Confirmação factual, não celebração.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "warning": {
+            "$type": "color",
+            "$value": "{color.amber.700}",
+            "$description": "Amber. Atenção.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.warning",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-warning",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Cautela sem ruptura. Não é laranja de commit.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "danger": {
+            "$type": "color",
+            "$value": "{color.red.700}",
+            "$description": "Rupture. Quebra, risco, erro.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.danger",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-danger",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Excluir, falha, invalid.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "info": {
+            "$type": "color",
+            "$value": "{color.blue.700}",
+            "$description": "Blue. Informação externa.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.info",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-info",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Dado que entra no sistema, não identidade.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "success-subtle": {
+            "$type": "color",
+            "$value": "{color.mint.050}",
+            "$description": "Fundo sutil de sucesso.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.success-subtle",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-success-subtle",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Estado sem gritar. Resolução em segundo plano perceptivo.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "warning-subtle": {
+            "$type": "color",
+            "$value": "{color.amber.050}",
+            "$description": "Fundo sutil de warning.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.warning-subtle",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-warning-subtle",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Atenção contida.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "danger-subtle": {
+            "$type": "color",
+            "$value": "{color.red.050}",
+            "$description": "Fundo sutil de perigo.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.danger-subtle",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-danger-subtle",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Ruptura visível sem inundar a tela de vermelho.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "info-subtle": {
+            "$type": "color",
+            "$value": "{color.blue.050}",
+            "$description": "Fundo sutil de informação.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.info-subtle",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-info-subtle",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Informação externa, silenciada.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "focus": {
+          "ring": {
+            "$type": "color",
+            "$value": "{color.violet.600}",
+            "$description": "Anel de foco visível. 2px, offset 2px.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.focus.ring",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-focus-ring",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Foco ≠ seleção. Navegação atual deve ser distinguível.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "selection": {
+          "background": {
+            "$type": "color",
+            "$value": "{color.violet.100}",
+            "$description": "Fundo de seleção persistente.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.selection.background",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-selection-background",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Seleção é estado persistente, distinto de foco.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "overlay": {
+          "scrim": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.047,
+                0.051,
+                0.071
+              ],
+              "hex": "#0C0D12",
+              "alpha": 0.54
+            },
+            "$description": "Scrim de overlay. Permite opacidade; texto ativo não.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.overlay.scrim",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-overlay-scrim",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Modal e command palette precisam de recuo do contexto.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "action": {
+          "primary": {
+            "background": {
+              "$type": "color",
+              "$value": "{color.identity.primary}",
+              "$description": "Fundo do botão primary. Ação deliberada principal.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.primary.background",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-primary-background",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Primary = escolher. Nunca quatro botões violet na mesma fileira.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{color.identity.primary-hover}",
+              "$description": "Hover do botão primary.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.primary.hover",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-primary-hover",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Affordance, não urgência.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "foreground": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  1,
+                  1,
+                  1
+                ],
+                "hex": "#FFFFFF"
+              },
+              "$description": "Texto do botão primary.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.primary.foreground",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-primary-foreground",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Foreground escuro no dark sobre violeta; claro no light.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            }
+          },
+          "commit": {
+            "background": {
+              "$type": "color",
+              "$value": "{color.identity.commit}",
+              "$description": "Fundo do botão commit. Fazer algo sair do sistema para o mundo.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.commit.background",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-commit-background",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Publicar, deploy, aplicar mudança externa.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{color.identity.commit-hover}",
+              "$description": "Hover do botão commit.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.commit.hover",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-commit-hover",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "A decisão se aproxima.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "foreground": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  1,
+                  1,
+                  1
+                ],
+                "hex": "#FFFFFF"
+              },
+              "$description": "Texto do botão commit.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.commit.foreground",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-commit-foreground",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Foreground escuro no dark; branco no light.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            }
+          },
+          "danger": {
+            "background": {
+              "$type": "color",
+              "$value": "{color.status.danger}",
+              "$description": "Fundo da ação destrutiva.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.danger.background",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-danger-background",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Excluir, ruptura.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "foreground": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  1,
+                  1,
+                  1
+                ],
+                "hex": "#FFFFFF"
+              },
+              "$description": "Texto da ação destrutiva.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.danger.foreground",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-danger-foreground",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Legível sobre rupture.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            }
+          },
+          "disabled": {
+            "background": {
+              "$type": "color",
+              "$value": "{color.neutral.200}",
+              "$description": "Fundo de controle desabilitado.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.disabled.background",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-disabled-background",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Disabled é estado real, distinto de readonly.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "foreground": {
+              "$type": "color",
+              "$value": "{color.neutral.500}",
+              "$description": "Texto de controle desabilitado.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.disabled.foreground",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-disabled-foreground",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Ainda precisa ser perceptível como desabilitado, não invisível.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            }
+          }
+        },
+        "dataviz": {
+          "categorical": {
+            "01": {
+              "$type": "color",
+              "$value": "{color.violet.700}",
+              "$description": "Série categórica 01. Identidade. Primeira série, não decoração.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.01",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-01",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "02": {
+              "$type": "color",
+              "$value": "{color.orange.700}",
+              "$description": "Série categórica 02. Commit/decisão. Só quando a série significa atravessar.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.02",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-02",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "03": {
+              "$type": "color",
+              "$value": "{color.blue.700}",
+              "$description": "Série categórica 03. Informação externa.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.03",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-03",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "04": {
+              "$type": "color",
+              "$value": "{color.mint.700}",
+              "$description": "Série categórica 04. Resolução.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.04",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-04",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "05": {
+              "$type": "color",
+              "$value": "{color.red.700}",
+              "$description": "Série categórica 05. Ruptura.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.05",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-05",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "06": {
+              "$type": "color",
+              "$value": "{color.amber.700}",
+              "$description": "Série categórica 06. Atenção.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.06",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-06",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "07": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.529,
+                  0.231,
+                  0.549
+                ],
+                "hex": "#873B8C"
+              },
+              "$description": "Série categórica 07. Série extra especificada na fonte. Não é identidade.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.07",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-07",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "08": {
+              "$type": "color",
+              "$value": "{color.neutral.600}",
+              "$description": "Série categórica 08. Neutro de apoio. Fecha a escala.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.08",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-08",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "contrast-dark": {
+      "$description": "INTEIRO tokens — tema contrast-dark",
+      "color": {
+        "background": {
+          "canvas": {
+            "$type": "color",
+            "$value": "{color.neutral.950}",
+            "$description": "Canvas da página. Dark: Obsidian. Light: off-white quente.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.background.canvas",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-background-canvas",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Interior e silêncio. Fundo sobre o qual a hierarquia se revela.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "surface": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.02,
+                0.02,
+                0.031
+              ],
+              "hex": "#050508"
+            },
+            "$description": "Superfície padrão de cards e painéis.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.background.surface",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-background-surface",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Camada imediatamente acima do canvas, sem flutuação teatral.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "raised": {
+            "$type": "color",
+            "$value": "{color.neutral.900}",
+            "$description": "Superfície elevada (dropdown, popover, sticky).",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.background.raised",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-background-raised",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Elevação por diferença de superfície + borda, não por sombra enorme.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "sunken": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.02,
+                0.02,
+                0.031
+              ],
+              "hex": "#050508"
+            },
+            "$description": "Superfície rebaixada. Campos readonly, wells, áreas de recuo.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.background.sunken",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-background-sunken",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Recuo perceptivo para conteúdo não editável ou agrupado.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "text": {
+          "primary": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                0.992,
+                0.973
+              ],
+              "hex": "#FFFDF8"
+            },
+            "$description": "Texto principal. Dark: Warm Frost. Light: quase-preto quente.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.text.primary",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-text-primary",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Voz racional da interface. Humano, não frio.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "secondary": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.906,
+                0.886,
+                0.855
+              ],
+              "hex": "#E7E2DA"
+            },
+            "$description": "Texto secundário. Metadados e apoio.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.text.secondary",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-text-secondary",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Hierarquia por cor semântica, não por opacity.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "tertiary": {
+            "$type": "color",
+            "$value": "{color.neutral.300}",
+            "$description": "Texto terciário. Menor prioridade perceptiva.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.text.tertiary",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-text-tertiary",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Ainda deve ser legível. Densidade permitida; desordem não.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "inverse": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.02,
+                0.02,
+                0.031
+              ],
+              "hex": "#050508"
+            },
+            "$description": "Texto sobre superfícies invertidas (botões filled, chips sólidos).",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.text.inverse",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-text-inverse",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Garante contraste sobre identity e commit.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "border": {
+          "subtle": {
+            "$type": "color",
+            "$value": "{color.neutral.500}",
+            "$description": "Borda silenciosa. Estrutura que não chama atenção.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.border.subtle",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-border-subtle",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "A estrutura deve ser silenciosa.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "interactive": {
+            "$type": "color",
+            "$value": "{color.neutral.400}",
+            "$description": "Borda de controles em rest.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.border.interactive",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-border-interactive",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Sinaliza que o objeto é acionável sem gritar.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "strong": {
+            "$type": "color",
+            "$value": "{color.neutral.200}",
+            "$description": "Borda enfática. Hover de input, ênfase estrutural.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.border.strong",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-border-strong",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Aumento de contraste sob intenção, não decoração.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "identity": {
+          "primary": {
+            "$type": "color",
+            "$value": "{color.violet.300}",
+            "$description": "Violeta de identidade. Consciência deliberada.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.identity.primary",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-identity-primary",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Violeta = estou escolhendo. Seleção, identidade, foco.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "primary-hover": {
+            "$type": "color",
+            "$value": "{color.violet.200}",
+            "$description": "Hover da identidade. Intenção ainda deliberada, um passo mais clara.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.identity.primary-hover",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-identity-primary-hover",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Hover comunica affordance, não urgência.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "commit": {
+            "$type": "color",
+            "$value": "{color.orange.300}",
+            "$description": "Laranja de decisão. Atravessar o limite e tornar real.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.identity.commit",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-identity-commit",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Laranja = estou tornando real. Deploy, publicar, aplicar.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "commit-hover": {
+            "$type": "color",
+            "$value": "{color.orange.200}",
+            "$description": "Hover do commit. A decisão fica mais próxima.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.identity.commit-hover",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-identity-commit-hover",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Hover de commit, não de primary.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "subtle": {
+            "$type": "color",
+            "$value": "{color.violet.900}",
+            "$description": "Fundo sutil de identidade.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.identity.subtle",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-identity-subtle",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Seleção/contexto INTEIRO sem Costura decorativa.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "status": {
+          "success": {
+            "$type": "color",
+            "$value": "{color.mint.300}",
+            "$description": "Mint. Resolução. Sucesso real.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.success",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-success",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Confirmação factual, não celebração.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "warning": {
+            "$type": "color",
+            "$value": "{color.amber.200}",
+            "$description": "Amber. Atenção.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.warning",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-warning",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Cautela sem ruptura. Não é laranja de commit.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "danger": {
+            "$type": "color",
+            "$value": "{color.red.300}",
+            "$description": "Rupture. Quebra, risco, erro.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.danger",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-danger",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Excluir, falha, invalid.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "info": {
+            "$type": "color",
+            "$value": "{color.blue.300}",
+            "$description": "Blue. Informação externa.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.info",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-info",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Dado que entra no sistema, não identidade.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "success-subtle": {
+            "$type": "color",
+            "$value": "{color.mint.950}",
+            "$description": "Fundo sutil de sucesso.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.success-subtle",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-success-subtle",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Estado sem gritar. Resolução em segundo plano perceptivo.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "warning-subtle": {
+            "$type": "color",
+            "$value": "{color.amber.950}",
+            "$description": "Fundo sutil de warning.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.warning-subtle",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-warning-subtle",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Atenção contida.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "danger-subtle": {
+            "$type": "color",
+            "$value": "{color.red.950}",
+            "$description": "Fundo sutil de perigo.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.danger-subtle",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-danger-subtle",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Ruptura visível sem inundar a tela de vermelho.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "info-subtle": {
+            "$type": "color",
+            "$value": "{color.blue.950}",
+            "$description": "Fundo sutil de informação.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.info-subtle",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-info-subtle",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Informação externa, silenciada.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "focus": {
+          "ring": {
+            "$type": "color",
+            "$value": "{color.violet.200}",
+            "$description": "Anel de foco visível. 2px, offset 2px.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.focus.ring",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-focus-ring",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Foco ≠ seleção. Navegação atual deve ser distinguível.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "selection": {
+          "background": {
+            "$type": "color",
+            "$value": "{color.violet.800}",
+            "$description": "Fundo de seleção persistente.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.selection.background",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-selection-background",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Seleção é estado persistente, distinto de foco.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "overlay": {
+          "scrim": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.016,
+                0.02,
+                0.031
+              ],
+              "hex": "#040508",
+              "alpha": 0.88
+            },
+            "$description": "Scrim de overlay. Permite opacidade; texto ativo não.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.overlay.scrim",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-overlay-scrim",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Modal e command palette precisam de recuo do contexto.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "action": {
+          "primary": {
+            "background": {
+              "$type": "color",
+              "$value": "{color.identity.primary}",
+              "$description": "Fundo do botão primary. Ação deliberada principal.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.primary.background",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-primary-background",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Primary = escolher. Nunca quatro botões violet na mesma fileira.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{color.identity.primary-hover}",
+              "$description": "Hover do botão primary.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.primary.hover",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-primary-hover",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Affordance, não urgência.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "foreground": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.02,
+                  0.02,
+                  0.031
+                ],
+                "hex": "#050508"
+              },
+              "$description": "Texto do botão primary.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.primary.foreground",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-primary-foreground",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Foreground escuro no dark sobre violeta; claro no light.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            }
+          },
+          "commit": {
+            "background": {
+              "$type": "color",
+              "$value": "{color.identity.commit}",
+              "$description": "Fundo do botão commit. Fazer algo sair do sistema para o mundo.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.commit.background",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-commit-background",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Publicar, deploy, aplicar mudança externa.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{color.identity.commit-hover}",
+              "$description": "Hover do botão commit.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.commit.hover",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-commit-hover",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "A decisão se aproxima.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "foreground": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.02,
+                  0.02,
+                  0.031
+                ],
+                "hex": "#050508"
+              },
+              "$description": "Texto do botão commit.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.commit.foreground",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-commit-foreground",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Foreground escuro no dark; branco no light.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            }
+          },
+          "danger": {
+            "background": {
+              "$type": "color",
+              "$value": "{color.status.danger}",
+              "$description": "Fundo da ação destrutiva.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.danger.background",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-danger-background",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Excluir, ruptura.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "foreground": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.02,
+                  0.02,
+                  0.031
+                ],
+                "hex": "#050508"
+              },
+              "$description": "Texto da ação destrutiva.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.danger.foreground",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-danger-foreground",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Legível sobre rupture.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            }
+          },
+          "disabled": {
+            "background": {
+              "$type": "color",
+              "$value": "{color.neutral.700}",
+              "$description": "Fundo de controle desabilitado.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.disabled.background",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-disabled-background",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Disabled é estado real, distinto de readonly.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "foreground": {
+              "$type": "color",
+              "$value": "{color.neutral.400}",
+              "$description": "Texto de controle desabilitado.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.disabled.foreground",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-disabled-foreground",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Ainda precisa ser perceptível como desabilitado, não invisível.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            }
+          }
+        },
+        "dataviz": {
+          "categorical": {
+            "01": {
+              "$type": "color",
+              "$value": "{color.violet.400}",
+              "$description": "Série categórica 01. Identidade. Primeira série, não decoração.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.01",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-01",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "02": {
+              "$type": "color",
+              "$value": "{color.orange.400}",
+              "$description": "Série categórica 02. Commit/decisão. Só quando a série significa atravessar.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.02",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-02",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "03": {
+              "$type": "color",
+              "$value": "{color.blue.400}",
+              "$description": "Série categórica 03. Informação externa.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.03",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-03",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "04": {
+              "$type": "color",
+              "$value": "{color.mint.400}",
+              "$description": "Série categórica 04. Resolução.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.04",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-04",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "05": {
+              "$type": "color",
+              "$value": "{color.red.400}",
+              "$description": "Série categórica 05. Ruptura.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.05",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-05",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "06": {
+              "$type": "color",
+              "$value": "{color.amber.300}",
+              "$description": "Série categórica 06. Atenção.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.06",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-06",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "07": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.898,
+                  0.549,
+                  0.91
+                ],
+                "hex": "#E58CE8"
+              },
+              "$description": "Série categórica 07. Série extra especificada na fonte. Não é identidade.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.07",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-07",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "08": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.725,
+                  0.706,
+                  0.773
+                ],
+                "hex": "#B9B4C5"
+              },
+              "$description": "Série categórica 08. Neutro de apoio. Fecha a escala.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.08",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-08",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "contrast-light": {
+      "$description": "INTEIRO tokens — tema contrast-light",
+      "color": {
+        "background": {
+          "canvas": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                0.992,
+                0.973
+              ],
+              "hex": "#FFFDF8"
+            },
+            "$description": "Canvas da página. Dark: Obsidian. Light: off-white quente.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.background.canvas",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-background-canvas",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Interior e silêncio. Fundo sobre o qual a hierarquia se revela.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "surface": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "hex": "#FFFFFF"
+            },
+            "$description": "Superfície padrão de cards e painéis.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.background.surface",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-background-surface",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Camada imediatamente acima do canvas, sem flutuação teatral.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "raised": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "hex": "#FFFFFF"
+            },
+            "$description": "Superfície elevada (dropdown, popover, sticky).",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.background.raised",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-background-raised",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Elevação por diferença de superfície + borda, não por sombra enorme.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "sunken": {
+            "$type": "color",
+            "$value": "{color.neutral.200}",
+            "$description": "Superfície rebaixada. Campos readonly, wells, áreas de recuo.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.background.sunken",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-background-sunken",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Recuo perceptivo para conteúdo não editável ou agrupado.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "text": {
+          "primary": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.047,
+                0.051,
+                0.071
+              ],
+              "hex": "#0C0D12"
+            },
+            "$description": "Texto principal. Dark: Warm Frost. Light: quase-preto quente.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.text.primary",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-text-primary",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Voz racional da interface. Humano, não frio.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "secondary": {
+            "$type": "color",
+            "$value": "{color.neutral.700}",
+            "$description": "Texto secundário. Metadados e apoio.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.text.secondary",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-text-secondary",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Hierarquia por cor semântica, não por opacity.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "tertiary": {
+            "$type": "color",
+            "$value": "{color.neutral.700}",
+            "$description": "Texto terciário. Menor prioridade perceptiva.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.text.tertiary",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-text-tertiary",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Ainda deve ser legível. Densidade permitida; desordem não.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "inverse": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                1,
+                1
+              ],
+              "hex": "#FFFFFF"
+            },
+            "$description": "Texto sobre superfícies invertidas (botões filled, chips sólidos).",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.text.inverse",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-text-inverse",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Garante contraste sobre identity e commit.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "border": {
+          "subtle": {
+            "$type": "color",
+            "$value": "{color.neutral.700}",
+            "$description": "Borda silenciosa. Estrutura que não chama atenção.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.border.subtle",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-border-subtle",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "A estrutura deve ser silenciosa.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "interactive": {
+            "$type": "color",
+            "$value": "{color.neutral.700}",
+            "$description": "Borda de controles em rest.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.border.interactive",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-border-interactive",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Sinaliza que o objeto é acionável sem gritar.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "strong": {
+            "$type": "color",
+            "$value": "{color.neutral.900}",
+            "$description": "Borda enfática. Hover de input, ênfase estrutural.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.border.strong",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-border-strong",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Aumento de contraste sob intenção, não decoração.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "identity": {
+          "primary": {
+            "$type": "color",
+            "$value": "{color.violet.700}",
+            "$description": "Violeta de identidade. Consciência deliberada.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.identity.primary",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-identity-primary",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Violeta = estou escolhendo. Seleção, identidade, foco.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "primary-hover": {
+            "$type": "color",
+            "$value": "{color.violet.800}",
+            "$description": "Hover da identidade. Intenção ainda deliberada, um passo mais clara.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.identity.primary-hover",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-identity-primary-hover",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Hover comunica affordance, não urgência.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "commit": {
+            "$type": "color",
+            "$value": "{color.orange.800}",
+            "$description": "Laranja de decisão. Atravessar o limite e tornar real.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.identity.commit",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-identity-commit",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Laranja = estou tornando real. Deploy, publicar, aplicar.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "commit-hover": {
+            "$type": "color",
+            "$value": "{color.orange.900}",
+            "$description": "Hover do commit. A decisão fica mais próxima.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.identity.commit-hover",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-identity-commit-hover",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Hover de commit, não de primary.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "subtle": {
+            "$type": "color",
+            "$value": "{color.violet.100}",
+            "$description": "Fundo sutil de identidade.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.identity.subtle",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-identity-subtle",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Seleção/contexto INTEIRO sem Costura decorativa.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "status": {
+          "success": {
+            "$type": "color",
+            "$value": "{color.mint.800}",
+            "$description": "Mint. Resolução. Sucesso real.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.success",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-success",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Confirmação factual, não celebração.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "warning": {
+            "$type": "color",
+            "$value": "{color.amber.800}",
+            "$description": "Amber. Atenção.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.warning",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-warning",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Cautela sem ruptura. Não é laranja de commit.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "danger": {
+            "$type": "color",
+            "$value": "{color.red.800}",
+            "$description": "Rupture. Quebra, risco, erro.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.danger",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-danger",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Excluir, falha, invalid.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "info": {
+            "$type": "color",
+            "$value": "{color.blue.800}",
+            "$description": "Blue. Informação externa.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.info",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-info",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Dado que entra no sistema, não identidade.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "success-subtle": {
+            "$type": "color",
+            "$value": "{color.mint.100}",
+            "$description": "Fundo sutil de sucesso.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.success-subtle",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-success-subtle",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Estado sem gritar. Resolução em segundo plano perceptivo.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "warning-subtle": {
+            "$type": "color",
+            "$value": "{color.amber.100}",
+            "$description": "Fundo sutil de warning.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.warning-subtle",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-warning-subtle",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Atenção contida.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "danger-subtle": {
+            "$type": "color",
+            "$value": "{color.red.100}",
+            "$description": "Fundo sutil de perigo.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.danger-subtle",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-danger-subtle",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Ruptura visível sem inundar a tela de vermelho.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          },
+          "info-subtle": {
+            "$type": "color",
+            "$value": "{color.blue.100}",
+            "$description": "Fundo sutil de informação.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.status.info-subtle",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-status-info-subtle",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Informação externa, silenciada.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "focus": {
+          "ring": {
+            "$type": "color",
+            "$value": "{color.violet.800}",
+            "$description": "Anel de foco visível. 2px, offset 2px.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.focus.ring",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-focus-ring",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Foco ≠ seleção. Navegação atual deve ser distinguível.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "selection": {
+          "background": {
+            "$type": "color",
+            "$value": "{color.violet.200}",
+            "$description": "Fundo de seleção persistente.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.selection.background",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-selection-background",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Seleção é estado persistente, distinto de foco.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "overlay": {
+          "scrim": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.047,
+                0.051,
+                0.071
+              ],
+              "hex": "#0C0D12",
+              "alpha": 0.72
+            },
+            "$description": "Scrim de overlay. Permite opacidade; texto ativo não.",
+            "$extensions": {
+              "dev.inteiro": {
+                "id": "color.overlay.scrim",
+                "layer": "semantic",
+                "status": "source",
+                "cssVar": "--in-color-overlay-scrim",
+                "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                "consumerFacing": true,
+                "intent": "Modal e command palette precisam de recuo do contexto.",
+                "spec": "2025.10",
+                "version": "1.0.0"
+              }
+            }
+          }
+        },
+        "action": {
+          "primary": {
+            "background": {
+              "$type": "color",
+              "$value": "{color.identity.primary}",
+              "$description": "Fundo do botão primary. Ação deliberada principal.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.primary.background",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-primary-background",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Primary = escolher. Nunca quatro botões violet na mesma fileira.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{color.identity.primary-hover}",
+              "$description": "Hover do botão primary.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.primary.hover",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-primary-hover",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Affordance, não urgência.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "foreground": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  1,
+                  1,
+                  1
+                ],
+                "hex": "#FFFFFF"
+              },
+              "$description": "Texto do botão primary.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.primary.foreground",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-primary-foreground",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Foreground escuro no dark sobre violeta; claro no light.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            }
+          },
+          "commit": {
+            "background": {
+              "$type": "color",
+              "$value": "{color.identity.commit}",
+              "$description": "Fundo do botão commit. Fazer algo sair do sistema para o mundo.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.commit.background",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-commit-background",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Publicar, deploy, aplicar mudança externa.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{color.identity.commit-hover}",
+              "$description": "Hover do botão commit.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.commit.hover",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-commit-hover",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "A decisão se aproxima.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "foreground": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  1,
+                  1,
+                  1
+                ],
+                "hex": "#FFFFFF"
+              },
+              "$description": "Texto do botão commit.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.commit.foreground",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-commit-foreground",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Foreground escuro no dark; branco no light.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            }
+          },
+          "danger": {
+            "background": {
+              "$type": "color",
+              "$value": "{color.status.danger}",
+              "$description": "Fundo da ação destrutiva.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.danger.background",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-danger-background",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Excluir, ruptura.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "foreground": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  1,
+                  1,
+                  1
+                ],
+                "hex": "#FFFFFF"
+              },
+              "$description": "Texto da ação destrutiva.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.danger.foreground",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-danger-foreground",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Legível sobre rupture.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            }
+          },
+          "disabled": {
+            "background": {
+              "$type": "color",
+              "$value": "{color.neutral.300}",
+              "$description": "Fundo de controle desabilitado.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.disabled.background",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-disabled-background",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Disabled é estado real, distinto de readonly.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "foreground": {
+              "$type": "color",
+              "$value": "{color.neutral.600}",
+              "$description": "Texto de controle desabilitado.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.action.disabled.foreground",
+                  "layer": "semantic",
+                  "status": "derived",
+                  "cssVar": "--in-color-action-disabled-foreground",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Ainda precisa ser perceptível como desabilitado, não invisível.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            }
+          }
+        },
+        "dataviz": {
+          "categorical": {
+            "01": {
+              "$type": "color",
+              "$value": "{color.violet.700}",
+              "$description": "Série categórica 01. Identidade. Primeira série, não decoração.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.01",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-01",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "02": {
+              "$type": "color",
+              "$value": "{color.orange.700}",
+              "$description": "Série categórica 02. Commit/decisão. Só quando a série significa atravessar.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.02",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-02",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "03": {
+              "$type": "color",
+              "$value": "{color.blue.700}",
+              "$description": "Série categórica 03. Informação externa.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.03",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-03",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "04": {
+              "$type": "color",
+              "$value": "{color.mint.700}",
+              "$description": "Série categórica 04. Resolução.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.04",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-04",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "05": {
+              "$type": "color",
+              "$value": "{color.red.700}",
+              "$description": "Série categórica 05. Ruptura.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.05",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-05",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "06": {
+              "$type": "color",
+              "$value": "{color.amber.700}",
+              "$description": "Série categórica 06. Atenção.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.06",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-06",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "07": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.529,
+                  0.231,
+                  0.549
+                ],
+                "hex": "#873B8C"
+              },
+              "$description": "Série categórica 07. Série extra especificada na fonte. Não é identidade.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.07",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-07",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "08": {
+              "$type": "color",
+              "$value": "{color.neutral.600}",
+              "$description": "Série categórica 08. Neutro de apoio. Fecha a escala.",
+              "$extensions": {
+                "dev.inteiro": {
+                  "id": "color.dataviz.categorical.08",
+                  "layer": "semantic",
+                  "status": "source",
+                  "cssVar": "--in-color-dataviz-categorical-08",
+                  "sourceSection": "Arquitetura e especificação completa de tokens / Semântica de cores",
+                  "consumerFacing": true,
+                  "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
+                  "spec": "2025.10",
+                  "version": "1.0.0"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

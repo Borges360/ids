@@ -1,0 +1,7 @@
+---
+description: INTEIRO Identity Design System — aplicar tokens semânticos, violeta=escolher, laranja=tornar real.
+globs: "**/*.{css,scss,html,tsx,jsx,vue,svelte}"
+alwaysApply: false
+---
+
+INTEIRO não é um tema genérico. Prefira tokens semânticos. Costura só quando comunica. Recursive nas quatro vozes. Consulte `npx inteiro tokens explain`.

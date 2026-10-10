@@ -1,0 +1,7 @@
+{
+  "name": "@inteiro/adapter-codex",
+  "version": "1.0.0",
+  "description": "Adaptador INTEIRO para OpenAI Codex (AGENTS.md, Agent Skills, Agent Plugins, MCP)",
+  "type": "module",
+  "license": "MIT"
+}

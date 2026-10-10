@@ -1,0 +1,6 @@
+{
+  "name": "@inteiro/adapter-devin",
+  "version": "1.0.0",
+  "description": "Adaptador INTEIRO para Devin (skills .agents/skills, playbooks e knowledge copiáveis)",
+  "license": "MIT"
+}

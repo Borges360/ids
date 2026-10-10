@@ -1,0 +1,11 @@
+{
+  "name": "@inteiro/skills",
+  "version": "1.0.0",
+  "description": "Gerador de Agent Skills INTEIRO",
+  "type": "module",
+  "scripts": {
+    "generate": "node --experimental-strip-types ../cli/src/cli.ts skills generate --out ./generated --yes",
+    "build": "npm run generate"
+  },
+  "license": "MIT"
+}

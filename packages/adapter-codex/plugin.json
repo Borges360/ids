@@ -1,0 +1,8 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "inteiro",
+  "version": "1.0.0",
+  "description": "INTEIRO Identity Design System — skills, tokens e MCP para Codex",
+  "license": "MIT",
+  "keywords": ["design-system", "inteiro", "tokens"]
+}

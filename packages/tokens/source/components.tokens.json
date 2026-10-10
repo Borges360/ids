@@ -1,0 +1,597 @@
+{
+  "$description": "INTEIRO Identity Design System — fonte DTCG 2025.10",
+  "font": {
+    "voice": {
+      "editorial-title": {
+        "$type": "string",
+        "$value": "\"MONO\" 0, \"CASL\" 0.28",
+        "$description": "Título editorial. CASL 0.28.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "font.voice.editorial-title",
+            "layer": "component",
+            "status": "source",
+            "cssVar": "--in-font-voice-editorial-title",
+            "sourceSection": "Componentes / Editorial",
+            "consumerFacing": true,
+            "intent": "A mesma voz que escreve código consegue pensar em voz alta.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "editorial-body": {
+        "$type": "string",
+        "$value": "\"MONO\" 0, \"CASL\" 0.06",
+        "$description": "Corpo editorial. CASL 0.06, 70ch, 1.125rem / 1.65.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "font.voice.editorial-body",
+            "layer": "component",
+            "status": "source",
+            "cssVar": "--in-font-voice-editorial-body",
+            "sourceSection": "Componentes / Editorial",
+            "consumerFacing": true,
+            "intent": "Leitura humana com a mesma família.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "editorial-reflection": {
+        "$type": "string",
+        "$value": "\"MONO\" 0, \"CASL\" 0.40",
+        "$description": "Reflexão editorial. CASL 0.40 + Costura.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "font.voice.editorial-reflection",
+            "layer": "component",
+            "status": "source",
+            "cssVar": "--in-font-voice-editorial-reflection",
+            "sourceSection": "Componentes / Editorial",
+            "consumerFacing": true,
+            "intent": "Costura marca interpretação, não todos os cards.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      }
+    }
+  },
+  "icon": {
+    "size": {
+      "compact": {
+        "$type": "dimension",
+        "$value": {
+          "value": 16,
+          "unit": "px"
+        },
+        "$description": "Grid compacta 16×16.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "icon.size.compact",
+            "layer": "component",
+            "status": "source",
+            "cssVar": "--in-icon-size-compact",
+            "sourceSection": "Componentes / Iconografia",
+            "consumerFacing": true,
+            "intent": "Ícones em densidade focus / inline.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "default": {
+        "$type": "dimension",
+        "$value": {
+          "value": 24,
+          "unit": "px"
+        },
+        "$description": "Base grid 24×24.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "icon.size.default",
+            "layer": "component",
+            "status": "source",
+            "cssVar": "--in-icon-size-default",
+            "sourceSection": "Componentes / Iconografia",
+            "consumerFacing": true,
+            "intent": "Tamanho padrão.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      }
+    },
+    "stroke": {
+      "default": {
+        "$type": "dimension",
+        "$value": {
+          "value": 1.75,
+          "unit": "px"
+        },
+        "$description": "Stroke padrão 1.75px.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "icon.stroke.default",
+            "layer": "component",
+            "status": "source",
+            "cssVar": "--in-icon-stroke-default",
+            "sourceSection": "Componentes / Iconografia",
+            "consumerFacing": true,
+            "intent": "Gramática de traço única.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "emphasis": {
+        "$type": "dimension",
+        "$value": {
+          "value": 2,
+          "unit": "px"
+        },
+        "$description": "Stroke destaque 2px.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "icon.stroke.emphasis",
+            "layer": "component",
+            "status": "source",
+            "cssVar": "--in-icon-stroke-emphasis",
+            "sourceSection": "Componentes / Iconografia",
+            "consumerFacing": true,
+            "intent": "Destaque raro.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      }
+    }
+  },
+  "button": {
+    "size": {
+      "sm": {
+        "height": {
+          "$type": "dimension",
+          "$value": {
+            "value": 36,
+            "unit": "px"
+          },
+          "$description": "Altura do botão sm: 36px.",
+          "$extensions": {
+            "dev.inteiro": {
+              "id": "button.size.sm.height",
+              "layer": "component",
+              "status": "source",
+              "cssVar": "--in-button-size-sm-height",
+              "sourceSection": "Componentes / Buttons / Tamanhos",
+              "consumerFacing": true,
+              "intent": "Primary/commit compartilham a escala. sm pode ficar abaixo de 44px; md é o padrão de target.",
+              "spec": "2025.10",
+              "version": "1.0.0"
+            }
+          }
+        },
+        "padding-inline": {
+          "$type": "dimension",
+          "$value": {
+            "value": 12,
+            "unit": "px"
+          },
+          "$description": "Padding inline do botão sm: 12px.",
+          "$extensions": {
+            "dev.inteiro": {
+              "id": "button.size.sm.padding-inline",
+              "layer": "component",
+              "status": "source",
+              "cssVar": "--in-button-size-sm-padding-inline",
+              "sourceSection": "Componentes / Buttons / Tamanhos",
+              "consumerFacing": true,
+              "intent": "Respiração horizontal proporcional à altura.",
+              "spec": "2025.10",
+              "version": "1.0.0"
+            }
+          }
+        },
+        "font-size": {
+          "$type": "dimension",
+          "$value": {
+            "value": 13,
+            "unit": "px"
+          },
+          "$description": "Font-size do botão sm: 13px.",
+          "$extensions": {
+            "dev.inteiro": {
+              "id": "button.size.sm.font-size",
+              "layer": "component",
+              "status": "source",
+              "cssVar": "--in-button-size-sm-font-size",
+              "sourceSection": "Componentes / Buttons / Tamanhos",
+              "consumerFacing": true,
+              "intent": "Label semibold, voz rational.",
+              "spec": "2025.10",
+              "version": "1.0.0"
+            }
+          }
+        }
+      },
+      "md": {
+        "height": {
+          "$type": "dimension",
+          "$value": {
+            "value": 44,
+            "unit": "px"
+          },
+          "$description": "Altura do botão md: 44px.",
+          "$extensions": {
+            "dev.inteiro": {
+              "id": "button.size.md.height",
+              "layer": "component",
+              "status": "source",
+              "cssVar": "--in-button-size-md-height",
+              "sourceSection": "Componentes / Buttons / Tamanhos",
+              "consumerFacing": true,
+              "intent": "Primary/commit compartilham a escala. sm pode ficar abaixo de 44px; md é o padrão de target.",
+              "spec": "2025.10",
+              "version": "1.0.0"
+            }
+          }
+        },
+        "padding-inline": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          },
+          "$description": "Padding inline do botão md: 16px.",
+          "$extensions": {
+            "dev.inteiro": {
+              "id": "button.size.md.padding-inline",
+              "layer": "component",
+              "status": "source",
+              "cssVar": "--in-button-size-md-padding-inline",
+              "sourceSection": "Componentes / Buttons / Tamanhos",
+              "consumerFacing": true,
+              "intent": "Respiração horizontal proporcional à altura.",
+              "spec": "2025.10",
+              "version": "1.0.0"
+            }
+          }
+        },
+        "font-size": {
+          "$type": "dimension",
+          "$value": {
+            "value": 14,
+            "unit": "px"
+          },
+          "$description": "Font-size do botão md: 14px.",
+          "$extensions": {
+            "dev.inteiro": {
+              "id": "button.size.md.font-size",
+              "layer": "component",
+              "status": "source",
+              "cssVar": "--in-button-size-md-font-size",
+              "sourceSection": "Componentes / Buttons / Tamanhos",
+              "consumerFacing": true,
+              "intent": "Label semibold, voz rational.",
+              "spec": "2025.10",
+              "version": "1.0.0"
+            }
+          }
+        }
+      },
+      "lg": {
+        "height": {
+          "$type": "dimension",
+          "$value": {
+            "value": 52,
+            "unit": "px"
+          },
+          "$description": "Altura do botão lg: 52px.",
+          "$extensions": {
+            "dev.inteiro": {
+              "id": "button.size.lg.height",
+              "layer": "component",
+              "status": "source",
+              "cssVar": "--in-button-size-lg-height",
+              "sourceSection": "Componentes / Buttons / Tamanhos",
+              "consumerFacing": true,
+              "intent": "Primary/commit compartilham a escala. sm pode ficar abaixo de 44px; md é o padrão de target.",
+              "spec": "2025.10",
+              "version": "1.0.0"
+            }
+          }
+        },
+        "padding-inline": {
+          "$type": "dimension",
+          "$value": {
+            "value": 20,
+            "unit": "px"
+          },
+          "$description": "Padding inline do botão lg: 20px.",
+          "$extensions": {
+            "dev.inteiro": {
+              "id": "button.size.lg.padding-inline",
+              "layer": "component",
+              "status": "source",
+              "cssVar": "--in-button-size-lg-padding-inline",
+              "sourceSection": "Componentes / Buttons / Tamanhos",
+              "consumerFacing": true,
+              "intent": "Respiração horizontal proporcional à altura.",
+              "spec": "2025.10",
+              "version": "1.0.0"
+            }
+          }
+        },
+        "font-size": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          },
+          "$description": "Font-size do botão lg: 16px.",
+          "$extensions": {
+            "dev.inteiro": {
+              "id": "button.size.lg.font-size",
+              "layer": "component",
+              "status": "source",
+              "cssVar": "--in-button-size-lg-font-size",
+              "sourceSection": "Componentes / Buttons / Tamanhos",
+              "consumerFacing": true,
+              "intent": "Label semibold, voz rational.",
+              "spec": "2025.10",
+              "version": "1.0.0"
+            }
+          }
+        }
+      }
+    }
+  },
+  "input": {
+    "height": {
+      "sm": {
+        "$type": "dimension",
+        "$value": {
+          "value": 36,
+          "unit": "px"
+        },
+        "$description": "Altura input sm.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "input.height.sm",
+            "layer": "component",
+            "status": "source",
+            "cssVar": "--in-input-height-sm",
+            "sourceSection": "Componentes / Inputs",
+            "consumerFacing": true,
+            "intent": "Erro nunca é “borda vermelha e só”. Label, campo, helper/erro.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": {
+          "value": 44,
+          "unit": "px"
+        },
+        "$description": "Altura input md (padrão).",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "input.height.md",
+            "layer": "component",
+            "status": "source",
+            "cssVar": "--in-input-height-md",
+            "sourceSection": "Componentes / Inputs",
+            "consumerFacing": true,
+            "intent": "Erro nunca é “borda vermelha e só”. Label, campo, helper/erro.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": {
+          "value": 52,
+          "unit": "px"
+        },
+        "$description": "Altura input lg.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "input.height.lg",
+            "layer": "component",
+            "status": "source",
+            "cssVar": "--in-input-height-lg",
+            "sourceSection": "Componentes / Inputs",
+            "consumerFacing": true,
+            "intent": "Erro nunca é “borda vermelha e só”. Label, campo, helper/erro.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      }
+    },
+    "padding": {
+      "inline": {
+        "$type": "dimension",
+        "$value": {
+          "value": 12,
+          "unit": "px"
+        },
+        "$description": "Padding inline.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "input.padding.inline",
+            "layer": "component",
+            "status": "source",
+            "cssVar": "--in-input-padding-inline",
+            "sourceSection": "Componentes / Inputs",
+            "consumerFacing": true,
+            "intent": "Erro nunca é “borda vermelha e só”. Label, campo, helper/erro.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      },
+      "block": {
+        "$type": "dimension",
+        "$value": {
+          "value": 10,
+          "unit": "px"
+        },
+        "$description": "Padding block.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "input.padding.block",
+            "layer": "component",
+            "status": "source",
+            "cssVar": "--in-input-padding-block",
+            "sourceSection": "Componentes / Inputs",
+            "consumerFacing": true,
+            "intent": "Erro nunca é “borda vermelha e só”. Label, campo, helper/erro.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      }
+    },
+    "radius": {
+      "$type": "dimension",
+      "$value": "{radius.md}",
+      "$description": "Radius de input = radius.md.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "input.radius",
+          "layer": "component",
+          "status": "source",
+          "cssVar": "--in-input-radius",
+          "sourceSection": "Componentes / Inputs",
+          "consumerFacing": true,
+          "intent": "Erro nunca é “borda vermelha e só”. Label, campo, helper/erro.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "border": {
+      "width": {
+        "$type": "dimension",
+        "$value": "{border.hairline}",
+        "$description": "Borda rest.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "input.border.width",
+            "layer": "component",
+            "status": "source",
+            "cssVar": "--in-input-border-width",
+            "sourceSection": "Componentes / Inputs",
+            "consumerFacing": true,
+            "intent": "Erro nunca é “borda vermelha e só”. Label, campo, helper/erro.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      }
+    },
+    "focus": {
+      "width": {
+        "$type": "dimension",
+        "$value": "{border.focus}",
+        "$description": "Borda/ring de foco.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "input.focus.width",
+            "layer": "component",
+            "status": "source",
+            "cssVar": "--in-input-focus-width",
+            "sourceSection": "Componentes / Inputs",
+            "consumerFacing": true,
+            "intent": "Erro nunca é “borda vermelha e só”. Label, campo, helper/erro.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      }
+    },
+    "label": {
+      "gap": {
+        "$type": "dimension",
+        "$value": "{space.200}",
+        "$description": "Gap label → campo = 8px.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "input.label.gap",
+            "layer": "component",
+            "status": "source",
+            "cssVar": "--in-input-label-gap",
+            "sourceSection": "Componentes / Inputs",
+            "consumerFacing": true,
+            "intent": "Erro nunca é “borda vermelha e só”. Label, campo, helper/erro.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      }
+    },
+    "message": {
+      "gap": {
+        "$type": "dimension",
+        "$value": "{space.150}",
+        "$description": "Gap campo → helper/erro = 6px.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "input.message.gap",
+            "layer": "component",
+            "status": "source",
+            "cssVar": "--in-input-message-gap",
+            "sourceSection": "Componentes / Inputs",
+            "consumerFacing": true,
+            "intent": "Erro nunca é “borda vermelha e só”. Label, campo, helper/erro.",
+            "spec": "2025.10",
+            "version": "1.0.0"
+          }
+        }
+      }
+    }
+  },
+  "card": {
+    "padding": {
+      "$type": "dimension",
+      "$value": "{density.card-padding}",
+      "$description": "Padding de card. Segue density: calm 24 / focus 16.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "card.padding",
+          "layer": "component",
+          "status": "source",
+          "cssVar": "--in-card-padding",
+          "sourceSection": "Componentes / Cards",
+          "consumerFacing": true,
+          "intent": "O card normal não precisa flutuar.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "radius": {
+      "$type": "dimension",
+      "$value": "{radius.lg}",
+      "$description": "Radius de card = radius.lg.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "card.radius",
+          "layer": "component",
+          "status": "source",
+          "cssVar": "--in-card-radius",
+          "sourceSection": "Componentes / Cards",
+          "consumerFacing": true,
+          "intent": "Cards 16px. Não cápsulas.",
+          "spec": "2025.10",
+          "version": "1.0.0"
+        }
+      }
+    }
+  }
+}
