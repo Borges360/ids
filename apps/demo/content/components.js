@@ -4,7 +4,7 @@ export const componentPages = [
   page({
     id: "components/catalog",
     title: "Catálogo",
-    lede: "O que existe como CSS, o que existe como recipe e o que o brief de documentação listou sem haver implementação. Versão do pacote: 1.0.0.",
+    lede: "O que existe como CSS, o que existe como recipe e o que o brief de documentação listou sem haver implementação. Versão do pacote: 1.1.0.",
     keywords: ["button", "input", "card", "badge", "dialog", "status", "ausente"],
     status: "misto",
     source: "docs/COMPONENTS.md · packages/design-system/src/components.css · recipes.ts",
@@ -49,7 +49,7 @@ export const componentPages = [
         html: `
           <dl class="meta">
             <div><dt>Status</dt><dd>Implementado</dd></div>
-            <div><dt>Versão</dt><dd class="in-voice-machine">1.0.0</dd></div>
+            <div><dt>Versão do pacote</dt><dd class="in-voice-machine">1.1.0</dd></div>
             <div><dt>API</dt><dd>Classes CSS. Não há props React.</dd></div>
           </dl>
           <p><strong>Quando usar.</strong> Uma ação que o usuário dispara. Um primary por contexto. Commit só se o efeito sai do sistema.</p>

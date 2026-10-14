@@ -1,6 +1,6 @@
 {
   "name": "@inteiro/tokens",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "INTEIRO Identity Design System — catálogo DTCG 2025.10, temas e exportações",
   "type": "module",
   "sideEffects": [

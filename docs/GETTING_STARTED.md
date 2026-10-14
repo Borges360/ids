@@ -15,7 +15,7 @@ Node ≥ 22.14. Este ambiente usa Node 24.
 ```bash
 npm install ../IDS/packages/tokens
 # ou tarball
-npm install ../IDS/artifacts/inteiro-tokens-1.0.0.tgz
+npm install ../IDS/artifacts/inteiro-tokens-1.1.0.tgz
 ```
 
 ```ts
