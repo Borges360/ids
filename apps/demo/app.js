@@ -75,16 +75,30 @@ function scrollToId(id) {
   el.scrollIntoView({ behavior: reducedMotion() ? "auto" : "smooth", block: "start" });
 }
 
+function syncSidebar() {
+  const mobile = window.matchMedia("(max-width: 1023px)").matches;
+  const open = document.body.classList.contains("nav-open");
+  if (mobile && !open) {
+    sidebar.setAttribute("inert", "");
+    sidebar.setAttribute("aria-hidden", "true");
+  } else {
+    sidebar.removeAttribute("inert");
+    sidebar.removeAttribute("aria-hidden");
+  }
+}
+
 function closeNav() {
   document.body.classList.remove("nav-open");
   menuButton.setAttribute("aria-expanded", "false");
   scrim.hidden = true;
+  syncSidebar();
 }
 
 function openNav() {
   document.body.classList.add("nav-open");
   menuButton.setAttribute("aria-expanded", "true");
   scrim.hidden = false;
+  syncSidebar();
   sidebar.querySelector("a")?.focus();
 }
 
@@ -151,12 +165,12 @@ function buildToc() {
   }
   toc.hidden = false;
   const route = parseHash();
-  toc.innerHTML = `<p class="kicker" id="toc-label">Nesta página</p><ol>${heads
+  toc.innerHTML = `<details class="toc-panel" open><summary class="kicker">Nesta página</summary><ol>${heads
     .map(
       (head) =>
         `<li class="${head.tagName === "H3" ? "toc-sub" : ""}"><a href="#/${route.page}/${head.id}">${esc(head.textContent ?? "")}</a></li>`
     )
-    .join("")}</ol>`;
+    .join("")}</ol></details>`;
   spy?.disconnect();
   spy = new IntersectionObserver(
     (entries) => {
@@ -676,6 +690,8 @@ if (!document.querySelector("#confirm-publish")) {
 }
 
 bootAppearance();
+syncSidebar();
+window.addEventListener("resize", syncSidebar);
 if (!location.hash) history.replaceState(null, "", "#/introduction/overview");
 show(parseHash());
 window.addEventListener("hashchange", () => show(parseHash(), { focusTitle: true }));

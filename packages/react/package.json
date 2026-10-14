@@ -1,6 +1,6 @@
 {
   "name": "@inteiro/react",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "INTEIRO React + Emotion provider e primitivos",
   "type": "module",
   "exports": { ".": "./src/index.ts" },
@@ -13,7 +13,7 @@
     "@emotion/react": { "optional": true },
     "@emotion/styled": { "optional": true }
   },
-  "dependencies": { "@inteiro/tokens": "1.0.0" },
+  "dependencies": { "@inteiro/tokens": "1.1.0" },
   "scripts": { "build": "node -e \"console.log('react package source-only')\"" },
   "license": "MIT"
 }

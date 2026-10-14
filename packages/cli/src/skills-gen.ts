@@ -75,7 +75,7 @@ name: ${skill.name}
 description: ${JSON.stringify(skill.description)}
 license: MIT
 metadata:
-  inteiro: "1.0.0"
+  inteiro: "1.1.0"
 ---
 
 ${skill.body}
@@ -101,6 +101,7 @@ Procedimento:
 6. Um primary por contexto. Commit separado. Pill não é botão padrão.
 7. Microcopy direto, sem 😅 nem “Are you sure?”.
 8. WCAG 2.2 AA + target 44px + focus visível + reduced-motion + RTL lógico.
+9. Auditoria de código é estática. Use o MCP \`inteiro_get_visual_review\` e confira capturas renderizadas antes de declarar harmonia visual.
 
 Skills relacionadas: inteiro-interface, inteiro-audit, inteiro-migrate, inteiro-choose-token, inteiro-identity, inteiro-a11y, inteiro-voice, inteiro-components, inteiro-validate.
 `
@@ -124,6 +125,7 @@ Recipes: ${RECIPES.map((r) => r.id).join(", ")}
       body: `Execute \`npx inteiro audit <path>\` e revise:
 ${GUIDELINES.find((g) => g.id === "accessibility")?.rules.map((r) => `- ${r}`).join("\n")}
 Checklist identitário: a tela parece SaaS genérico? Purple decorativo? Orange é decisão real? Costura comunica algo?
+Auditoria de fonte não avalia layout renderizado. Consulte o MCP \`inteiro_get_visual_review\`, percorra rotas e estados e compare capturas em desktop e mobile antes de aprovar alinhamento, hierarquia, escala ou harmonia.
 `
     },
     {
