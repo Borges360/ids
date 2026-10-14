@@ -1,4 +1,5 @@
 import { catalogErrors, nav, pageById, pages } from "./content/index.js";
+import { IDS_VERSION } from "./version.js";
 
 const errors = catalogErrors();
 if (errors.length) console.error(errors);
@@ -19,6 +20,9 @@ const searchInput = document.querySelector("#search-input");
 const searchResults = document.querySelector("#search-results");
 const searchStatus = document.querySelector("#search-status");
 const openSearchButton = document.querySelector("#open-search");
+const versionLabel = document.querySelector("#version");
+
+if (versionLabel) versionLabel.textContent = `v${IDS_VERSION}`;
 
 const flat = nav.flatMap((group) => group.items.map((item) => ({ ...item, group })));
 const searchIndex = pages.flatMap((page) => {
@@ -146,7 +150,7 @@ function renderPage(page, group) {
       <p class="lede">${esc(page.lede)}</p>
       <dl class="meta">
         <div><dt>Status</dt><dd>${esc(page.status)}</dd></div>
-        <div><dt>Versão</dt><dd class="in-voice-machine">1.0.0</dd></div>
+        <div><dt>Versão do IDS</dt><dd class="in-voice-machine">${IDS_VERSION}</dd></div>
         <div><dt>Fonte</dt><dd class="in-voice-machine">${esc(page.source)}</dd></div>
       </dl>
     </header>
