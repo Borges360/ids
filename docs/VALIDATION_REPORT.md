@@ -1,5 +1,11 @@
 # Relatório de validação
 
+## Release 1.1.1 — 2026-10-13
+
+MCP: `inteiro_get_visual_review` aceita `routes[]` e retorna a cobertura rota/shell em 320, 390, 768, 1280 e 1440 CSS px conforme aplicável, além de temas e estados. O plano não captura nem julga pixels renderizados. `inteiro_audit` sinaliza riscos contextuais em `overflow-wrap:anywhere`, `white-space:nowrap` e `overflow:hidden`; a revisão humana decide se há defeito na interface. Testes de regressão cobrem o plano, a validação de rotas e os avisos.
+
+Jenkins `ids-dev`, build **#6**, concluiu com sucesso a partir de `release/1.1.1` (`54dda372`). O estágio de checkout, testes e imagem passou; o deploy no namespace dev concluiu e o health check retornou HTTP 200. O cabeçalho e os metadados da página em `http://ids.lab/` mostram `1.1.1`. Os valores do catálogo de tokens permanecem em `1.0.0`; não houve publicação no npm público.
+
 ## Release 1.1.0 — 2026-10-13
 
 Ambiente: Windows, Node v24.14.0, npm 11.9.0.

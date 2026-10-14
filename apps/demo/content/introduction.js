@@ -69,7 +69,7 @@ export const introductionPages = [
                 <tr><td><code>@inteiro/design-system</code></td><td>CSS de recipes e reexportação do núcleo</td><td>Implementado</td></tr>
                 <tr><td><code>@inteiro/cli</code></td><td><code>inteiro init</code>, <code>doctor</code>, <code>tokens</code>, <code>agents</code></td><td>Implementado</td></tr>
                 <tr><td><code>@inteiro/agent-core</code></td><td>explain, search, recipes, guidelines, audit, visual review</td><td>Implementado</td></tr>
-                <tr><td><code>@inteiro/mcp</code></td><td>Servidor stdio: tokens, recipes, auditoria estática e protocolo de revisão visual</td><td>Implementado</td></tr>
+                <tr><td><code>@inteiro/mcp</code></td><td>Servidor stdio: tokens, recipes, riscos de layout e plano de revisão visual por rota</td><td>Implementado</td></tr>
                 <tr><td><code>@inteiro/react</code></td><td>Provider e tema por CSS variables</td><td>Implementado</td></tr>
                 <tr><td><code>@inteiro/skills</code></td><td>Geração de SKILL.md</td><td>Implementado</td></tr>
                 <tr><td><code>@inteiro/adapter-*</code></td><td>Codex, Claude, Devin, Cursor, Pi, Hermes</td><td>Adaptadores; harness nativo não validado nesta sessão</td></tr>
