@@ -51,4 +51,16 @@ describe("documentação INTEIRO", () => {
       expect.arrayContaining(["playground", "api", "anatomia"])
     );
   });
+
+  it("mantém a versão exibida na demo sincronizada com o pacote", async () => {
+    const packageJson = JSON.parse(readFileSync(new URL("../apps/demo/package.json", import.meta.url), "utf8")) as { version: string };
+    const versionModule = readFileSync(new URL("../apps/demo/version.js", import.meta.url), "utf8");
+    const version = versionModule.match(/IDS_VERSION\s*=\s*["']([^"']+)["']/)?.[1];
+    const html = readFileSync(new URL("../apps/demo/index.html", import.meta.url), "utf8");
+    const app = readFileSync(new URL("../apps/demo/app.js", import.meta.url), "utf8");
+
+    expect(version).toBe(packageJson.version);
+    expect(html).toContain('id="version"');
+    expect(app).toContain("versionLabel.textContent = `v${IDS_VERSION}`");
+  });
 });

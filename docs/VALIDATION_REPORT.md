@@ -4,7 +4,7 @@
 
 Ambiente: Windows, Node v24.14.0, npm 11.9.0.
 
-`npm run ci` passou: typecheck, validação de 316 tokens (0 erros, 0 avisos, 0 falhas de contraste), 34 testes, 3 testes de contraste, build de todos os workspaces e checagem de empacotamento.
+`npm run ci` passou: typecheck, validação de 316 tokens (0 erros, 0 avisos, 0 falhas de contraste), 35 testes, 3 testes de contraste, build de todos os workspaces e checagem de empacotamento.
 
 Smoke test do MCP stdio: inicialização anuncia `1.1.0`; `tools/list` expõe 10 ferramentas; `inteiro_get_visual_review` retorna a matriz de cinco viewports e exige revisão humana; `inteiro://guides/visual-review` responde como `application/json`; ferramenta desconhecida retorna `isError: true`.
 
