@@ -55,7 +55,7 @@ export async function installHarness(cwd: string, id: HarnessId, opts: { dryRun:
     const plugin = {
       $schema: "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
       name: "inteiro",
-      version: "1.0.0",
+      version: "1.1.0",
       description: "INTEIRO Identity Design System for Codex",
       license: "MIT",
       keywords: ["design-system", "inteiro", "tokens"]
@@ -63,7 +63,7 @@ export async function installHarness(cwd: string, id: HarnessId, opts: { dryRun:
     actions.push(await writeManaged(join(cwd, "plugin.json"), JSON.stringify(plugin, null, 2) + "\n", opts));
     actions.push(await writeManaged(join(cwd, ".codex-plugin", "plugin.json"), JSON.stringify({
       name: "inteiro",
-      version: "1.0.0",
+      version: "1.1.0",
       description: "INTEIRO for Codex",
       skills: "./.agents/skills/",
       mcpServers: "mcp.json"
@@ -76,7 +76,7 @@ export async function installHarness(cwd: string, id: HarnessId, opts: { dryRun:
     actions.push(await writeManaged(join(cwd, ".claude-plugin", "plugin.json"), JSON.stringify({
       name: "inteiro",
       displayName: "INTEIRO",
-      version: "1.0.0",
+      version: "1.1.0",
       description: "Identity Design System INTEIRO",
       author: { name: "INTEIRO" },
       license: "MIT",
@@ -108,7 +108,7 @@ ${topLevelSkills()[0]!.body}
 `, opts));
     actions.push(await writeManaged(join(cwd, ".cursor-plugin", "plugin.json"), JSON.stringify({
       name: "inteiro",
-      version: "1.0.0",
+      version: "1.1.0",
       description: "INTEIRO Cursor plugin",
       skills: "./.cursor/skills",
       rules: "./.cursor/rules"
@@ -116,7 +116,7 @@ ${topLevelSkills()[0]!.body}
     actions.push(await writeManaged(join(cwd, "plugin.json"), JSON.stringify({
       $schema: "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
       name: "inteiro",
-      version: "1.0.0",
+      version: "1.1.0",
       description: "INTEIRO Agent Plugin",
       license: "MIT"
     }, null, 2) + "\n", opts));
@@ -138,7 +138,7 @@ ${topLevelSkills()[0]!.body}
     actions.push(await writeManaged(join(cwd, ".hermes-plugin", "plugin.json"), JSON.stringify({
       $schema: "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
       name: "inteiro",
-      version: "1.0.0",
+      version: "1.1.0",
       license: "MIT"
     }, null, 2) + "\n", opts));
   }
@@ -146,7 +146,7 @@ ${topLevelSkills()[0]!.body}
   const markerFile = join(cwd, ".inteiro", `${id}.installed.json`);
   actions.push(await writeManaged(markerFile, JSON.stringify({
     harness: id,
-    version: "1.0.0",
+    version: "1.1.0",
     mechanism: harness.mechanism,
     verified: harness.verified,
     sources: harness.sources,

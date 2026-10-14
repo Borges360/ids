@@ -8,7 +8,7 @@ Sistema de identidade pessoal. Tokens, CSS, linha de comando e um contrato para 
 
 **Não eliminar a tensão. Dar forma a ela.**
 
-Este repositório transforma o documento de identidade em infraestrutura instalável: catálogo DTCG 2025.10, CSS, CLI, API para agentes, servidor MCP, adaptadores de harness, demonstração e testes. A versão do catálogo é `1.0.0`. A instalação é local, pelo monorepo ou por tarball.
+Este repositório transforma o documento de identidade em infraestrutura instalável: catálogo DTCG 2025.10, CSS, CLI, API para agentes, servidor MCP, adaptadores de harness, demonstração e testes. A versão do IDS é `1.1.0`; o catálogo de tokens, sem alteração de valores nesta release, permanece em `1.0.0`. A instalação é local, pelo monorepo ou por tarball.
 
 A estrutura pesa mais que a expressão. A interface deve ficar mais interessante com o tempo, não mais impressionante em cinco segundos.
 
@@ -49,7 +49,7 @@ A demonstração abre em `http://127.0.0.1:4173/`. Temas light e dark, densidade
 
 ### Num projeto
 
-Os quatro tarballs entram no mesmo `npm install`. A dependência cruzada é `1.0.0`.
+Os quatro tarballs entram no mesmo `npm install`. A dependência cruzada é `1.1.0`.
 
 ```bash
 mkdir -p artifacts
@@ -61,10 +61,10 @@ npm pack -w @inteiro/design-system --pack-destination artifacts
 
 ```bash
 npm install \
-  ../IDS/artifacts/inteiro-tokens-1.0.0.tgz \
-  ../IDS/artifacts/inteiro-agent-core-1.0.0.tgz \
-  ../IDS/artifacts/inteiro-cli-1.0.0.tgz \
-  ../IDS/artifacts/inteiro-design-system-1.0.0.tgz
+  ../IDS/artifacts/inteiro-tokens-1.1.0.tgz \
+  ../IDS/artifacts/inteiro-agent-core-1.1.0.tgz \
+  ../IDS/artifacts/inteiro-cli-1.1.0.tgz \
+  ../IDS/artifacts/inteiro-design-system-1.1.0.tgz
 
 npx inteiro init --yes
 npx inteiro doctor
@@ -101,7 +101,7 @@ Exemplos em [`examples/html`](examples/html), [`examples/react`](examples/react)
 | `@inteiro/design-system` | CSS das recipes e o binário `inteiro`. |
 | `@inteiro/cli` | `init`, `doctor`, `tokens`, `themes`, `skills`, `agents`, `audit`, `migrate`. |
 | `@inteiro/agent-core` | Explicação, busca, recipes, guidelines e auditoria. |
-| `@inteiro/mcp` | Servidor MCP em stdio. |
+| `@inteiro/mcp` | Servidor MCP em stdio: consulta tokens, recipes, guidelines, auditoria estática e protocolo de revisão visual. |
 | `@inteiro/react` | Provider. O tema chega por variáveis CSS. |
 | `@inteiro/skills` | Geração de `SKILL.md`. |
 | `@inteiro/adapter-*` | Codex, Claude, Devin, Cursor, Pi, Hermes. |
@@ -147,7 +147,7 @@ npx inteiro agents install cursor --yes
 npx inteiro agents doctor
 ```
 
-São dez skills de entrada: `inteiro`, `inteiro-interface`, `inteiro-audit`, `inteiro-migrate`, `inteiro-choose-token`, `inteiro-identity`, `inteiro-a11y`, `inteiro-voice`, `inteiro-components`, `inteiro-validate`. A consulta fina de um token fica na CLI ou no MCP.
+São dez skills de entrada: `inteiro`, `inteiro-interface`, `inteiro-audit`, `inteiro-migrate`, `inteiro-choose-token`, `inteiro-identity`, `inteiro-a11y`, `inteiro-voice`, `inteiro-components`, `inteiro-validate`. A consulta fina de um token fica na CLI ou no MCP. A ferramenta `inteiro_get_visual_review` fornece cobertura de rotas, viewports e estados, além de critérios para revisão humana das capturas; a auditoria de fonte continua explicitamente estática.
 
 ## Documentação
 

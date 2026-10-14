@@ -1,5 +1,17 @@
 # Relatório de validação
 
+## Release 1.1.0 — 2026-10-13
+
+Ambiente: Windows, Node v24.14.0, npm 11.9.0.
+
+`npm run ci` passou: typecheck, validação de 316 tokens (0 erros, 0 avisos, 0 falhas de contraste), 34 testes, 3 testes de contraste, build de todos os workspaces e checagem de empacotamento.
+
+Smoke test do MCP stdio: inicialização anuncia `1.1.0`; `tools/list` expõe 10 ferramentas; `inteiro_get_visual_review` retorna a matriz de cinco viewports e exige revisão humana; `inteiro://guides/visual-review` responde como `application/json`; ferramenta desconhecida retorna `isError: true`.
+
+Tarballs locais verificados: `inteiro-tokens-1.1.0.tgz`, `inteiro-agent-core-1.1.0.tgz`, `inteiro-cli-1.1.0.tgz` e `inteiro-design-system-1.1.0.tgz`. Os quatro instalaram juntos em um projeto temporário sem consultar o registro público.
+
+Limites: não foi criada uma suíte automática de regressão de screenshots nem declarada aprovação visual de uma aplicação. O protocolo MCP define evidência e revisão humana para esse trabalho. `npm audit` apontou três avisos no runner de testes (Vitest/tinypool): dois críticos e um moderado; não fazem parte das dependências de runtime e a correção indicada exige Vitest 5, uma atualização major separada.
+
 Data: 2026-10-10. Ambiente: Windows, Node v24.14.0, npm 11.9.0.
 
 ## Testes automatizados

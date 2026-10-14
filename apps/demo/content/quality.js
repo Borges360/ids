@@ -60,7 +60,7 @@ export const qualityPages = [
           ${code("bash", `npx inteiro tokens validate
 npm run test:contrast`)}
           <p>O teste de contraste mede pares de contrato. Não é um scanner de página. Não há, neste repositório, suíte Playwright nem axe sobre a documentação no momento em que esta página foi escrita. Um teste de catálogo em Vitest confere links internos e a presença do menu. Isso não equivale a conformidade WCAG.</p>
-          <p>Manual mínimo antes de chamar uma tela de pronta: Tab por todos os controles, Escape nos diálogos, nome no leitor de tela, 320px sem perda de função, tema light e dark, reduced motion.</p>
+          <p>Manual mínimo antes de chamar uma tela de pronta: Tab por todos os controles, Escape nos diálogos, nome no leitor de tela, 320px sem perda de função, tema light e dark, reduced motion. Compare capturas de rotas críticas em 390px e 1280px; confira alinhamento, dimensões de componentes equivalentes, hierarquia e quebra de texto. Uma auditoria de tokens ou fonte não substitui essa leitura visual.</p>
         `
       }
     ]
@@ -146,14 +146,14 @@ npm run test:contrast`)}
             <li>ADR curto para decisão estrutural, em <code>docs/adrs/</code> quando necessário. Já existe o ADR “Orange is commit, not generic accent” no documento mestre.</li>
           </ol>
           <p>Extensão nova marca <code>status: "extension"</code> e aparece em <code>docs/SOURCE_TRACEABILITY.md</code>. Não há, no repositório, um quadro de ownership com nomes de pessoas além do papel Identity Owner.</p>
-          <p>Design review e code review não têm ferramenta obrigatória descrita. O critério de qualidade é o das perguntas acima mais o gate de contraste.</p>
+          <p>O protocolo <code>inteiro_get_visual_review</code> no MCP define cobertura e critérios para revisar capturas. A ferramenta organiza a evidência; uma pessoa ainda avalia intenção, hierarquia e harmonia visual.</p>
         `
       },
       {
         id: "versao",
         title: "Versão, depreciação e migração",
         html: `
-          <p>SemVer mais contrato visual. Versão atual <span class="in-voice-machine">1.0.0</span>. Changelog na raiz.</p>
+          <p>SemVer mais contrato visual. Versão do IDS <span class="in-voice-machine">1.1.0</span>; os valores do catálogo seguem em <span class="in-voice-machine">1.0.0</span>. Changelog na raiz.</p>
           <p><code>color.accent</code> está depreciado. O substituto é <code>color.identity.commit</code>. Não use <code>--in-color-accent</code> em código novo.</p>
           ${code("bash", "npx inteiro migrate .")}
           <p>A migração de um sistema genérico (Inter, roxo <span class="in-voice-machine">#8B5CF6</span>, laranja <span class="in-voice-machine">#FF9138</span>) para INTEIRO é mudança de linguagem, não search-and-replace. Ver <code>docs/MIGRATION.md</code>.</p>
@@ -228,14 +228,14 @@ npm run test:contrast`)}
       },
       {
         id: "changelog",
-        title: "Changelog 1.0.0",
+        title: "Changelog 1.1.0",
         html: `
           <ul>
-            <li>Added — catálogo DTCG, SDK, CLI, MCP, skills, adaptadores, temas, densidades, demo, testes de contraste.</li>
-            <li>Accessibility — pares de contrato, reduced motion no CSS gerado, alvo 44px no md.</li>
-            <li>Migration — primeira versão. Ver <code>docs/MIGRATION.md</code>.</li>
+            <li>Added — protocolo MCP de revisão visual e recipes de shell de aplicação, navegação mobile, perfil e fluxo por etapas.</li>
+            <li>Changed — auditoria estática deixa de ser confundida com aprovação visual; erros de ferramenta são devolvidos como erro MCP.</li>
+            <li>Accessibility — revisão em viewports de 320px, 390px, 768px e desktop, incluindo foco, targets, safe-area e estados.</li>
           </ul>
-          <p>Não há entradas posteriores a 1.0.0 no <code>CHANGELOG.md</code> da raiz.</p>
+          <p>A revisão visual registra rota, viewport, tema, densidade, perfil, estado e commit. Diferenças de imagem localizam mudanças; uma pessoa avalia a intenção e a harmonia.</p>
         `
       },
       {

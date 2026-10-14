@@ -188,6 +188,70 @@ export const RECIPES: Recipe[] = [
     bad: "nav glassmorphism neon"
   },
   {
+    id: "app-shell",
+    title: "Estrutura de aplicação",
+    sourceSection: "Composição / Sistemas operacionais",
+    when: "Portal autenticado com várias áreas, tarefas recorrentes e conteúdo operacional.",
+    tokens: ["layout.content.dashboard", "layout.columns.wide", "layout.gutter.wide", "elevation.1", "z.sticky", "font.voice.rational"],
+    steps: [
+      "Separe navegação persistente, cabeçalho da página e conteúdo; não use a navegação como hero de site.",
+      "Mantenha título, descrição curta e ação principal alinhados no mesmo cabeçalho de página.",
+      "No mobile, recolha a navegação em drawer ou barra inferior com nome acessível, estado atual e target mínimo de 44px.",
+      "Use grid e gutters responsivos do catálogo; alinhe bordas e inícios de texto entre regiões irmãs.",
+      "Preserve o mesmo shell entre dashboard, formulário, perfil e administração."
+    ],
+    good: "Shell estável + navegação contextual + área de trabalho com largura legível",
+    bad: "Cada rota inventa sua própria largura, cabeçalho, raio e escala de espaçamento"
+  },
+  {
+    id: "mobile-navigation",
+    title: "Navegação mobile de aplicação",
+    sourceSection: "Navegação / Acessibilidade",
+    when: "O shell precisa continuar orientando tarefas em telas estreitas.",
+    tokens: ["touch.target.min", "color.identity.primary", "color.background.surface", "color.border.subtle", "font.voice.rational"],
+    steps: [
+      "Mantenha os destinos mais usados visíveis; mova destinos secundários para drawer ou menu identificado.",
+      "Exiba rótulo textual e estado atual; não dependa apenas do ícone ou da cor.",
+      "Garanta target de 44×44px, safe-area e foco visível por teclado.",
+      "Não permita que a navegação fixa cubra conteúdo, avisos ou ações do formulário.",
+      "Teste em 320px e 390px, com texto ampliado e teclado aberto quando houver entrada."
+    ],
+    good: "Barra inferior curta, destinos rotulados e conteúdo com espaço reservado",
+    bad: "Sidebar desktop espremida, ícones sem nome e botões menores para caber"
+  },
+  {
+    id: "profile",
+    title: "Perfil e preferências",
+    sourceSection: "Sistemas operacionais / Formulários",
+    when: "A pessoa consulta identidade, dados da conta, segurança ou preferências.",
+    tokens: ["layout.content.standard", "density.section-gap", "density.input-default", "color.text.primary", "color.border.subtle"],
+    steps: [
+      "Agrupe identidade, dados pessoais, segurança e preferências em seções com títulos estáveis.",
+      "Mostre o valor atual junto do rótulo e use o mesmo contrato de campo em leitura e edição.",
+      "Explique alterações que afetam acesso ou privacidade antes de pedir confirmação.",
+      "Confirme o salvamento com estado textual e preserve os valores em caso de erro.",
+      "Não transforme metadados descritivos em botões; dê foco e target adequados às ações reais."
+    ],
+    good: "Dados atuais legíveis + edição explícita + feedback junto à seção alterada",
+    bad: "Campos sem rótulo, ações desalinhadas e status indicado só por cor"
+  },
+  {
+    id: "stepper",
+    title: "Fluxo por etapas",
+    sourceSection: "Formulários / Navegação sequencial",
+    when: "Uma tarefa longa exige decisões em sequência, como enviar conteúdo para revisão.",
+    tokens: ["touch.target.min", "density.input-default", "color.identity.primary", "color.status.success", "color.status.danger"],
+    steps: [
+      "Nomeie todas as etapas e diferencie concluída, atual e futura com texto e estado semântico.",
+      "Mostre o progresso e a ação seguinte sem esconder dados já informados.",
+      "Valide no contexto da etapa, mantenha os valores ao voltar e associe erros ao campo.",
+      "No mobile, permita quebra ou rolagem controlada dos nomes sem comprimir controles.",
+      "Use target mínimo de 44px e não use cor como única indicação de estado."
+    ],
+    good: "Etapa atual legível, resumo preservado e erro com instrução de correção",
+    bad: "Cinco rótulos comprimidos, navegação ambígua e dados apagados ao voltar"
+  },
+  {
     id: "feedback-error",
     title: "Feedback de erro",
     sourceSection: "Voz + inputs + status",

@@ -187,6 +187,24 @@ export const GUIDELINES: Guideline[] = [
     avoid: ["Layout-base instável.", "Dois primaries concorrendo."]
   },
   {
+    id: "visual-review",
+    title: "Revisão visual com evidência",
+    sourceSection: "Governança / Validação visual",
+    body: "Auditoria de fonte encontra padrões textuais. Hierarquia, alinhamento, escala, quebra de texto e comportamento mobile só podem ser avaliados na interface renderizada.",
+    rules: [
+      "Inventarie rotas, perfis e estados antes de escolher capturas.",
+      "Compare cada rota crítica em desktop e mobile; teste 320px e tablet por shell e formulário complexo.",
+      "Revise alinhamento, dimensões de componentes equivalentes, hierarquia, wrapping e overflow entre telas.",
+      "Registre baseline aprovada por rota, viewport, tema, densidade, perfil, estado e commit.",
+      "Use diffs para localizar mudanças e revisão humana para aprovar intenção e harmonia."
+    ],
+    avoid: [
+      "Declarar aprovação visual só porque tokens, lint ou auditoria estática passaram.",
+      "Comparar imagens com fontes, dados ou estados instáveis.",
+      "Mascarar texto ou deslocamento de layout no teste visual."
+    ]
+  },
+  {
     id: "governance",
     title: "Governança pessoal",
     sourceSection: "Governança",
