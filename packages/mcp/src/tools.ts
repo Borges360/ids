@@ -1,5 +1,6 @@
 import {
   auditSource,
+  createVisualReviewPlan,
   explainToken,
   getComponentRecipe,
   getGuidelines,
@@ -20,8 +21,35 @@ export const MCP_TOOLS = [
   { name: "inteiro_get_theme", description: "Inspeciona um tema.", inputSchema: { type: "object", properties: { name: { type: "string" } }, required: ["name"] } },
   { name: "inteiro_suggest_tokens", description: "Sugere tokens a partir de um contexto em linguagem natural.", inputSchema: { type: "object", properties: { context: { type: "string" } }, required: ["context"] } },
   { name: "inteiro_validate_usage", description: "Valida um trecho de código contra regras INTEIRO.", inputSchema: { type: "object", properties: { code: { type: "string" }, token: { type: "string" } } } },
-  { name: "inteiro_audit", description: "Auditoria estática do texto-fonte. Não avalia hierarquia, alinhamento, escala, quebras ou responsividade renderizada; consulte inteiro_get_visual_review para revisar evidência visual.", inputSchema: { type: "object", properties: { file: { type: "string" }, source: { type: "string" } }, required: ["file", "source"] } },
-  { name: "inteiro_get_visual_review", description: "Entrega o protocolo de revisão visual INTEIRO: cobertura de rotas e estados, viewports, checklist de harmonia e critérios para capturas. A aprovação exige revisão humana da interface renderizada.", inputSchema: { type: "object", properties: {} } }
+  { name: "inteiro_audit", description: "Auditoria estática do texto-fonte: encontra regras conhecidas e sinaliza riscos de quebra arbitrária e clipping. Não mede a interface renderizada; confirme o contexto nas capturas com inteiro_get_visual_review.", inputSchema: { type: "object", properties: { file: { type: "string" }, source: { type: "string" } }, required: ["file", "source"] } },
+  {
+    name: "inteiro_get_visual_review",
+    description: "Entrega critérios de harmonia e prevenção visual. Passe routes[] com path, shell e estados para gerar uma matriz concreta por rota, viewport e tema. O MCP não captura nem interpreta pixels; a aprovação requer revisão humana.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        routes: {
+          type: "array",
+          minItems: 1,
+          maxItems: 100,
+          items: {
+            type: "object",
+            properties: {
+              path: { type: "string", maxLength: 240 },
+              shell: { type: "string", maxLength: 120 },
+              profile: { type: "string", maxLength: 120 },
+              complexForm: { type: "boolean" },
+              complexTable: { type: "boolean" },
+              states: { type: "array", maxItems: 20, items: { type: "string", maxLength: 80 } }
+            },
+            required: ["path", "shell"],
+            additionalProperties: false
+          }
+        }
+      },
+      additionalProperties: false
+    }
+  }
 ] as const;
 
 export function callMcpTool(name: string, args: Record<string, unknown>): unknown {
@@ -48,7 +76,9 @@ export function callMcpTool(name: string, args: Record<string, unknown>): unknow
     case "inteiro_audit":
       return auditSource(String(args.file), String(args.source));
     case "inteiro_get_visual_review":
-      return getVisualReviewGuidance();
+      return args.routes === undefined
+        ? getVisualReviewGuidance()
+        : { ...getVisualReviewGuidance(), plan: createVisualReviewPlan(args.routes) };
     default:
       throw new Error(`Ferramenta desconhecida: ${name}`);
   }

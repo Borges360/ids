@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { explainToken, getGuidelines, getComponentRecipe, getToken, getVisualReviewGuidance, suggestTokens, validateUsage } from "@inteiro/agent-core";
+import { auditSource, createVisualReviewPlan, explainToken, getGuidelines, getComponentRecipe, getToken, getVisualReviewGuidance, suggestTokens, validateUsage } from "@inteiro/agent-core";
 
 describe("agent-core", () => {
   it("explica identity.commit", () => {
@@ -30,9 +30,38 @@ describe("agent-core", () => {
   it("documenta revisão visual por captura sem confundir com auditoria estática", () => {
     const guide = getVisualReviewGuidance();
     expect(guide.scope.humanReviewRequired).toBe(true);
+    expect(guide.scope.screenshotInspection).toBe(false);
     expect(guide.viewports.map(({ width }) => width)).toContain(320);
     expect(guide.checklist.some(({ id }) => id === "alignment")).toBe(true);
+    expect(guide.checklist.some(({ id }) => id === "overflow")).toBe(true);
+    expect(guide.layoutRisks.map(({ id }) => id)).toContain("anywhere");
+    expect(guide.findingTemplate.required).toContain("rollback");
     expect(guide.coverage.some((item) => item.includes("Não combine todas"))).toBe(true);
+  });
+
+  it("gera uma matriz visual concreta sem multiplicar todas as dimensões", () => {
+    const plan = createVisualReviewPlan([
+      { path: "/campaigns", shell: "app", profile: "operator", states: ["initial", "empty"] },
+      { path: "/campaigns/new", shell: "app", complexForm: true, states: ["initial", "validation-error"] },
+      { path: "/admin", shell: "admin", complexTable: true }
+    ]);
+    expect(plan).toMatchObject({ routeCount: 3, shellCount: 2 });
+    expect(plan.matrix[0]?.viewports.map(({ width }) => width)).toEqual([390, 1280, 320, 768, 1440]);
+    expect(plan.matrix[0]?.themes).toEqual(["dark", "light"]);
+    expect(plan.matrix[1]?.viewports.map(({ width }) => width)).toEqual([390, 1280, 320, 768]);
+    expect(plan.matrix[1]?.states).toEqual(["initial", "validation-error"]);
+    expect(plan.matrix[2]?.viewports.map(({ width }) => width)).toEqual([390, 1280, 320, 768, 1440]);
+    expect(plan.note).toContain("não captura");
+  });
+
+  it("rejeita inventário ambíguo e sinaliza riscos CSS de quebra e clipping", () => {
+    expect(() => createVisualReviewPlan([{ path: "/same", shell: "app" }, { path: "/same", shell: "app" }])).toThrow("Rota duplicada");
+    const findings = auditSource("responsive.css", [
+      "p { overflow-wrap: anywhere; }",
+      ".label { white-space: nowrap; }",
+      ".panel { overflow: hidden; }"
+    ].join("\n"));
+    expect(findings.filter(({ kind }) => kind === "layout-risk")).toHaveLength(3);
   });
 
   it("mantém cada token citado por recipes resolvível no catálogo", () => {

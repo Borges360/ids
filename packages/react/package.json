@@ -1,19 +1,29 @@
 {
   "name": "@inteiro/react",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "INTEIRO React + Emotion provider e primitivos",
   "type": "module",
-  "exports": { ".": "./src/index.ts" },
+  "exports": {
+    ".": "./src/index.ts"
+  },
   "peerDependencies": {
     "react": ">=18",
     "@emotion/react": ">=11",
     "@emotion/styled": ">=11"
   },
   "peerDependenciesMeta": {
-    "@emotion/react": { "optional": true },
-    "@emotion/styled": { "optional": true }
+    "@emotion/react": {
+      "optional": true
+    },
+    "@emotion/styled": {
+      "optional": true
+    }
   },
-  "dependencies": { "@inteiro/tokens": "1.1.0" },
-  "scripts": { "build": "node -e \"console.log('react package source-only')\"" },
+  "dependencies": {
+    "@inteiro/tokens": "1.1.1"
+  },
+  "scripts": {
+    "build": "node -e \"console.log('react package source-only')\""
+  },
   "license": "MIT"
 }

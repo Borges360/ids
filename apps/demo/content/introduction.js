@@ -15,7 +15,7 @@ export const introductionPages = [
         html: `
           <blockquote class="manifesto in-voice-signal">Não eliminar a tensão. Dar forma a ela.</blockquote>
           <p>INTEIRO não é uma personalidade artificialmente perfeita, nem uma marca que precisa parecer profunda. É a infraestrutura visual de alguém que pensa de modo estruturado, questiona premissas e reconhece conflito sem dissolver a estrutura.</p>
-          <p>O repositório transforma o documento mestre em artefatos instaláveis: tokens DTCG 2025.10, CSS, CLI, API para agentes, MCP e recipes. O IDS está na versão <span class="in-voice-machine">1.1.0</span>; o catálogo de tokens permanece em <span class="in-voice-machine">1.0.0</span>. Os pacotes são instalados pelo monorepo ou por tarball local.</p>
+          <p>O repositório transforma o documento mestre em artefatos instaláveis: tokens DTCG 2025.10, CSS, CLI, API para agentes, MCP e recipes. O IDS está na versão <span class="in-voice-machine">1.1.1</span>; o catálogo de tokens permanece em <span class="in-voice-machine">1.0.0</span>. Os pacotes são instalados pelo monorepo ou por tarball local.</p>
           ${reflection("<p>Inteiro não é não ter partes em conflito. É conseguir fazê-las pertencer ao mesmo sistema.</p>")}
         `
       },

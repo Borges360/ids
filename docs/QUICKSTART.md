@@ -61,18 +61,18 @@ npm pack -w @inteiro/cli --pack-destination artifacts
 npm pack -w @inteiro/design-system --pack-destination artifacts
 ```
 
-Nomes: `inteiro-tokens-1.1.0.tgz`, `inteiro-agent-core-1.1.0.tgz`, `inteiro-cli-1.1.0.tgz`, `inteiro-design-system-1.1.0.tgz`.
+Nomes: `inteiro-tokens-1.1.1.tgz`, `inteiro-agent-core-1.1.1.tgz`, `inteiro-cli-1.1.1.tgz`, `inteiro-design-system-1.1.1.tgz`.
 
 ### 3. Instalar na aplicação
 
-No diretório da aplicação, os quatro tarballs no mesmo `npm install`. A dependência cruzada é `1.1.0`. Um tarball sozinho faz o npm procurar o registro e falhar.
+No diretório da aplicação, os quatro tarballs no mesmo `npm install`. A dependência cruzada é `1.1.1`. Um tarball sozinho faz o npm procurar o registro e falhar.
 
 ```bash
 npm install \
-  <monorepo>/artifacts/inteiro-tokens-1.1.0.tgz \
-  <monorepo>/artifacts/inteiro-agent-core-1.1.0.tgz \
-  <monorepo>/artifacts/inteiro-cli-1.1.0.tgz \
-  <monorepo>/artifacts/inteiro-design-system-1.1.0.tgz
+  <monorepo>/artifacts/inteiro-tokens-1.1.1.tgz \
+  <monorepo>/artifacts/inteiro-agent-core-1.1.1.tgz \
+  <monorepo>/artifacts/inteiro-cli-1.1.1.tgz \
+  <monorepo>/artifacts/inteiro-design-system-1.1.1.tgz
 ```
 
 Se o npm ainda resolver `@inteiro/*` pelo registro, pare. Não publique. Não troque a versão no `package.json` dos pacotes.
@@ -133,7 +133,18 @@ O marcador `.inteiro/<harness>.installed.json` registra `mechanism`, `verified` 
 
 MCP, quando o harness tem servidor: `stdio`, comando `node`, argumento absoluto `<monorepo>/packages/mcp/src/server.ts`. Codex usa a chave `mcp.json` com `$schema` de agent-plugins. Claude usa `.mcp.json`. Cursor usa `.cursor/mcp.json`. Não troque o comando por um binário que não existe.
 
-O MCP oferece `inteiro_get_visual_review` para consultar a matriz recomendada de rotas, viewports, temas e estados. `inteiro_audit` analisa texto-fonte e não aprova a aparência renderizada; a revisão visual exige capturas e avaliação humana.
+O MCP oferece `inteiro_get_visual_review` para consultar o protocolo ou gerar uma matriz concreta de rotas. Informe `path`, `shell` e, quando houver, perfil, formulário/tabela complexos e estados:
+
+```json
+{
+  "routes": [
+    { "path": "/settings/connections", "shell": "app", "profile": "operator", "states": ["initial", "error"] },
+    { "path": "/campaigns/new", "shell": "app", "complexForm": true, "states": ["initial", "validation-error"] }
+  ]
+}
+```
+
+O plano cobre todas as rotas em 390px e 1280px; inclui 320px e 768px para um exemplo por shell e para cada formulário/tabela complexos, além de 1440px e dark/light por shell. `inteiro_audit` analisa texto-fonte e sinaliza riscos de quebra arbitrária e clipping, mas não aprova a aparência renderizada. A revisão visual exige capturas e avaliação humana.
 
 `codex` e `cursor` no mesmo `<app>` compartilham `plugin.json` na raiz. Instalar o segundo com `--yes` regrava esse arquivo. Se os dois forem necessários, instale os dois e confira que `name` continua `inteiro`.
 

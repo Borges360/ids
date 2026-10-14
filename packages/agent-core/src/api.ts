@@ -194,6 +194,33 @@ export function auditSource(file: string, source: string): AuditFinding[] {
     if (/Inter|JetBrains/.test(line)) {
       findings.push({ file, line: index + 1, kind: "type", message: "Família fora da identidade.", suggestion: "font.family.sans / font.voice.*" });
     }
+    if (/overflow-wrap\s*:\s*anywhere/i.test(line)) {
+      findings.push({
+        file,
+        line: index + 1,
+        kind: "layout-risk",
+        message: "overflow-wrap:anywhere pode dividir títulos e frases em pontos arbitrários; a auditoria estática não sabe o escopo visual da regra.",
+        suggestion: "Prefira quebra natural. Reserve a quebra de emergência para identificadores e conteúdo sem pontos de quebra, e confira a captura em 320px."
+      });
+    }
+    if (/white-space\s*:\s*nowrap/i.test(line)) {
+      findings.push({
+        file,
+        line: index + 1,
+        kind: "layout-risk",
+        message: "white-space:nowrap pode comprimir ou cortar conteúdo variável em larguras estreitas.",
+        suggestion: "Permita a quebra ou documente um tratamento local acessível; confira labels, pills e mensagens em 320px."
+      });
+    }
+    if (/(?:^|[;{]\s*)overflow(?:-[xy])?\s*:\s*hidden\b/i.test(line)) {
+      findings.push({
+        file,
+        line: index + 1,
+        kind: "layout-risk",
+        message: "overflow:hidden pode esconder texto, status ou foco; a auditoria estática não consegue determinar se o recorte é intencional.",
+        suggestion: "Restrinja recorte a mídia ou decoração; em conteúdo, permita expansão, quebra ou rolagem local explícita e revise a captura."
+      });
+    }
   });
   return findings;
 }

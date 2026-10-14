@@ -19,4 +19,4 @@ Uso incorreto: quatro botões violet; Costura em todo card; pill como botão pad
 
 `app-shell`, `mobile-navigation`, `profile` e `stepper` são contratos de composição para sistemas de aplicação. Eles orientam estrutura persistente, responsividade, alinhamento e estados; não criam classes CSS de framework.
 
-Auditoria de código e revisão visual são etapas diferentes. O MCP `inteiro_get_visual_review` entrega a matriz de evidências e o checklist para conferir hierarquia, alinhamento, escala, texto e overflow em capturas renderizadas. Uma auditoria estática aprovada não certifica a interface visual.
+Auditoria de código e revisão visual são etapas diferentes. Passe as rotas a `inteiro_get_visual_review` para obter uma matriz concreta por shell, viewport, tema e estado. O checklist cobre hierarquia, alinhamento, escala, quebra natural de texto e clipping. `inteiro_audit` sinaliza riscos de `overflow-wrap:anywhere`, `white-space:nowrap` e `overflow:hidden`, mas esses sinais não provam uma falha renderizada: a captura e a revisão humana decidem. O MCP não captura nem interpreta pixels.

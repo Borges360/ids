@@ -1,16 +1,20 @@
 {
   "name": "@inteiro/mcp",
-  "version": "1.1.0",
-  "description": "INTEIRO MCP server — tokens, guidelines, recipes, static audit, visual review protocol",
+  "version": "1.1.1",
+  "description": "INTEIRO MCP server — tokens, recipes, static layout-risk audit, route-based visual review planning",
   "type": "module",
   "bin": {
     "inteiro-mcp": "./src/server.ts"
   },
-  "scripts": { "build": "node --experimental-strip-types ./src/server.ts --help" },
-  "dependencies": {
-    "@inteiro/agent-core": "1.1.0",
-    "@inteiro/tokens": "1.1.0"
+  "scripts": {
+    "build": "node --experimental-strip-types ./src/server.ts --help"
   },
-  "engines": { "node": ">=22.14" },
+  "dependencies": {
+    "@inteiro/agent-core": "1.1.1",
+    "@inteiro/tokens": "1.1.1"
+  },
+  "engines": {
+    "node": ">=22.14"
+  },
   "license": "MIT"
 }

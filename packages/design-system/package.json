@@ -1,6 +1,6 @@
 {
   "name": "@inteiro/design-system",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "INTEIRO Design System SDK — tokens, CSS, recipes e CLI",
   "type": "module",
   "bin": {
@@ -12,13 +12,21 @@
     "./css/components": "./src/components.css",
     "./package.json": "./package.json"
   },
-  "files": ["src", "dist", "README.md"],
-  "scripts": { "build": "node --experimental-strip-types ../tokens/src/build.ts" },
-  "dependencies": {
-    "@inteiro/tokens": "1.1.0",
-    "@inteiro/cli": "1.1.0",
-    "@inteiro/agent-core": "1.1.0"
+  "files": [
+    "src",
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node --experimental-strip-types ../tokens/src/build.ts"
   },
-  "engines": { "node": ">=22.14" },
+  "dependencies": {
+    "@inteiro/tokens": "1.1.1",
+    "@inteiro/cli": "1.1.1",
+    "@inteiro/agent-core": "1.1.1"
+  },
+  "engines": {
+    "node": ">=22.14"
+  },
   "license": "MIT"
 }

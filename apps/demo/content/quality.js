@@ -153,7 +153,7 @@ npm run test:contrast`)}
         id: "versao",
         title: "Versão, depreciação e migração",
         html: `
-          <p>SemVer mais contrato visual. Versão do IDS <span class="in-voice-machine">1.1.0</span>; os valores do catálogo seguem em <span class="in-voice-machine">1.0.0</span>. Changelog na raiz.</p>
+          <p>SemVer mais contrato visual. Versão do IDS <span class="in-voice-machine">1.1.1</span>; os valores do catálogo seguem em <span class="in-voice-machine">1.0.0</span>. Changelog na raiz.</p>
           <p><code>color.accent</code> está depreciado. O substituto é <code>color.identity.commit</code>. Não use <code>--in-color-accent</code> em código novo.</p>
           ${code("bash", "npx inteiro migrate .")}
           <p>A migração de um sistema genérico (Inter, roxo <span class="in-voice-machine">#8B5CF6</span>, laranja <span class="in-voice-machine">#FF9138</span>) para INTEIRO é mudança de linguagem, não search-and-replace. Ver <code>docs/MIGRATION.md</code>.</p>
@@ -228,8 +228,15 @@ npm run test:contrast`)}
       },
       {
         id: "changelog",
-        title: "Changelog 1.1.0",
+        title: "Changelog 1.1.1",
         html: `
+          <h3>1.1.1</h3>
+          <ul>
+            <li>Added — matriz MCP por rota a partir do inventário informado, com viewports de 320px, 390px, 768px, 1280px e 1440px conforme shell e complexidade.</li>
+            <li>Changed — revisão visual explicita critérios para quebras naturais, clipping, alinhamento e escala consistente, com registro de causa, ação, validação e reversão.</li>
+            <li>Added — auditoria de fonte sinaliza regras CSS que podem fragmentar texto ou esconder conteúdo; a captura humana continua decidindo o resultado visual.</li>
+          </ul>
+          <h3>1.1.0</h3>
           <ul>
             <li>Added — protocolo MCP de revisão visual e recipes de shell de aplicação, navegação mobile, perfil e fluxo por etapas.</li>
             <li>Changed — auditoria estática deixa de ser confundida com aprovação visual; erros de ferramenta são devolvidos como erro MCP.</li>

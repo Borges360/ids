@@ -38,7 +38,7 @@ npm test`)}
           <p>A partir de outro projeto, aponte para o workspace ou para um tarball gerado localmente. Não existe, hoje, <code>npm install @inteiro/tokens</code> no registro público.</p>
           ${code("bash", `npm install ../IDS/packages/tokens
 # ou
-npm install ../IDS/artifacts/inteiro-tokens-1.1.0.tgz`)}
+npm install ../IDS/artifacts/inteiro-tokens-1.1.1.tgz`)}
           ${code("ts", `import { tokens } from "@inteiro/tokens";`)}
           ${code("css", `@import "@inteiro/tokens/css";
 @import "@inteiro/design-system/css/components";`)}

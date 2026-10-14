@@ -1,6 +1,6 @@
 {
   "name": "@inteiro/adapter-claude",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Adaptador INTEIRO para Claude Code (skills + .claude-plugin/plugin.json + MCP)",
   "license": "MIT"
 }
