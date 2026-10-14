@@ -10,6 +10,8 @@ Smoke test do MCP stdio: inicialização anuncia `1.1.0`; `tools/list` expõe 10
 
 Tarballs locais verificados: `inteiro-tokens-1.1.0.tgz`, `inteiro-agent-core-1.1.0.tgz`, `inteiro-cli-1.1.0.tgz` e `inteiro-design-system-1.1.0.tgz`. Os quatro instalaram juntos em um projeto temporário sem consultar o registro público.
 
+Deploy: Jenkins `ids-dev` build **#5** concluiu com sucesso a partir de `develop` (`489974a`), incluindo testes, imagem e publicação no namespace dev. A conferência em `http://ids.lab/` confirmou o cabeçalho e os metadados `1.1.0`, além da descrição atualizada das ferramentas MCP.
+
 Limites: não foi criada uma suíte automática de regressão de screenshots nem declarada aprovação visual de uma aplicação. O protocolo MCP define evidência e revisão humana para esse trabalho. `npm audit` apontou três avisos no runner de testes (Vitest/tinypool): dois críticos e um moderado; não fazem parte das dependências de runtime e a correção indicada exige Vitest 5, uma atualização major separada.
 
 Data: 2026-10-10. Ambiente: Windows, Node v24.14.0, npm 11.9.0.
