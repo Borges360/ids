@@ -1,0 +1,16 @@
+.git
+.codex
+.cursor
+.pi
+node_modules
+**/node_modules
+**/dist
+artifacts
+storybook-static
+playwright-report
+test-results
+packages/skills/generated
+docs/tokens/generated
+*.tgz
+*.log
+.env*

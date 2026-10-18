@@ -1,6 +1,6 @@
 {
   "name": "@inteiro/cli",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "INTEIRO CLI — init, tokens, themes, skills, agents, audit, migrate",
   "type": "module",
   "bin": {
@@ -18,8 +18,8 @@
     "build": "node --experimental-strip-types ./src/cli.ts --help"
   },
   "dependencies": {
-    "@inteiro/agent-core": "1.1.1",
-    "@inteiro/tokens": "1.1.1"
+    "@inteiro/agent-core": "1.2.0",
+    "@inteiro/tokens": "1.2.0"
   },
   "engines": {
     "node": ">=22.14"

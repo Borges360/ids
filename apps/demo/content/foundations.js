@@ -10,7 +10,7 @@ export const foundationPages = [
     lede: "Violeta escolhe. Laranja atravessa o limite. Neutros quentes sustentam. Nenhuma cor é decoração.",
     keywords: ["obsidian", "violet", "orange", "warm frost", "contraste", "primitivo", "semântico"],
     status: "implementado",
-    source: "packages/tokens/src/catalog/primitives.ts · semantic.ts",
+    source: "packages/tokens/source/catalog.json · semantic.ts",
     sections: [
       {
         id: "papeis",
@@ -111,7 +111,7 @@ export const foundationPages = [
     lede: "Uma família, quatro vozes. Recursive atravessa interface, editorial e código por MONO e CASL. Não há segunda família para “humanizar”.",
     keywords: ["recursive", "casl", "mono", "voz", "escala", "space grotesk"],
     status: "implementado",
-    source: "packages/tokens/src/catalog/typography.ts",
+    source: "packages/tokens/source/catalog.json",
     sections: [
       {
         id: "vozes",
@@ -184,7 +184,7 @@ export const foundationPages = [
     lede: "Micrograde de 4px, com passo óptico de 2px. Breakpoints descrevem capacidade espacial, não um aparelho.",
     keywords: ["space", "grid", "breakpoint", "gutter", "densidade", "320"],
     status: "implementado",
-    source: "packages/tokens/src/catalog/layout.ts",
+    source: "packages/tokens/source/catalog.json",
     sections: [
       {
         id: "escala",
@@ -269,7 +269,7 @@ export const foundationPages = [
     lede: "O card padrão não flutua. A Costura é a única borda que significa alguma coisa além de estrutura.",
     keywords: ["radius", "seam", "elevation", "opacity", "z-index", "costura"],
     status: "implementado",
-    source: "packages/tokens/src/catalog/motion.ts",
+    source: "packages/tokens/source/catalog.json",
     sections: [
       {
         id: "radius",
@@ -343,7 +343,7 @@ export const foundationPages = [
     lede: "Movimento explica causa. Não há bounce como linguagem. Ícones seguem uma grade e um traço — não há biblioteca publicada.",
     keywords: ["motion", "easing", "reduced-motion", "icone", "stroke"],
     status: "misto",
-    source: "packages/tokens/src/catalog/motion.ts · components.css",
+    source: "packages/tokens/source/catalog.json · components.css",
     sections: [
       {
         id: "duracao",
@@ -465,8 +465,8 @@ export const foundationPages = [
   page({
     id: "foundations/tokens",
     title: "Tokens",
-    lede: "316 tokens na versão 1.0.0. Primitivo, semântico e componente. Intercâmbio DTCG 2025.10. Prefixo CSS --in-.",
-    keywords: ["dtcg", "nomenclatura", "camadas", "316", "css variables"],
+    lede: "338 tokens na versão 1.1.0. Primitivo, semântico e componente. Intercâmbio DTCG 2025.10. Prefixo CSS --in-.",
+    keywords: ["dtcg", "nomenclatura", "camadas", "338", "css variables"],
     status: "implementado",
     source: "docs/TOKENS.md · docs/ARCHITECTURE.md",
     sections: [
@@ -478,9 +478,9 @@ export const foundationPages = [
             <table>
               <thead><tr><th>Corte</th><th>Contagem</th></tr></thead>
               <tbody>
-                <tr><td>Total</td><td class="in-voice-machine">316</td></tr>
-                <tr><td>primitive / semantic / component</td><td class="in-voice-machine">134 / 154 / 28</td></tr>
-                <tr><td>source / derived / extension</td><td class="in-voice-machine">254 / 62 / 0</td></tr>
+                <tr><td>Total</td><td class="in-voice-machine">338</td></tr>
+                <tr><td>primitive / semantic / component</td><td class="in-voice-machine">134 / 166 / 38</td></tr>
+                <tr><td>source / derived / extension</td><td class="in-voice-machine">254 / 62 / 22</td></tr>
                 <tr><td>color</td><td class="in-voice-machine">123</td></tr>
                 <tr><td>typography</td><td class="in-voice-machine">79</td></tr>
                 <tr><td>space + layout + density</td><td class="in-voice-machine">16 + 19 + 6</td></tr>
@@ -488,7 +488,7 @@ export const foundationPages = [
               </tbody>
             </table>
           </div>
-          <p>Esses números vêm de <code>docs/TOKENS.md</code>, gerados com o catálogo. Se o build divergir, a fonte a editar é <code>packages/tokens/src/catalog</code>, e em seguida <code>npm run build</code>.</p>
+          <p>Esses números vêm de <code>docs/TOKENS.md</code>, gerados com o catálogo. Se o build divergir, a fonte a editar é <code>packages/tokens/source/catalog.json</code>, e em seguida <code>npm run build</code>.</p>
         `
       },
       {

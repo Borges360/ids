@@ -8,7 +8,7 @@ Sistema de identidade pessoal. Tokens, CSS, linha de comando e um contrato para 
 
 **Não eliminar a tensão. Dar forma a ela.**
 
-Este repositório transforma o documento de identidade em infraestrutura instalável: catálogo DTCG 2025.10, CSS, CLI, API para agentes, servidor MCP, adaptadores de harness, demonstração e testes. A versão do IDS é `1.1.1`; o catálogo de tokens, sem alteração de valores nesta release, permanece em `1.0.0`. A instalação é local, pelo monorepo ou por tarball.
+Este repositório transforma o documento de identidade em infraestrutura instalável: catálogo DTCG 2025.10, CSS, CLI, API para agentes, servidor MCP, adaptadores de harness, demonstração e testes. A versão do IDS é `1.2.0`; o catálogo de tokens passa a `1.1.0`, preservando os valores anteriores. A instalação é local, pelo monorepo ou por tarball.
 
 A estrutura pesa mais que a expressão. A interface deve ficar mais interessante com o tempo, não mais impressionante em cinco segundos.
 
@@ -49,7 +49,7 @@ A demonstração abre em `http://127.0.0.1:4173/`. Temas light e dark, densidade
 
 ### Num projeto
 
-Os quatro tarballs entram no mesmo `npm install`. A dependência cruzada é `1.1.1`.
+Os quatro tarballs entram no mesmo `npm install`. A dependência cruzada é `1.2.0`.
 
 ```bash
 mkdir -p artifacts
@@ -61,10 +61,10 @@ npm pack -w @inteiro/design-system --pack-destination artifacts
 
 ```bash
 npm install \
-  ../IDS/artifacts/inteiro-tokens-1.1.1.tgz \
-  ../IDS/artifacts/inteiro-agent-core-1.1.1.tgz \
-  ../IDS/artifacts/inteiro-cli-1.1.1.tgz \
-  ../IDS/artifacts/inteiro-design-system-1.1.1.tgz
+  ../IDS/artifacts/inteiro-tokens-1.2.0.tgz \
+  ../IDS/artifacts/inteiro-agent-core-1.2.0.tgz \
+  ../IDS/artifacts/inteiro-cli-1.2.0.tgz \
+  ../IDS/artifacts/inteiro-design-system-1.2.0.tgz
 
 npx inteiro init --yes
 npx inteiro doctor
@@ -97,19 +97,19 @@ Exemplos em [`examples/html`](examples/html), [`examples/react`](examples/react)
 
 | Pacote | Função |
 |---|---|
-| `@inteiro/tokens` | 316 tokens DTCG. CSS, JSON, TypeScript, SCSS, Flutter, Swift, Tailwind. |
+| `@inteiro/tokens` | 338 tokens. CSS, JSON, JS, TypeScript, SCSS, Flutter, Swift, Android, Figma e Tailwind. |
 | `@inteiro/design-system` | CSS das recipes e o binário `inteiro`. |
 | `@inteiro/cli` | `init`, `doctor`, `tokens`, `themes`, `skills`, `agents`, `audit`, `migrate`. |
 | `@inteiro/agent-core` | Explicação, busca, recipes, guidelines e auditoria. |
 | `@inteiro/mcp` | Servidor MCP em stdio: consulta tokens, recipes, guidelines, auditoria estática e protocolo de revisão visual. |
-| `@inteiro/react` | Provider. O tema chega por variáveis CSS. |
+| `@inteiro/react` | Componentes acessíveis, provider e templates. ESM e declarações TypeScript. |
 | `@inteiro/skills` | Geração de `SKILL.md`. |
 | `@inteiro/adapter-*` | Codex, Claude, Devin, Cursor, Pi, Hermes. |
 | `@inteiro/integrations` | Tailwind, Vue, Svelte. |
 
-O produto declarável é um contrato: tokens, CSS e recipes. Classes publicadas: botão, campo, card, badge e vozes. Dialog, tabela, navegação, empty state e loading são recipes, com passos e sem classe própria.
+A biblioteca implementa formulários, navegação, overlays, feedback, tabelas e gráficos, além de templates completos. Consulte [Biblioteca](docs/LIBRARY.md), [Expansão](docs/EXPANSION.md), [Governança](docs/GOVERNANCE.md) e [Deploy](docs/DEPLOY.md). `npm run storybook` abre a documentação interativa.
 
-Camadas do catálogo: 134 primitivos, 154 semânticos, 28 de componente. Prefixo CSS: `--in-`.
+Camadas do catálogo: 134 primitivos, 166 semânticos, 38 de componente. Prefixo CSS: `--in-`.
 
 ## Linha de comando
 
@@ -175,7 +175,7 @@ decisões de identidade
   CSS · TypeScript · Flutter · skills · agentes
 ```
 
-A dependência segue um sentido. Componente não aponta para hex nem para primitivo de cor. A fonte de identidade é `deep-research-report.md`. A fonte de tokens é `packages/tokens/src/catalog`. Arquivos em `dist/` são gerados.
+A dependência segue um sentido. Componente não aponta para hex nem para primitivo de cor. A fonte de identidade é `deep-research-report.md`. A fonte de tokens é `packages/tokens/source/catalog.json`. Arquivos em `dist/` são gerados.
 
 Mudar o significado de `primary` — de violeta para laranja, por exemplo — é uma versão maior, mesmo que o TypeScript continue compilando.
 

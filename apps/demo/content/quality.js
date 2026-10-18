@@ -59,7 +59,7 @@ export const qualityPages = [
         html: `
           ${code("bash", `npx inteiro tokens validate
 npm run test:contrast`)}
-          <p>O teste de contraste mede pares de contrato. Não é um scanner de página. Não há, neste repositório, suíte Playwright nem axe sobre a documentação no momento em que esta página foi escrita. Um teste de catálogo em Vitest confere links internos e a presença do menu. Isso não equivale a conformidade WCAG.</p>
+          <p>O teste de contraste mede pares de contrato. Não é um scanner de página. Há suíte Playwright com axe sobre os templates no Storybook e testes de interação em jsdom. Execute npm run test:browser. Um teste de catálogo em Vitest confere links internos e a presença do menu. Isso não equivale a conformidade WCAG.</p>
           <p>Manual mínimo antes de chamar uma tela de pronta: Tab por todos os controles, Escape nos diálogos, nome no leitor de tela, 320px sem perda de função, tema light e dark, reduced motion. Compare capturas de rotas críticas em 390px e 1280px; confira alinhamento, dimensões de componentes equivalentes, hierarquia e quebra de texto. Uma auditoria de tokens ou fonte não substitui essa leitura visual.</p>
         `
       }
@@ -95,7 +95,7 @@ npm run test:contrast`)}
         title: "CSS, TypeScript e temas",
         html: `
           <p>Custom properties usam o prefixo <code>--in-</code>. O arquivo <code>inteiro.css</code> reúne os temas. Classes de recipe vivem em <code>packages/design-system/src/components.css</code> e não são geradas pelo catálogo — essa é uma fronteira real: mudar um token de botão no catálogo atualiza a variável, e a classe já consome a variável.</p>
-          <p>TypeScript público de tokens sai em <code>packages/tokens/dist/ts/tokens.generated.ts</code>. O provider React está em <code>packages/react/src/InteiroProvider.ts</code>. Não há contrato de props para Button.</p>
+          <p>TypeScript público de tokens sai em <code>packages/tokens/dist/ts/tokens.generated.ts</code>. O provider React está em <code>packages/react/src/InteiroProvider.ts</code>. Os componentes React exportam tipos de props e ESM em packages/react/dist.</p>
           <p>Tema é atributo no ancestral mais CSS variables. Não há runtime de tema em JavaScript além do provider, que escreve <code>data-in-theme</code> e <code>data-in-density</code>.</p>
         `
       },
@@ -140,7 +140,7 @@ npm run test:contrast`)}
         html: `
           <ol>
             <li>Identity Owner decide se a mudança continua sendo INTEIRO.</li>
-            <li>Altere o catálogo em <code>packages/tokens/src/catalog</code>, nunca os arquivos gerados.</li>
+            <li>Altere o catálogo em <code>packages/tokens/source/catalog.json</code>, nunca os arquivos gerados.</li>
             <li><code>npm run build && npm test</code>.</li>
             <li>Changelog com Added, Changed, Fixed, Accessibility, Deprecated, Removed, Migration.</li>
             <li>ADR curto para decisão estrutural, em <code>docs/adrs/</code> quando necessário. Já existe o ADR “Orange is commit, not generic accent” no documento mestre.</li>
@@ -153,7 +153,7 @@ npm run test:contrast`)}
         id: "versao",
         title: "Versão, depreciação e migração",
         html: `
-          <p>SemVer mais contrato visual. Versão do IDS <span class="in-voice-machine">1.1.1</span>; os valores do catálogo seguem em <span class="in-voice-machine">1.0.0</span>. Changelog na raiz.</p>
+          <p>SemVer mais contrato visual. Versão do IDS <span class="in-voice-machine">1.2.0</span>; catálogo de tokens <span class="in-voice-machine">1.1.0</span>. Changelog na raiz.</p>
           <p><code>color.accent</code> está depreciado. O substituto é <code>color.identity.commit</code>. Não use <code>--in-color-accent</code> em código novo.</p>
           ${code("bash", "npx inteiro migrate .")}
           <p>A migração de um sistema genérico (Inter, roxo <span class="in-voice-machine">#8B5CF6</span>, laranja <span class="in-voice-machine">#FF9138</span>) para INTEIRO é mudança de linguagem, não search-and-replace. Ver <code>docs/MIGRATION.md</code>.</p>

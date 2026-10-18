@@ -13,14 +13,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v6
         with:
           node-version: "24"
           package-manager-cache: false
       - run: npm ci
-      - run: npm run lint
-      - run: npm run validate
-      - run: npm run test
-      - run: npm run test:contrast
-      - run: npm run build
-      - run: npm run pack:check
+      - run: npm run ci
+        env:
+          TOKEN_BASE_REF: ${{ github.event.pull_request.base.sha || github.event.before }}
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:browser
+      - name: Visual regression
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        run: |
+          if [ -n "$CHROMATIC_PROJECT_TOKEN" ]; then
+            npm run test:visual
+          else
+            echo 'Chromatic não executado: configure CHROMATIC_PROJECT_TOKEN.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: inteiro-validation
+          path: |
+            playwright-report/
+            artifacts/screenshots/
+            dist/site/release.json

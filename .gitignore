@@ -11,3 +11,6 @@ apps/demo/.tmp/
 packages/skills/generated/
 docs/tokens/generated/
 artifacts/
+storybook-static/
+playwright-report/
+test-results/

@@ -6,8 +6,8 @@ Portabilidade ≠ os mesmos componentes em todas as plataformas. Tokens universa
 |---|---|
 | CSS | `@import "@inteiro/tokens/css"` + classes `.in-*` |
 | HTML | `examples/html` |
-| JS/TS | `import { tokens } from "@inteiro/tokens"` |
-| React | `@inteiro/react` InteiroProvider (Emotion peer opcional) |
+| JS/TS | `import { tokens } from "@inteiro/tokens/js"` (valores resolvidos) |
+| React | `@inteiro/react` componentes, templates e InteiroProvider (sem Emotion) |
 | Next.js | import CSS no layout; `data-in-theme` no `<html>` |
 | Tailwind | `inteiroTailwindTheme` |
 | Vue | classes CSS + plugin `InteiroVue` |
@@ -15,4 +15,4 @@ Portabilidade ≠ os mesmos componentes em todas as plataformas. Tokens universa
 | Flutter | `packages/tokens/dist/flutter/inteiro.dart` — cores/espaço, não widgets |
 | SwiftUI | `packages/tokens/dist/swift/Inteiro.swift` |
 
-Limitações: não há pacote Compose/Android nesta entrega; Flutter/Swift cobrem a plataforma não-web. Recursive precisa ser carregada pelo app (Google Fonts ou self-host OFL).
+Android recebe cores XML via Style Dictionary (`npm run build:platforms`); não há widgets Compose. Flutter/Swift também exportam tokens, sem widgets. Recursive precisa ser carregada pelo app (Google Fonts ou self-host OFL). Os arquivos Figma e o plugin local estão descritos em `EXPANSION.md`.

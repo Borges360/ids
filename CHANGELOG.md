@@ -42,3 +42,18 @@
 
 ### Migration
 - Primeira versão. Ver MIGRATION.md para o legado BG/System.
+# 1.2.0 — 2026-10-18
+
+## Added
+- Biblioteca React com formulários, navegação, overlays, feedback, dados e templates; contrato consultável no MCP.
+- Fonte JSON única; 22 tokens de extensão; exportação Figma/Tokens Studio e plugin local de variáveis.
+- Storybook, axe, testes de teclado/navegador, orçamento de bundle, CI e Jenkinsfile.
+- Guias de biblioteca, governança, implantação e rastreabilidade das recomendações.
+
+## Fixed
+- Tema automático passa a aplicar todos os valores light, inclusive em providers aninhados.
+- Pacote React incluído em typecheck e distribuído como ESM com declarações.
+
+## Migration
+- Catálogo de tokens 1.1.0: editar `source/catalog.json`; exports anteriores preservados. Pacotes IDS 1.2.0.
+- React exige build antes de consumir pelo workspace ou tarball. Consulte `docs/LIBRARY.md`.

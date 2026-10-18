@@ -61,18 +61,18 @@ npm pack -w @inteiro/cli --pack-destination artifacts
 npm pack -w @inteiro/design-system --pack-destination artifacts
 ```
 
-Nomes: `inteiro-tokens-1.1.1.tgz`, `inteiro-agent-core-1.1.1.tgz`, `inteiro-cli-1.1.1.tgz`, `inteiro-design-system-1.1.1.tgz`.
+Nomes: `inteiro-tokens-1.2.0.tgz`, `inteiro-agent-core-1.2.0.tgz`, `inteiro-cli-1.2.0.tgz`, `inteiro-design-system-1.2.0.tgz`.
 
 ### 3. Instalar na aplicação
 
-No diretório da aplicação, os quatro tarballs no mesmo `npm install`. A dependência cruzada é `1.1.1`. Um tarball sozinho faz o npm procurar o registro e falhar.
+No diretório da aplicação, os quatro tarballs no mesmo `npm install`. A dependência cruzada é `1.2.0`. Um tarball sozinho faz o npm procurar o registro e falhar.
 
 ```bash
 npm install \
-  <monorepo>/artifacts/inteiro-tokens-1.1.1.tgz \
-  <monorepo>/artifacts/inteiro-agent-core-1.1.1.tgz \
-  <monorepo>/artifacts/inteiro-cli-1.1.1.tgz \
-  <monorepo>/artifacts/inteiro-design-system-1.1.1.tgz
+  <monorepo>/artifacts/inteiro-tokens-1.2.0.tgz \
+  <monorepo>/artifacts/inteiro-agent-core-1.2.0.tgz \
+  <monorepo>/artifacts/inteiro-cli-1.2.0.tgz \
+  <monorepo>/artifacts/inteiro-design-system-1.2.0.tgz
 ```
 
 Se o npm ainda resolver `@inteiro/*` pelo registro, pare. Não publique. Não troque a versão no `package.json` dos pacotes.

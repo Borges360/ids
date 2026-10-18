@@ -1,7 +1,7 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { allTokens, type TokenDef } from "@inteiro/tokens";
-import { GUIDELINES, RECIPES } from "@inteiro/agent-core";
+import { GUIDELINES, RECIPES, COMPONENTS } from "@inteiro/agent-core";
 
 export interface SkillDoc {
   name: string;
@@ -61,6 +61,9 @@ ${token.meta.a11y}
 ## Fonte
 ${token.sourceSection}
 
+## Biblioteca implementada
+Consulte inteiro_get_component no MCP para imports e exemplos de componentes React.
+
 ## Documentação complementar
 - docs/TOKENS.md
 - docs/tokens/generated/${name}.md
@@ -75,7 +78,7 @@ name: ${skill.name}
 description: ${JSON.stringify(skill.description)}
 license: MIT
 metadata:
-  inteiro: "1.1.1"
+  inteiro: "1.2.0"
 ---
 
 ${skill.body}
@@ -169,7 +172,7 @@ Warm Frost sobre Obsidian. Sem Inter, sem neon, sem glassmorphism.
     {
       name: "inteiro-components",
       description: "Criar componentes e padrões de interação (botão, input, card, dashboard, dialog).",
-      body: RECIPES.map((r) => `## ${r.title}\n${r.when}\nBom: ${r.good}\nRuim: ${r.bad}`).join("\n\n")
+      body: `Use a biblioteca implementada antes de reconstruir um controle. Consulte inteiro_get_component no MCP ou docs/LIBRARY.md.\n\n${COMPONENTS.map(c => `## ${c.name}\n${c.import}\n${c.example}`).join("\n\n")}\n\n${RECIPES.map((r) => `## ${r.title}\n${r.when}\nBom: ${r.good}\nRuim: ${r.bad}`).join("\n\n")}`
     },
     {
       name: "inteiro-validate",

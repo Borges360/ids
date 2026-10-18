@@ -23,6 +23,7 @@ const server = createServer(async (req, res) => {
   }
   let rel;
   if (url.pathname === "/" || url.pathname === "/index.html") rel = "/apps/demo/index.html";
+  else if (url.pathname.startsWith('/storybook/')) rel = '/storybook-static/' + (url.pathname.slice('/storybook/'.length) || 'index.html');
   else if (
     url.pathname.startsWith("/packages/") ||
     url.pathname.startsWith("/docs/") ||
