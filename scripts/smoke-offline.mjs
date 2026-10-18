@@ -69,6 +69,11 @@ for (const args of commands) {
     );
   JSON.parse(result.stdout);
 }
+const executable=spawnSync(process.execPath,[npmCli,'exec','--offline','--','inteiro','tokens','list','--json'],{cwd:root,encoding:'utf8'});
+if(executable.status!==0)throw new Error(executable.stderr);JSON.parse(executable.stdout);
+await writeFile(join(root,'consumer.ts'),'import {DEFAULTS,aggregate,type Config,type GateStatus} from "@inteiro/contracts";\nimport {getPattern} from "@inteiro/composition";\nimport {enhance} from "@inteiro/composition/behavior";\nimport {run} from "@inteiro/cli";\nconst config:Config=DEFAULTS;const status:GateStatus=aggregate([]);void [config,status,getPattern("app-shell"),enhance,run];\n');
+await writeFile(join(root,'tsconfig.json'),JSON.stringify({compilerOptions:{target:'ES2022',module:'NodeNext',moduleResolution:'NodeNext',strict:true,noEmit:true,skipLibCheck:false,esModuleInterop:true,types:[],lib:['ES2022','DOM']},include:['consumer.ts']}));
+const typecheck=spawnSync(process.execPath,[join(root,'node_modules/typescript/bin/tsc'),'--project','tsconfig.json'],{cwd:root,encoding:'utf8'});if(typecheck.status!==0)throw new Error(typecheck.stdout+typecheck.stderr);
 const registration=JSON.parse(await readFile(join(root,'mcp.json'),'utf8')).mcpServers.inteiro;
 const rpc = spawnSync(
   process.execPath,
@@ -91,6 +96,7 @@ const report = {
   tarballs: tarballs.length,
   commands: commands.map((c) => c.join(" ")),
   mcpTools: response.result.tools.length,
+  declarations:'strict NodeNext consumer typecheck passed',
   network: "npm install --offline; commands use local assets",
   limitation: "Dependency cache must be populated before offline installation.",
 };

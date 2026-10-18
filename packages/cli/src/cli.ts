@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { mkdir, readFile, readdir, stat, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, stat, writeFile, realpath } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import {
@@ -323,8 +323,9 @@ export async function run(argv: string[]): Promise<number> {
   }
 }
 
-const isMain = process.argv[1] && (fileURLToPath(import.meta.url) === process.argv[1] || pathToFileURL(process.argv[1]).href === pathToFileURL(fileURLToPath(import.meta.url)).href);
-if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href || process.argv[1]?.endsWith("cli.ts") || process.argv[1]?.endsWith("cli.js") || process.argv[1]?.endsWith("inteiro")) {
+let entryURL='';
+try{if(process.argv[1])entryURL=pathToFileURL(await realpath(process.argv[1])).href;}catch{}
+if (import.meta.url === entryURL) {
   const code = await run(process.argv.slice(2));
   process.exitCode = code;
 }

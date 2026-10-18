@@ -28,16 +28,18 @@ const stage = resolve("artifacts/npm-stage"),
   dest = resolve("artifacts/tarballs");
 await mkdir(stage, { recursive: true });
 await mkdir(dest, { recursive: true });
-const rewrite = (value) =>
+const declarations=spawnSync(process.execPath,['node_modules/typescript/bin/tsc','--project','tsconfig.json','--declaration','--emitDeclarationOnly','--noEmit','false','--outDir','artifacts/type-declarations'],{encoding:'utf8'});
+if(declarations.status!==0)throw new Error(declarations.stdout+declarations.stderr);
+const rewrite = (value,key='') =>
   typeof value === "string"
-    ? value.replace(/^\.\/src\/(.+)\.ts$/, "./runtime/$1.js")
+    ? /^\.\/src\/(.+)\.ts$/.test(value)?(['types','import','default','node'].includes(key)?value.replace(/^\.\/src\/(.+)\.ts$/,key==='types'?'./runtime/$1.d.ts':'./runtime/$1.js'):{types:value.replace(/^\.\/src\/(.+)\.ts$/,'./runtime/$1.d.ts'),import:value.replace(/^\.\/src\/(.+)\.ts$/,'./runtime/$1.js')}):value
     : Array.isArray(value)
       ? value.map(rewrite)
       : value && typeof value === "object"
         ? Object.fromEntries(
             Object.entries(value).map(([k, v]) => [
               k,
-              k === "types" ? v : rewrite(v),
+              rewrite(v,k),
             ]),
           )
         : value;
@@ -64,7 +66,8 @@ for (const name of names) {
         await compile(next);
       } else if (!/\.test\.ts$/.test(next)) {
         await mkdir(join(target, ".."), { recursive: true });
-        if (/\.tsx?$/.test(next)) {
+        if(next.endsWith('.d.ts'))await cp(original+'/src/'+next,target.replace(/\.d\.js$/,'.d.ts'));
+        else if (/\.tsx?$/.test(next)) {
           const source = await readFile(original + "/src/" + next, "utf8");
           const output = await transform(source, {
             loader: next.endsWith(".tsx") ? "tsx" : "ts",
@@ -84,9 +87,14 @@ for (const name of names) {
     }
   };
   if (name !== "react") await compile();
+  if(name!=='react'){
+    const copyTypes=async(rel='')=>{const source=join('artifacts/type-declarations/packages',name,'src',rel);for(const entry of await readdir(source,{withFileTypes:true})){const next=join(rel,entry.name),target=join(dir,'runtime',next);if(entry.isDirectory()){await mkdir(target,{recursive:true});await copyTypes(next);}else if(entry.name.endsWith('.d.ts')){const text=await readFile(join(source,entry.name),'utf8');await writeFile(target,text.replace(/(from\s+["']|import\(["'])([^"']+)\.ts(["'])/g,'$1$2.js$3').replace(/^\/\/# sourceMappingURL=.*$/gm,''));}}};
+    await copyTypes();
+  }
   pkg.exports = rewrite(pkg.exports);
-  if (pkg.bin) pkg.bin = rewrite(pkg.bin);
-  pkg.files = [...new Set([...(pkg.files ?? ["src", "dist"]), "runtime"])];
+  if (pkg.bin) pkg.bin = Object.fromEntries(Object.entries(pkg.bin).map(([key,value])=>[key,value.replace(/^\.\/src\/(.+)\.ts$/,'./runtime/$1.js')]));
+  await cp('LICENSE',join(dir,'LICENSE'));
+  pkg.files = [...new Set([...(pkg.files ?? ["src", "dist"]), "runtime",'LICENSE'])];
   delete pkg.scripts;
   if (name === "design-system") {
     pkg.bin = { inteiro: "./runtime/inteiro.js" };
