@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0",
+  "id": "sidebar",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Barra lateral navegação",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "aside",
+      "nav",
+      "a"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/sidebar.html",
+    "examples/sidebar-default.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "barra",
+    "lateral",
+    "navegação"
+  ],
+  "markup": "<aside><nav aria-label=\"Seções\"><a href=\"#content\">Conteúdo</a></nav></aside>"
+}

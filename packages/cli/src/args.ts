@@ -43,5 +43,8 @@ export const EXIT = {
   usage: 2,
   notFound: 3,
   invalid: 4,
-  io: 5
+  io: 5,
+  quality: 6,
+  review: 7,
+  infrastructure: 8
 } as const;

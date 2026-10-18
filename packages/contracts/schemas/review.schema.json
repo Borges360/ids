@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://inteiro.dev/schemas/1.0/review.schema.json",
+  "type": "object",
+  "required": [
+    "runId",
+    "evidenceHash",
+    "reviewer",
+    "approvalRef",
+    "reason",
+    "axes"
+  ],
+  "properties": {
+    "runId": {
+      "type": "string"
+    },
+    "evidenceHash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "reviewer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "approvalRef": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "axes": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "required": [
+          "axis",
+          "score",
+          "evidenceId",
+          "element",
+          "reason",
+          "action"
+        ],
+        "properties": {
+          "axis": {
+            "enum": [
+              "hierarchy",
+              "composition",
+              "density",
+              "identity",
+              "content",
+              "responsiveness",
+              "robustness"
+            ]
+          },
+          "score": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 4
+          },
+          "evidenceId": {
+            "type": "string"
+          },
+          "element": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "action": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

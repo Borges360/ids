@@ -12,8 +12,18 @@ import {
   suggestTokens,
   validateUsage,
 } from "@inteiro/agent-core";
+import { findPatterns, validateComposition } from '@inteiro/composition';
+import { resolveConfig, readEvidence } from '@inteiro/contracts';
+import { resolveContext, repairContext } from '@inteiro/agent-core';
 
 export const MCP_TOOLS = [
+  ...[
+    ['inteiro_get_contract','Resolve versioned project contract and provenance'],
+    ['inteiro_find_pattern','Find local patterns with examples and lexical rationale'],
+    ['inteiro_validate_composition','Validate slots, variants and states against catalog'],
+    ['inteiro_get_gate_report','Read existing project evidence without running browser'],
+    ['inteiro_get_repair_context','Get prioritized failures and bounded repair policy'],
+  ].map(([name,description])=>({name:name!,description:description!,inputSchema:{type:'object',properties:{query:{type:'string'},patternId:{type:'string'},variant:{type:'string'},slots:{type:'array',items:{type:'string'}},states:{type:'array',items:{type:'string'}}},additionalProperties:false}})),
   {
     name: "inteiro_get_component",
     description:
@@ -138,6 +148,11 @@ export function callMcpTool(
   args: Record<string, unknown>,
 ): unknown {
   switch (name) {
+    case 'inteiro_find_pattern': return {status:'passed',provenance:'local-catalog',results:findPatterns(String(args.query??''))};
+    case 'inteiro_validate_composition': return validateComposition(args as unknown as Parameters<typeof validateComposition>[0]);
+    case 'inteiro_get_contract': return resolveConfig(process.cwd()).then(async ({config,root})=>resolveContext({type:'change-page',description:String(args.query??'')},root,config));
+    case 'inteiro_get_gate_report':
+    case 'inteiro_get_repair_context': return resolveConfig(process.cwd()).then(async ({config,root})=>{const report=await readEvidence(root,config.reporting.outDir+'/latest.json');return name==='inteiro_get_repair_context'?repairContext(report,config):report;});
     case "inteiro_get_component":
       return getComponentContract(args.name ? String(args.name) : undefined);
     case "inteiro_get_token":

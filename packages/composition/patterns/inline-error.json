@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0",
+  "id": "inline-error",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Erro campo mensagem",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "label",
+      "input",
+      "p"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/inline-error.html",
+    "examples/inline-error-default.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "erro",
+    "campo",
+    "mensagem"
+  ],
+  "markup": "<label for=\"invalid\">Nome</label><input id=\"invalid\" aria-invalid=\"true\" aria-describedby=\"error\"><p id=\"error\">Informe um nome.</p>"
+}

@@ -18,6 +18,8 @@
     "build": "node --experimental-strip-types ../tokens/src/build.ts"
   },
   "dependencies": {
+    "@inteiro/composition": "^1.2.0",
+    "@inteiro/contracts": "^1.2.0",
     "@inteiro/tokens": "1.2.0"
   },
   "engines": {

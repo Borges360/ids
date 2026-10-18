@@ -12,6 +12,8 @@ Este repositório transforma o documento de identidade em infraestrutura instal�
 
 A estrutura pesa mais que a expressão. A interface deve ficar mais interessante com o tempo, não mais impressionante em cinco segundos.
 
+A evolução P0 adiciona contratos versionados, 41 padrões portáteis, lint por parsers, Browser Gate, baselines com aprovação assinada e protocolos de revisão/reparo. Consulte a [especificação](docs/INTEIRO_ESPECIFICACAO_P0.md), os [padrões](docs/P0_PATTERNS.md) e a [operação dos gates](docs/P0_OPERATIONS.md). Capturas iniciais permanecem pendentes de aprovação; disponibilidade das APIs não equivale a certificação P0 da release.
+
 ## Sinais
 
 | Sinal | Papel |

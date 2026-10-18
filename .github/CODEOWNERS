@@ -1,0 +1,9 @@
+# Approval policy and visual references require repository-owner review.
+/inteiro.config.json @Borges360
+/inteiro.routes.json @Borges360
+/.inteiro/reviewers.json @Borges360
+/.inteiro/organization-policy.json @Borges360
+/.inteiro/exceptions.json @Borges360
+/.inteiro/reviews/decision.json @Borges360
+/tests/visual/__snapshots__/ @Borges360
+/packages/contracts/schemas/ @Borges360

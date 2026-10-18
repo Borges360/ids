@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "1.0",
+  "id": "alert",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Alerta feedback",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "div",
+      "h2",
+      "p"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/alert.html",
+    "examples/alert-default.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "alerta",
+    "feedback"
+  ],
+  "markup": "<div role=\"alert\"><h2>Atenção</h2><p>Revise os campos indicados.</p></div>"
+}

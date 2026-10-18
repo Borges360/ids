@@ -1,0 +1,17 @@
+{
+  "name": "@inteiro/evaluation",
+  "version": "1.2.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./experiments": "./src/experiments.ts"
+  },
+  "files": [
+    "src"
+  ],
+  "dependencies": {
+    "@inteiro/contracts": "1.2.0",
+    "@inteiro/lint": "1.2.0"
+  },
+  "license": "MIT"
+}

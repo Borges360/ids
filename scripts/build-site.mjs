@@ -3,6 +3,8 @@ import { createHash } from "node:crypto";
 await mkdir("dist/site", { recursive: true });
 for (const directory of [
   "apps/demo",
+  "apps/catalog",
+  "packages/composition",
   "docs/assets",
   "packages/tokens/dist/css",
   "packages/tokens/dist/json",

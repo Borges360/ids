@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "1.0",
+  "id": "checkbox",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Caixa seleção",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default",
+    "disabled",
+    "invalid",
+    "readonly"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "label",
+      "input"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/checkbox.html",
+    "examples/checkbox-default.html",
+    "examples/checkbox-disabled.html",
+    "examples/checkbox-invalid.html",
+    "examples/checkbox-readonly.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "caixa",
+    "seleção"
+  ],
+  "markup": "<label><input type=\"checkbox\"> Incluir arquivados</label>"
+}

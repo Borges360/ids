@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "1.0",
+  "id": "INTEIRO-RFC-001-implementation",
+  "type": "significant-layout-change",
+  "description": "Implementação dos contratos, composição, static/browser gates, revisão, reparo e avaliação da especificação P0.",
+  "patternIds": ["app-shell", "data-table", "form-layout", "dialog", "empty-state"],
+  "excludedByRequester": ["jenkins-deployment", "real-model-comparison", "live-harness-smoke"],
+  "reviewRequired": true
+}

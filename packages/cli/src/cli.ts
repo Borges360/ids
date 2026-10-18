@@ -32,6 +32,8 @@ import { HARNESSES, getHarness, type HarnessId } from "./harnesses.ts";
 import { HELP } from "./help.ts";
 import { installHarness, uninstallHarness } from "./install-agents.ts";
 import { generateSkills, skillIndex, topLevelSkills } from "./skills-gen.ts";
+import { gateCommand } from "./gates.ts";
+import { DEFAULTS } from '@inteiro/contracts';
 
 export interface CliResult {
   exitCode: number;
@@ -56,6 +58,8 @@ async function cmdInit(cwd: string, flags: Record<string, string | boolean>): Pr
     ("next" in deps ? "next" : "react" in deps ? "react" : "vue" in deps ? "vue" : "svelte" in deps ? "svelte" : "html");
   const cssSnippet = `/* INTEIRO */\n@import "@inteiro/tokens/css";\n`;
   const actions: string[] = [];
+  const configPath = join(cwd, 'inteiro.config.json');
+  if (!(await exists(configPath))) actions.push(`${await writeManaged(configPath, JSON.stringify({...DEFAULTS,project:{...DEFAULTS.project,id:String(pkg.name??'app'),framework}},null,2)+'\n', {dryRun,yes:false})} ${configPath}`);
   const cssPath = join(cwd, "inteiro.css");
   const status = await writeManaged(cssPath, cssSnippet, { dryRun, yes });
   actions.push(`${status} ${cssPath}`);
@@ -193,6 +197,8 @@ export async function run(argv: string[]): Promise<number> {
   const json = bool(flags, "json");
 
   try {
+    const gateResult = await gateCommand(cmd, flags, cwd);
+    if (gateResult) return print(gateResult, json || flag(flags, "format") === "json");
     if (cmd.length === 0) return print({ exitCode: EXIT.usage, text: HELP }, json);
 
     if (cmd[0] === "init") return print(await cmdInit(cwd, flags), json);
@@ -269,7 +275,7 @@ export async function run(argv: string[]): Promise<number> {
         getHarness(id);
         reports.push(await installHarness(cwd, id, { dryRun: bool(flags, "dry-run"), yes: bool(flags, "yes") || bool(flags, "y") }));
       }
-      return print({ exitCode: 0, data: reports, text: reports.map((r) => `${r.harness}: ${r.actions.join(", ")}`).join("\n") }, json);
+      return print({ exitCode: reports.some(r=>r.status==='needs_review')?7:0, data: reports, text: reports.map((r) => `${r.harness}: ${r.actions.join(", ")}`).join("\n") }, json);
     }
     if (cmd[0] === "agents" && cmd[1] === "uninstall") {
       const target = cmd[2];
@@ -312,6 +318,7 @@ export async function run(argv: string[]): Promise<number> {
 
     return print({ exitCode: EXIT.usage, text: `Comando desconhecido: ${cmd.join(" ")}\n\n${HELP}` }, json);
   } catch (error) {
+    if (['contract','context','compose','lint','visual','gate','review','repair','benchmark'].includes(cmd[0]??'') || bool(flags,'deep')) return print({exitCode:8,data:{status:'error',message:error instanceof Error?error.message:String(error),nextAction:'Correct configuration, dependency or infrastructure and rerun the same command.'}},json || flag(flags,'format')==='json');
     return print({ exitCode: EXIT.io, text: error instanceof Error ? error.message : String(error) }, json);
   }
 }

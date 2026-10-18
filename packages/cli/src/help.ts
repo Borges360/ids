@@ -3,6 +3,19 @@ export const HELP = `INTEIRO — Identity Design System CLI
 Uso:
   inteiro <comando> [opções]
 
+Contratos e gates P0:
+  contract inspect --json
+  context verify|resolve --harness <id> --json
+  compose list|show|find|validate|propose <id>
+  lint [path] --format json --changed
+  visual test --json [--start]
+  visual baseline propose|approve --review-id <id> --approval <file>
+  review request --run-id <id>
+  repair context --run-id <id>
+  gate run --profile dev|pr|ci|main|nightly|release --json
+  benchmark run --suite p0-smoke --json
+  doctor --deep --json
+
 Comandos:
   init                         Detecta o projeto e configura a integração
   doctor                       Diagnóstico de tokens, temas e adaptadores

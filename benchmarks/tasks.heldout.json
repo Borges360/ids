@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "1.0",
+  "visibility": "evaluator-only",
+  "tasks": [
+    {
+      "id": "heldout-1",
+      "requirement": "Dashboard com dados extensos com strings traduzidas e estados extremos",
+      "contextExposure": false,
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "heldout-2",
+      "requirement": "Formulário multietapas com revisão com strings traduzidas e estados extremos",
+      "contextExposure": false,
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "heldout-3",
+      "requirement": "Tabela com seleção e ordenação com strings traduzidas e estados extremos",
+      "contextExposure": false,
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "heldout-4",
+      "requirement": "Migração de identidade com strings traduzidas e estados extremos",
+      "contextExposure": false,
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "heldout-5",
+      "requirement": "Regressão de overflow com strings traduzidas e estados extremos",
+      "contextExposure": false,
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "heldout-6",
+      "requirement": "Modal com conteúdo longo com strings traduzidas e estados extremos",
+      "contextExposure": false,
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "heldout-7",
+      "requirement": "Layout a 200% zoom com strings traduzidas e estados extremos",
+      "contextExposure": false,
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "heldout-8",
+      "requirement": "Integração entre rotas com strings traduzidas e estados extremos",
+      "contextExposure": false,
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "heldout-9",
+      "requirement": "Recuperação de erro de rede com strings traduzidas e estados extremos",
+      "contextExposure": false,
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "heldout-10",
+      "requirement": "Publicação com ação commit com strings traduzidas e estados extremos",
+      "contextExposure": false,
+      "maxRepairAttempts": 2
+    }
+  ]
+}

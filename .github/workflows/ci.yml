@@ -4,6 +4,9 @@ on:
   push:
     branches: ["**"]
   pull_request:
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -25,6 +28,16 @@ jobs:
           TOKEN_BASE_REF: ${{ github.event.pull_request.base.sha || github.event.before }}
       - run: npx playwright install --with-deps chromium
       - run: npm run test:browser
+        env:
+          INTEIRO_FULL_MATRIX: ${{ github.event_name == 'schedule' && '1' || '0' }}
+      - run: npm run test:browser-gate
+      - run: npm run test:stories
+      - name: Resolve deterministic context files
+        run: node packages/cli/src/cli.ts agents install pi --yes --json
+      - name: Strict P0 gate
+        env:
+          INTEIRO_GATE_PROFILE: ${{ github.event_name == 'schedule' && 'nightly' || github.ref == 'refs/heads/main' && 'main' || 'pr' }}
+        run: node packages/cli/src/cli.ts gate run --profile "$INTEIRO_GATE_PROFILE" --start --json
       - name: Visual regression
         env:
           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
@@ -41,4 +54,6 @@ jobs:
           path: |
             playwright-report/
             artifacts/screenshots/
+            artifacts/p0-patterns/
+            .inteiro/reports/
             dist/site/release.json

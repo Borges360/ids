@@ -1,0 +1,2070 @@
+[
+  {
+    "schemaVersion": "1.0",
+    "id": "app-shell",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Estrutura da aplicação shell",
+    "slots": [
+      "navigation",
+      "header",
+      "main",
+      "footer"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "a",
+        "div",
+        "aside",
+        "nav",
+        "main",
+        "h1",
+        "p"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/app-shell.html",
+      "examples/app-shell-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "estrutura",
+      "da",
+      "aplicação",
+      "shell"
+    ],
+    "markup": "<a class=\"in-skip-link\" href=\"#content\">Pular conteúdo</a><div class=\"in-app-shell\"><aside><nav aria-label=\"Principal\"><a href=\"#content\">Início</a></nav></aside><main id=\"content\"><h1>Aplicação</h1><p>Conteúdo de exemplo</p></main></div>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "page-header",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Cabeçalho de página header",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "header",
+        "h1",
+        "p"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/page-header.html",
+      "examples/page-header-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "cabeçalho",
+      "de",
+      "página",
+      "header"
+    ],
+    "markup": "<header class=\"in-page-header\"><h1>Página</h1><p>Descrição</p></header>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "content-container",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Container conteúdo responsivo",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "section",
+        "h2",
+        "p"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/content-container.html",
+      "examples/content-container-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "container",
+      "conteúdo",
+      "responsivo"
+    ],
+    "markup": "<section class=\"in-content-container\" aria-label=\"Conteúdo\"><h2>Conteúdo</h2><p>Informação sintética</p></section>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "sidebar",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Barra lateral navegação",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "aside",
+        "nav",
+        "a"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/sidebar.html",
+      "examples/sidebar-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "barra",
+      "lateral",
+      "navegação"
+    ],
+    "markup": "<aside><nav aria-label=\"Seções\"><a href=\"#content\">Conteúdo</a></nav></aside>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "topbar",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Barra superior",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "header",
+        "a",
+        "nav"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/topbar.html",
+      "examples/topbar-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "barra",
+      "superior"
+    ],
+    "markup": "<header class=\"in-topbar\"><a href=\"/\">INTEIRO</a><nav aria-label=\"Atalhos\"><a href=\"#content\">Conteúdo</a></nav></header>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "mobile-navigation",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Menu navegação mobile",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "details",
+        "summary",
+        "nav",
+        "a"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/mobile-navigation.html",
+      "examples/mobile-navigation-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "menu",
+      "navegação",
+      "mobile"
+    ],
+    "markup": "<details><summary>Navegação</summary><nav aria-label=\"Mobile\"><a href=\"#content\">Início</a></nav></details>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "data-table",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Tabela paginada dados table",
+    "slots": [
+      "title",
+      "toolbar",
+      "head",
+      "body",
+      "footer"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default",
+      "loading",
+      "empty",
+      "error"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "section",
+        "div",
+        "table",
+        "caption",
+        "thead",
+        "tr",
+        "th",
+        "button",
+        "tbody",
+        "td",
+        "nav",
+        "span"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "scroll-container"
+    },
+    "examples": [
+      "examples/data-table.html",
+      "examples/data-table-default.html",
+      "examples/data-table-loading.html",
+      "examples/data-table-empty.html",
+      "examples/data-table-error.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "tabela",
+      "paginada",
+      "dados",
+      "table"
+    ],
+    "markup": "<section data-in-table data-in-page-size=\"2\"><div class=\"in-table-scroll\" role=\"region\" aria-label=\"Resultados\" tabindex=\"0\"><table class=\"in-data-table\"><caption>Resultados sintéticos</caption><thead><tr><th scope=\"col\" aria-sort=\"none\"><button type=\"button\" data-in-sort=\"0\">Ordenar por nome</button></th><th scope=\"col\">Estado</th></tr></thead><tbody><tr><th scope=\"row\">Zeta</th><td>Ativo</td></tr><tr><th scope=\"row\">Alfa</th><td>Ativo</td></tr><tr><th scope=\"row\">Beta</th><td>Arquivado</td></tr></tbody></table></div><nav aria-label=\"Paginação de resultados\"><button type=\"button\" data-in-page=\"-1\" disabled>Anterior</button><span role=\"status\" data-in-page-status>1 / 2</span><button type=\"button\" data-in-page=\"1\">Próxima</button></nav></section>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "data-list",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Lista dados",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default",
+      "loading",
+      "empty",
+      "error"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "ul",
+        "li"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/data-list.html",
+      "examples/data-list-default.html",
+      "examples/data-list-loading.html",
+      "examples/data-list-empty.html",
+      "examples/data-list-error.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "lista",
+      "dados"
+    ],
+    "markup": "<ul><li>Primeiro registro</li><li>Segundo registro</li></ul>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "details-panel",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Painel detalhes",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default",
+      "loading",
+      "empty",
+      "error"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "section",
+        "h2",
+        "dl",
+        "dt",
+        "dd"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/details-panel.html",
+      "examples/details-panel-default.html",
+      "examples/details-panel-loading.html",
+      "examples/details-panel-empty.html",
+      "examples/details-panel-error.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "painel",
+      "detalhes"
+    ],
+    "markup": "<section aria-label=\"Detalhes\"><h2>Registro</h2><dl><dt>Estado</dt><dd>Ativo</dd></dl></section>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "stat-card",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Indicador estatística KPI",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default",
+      "loading",
+      "empty",
+      "error"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "section",
+        "h2",
+        "p",
+        "strong"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/stat-card.html",
+      "examples/stat-card-default.html",
+      "examples/stat-card-loading.html",
+      "examples/stat-card-empty.html",
+      "examples/stat-card-error.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "indicador",
+      "estatística",
+      "kpi"
+    ],
+    "markup": "<section aria-label=\"Total\"><h2>Total</h2><p><strong>128</strong> registros</p></section>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "dashboard-grid",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Dashboard operacional grade",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default",
+      "loading",
+      "empty",
+      "error"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "section",
+        "article",
+        "h2",
+        "p"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/dashboard-grid.html",
+      "examples/dashboard-grid-default.html",
+      "examples/dashboard-grid-loading.html",
+      "examples/dashboard-grid-empty.html",
+      "examples/dashboard-grid-error.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "dashboard",
+      "operacional",
+      "grade"
+    ],
+    "markup": "<section class=\"in-dashboard-grid\" aria-label=\"Indicadores\"><article><h2>Total</h2><p>128 registros</p></article><article><h2>Ativos</h2><p>64 registros</p></article></section>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "filter-bar",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Filtros busca",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "form",
+        "label",
+        "input",
+        "button"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/filter-bar.html",
+      "examples/filter-bar-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "filtros",
+      "busca"
+    ],
+    "markup": "<form role=\"search\" class=\"in-filter-bar\"><label for=\"search\">Buscar</label><input id=\"search\" type=\"search\"><button>Filtrar</button></form>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "form-layout",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Formulário cadastro layout",
+    "slots": [
+      "fields",
+      "help",
+      "errors",
+      "actions"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default",
+      "disabled",
+      "invalid",
+      "readonly"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "form",
+        "div",
+        "label",
+        "input",
+        "p",
+        "button"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/form-layout.html",
+      "examples/form-layout-default.html",
+      "examples/form-layout-disabled.html",
+      "examples/form-layout-invalid.html",
+      "examples/form-layout-readonly.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "formulário",
+      "cadastro",
+      "layout"
+    ],
+    "markup": "<form class=\"in-form-layout\" data-in-validate><div class=\"in-field-group\"><label for=\"name\">Nome (obrigatório)</label><input id=\"name\" required aria-describedby=\"help\"><p id=\"help\">Informe um nome fictício.</p></div><div class=\"in-form-actions\"><button>Salvar rascunho</button></div></form>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "field-group",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Campo label ajuda validação",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default",
+      "disabled",
+      "invalid",
+      "readonly"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "div",
+        "label",
+        "input",
+        "p"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/field-group.html",
+      "examples/field-group-default.html",
+      "examples/field-group-disabled.html",
+      "examples/field-group-invalid.html",
+      "examples/field-group-readonly.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "campo",
+      "label",
+      "ajuda",
+      "validação"
+    ],
+    "markup": "<div class=\"in-field-group\"><label for=\"field\">Nome</label><input id=\"field\" aria-describedby=\"help\"><p id=\"help\">Nome fictício.</p></div>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "select",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Seleção nativa",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default",
+      "disabled",
+      "invalid",
+      "readonly"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "label",
+        "select",
+        "option"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/select.html",
+      "examples/select-default.html",
+      "examples/select-disabled.html",
+      "examples/select-invalid.html",
+      "examples/select-readonly.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "seleção",
+      "nativa"
+    ],
+    "markup": "<label for=\"select\">Estado</label><select id=\"select\"><option>Ativo</option><option>Arquivado</option></select>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "checkbox",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Caixa seleção",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default",
+      "disabled",
+      "invalid",
+      "readonly"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "label",
+        "input"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/checkbox.html",
+      "examples/checkbox-default.html",
+      "examples/checkbox-disabled.html",
+      "examples/checkbox-invalid.html",
+      "examples/checkbox-readonly.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "caixa",
+      "seleção"
+    ],
+    "markup": "<label><input type=\"checkbox\"> Incluir arquivados</label>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "radio-group",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Opção exclusiva radio",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default",
+      "disabled",
+      "invalid",
+      "readonly"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "fieldset",
+        "legend",
+        "label",
+        "input"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/radio-group.html",
+      "examples/radio-group-default.html",
+      "examples/radio-group-disabled.html",
+      "examples/radio-group-invalid.html",
+      "examples/radio-group-readonly.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "opção",
+      "exclusiva",
+      "radio"
+    ],
+    "markup": "<fieldset><legend>Densidade</legend><label><input type=\"radio\" name=\"density\" checked> Calm</label><label><input type=\"radio\" name=\"density\"> Focus</label></fieldset>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "textarea",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Texto longo multiline",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default",
+      "disabled",
+      "invalid",
+      "readonly"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "label",
+        "textarea"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/textarea.html",
+      "examples/textarea-default.html",
+      "examples/textarea-disabled.html",
+      "examples/textarea-invalid.html",
+      "examples/textarea-readonly.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "texto",
+      "longo",
+      "multiline"
+    ],
+    "markup": "<label for=\"text\">Descrição</label><textarea id=\"text\" rows=\"4\"></textarea>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "form-actions",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Ações formulário",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "div",
+        "button"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/form-actions.html",
+      "examples/form-actions-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "ações",
+      "formulário"
+    ],
+    "markup": "<div class=\"in-form-actions\"><button type=\"submit\">Salvar rascunho</button><button type=\"button\">Cancelar</button></div>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "stepper",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Etapas fluxo progressão",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "nav",
+        "ol",
+        "li"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/stepper.html",
+      "examples/stepper-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "etapas",
+      "fluxo",
+      "progressão"
+    ],
+    "markup": "<nav aria-label=\"Etapas\"><ol><li aria-current=\"step\">Dados</li><li>Revisão</li><li>Confirmação</li></ol></nav>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "dialog",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Diálogo modal foco",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default",
+      "open",
+      "closed"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "button",
+        "dialog",
+        "h2",
+        "p"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/dialog.html",
+      "examples/dialog-default.html",
+      "examples/dialog-open.html",
+      "examples/dialog-closed.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "diálogo",
+      "modal",
+      "foco"
+    ],
+    "markup": "<button data-in-open=\"dialog\">Abrir diálogo</button><dialog id=\"dialog\" aria-labelledby=\"dialog-title\"><h2 id=\"dialog-title\">Confirmação</h2><p>Revise os dados.</p><button data-in-close autofocus>Fechar</button></dialog>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "drawer",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Painel modal lateral",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default",
+      "open",
+      "closed"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "button",
+        "dialog",
+        "h2"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/drawer.html",
+      "examples/drawer-default.html",
+      "examples/drawer-open.html",
+      "examples/drawer-closed.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "painel",
+      "modal",
+      "lateral"
+    ],
+    "markup": "<button data-in-open=\"drawer\">Abrir painel</button><dialog class=\"in-drawer\" id=\"drawer\" aria-labelledby=\"drawer-title\"><h2 id=\"drawer-title\">Detalhes</h2><button data-in-close autofocus>Fechar painel</button></dialog>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "popover",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Conteúdo flutuante não modal",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default",
+      "open",
+      "closed"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "button",
+        "div",
+        "h2",
+        "p"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/popover.html",
+      "examples/popover-default.html",
+      "examples/popover-open.html",
+      "examples/popover-closed.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "conteúdo",
+      "flutuante",
+      "não",
+      "modal"
+    ],
+    "markup": "<button popovertarget=\"popover\">Mais informações</button><div id=\"popover\" popover><h2>Informações</h2><p>Conteúdo complementar.</p></div>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "dropdown-menu",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Menu ações disclosure",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default",
+      "open",
+      "closed"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "details",
+        "summary",
+        "ul",
+        "li",
+        "button"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/dropdown-menu.html",
+      "examples/dropdown-menu-default.html",
+      "examples/dropdown-menu-open.html",
+      "examples/dropdown-menu-closed.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "menu",
+      "ações",
+      "disclosure"
+    ],
+    "markup": "<details><summary>Ações</summary><ul><li><button type=\"button\">Editar</button></li><li><button type=\"button\">Arquivar</button></li></ul></details>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "tooltip",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Dica ajuda acessível",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "span",
+        "button"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/tooltip.html",
+      "examples/tooltip-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "dica",
+      "ajuda",
+      "acessível"
+    ],
+    "markup": "<span class=\"in-tooltip\" data-in-tooltip><button aria-describedby=\"tip\">Ajuda</button><span role=\"tooltip\" id=\"tip\">Informações sobre esta ação.</span></span>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "alert",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Alerta feedback",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "div",
+        "h2",
+        "p"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/alert.html",
+      "examples/alert-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "alerta",
+      "feedback"
+    ],
+    "markup": "<div role=\"alert\"><h2>Atenção</h2><p>Revise os campos indicados.</p></div>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "toast",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Notificação status",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "div"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/toast.html",
+      "examples/toast-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "notificação",
+      "status"
+    ],
+    "markup": "<div role=\"status\" aria-live=\"polite\">Rascunho salvo.</div>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "inline-error",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Erro campo mensagem",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "label",
+        "input",
+        "p"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/inline-error.html",
+      "examples/inline-error-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "erro",
+      "campo",
+      "mensagem"
+    ],
+    "markup": "<label for=\"invalid\">Nome</label><input id=\"invalid\" aria-invalid=\"true\" aria-describedby=\"error\"><p id=\"error\">Informe um nome.</p>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "success",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Sucesso confirmação",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "div",
+        "h2",
+        "p"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/success.html",
+      "examples/success-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "sucesso",
+      "confirmação"
+    ],
+    "markup": "<div role=\"status\"><h2>Concluído</h2><p>Alterações salvas.</p></div>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "empty-state",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Estado vazio",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "section",
+        "h2",
+        "p",
+        "button"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/empty-state.html",
+      "examples/empty-state-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "estado",
+      "vazio"
+    ],
+    "markup": "<section aria-label=\"Sem resultados\"><h2>Nenhum registro</h2><p>Crie um registro para começar.</p><button type=\"button\">Criar registro</button></section>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "skeleton",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Carregamento skeleton",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "div",
+        "span"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/skeleton.html",
+      "examples/skeleton-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "carregamento",
+      "skeleton"
+    ],
+    "markup": "<div aria-busy=\"true\" aria-label=\"Carregando\"><div class=\"in-skeleton\" aria-hidden=\"true\"></div><span role=\"status\">Carregando conteúdo…</span></div>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "spinner",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Carregamento espera",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "span"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/spinner.html",
+      "examples/spinner-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "carregamento",
+      "espera"
+    ],
+    "markup": "<span role=\"status\">Carregando…</span>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "progress",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Progresso tarefa",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "label",
+        "progress"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/progress.html",
+      "examples/progress-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "progresso",
+      "tarefa"
+    ],
+    "markup": "<label for=\"progress\">Processamento</label><progress id=\"progress\" value=\"40\" max=\"100\">40%</progress>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "tabs",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Abas teclado tabs",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "div",
+        "button",
+        "section"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/tabs.html",
+      "examples/tabs-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "abas",
+      "teclado",
+      "tabs"
+    ],
+    "markup": "<div role=\"tablist\" aria-label=\"Detalhes\"><button id=\"tab-one\" role=\"tab\" aria-selected=\"true\" aria-controls=\"panel-one\">Resumo</button><button id=\"tab-two\" role=\"tab\" tabindex=\"-1\" aria-selected=\"false\" aria-controls=\"panel-two\">Histórico</button></div><section id=\"panel-one\" role=\"tabpanel\" aria-labelledby=\"tab-one\">Resumo sintético</section><section id=\"panel-two\" role=\"tabpanel\" aria-labelledby=\"tab-two\" hidden>Histórico sintético</section>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "breadcrumb",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Caminho navegação migalhas",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "nav",
+        "ol",
+        "li",
+        "a"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/breadcrumb.html",
+      "examples/breadcrumb-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "caminho",
+      "navegação",
+      "migalhas"
+    ],
+    "markup": "<nav aria-label=\"Localização\"><ol><li><a href=\"/\">Início</a></li><li aria-current=\"page\">Página</li></ol></nav>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "pagination",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Paginação navegação",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "nav",
+        "a"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/pagination.html",
+      "examples/pagination-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "paginação",
+      "navegação"
+    ],
+    "markup": "<nav aria-label=\"Paginação\"><a href=\"?page=1\" aria-current=\"page\" aria-label=\"Página 1\">1</a> <a href=\"?page=2\" aria-label=\"Página 2\">2</a></nav>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "navigation-menu",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Menu navegação principal",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "nav",
+        "a"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/navigation-menu.html",
+      "examples/navigation-menu-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "menu",
+      "navegação",
+      "principal"
+    ],
+    "markup": "<nav aria-label=\"Principal\"><a href=\"#content\" aria-current=\"page\">Início</a> <a href=\"#settings\">Configuração</a></nav>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "editorial",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Texto editorial identidade",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "article",
+        "header",
+        "h2",
+        "p"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/editorial.html",
+      "examples/editorial-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "texto",
+      "editorial",
+      "identidade"
+    ],
+    "markup": "<article><header><h2>Identidade que conecta</h2></header><p>Uma linguagem clara para interfaces consistentes.</p></article>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "profile",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Perfil identidade pessoa",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "section",
+        "h2",
+        "p"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/profile.html",
+      "examples/profile-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "perfil",
+      "identidade",
+      "pessoa"
+    ],
+    "markup": "<section aria-label=\"Perfil fictício\"><h2>Pessoa Exemplo</h2><p>Equipe de demonstração</p></section>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "costura",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Costura marca identidade",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "div",
+        "p"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/costura.html",
+      "examples/costura-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "costura",
+      "marca",
+      "identidade"
+    ],
+    "markup": "<div class=\"in-costura\" aria-hidden=\"true\"></div><p>Conexões entre conteúdo e ação.</p>"
+  },
+  {
+    "schemaVersion": "1.0",
+    "id": "action-commit",
+    "version": "1.0.0",
+    "kind": "pattern",
+    "description": "Publicação fronteira ação commit",
+    "slots": [
+      "content"
+    ],
+    "variants": [
+      "default"
+    ],
+    "states": [
+      "default"
+    ],
+    "requiredTokens": [
+      "color.background.canvas",
+      "color.text.primary"
+    ],
+    "allowedDependencies": [
+      "@inteiro/tokens",
+      "@inteiro/design-system"
+    ],
+    "accessibility": {
+      "semantics": [
+        "form",
+        "p",
+        "button"
+      ],
+      "keyboardSpec": "docs/P0_PATTERNS.md"
+    },
+    "responsive": {
+      "mobileStrategy": "reflow"
+    },
+    "examples": [
+      "examples/action-commit.html",
+      "examples/action-commit-default.html"
+    ],
+    "tests": [
+      "tests/browser/composition.spec.ts"
+    ],
+    "aliases": [
+      "publicação",
+      "fronteira",
+      "ação",
+      "commit"
+    ],
+    "markup": "<form><p id=\"commit-reason\">Publicar torna o conteúdo visível ao público.</p><button class=\"in-button in-button--commit\" data-variant=\"commit\" aria-describedby=\"commit-reason\">Publicar conteúdo</button></form>"
+  }
+]

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "1.0",
+  "id": "dropdown-menu",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Menu ações disclosure",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default",
+    "open",
+    "closed"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "details",
+      "summary",
+      "ul",
+      "li",
+      "button"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/dropdown-menu.html",
+    "examples/dropdown-menu-default.html",
+    "examples/dropdown-menu-open.html",
+    "examples/dropdown-menu-closed.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "menu",
+    "ações",
+    "disclosure"
+  ],
+  "markup": "<details><summary>Ações</summary><ul><li><button type=\"button\">Editar</button></li><li><button type=\"button\">Arquivar</button></li></ul></details>"
+}

@@ -1,0 +1,137 @@
+@import "../../design-system/src/inteiro.css";
+.in-composition {
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  color: var(--in-color-text-primary);
+  background: var(--in-color-background-canvas);
+  font-family: var(--in-font-family-sans);
+}
+.in-composition a {
+  color: var(--in-color-text-primary);
+  text-decoration: underline;
+}
+.in-composition :where(input,select,textarea,button) {max-inline-size:100%;box-sizing:border-box;}
+.in-composition nav a,
+.in-composition button,
+.in-composition summary {
+  display: inline-flex;
+  align-items: center;
+  min-inline-size: var(--in-button-size-md-height);
+  min-block-size: var(--in-button-size-md-height);
+}
+.in-composition nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--in-space-small);
+}
+.in-app-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-block-size: 100dvh;
+  align-content:start;
+}
+.in-app-shell > main,
+.in-dashboard-grid > *,
+.in-form-layout > * {
+  min-inline-size: 0;
+}
+.in-content-container {
+  inline-size: 100%;
+  margin-inline: auto;
+  container-type: inline-size;
+}
+.in-dashboard-grid,
+.in-form-layout {
+  display: grid;
+  gap: var(--in-space-large);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+}
+.in-page-header,
+.in-topbar,
+.in-filter-bar,
+.in-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--in-space-medium);
+}
+.in-table-scroll {
+  max-inline-size: 100%;
+  overflow-x: auto;
+}
+.in-table-scroll:focus-visible {
+  outline: 2px solid var(--in-color-focus-ring);
+}
+.in-data-table {
+  border-collapse: collapse;
+  inline-size: 100%;
+}
+.in-data-table th,
+.in-data-table td {
+  padding: var(--in-space-medium);
+  text-align: start;
+}
+.in-field-group {
+  display: grid;
+  gap: var(--in-space-small);
+}
+.in-composition img {
+  max-inline-size: 100%;
+  block-size: auto;
+}
+.in-composition dialog {
+  max-inline-size: min(90vi, 40rem);
+  max-block-size: 90dvh;
+  overflow: auto;
+  background:var(--in-color-background-surface);
+  color:var(--in-color-text-primary);
+  border:1px solid var(--in-color-border-subtle);
+  padding:var(--in-space-large);
+}
+.in-composition dialog.in-drawer {inset-inline-start:auto;inset-inline-end:0;inset-block:0;margin:0;min-block-size:100dvh;max-block-size:100dvh;inline-size:min(90vi,24rem);}
+.in-tooltip {position:relative;display:inline-block;}
+.in-tooltip [role=tooltip] {display:none;position:absolute;inset-block-start:100%;inset-inline-start:0;z-index:1;inline-size:24ch;max-inline-size:80vi;padding:var(--in-space-small);background:var(--in-color-background-surface);color:var(--in-color-text-primary);border:1px solid var(--in-color-border-subtle);}
+.in-tooltip:is(:hover,:focus-within):not([data-in-dismissed]) [role=tooltip] {display:block;}
+.in-composition :where(p, h1, h2, h3, td) {
+  overflow-wrap: anywhere;
+}
+.in-skip-link {
+  position: absolute;
+  inset-inline-start: -10000px;
+}
+.in-skip-link:focus {
+  inset-inline-start: 0;
+  z-index: 100;
+}
+.in-skeleton {
+  min-block-size: 2em;
+  background: var(--in-color-background-surface);
+}
+.in-costura {
+  border-inline-start: 2px solid var(--in-color-border-subtle);
+  min-block-size: var(--in-space-large);
+  margin-block: var(--in-space-large);
+}
+[data-in-state="loading"] {
+  cursor: progress;
+}
+@media (min-width: 64rem) {
+  .in-app-shell:has(> aside) {
+    grid-template-columns: minmax(12rem, 18rem) minmax(0, 1fr);
+  }
+}
+@container (max-width:30rem) {
+  .in-form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .in-composition *,
+  .in-composition *::before,
+  .in-composition *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

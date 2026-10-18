@@ -14,3 +14,13 @@ artifacts/
 storybook-static/
 playwright-report/
 test-results/
+.inteiro/reports/
+.inteiro/*.installed.json
+.inteiro/*.integrity.json
+.inteiro/reviews/*
+!.inteiro/reviews/decision.json
+apps/fixtures/
+examples/nextjs/.next/
+examples/nextjs/next-env.d.ts
+examples/nextjs/out/
+examples/nextjs/*.tsbuildinfo

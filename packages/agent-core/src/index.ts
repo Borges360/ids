@@ -19,3 +19,7 @@ export { createVisualReviewPlan, getVisualReviewGuidance, VISUAL_REVIEW_GUIDE } 
 export type { VisualReviewRoute } from "./visual-review.ts";
 export { COMPONENTS, getComponentContract } from "./library.ts";
 export type { ComponentContract } from "./library.ts";
+export { resolveContext, verifyContext, recordContextIntegrity } from './context.ts';
+export { repairContext } from './repair.ts';
+export { reviewRequest, validateReview, reviewGate, REVIEW_AXES } from './review.ts';
+export { projectContracts } from './contracts.ts';

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "1.0",
+  "id": "progress",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Progresso tarefa",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "label",
+      "progress"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/progress.html",
+    "examples/progress-default.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "progresso",
+    "tarefa"
+  ],
+  "markup": "<label for=\"progress\">Processamento</label><progress id=\"progress\" value=\"40\" max=\"100\">40%</progress>"
+}

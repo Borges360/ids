@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "1.0",
+  "id": "dialog",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Diálogo modal foco",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default",
+    "open",
+    "closed"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "button",
+      "dialog",
+      "h2",
+      "p"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/dialog.html",
+    "examples/dialog-default.html",
+    "examples/dialog-open.html",
+    "examples/dialog-closed.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "diálogo",
+    "modal",
+    "foco"
+  ],
+  "markup": "<button data-in-open=\"dialog\">Abrir diálogo</button><dialog id=\"dialog\" aria-labelledby=\"dialog-title\"><h2 id=\"dialog-title\">Confirmação</h2><p>Revise os dados.</p><button data-in-close autofocus>Fechar</button></dialog>"
+}

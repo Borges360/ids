@@ -1,0 +1,24 @@
+{
+  "name": "@inteiro/composition",
+  "version": "1.2.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./behavior": "./src/behavior.js",
+    "./css": "./dist/composition.css",
+    "./render": "./src/render.ts"
+  },
+  "files": [
+    "src",
+    "patterns",
+    "examples",
+    "catalog.index.json",
+    "story-matrix.json",
+    "dist"
+  ],
+  "dependencies": {
+    "@inteiro/contracts": "^1.2.0",
+    "@inteiro/tokens": "^1.2.0"
+  },
+  "license": "MIT"
+}

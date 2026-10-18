@@ -1,0 +1,1686 @@
+{
+  "schemaVersion": "1.0",
+  "routes": [
+    {
+      "id": "app-shell",
+      "path": "/packages/composition/examples/app-shell.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/app-shell-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "page-header",
+      "path": "/packages/composition/examples/page-header.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/page-header-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "content-container",
+      "path": "/packages/composition/examples/content-container.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/content-container-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sidebar",
+      "path": "/packages/composition/examples/sidebar.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/sidebar-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "topbar",
+      "path": "/packages/composition/examples/topbar.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/topbar-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mobile-navigation",
+      "path": "/packages/composition/examples/mobile-navigation.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/mobile-navigation-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "data-table",
+      "path": "/packages/composition/examples/data-table.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/data-table-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "loading",
+          "path": "/packages/composition/examples/data-table-loading.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "empty",
+          "path": "/packages/composition/examples/data-table-empty.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "error",
+          "path": "/packages/composition/examples/data-table-error.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "data-list",
+      "path": "/packages/composition/examples/data-list.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/data-list-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "loading",
+          "path": "/packages/composition/examples/data-list-loading.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "empty",
+          "path": "/packages/composition/examples/data-list-empty.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "error",
+          "path": "/packages/composition/examples/data-list-error.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "details-panel",
+      "path": "/packages/composition/examples/details-panel.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/details-panel-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "loading",
+          "path": "/packages/composition/examples/details-panel-loading.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "empty",
+          "path": "/packages/composition/examples/details-panel-empty.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "error",
+          "path": "/packages/composition/examples/details-panel-error.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stat-card",
+      "path": "/packages/composition/examples/stat-card.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/stat-card-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "loading",
+          "path": "/packages/composition/examples/stat-card-loading.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "empty",
+          "path": "/packages/composition/examples/stat-card-empty.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "error",
+          "path": "/packages/composition/examples/stat-card-error.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dashboard-grid",
+      "path": "/packages/composition/examples/dashboard-grid.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/dashboard-grid-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "loading",
+          "path": "/packages/composition/examples/dashboard-grid-loading.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "empty",
+          "path": "/packages/composition/examples/dashboard-grid-empty.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "error",
+          "path": "/packages/composition/examples/dashboard-grid-error.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "filter-bar",
+      "path": "/packages/composition/examples/filter-bar.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/filter-bar-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "form-layout",
+      "path": "/packages/composition/examples/form-layout.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/form-layout-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "disabled",
+          "path": "/packages/composition/examples/form-layout-disabled.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "invalid",
+          "path": "/packages/composition/examples/form-layout-invalid.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "readonly",
+          "path": "/packages/composition/examples/form-layout-readonly.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "field-group",
+      "path": "/packages/composition/examples/field-group.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/field-group-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "disabled",
+          "path": "/packages/composition/examples/field-group-disabled.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "invalid",
+          "path": "/packages/composition/examples/field-group-invalid.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "readonly",
+          "path": "/packages/composition/examples/field-group-readonly.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "select",
+      "path": "/packages/composition/examples/select.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/select-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "disabled",
+          "path": "/packages/composition/examples/select-disabled.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "invalid",
+          "path": "/packages/composition/examples/select-invalid.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "readonly",
+          "path": "/packages/composition/examples/select-readonly.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "checkbox",
+      "path": "/packages/composition/examples/checkbox.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/checkbox-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "disabled",
+          "path": "/packages/composition/examples/checkbox-disabled.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "invalid",
+          "path": "/packages/composition/examples/checkbox-invalid.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "readonly",
+          "path": "/packages/composition/examples/checkbox-readonly.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "radio-group",
+      "path": "/packages/composition/examples/radio-group.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/radio-group-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "disabled",
+          "path": "/packages/composition/examples/radio-group-disabled.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "invalid",
+          "path": "/packages/composition/examples/radio-group-invalid.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "readonly",
+          "path": "/packages/composition/examples/radio-group-readonly.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "textarea",
+      "path": "/packages/composition/examples/textarea.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/textarea-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "disabled",
+          "path": "/packages/composition/examples/textarea-disabled.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "invalid",
+          "path": "/packages/composition/examples/textarea-invalid.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "readonly",
+          "path": "/packages/composition/examples/textarea-readonly.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "form-actions",
+      "path": "/packages/composition/examples/form-actions.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/form-actions-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stepper",
+      "path": "/packages/composition/examples/stepper.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/stepper-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dialog",
+      "path": "/packages/composition/examples/dialog.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/dialog-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "open",
+          "path": "/packages/composition/examples/dialog-open.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "dialog"
+              }
+            }
+          ]
+        },
+        {
+          "id": "closed",
+          "path": "/packages/composition/examples/dialog-closed.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drawer",
+      "path": "/packages/composition/examples/drawer.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/drawer-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "open",
+          "path": "/packages/composition/examples/drawer-open.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "dialog"
+              }
+            }
+          ]
+        },
+        {
+          "id": "closed",
+          "path": "/packages/composition/examples/drawer-closed.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "popover",
+      "path": "/packages/composition/examples/popover.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/popover-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "open",
+          "path": "/packages/composition/examples/popover-open.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "closed",
+          "path": "/packages/composition/examples/popover-closed.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dropdown-menu",
+      "path": "/packages/composition/examples/dropdown-menu.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/dropdown-menu-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "open",
+          "path": "/packages/composition/examples/dropdown-menu-open.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "closed",
+          "path": "/packages/composition/examples/dropdown-menu-closed.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tooltip",
+      "path": "/packages/composition/examples/tooltip.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/tooltip-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "alert",
+      "path": "/packages/composition/examples/alert.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/alert-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "toast",
+      "path": "/packages/composition/examples/toast.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/toast-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inline-error",
+      "path": "/packages/composition/examples/inline-error.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/inline-error-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "success",
+      "path": "/packages/composition/examples/success.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/success-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empty-state",
+      "path": "/packages/composition/examples/empty-state.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/empty-state-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skeleton",
+      "path": "/packages/composition/examples/skeleton.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/skeleton-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spinner",
+      "path": "/packages/composition/examples/spinner.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/spinner-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "progress",
+      "path": "/packages/composition/examples/progress.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/progress-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tabs",
+      "path": "/packages/composition/examples/tabs.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/tabs-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "breadcrumb",
+      "path": "/packages/composition/examples/breadcrumb.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/breadcrumb-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pagination",
+      "path": "/packages/composition/examples/pagination.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/pagination-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "navigation-menu",
+      "path": "/packages/composition/examples/navigation-menu.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/navigation-menu-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "editorial",
+      "path": "/packages/composition/examples/editorial.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/editorial-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "profile",
+      "path": "/packages/composition/examples/profile.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/profile-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "costura",
+      "path": "/packages/composition/examples/costura.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/costura-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "action-commit",
+      "path": "/packages/composition/examples/action-commit.html",
+      "criticality": "normal",
+      "fixture": "patterns",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "dark-focus",
+        "light-calm"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "path": "/packages/composition/examples/action-commit-default.html",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

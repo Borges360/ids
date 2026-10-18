@@ -1,0 +1,114 @@
+{
+  "schemaVersion": "1.0",
+  "project": {
+    "id": "inteiro",
+    "root": ".",
+    "framework": "html"
+  },
+  "design": {
+    "theme": [
+      "dark",
+      "light"
+    ],
+    "density": [
+      "calm",
+      "focus"
+    ],
+    "strictTokens": true
+  },
+  "context": {
+    "mode": "enforced",
+    "harness": "pi",
+    "requireProof": true,
+    "maxTokens": 4000
+  },
+  "composition": {
+    "allowed": [],
+    "customPatterns": "review-required"
+  },
+  "static": {
+    "profile": "strict",
+    "include": [
+      "packages/composition/examples/*.html"
+    ],
+    "exclude": [
+      "**/dist/**",
+      "**/node_modules/**",
+      "**/vendor/**"
+    ],
+    "forbiddenImports": [],
+    "forbiddenTokens": [],
+    "suppressionPolicy": "approved-only"
+  },
+  "browser": {
+    "baseURL": "http://127.0.0.1:4173",
+    "startCommand": "node scripts/serve-demo.mjs",
+    "readyPath": "/",
+    "timeoutMs": 60000,
+    "environment": "pinned-chromium",
+    "routesFile": "inteiro.routes.json",
+    "allowedOrigins": [],
+    "viewports": [
+      {
+        "id": "small",
+        "width": 320,
+        "height": 812
+      },
+      {
+        "id": "mobile",
+        "width": 375,
+        "height": 812
+      },
+      {
+        "id": "tablet",
+        "width": 768,
+        "height": 1024
+      },
+      {
+        "id": "wide",
+        "width": 1024,
+        "height": 900
+      },
+      {
+        "id": "desktop",
+        "width": 1440,
+        "height": 900
+      }
+    ]
+  },
+  "visual": {
+    "baselineDir": "tests/visual/__snapshots__",
+    "policy": "approved-only",
+    "maxDiffPixelRatio": 0.002,
+    "colorThreshold": 0.1,
+    "fullPage": true,
+    "missingBaseline": "block"
+  },
+  "review": {
+    "requiredFor": [
+      "new-pattern",
+      "new-page",
+      "significant-layout-change"
+    ],
+    "method": "human-or-multimodal-plus-approval",
+    "allowExternalProvider": false
+  },
+  "repair": {
+    "maxAttempts": 2,
+    "maxChangedFiles": 8,
+    "maxDiffLines": 450
+  },
+  "benchmark": {
+    "suite": "p0-smoke",
+    "dataset": "benchmarks/p0-smoke.json"
+  },
+  "reporting": {
+    "outDir": ".inteiro/reports",
+    "formats": [
+      "json",
+      "html",
+      "sarif",
+      "junit"
+    ]
+  }
+}

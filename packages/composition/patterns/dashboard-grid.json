@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "1.0",
+  "id": "dashboard-grid",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Dashboard operacional grade",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default",
+    "loading",
+    "empty",
+    "error"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "section",
+      "article",
+      "h2",
+      "p"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/dashboard-grid.html",
+    "examples/dashboard-grid-default.html",
+    "examples/dashboard-grid-loading.html",
+    "examples/dashboard-grid-empty.html",
+    "examples/dashboard-grid-error.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "dashboard",
+    "operacional",
+    "grade"
+  ],
+  "markup": "<section class=\"in-dashboard-grid\" aria-label=\"Indicadores\"><article><h2>Total</h2><p>128 registros</p></article><article><h2>Ativos</h2><p>64 registros</p></article></section>"
+}

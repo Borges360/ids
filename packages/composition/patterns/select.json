@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "1.0",
+  "id": "select",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Seleção nativa",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default",
+    "disabled",
+    "invalid",
+    "readonly"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "label",
+      "select",
+      "option"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/select.html",
+    "examples/select-default.html",
+    "examples/select-disabled.html",
+    "examples/select-invalid.html",
+    "examples/select-readonly.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "seleção",
+    "nativa"
+  ],
+  "markup": "<label for=\"select\">Estado</label><select id=\"select\"><option>Ativo</option><option>Arquivado</option></select>"
+}

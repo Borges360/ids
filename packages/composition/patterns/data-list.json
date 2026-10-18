@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "1.0",
+  "id": "data-list",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Lista dados",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default",
+    "loading",
+    "empty",
+    "error"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "ul",
+      "li"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/data-list.html",
+    "examples/data-list-default.html",
+    "examples/data-list-loading.html",
+    "examples/data-list-empty.html",
+    "examples/data-list-error.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "lista",
+    "dados"
+  ],
+  "markup": "<ul><li>Primeiro registro</li><li>Segundo registro</li></ul>"
+}

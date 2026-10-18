@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "1.0",
+  "id": "data-table",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Tabela paginada dados table",
+  "slots": [
+    "title",
+    "toolbar",
+    "head",
+    "body",
+    "footer"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default",
+    "loading",
+    "empty",
+    "error"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "section",
+      "div",
+      "table",
+      "caption",
+      "thead",
+      "tr",
+      "th",
+      "button",
+      "tbody",
+      "td",
+      "nav",
+      "span"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "scroll-container"
+  },
+  "examples": [
+    "examples/data-table.html",
+    "examples/data-table-default.html",
+    "examples/data-table-loading.html",
+    "examples/data-table-empty.html",
+    "examples/data-table-error.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "tabela",
+    "paginada",
+    "dados",
+    "table"
+  ],
+  "markup": "<section data-in-table data-in-page-size=\"2\"><div class=\"in-table-scroll\" role=\"region\" aria-label=\"Resultados\" tabindex=\"0\"><table class=\"in-data-table\"><caption>Resultados sintéticos</caption><thead><tr><th scope=\"col\" aria-sort=\"none\"><button type=\"button\" data-in-sort=\"0\">Ordenar por nome</button></th><th scope=\"col\">Estado</th></tr></thead><tbody><tr><th scope=\"row\">Zeta</th><td>Ativo</td></tr><tr><th scope=\"row\">Alfa</th><td>Ativo</td></tr><tr><th scope=\"row\">Beta</th><td>Arquivado</td></tr></tbody></table></div><nav aria-label=\"Paginação de resultados\"><button type=\"button\" data-in-page=\"-1\" disabled>Anterior</button><span role=\"status\" data-in-page-status>1 / 2</span><button type=\"button\" data-in-page=\"1\">Próxima</button></nav></section>"
+}

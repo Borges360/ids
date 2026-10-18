@@ -1,0 +1,286 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://inteiro.dev/schemas/1.0/config.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "root": {
+          "type": "string"
+        },
+        "framework": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "design": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "theme": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "density": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "strictTokens": {
+          "type": "boolean"
+        }
+      }
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "type": "string"
+        },
+        "harness": {
+          "type": "string"
+        },
+        "requireProof": {
+          "type": "boolean"
+        },
+        "maxTokens": {
+          "type": "number"
+        }
+      }
+    },
+    "composition": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "allowed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "customPatterns": {
+          "type": "string"
+        }
+      }
+    },
+    "static": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "profile": {
+          "type": "string"
+        },
+        "adoption": {
+          "type": "string"
+        },
+        "baseline": {
+          "type": "string"
+        },
+        "include": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "exclude": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "forbiddenImports": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "forbiddenTokens": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "suppressionPolicy": {
+          "type": "string"
+        }
+      }
+    },
+    "browser": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "baseURL": {
+          "type": "string"
+        },
+        "startCommand": {
+          "type": "string"
+        },
+        "readyPath": {
+          "type": "string"
+        },
+        "timeoutMs": {
+          "type": "number"
+        },
+        "environment": {
+          "type": "string"
+        },
+        "routesFile": {
+          "type": "string"
+        },
+        "routeRoots": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "criticalRoutes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "allowedOrigins": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "viewports": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "width": {
+                "type": "number"
+              },
+              "height": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "id",
+              "width",
+              "height"
+            ]
+          }
+        }
+      }
+    },
+    "visual": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "baselineDir": {
+          "type": "string"
+        },
+        "policy": {
+          "type": "string"
+        },
+        "maxDiffPixelRatio": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "colorThreshold": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "fullPage": {
+          "type": "boolean"
+        },
+        "missingBaseline": {
+          "type": "string"
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "requiredFor": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "method": {
+          "type": "string"
+        },
+        "allowExternalProvider": {
+          "type": "boolean"
+        }
+      }
+    },
+    "repair": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "maxAttempts": {
+          "type": "number"
+        },
+        "maxChangedFiles": {
+          "type": "number"
+        },
+        "maxDiffLines": {
+          "type": "number"
+        }
+      }
+    },
+    "benchmark": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "suite": {
+          "type": "string"
+        },
+        "dataset": {
+          "type": "string"
+        }
+      }
+    },
+    "reporting": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "outDir": {
+          "type": "string"
+        },
+        "formats": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "project"
+  ]
+}

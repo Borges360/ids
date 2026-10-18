@@ -1,0 +1,495 @@
+{
+  "schemaVersion": "1.0",
+  "protocol": {
+    "samples": 3,
+    "maxRepairAttempts": 2,
+    "ablations": [
+      "unassisted",
+      "context",
+      "composition-lint",
+      "visual-repair"
+    ]
+  },
+  "tasks": [
+    {
+      "id": "task-01",
+      "difficulty": "simple",
+      "requirement": "Cadastro com validação",
+      "initialImplementation": "packages/composition/examples/app-shell.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-02",
+      "difficulty": "simple",
+      "requirement": "Lista com paginação",
+      "initialImplementation": "packages/composition/examples/page-header.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-03",
+      "difficulty": "simple",
+      "requirement": "Dashboard operacional",
+      "initialImplementation": "packages/composition/examples/content-container.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-04",
+      "difficulty": "simple",
+      "requirement": "App shell responsivo",
+      "initialImplementation": "packages/composition/examples/sidebar.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-05",
+      "difficulty": "simple",
+      "requirement": "CRUD com confirmação",
+      "initialImplementation": "packages/composition/examples/topbar.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-06",
+      "difficulty": "simple",
+      "requirement": "Estados loading empty error",
+      "initialImplementation": "packages/composition/examples/mobile-navigation.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-07",
+      "difficulty": "simple",
+      "requirement": "Diálogo com retorno do foco",
+      "initialImplementation": "packages/composition/examples/data-table.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-08",
+      "difficulty": "simple",
+      "requirement": "Drawer mobile",
+      "initialImplementation": "packages/composition/examples/data-list.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-09",
+      "difficulty": "simple",
+      "requirement": "Tema e densidade",
+      "initialImplementation": "packages/composition/examples/details-panel.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-10",
+      "difficulty": "simple",
+      "requirement": "RTL e conteúdo longo",
+      "initialImplementation": "packages/composition/examples/stat-card.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-11",
+      "difficulty": "medium",
+      "requirement": "Refatorar formulário legado",
+      "initialImplementation": "packages/composition/examples/dashboard-grid.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-12",
+      "difficulty": "medium",
+      "requirement": "Corrigir drift de tokens",
+      "initialImplementation": "packages/composition/examples/filter-bar.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-13",
+      "difficulty": "medium",
+      "requirement": "Navegação por teclado",
+      "initialImplementation": "packages/composition/examples/form-layout.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-14",
+      "difficulty": "medium",
+      "requirement": "Filtro de tabela",
+      "initialImplementation": "packages/composition/examples/field-group.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-15",
+      "difficulty": "medium",
+      "requirement": "Alertas de validação",
+      "initialImplementation": "packages/composition/examples/select.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-16",
+      "difficulty": "medium",
+      "requirement": "Upload com progresso",
+      "initialImplementation": "packages/composition/examples/checkbox.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-17",
+      "difficulty": "medium",
+      "requirement": "Perfil com fallback",
+      "initialImplementation": "packages/composition/examples/radio-group.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-18",
+      "difficulty": "medium",
+      "requirement": "Fluxo em etapas",
+      "initialImplementation": "packages/composition/examples/textarea.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-19",
+      "difficulty": "medium",
+      "requirement": "Popover de ajuda",
+      "initialImplementation": "packages/composition/examples/form-actions.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-20",
+      "difficulty": "medium",
+      "requirement": "Menu de ações",
+      "initialImplementation": "packages/composition/examples/stepper.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-21",
+      "difficulty": "complex",
+      "requirement": "Dashboard com dados extensos",
+      "initialImplementation": "packages/composition/examples/dialog.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-22",
+      "difficulty": "complex",
+      "requirement": "Formulário multietapas com revisão",
+      "initialImplementation": "packages/composition/examples/drawer.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-23",
+      "difficulty": "complex",
+      "requirement": "Tabela com seleção e ordenação",
+      "initialImplementation": "packages/composition/examples/popover.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-24",
+      "difficulty": "complex",
+      "requirement": "Migração de identidade",
+      "initialImplementation": "packages/composition/examples/dropdown-menu.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-25",
+      "difficulty": "complex",
+      "requirement": "Regressão de overflow",
+      "initialImplementation": "packages/composition/examples/tooltip.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-26",
+      "difficulty": "complex",
+      "requirement": "Modal com conteúdo longo",
+      "initialImplementation": "packages/composition/examples/alert.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-27",
+      "difficulty": "complex",
+      "requirement": "Layout a 200% zoom",
+      "initialImplementation": "packages/composition/examples/toast.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-28",
+      "difficulty": "complex",
+      "requirement": "Integração entre rotas",
+      "initialImplementation": "packages/composition/examples/inline-error.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-29",
+      "difficulty": "complex",
+      "requirement": "Recuperação de erro de rede",
+      "initialImplementation": "packages/composition/examples/success.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    },
+    {
+      "id": "task-30",
+      "difficulty": "complex",
+      "requirement": "Publicação com ação commit",
+      "initialImplementation": "packages/composition/examples/empty-state.html",
+      "contract": "inteiro.config.json",
+      "fixture": "patterns",
+      "acceptance": [
+        "functional-flow",
+        "static",
+        "browser",
+        "approved-baseline",
+        "review-when-required"
+      ],
+      "maxRepairAttempts": 2
+    }
+  ]
+}

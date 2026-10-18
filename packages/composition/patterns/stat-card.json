@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "1.0",
+  "id": "stat-card",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Indicador estatística KPI",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default",
+    "loading",
+    "empty",
+    "error"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "section",
+      "h2",
+      "p",
+      "strong"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/stat-card.html",
+    "examples/stat-card-default.html",
+    "examples/stat-card-loading.html",
+    "examples/stat-card-empty.html",
+    "examples/stat-card-error.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "indicador",
+    "estatística",
+    "kpi"
+  ],
+  "markup": "<section aria-label=\"Total\"><h2>Total</h2><p><strong>128</strong> registros</p></section>"
+}

@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "1.0",
+  "id": "success",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Sucesso confirmação",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "div",
+      "h2",
+      "p"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/success.html",
+    "examples/success-default.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "sucesso",
+    "confirmação"
+  ],
+  "markup": "<div role=\"status\"><h2>Concluído</h2><p>Alterações salvas.</p></div>"
+}

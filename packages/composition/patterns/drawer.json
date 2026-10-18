@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "1.0",
+  "id": "drawer",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Painel modal lateral",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default",
+    "open",
+    "closed"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "button",
+      "dialog",
+      "h2"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/drawer.html",
+    "examples/drawer-default.html",
+    "examples/drawer-open.html",
+    "examples/drawer-closed.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "painel",
+    "modal",
+    "lateral"
+  ],
+  "markup": "<button data-in-open=\"drawer\">Abrir painel</button><dialog class=\"in-drawer\" id=\"drawer\" aria-labelledby=\"drawer-title\"><h2 id=\"drawer-title\">Detalhes</h2><button data-in-close autofocus>Fechar painel</button></dialog>"
+}

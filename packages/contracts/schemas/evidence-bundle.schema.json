@@ -1,0 +1,99 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://inteiro.dev/schemas/1.0/evidence-bundle.schema.json",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "inteiroVersion": {
+      "type": "string"
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "configId": {
+      "type": "string"
+    },
+    "configHash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "runId": {
+      "type": "string",
+      "pattern": "^run-"
+    },
+    "status": {
+      "enum": [
+        "not_run",
+        "running",
+        "passed",
+        "failed",
+        "blocked",
+        "needs_review",
+        "waived",
+        "error"
+      ]
+    },
+    "gates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "status",
+          "findings",
+          "durationMs"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "not_run",
+              "running",
+              "passed",
+              "failed",
+              "blocked",
+              "needs_review",
+              "waived",
+              "error"
+            ]
+          },
+          "findings": {
+            "type": "array"
+          },
+          "durationMs": {
+            "type": "number",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "findings": {
+      "type": "array"
+    },
+    "artifacts": {
+      "type": "array"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "inteiroVersion",
+    "hash",
+    "createdAt",
+    "configId",
+    "configHash",
+    "runId",
+    "status",
+    "gates",
+    "findings",
+    "artifacts"
+  ]
+}

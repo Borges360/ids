@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "1.0",
+  "suite": "p0-smoke",
+  "cases": [
+    {
+      "id": "hardcoded-color",
+      "file": "bad.css",
+      "source": ".x{color:#6D5DC7}",
+      "expectedRules": [
+        "IN-TOKEN-001"
+      ]
+    },
+    {
+      "id": "unknown-variable",
+      "file": "bad.css",
+      "source": ".x{color:var(--in-fake-token)}",
+      "expectedRules": [
+        "IN-TOKEN-003"
+      ]
+    },
+    {
+      "id": "unlabelled-input",
+      "file": "bad.html",
+      "source": "<input>",
+      "expectedRules": [
+        "IN-A11Y-002"
+      ]
+    },
+    {
+      "id": "generic-click",
+      "file": "bad.html",
+      "source": "<div onclick=\"act()\">Act</div>",
+      "expectedRules": [
+        "IN-A11Y-001"
+      ]
+    },
+    {
+      "id": "semantic-css",
+      "file": "good.css",
+      "source": ".x{color:var(--in-color-text-primary)}",
+      "expectedRules": []
+    },
+    {
+      "id": "native-label",
+      "file": "good.html",
+      "source": "<label for=\"name\">Nome</label><input id=\"name\">",
+      "expectedRules": []
+    },
+    {
+      "id": "react-label",
+      "file": "good.tsx",
+      "source": "export const form=<label>Nome<input/></label>",
+      "expectedRules": []
+    },
+    {
+      "id": "vue-label",
+      "file": "good.vue",
+      "source": "<template><label for=\"name\">Nome</label><input id=\"name\" /></template>",
+      "expectedRules": []
+    },
+    {
+      "id": "svelte-label",
+      "file": "good.svelte",
+      "source": "<label for=\"name\">Nome</label><input id=\"name\" />",
+      "expectedRules": []
+    }
+  ]
+}
