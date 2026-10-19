@@ -113,16 +113,189 @@ for (const [i, p] of patterns.entries())
           });
         });
       }
-test("portable dialog returns focus and closes on Escape", async ({ page }) => {
+for (const id of ["dialog", "drawer"])
+  for (const state of ["default", "open"])
+    test(`portable ${id} ${state} returns focus and closes on Escape`, async ({
+      page,
+    }) => {
+      await page.goto(
+        `http://127.0.0.1:4178/packages/composition/examples/${id}${state === "open" ? "-open" : ""}.html`,
+      );
+      const trigger = page.getByRole("button", {
+        name: id === "dialog" ? "Abrir diálogo" : "Abrir painel",
+      });
+      if (state === "default") await trigger.click();
+      await expect(page.getByRole("dialog")).toBeVisible();
+      await page.keyboard.press("Escape");
+      await expect(page.getByRole("dialog")).not.toBeVisible();
+      await expect(trigger).toBeFocused();
+    });
+for (const id of ["dropdown-menu", "mobile-navigation"])
+  test(`portable ${id} closes on Escape and restores the summary`, async ({
+    page,
+  }) => {
+    await page.goto(
+      `http://127.0.0.1:4178/packages/composition/examples/${id}.html`,
+    );
+    const summary = page.locator("summary");
+    await summary.focus();
+    await page.keyboard.press("Enter");
+    await expect(page.locator("details")).toHaveAttribute("open", "");
+    await page.locator("details button,details a").first().focus();
+    await page.keyboard.press("Escape");
+    await expect(page.locator("details")).not.toHaveAttribute("open");
+    await expect(summary).toBeFocused();
+    await page.keyboard.press("Space");
+    await expect(page.locator("details")).toHaveAttribute("open", "");
+  });
+for (const variant of ["popover", "popover-open"])
+  test(`portable ${variant} retains native Escape and focus restoration`, async ({
+    page,
+  }) => {
+    await page.goto(
+      `http://127.0.0.1:4178/packages/composition/examples/${variant}.html`,
+    );
+    const trigger = page.getByRole("button", {
+      name: "Mais informações",
+      exact: true,
+    });
+    const popover = page.locator("[popover]");
+    if (variant === "popover") {
+      await trigger.focus();
+      await page.keyboard.press("Enter");
+    }
+    await expect(popover).toBeVisible();
+    await expect(trigger).toBeFocused();
+    await page.keyboard.press("Escape");
+    await expect(popover).not.toBeVisible();
+    await expect(trigger).toBeFocused();
+    await page.keyboard.press("Space");
+    await expect(popover).toBeVisible();
+    await page.keyboard.press("Escape");
+    await expect(popover).not.toBeVisible();
+    await expect(trigger).toBeFocused();
+  });
+test("Escape closes nested disclosures one at a time without closing siblings", async ({
+  page,
+}) => {
+  await page.goto(
+    "http://127.0.0.1:4178/packages/composition/examples/dropdown-menu.html",
+  );
+  await page.locator("main").evaluate((main) => {
+    main.innerHTML =
+      '<details id="outer" open><summary>Externo</summary><details id="inner" open><summary>Interno</summary><button>Ação interna</button></details></details><details id="sibling" open><summary>Independente</summary><p>Conteúdo</p></details>';
+  });
+  await page.getByRole("button", { name: "Ação interna" }).focus();
+  await page.keyboard.press("Escape");
+  await expect(page.locator("#inner")).not.toHaveAttribute("open");
+  await expect(page.locator("#inner > summary")).toBeFocused();
+  await expect(page.locator("#outer")).toHaveAttribute("open", "");
+  await expect(page.locator("#sibling")).toHaveAttribute("open", "");
+  await page.keyboard.press("Escape");
+  await expect(page.locator("#outer")).not.toHaveAttribute("open");
+  await expect(page.locator("#outer > summary")).toBeFocused();
+  await expect(page.locator("#sibling")).toHaveAttribute("open", "");
+});
+test("Escape dismisses a tooltip before its containing disclosure", async ({
+  page,
+}) => {
+  await page.goto(
+    "http://127.0.0.1:4178/packages/composition/examples/tooltip.html",
+  );
+  await page.locator("main").evaluate((main) => {
+    main.innerHTML =
+      '<details open><summary>Grupo</summary><span class="in-tooltip" data-in-tooltip><button aria-describedby="nested-tip">Ajuda interna</button><span role="tooltip" id="nested-tip">Ajuda complementar</span></span></details>';
+  });
+  await page.evaluate(async () => {
+    const path = "/packages/composition/src/behavior.js";
+    const { enhance } = await import(path);
+    enhance(document.querySelector("main"));
+  });
+  await page.getByRole("button", { name: "Ajuda interna" }).focus();
+  await expect(page.getByRole("tooltip")).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("tooltip")).not.toBeVisible();
+  await expect(page.locator("details")).toHaveAttribute("open", "");
+  await page.keyboard.press("Escape");
+  await expect(page.locator("details")).not.toHaveAttribute("open");
+  await expect(page.locator("summary")).toBeFocused();
+});
+for (const overlay of ["popover", "dialog"])
+  test(`Escape closes a native ${overlay} before its containing disclosure`, async ({
+    page,
+  }) => {
+    await page.goto(
+      "http://127.0.0.1:4178/packages/composition/examples/dropdown-menu.html",
+    );
+    await page.locator("main").evaluate((main, kind) => {
+      main.innerHTML =
+        kind === "popover"
+          ? '<details open><summary>Grupo</summary><button popovertarget="nested-overlay">Abrir interno</button><div id="nested-overlay" popover><button>Ação interna</button></div></details>'
+          : '<details open><summary>Grupo</summary><button data-in-open="nested-overlay">Abrir interno</button><dialog id="nested-overlay" aria-label="Interno"><button>Ação interna</button></dialog></details>';
+    }, overlay);
+    const trigger = page.getByRole("button", { name: "Abrir interno" });
+    await trigger.click();
+    await page.getByRole("button", { name: "Ação interna" }).focus();
+    await page.keyboard.press("Escape");
+    await expect(page.locator("#nested-overlay")).not.toBeVisible();
+    await expect(page.locator("details")).toHaveAttribute("open", "");
+    await expect(trigger).toBeFocused();
+    await page.keyboard.press("Escape");
+    await expect(page.locator("details")).not.toHaveAttribute("open");
+  });
+for (const overlay of ["popover", "dialog"])
+  test(`Escape closes an inner disclosure before its native ${overlay}`, async ({
+    page,
+  }) => {
+    await page.goto(
+      "http://127.0.0.1:4178/packages/composition/examples/dropdown-menu.html",
+    );
+    await page.locator("main").evaluate((main, kind) => {
+      const content =
+        "<details open><summary>Grupo interno</summary><button>Ação interna</button></details>";
+      main.innerHTML =
+        kind === "popover"
+          ? '<button popovertarget="nested-overlay">Abrir externo</button><div id="nested-overlay" popover>' +
+            content +
+            "</div>"
+          : '<button data-in-open="nested-overlay">Abrir externo</button><dialog id="nested-overlay" aria-label="Externo">' +
+            content +
+            "</dialog>";
+    }, overlay);
+    const trigger = page.getByRole("button", { name: "Abrir externo" });
+    await trigger.click();
+    await page.getByRole("button", { name: "Ação interna" }).focus();
+    await page.keyboard.press("Escape");
+    await expect(page.locator("details")).not.toHaveAttribute("open");
+    await expect(page.locator("summary")).toBeFocused();
+    await expect(page.locator("#nested-overlay")).toBeVisible();
+    await page.keyboard.press("Escape");
+    await expect(page.locator("#nested-overlay")).not.toBeVisible();
+    await expect(trigger).toBeFocused();
+  });
+test("nested dialogs restore each dialog's own invoker", async ({ page }) => {
   await page.goto(
     "http://127.0.0.1:4178/packages/composition/examples/dialog.html",
   );
-  const trigger = page.getByRole("button", { name: "Abrir diálogo" });
-  await trigger.click();
-  await expect(page.getByRole("dialog")).toBeVisible();
+  await page.locator("main").evaluate((main) => {
+    main.innerHTML =
+      '<button data-in-open="outer-dialog">Abrir externo</button><dialog id="outer-dialog" aria-label="Externo"><button data-in-open="inner-dialog">Abrir interno</button><dialog id="inner-dialog" aria-label="Interno"><button>Ação interna</button></dialog></dialog>';
+  });
+  const outerTrigger = page.getByRole("button", { name: "Abrir externo" });
+  await outerTrigger.click();
+  const innerTrigger = page.getByRole("button", { name: "Abrir interno" });
+  await innerTrigger.click();
   await page.keyboard.press("Escape");
-  await expect(page.getByRole("dialog")).not.toBeVisible();
-  await expect(trigger).toBeFocused();
+  await expect(
+    page.getByRole("dialog", { name: "Interno", exact: true }),
+  ).not.toBeVisible();
+  await expect(innerTrigger).toBeFocused();
+  await expect(
+    page.getByRole("dialog", { name: "Externo", exact: true }),
+  ).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(page.locator("#outer-dialog")).not.toBeVisible();
+  await expect(outerTrigger).toBeFocused();
 });
 test("portable tabs support arrows and selection", async ({ page }) => {
   await page.goto(

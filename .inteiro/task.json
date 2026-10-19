@@ -8,7 +8,12 @@
     "data-table",
     "form-layout",
     "dialog",
-    "empty-state"
+    "empty-state",
+    "drawer",
+    "popover",
+    "dropdown-menu",
+    "mobile-navigation",
+    "tooltip"
   ],
   "excludedByRequester": [
     "jenkins-deployment",
@@ -328,5 +333,5 @@
     }
   ],
   "configHash": "c01aff1aced7f9f3957c622ca3870d094ec3f2c7744c2e05bf0086a6414e8270",
-  "contextBundleId": "context:d77c3217e67eececceaa2429abe1948f526c0103c8c5d1b5871254f348bbc4fa"
+  "contextBundleId": "context:3ce707afaad2e3a9def9e2a83f1d1280a2bafc018f0b7d22d03a1491d60714cf"
 }

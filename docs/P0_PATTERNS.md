@@ -20,14 +20,17 @@ Tabelas usam caption, cabeçalhos com scope e um wrapper focável com scroll hor
 
 | Padrão | Operação |
 |---|---|
-| dialog, drawer | Enter/Space no gatilho abre modal nativo; Tab fica no diálogo; Escape fecha; foco volta ao gatilho |
-| popover | Gatilho nativo `popovertarget`; Escape e light dismiss são do navegador; não confundir com modal |
-| dropdown-menu, mobile-navigation | Disclosure nativo `details/summary`; Enter/Space expande; Tab alcança as ações |
+| dialog, drawer | Enter/Space no gatilho abre modal nativo; Tab fica no diálogo; Escape fecha; cada diálogo restaura seu próprio gatilho, inclusive quando aninhado |
+| popover | Gatilho nativo `popovertarget`; Escape e light dismiss são do navegador; o exemplo `open` mantém o modo auto e um gatilho focável; não confundir com modal |
+| dropdown-menu, mobile-navigation | Disclosure nativo `details/summary`; Enter/Space expande; Tab alcança as ações; com `enhance`, Escape fecha o disclosure mais interno e foca seu summary |
+| tooltip | Foco/hover apresenta ajuda; Escape a dispensa antes do overlay que a contém; sair e voltar ao gatilho permite mostrá-la novamente |
 | tabs | Setas mudam seleção e foco; Home/End vão às extremidades; RTL inverte direção; painéis se associam aos tabs |
 | checkbox, radio-group, select | Teclado e semântica nativos, sem reimplementar os controles |
 | data-table | Tab chega ao wrapper para scroll local; células e cabeçalhos preservam leitura semântica |
 | navigation-menu, breadcrumb, pagination | Links com nomes acessíveis, indicação de página atual e alvos com altura de botão |
 | alert, toast, inline-error, progress | Regiões/status acessíveis e conteúdo textual, sem exigir foco para anúncio |
+
+Em overlays aninhados, uma tecla Escape fecha apenas a camada interna. Um popover ou diálogo dentro de um disclosure mantém o fechamento nativo antes do disclosure; um disclosure dentro desses overlays consome a primeira tecla e mantém o pai aberto. A restauração de foco por diálogo não compartilha um único gatilho global. Os testes incluem os dois sentidos desse aninhamento e diálogos dentro de diálogos.
 
 ## Estados, temas e robustez
 

@@ -66,7 +66,7 @@ export function renderPattern(id: string, state = "default"): string {
   if (state === "open")
     content = content
       .replace("<dialog ", "<dialog data-in-auto-modal ")
-      .replace(" popover>", ' popover="manual" data-in-auto-open>')
+      .replace(" popover>", " popover data-in-auto-open>")
       .replace("<details>", "<details open>");
   return (
     '<div class="in-composition" data-in-pattern="' +
