@@ -2,7 +2,7 @@ import { spawn } from "node:child_process";
 import { createRequire } from "node:module";
 import {
   parseGateOutput,
-  repairContext,
+  resolvedRepairContext,
   runRepairController,
   type RepairConsumer,
   type RepairTask,
@@ -84,5 +84,9 @@ export async function runPiRepair(
 }
 export async function piDiagnosticsOnly(root: string) {
   const { config } = await resolveConfig(root);
-  return repairContext(await createPiValidator(root)("full"), config);
+  return resolvedRepairContext(
+    root,
+    config,
+    await createPiValidator(root)("full"),
+  );
 }
