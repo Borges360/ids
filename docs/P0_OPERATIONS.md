@@ -76,6 +76,8 @@ Cada execução gera summary JSON, SARIF, JUnit, HTML, ambiente e cobertura em `
 npx inteiro benchmark run --observations experiment.json --json
 ```
 
+Na importação, `--dry-run` valida os dados e as evidências, calcula as métricas em memória e retorna `not_run` com `dryRun=true` (exit 7). Não cria nem sobrescreve relatórios. A API correspondente é `importExperiment(root, path, outDir, { dryRun: true })`.
+
 O import usa `experiment-input.schema.json`: exige SHA completo do commit, hashes de dataset/config/ambiente, booleanos reais e contadores não negativos (tokens inteiros seguros). `initialAccepted=true` exige aceitação final e uma única tentativa. Identidades de modelo/tarefa/amostra são deduplicadas sem ambiguidade por delimitadores. Evidência fornecida é relida e seus hashes e configuração são conferidos. Uma tarefa aceita precisa dos cinco gates completos (`context`, `task-context`, `static`, `browser`, `review`), cobertura estática integral em `enforce-all`, identidade da tarefa correspondente e capturas vinculadas aos artefatos. Um relatório só de lint ou sem execução de navegador não comprova aceitação.
 
 `outcome` distingue `accepted`, `model_failure`, `environment_error` e `incomplete`. Falhas sem classificação ficam em `unclassifiedFailures`; não são automaticamente atribuídas ao modelo. As taxas usam apenas tarefas aceitas ou classificadas como falha de modelo; sem esse denominador a taxa é `null`. Custos de todas as observações entram no custo total, inclusive infraestrutura, e valores desconhecidos permanecem `null`. JSON, CSV e HTML incluem essas contagens, medianas, P90 e intervalos de Wilson.

@@ -36,6 +36,68 @@ function invoke(args: string[]) {
   }
 }
 describe("P0 command transport", () => {
+  it("does not publish benchmark reports during a dry-run import", async () => {
+    const root = await mkdtemp(join(tmpdir(), "inteiro-benchmark-dry-"));
+    try {
+      await writeFile(
+        join(root, "inteiro.config.json"),
+        JSON.stringify({
+          ...DEFAULTS,
+          project: { ...DEFAULTS.project, framework: "html" },
+        }),
+      );
+      const input = {
+        schemaVersion: "1.0",
+        idsCommit: "a".repeat(40),
+        datasetHash: "b".repeat(64),
+        configHash: "c".repeat(64),
+        environmentHash: "d".repeat(64),
+        observations: [
+          {
+            caseId: "synthetic",
+            model: "synthetic-no-agent",
+            ablation: "context",
+            seed: 1,
+            accepted: false,
+            initialAccepted: false,
+            attempts: 1,
+            durationMs: 10,
+            cost: null,
+            tokensIn: null,
+            tokensOut: null,
+            humanMinutes: null,
+            outcome: "model_failure",
+          },
+        ],
+      };
+      await writeFile(join(root, "experiment.json"), JSON.stringify(input));
+      const before = await readdir(root, { recursive: true });
+      const result = invoke([
+        "benchmark",
+        "run",
+        "--observations",
+        "experiment.json",
+        "--dry-run",
+        "--cwd",
+        root,
+        "--json",
+      ]);
+      expect(result.code).toBe(7);
+      expect(JSON.parse(result.stdout)).toMatchObject({
+        status: "not_run",
+        dryRun: true,
+      });
+      expect(await readdir(root, { recursive: true })).toEqual(before);
+    } finally {
+      const target = await realpath(root);
+      if (
+        dirname(target) !== (await realpath(tmpdir())) ||
+        !basename(target).startsWith("inteiro-benchmark-dry-")
+      )
+        throw Error("Unsafe cleanup");
+      await rm(target, { recursive: true, force: true });
+    }
+  });
   it("preserves separate review and repair requests for the same evidence run", async () => {
     const root = await mkdtemp(join(tmpdir(), "inteiro-request-files-"));
     try {

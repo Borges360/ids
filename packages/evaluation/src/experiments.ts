@@ -170,6 +170,7 @@ export async function importExperiment(
   root: string,
   path: string,
   outDir: string,
+  options: { dryRun?: boolean } = {},
 ) {
   const input: RecordedExperimentInput = JSON.parse(await safeRead(root, path));
   if (!validateSchema("experiment-input", input).valid)
@@ -198,11 +199,13 @@ export async function importExperiment(
     datasetHash: input.datasetHash,
     configHash: input.configHash,
     environmentHash: input.environmentHash,
-    status: "passed",
+    status: options.dryRun ? ("not_run" as const) : ("passed" as const),
+    dryRun: options.dryRun === true,
     groups: summarizeExperiments(input.observations),
     observations: input.observations,
   };
   const dir = safePath(root, outDir);
+  if (options.dryRun) return result;
   await mkdir(dir, { recursive: true });
   await writeFile(
     safePath(root, outDir + "/results.json"),

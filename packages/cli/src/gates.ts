@@ -443,13 +443,13 @@ export async function gateCommand(
     if (flag(flags, "observations")) {
       const { importExperiment } =
         await import("@inteiro/evaluation/experiments");
-      return done(
-        await importExperiment(
-          root,
-          flag(flags, "observations"),
-          config.reporting.outDir + "/benchmark",
-        ),
+      const result = await importExperiment(
+        root,
+        flag(flags, "observations"),
+        config.reporting.outDir + "/benchmark",
+        { dryRun: bool(flags, "dry-run") },
       );
+      return done(result, result.status);
     }
     if (flag(flags, "suite") && flag(flags, "suite") !== config.benchmark.suite)
       throw new Error("Unknown benchmark suite");

@@ -1,5 +1,12 @@
 import { it, expect } from "vitest";
-import { mkdtemp, writeFile, rm, realpath, readFile } from "node:fs/promises";
+import {
+  mkdtemp,
+  writeFile,
+  rm,
+  realpath,
+  readFile,
+  readdir,
+} from "node:fs/promises";
 import { execFileSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { join, dirname, basename } from "node:path";
@@ -86,6 +93,34 @@ it("imports valid failed observations and keeps costs unknown", () =>
     const output = await importExperiment(root, "input.json", "out");
     expect(output.groups[0]!.acceptanceRate).toBe(0);
     expect(output.groups[0]!.totalCost).toBeNull();
+  }));
+it("keeps existing benchmark output unchanged during dry-run validation", () =>
+  fixture(async (root) => {
+    await writeFile(join(root, "input.json"), JSON.stringify(valid()));
+    await importExperiment(root, "input.json", "out");
+    const paths = await readdir(root, { recursive: true });
+    const before = await Promise.all(
+      ["results.json", "results.csv", "report.html"].map((path) =>
+        readFile(join(root, "out", path), "utf8"),
+      ),
+    );
+    const changed = valid();
+    changed.observations[0]!.model = "another synthetic label";
+    await writeFile(join(root, "input.json"), JSON.stringify(changed));
+    expect(
+      await importExperiment(root, "input.json", "out", { dryRun: true }),
+    ).toMatchObject({ status: "not_run", dryRun: true });
+    expect(await readdir(root, { recursive: true })).toEqual(paths);
+    expect(
+      await Promise.all(
+        ["results.json", "results.csv", "report.html"].map((path) =>
+          readFile(join(root, "out", path), "utf8"),
+        ),
+      ),
+    ).toEqual(before);
+    await expect(
+      importExperiment(root, "input.json", "../escape", { dryRun: true }),
+    ).rejects.toThrow();
   }));
 async function acceptedFixture(
   root: string,
