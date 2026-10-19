@@ -5,6 +5,12 @@ import { execFileSync } from "node:child_process";
 import { resolve, relative, isAbsolute, dirname } from "node:path";
 export { validateSchema } from "./validate.ts";
 import { validateSchema } from "./validate.ts";
+import {
+  applyOrganizationPolicies,
+  normalizeOrigin,
+  type OrganizationPolicy,
+} from "./policy.ts";
+export type { OrganizationPolicy } from "./policy.ts";
 
 export const STATES = [
   "not_run",
@@ -318,9 +324,12 @@ export function validateConfig(config: Config): void {
   if (!["http:", "https:"].includes(new URL(config.browser.baseURL).protocol))
     throw new Error("Invalid browser baseURL");
   const base = new URL(config.browser.baseURL);
+  if (base.username || base.password)
+    throw new Error("Browser baseURL must not contain credentials");
+  const permittedOrigins = config.browser.allowedOrigins.map(normalizeOrigin);
   if (
     !["localhost", "127.0.0.1", "[::1]"].includes(base.hostname) &&
-    !config.browser.allowedOrigins.includes(base.origin)
+    !permittedOrigins.includes(base.origin)
   )
     throw new Error("Nonlocal baseURL requires explicit origin allowlist");
   if (
@@ -339,7 +348,31 @@ export function validateConfig(config: Config): void {
     if (!Number.isInteger(config.repair[key]) || config.repair[key] < 0)
       throw new Error("Invalid repair limits");
   if (
+    !Number.isInteger(config.context.maxTokens) ||
+    config.context.maxTokens < 1
+  )
+    throw new Error("Invalid context token budget");
+  if (
+    !Number.isInteger(config.browser.timeoutMs) ||
+    config.browser.timeoutMs < 1
+  )
+    throw new Error("Invalid browser timeout");
+  if (
+    config.review.requiredFor.some(
+      (type) => !TASK_TYPES.includes(type as (typeof TASK_TYPES)[number]),
+    )
+  )
+    throw new Error("Invalid review task classification");
+  if (
+    config.reporting.formats.some(
+      (format) => !["json", "html", "sarif", "junit"].includes(format),
+    )
+  )
+    throw new Error("Invalid reporting format");
+  if (
     !config.browser.viewports.length ||
+    new Set(config.browser.viewports.map((viewport) => viewport.id)).size !==
+      config.browser.viewports.length ||
     config.browser.viewports.some(
       (v) =>
         !v.id ||
@@ -354,7 +387,7 @@ export function validateConfig(config: Config): void {
 export async function resolveConfig(
   cwd: string,
   flags: unknown = {},
-  organization: Partial<Config> = {},
+  organization: OrganizationPolicy = {},
 ) {
   let project: unknown = {};
   try {
@@ -366,9 +399,17 @@ export async function resolveConfig(
   }
   const config = merge(merge(DEFAULTS, project), flags);
   const beforePolicy = structuredClone(config);
+  if (
+    !organization ||
+    typeof organization !== "object" ||
+    Array.isArray(organization)
+  )
+    throw new Error("Invalid organization policy");
+  const policies: OrganizationPolicy[] = [
+    { schemaVersion: "1.0", ...organization },
+  ];
   try {
-    organization = merge(
-      organization,
+    policies.push(
       JSON.parse(
         await readFile(
           resolve(cwd, ".inteiro/organization-policy.json"),
@@ -384,41 +425,17 @@ export async function resolveConfig(
     throw new Error(
       "Invalid configuration: " + JSON.stringify(validation.errors),
     );
-  // Organization constraints can tighten, never loosen security through flags.
-  if (organization.review?.allowExternalProvider === false)
-    config.review.allowExternalProvider = false;
-  if (organization.review?.requiredFor)
-    config.review.requiredFor = [
-      ...new Set([
-        ...config.review.requiredFor,
-        ...organization.review.requiredFor,
-      ]),
-    ];
-  if (organization.design?.strictTokens === true)
-    config.design.strictTokens = true;
-  if (organization.context?.requireProof === true)
-    config.context.requireProof = true;
-  if (organization.visual?.maxDiffPixelRatio !== undefined)
-    config.visual.maxDiffPixelRatio = Math.min(
-      config.visual.maxDiffPixelRatio,
-      organization.visual.maxDiffPixelRatio,
-    );
-  if (organization.static?.forbiddenImports)
-    config.static.forbiddenImports = [
-      ...new Set([
-        ...config.static.forbiddenImports,
-        ...organization.static.forbiddenImports,
-      ]),
-    ];
-  if (organization.static?.forbiddenTokens)
-    config.static.forbiddenTokens = [
-      ...new Set([
-        ...config.static.forbiddenTokens,
-        ...organization.static.forbiddenTokens,
-      ]),
-    ];
-  if (organization.static?.adoption === "enforce-all")
-    config.static.adoption = "enforce-all";
+  for (const policy of policies) {
+    const result = validateSchema("organization-policy", policy);
+    if (!result.valid)
+      throw new Error(
+        "Invalid organization policy: " + JSON.stringify(result.errors),
+      );
+    validateConfig(merge(DEFAULTS, policy));
+  }
+  config.browser.allowedOrigins =
+    config.browser.allowedOrigins.map(normalizeOrigin);
+  applyOrganizationPolicies(config, policies);
   validateConfig(config);
   const root = safePath(cwd, config.project.root);
   const frameworkWasAuto = config.project.framework === "auto";
@@ -446,6 +463,10 @@ export async function resolveConfig(
     config.visual.baselineDir,
     config.reporting.outDir,
     config.browser.routesFile,
+    config.benchmark.dataset,
+    ...config.browser.routeRoots,
+    ...config.browser.fontAssets.map((asset) => asset.path),
+    ...(config.static.baseline ? [config.static.baseline] : []),
   ])
     safePath(root, path);
   const origins: Record<string, string> = {};
@@ -467,8 +488,8 @@ export async function resolveConfig(
       origins[prefix] =
         prefix === "project.framework" && frameworkWasAuto
           ? "detected:package.json"
-          : at(config, prefix) !== at(beforePolicy, prefix) &&
-              at(organization, prefix) !== undefined
+          : hash(at(config, prefix)) !== hash(at(beforePolicy, prefix)) &&
+              policies.some((policy) => at(policy, prefix) !== undefined)
             ? "organization-policy"
             : at(flags, prefix) !== undefined
               ? "cli-flag"
@@ -765,26 +786,44 @@ export async function reviewSourceHash(root: string): Promise<string> {
     .split("\0")
     .filter(
       (path) =>
-        /^(packages|tests|scripts|stories|examples|apps|docs)\//.test(path) ||
-        [
-          "package.json",
-          "package-lock.json",
-          "inteiro.config.json",
-          "inteiro.routes.json",
-        ].includes(path),
+        Boolean(path) &&
+        !/^(?:\.codex|\.cursor|\.pi)\//.test(path) &&
+        ![".ai-memory.toml", ".mcp.json"].includes(path) &&
+        !/(?:^|\/)\.env(?:\.|$)/.test(path),
     );
-  const files = [...new Set([...tracked, ...untracked])]
+  // Explicit source files remain bound even when a project's Git ignore hides them.
+  let declared: string[] = [];
+  try {
+    const task = JSON.parse(await safeRead(root, ".inteiro/task.json"));
+    if (Array.isArray(task.scope?.allowedFiles))
+      declared = task.scope.allowedFiles.filter(
+        (path: unknown): path is string => typeof path === "string",
+      );
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+  }
+  const files = [...new Set([...tracked, ...untracked, ...declared])]
     .filter(
       (path) =>
         !path.startsWith(".inteiro/reviews/") &&
         !path.startsWith(".inteiro/contexts/") &&
+        !path.startsWith(".inteiro/reports/") &&
+        !path.startsWith(".inteiro/migration-backups/") &&
+        !/^\.inteiro\/[^/]+\.(?:installed|integrity)\.json$/.test(path) &&
         !path.startsWith("tests/visual/__snapshots__/") &&
         path !== "release-evidence.json",
     )
     .sort();
   const entries = [];
   for (const path of files) {
-    const content = await readFile(safePath(root, path));
+    let content: Buffer;
+    try {
+      content = await readFile(safePath(root, path));
+    } catch (error) {
+      // Deleted files are absent from the working tree, including before staging.
+      if ((error as NodeJS.ErrnoException).code === "ENOENT") continue;
+      throw error;
+    }
     // Context receipts are operational metadata; the task's substantive plan remains bound.
     if (path === ".inteiro/task.json") {
       const {

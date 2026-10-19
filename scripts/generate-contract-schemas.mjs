@@ -19,6 +19,20 @@ const infer = (v) =>
       : { type: typeof v };
 const config = infer(DEFAULTS);
 config.properties.design.properties.contract.const = "@inteiro/design-system";
+config.properties.design.properties.theme.items.enum = [
+  "dark",
+  "light",
+  "contrast-dark",
+  "contrast-light",
+];
+config.properties.design.properties.density.items.enum = ["calm", "focus"];
+config.properties.review.properties.requiredFor.items.enum = [...TASK_TYPES];
+config.properties.reporting.properties.formats.items.enum = [
+  "json",
+  "html",
+  "sarif",
+  "junit",
+];
 config.properties.browser.properties.fontAssets = {
   type: "array",
   items: {
@@ -59,6 +73,53 @@ const base = {
 };
 const contracts = {
   config: config,
+  "organization-policy": {
+    type: "object",
+    additionalProperties: false,
+    required: ["schemaVersion"],
+    properties: {
+      $schema: { type: "string" },
+      schemaVersion: { const: "1.0" },
+      ...Object.fromEntries(
+        Object.entries({
+          design: ["strictTokens", "theme", "density"],
+          context: ["requireProof", "maxTokens"],
+          composition: ["allowed"],
+          static: [
+            "adoption",
+            "include",
+            "exclude",
+            "forbiddenImports",
+            "forbiddenTokens",
+          ],
+          browser: [
+            "allowedOrigins",
+            "requiredFonts",
+            "fontAssets",
+            "criticalRoutes",
+            "viewports",
+            "timeoutMs",
+          ],
+          visual: ["maxDiffPixelRatio", "colorThreshold", "fullPage"],
+          review: ["requiredFor", "allowExternalProvider"],
+          repair: ["maxAttempts", "maxChangedFiles", "maxDiffLines"],
+          reporting: ["formats"],
+        }).map(([section, keys]) => [
+          section,
+          {
+            type: "object",
+            additionalProperties: false,
+            properties: Object.fromEntries(
+              keys.map((key) => [
+                key,
+                structuredClone(config.properties[section].properties[key]),
+              ]),
+            ),
+          },
+        ]),
+      ),
+    },
+  },
   "migration-policy": {
     type: "object",
     additionalProperties: false,

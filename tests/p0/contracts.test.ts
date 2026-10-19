@@ -169,8 +169,8 @@ describe("P0 contracts and fail-closed state machine", () => {
           review: { allowExternalProvider: true },
         },
         {
-          visual: { ...DEFAULTS.visual, maxDiffPixelRatio: 0.001 },
-          review: { ...DEFAULTS.review, allowExternalProvider: false },
+          visual: { maxDiffPixelRatio: 0.001 },
+          review: { allowExternalProvider: false },
         },
       );
       expect(config.visual.maxDiffPixelRatio).toBe(0.001);

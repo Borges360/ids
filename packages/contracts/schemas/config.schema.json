@@ -37,13 +37,23 @@
         "theme": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "dark",
+              "light",
+              "contrast-dark",
+              "contrast-light"
+            ]
           }
         },
         "density": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "calm",
+              "focus"
+            ]
           }
         },
         "strictTokens": {
@@ -252,7 +262,17 @@
         "requiredFor": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "new-page",
+              "change-page",
+              "component",
+              "fix",
+              "refactor",
+              "new-pattern",
+              "significant-layout-change",
+              "identity-change"
+            ]
           }
         },
         "method": {
@@ -300,7 +320,13 @@
         "formats": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "json",
+              "html",
+              "sarif",
+              "junit"
+            ]
           }
         }
       }

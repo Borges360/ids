@@ -1,6 +1,7 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { spawnSync, execFileSync } from "node:child_process";
 import { resolve } from "node:path";
+import { reviewSourceHash } from "../packages/contracts/src/index.ts";
 const npmCli = process.env.npm_execpath;
 if (!npmCli) throw new Error("Run through npm run verify:p0");
 await mkdir("artifacts", { recursive: true });
@@ -27,7 +28,12 @@ const report = {
   sourceCommit: execFileSync("git", ["rev-parse", "HEAD"], {
     encoding: "utf8",
   }).trim(),
+  workingTreeDirty: Boolean(
+    execFileSync("git", ["status", "--porcelain"], { encoding: "utf8" }).trim(),
+  ),
   status: "running",
+  sourceHash: await reviewSourceHash(process.cwd()),
+  finishedSourceHash: null,
   checks: [],
 };
 for (const task of tasks) {
@@ -52,6 +58,16 @@ for (const task of tasks) {
     durationMs: performance.now() - started,
     log,
   });
+  const afterSourceHash = await reviewSourceHash(process.cwd());
+  if (afterSourceHash !== report.sourceHash) {
+    report.status = "error";
+    report.sourceDrift = {
+      stage: task.name,
+      expected: report.sourceHash,
+      actual: afterSourceHash,
+    };
+    break;
+  }
   await writeFile(
     "artifacts/p0-verification.json",
     JSON.stringify(report, null, 2),
@@ -61,6 +77,18 @@ for (const task of tasks) {
     report.status = "failed";
     break;
   }
+}
+report.finishedSourceHash = await reviewSourceHash(process.cwd());
+report.finishedCommit = execFileSync("git", ["rev-parse", "HEAD"], {
+  encoding: "utf8",
+}).trim();
+if (report.finishedSourceHash !== report.sourceHash) {
+  report.status = "error";
+  report.sourceDrift ??= {
+    stage: "final",
+    expected: report.sourceHash,
+    actual: report.finishedSourceHash,
+  };
 }
 report.finishedAt = new Date().toISOString();
 if (report.status === "running") report.status = "passed";
