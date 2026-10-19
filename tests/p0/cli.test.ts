@@ -1,6 +1,13 @@
 import { describe, it, expect } from "vitest";
 import { execFileSync } from "node:child_process";
-import { mkdtemp, writeFile, readdir, rm, mkdir } from "node:fs/promises";
+import {
+  mkdtemp,
+  writeFile,
+  readFile,
+  readdir,
+  rm,
+  mkdir,
+} from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -21,6 +28,34 @@ function invoke(args: string[]) {
   }
 }
 describe("P0 command transport", () => {
+  it("preserves existing integration styles and custom instructions with init --yes", async () => {
+    const root = await mkdtemp(join(tmpdir(), "inteiro-legacy-init-"));
+    try {
+      const css =
+        "/* consumer 1.1.0 customization */\n.legacy { color: var(--in-color-text-primary); }\n";
+      const instructions =
+        "# Consumer instructions\nKeep the business rules.\n";
+      const configuration = JSON.stringify({
+        ...DEFAULTS,
+        project: { ...DEFAULTS.project, id: "legacy-consumer" },
+      });
+      await writeFile(join(root, "inteiro.css"), css);
+      await writeFile(join(root, "AGENTS.md"), instructions);
+      await writeFile(join(root, "inteiro.config.json"), configuration);
+      expect(invoke(["init", "--cwd", root, "--yes", "--json"]).code).toBe(0);
+      expect(await readFile(join(root, "inteiro.css"), "utf8")).toBe(css);
+      expect(await readFile(join(root, "inteiro.config.json"), "utf8")).toBe(
+        configuration,
+      );
+      const after = await readFile(join(root, "AGENTS.md"), "utf8");
+      expect(after).toContain(instructions.trim());
+      expect(after.match(/<!-- inteiro:start -->/g)).toHaveLength(1);
+      expect(invoke(["init", "--cwd", root, "--yes", "--json"]).code).toBe(0);
+      expect(await readFile(join(root, "AGENTS.md"), "utf8")).toBe(after);
+    } finally {
+      await rm(root, { recursive: true, force: true });
+    }
+  });
   it("does not execute when imported by a similarly named consumer script", () => {
     const script =
       "process.argv[1]='consumer-cli.js';await import(" +

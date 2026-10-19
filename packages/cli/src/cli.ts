@@ -95,7 +95,11 @@ async function cmdInit(
       `${await writeManaged(configPath, JSON.stringify({ ...DEFAULTS, project: { ...DEFAULTS.project, id: String(pkg.name ?? "app"), framework } }, null, 2) + "\n", { dryRun, yes: false })} ${configPath}`,
     );
   const cssPath = join(cwd, "inteiro.css");
-  const status = await writeManaged(cssPath, cssSnippet, { dryRun, yes });
+  // Confirmation permits creating integration files, not replacing consumer styles.
+  const status = await writeManaged(cssPath, cssSnippet, {
+    dryRun,
+    yes: false,
+  });
   actions.push(`${status} ${cssPath}`);
   const marker = "<!-- inteiro:start -->";
   const agentsPath = join(cwd, "AGENTS.md");
