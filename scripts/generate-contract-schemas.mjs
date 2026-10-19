@@ -13,6 +13,18 @@ const infer = (v) =>
         }
       : { type: typeof v };
 const config = infer(DEFAULTS);
+config.properties.browser.properties.fontAssets = {
+  type: "array",
+  items: {
+    type: "object",
+    required: ["path", "sha256"],
+    additionalProperties: false,
+    properties: {
+      path: { type: "string" },
+      sha256: { type: "string", pattern: "^[a-f0-9]{64}$" },
+    },
+  },
+};
 config.required = ["schemaVersion", "project"];
 config.properties.schemaVersion.const = "1.0";
 config.properties.project.required = ["id"];

@@ -7,6 +7,7 @@ export function repairContext(
     changedFiles: string[];
     diffLines: number;
   }[] = [],
+  task: { allowedFiles?: string[]; contextBundleId?: string } = {},
 ) {
   const findings = report.findings
     .filter((f) => ["error", "blocker"].includes(f.severity))
@@ -18,7 +19,7 @@ export function repairContext(
     .slice(0, 12);
   const signature = hash(findings.map((f) => f.fingerprint).sort());
   const attempt = history.length;
-  const allowedFiles = [
+  const allowedFiles = task.allowedFiles ?? [
     ...new Set(findings.flatMap((f) => (f.file ? [f.file] : []))),
   ];
   const forbidden = history.some(
@@ -44,6 +45,7 @@ export function repairContext(
   return {
     schemaVersion: "1.0",
     runId: report.runId,
+    contextBundleId: task.contextBundleId,
     configHash: report.configHash,
     status,
     signature,
@@ -57,9 +59,7 @@ export function repairContext(
           ? "attempt-limit"
           : report.status,
     scope: {
-      allowedFiles: [
-        ...new Set(findings.flatMap((f) => (f.file ? [f.file] : []))),
-      ],
+      allowedFiles,
       maxChangedFiles: config.repair.maxChangedFiles,
       maxDiffLines: config.repair.maxDiffLines,
     },

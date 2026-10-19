@@ -2,9 +2,57 @@ import { describe, it, expect } from "vitest";
 import { createRequire } from "node:module";
 import { DEFAULTS } from "@inteiro/contracts";
 import { validateRoutes, comparePng, type Route } from "@inteiro/visual";
+import {
+  validateResponseFixtures,
+  matchesResponse,
+} from "../../packages/visual/src/actions.ts";
 const require = createRequire(import.meta.url),
   { PNG } = require("pngjs");
 describe("P0 deterministic browser contracts", () => {
+  it("validates response fixture boundaries, aliases, methods and status", () => {
+    const base = "http://127.0.0.1:4173";
+    expect(
+      validateResponseFixtures(
+        [{ url: "/api", method: "POST", alias: "state", body: {} }],
+        base,
+      ),
+    ).toEqual([]);
+    for (const value of [
+      null,
+      {},
+      [{ url: "//evil.invalid", body: {} }],
+      [{ url: "/\\evil.invalid", body: {} }],
+      [{ url: "/api", method: 42 }],
+      [{ url: "/api", method: "SHELL" }],
+      [{ url: "/api", status: 999 }],
+      [
+        { url: "/api", alias: "a" },
+        { url: "/b", alias: "a" },
+      ],
+      [{ url: "/api" }, { url: "/api" }],
+    ])
+      expect(
+        validateResponseFixtures(value as never, base).length,
+      ).toBeGreaterThan(0);
+    const fixture = { url: "/api?q=one", method: "POST", body: {} };
+    expect(matchesResponse(base + "/api?q=one", "POST", fixture, base)).toBe(
+      true,
+    );
+    expect(matchesResponse(base + "/api?q=two", "POST", fixture, base)).toBe(
+      false,
+    );
+    expect(matchesResponse(base + "/api?q=one", "GET", fixture, base)).toBe(
+      false,
+    );
+    expect(
+      matchesResponse(
+        "http://external.invalid/api?q=one",
+        "POST",
+        fixture,
+        base,
+      ),
+    ).toBe(false);
+  });
   const route: Route = {
     id: "test",
     path: "/",

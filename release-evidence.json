@@ -1,0 +1,654 @@
+{
+  "schemaVersion": "1.0",
+  "version": "1.2.0",
+  "sourceCommit": "860a23845833bf567e10e22c85a5417444438925",
+  "sourceHash": "c5a19a644e2bd7e11e4c48c42919a712919e9d20214127b41edee27c86e9810d",
+  "configHash": "73321ceb9109b83c59e32ee0aae79ce253e52876053200a9287d311ab7d26784",
+  "policyHash": "",
+  "scopeExclusions": [
+    "Deploy Jenkins: retirado pelo solicitante.",
+    "Experimento real com dois perfis de modelo: excluído pelo solicitante.",
+    "Smoke com agentes reais Pi/Codex: excluído pelo solicitante; adapters e CLI offline permanecem no escopo."
+  ],
+  "requirements": [
+    {
+      "id": "E00",
+      "status": "needs_review",
+      "reason": "Contratos, precedência, estados e relatórios implementados; aceite transversal ainda em auditoria.",
+      "evidence": [
+        {
+          "path": "tests/p0/contracts.test.ts",
+          "sha256": "60735b44741a45336781eb363587fa8e4208d1f35707cbf2bce8df93c71202db"
+        }
+      ]
+    },
+    {
+      "id": "E01",
+      "status": "blocked",
+      "reason": "Adapters de arquivos e orçamento de contexto verificados; smoke de agentes reais excluído pelo solicitante. Pendência confirmada: vincular o manifesto de tarefa ao bundle de contexto efetivamente resolvido; a prova atual cobre instalação/integridade, não esse vínculo.",
+      "evidence": [
+        {
+          "path": "tests/p0/context.test.ts",
+          "sha256": "9e77ddfe572acba5c276bcc20a82b6cd32c828726b3114f26c83ce3f568d08f7"
+        }
+      ]
+    },
+    {
+      "id": "E02",
+      "status": "needs_review",
+      "reason": "41 padrões, estados e comportamento implementados; aprovação visual de produto pendente.",
+      "evidence": [
+        {
+          "path": "tests/p0/composition.test.ts",
+          "sha256": "192f5b8079bfd7749545c74295f389e11e16db92bd57431b3b92acb88e7e1360"
+        }
+      ]
+    },
+    {
+      "id": "E03",
+      "status": "needs_review",
+      "reason": "Corpus AST por regra e framework implementado; validação de cobertura completa ainda em auditoria.",
+      "evidence": [
+        {
+          "path": "tests/p0/static.test.ts",
+          "sha256": "cabfc3f2588f2a264977071fcaad9306e9da826ac278a008836de6eeccfbde2a"
+        }
+      ]
+    },
+    {
+      "id": "E04",
+      "status": "needs_review",
+      "reason": "Runner real, ações, layout/a11y e comparação implementados; goldens de produto não aprovadas.",
+      "evidence": [
+        {
+          "path": "tests/p0/browser-runner.test.ts",
+          "sha256": "b5b002bc4f0f5c26a3ea5043240976a4d09dc55ccb3fe6dd830624b4760999e4"
+        }
+      ]
+    },
+    {
+      "id": "E05",
+      "status": "needs_review",
+      "reason": "Assinatura e cadeia de baselines verificadas em fixtures sintéticas; revisão de produto pendente.",
+      "evidence": [
+        {
+          "path": "tests/p0/governance.test.ts",
+          "sha256": "9e0327fced89144da9fcbe8881a4cb3d9133b8fcf7f4691a37f3977cf5854654"
+        }
+      ]
+    },
+    {
+      "id": "E06",
+      "status": "needs_review",
+      "reason": "Catálogo e 82 stories executáveis; aceite visual do mantenedor pendente.",
+      "evidence": [
+        {
+          "path": "packages/composition/story-matrix.json",
+          "sha256": "1c9e313245b5447f3ffac8570f170a6514a8ffaae13e9ee27cd140e4bf3bf082"
+        }
+      ]
+    },
+    {
+      "id": "E07",
+      "status": "needs_review",
+      "reason": "Envelope e controlador com tentativas, escopo e rollback testados; integração Pi usa CLI JSON sem execução de agentes.",
+      "evidence": [
+        {
+          "path": "tests/p0/repair-controller.test.ts",
+          "sha256": "e0116f7eb5bad2729f9620e6a6de5df570353b72b344e4a2cb3115ae0b472336"
+        }
+      ]
+    },
+    {
+      "id": "E08",
+      "status": "blocked",
+      "reason": "Rubrica e decisões assinadas implementadas; decisão qualitativa de produto pendente. Pendência confirmada: dataset de pares com referências humanas e métricas de concordância do revisor ainda não disponíveis.",
+      "evidence": [
+        {
+          "path": "tests/p0/review.test.ts",
+          "sha256": "d357429d797ed3d35fd596d6a29047b5ca7ba92ce43de802deb778eac7039c61"
+        }
+      ]
+    },
+    {
+      "id": "E09",
+      "status": "blocked",
+      "reason": "Dataset, smoke determinístico e métricas implementados; auditoria de protocolo pendente; experimento real excluído pelo solicitante. Pendências confirmadas: comparação de proveniência/versões entre experimentos e protocolo de execução completo ainda exigem implementação e auditoria; executar modelos reais foi excluído pelo solicitante.",
+      "evidence": [
+        {
+          "path": "tests/p0/evaluation.test.ts",
+          "sha256": "c71c98ff569ad8fab36e2269e53511b78acdc757fe6ab25eb689ad04c54e1a46"
+        }
+      ]
+    },
+    {
+      "id": "E10",
+      "status": "blocked",
+      "reason": "CI, tarballs, offline e documentação implementados; aceite de release ainda incompleto; deploy Jenkins excluído pelo solicitante. Pendências confirmadas: init --yes ainda pode substituir inteiro.css customizado; migrate ainda retorna sugestões sem diff/backup/checksum reexecutável.",
+      "evidence": [
+        {
+          "path": "docs/P0_OPERATIONS.md",
+          "sha256": "6c14f9615701e46981f0b09326a502a1b8883b4642ce529c7911f19b162ce582"
+        }
+      ]
+    },
+    {
+      "id": "WP-01",
+      "status": "needs_review",
+      "reason": "Inventário de pacotes/APIs reais do 1.1.0 + ADRs: implementação disponível; critério de saída a confirmar na auditoria final (Paths atuais mapeados, divergências registradas).",
+      "evidence": [
+        {
+          "path": "docs/P0_IMPLEMENTATION.md",
+          "sha256": "0e1423e6b4f4c832b87a3431ee45cfe988bf6b067f78f3bb62c2b2a91110248b"
+        }
+      ]
+    },
+    {
+      "id": "WP-02",
+      "status": "needs_review",
+      "reason": "`@inteiro/contracts`, schemas e estados: implementação disponível; critério de saída a confirmar na auditoria final (Validação de exemplos válidos/inválidos).",
+      "evidence": [
+        {
+          "path": "tests/p0/contracts.test.ts",
+          "sha256": "60735b44741a45336781eb363587fa8e4208d1f35707cbf2bce8df93c71202db"
+        }
+      ]
+    },
+    {
+      "id": "WP-03",
+      "status": "needs_review",
+      "reason": "`inteiro.config.json` + resolver de precedência: implementação disponível; critério de saída a confirmar na auditoria final (Tests de precedence, paths e overrides).",
+      "evidence": [
+        {
+          "path": "tests/p0/contracts.test.ts",
+          "sha256": "60735b44741a45336781eb363587fa8e4208d1f35707cbf2bce8df93c71202db"
+        }
+      ]
+    },
+    {
+      "id": "WP-04",
+      "status": "needs_review",
+      "reason": "Context resolver + bundle compacto: implementação disponível; critério de saída a confirmar na auditoria final (Proveniência e orçamento auditáveis).",
+      "evidence": [
+        {
+          "path": "tests/p0/context.test.ts",
+          "sha256": "9e77ddfe572acba5c276bcc20a82b6cd32c828726b3114f26c83ce3f568d08f7"
+        }
+      ]
+    },
+    {
+      "id": "WP-05",
+      "status": "needs_review",
+      "reason": "Doctor/adapter Pi e smoke tests dos demais: implementação disponível; critério de saída a confirmar na auditoria final (Instalação idempotente e detecção de conflitos).",
+      "evidence": [
+        {
+          "path": "tests/p0/context.test.ts",
+          "sha256": "9e77ddfe572acba5c276bcc20a82b6cd32c828726b3114f26c83ce3f568d08f7"
+        }
+      ]
+    },
+    {
+      "id": "WP-06",
+      "status": "needs_review",
+      "reason": "Manifesto de padrões + Composition Kit básico: implementação disponível; critério de saída a confirmar na auditoria final (API documentada, sem React obrigatório).",
+      "evidence": [
+        {
+          "path": "tests/p0/composition.test.ts",
+          "sha256": "192f5b8079bfd7749545c74295f389e11e16db92bd57431b3b92acb88e7e1360"
+        }
+      ]
+    },
+    {
+      "id": "WP-07",
+      "status": "needs_review",
+      "reason": "Padrões estrutura/navegação: implementação disponível; critério de saída a confirmar na auditoria final (A11y, mobile, states e stories).",
+      "evidence": [
+        {
+          "path": "tests/browser/composition.spec.ts",
+          "sha256": "00602481b89846d5a0694a92ab1b847d43fd8b66db2b556c254fb17c810829f9"
+        }
+      ]
+    },
+    {
+      "id": "WP-08",
+      "status": "needs_review",
+      "reason": "Padrões forms/feedback/overlays: implementação disponível; critério de saída a confirmar na auditoria final (A11y, teclado, estados e stories).",
+      "evidence": [
+        {
+          "path": "tests/browser/composition.spec.ts",
+          "sha256": "00602481b89846d5a0694a92ab1b847d43fd8b66db2b556c254fb17c810829f9"
+        }
+      ]
+    },
+    {
+      "id": "WP-09",
+      "status": "needs_review",
+      "reason": "Padrões dados/dashboard/editorial: implementação disponível; critério de saída a confirmar na auditoria final (Overflow, densidade e dados longos).",
+      "evidence": [
+        {
+          "path": "tests/browser/composition.spec.ts",
+          "sha256": "00602481b89846d5a0694a92ab1b847d43fd8b66db2b556c254fb17c810829f9"
+        }
+      ]
+    },
+    {
+      "id": "WP-10",
+      "status": "needs_review",
+      "reason": "Static Guard JS/TS/CSS: implementação disponível; critério de saída a confirmar na auditoria final (Rules por AST + corpus positivo/negativo).",
+      "evidence": [
+        {
+          "path": "tests/p0/static.test.ts",
+          "sha256": "cabfc3f2588f2a264977071fcaad9306e9da826ac278a008836de6eeccfbde2a"
+        }
+      ]
+    },
+    {
+      "id": "WP-11",
+      "status": "needs_review",
+      "reason": "Adaptadores de lint Vue/Svelte/HTML: implementação disponível; critério de saída a confirmar na auditoria final (Sem silêncio em sintaxe não suportada).",
+      "evidence": [
+        {
+          "path": "tests/p0/static.test.ts",
+          "sha256": "cabfc3f2588f2a264977071fcaad9306e9da826ac278a008836de6eeccfbde2a"
+        }
+      ]
+    },
+    {
+      "id": "WP-12",
+      "status": "needs_review",
+      "reason": "Browser runner, lifecycle e fixtures: implementação disponível; critério de saída a confirmar na auditoria final (Isolamento, readiness e JSON status).",
+      "evidence": [
+        {
+          "path": "tests/p0/browser-runner.test.ts",
+          "sha256": "b5b002bc4f0f5c26a3ea5043240976a4d09dc55ccb3fe6dd830624b4760999e4"
+        }
+      ]
+    },
+    {
+      "id": "WP-13",
+      "status": "needs_review",
+      "reason": "Checks DOM, flow, a11y, console: implementação disponível; critério de saída a confirmar na auditoria final (Casos negativos detectados e evidências).",
+      "evidence": [
+        {
+          "path": "tests/browser/composition.spec.ts",
+          "sha256": "00602481b89846d5a0694a92ab1b847d43fd8b66db2b556c254fb17c810829f9"
+        }
+      ]
+    },
+    {
+      "id": "WP-14",
+      "status": "needs_review",
+      "reason": "Screenshot comparator determinístico: implementação disponível; critério de saída a confirmar na auditoria final (Diff reproduzível em env fixo).",
+      "evidence": [
+        {
+          "path": "tests/p0/visual.test.ts",
+          "sha256": "2a79a5264395a187cdfba65b9c990716c7cf0b1065ca3a2dde05b618c15ac529"
+        }
+      ]
+    },
+    {
+      "id": "WP-15",
+      "status": "needs_review",
+      "reason": "Baseline Registry + aprovação: implementação disponível; critério de saída a confirmar na auditoria final (Sem autoapprove e hashes auditáveis).",
+      "evidence": [
+        {
+          "path": "tests/p0/governance.test.ts",
+          "sha256": "9e0327fced89144da9fcbe8881a4cb3d9133b8fcf7f4691a37f3977cf5854654"
+        }
+      ]
+    },
+    {
+      "id": "WP-16",
+      "status": "needs_review",
+      "reason": "Catálogo Storybook e índice JSON: implementação disponível; critério de saída a confirmar na auditoria final (100% padrões P0 documentados).",
+      "evidence": [
+        {
+          "path": "packages/composition/story-matrix.json",
+          "sha256": "1c9e313245b5447f3ffac8570f170a6514a8ffaae13e9ee27cd140e4bf3bf082"
+        }
+      ]
+    },
+    {
+      "id": "WP-17",
+      "status": "needs_review",
+      "reason": "Evidence Bundle JSON/SARIF/JUnit/HTML: implementação disponível; critério de saída a confirmar na auditoria final (Consumer parseável e report consistente).",
+      "evidence": [
+        {
+          "path": "tests/p0/contracts.test.ts",
+          "sha256": "60735b44741a45336781eb363587fa8e4208d1f35707cbf2bce8df93c71202db"
+        }
+      ]
+    },
+    {
+      "id": "WP-18",
+      "status": "needs_review",
+      "reason": "Repair Envelope e controller de tentativas: implementação disponível; critério de saída a confirmar na auditoria final (Sem loops/alterações indevidas).",
+      "evidence": [
+        {
+          "path": "tests/p0/repair-controller.test.ts",
+          "sha256": "e0116f7eb5bad2729f9620e6a6de5df570353b72b344e4a2cb3115ae0b472336"
+        }
+      ]
+    },
+    {
+      "id": "WP-19",
+      "status": "needs_review",
+      "reason": "Human/Multimodal Review Gate: implementação disponível; critério de saída a confirmar na auditoria final (Rubrica, política e controle de egress).",
+      "evidence": [
+        {
+          "path": "tests/p0/review.test.ts",
+          "sha256": "d357429d797ed3d35fd596d6a29047b5ca7ba92ce43de802deb778eac7039c61"
+        }
+      ]
+    },
+    {
+      "id": "WP-20",
+      "status": "needs_review",
+      "reason": "Dataset de benchmark + runner: implementação disponível; critério de saída a confirmar na auditoria final (Ablações, métricas e resultados).",
+      "evidence": [
+        {
+          "path": "tests/p0/evaluation.test.ts",
+          "sha256": "c71c98ff569ad8fab36e2269e53511b78acdc757fe6ab25eb689ad04c54e1a46"
+        }
+      ]
+    },
+    {
+      "id": "WP-21",
+      "status": "needs_review",
+      "reason": "Integração CI e profiles: implementação disponível; critério de saída a confirmar na auditoria final (PR/main/nightly/release funcionais).",
+      "evidence": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "sha256": "3b0b0f40d29e70bfaea6b70720628e3c0f7b9023058bf921cd00ab648598cb04"
+        }
+      ]
+    },
+    {
+      "id": "WP-22",
+      "status": "needs_review",
+      "reason": "Migração 1.1.0 + guias por framework: implementação disponível; critério de saída a confirmar na auditoria final (App legado migra sem regressão).",
+      "evidence": [
+        {
+          "path": "docs/P0_OPERATIONS.md",
+          "sha256": "6c14f9615701e46981f0b09326a502a1b8883b4642ce529c7911f19b162ce582"
+        }
+      ]
+    },
+    {
+      "id": "WP-23",
+      "status": "needs_review",
+      "reason": "Hardening, security checks, performance: implementação disponível; critério de saída a confirmar na auditoria final (DoD-01 a DoD-12 e release readiness).",
+      "evidence": [
+        {
+          "path": "tests/p0/release.test.ts",
+          "sha256": "d755c4df99cd56692af1766414e3b8ed00282afed8f7cc67a9dbe45aefc17018"
+        }
+      ]
+    },
+    {
+      "id": "DoD-01",
+      "status": "needs_review",
+      "reason": "Os 11 épicos E00–E10 atingem suas condições de aceite: evidência técnica referenciada; aceite final não certificado.",
+      "evidence": [
+        {
+          "path": "tests/p0/release.test.ts",
+          "sha256": "d755c4df99cd56692af1766414e3b8ed00282afed8f7cc67a9dbe45aefc17018"
+        }
+      ]
+    },
+    {
+      "id": "DoD-02",
+      "status": "needs_review",
+      "reason": "`npm run ci` legado continua passando, com novos checks compatíveis: evidência técnica referenciada; aceite final não certificado.",
+      "evidence": [
+        {
+          "path": "artifacts/p0-verification.json",
+          "sha256": "67efeb9bc07e4fd3a3bb52ca304055e9194f97dfd10a1da9b6d388077bf13643"
+        }
+      ]
+    },
+    {
+      "id": "DoD-03",
+      "status": "needs_review",
+      "reason": "Projetos HTML, React/Next, Vue e Svelte adotam e validam o núcleo: evidência técnica referenciada; aceite final não certificado.",
+      "evidence": [
+        {
+          "path": "artifacts/p0-verification.json",
+          "sha256": "67efeb9bc07e4fd3a3bb52ca304055e9194f97dfd10a1da9b6d388077bf13643"
+        }
+      ]
+    },
+    {
+      "id": "DoD-04",
+      "status": "needs_review",
+      "reason": "CLI e MCP continuam funcionais offline após instalação: evidência técnica referenciada; aceite final não certificado.",
+      "evidence": [
+        {
+          "path": "artifacts/p0-verification.json",
+          "sha256": "67efeb9bc07e4fd3a3bb52ca304055e9194f97dfd10a1da9b6d388077bf13643"
+        }
+      ]
+    },
+    {
+      "id": "DoD-05",
+      "status": "needs_review",
+      "reason": "Todas as regras detectáveis possuem testes positivo/negativo: evidência técnica referenciada; aceite final não certificado.",
+      "evidence": [
+        {
+          "path": "tests/p0/static.test.ts",
+          "sha256": "cabfc3f2588f2a264977071fcaad9306e9da826ac278a008836de6eeccfbde2a"
+        }
+      ]
+    },
+    {
+      "id": "DoD-06",
+      "status": "needs_review",
+      "reason": "Nenhuma baseline é promovida pelo agente sem aprovação: evidência técnica referenciada; aceite final não certificado.",
+      "evidence": [
+        {
+          "path": "tests/p0/governance.test.ts",
+          "sha256": "9e0327fced89144da9fcbe8881a4cb3d9133b8fcf7f4691a37f3977cf5854654"
+        }
+      ]
+    },
+    {
+      "id": "DoD-07",
+      "status": "needs_review",
+      "reason": "Toda UI crítica alterada possui comparação visual + checks DOM/a11y: evidência técnica referenciada; aceite final não certificado.",
+      "evidence": [
+        {
+          "path": "inteiro.routes.json",
+          "sha256": "eb1fea90ea5aa0897b47fbc5151bb5a5f34866e390e5287c73893b549b2a278e"
+        }
+      ]
+    },
+    {
+      "id": "DoD-08",
+      "status": "needs_review",
+      "reason": "Nenhum `blocked`, `error`, `not_run` ou `needs_review` vira `passed`: evidência técnica referenciada; aceite final não certificado.",
+      "evidence": [
+        {
+          "path": "tests/p0/contracts.test.ts",
+          "sha256": "60735b44741a45336781eb363587fa8e4208d1f35707cbf2bce8df93c71202db"
+        }
+      ]
+    },
+    {
+      "id": "DoD-09",
+      "status": "needs_review",
+      "reason": "Benchmarks reproduzíveis medem custo por tarefa aceita: evidência técnica referenciada; aceite final não certificado.",
+      "evidence": [
+        {
+          "path": "tests/p0/evaluation.test.ts",
+          "sha256": "c71c98ff569ad8fab36e2269e53511b78acdc757fe6ab25eb689ad04c54e1a46"
+        }
+      ]
+    },
+    {
+      "id": "DoD-10",
+      "status": "needs_review",
+      "reason": "Artefatos não contêm secrets/PII de fixtures de teste: evidência técnica referenciada; aceite final não certificado.",
+      "evidence": [
+        {
+          "path": "tests/p0/browser-runner.test.ts",
+          "sha256": "b5b002bc4f0f5c26a3ea5043240976a4d09dc55ccb3fe6dd830624b4760999e4"
+        }
+      ]
+    },
+    {
+      "id": "DoD-11",
+      "status": "needs_review",
+      "reason": "Docs e exemplos são reexecutáveis da versão publicada: evidência técnica referenciada; aceite final não certificado.",
+      "evidence": [
+        {
+          "path": "scripts/smoke-offline.mjs",
+          "sha256": "b55e3c76daa83c129998ea3a58cdf6cb530307aa7c92b92a75028686e7e9815e"
+        }
+      ]
+    },
+    {
+      "id": "DoD-12",
+      "status": "needs_review",
+      "reason": "Adoção de projeto 1.1.0 não exige reescrita do frontend: evidência técnica referenciada; aceite final não certificado.",
+      "evidence": [
+        {
+          "path": "docs/P0_IMPLEMENTATION.md",
+          "sha256": "0e1423e6b4f4c832b87a3431ee45cfe988bf6b067f78f3bb62c2b2a91110248b"
+        }
+      ]
+    },
+    {
+      "id": "SCN-01",
+      "status": "needs_review",
+      "reason": "Drift de token detectado: cenário coberto por implementação/teste; auditoria de aceite pendente.",
+      "evidence": [
+        {
+          "path": "tests/p0/static.test.ts",
+          "sha256": "cabfc3f2588f2a264977071fcaad9306e9da826ac278a008836de6eeccfbde2a"
+        }
+      ]
+    },
+    {
+      "id": "SCN-02",
+      "status": "needs_review",
+      "reason": "Overflow em mobile detectado: cenário coberto por implementação/teste; auditoria de aceite pendente.",
+      "evidence": [
+        {
+          "path": "tests/p0/browser-runner.test.ts",
+          "sha256": "b5b002bc4f0f5c26a3ea5043240976a4d09dc55ccb3fe6dd830624b4760999e4"
+        }
+      ]
+    },
+    {
+      "id": "SCN-03",
+      "status": "needs_review",
+      "reason": "Baseline inexistente: cenário coberto por implementação/teste; auditoria de aceite pendente.",
+      "evidence": [
+        {
+          "path": "tests/p0/browser-runner.test.ts",
+          "sha256": "b5b002bc4f0f5c26a3ea5043240976a4d09dc55ccb3fe6dd830624b4760999e4"
+        }
+      ]
+    },
+    {
+      "id": "SCN-04",
+      "status": "needs_review",
+      "reason": "Mudança legítima aprovada: cenário coberto por implementação/teste; auditoria de aceite pendente.",
+      "evidence": [
+        {
+          "path": "tests/p0/browser-runner.test.ts",
+          "sha256": "b5b002bc4f0f5c26a3ea5043240976a4d09dc55ccb3fe6dd830624b4760999e4"
+        }
+      ]
+    },
+    {
+      "id": "SCN-05",
+      "status": "needs_review",
+      "reason": "Instrução ignorada pelo modelo: cenário coberto por implementação/teste; auditoria de aceite pendente.",
+      "evidence": [
+        {
+          "path": "tests/p0/context.test.ts",
+          "sha256": "9e77ddfe572acba5c276bcc20a82b6cd32c828726b3114f26c83ce3f568d08f7"
+        }
+      ]
+    },
+    {
+      "id": "SCN-06",
+      "status": "needs_review",
+      "reason": "Falha de browser: cenário coberto por implementação/teste; auditoria de aceite pendente.",
+      "evidence": [
+        {
+          "path": "tests/p0/browser-runner.test.ts",
+          "sha256": "b5b002bc4f0f5c26a3ea5043240976a4d09dc55ccb3fe6dd830624b4760999e4"
+        }
+      ]
+    },
+    {
+      "id": "SCN-07",
+      "status": "needs_review",
+      "reason": "Loop guard: cenário coberto por implementação/teste; auditoria de aceite pendente.",
+      "evidence": [
+        {
+          "path": "tests/p0/repair-controller.test.ts",
+          "sha256": "e0116f7eb5bad2729f9620e6a6de5df570353b72b344e4a2cb3115ae0b472336"
+        }
+      ]
+    },
+    {
+      "id": "SCN-08",
+      "status": "needs_review",
+      "reason": "UI de dados sensíveis: cenário coberto por implementação/teste; auditoria de aceite pendente.",
+      "evidence": [
+        {
+          "path": "tests/p0/review.test.ts",
+          "sha256": "d357429d797ed3d35fd596d6a29047b5ca7ba92ce43de802deb778eac7039c61"
+        }
+      ]
+    },
+    {
+      "id": "SCN-09",
+      "status": "needs_review",
+      "reason": "Componente inexistente: cenário coberto por implementação/teste; auditoria de aceite pendente.",
+      "evidence": [
+        {
+          "path": "tests/p0/cli.test.ts",
+          "sha256": "7cb250edc76c17792c9cc870b84ce201fb2f02808099053d5a2f345568e791db"
+        }
+      ]
+    },
+    {
+      "id": "SCN-10",
+      "status": "needs_review",
+      "reason": "Monorepo: cenário coberto por implementação/teste; auditoria de aceite pendente.",
+      "evidence": [
+        {
+          "path": "tests/p0/context.test.ts",
+          "sha256": "9e77ddfe572acba5c276bcc20a82b6cd32c828726b3114f26c83ce3f568d08f7"
+        }
+      ]
+    },
+    {
+      "id": "SCN-11",
+      "status": "needs_review",
+      "reason": "Layout novo com UI aparentemente válida: cenário coberto por implementação/teste; auditoria de aceite pendente.",
+      "evidence": [
+        {
+          "path": "tests/p0/review.test.ts",
+          "sha256": "d357429d797ed3d35fd596d6a29047b5ca7ba92ce43de802deb778eac7039c61"
+        }
+      ]
+    },
+    {
+      "id": "SCN-12",
+      "status": "needs_review",
+      "reason": "Teste que oscila: cenário coberto por implementação/teste; auditoria de aceite pendente.",
+      "evidence": [
+        {
+          "path": "scripts/measure-p0.mjs",
+          "sha256": "0d4d44beb1a44b2f9c1c24b01c64ef44da8e55c41d60961e1015dbc1d59f44b3"
+        }
+      ]
+    }
+  ],
+  "approval": null
+}

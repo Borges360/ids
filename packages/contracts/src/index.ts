@@ -45,8 +45,8 @@ export interface GateResult {
   [key: string]: unknown;
 }
 export interface EvidenceBundle {
-  sourceHash?:string;
-  gitSha?:string;
+  sourceHash?: string;
+  gitSha?: string;
   schemaVersion: string;
   inteiroVersion: string;
   configId: string;
@@ -217,6 +217,8 @@ export const DEFAULTS = {
     routesFile: "inteiro.routes.json",
     routeRoots: ["src/app", "app", "src/routes", "src/pages", "pages"],
     criticalRoutes: [] as string[],
+    requiredFonts: [] as string[],
+    fontAssets: [] as { path: string; sha256: string }[],
     allowedOrigins: [] as string[],
     viewports: [
       { id: "small", width: 320, height: 812 },
@@ -569,7 +571,7 @@ export async function writeReport(
   } catch {}
   const captures = report.gates
     .flatMap((g) =>
-      Array.isArray(g.captures) ? (g.captures as { actual: string }[]) : [],
+      [...(Array.isArray(g.captures) ? (g.captures as { actual: string }[]) : []), ...(Array.isArray(g.actionCaptures) ? (g.actionCaptures as { actual: string }[]) : [])],
     )
     .map((c) => c.actual);
   const related = captures.flatMap((p) => [
@@ -588,7 +590,10 @@ export async function writeReport(
       });
     } catch {}
   }
-  let sourceHash='unknown';try{sourceHash=await reviewSourceHash(root);}catch{}
+  let sourceHash = "unknown";
+  try {
+    sourceHash = await reviewSourceHash(root);
+  } catch {}
   Object.assign(report, {
     sourceHash,
     projectId: config.project.id,
@@ -696,9 +701,39 @@ export async function readEvidence(
   }
   return report;
 }
-export async function reviewSourceHash(root:string):Promise<string> {
-  const tracked=execFileSync('git',['ls-files','-z'],{cwd:root,encoding:'utf8'}).split('\0').filter(Boolean);
-  const untracked=execFileSync('git',['ls-files','--others','--exclude-standard','-z'],{cwd:root,encoding:'utf8'}).split('\0').filter(path=>/^(packages|tests|scripts|stories|examples|apps|docs)\//.test(path)||['package.json','package-lock.json','inteiro.config.json','inteiro.routes.json'].includes(path));
-  const files=[...new Set([...tracked,...untracked])].filter(path=>!path.startsWith('.inteiro/reviews/')&&!path.startsWith('tests/visual/__snapshots__/')&&path!=='release-evidence.json').sort();
-  const entries=[];for(const path of files)entries.push({path,sha256:hash(await readFile(safePath(root,path)))});return hash(entries);
+export async function reviewSourceHash(root: string): Promise<string> {
+  const tracked = execFileSync("git", ["ls-files", "-z"], {
+    cwd: root,
+    encoding: "utf8",
+  })
+    .split("\0")
+    .filter(Boolean);
+  const untracked = execFileSync(
+    "git",
+    ["ls-files", "--others", "--exclude-standard", "-z"],
+    { cwd: root, encoding: "utf8" },
+  )
+    .split("\0")
+    .filter(
+      (path) =>
+        /^(packages|tests|scripts|stories|examples|apps|docs)\//.test(path) ||
+        [
+          "package.json",
+          "package-lock.json",
+          "inteiro.config.json",
+          "inteiro.routes.json",
+        ].includes(path),
+    );
+  const files = [...new Set([...tracked, ...untracked])]
+    .filter(
+      (path) =>
+        !path.startsWith(".inteiro/reviews/") &&
+        !path.startsWith("tests/visual/__snapshots__/") &&
+        path !== "release-evidence.json",
+    )
+    .sort();
+  const entries = [];
+  for (const path of files)
+    entries.push({ path, sha256: hash(await readFile(safePath(root, path))) });
+  return hash(entries);
 }

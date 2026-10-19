@@ -2,6 +2,7 @@ import { createElement as h } from "react";
 import { InteiroProvider } from "../packages/react/src/index.ts";
 import "../packages/tokens/dist/css/inteiro.css";
 import "../packages/design-system/src/components.css";
+import '../packages/composition/src/fonts.css';
 export default {
   globalTypes: {
     theme: {

@@ -74,6 +74,27 @@
         "width": 1440,
         "height": 900
       }
+    ],
+    "requiredFonts": [
+      "Recursive"
+    ],
+    "fontAssets": [
+      {
+        "path": "packages/composition/fonts/recursive-cyrillic-ext-full-normal.woff2",
+        "sha256": "f0c477ced747cc3224792ba0fe884a9e8e5406ce0a9e487ead2fc9426fb68206"
+      },
+      {
+        "path": "packages/composition/fonts/recursive-vietnamese-full-normal.woff2",
+        "sha256": "19a0b495aed1471f301247933d7e34c462a5a9f3b5fb2313a5ddf5a76fa65eed"
+      },
+      {
+        "path": "packages/composition/fonts/recursive-latin-ext-full-normal.woff2",
+        "sha256": "2f888e0fde56aeba4e22693acf2f7608783f261bc31247909573dc2d12f5554f"
+      },
+      {
+        "path": "packages/composition/fonts/recursive-latin-full-normal.woff2",
+        "sha256": "14ef41458aeba3d812284c4e32ee956910b88845062c61e91cc8578c2b78bccb"
+      }
     ]
   },
   "visual": {

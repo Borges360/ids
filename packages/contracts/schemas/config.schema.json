@@ -156,6 +156,32 @@
             "type": "string"
           }
         },
+        "requiredFonts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "fontAssets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "path",
+              "sha256"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            }
+          }
+        },
         "allowedOrigins": {
           "type": "array",
           "items": {

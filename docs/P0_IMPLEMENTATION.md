@@ -32,14 +32,14 @@ A base local já era 1.2.0, com tokens, agent-core, CLI, MCP, React, integraçõ
 | E04 | `packages/visual`: lifecycle, fixtures, DSL, layout, a11y, runtime e comparador | `tests/p0/visual.test.ts`, `tests/p0/browser-runner.test.ts` |
 | E05 | `visual/baseline.ts`: candidatos, assinatura Ed25519, cadeia e integridade | testes de governança e lifecycle com revisor sintético isolado |
 | E06 | 82 stories de padrão/estado, índice JSON, exemplos HTML e catálogo estático | `test:stories`, `check:p0`, testes Playwright |
-| E07 | `agent-core/repair.ts`: envelope agnóstico e razões de escalonamento | `tests/p0/governance.test.ts` |
+| E07 | `agent-core/repair.ts` e `repair-controller.ts`: envelope, tentativas limitadas, edição delimitada, validação e rollback; adapter Pi de referência via CLI JSON | `tests/p0/governance.test.ts`, `tests/p0/repair-controller.test.ts` |
 | E08 | `agent-core/review.ts`: sete eixos, decisão assinada e vínculo a artefatos | validação de rubrica; revisão estética de produto continua externa |
 | E09 | `packages/evaluation`, 30 tarefas públicas, 10 reservadas e smoke de regras | benchmark determinístico, importação e métricas; experimento real excluído pelo solicitante |
 | E10 | workflow CI/nightly, tarballs JS, smoke offline, CODEOWNERS e guias | `npm run ci`, smoke instalado, navegador e testes de segurança |
 
 ## Distribuição
 
-`npm run pack:p0` gera tarballs em `artifacts/tarballs` a partir de staging isolado e transpila o runtime TypeScript para JavaScript. Isso evita depender de type stripping dentro de `node_modules`. Os fontes do workspace continuam disponíveis para desenvolvimento. `npm run smoke:offline -- --seed-cache` prepara o cache e verifica uma reinstalação com `npm ci --offline`, seguida de cinco comandos CLI e descoberta de ferramentas MCP. Depois de preparado o consumidor, `npm run smoke:offline` não precisa de acesso à rede.
+`npm run pack:p0` gera tarballs em `artifacts/tarballs` a partir de staging isolado e transpila o runtime TypeScript para JavaScript, com declarações TypeScript públicas. Os fontes do workspace continuam disponíveis para desenvolvimento. `npm run smoke:offline -- --seed-cache` prepara o cache e verifica uma reinstalação com `npm ci --offline`, seguida de oito comandos CLI, verificação de tipos e descoberta de ferramentas MCP. Depois de preparado o consumidor, `npm run smoke:offline` não precisa de acesso à rede.
 
 ## Evidências e condição de conclusão
 

@@ -20,6 +20,7 @@ COPY --from=build /src/apps/demo ./apps/demo
 COPY --from=build /src/docs ./docs
 COPY --from=build /src/packages/tokens/dist ./packages/tokens/dist
 COPY --from=build /src/packages/design-system/src/components.css ./packages/design-system/src/components.css
+COPY --from=build /src/packages/composition ./packages/composition
 COPY --from=build /src/storybook-static ./storybook-static
 USER node
 EXPOSE 4173

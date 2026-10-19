@@ -28,10 +28,19 @@ const result = {
 };
 if (process.argv.includes("--canary")) {
   const root = await mkdtemp(join(tmpdir(), "inteiro-canary-"));
+  const font = await readFile(
+    "packages/composition/fonts/recursive-latin-full-normal.woff2",
+  );
+  await writeFile(join(root, "font.woff2"), font);
   const server = createServer((req, res) => {
+    if (req.url === "/font.woff2") {
+      res.setHeader("content-type", "font/woff2");
+      res.end(font);
+      return;
+    }
     res.setHeader("content-type", "text/html");
     res.end(
-      '<!doctype html><html lang="pt-BR"><meta charset="utf-8"><title>Canary</title><main><h1>Canário sintético</h1><p>Conteúdo estável.</p></main></html>',
+      '<!doctype html><html lang="pt-BR"><meta charset="utf-8"><title>Canary</title><style>@font-face{font-family:Recursive;src:url(/font.woff2) format("woff2");font-weight:300 1000}body{font-family:Recursive}</style><main><h1>Canário sintético</h1><p>Conteúdo estável.</p></main></html>',
     );
   });
   await new Promise((r) => server.listen(0, "127.0.0.1", r));
@@ -64,6 +73,8 @@ if (process.argv.includes("--canary")) {
     const config = structuredClone(DEFAULTS);
     config.browser.baseURL = "http://127.0.0.1:" + server.address().port;
     config.browser.viewports = [{ id: "mobile", width: 375, height: 812 }];
+    config.browser.requiredFonts = ["Recursive"];
+    config.browser.fontAssets = [{ path: "font.woff2", sha256: hash(font) }];
     const hashes = [],
       durations = [];
     for (let i = 0; i < 10; i++) {
@@ -84,6 +95,7 @@ if (process.argv.includes("--canary")) {
       hashes,
       durationsMs: durations,
       flakyRate: (new Set(hashes).size - 1) / 10,
+      font: "Recursive full variable, served locally with verified SHA256",
       limitation:
         "Single synthetic fixture on this environment. No product baseline approved.",
     };

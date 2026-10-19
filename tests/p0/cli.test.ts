@@ -3,6 +3,7 @@ import { execFileSync } from "node:child_process";
 import { mkdtemp, writeFile, readdir, rm, mkdir } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
+import { pathToFileURL } from "node:url";
 import { DEFAULTS } from "@inteiro/contracts";
 const cli = resolve("packages/cli/src/cli.ts");
 function invoke(args: string[]) {
@@ -20,9 +21,17 @@ function invoke(args: string[]) {
   }
 }
 describe("P0 command transport", () => {
-  it('does not execute when imported by a similarly named consumer script',()=>{
-    const script="process.argv[1]='consumer-cli.js';await import("+JSON.stringify('file:///'+cli.replaceAll('\\','/'))+");console.log('imported');";
-    const result=execFileSync(process.execPath,['--input-type=module','-e',script],{encoding:'utf8'});expect(result.trim()).toBe('imported');
+  it("does not execute when imported by a similarly named consumer script", () => {
+    const script =
+      "process.argv[1]='consumer-cli.js';await import(" +
+      JSON.stringify(pathToFileURL(cli).href) +
+      ");console.log('imported');";
+    const result = execFileSync(
+      process.execPath,
+      ["--input-type=module", "-e", script],
+      { encoding: "utf8" },
+    );
+    expect(result.trim()).toBe("imported");
   });
   it("emits a single JSON document without banners", () => {
     const r = invoke(["contract", "inspect", "--json"]);

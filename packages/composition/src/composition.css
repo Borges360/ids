@@ -1,16 +1,22 @@
 @import "../../design-system/src/inteiro.css";
+@import "./fonts.css";
 .in-composition {
   min-inline-size: 0;
   max-inline-size: 100%;
   color: var(--in-color-text-primary);
   background: var(--in-color-background-canvas);
   font-family: var(--in-font-family-sans);
+  font-variation-settings: var(--in-font-voice-rational);
 }
 .in-composition a {
   color: var(--in-color-text-primary);
   text-decoration: underline;
 }
-.in-composition :where(input,select,textarea,button) {max-inline-size:100%;box-sizing:border-box;}
+.in-composition :where(input, select, textarea, button) {
+  max-inline-size: 100%;
+  box-sizing: border-box;
+  font: inherit;
+}
 .in-composition nav a,
 .in-composition button,
 .in-composition summary {
@@ -28,7 +34,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   min-block-size: 100dvh;
-  align-content:start;
+  align-content: start;
 }
 .in-app-shell > main,
 .in-dashboard-grid > *,
@@ -73,6 +79,8 @@
 }
 .in-field-group {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-inline-size: 0;
   gap: var(--in-space-small);
 }
 .in-composition img {
@@ -83,15 +91,41 @@
   max-inline-size: min(90vi, 40rem);
   max-block-size: 90dvh;
   overflow: auto;
-  background:var(--in-color-background-surface);
-  color:var(--in-color-text-primary);
-  border:1px solid var(--in-color-border-subtle);
-  padding:var(--in-space-large);
+  background: var(--in-color-background-surface);
+  color: var(--in-color-text-primary);
+  border: 1px solid var(--in-color-border-subtle);
+  padding: var(--in-space-large);
 }
-.in-composition dialog.in-drawer {inset-inline-start:auto;inset-inline-end:0;inset-block:0;margin:0;min-block-size:100dvh;max-block-size:100dvh;inline-size:min(90vi,24rem);}
-.in-tooltip {position:relative;display:inline-block;}
-.in-tooltip [role=tooltip] {display:none;position:absolute;inset-block-start:100%;inset-inline-start:0;z-index:1;inline-size:24ch;max-inline-size:80vi;padding:var(--in-space-small);background:var(--in-color-background-surface);color:var(--in-color-text-primary);border:1px solid var(--in-color-border-subtle);}
-.in-tooltip:is(:hover,:focus-within):not([data-in-dismissed]) [role=tooltip] {display:block;}
+.in-composition dialog.in-drawer {
+  inset-inline-start: auto;
+  inset-inline-end: 0;
+  inset-block: 0;
+  margin: 0;
+  min-block-size: 100dvh;
+  max-block-size: 100dvh;
+  inline-size: min(90vi, 24rem);
+}
+.in-tooltip {
+  position: relative;
+  display: inline-block;
+}
+.in-tooltip [role="tooltip"] {
+  display: none;
+  position: absolute;
+  inset-block-start: 100%;
+  inset-inline-start: 0;
+  z-index: 1;
+  inline-size: 24ch;
+  max-inline-size: 80vi;
+  padding: var(--in-space-small);
+  background: var(--in-color-background-surface);
+  color: var(--in-color-text-primary);
+  border: 1px solid var(--in-color-border-subtle);
+}
+.in-tooltip:is(:hover, :focus-within):not([data-in-dismissed])
+  [role="tooltip"] {
+  display: block;
+}
 .in-composition :where(p, h1, h2, h3, td) {
   overflow-wrap: anywhere;
 }

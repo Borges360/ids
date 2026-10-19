@@ -14,6 +14,8 @@ Configure primeiro rotas, fixtures sintéticas e `browser.baseURL` em `inteiro.c
 
 ## Instalação e execução offline
 
+A Recursive variável completa acompanha `@inteiro/composition/fonts`, com os arquivos WOFF2 originais e sua licença OFL. Demo, catálogo, Storybook e fixtures usam arquivos locais. O projeto declara `browser.requiredFonts` e checksums em `browser.fontAssets`; o runner bloqueia arquivos ausentes/adulterados e reporta erro de infraestrutura quando uma face exigida não carrega. O fingerprint do ambiente inclui os assets de fonte verificados.
+
 `@inteiro/contracts` valida JSON Schema sem navegador, frameworks ou SDK de IA. `@inteiro/composition` fornece manifestos/HTML/CSS. `@inteiro/lint` agrega parsers TypeScript, PostCSS, HTML, Vue e Svelte. O pacote opcional `@inteiro/visual` é instalado no workspace de desenvolvimento com `@playwright/test`, Chromium e `axe-core`. Tokens não recebem dependência de browser. Após instalação e download dos browsers, os comandos determinísticos não precisam de rede externa.
 
 ```sh
@@ -67,6 +69,18 @@ O import valida commit/dataset/config/ambiente, deduplica modelo/tarefa/amostra 
 `init` preserva configurações existentes. `audit` legado continua disponível. Use `migrate --dry-run` para inspecionar sugestões antes de alterar a aplicação. Comece observando findings; corrija o corpus existente antes de impor o gate inteiro na branch protegida. Não publique uma release declarada P0 completa enquanto faltarem baselines aprovadas, revisão exigida ou evidências de aceite. Rollback restaura versões, configuração e registro anteriores, preservando histórico de evidências.
 
 O deploy Jenkins foi retirado do escopo pelo solicitante; nenhuma execução de deploy integra a evidência desta entrega.
+
+## Reparo determinístico e integração Pi
+
+`runRepairController` de `@inteiro/agent-core` recebe o relatório inicial, `contextBundleId`, escopo explícito e duas funções do harness: `propose`, que devolve apenas edições textuais, e `validate`, que executa o subset afetado e depois o gate completo. O núcleo verifica o hash do arquivo antes do patch, calcula o tamanho do diff, recusa caminhos protegidos e reverte a edição se perder checks aprovados, detectar problema de segurança ou falhar a validação. A resposta inclui histórico, motivos de escalonamento e os relatórios inicial/afetado/completo. Infraestrutura ou revisão pendente não iniciam reparo automático.
+
+O exemplo `examples/pi/repair-adapter.ts` consome a CLI com `spawn`, sem shell, valida schema/hash/status/código de saída e encaminha somente o envelope e fontes permitidas à função de proposta. Ele não usa hooks privados do Pi nem inicia modelos. O harness é responsável por fornecer o consumidor de propostas e impedir que ele escreva diretamente no projeto. A função `piDiagnosticsOnly` funciona sem IA.
+
+## Matriz de release
+
+O perfil `release` adiciona o gate `release`: exige os 58 IDs de épicos, work packages, DoD e cenários, todos aprovados com evidências cujo hash corresponda aos arquivos. `release-evidence.json` registra o estado auditável e as exclusões solicitadas; sua presença sozinha não aprova a entrega. A matriz atual mantém as pendências de aceite explícitas.
+
+A assinatura do mantenedor usa a política `.inteiro/reviewers.json`. O payload Ed25519 é `canonical({ledger, approval})`, onde `ledger` é o documento sem o campo `approval` e `approval` contém `reviewer`, `approvalRef`, `approvedAt` e `expiresAt`, sem `signature`. A assinatura Base64 fica em `approval.signature`. Ela vincula requisitos, evidências, versão, hash de fontes/configuração/política e exclusões. O agente não cria essa assinatura para a biblioteca; os testes usam somente chaves sintéticas temporárias.
 
 Os modos de adoção são `static.adoption=observe|enforce-new|enforce-all`. Observe mantém o status real do relatório, mas permite saída não bloqueante do lint isolado. Enforce-new exige um baseline de diagnósticos com owner, justificativa, aprovação e expiração; findings novos continuam bloqueantes. Main, nightly e release recusam modos diferentes de enforce-all. O gate estrito do workflow permanece bloqueado enquanto faltarem referências ou revisões aprovadas.
 

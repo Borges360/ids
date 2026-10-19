@@ -6,7 +6,8 @@
     ".": "./src/index.ts",
     "./behavior": "./src/behavior.js",
     "./css": "./dist/composition.css",
-    "./render": "./src/render.ts"
+    "./render": "./src/render.ts",
+    "./fonts": "./src/fonts.css"
   },
   "files": [
     "src",
@@ -14,7 +15,8 @@
     "examples",
     "catalog.index.json",
     "story-matrix.json",
-    "dist"
+    "dist",
+    "fonts"
   ],
   "dependencies": {
     "@inteiro/contracts": "^1.2.0",

@@ -194,6 +194,13 @@ export async function resolveContext(
       "inteiro visual test --json",
       "inteiro gate run --profile pr --json",
     ],
+    acceptance: {
+      viewports: config.browser.viewports,
+      routesFile: config.browser.routesFile,
+      fixturesDirectory: ".inteiro/fixtures",
+      baselinePolicy: config.visual.policy,
+      requiredReviewTypes: config.review.requiredFor,
+    },
     constraints: {
       ...config.repair,
       prohibitedActions: [

@@ -52,6 +52,7 @@ for (const [i, p] of patterns.entries())
             const { enhance } = await import(path);
             enhance(document.body);
           });
+        await page.evaluate(()=>document.fonts.ready);
           await expect(page.locator("h1")).toBeVisible();
           expect(
             await page.evaluate(

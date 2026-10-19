@@ -15,6 +15,19 @@ import {
 import { registry, proposeBaseline, verifyApproval } from "./baseline.ts";
 import type { Page, Locator } from "@playwright/test";
 import { discoverRoutes, coverageFindings } from "./coverage.ts";
+import {
+  createResponseAliases,
+  matchesResponse,
+  validateResponseFixtures,
+  sanitizeCapture,
+  type ResponseAliases,
+  type ResponseFixture,
+} from "./actions.ts";
+export {
+  createResponseAliases,
+  validateResponseFixtures,
+  sanitizeCapture,
+} from "./actions.ts";
 const require = createRequire(import.meta.url);
 export interface Action {
   type: string;
@@ -36,7 +49,7 @@ export interface Route {
 export interface Fixture {
   classification: "synthetic" | "restricted";
   clock: string;
-  responses?: { url: string; body: unknown; status?: number }[];
+  responses?: ResponseFixture[];
 }
 const allowedActions = [
   "click",
@@ -117,6 +130,11 @@ export function validateRoutes(routes: Route[], config: Config) {
         if (!allowedActions.includes(action.type))
           throw new Error("Unsafe/unsupported action " + action.type);
         if (
+          action.type === "waitForResponseAlias" &&
+          (!action.alias || !/^[a-zA-Z0-9_-]{1,80}$/.test(action.alias))
+        )
+          throw new Error("Valid response alias required");
+        if (
           action.type !== "waitForResponseAlias" &&
           action.type !== "screenshot" &&
           !action.target?.role &&
@@ -137,14 +155,27 @@ function locator(page: Page, target: Action["target"]): Locator {
     );
   throw new Error("Target required");
 }
-export async function runAction(page: Page, action: Action) {
+export async function runAction(
+  page: Page,
+  action: Action,
+  runtime: {
+    responses?: ResponseAliases;
+    capture?: (action: Action) => Promise<void>;
+  } = {},
+) {
   if (!allowedActions.includes(action.type)) throw new Error("Unsafe action");
-  if (action.type === "screenshot") return;
-  if (action.type === "waitForResponseAlias")
-    throw new Error(
-      "Response aliases require fixture-bound assertion; unsupported alias " +
-        action.alias,
-    );
+  if (action.type === "screenshot") {
+    if (!runtime.capture)
+      throw new Error("Screenshot evidence executor required");
+    await runtime.capture(action);
+    return;
+  }
+  if (action.type === "waitForResponseAlias") {
+    if (!runtime.responses || !action.alias)
+      throw new Error("Fixture-bound response alias required");
+    await runtime.responses.waitFor(action.alias);
+    return;
+  }
   const loc = locator(page, action.target);
   switch (action.type) {
     case "click":
@@ -163,8 +194,11 @@ export async function runAction(page: Page, action: Action) {
       await loc.waitFor({ state: "visible" });
       break;
     case "expectText":
-      if (!(await loc.innerText()).includes(action.value ?? ""))
-        throw new Error("Expected text missing");
+      await (
+        await import("@playwright/test")
+      )
+        .expect(loc)
+        .toContainText(action.value ?? "");
       break;
   }
 }
@@ -219,7 +253,9 @@ export async function visualTest(
 ): Promise<GateResult> {
   const start = performance.now(),
     findings: Finding[] = [],
-    captures: Record<string, unknown>[] = [];
+    captures: Record<string, unknown>[] = [],
+    actionCaptures: Record<string, unknown>[] = [],
+    responseObservations: Record<string, unknown>[] = [];
   let browser:
       | Awaited<
           ReturnType<(typeof import("@playwright/test"))["chromium"]["launch"]>
@@ -241,6 +277,22 @@ export async function visualTest(
         config.browser.criticalRoutes,
       ),
     );
+    for (const asset of config.browser.fontAssets) {
+      try {
+        if (hash(await readFile(safePath(root, asset.path))) !== asset.sha256)
+          findings.push(
+            finding("VIS-DATA-001", "Font checksum mismatch: " + asset.path, {
+              status: "blocked",
+            }),
+          );
+      } catch {
+        findings.push(
+          finding("VIS-DATA-001", "Font asset unavailable: " + asset.path, {
+            status: "blocked",
+          }),
+        );
+      }
+    }
     if (findings.length)
       return {
         name: "browser",
@@ -268,6 +320,7 @@ export async function visualTest(
       arch: process.arch,
       browser: browser.version(),
       profile: config.browser.environment,
+      fontAssets: config.browser.fontAssets,
     });
     const artifactDir = config.reporting.outDir + "/captures-" + Date.now();
     await mkdir(safePath(root, artifactDir), { recursive: true });
@@ -339,6 +392,19 @@ export async function visualTest(
               );
               continue;
             }
+            const responseErrors = validateResponseFixtures(
+              fixture.responses ?? [],
+              config.browser.baseURL,
+            );
+            if (responseErrors.length) {
+              findings.push(
+                finding("VIS-DATA-001", responseErrors.join("; "), {
+                  route: route.path,
+                  status: "blocked",
+                }),
+              );
+              continue;
+            }
             if (fixture.classification === "restricted") {
               findings.push(
                 finding(
@@ -362,6 +428,12 @@ export async function visualTest(
             });
             const page = await context.newPage();
             page.setDefaultTimeout(Math.min(10000, config.browser.timeoutMs));
+            const responses = createResponseAliases(
+              page,
+              fixture.responses ?? [],
+              config.browser.baseURL,
+              Math.min(10000, config.browser.timeoutMs),
+            );
             const per: Finding[] = [];
             const add = (
               rule: string,
@@ -389,8 +461,13 @@ export async function visualTest(
                 add("VIS-RUNTIME-001", "Request to non-allowlisted origin");
                 return request.abort();
               }
-              const mock = fixture.responses?.find(
-                (r) => new URL(url).pathname === r.url,
+              const mock = fixture.responses?.find((r) =>
+                matchesResponse(
+                  url,
+                  request.request().method(),
+                  r,
+                  config.browser.baseURL,
+                ),
               );
               if (mock)
                 return request.fulfill({
@@ -436,11 +513,76 @@ export async function visualTest(
                 { theme, density },
               );
               await page.evaluate(() => document.fonts.ready);
+              const missingFonts = await page.evaluate(
+                async (families: string[]) => {
+                  const missing: string[] = [];
+                  for (const family of families) {
+                    try {
+                      const faces = await document.fonts.load(
+                        "16px " + JSON.stringify(family),
+                      );
+                      if (
+                        !faces.length ||
+                        faces.some((face) => face.status !== "loaded")
+                      )
+                        missing.push(family);
+                    } catch {
+                      missing.push(family);
+                    }
+                  }
+                  return missing;
+                },
+                config.browser.requiredFonts,
+              );
+              if (missingFonts.length)
+                add(
+                  "VIS-ENV-001",
+                  "Required font did not load: " + missingFonts.join(", "),
+                  "error",
+                );
               await page.addStyleTag({
                 content:
                   "*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}",
               });
-              for (const action of state.actions) await runAction(page, action);
+              for (const [actionIndex, action] of state.actions.entries())
+                await runAction(page, action, {
+                  responses,
+                  capture: async (captureAction) => {
+                    if (await sanitizeCapture(page))
+                      add(
+                        "SEC-DATA-001",
+                        "Sensitive-looking fixture text redacted from action screenshot; fixture review required",
+                        "blocked",
+                      );
+                    const path =
+                      artifactDir +
+                      "/" +
+                      key +
+                      "-action-" +
+                      actionIndex +
+                      ".png";
+                    const bytes = captureAction.target
+                      ? await locator(page, captureAction.target).screenshot({
+                          path: safePath(root, path),
+                          animations: "disabled",
+                        })
+                      : await page.screenshot({
+                          path: safePath(root, path),
+                          fullPage: config.visual.fullPage,
+                          animations: "disabled",
+                        });
+                    actionCaptures.push({
+                      actual: path,
+                      sha256: hash(bytes),
+                      route: route.path,
+                      state: state.id,
+                      viewport: viewportId,
+                      theme,
+                      density,
+                      actionIndex,
+                    });
+                  },
+                });
               const dom = await page.evaluate(() => ({
                 overflow: document.documentElement.scrollWidth > innerWidth + 1,
                 mains: document.querySelectorAll("main,[role=main]").length,
@@ -491,44 +633,7 @@ export async function visualTest(
                     " " +
                     v.nodes.flatMap((n) => n.target).join(", "),
                 );
-              const redactions = await page.evaluate(() => {
-                const clean = (value: string) =>
-                  value
-                    .replace(
-                      /\b(?:gh[pousr]_[\w]{20,}|github_pat_[\w]+|sk-[\w-]{16,}|AKIA[A-Z0-9]{16})\b/g,
-                      "[REDACTED]",
-                    )
-                    .replace(
-                      /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/gi,
-                      "[EMAIL]",
-                    );
-                let count = 0;
-                const walker = document.createTreeWalker(
-                  document.body,
-                  NodeFilter.SHOW_TEXT,
-                );
-                let node: Node | null;
-                while ((node = walker.nextNode())) {
-                  if (node.parentElement?.matches("script,style")) continue;
-                  const before = node.textContent ?? "",
-                    after = clean(before);
-                  if (before !== after) {
-                    node.textContent = after;
-                    count++;
-                  }
-                }
-                document
-                  .querySelectorAll<HTMLInputElement>("input,textarea")
-                  .forEach((input) => {
-                    const before = input.value,
-                      after = clean(before);
-                    if (before !== after) {
-                      input.value = after;
-                      count++;
-                    }
-                  });
-                return count;
-              });
+              const redactions = await sanitizeCapture(page);
               if (redactions)
                 add(
                   "SEC-DATA-001",
@@ -635,6 +740,12 @@ export async function visualTest(
             } catch (e) {
               add("VIS-STATE-001", String(e));
               try {
+                if (await sanitizeCapture(page))
+                  add(
+                    "SEC-DATA-001",
+                    "Sensitive-looking fixture text redacted from failure screenshot; fixture review required",
+                    "blocked",
+                  );
                 await page.screenshot({
                   path: safePath(root, actualPath),
                   fullPage: true,
@@ -644,9 +755,26 @@ export async function visualTest(
                 for (const f of per) f.evidenceRefs.push(actualPath);
               } catch {}
             } finally {
-              await context.tracing.stop({
-                path: safePath(root, artifactDir + "/" + key + "-trace.zip"),
-              });
+              responseObservations.push(
+                ...responses.observations.map((observation) => ({
+                  ...observation,
+                  route: route.path,
+                  state: state.id,
+                  viewport: viewportId,
+                })),
+              );
+              responses.dispose();
+              // A trace may contain pre-sanitization response data. Discard it on a data finding.
+              await context.tracing.stop(
+                per.some((f) => f.ruleId === "SEC-DATA-001")
+                  ? {}
+                  : {
+                      path: safePath(
+                        root,
+                        artifactDir + "/" + key + "-trace.zip",
+                      ),
+                    },
+              );
               await context.close();
               findings.push(...per);
             }
@@ -669,6 +797,8 @@ export async function visualTest(
       durationMs: performance.now() - start,
       executed,
       captures,
+      actionCaptures,
+      responseObservations,
       environmentFingerprint,
     };
   } catch (e) {

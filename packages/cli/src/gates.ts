@@ -26,6 +26,7 @@ import {
   repairContext,
   reviewGate,
   reviewRequest,
+  releaseGate,
 } from "@inteiro/agent-core";
 import { runBenchmark } from "@inteiro/evaluation";
 import { projectContracts } from "@inteiro/agent-core";
@@ -264,7 +265,13 @@ export async function gateCommand(
         {
           status: "not_run",
           profile,
-          required: ["context", "static", "browser", "review"],
+          required: [
+            "context",
+            "static",
+            "browser",
+            "review",
+            ...(profile === "release" ? ["release"] : []),
+          ],
           configHash: hash(config),
         },
         "not_run",
@@ -290,6 +297,7 @@ export async function gateCommand(
       });
     }
     gates.push(await reviewGate(root, config, gates));
+    if (profile === "release") gates.push(await releaseGate(root, config));
     return save(gates);
   }
   if (cmd[0] === "review" || cmd[0] === "repair") {

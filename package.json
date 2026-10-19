@@ -47,6 +47,7 @@
     "verify:p0": "node scripts/verify-p0.mjs"
   },
   "devDependencies": {
+    "@fontsource-variable/recursive": "5.3.0",
     "@inteiro/visual": "^1.2.0",
     "@playwright/test": "^1.64.1",
     "@storybook/addon-a11y": "^10.6.2",
