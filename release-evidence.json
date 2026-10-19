@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0",
   "version": "1.2.0",
-  "sourceCommit": "910ed9a8edc98918fe9fe40138d3d5370a587b01",
-  "sourceHash": "bb99eeba335c43b619a2f31455d799841d5c12383c8e26f5247fa2963883cf4c",
+  "sourceCommit": "b5d40fab5a2aa1d79dcac07eb292e8f8241ad297",
+  "sourceHash": "af019c420a0fa85f1f9e31825aca271b1525138b918dd710215dd6f45b1210d7",
   "configHash": "c01aff1aced7f9f3957c622ca3870d094ec3f2c7744c2e05bf0086a6414e8270",
   "policyHash": "",
   "scopeExclusions": [
@@ -31,6 +31,10 @@
         {
           "path": "artifacts/p0-gate-contract-hardening.json",
           "sha256": "38fc647163219e30579b83f91f554e10a74171dea2e857212911df3e50ca3069"
+        },
+        {
+          "path": "artifacts/p0-gate-controls.json",
+          "sha256": "f45828dfdddfe2311a1e37d667fcf7d7600f4047fbecb4d4124cbc092d2b3202"
         }
       ]
     },
@@ -58,13 +62,17 @@
         {
           "path": "artifacts/p0-gate-contract-hardening.json",
           "sha256": "38fc647163219e30579b83f91f554e10a74171dea2e857212911df3e50ca3069"
+        },
+        {
+          "path": "artifacts/p0-gate-controls.json",
+          "sha256": "f45828dfdddfe2311a1e37d667fcf7d7600f4047fbecb4d4124cbc092d2b3202"
         }
       ]
     },
     {
       "id": "E02",
       "status": "blocked",
-      "reason": "Auditoria real dos 41 exemplos default a 375 px encontrou 8 de 28 controles medidos abaixo do alvo INTEIRO de 44 px, inclusive campos de 25 px e select de 23 px. Exemplos ainda usam controles nativos sem tratamento visual INTEIRO. Requer correção e testes de alvo, além da revisão qualitativa. Essa medição não é um veredito de conformidade WCAG.",
+      "reason": "Alvos corrigidos: 0 violações nos mesmos 28 controles e nos 9 links de navegação medidos a 375 px. Matriz com 1703 testes de navegador passou em Windows e Linux, incluindo alvos nos estados de composição. Erros preservam ajuda e mensagem associadas; readonly usa disabled nos controles sem suporte. Auditoria de teclado ainda confirma Escape sem fechamento no dropdown-menu e no estado open do popover; esses comportamentos, demais requisitos do catálogo e revisão qualitativa continuam pendentes.",
       "evidence": [
         {
           "path": "tests/p0/composition.test.ts",
@@ -73,6 +81,18 @@
         {
           "path": "artifacts/p0-mobile-target-audit.json",
           "sha256": "2cd12e711cfdcd6ced65ff6ba56ad08eaf0442da6cafd3f4724ff72dece49643"
+        },
+        {
+          "path": "artifacts/p0-controls-full-browser.log",
+          "sha256": "e733af3f51ef20204fd8f3a6ce925132703b8b66bc395396cf61956c6af2fcbd"
+        },
+        {
+          "path": "artifacts/p0-mobile-target-audit-controls.json",
+          "sha256": "0b977e7183c185727909a8ba72e7bd386812b840dfc540707d186ba54a63ff60"
+        },
+        {
+          "path": "artifacts/p0-overlay-escape-audit-controls.json",
+          "sha256": "81d254106a4d78cfaac379f6aa78cf1740599a4ef63fe2c90b6dc1b7762924bd"
         }
       ]
     },
@@ -90,11 +110,11 @@
     {
       "id": "E04",
       "status": "needs_review",
-      "reason": "Runner real, ações, layout/a11y e comparação implementados; goldens de produto não aprovadas.",
+      "reason": "Lifecycle, fixtures, ações, axe, fontes e comparação visual implementados. VIS-TARGET-001 agora mede controles e links de navegação a 44 CSS px, com testes reais positivos, labels associados e regressão de botão de 20 px. As medições de dimensão não comprovam oclusão, alcance nem cobertura integral da WCAG; a auditoria desses requisitos continua pendente.",
       "evidence": [
         {
           "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "bca1514a5aceddceb6a82c570f0fbe77607d80f2737d6a1ebcec7573f1169a1e"
+          "sha256": "56ce2e270329bf3abbcdc3720fd92dfe823a486fb503a7e6b29d766318013c7e"
         },
         {
           "path": "artifacts/p0-response-alias-browser.log",
@@ -107,6 +127,18 @@
         {
           "path": "artifacts/p0-gate-contract-hardening.json",
           "sha256": "38fc647163219e30579b83f91f554e10a74171dea2e857212911df3e50ca3069"
+        },
+        {
+          "path": "artifacts/p0-target-browser-tests.log",
+          "sha256": "03e5d961be29f43065c46c2a66bfd0be7a058a4e82f65a2120c3fc707ec641d7"
+        },
+        {
+          "path": "packages/visual/src/targets.ts",
+          "sha256": "cc102cc7b7f81d4fb3d15e1cdeae05c189409051072b766db08e6dc17fd79c34"
+        },
+        {
+          "path": "artifacts/p0-gate-controls.json",
+          "sha256": "f45828dfdddfe2311a1e37d667fcf7d7600f4047fbecb4d4124cbc092d2b3202"
         }
       ]
     },
@@ -129,6 +161,10 @@
         {
           "path": "packages/composition/story-matrix.json",
           "sha256": "1c9e313245b5447f3ffac8570f170a6514a8ffaae13e9ee27cd140e4bf3bf082"
+        },
+        {
+          "path": "artifacts/p0-controls-stories.log",
+          "sha256": "2474bf6021c3ca0d9e3cc46d5291201213c779cf01e03b4bf297ea75d325cbb7"
         }
       ]
     },
@@ -200,7 +236,7 @@
         },
         {
           "path": "artifacts/p0-offline.json",
-          "sha256": "382e67b6760357f80e5a32415ad0970e5ae89005a685a2bc115c4359f9c63044"
+          "sha256": "59683e818014b0312ac448fde3d65a8bd6a2cbd05fbcac2103f3e7606212277b"
         },
         {
           "path": "artifacts/p0-node22-bound-migration.log",
@@ -212,7 +248,7 @@
         },
         {
           "path": "artifacts/p0-package-manifest.json",
-          "sha256": "5eb3c75ee7f48e308d4b043c32e9bc55c079bcae6fd273127e93bafc89964cd2"
+          "sha256": "9ead062cd4473863e692f5fb936a89841a7e0a2fe7bb16488a26a81857bf57b0"
         },
         {
           "path": "artifacts/linux-bound-migration/p0-offline.json",
@@ -221,6 +257,26 @@
         {
           "path": "artifacts/p0-gate-contract-hardening.json",
           "sha256": "38fc647163219e30579b83f91f554e10a74171dea2e857212911df3e50ca3069"
+        },
+        {
+          "path": "artifacts/p0-controls-pack.log",
+          "sha256": "af502f572bf77951c27a7fa9785eaf79dbffbb75151bd0119fd950aa66390fa4"
+        },
+        {
+          "path": "artifacts/p0-controls-offline.log",
+          "sha256": "915bd47ab7a5a5322a94f70211496433862474af560caae590f3957abf94d943"
+        },
+        {
+          "path": "artifacts/p0-controls-linux.log",
+          "sha256": "c68631d7e3699f7b3d496961c14af82856fc5e5c5626b81fb2c6dcda540e4a43"
+        },
+        {
+          "path": "artifacts/p0-controls-node22.log",
+          "sha256": "0e844642675fb77b97a4fa1efb0c1583ee6974050f5282dc2acebf82bcde818a"
+        },
+        {
+          "path": "artifacts/p0-gate-controls.json",
+          "sha256": "f45828dfdddfe2311a1e37d667fcf7d7600f4047fbecb4d4124cbc092d2b3202"
         }
       ]
     },
@@ -305,7 +361,7 @@
       "evidence": [
         {
           "path": "tests/browser/composition.spec.ts",
-          "sha256": "00602481b89846d5a0694a92ab1b847d43fd8b66db2b556c254fb17c810829f9"
+          "sha256": "7298fff6f8ee09f5b8505b09a8e6693cc172ce40223f25df3225e15cba842743"
         }
       ]
     },
@@ -316,7 +372,7 @@
       "evidence": [
         {
           "path": "tests/browser/composition.spec.ts",
-          "sha256": "00602481b89846d5a0694a92ab1b847d43fd8b66db2b556c254fb17c810829f9"
+          "sha256": "7298fff6f8ee09f5b8505b09a8e6693cc172ce40223f25df3225e15cba842743"
         }
       ]
     },
@@ -327,7 +383,7 @@
       "evidence": [
         {
           "path": "tests/browser/composition.spec.ts",
-          "sha256": "00602481b89846d5a0694a92ab1b847d43fd8b66db2b556c254fb17c810829f9"
+          "sha256": "7298fff6f8ee09f5b8505b09a8e6693cc172ce40223f25df3225e15cba842743"
         }
       ]
     },
@@ -360,7 +416,7 @@
       "evidence": [
         {
           "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "bca1514a5aceddceb6a82c570f0fbe77607d80f2737d6a1ebcec7573f1169a1e"
+          "sha256": "56ce2e270329bf3abbcdc3720fd92dfe823a486fb503a7e6b29d766318013c7e"
         }
       ]
     },
@@ -371,7 +427,7 @@
       "evidence": [
         {
           "path": "tests/browser/composition.spec.ts",
-          "sha256": "00602481b89846d5a0694a92ab1b847d43fd8b66db2b556c254fb17c810829f9"
+          "sha256": "7298fff6f8ee09f5b8505b09a8e6693cc172ce40223f25df3225e15cba842743"
         }
       ]
     },
@@ -553,7 +609,7 @@
         },
         {
           "path": "artifacts/p0-offline.json",
-          "sha256": "382e67b6760357f80e5a32415ad0970e5ae89005a685a2bc115c4359f9c63044"
+          "sha256": "59683e818014b0312ac448fde3d65a8bd6a2cbd05fbcac2103f3e7606212277b"
         },
         {
           "path": "artifacts/p0-node22-bound-migration.log",
@@ -627,7 +683,7 @@
       "evidence": [
         {
           "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "bca1514a5aceddceb6a82c570f0fbe77607d80f2737d6a1ebcec7573f1169a1e"
+          "sha256": "56ce2e270329bf3abbcdc3720fd92dfe823a486fb503a7e6b29d766318013c7e"
         },
         {
           "path": "tests/p0/contracts.test.ts",
@@ -683,7 +739,7 @@
       "evidence": [
         {
           "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "bca1514a5aceddceb6a82c570f0fbe77607d80f2737d6a1ebcec7573f1169a1e"
+          "sha256": "56ce2e270329bf3abbcdc3720fd92dfe823a486fb503a7e6b29d766318013c7e"
         }
       ]
     },
@@ -694,7 +750,7 @@
       "evidence": [
         {
           "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "bca1514a5aceddceb6a82c570f0fbe77607d80f2737d6a1ebcec7573f1169a1e"
+          "sha256": "56ce2e270329bf3abbcdc3720fd92dfe823a486fb503a7e6b29d766318013c7e"
         }
       ]
     },
@@ -705,7 +761,7 @@
       "evidence": [
         {
           "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "bca1514a5aceddceb6a82c570f0fbe77607d80f2737d6a1ebcec7573f1169a1e"
+          "sha256": "56ce2e270329bf3abbcdc3720fd92dfe823a486fb503a7e6b29d766318013c7e"
         }
       ]
     },
@@ -727,7 +783,7 @@
       "evidence": [
         {
           "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "bca1514a5aceddceb6a82c570f0fbe77607d80f2737d6a1ebcec7573f1169a1e"
+          "sha256": "56ce2e270329bf3abbcdc3720fd92dfe823a486fb503a7e6b29d766318013c7e"
         }
       ]
     },
