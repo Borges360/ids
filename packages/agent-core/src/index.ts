@@ -28,7 +28,7 @@ export {
   verifyContext,
   recordContextIntegrity,
 } from "./context.ts";
-export { repairContext } from "./repair.ts";
+export { repairContext,resolvedRepairContext } from "./repair.ts";
 export { runRepairController } from "./repair-controller.ts";
 export type {
   RepairEdit,
@@ -39,6 +39,15 @@ export type {
 } from "./repair-controller.ts";
 export { parseGateOutput } from "./gate-protocol.ts";
 export { releaseGate, RELEASE_REQUIREMENTS } from "./release.ts";
+export {
+  recordTaskContext,
+  verifyStoredContext,
+  taskContextGate,
+  taskManifestErrors,
+} from "./task-context.ts";
+export type { TaskManifest, ResolvedContext } from "./task-context.ts";
+export { contextTaskHash, TASK_TYPES } from "./context.ts";
+export type { ContextTask } from "./context.ts";
 export type { ReleaseEvidence } from "./release.ts";
 export {
   reviewRequest,

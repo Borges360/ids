@@ -34,6 +34,8 @@ jobs:
       - run: npm run test:stories
       - name: Resolve deterministic context files
         run: node packages/cli/src/cli.ts agents install pi --yes --json
+      - name: Bind task to resolved context
+        run: node packages/cli/src/cli.ts context resolve --record --json
       - name: Strict P0 gate
         env:
           INTEIRO_GATE_PROFILE: ${{ github.event_name == 'schedule' && 'nightly' || github.ref == 'refs/heads/main' && 'main' || 'pr' }}

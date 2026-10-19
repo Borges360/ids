@@ -41,6 +41,12 @@ import { installHarness, uninstallHarness } from "./install-agents.ts";
 import { generateSkills, skillIndex, topLevelSkills } from "./skills-gen.ts";
 import { gateCommand } from "./gates.ts";
 import { DEFAULTS } from "@inteiro/contracts";
+import { safeRead, exitCode } from "@inteiro/contracts";
+import {
+  planMigration,
+  applyMigration,
+  type MigrationPolicy,
+} from "@inteiro/lint";
 
 export interface CliResult {
   exitCode: number;
@@ -67,6 +73,12 @@ async function cmdInit(
 ): Promise<CliResult> {
   const dryRun = bool(flags, "dry-run");
   const yes = bool(flags, "yes") || bool(flags, "y");
+  const harness = flag(flags, "harness") || "auto";
+  if (harness !== "auto" && !HARNESSES.some((item) => item.id === harness))
+    return {
+      exitCode: EXIT.usage,
+      data: { status: "blocked", nextAction: "Select a supported --harness" },
+    };
   const pkgPath = join(cwd, "package.json");
   const hasPkg = await exists(pkgPath);
   const pkg = hasPkg
@@ -92,7 +104,7 @@ async function cmdInit(
   const configPath = join(cwd, "inteiro.config.json");
   if (!(await exists(configPath)))
     actions.push(
-      `${await writeManaged(configPath, JSON.stringify({ ...DEFAULTS, project: { ...DEFAULTS.project, id: String(pkg.name ?? "app"), framework } }, null, 2) + "\n", { dryRun, yes: false })} ${configPath}`,
+      `${await writeManaged(configPath, JSON.stringify({ ...DEFAULTS, project: { ...DEFAULTS.project, id: String(pkg.name ?? "app"), framework }, context: { ...DEFAULTS.context, harness } }, null, 2) + "\n", { dryRun, yes: false })} ${configPath}`,
     );
   const cssPath = join(cwd, "inteiro.css");
   // Confirmation permits creating integration files, not replacing consumer styles.
@@ -254,20 +266,55 @@ async function cmdAudit(target: string): Promise<CliResult> {
   };
 }
 
-async function cmdMigrate(target: string): Promise<CliResult> {
-  const audit = await cmdAudit(target);
-  const findings = (
-    audit.data as { findings: ReturnType<typeof auditSource> }
-  ).findings.filter((f) => f.kind === "hardcoded-hex" || f.kind === "type");
+async function cmdMigrate(
+  root: string,
+  target: string,
+  flags: Record<string, string | boolean>,
+): Promise<CliResult> {
+  const policy: MigrationPolicy = flag(flags, "mapping")
+    ? JSON.parse(await safeRead(root, flag(flags, "mapping")))
+    : { schemaVersion: "1.0", mappings: [] };
+  const preview = await planMigration(root, target, policy);
+  if (
+    bool(flags, "yes") &&
+    !bool(flags, "dry-run") &&
+    preview.patches.length &&
+    !flag(flags, "plan-hash")
+  )
+    return {
+      exitCode: EXIT.review,
+      data: {
+        ...preview,
+        status: "blocked",
+        applied: false,
+        nextAction:
+          "Inspect --dry-run, then apply with --yes --plan-hash " +
+          preview.planHash,
+      },
+    };
+  const result =
+    bool(flags, "yes") && !bool(flags, "dry-run")
+      ? await applyMigration(
+          root,
+          target,
+          policy,
+          flag(flags, "plan-hash") || preview.planHash,
+        )
+      : { ...preview, applied: false, backups: [] };
   return {
-    exitCode: EXIT.ok,
-    data: { replacements: findings },
-    text: findings.length
-      ? "Migração sugerida (não é search-and-replace cego):\n" +
-        findings
-          .map((f) => `${f.file}:${f.line} ${f.message} → ${f.suggestion}`)
-          .join("\n")
-      : "Nada a migrar nos arquivos varridos.",
+    exitCode: bool(flags, "yes")
+      ? exitCode(result.status)
+      : result.status === "blocked"
+        ? EXIT.review
+        : EXIT.ok,
+    data: {
+      ...result,
+      replacements: result.diagnostics.filter((item) =>
+        ["hardcoded-hex", "type"].includes(item.kind),
+      ),
+    },
+    text:
+      result.patches.map((patch) => patch.diff).join("\n") || result.nextAction,
   };
 }
 
@@ -296,7 +343,7 @@ export async function run(argv: string[]): Promise<number> {
     if (cmd[0] === "audit")
       return print(await cmdAudit(resolve(cwd, cmd[1] || ".")), json);
     if (cmd[0] === "migrate")
-      return print(await cmdMigrate(resolve(cwd, cmd[1] || ".")), json);
+      return print(await cmdMigrate(cwd, cmd[1] || ".", flags), json);
 
     if (cmd[0] === "tokens" && cmd[1] === "list")
       return print(cmdTokensList(flags), json);

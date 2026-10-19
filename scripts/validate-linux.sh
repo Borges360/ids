@@ -10,6 +10,10 @@ NODE
 cd /work
 apt-get update
 apt-get install -y --no-install-recommends git ca-certificates
+export INTEIRO_COMPAT_GIT_ROOT=/source
+git init -b codex/validation-snapshot
+git add -- package.json package-lock.json packages tests scripts docs apps examples .storybook stories inteiro.config.json inteiro.routes.json .inteiro/task.json
+git -c user.name='Synthetic Linux validation' -c user.email='validation@example.invalid' commit -m 'Local validation snapshot; not a product commit'
 npm ci --no-audit --no-fund
 npm run ci
 npx playwright install --with-deps chromium

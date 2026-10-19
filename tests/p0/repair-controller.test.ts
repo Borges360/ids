@@ -8,12 +8,20 @@ import {
   finding,
   hash,
   type GateStatus,
+  type Config,
 } from "@inteiro/contracts";
-import { runRepairController, type RepairConsumer } from "@inteiro/agent-core";
+import {
+  runRepairController,
+  recordTaskContext,
+  type RepairConsumer,
+  type RepairTask,
+} from "@inteiro/agent-core";
+import { installHarness } from "../../packages/cli/src/install-agents.ts";
 import { parseGateOutput } from "@inteiro/agent-core";
 import { createPiValidator } from "../../examples/pi/repair-adapter.ts";
 
 const config = structuredClone(DEFAULTS);
+config.context.harness = "pi";
 const report = (
   status: GateStatus,
   message = "Bad color",
@@ -31,12 +39,44 @@ const report = (
       durationMs: 0,
     },
   ]);
-const task = {
-  contextBundleId: "context:" + "a".repeat(64),
-  allowedFiles: ["src/ui.css"],
-};
+async function receipt(root: string, settings: Config): Promise<RepairTask> {
+  const result = await recordTaskContext(root, settings, {
+    schemaVersion: "1.0",
+    id: "synthetic-repair",
+    type: "fix",
+    description: "Correct fixture styles",
+    patternIds: ["form-layout"],
+    scope: { allowedFiles: ["src/ui.css", "src/other.css"] },
+    acceptanceCriteria: ["Static and browser checks pass"],
+  });
+  if (result.status !== "passed" || !result.context)
+    throw new Error("Fixture context unavailable");
+  return {
+    contextBundleId: result.context.bundleId,
+    allowedFiles: ["src/ui.css"],
+  };
+}
 it("provides a reference Pi CLI consumer without launching a model", () =>
   expect(typeof createPiValidator).toBe("function"));
+it("rejects a correctly shaped but unrecorded context ID before proposing edits", async () =>
+  fixture(async (root, task) => {
+    let called = false;
+    const adapter = consumer(async () => report("passed"));
+    adapter.propose = async () => {
+      called = true;
+      return { edits: [] };
+    };
+    const result = await runRepairController(
+      root,
+      config,
+      report("failed"),
+      { ...task, contextBundleId: "context:" + "a".repeat(64) },
+      adapter,
+    );
+    expect(result.status).toBe("blocked");
+    expect(result.reason).toBe("task-context-or-scope-mismatch");
+    expect(called).toBe(false);
+  }));
 it("validates CLI schema, hash, and status/exit agreement", () => {
   const failed = report("failed");
   expect(parseGateOutput(JSON.stringify(failed), 6)).toEqual(failed);
@@ -49,12 +89,13 @@ it("validates CLI schema, hash, and status/exit agreement", () => {
     parseGateOutput("banner\n" + JSON.stringify(failed), 6),
   ).toThrow();
 });
-async function fixture(run: (root: string) => Promise<void>) {
+async function fixture(run: (root: string, task: RepairTask) => Promise<void>) {
   const root = await mkdtemp(join(tmpdir(), "inteiro-repair-"));
   try {
     await mkdir(join(root, "src"));
     await writeFile(join(root, "src/ui.css"), "a { color: red; }");
-    await run(root);
+    await installHarness(root, "pi", { dryRun: false, yes: true });
+    await run(root, await receipt(root, config));
   } finally {
     await rm(root, { recursive: true, force: true });
   }
@@ -75,7 +116,7 @@ function consumer(validate: RepairConsumer["validate"]): RepairConsumer {
 }
 
 it("validates affected subset then full gate before accepting a bounded patch", async () =>
-  fixture(async (root) => {
+  fixture(async (root, task) => {
     const scopes: string[] = [];
     const result = await runRepairController(
       root,
@@ -99,7 +140,7 @@ it("validates affected subset then full gate before accepting a bounded patch", 
     ]);
   }));
 it("stops after the same failure signature without proposing a second patch", async () =>
-  fixture(async (root) => {
+  fixture(async (root, task) => {
     let proposals = 0;
     const adapter = consumer(async () => report("failed"));
     const propose = adapter.propose;
@@ -119,7 +160,7 @@ it("stops after the same failure signature without proposing a second patch", as
     expect(proposals).toBe(1);
   }));
 it("limits two changing failures and records escalation", async () =>
-  fixture(async (root) => {
+  fixture(async (root, task) => {
     let calls = 0;
     const adapter = consumer(async () =>
       report("failed", "failure " + ++calls),
@@ -150,7 +191,7 @@ for (const path of [
   "../escape.css",
 ])
   it("rejects a patch to " + path + " before writing", async () =>
-    fixture(async (root) => {
+    fixture(async (root, task) => {
       const adapter = consumer(async () => {
         throw new Error("must not validate");
       });
@@ -171,7 +212,7 @@ for (const path of [
     }),
   );
 it("rolls back when a previously passed check regresses", async () =>
-  fixture(async (root) => {
+  fixture(async (root, task) => {
     const result = await runRepairController(
       root,
       config,
@@ -189,7 +230,7 @@ it("rolls back when a previously passed check regresses", async () =>
     );
   }));
 it("does not invoke the model for infrastructure failure or invalid context", async () =>
-  fixture(async (root) => {
+  fixture(async (root, task) => {
     const adapter = consumer(async () => report("passed"));
     adapter.propose = async () => {
       throw new Error("must not propose");
@@ -211,7 +252,7 @@ it("does not invoke the model for infrastructure failure or invalid context", as
     ).toBe("invalid-context-or-report-binding");
   }));
 it("rejects oversized and stale patches and rolls back on validation exception", async () =>
-  fixture(async (root) => {
+  fixture(async (root, task) => {
     const oversized = consumer(async () => report("passed"));
     oversized.propose = async (e) => ({
       edits: [
@@ -257,9 +298,10 @@ it("rejects oversized and stale patches and rolls back on validation exception",
   }));
 
 it("enforces the line budget across the whole repair cycle", async () =>
-  fixture(async (root) => {
+  fixture(async (root, task) => {
     const limited = structuredClone(config);
     limited.repair.maxDiffLines = 1;
+    task = await receipt(root, limited);
     let checks = 0;
     const make = () =>
       bundle(limited, [
@@ -303,10 +345,11 @@ it("enforces the line budget across the whole repair cycle", async () =>
     );
   }));
 it("enforces the unique-file budget across attempts", async () =>
-  fixture(async (root) => {
+  fixture(async (root, task) => {
     await writeFile(join(root, "src/other.css"), "b {}");
     const limited = structuredClone(config);
     limited.repair.maxChangedFiles = 1;
+    task = await receipt(root, limited);
     let proposals = 0,
       checks = 0;
     const make = () =>
@@ -352,7 +395,7 @@ it("enforces the unique-file budget across attempts", async () =>
     expect(await readFile(join(root, "src/other.css"), "utf8")).toBe("b {}");
   }));
 it("protects checks that first pass during a repair", async () =>
-  fixture(async (root) => {
+  fixture(async (root, task) => {
     let full = 0;
     const make = (staticPassed: boolean, label: string) =>
       bundle(config, [

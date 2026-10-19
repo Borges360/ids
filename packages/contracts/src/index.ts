@@ -17,6 +17,21 @@ export const STATES = [
   "error",
 ] as const;
 export type GateStatus = (typeof STATES)[number];
+export const RUN_ID_PATTERN =
+  "^run-[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$";
+export function isRunId(value: unknown): value is string {
+  return typeof value === "string" && new RegExp(RUN_ID_PATTERN).test(value);
+}
+export const TASK_TYPES = [
+  "new-page",
+  "change-page",
+  "component",
+  "fix",
+  "refactor",
+  "new-pattern",
+  "significant-layout-change",
+  "identity-change",
+] as const;
 export interface Finding {
   id: string;
   fingerprint: string;
@@ -559,6 +574,7 @@ export async function writeReport(
   config: Config,
   report: EvidenceBundle,
 ) {
+  if (!isRunId(report.runId)) throw new Error("Invalid report run identifier");
   const dir = safePath(root, config.reporting.outDir + "/" + report.runId);
   await mkdir(dir, { recursive: true });
   let gitSha = "unknown";
@@ -570,9 +586,14 @@ export async function writeReport(
     }).trim();
   } catch {}
   const captures = report.gates
-    .flatMap((g) =>
-      [...(Array.isArray(g.captures) ? (g.captures as { actual: string }[]) : []), ...(Array.isArray(g.actionCaptures) ? (g.actionCaptures as { actual: string }[]) : [])],
-    )
+    .flatMap((g) => [
+      ...(Array.isArray(g.captures)
+        ? (g.captures as { actual: string }[])
+        : []),
+      ...(Array.isArray(g.actionCaptures)
+        ? (g.actionCaptures as { actual: string }[])
+        : []),
+    ])
     .map((c) => c.actual);
   const related = captures.flatMap((p) => [
     p,
@@ -728,12 +749,23 @@ export async function reviewSourceHash(root: string): Promise<string> {
     .filter(
       (path) =>
         !path.startsWith(".inteiro/reviews/") &&
+        !path.startsWith(".inteiro/contexts/") &&
         !path.startsWith("tests/visual/__snapshots__/") &&
         path !== "release-evidence.json",
     )
     .sort();
   const entries = [];
-  for (const path of files)
-    entries.push({ path, sha256: hash(await readFile(safePath(root, path))) });
+  for (const path of files) {
+    const content = await readFile(safePath(root, path));
+    // Context receipts are operational metadata; the task's substantive plan remains bound.
+    if (path === ".inteiro/task.json") {
+      const {
+        contextBundleId: _,
+        configHash: __,
+        ...task
+      } = JSON.parse(content.toString("utf8"));
+      entries.push({ path, sha256: hash(task) });
+    } else entries.push({ path, sha256: hash(content) });
+  }
   return hash(entries);
 }

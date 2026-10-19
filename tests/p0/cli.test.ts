@@ -28,6 +28,146 @@ function invoke(args: string[]) {
   }
 }
 describe("P0 command transport", () => {
+  it("requires the reviewed migration hash, backs up applied changes and preserves a second run", async () => {
+    const root = await mkdtemp(join(tmpdir(), "inteiro-migration-cli-"));
+    try {
+      await mkdir(join(root, "src"));
+      const path = join(root, "src/legacy.css"),
+        original = ".choose { color: #6D5DC7; }\n";
+      await writeFile(path, original);
+      const policy = {
+        schemaVersion: "1.0",
+        mappings: [
+          {
+            from: "#6D5DC7",
+            tokenId: "color.identity.primary",
+            files: ["src/legacy.css"],
+            selectors: [".choose"],
+            properties: ["color"],
+            owner: "fixture",
+            reason: "Choice action",
+            approvalRef: "synthetic-only",
+          },
+        ],
+      };
+      await writeFile(join(root, "migration.json"), JSON.stringify(policy));
+      const args = [
+        "migrate",
+        "src",
+        "--mapping",
+        "migration.json",
+        "--cwd",
+        root,
+        "--json",
+      ];
+      const preview = invoke([...args, "--dry-run"]);
+      expect(preview.code, preview.stdout).toBe(0);
+      const plan = JSON.parse(preview.stdout);
+      expect(plan.patches).toHaveLength(1);
+      expect(await readFile(path, "utf8")).toBe(original);
+      expect(invoke([...args, "--yes"]).code).toBe(7);
+      expect(await readFile(path, "utf8")).toBe(original);
+      const applied = invoke([...args, "--yes", "--plan-hash", plan.planHash]);
+      expect(applied.code, applied.stdout).toBe(0);
+      const data = JSON.parse(applied.stdout);
+      expect(data.applied).toBe(true);
+      expect(await readFile(join(root, data.backups[0].path), "utf8")).toBe(
+        original,
+      );
+      expect(await readFile(path, "utf8")).toContain(
+        "var(--in-color-identity-primary)",
+      );
+      const next = invoke([...args, "--yes"]);
+      expect(next.code, next.stdout).toBe(0);
+      expect(JSON.parse(next.stdout).applied).toBe(false);
+      expect(JSON.parse(next.stdout).patches).toEqual([]);
+    } finally {
+      await rm(root, { recursive: true, force: true });
+    }
+  }, 20000);
+  it("plans and records task context without overwriting plans or mutating dry runs", async () => {
+    const root = await mkdtemp(join(tmpdir(), "inteiro-task-cli-"));
+    try {
+      const config = structuredClone(DEFAULTS);
+      config.context.harness = "pi";
+      await writeFile(
+        join(root, "inteiro.config.json"),
+        JSON.stringify(config),
+      );
+      expect(
+        invoke(["agents", "install", "pi", "--cwd", root, "--yes", "--json"])
+          .code,
+      ).toBe(0);
+      const plan = [
+        "context",
+        "plan",
+        "--cwd",
+        root,
+        "--task",
+        "Formulário com validação",
+        "--type",
+        "component",
+        "--files",
+        "src/form.html",
+        "--patterns",
+        "form-layout",
+        "--acceptance",
+        "Errors identify their field",
+        "--record",
+        "--json",
+      ];
+      const before = await readdir(join(root, ".inteiro"));
+      expect(invoke([...plan, "--dry-run"]).code).toBe(7);
+      expect(await readdir(join(root, ".inteiro"))).toEqual(before);
+      const result = invoke(plan);
+      expect(result.code, result.stdout).toBe(0);
+      expect(JSON.parse(result.stdout).manifest.contextBundleId).toMatch(
+        /^context:[a-f0-9]{64}$/,
+      );
+      const path = join(root, ".inteiro/task.json"),
+        original = await readFile(path, "utf8");
+      expect(invoke(plan).code).toBe(7);
+      expect(await readFile(path, "utf8")).toBe(original);
+      const receiptNames = await readdir(join(root, ".inteiro/contexts"));
+      expect(
+        invoke([
+          "context",
+          "resolve",
+          "--record",
+          "--dry-run",
+          "--cwd",
+          root,
+          "--json",
+        ]).code,
+      ).toBe(7);
+      expect(await readFile(path, "utf8")).toBe(original);
+      expect(await readdir(join(root, ".inteiro/contexts"))).toEqual(
+        receiptNames,
+      );
+      expect(
+        invoke(["context", "verify", "--task-context", "--cwd", root, "--json"])
+          .code,
+      ).toBe(0);
+      const dryGate = invoke([
+        "gate",
+        "run",
+        "--dry-run",
+        "--cwd",
+        root,
+        "--json",
+      ]);
+      expect(JSON.parse(dryGate.stdout).required).toContain("task-context");
+      const changed = JSON.parse(original);
+      changed.description = "Changed requirement";
+      await writeFile(path, JSON.stringify(changed));
+      expect(
+        invoke(["context", "verify", "--task-context", "--cwd", root, "--json"])
+          .code,
+      ).toBe(7);
+    } finally {
+      await rm(root, { recursive: true, force: true });
+    }
+  }, 20000);
   it("preserves existing integration styles and custom instructions with init --yes", async () => {
     const root = await mkdtemp(join(tmpdir(), "inteiro-legacy-init-"));
     try {

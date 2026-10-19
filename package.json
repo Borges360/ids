@@ -22,7 +22,7 @@
     "pack:check": "npm pack --dry-run -w @inteiro/tokens && npm pack --dry-run -w @inteiro/cli && npm pack --dry-run -w @inteiro/design-system && npm pack --dry-run -w @inteiro/react && npm pack --dry-run -w @inteiro/mcp && npm pack --dry-run -w @inteiro/agent-core",
     "generate": "npm run build -w @inteiro/tokens && npm run generate -w @inteiro/skills",
     "demo": "node scripts/serve-demo.mjs",
-    "ci": "npm run lint && npm run validate && npm test && npm run build && npm run build:platforms && npm run build:docs && npm run build:fixtures && npm run build:storybook && npm run build:site && npm run check:tokens && npm run check:bundle && npm run pack:check && npm run check:p0",
+    "ci": "npm run lint && npm run validate && npm test && npm run build && npm run build:platforms && npm run build:docs && npm run build:fixtures && npm run build:storybook && npm run build:site && npm run check:tokens && npm run check:bundle && npm run pack:check && npm run check:p0 && npm run check:compat",
     "storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build",
     "build:platforms": "node packages/tokens/style-dictionary.config.mjs",
@@ -44,7 +44,8 @@
     "smoke:offline": "node scripts/smoke-offline.mjs",
     "measure:p0": "node scripts/measure-p0.mjs --canary",
     "build:composition": "node scripts/build-composition.mjs",
-    "verify:p0": "node scripts/verify-p0.mjs"
+    "verify:p0": "node scripts/verify-p0.mjs",
+    "check:compat": "node scripts/check-legacy-compat.mjs"
   },
   "devDependencies": {
     "@fontsource-variable/recursive": "5.3.0",

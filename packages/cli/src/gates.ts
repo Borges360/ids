@@ -10,6 +10,7 @@ import {
   readEvidence,
   finding,
   reportFormats,
+  isRunId,
   type GateResult,
 } from "@inteiro/contracts";
 import {
@@ -23,10 +24,14 @@ import { lintProject } from "@inteiro/lint";
 import {
   verifyContext,
   resolveContext,
-  repairContext,
+  resolvedRepairContext,
   reviewGate,
   reviewRequest,
   releaseGate,
+  recordTaskContext,
+  taskContextGate,
+  taskManifestErrors,
+  type TaskManifest,
 } from "@inteiro/agent-core";
 import { runBenchmark } from "@inteiro/evaluation";
 import { projectContracts } from "@inteiro/agent-core";
@@ -103,7 +108,101 @@ export async function gateCommand(
       patterns: patterns.map((p) => p.id),
     });
   if (cmd[0] === "context") {
+    if (cmd[1] === "plan") {
+      const description = flag(flags, "task") || cmd.slice(2).join(" ");
+      const list = (value: string) =>
+        value
+          .split(",")
+          .map((item) => item.trim())
+          .filter(Boolean);
+      const fields = {
+        type: flag(flags, "type") || "change-page",
+        description,
+        patternIds: list(flag(flags, "patterns")),
+        scope: { allowedFiles: list(flag(flags, "files")) },
+        acceptanceCriteria: [flag(flags, "acceptance")].filter(Boolean),
+      };
+      const manifest: TaskManifest = {
+        schemaVersion: "1.0",
+        id: flag(flags, "id") || "task-" + hash(fields).slice(0, 16),
+        ...fields,
+      };
+      const errors = taskManifestErrors(manifest, root);
+      if (errors.length)
+        return done(
+          {
+            status: "blocked",
+            errors,
+            nextAction:
+              "Provide --task, --files and --acceptance; select patterns with --patterns",
+          },
+          "blocked",
+        );
+      try {
+        await safeRead(root, ".inteiro/task.json");
+        return done(
+          {
+            status: "blocked",
+            nextAction:
+              "Task manifest already exists; preserve or edit it, then run context resolve --record",
+          },
+          "blocked",
+        );
+      } catch (error) {
+        if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+      }
+      if (bool(flags, "record")) {
+        const result = await recordTaskContext(
+          root,
+          config,
+          manifest,
+          bool(flags, "dry-run"),
+        );
+        return done(result, result.status);
+      }
+      if (!bool(flags, "dry-run")) {
+        await mkdir(safePath(root, ".inteiro"), { recursive: true });
+        await writeFile(
+          safePath(root, ".inteiro/task.json"),
+          JSON.stringify(manifest, null, 2) + "\n",
+        );
+      }
+      return done(
+        {
+          status: bool(flags, "dry-run") ? "not_run" : "passed",
+          manifest,
+          nextAction: "Run context resolve --record before implementation",
+        },
+        bool(flags, "dry-run") ? "not_run" : "passed",
+      );
+    }
     if (cmd[1] === "resolve") {
+      if (bool(flags, "record")) {
+        let task: TaskManifest;
+        try {
+          task = JSON.parse(
+            await safeRead(root, ".inteiro/task.json"),
+          ) as TaskManifest;
+        } catch {
+          return done(
+            {
+              status: "blocked",
+              nextAction:
+                "Create .inteiro/task.json with classification, description, pattern IDs, explicit allowed files and acceptance criteria",
+            },
+            "blocked",
+          );
+        }
+        if (flag(flags, "task")) task.description = flag(flags, "task");
+        if (flag(flags, "type")) task.type = flag(flags, "type");
+        const result = await recordTaskContext(
+          root,
+          config,
+          task,
+          bool(flags, "dry-run"),
+        );
+        return done(result, result.status);
+      }
       const result = await resolveContext(
         {
           type: flag(flags, "type") || "change-page",
@@ -114,7 +213,9 @@ export async function gateCommand(
       );
       return done(result, result.status);
     }
-    const result = await verifyContext(root, config);
+    const result = bool(flags, "task-context")
+      ? await taskContextGate(root, config)
+      : await verifyContext(root, config);
     return done(result, result.status);
   }
   if (cmd[0] === "compose") {
@@ -267,6 +368,7 @@ export async function gateCommand(
           profile,
           required: [
             "context",
+            "task-context",
             "static",
             "browser",
             "review",
@@ -278,6 +380,7 @@ export async function gateCommand(
       );
     const gates = [
       await verifyContext(root, config),
+      await taskContextGate(root, config),
       await lintProject(root, config),
     ];
     try {
@@ -301,6 +404,14 @@ export async function gateCommand(
     return save(gates);
   }
   if (cmd[0] === "review" || cmd[0] === "repair") {
+    if (flag(flags, "run-id") && !isRunId(flag(flags, "run-id")))
+      return {
+        exitCode: 2,
+        data: {
+          status: "blocked",
+          nextAction: "Use a run ID returned by a gate execution",
+        },
+      };
     const report = await readEvidence(
       root,
       config.reporting.outDir +
@@ -310,7 +421,7 @@ export async function gateCommand(
     );
     const data =
       cmd[0] === "repair"
-        ? repairContext(report, config)
+        ? await resolvedRepairContext(root, config, report)
         : reviewRequest(report, config);
     if (!bool(flags, "dry-run")) {
       await mkdir(safePath(root, ".inteiro/reviews"), { recursive: true });

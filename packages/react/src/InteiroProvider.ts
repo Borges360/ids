@@ -28,7 +28,7 @@ export function InteiroProvider(props: {
     () => ({ appearance, density, theme: inteiroTheme }),
     [appearance, density],
   );
-  const themeAttr = appearance;
+  const themeAttr = appearance === "auto" ? undefined : appearance;
   const style: Record<string, string> = { ...(props.overrides ?? {}) };
   return createElement(
     InteiroContext.Provider,

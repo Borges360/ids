@@ -9,6 +9,7 @@ import {
   safeRead,
   type Config,
   type GateResult,
+  TASK_TYPES,
 } from "@inteiro/contracts";
 import { findPatterns, getPattern } from "@inteiro/composition";
 const paths: Record<string, string[]> = {
@@ -19,6 +20,17 @@ const paths: Record<string, string[]> = {
   devin: [".agents/skills/inteiro/SKILL.md"],
   hermes: ["AGENTS.md", "HERMES.md"],
 };
+export interface ContextTask {
+  type: string;
+  description: string;
+  patternIds?: string[];
+  [key: string]: unknown;
+}
+export { TASK_TYPES } from "@inteiro/contracts";
+export function contextTaskHash(task: ContextTask): string {
+  const { contextBundleId: _, configHash: __, ...identity } = task;
+  return hash(identity);
+}
 export async function verifyContext(
   root: string,
   config: Config,
@@ -138,11 +150,42 @@ export async function recordContextIntegrity(root: string, harness: string) {
   );
 }
 export async function resolveContext(
-  task: { type: string; description: string; patternIds?: string[] },
+  task: ContextTask,
   root: string,
   config: Config,
 ) {
   const verification = await verifyContext(root, config);
+  const provenance = Array.isArray(verification.provenance)
+    ? [...verification.provenance]
+    : [];
+  const resolutionErrors: string[] = [];
+  if (task.contractRefs !== undefined) {
+    if (!Array.isArray(task.contractRefs))
+      resolutionErrors.push("Contract references must be an array");
+    else
+      for (const reference of task.contractRefs) {
+        try {
+          if (
+            !reference ||
+            typeof reference.path !== "string" ||
+            typeof reference.sha256 !== "string" ||
+            !/^[a-f0-9]{64}$/.test(reference.sha256)
+          )
+            throw new Error();
+          const bytes = await readFile(safePath(root, reference.path));
+          if (hash(bytes) !== reference.sha256) throw new Error();
+          provenance.push({
+            path: reference.path,
+            sha256: hash(bytes),
+            required: true,
+          });
+        } catch {
+          resolutionErrors.push(
+            "Contract reference missing, unsafe or checksum mismatch",
+          );
+        }
+      }
+  }
   const explicit = (task.patternIds ?? []).flatMap((id) => {
     const pattern = getPattern(id);
     return pattern
@@ -165,6 +208,12 @@ export async function resolveContext(
   const missing = required.filter(
     (id) => !selected.some((p) => p.pattern.id === id),
   );
+  if (
+    !selected.length &&
+    !["fix", "refactor", "new-pattern"].includes(task.type) &&
+    !missing.length
+  )
+    missing.push("pattern-unavailable");
   const payload = {
     schemaVersion: "1.0",
     inteiroVersion: "1.2.0",
@@ -174,6 +223,7 @@ export async function resolveContext(
     configHash: hash(config),
     harness: config.context.harness,
     taskType: task.type,
+    taskHash: contextTaskHash(task),
     identity: [
       "Use semantic tokens",
       "Set data-in-theme and data-in-density",
@@ -188,7 +238,8 @@ export async function resolveContext(
       examples: p.examples,
       reason,
     })),
-    provenance: verification.provenance,
+    provenance,
+    resolutionErrors,
     requiredChecks: [
       "inteiro lint . --format json",
       "inteiro visual test --json",
@@ -215,7 +266,13 @@ export async function resolveContext(
   const budget = config.context.maxTokens * 4;
   return {
     status:
-      verification.status === "passed" && !missing.length && bytes <= budget
+      verification.status === "passed" &&
+      !resolutionErrors.length &&
+      !missing.length &&
+      bytes <= budget &&
+      TASK_TYPES.includes(task.type as (typeof TASK_TYPES)[number]) &&
+      typeof task.description === "string" &&
+      task.description.trim().length > 0
         ? "passed"
         : "blocked",
     bundleId: "context:" + hash(payload),

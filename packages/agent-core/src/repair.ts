@@ -1,4 +1,11 @@
-import { hash, type Config, type EvidenceBundle } from "@inteiro/contracts";
+import {
+  hash,
+  safeRead,
+  reviewSourceHash,
+  type Config,
+  type EvidenceBundle,
+} from "@inteiro/contracts";
+import { verifyStoredContext, type TaskManifest } from "./task-context.ts";
 export function repairContext(
   report: EvidenceBundle,
   config: Config,
@@ -83,4 +90,64 @@ export function repairContext(
       reasonCodes: [status],
     },
   };
+}
+
+/** CLI/MCP entry point: diagnostics cannot authorize repair from an unbound or stale report. */
+export async function resolvedRepairContext(
+  root: string,
+  config: Config,
+  report: EvidenceBundle,
+): Promise<
+  Omit<ReturnType<typeof repairContext>, "reason"> & {
+    reason: string;
+    nextAction?: string;
+  }
+> {
+  const base = repairContext(report, config);
+  try {
+    if (
+      report.configHash !== hash(config) ||
+      !report.sourceHash ||
+      report.sourceHash !== (await reviewSourceHash(root))
+    )
+      throw new Error("Stale evidence");
+    const manifest = JSON.parse(
+      await safeRead(root, ".inteiro/task.json"),
+    ) as TaskManifest;
+    const context = await verifyStoredContext(root, config, manifest);
+    const mapped = [
+      ...new Set(
+        base.findings.flatMap((item) =>
+          item.file && manifest.scope.allowedFiles.includes(item.file)
+            ? [item.file]
+            : [],
+        ),
+      ),
+    ];
+    const allowedFiles = mapped.length
+      ? mapped
+      : manifest.scope.allowedFiles.length <= config.repair.maxChangedFiles
+        ? manifest.scope.allowedFiles
+        : [];
+    const result = repairContext(report, config, [], {
+      allowedFiles,
+      contextBundleId: context.bundleId,
+    });
+    if (result.status === "repairable" && !allowedFiles.length)
+      return {
+        ...result,
+        status: "needs_review",
+        reason: "affected-file-mapping-required",
+      };
+    return result;
+  } catch {
+    return {
+      ...base,
+      status: report.status === "error" ? "error" : "blocked",
+      reason: "task-context-or-evidence-unverified",
+      scope: { ...base.scope, allowedFiles: [] },
+      nextAction:
+        "Run a current gate with a recorded task context before requesting repair",
+    };
+  }
 }

@@ -8,6 +8,8 @@ O arquivo `docs/INTEIRO_ESPECIFICACAO_P0.md` foi copiado da especificação forn
 
 A base local já era 1.2.0, com tokens, agent-core, CLI, MCP, React, integrações Vue/Svelte/Tailwind, Storybook e Jenkinsfile. A premissa documental 1.1.0 foi tratada como referência histórica. Os componentes React e o CSS existentes foram preservados. O catálogo agnóstico adiciona markup e contratos compartilháveis, sem importar React no núcleo.
 
+A comparação histórica usa o commit `c8c945e10b509c3b2057abca86ac5b6dd10c8717`, cujo pacote declara 1.1.0. `check:compat` reextrai essa fonte do Git, verifica os 316 contratos de token nos quatro temas, exports públicos e de tipos, nomes MCP, seletores CSS, seis casos SSR do provider e seis comandos CLI legados. O snapshot em `tests/fixtures/inteiro-1.1.0-contract.json` é um contrato histórico, sem aprovação de baseline visual. A versão histórica tinha uma constante de tokens desatualizada (1.0.0); a identificação vem do commit e do manifesto. Na versão atual, `VERSION` corresponde ao pacote 1.2.0 e o modo `auto` do provider preserva a herança de tema do consumidor.
+
 | ADR | Decisão implementada |
 |---|---|
 | 001 | Contratos JSON e composição HTML/CSS independem de React |
@@ -26,7 +28,7 @@ A base local já era 1.2.0, com tokens, agent-core, CLI, MCP, React, integraçõ
 | Épico | Implementação | Verificação principal |
 |---|---|---|
 | E00 | `packages/contracts`: schemas, precedência, paths, estados, hashes e quatro formatos de relatório | `tests/p0/contracts.test.ts`, `tests/p0/cli.test.ts` |
-| E01 | `agent-core/context.ts`, instalação idempotente e integridade por harness | `tests/p0/context.test.ts`; observação interna do modelo continua indisponível |
+| E01 | `agent-core/context.ts` e `task-context.ts`, instalação idempotente, integridade e recibo vinculado ao plano/contrato/configuração | `tests/p0/context.test.ts`, `tests/p0/task-context.test.ts`; observação interna do modelo continua indisponível |
 | E02 | `packages/composition`: 41 manifestos, HTML/CSS, comportamento progressivo e render de estados | `tests/p0/composition.test.ts`, `tests/browser/composition.spec.ts` |
 | E03 | `packages/lint`: parsers, IDs de regra, exceções e relatórios unificados | `tests/p0/static.test.ts`, corpus de frameworks e CLI |
 | E04 | `packages/visual`: lifecycle, fixtures, DSL, layout, a11y, runtime e comparador | `tests/p0/visual.test.ts`, `tests/p0/browser-runner.test.ts` |
@@ -35,11 +37,11 @@ A base local já era 1.2.0, com tokens, agent-core, CLI, MCP, React, integraçõ
 | E07 | `agent-core/repair.ts` e `repair-controller.ts`: envelope, tentativas limitadas, edição delimitada, validação e rollback; adapter Pi de referência via CLI JSON | `tests/p0/governance.test.ts`, `tests/p0/repair-controller.test.ts` |
 | E08 | `agent-core/review.ts`: sete eixos, decisão assinada e vínculo a artefatos | validação de rubrica; revisão estética de produto continua externa |
 | E09 | `packages/evaluation`, 30 tarefas públicas, 10 reservadas e smoke de regras | benchmark determinístico, importação e métricas; experimento real excluído pelo solicitante |
-| E10 | workflow CI/nightly, tarballs JS, smoke offline, CODEOWNERS e guias | `npm run ci`, smoke instalado, navegador e testes de segurança |
+| E10 | workflow CI/nightly, tarballs JS, smoke offline, CODEOWNERS, init preservando CSS e migração por declaração com preview/backup/checksums | `npm run ci`, smoke instalado, `tests/p0/migration.test.ts`, navegador e testes de segurança |
 
 ## Distribuição
 
-`npm run pack:p0` gera tarballs em `artifacts/tarballs` a partir de staging isolado e transpila o runtime TypeScript para JavaScript, com declarações TypeScript públicas. Os fontes do workspace continuam disponíveis para desenvolvimento. `npm run smoke:offline -- --seed-cache` prepara o cache e verifica uma reinstalação com `npm ci --offline`, seguida de oito comandos CLI, verificação de tipos e descoberta de ferramentas MCP. Depois de preparado o consumidor, `npm run smoke:offline` não precisa de acesso à rede.
+`npm run pack:p0` reconstrói tokens, CSS e React, usa staging temporário isolado e transpila o runtime TypeScript para JavaScript, com declarações públicas. `artifacts/p0-package-manifest.json` registra SHA-512 dos tarballs e o hash da fonte. `npm run smoke:offline -- --seed-cache` prepara o cache e comprova `npm ci --offline` em consumidor identificado pelo conjunto de pacotes, integridade do lock, comandos CLI/contexto, verificação de tipos, SSR do provider instalado e ferramentas MCP. Depois de preparado o consumidor, `npm run smoke:offline` não precisa de acesso à rede. O teste recusa tarballs ou checkout divergentes do manifesto.
 
 ## Evidências e condição de conclusão
 

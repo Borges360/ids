@@ -9,7 +9,9 @@ import {
 } from "@inteiro/contracts";
 import { repairContext } from "./repair.ts";
 import { parseGateOutput } from "./gate-protocol.ts";
-import { exitCode } from "@inteiro/contracts";
+import { exitCode, isRunId } from "@inteiro/contracts";
+import { safeRead } from "@inteiro/contracts";
+import { verifyStoredContext, type TaskManifest } from "./task-context.ts";
 
 export interface RepairEdit {
   path: string;
@@ -123,9 +125,24 @@ export async function runRepairController(
   if (
     !/^context:[a-f0-9]{64}$/.test(task.contextBundleId) ||
     initial.configHash !== hash(config) ||
-    !/^run-[a-zA-Z0-9-]+$/.test(initial.runId)
+    !isRunId(initial.runId)
   )
     return finish("blocked", "invalid-context-or-report-binding");
+  try {
+    const manifest = JSON.parse(
+      await safeRead(root, ".inteiro/task.json"),
+    ) as TaskManifest;
+    const context = await verifyStoredContext(root, config, manifest);
+    if (
+      context.bundleId !== task.contextBundleId ||
+      task.allowedFiles.some(
+        (path) => !manifest.scope.allowedFiles.includes(path),
+      )
+    )
+      return finish("blocked", "task-context-or-scope-mismatch");
+  } catch {
+    return finish("blocked", "unverified-task-context");
+  }
   let allowed: Set<string>;
   try {
     allowed = new Set(task.allowedFiles.map(normalized));

@@ -13,8 +13,31 @@ import {
   redact,
   bundle,
   reportFormats,
+  isRunId,
+  writeReport,
 } from "@inteiro/contracts";
 describe("P0 contracts and fail-closed state machine", () => {
+  it("validates run identifiers before report filesystem writes", async () => {
+    const root = await mkdtemp(join(tmpdir(), "inteiro-report-id-"));
+    try {
+      const report = bundle(DEFAULTS, [
+        { name: "fixture", status: "passed", findings: [], durationMs: 0 },
+      ]);
+      expect(isRunId(report.runId)).toBe(true);
+      for (const id of [
+        "run-../../escape",
+        "run-anything",
+        "run-20261018-0001",
+      ]) {
+        expect(isRunId(id)).toBe(false);
+        await expect(
+          writeReport(root, DEFAULTS, { ...report, runId: id }),
+        ).rejects.toThrow("identifier");
+      }
+    } finally {
+      await rm(root, { recursive: true, force: true });
+    }
+  });
   for (const status of STATES)
     it("aggregates " + status + " without inventing success", () => {
       const gate = { name: "test", status, findings: [], durationMs: 0 };

@@ -2,7 +2,7 @@
   "schemaVersion": "1.0",
   "version": "1.2.0",
   "sourceCommit": "23f82707bcfd4bc48f87290f31c3fece3e60e5cf",
-  "sourceHash": "fff078d57cd6dfc8d778d08d1716262c3b9fd10a061cea26d1f74707f6bf3fdc",
+  "sourceHash": "84f9e35bfb5f70f804c219662eb3c279c8c2597311708fd6d7b706f75ca8de82",
   "configHash": "73321ceb9109b83c59e32ee0aae79ce253e52876053200a9287d311ab7d26784",
   "policyHash": "",
   "scopeExclusions": [
@@ -18,18 +18,26 @@
       "evidence": [
         {
           "path": "tests/p0/contracts.test.ts",
-          "sha256": "60735b44741a45336781eb363587fa8e4208d1f35707cbf2bce8df93c71202db"
+          "sha256": "52289552c478a62141401588437fca529d1901763e9349bc1991c134720b2e44"
         }
       ]
     },
     {
       "id": "E01",
-      "status": "blocked",
-      "reason": "Adapters de arquivos e orçamento de contexto verificados; smoke de agentes reais excluído pelo solicitante. Pendência confirmada: vincular o manifesto de tarefa ao bundle de contexto efetivamente resolvido; a prova atual cobre instalação/integridade, não esse vínculo.",
+      "status": "needs_review",
+      "reason": "Instalação, integridade, schemas de tarefa/contexto, vínculo verificável ao plano e hashes de documentos implementados; testes de adulteração, escopo, configuração, CLI e autorização de reparo passaram. Aceite final do mantenedor pendente; smoke com agentes reais excluído pelo solicitante.",
       "evidence": [
         {
           "path": "tests/p0/context.test.ts",
           "sha256": "9e77ddfe572acba5c276bcc20a82b6cd32c828726b3114f26c83ce3f568d08f7"
+        },
+        {
+          "path": "tests/p0/task-context.test.ts",
+          "sha256": "f00f0211309f65a13353535b65cb47ea134cb6bea58b0400d5149f83d33ae320"
+        },
+        {
+          "path": "artifacts/p0-task-context-verified.json",
+          "sha256": "270d65bfa311c9356d23173364de6729e8375af8dcd6213da44cd769b9b334fa"
         }
       ]
     },
@@ -73,7 +81,7 @@
       "evidence": [
         {
           "path": "tests/p0/governance.test.ts",
-          "sha256": "846e80fb97adad3628ea64bf1dad975b6b32e6ef074e37afb2e442bc2a00ef28"
+          "sha256": "5303cc070a2558721d201c2eafc21e1ea5145b1b3d6992f78e16a5e4a25ac233"
         }
       ]
     },
@@ -95,7 +103,7 @@
       "evidence": [
         {
           "path": "tests/p0/repair-controller.test.ts",
-          "sha256": "b7b526966f57df9dc4723e0fcc7231e6f827f1eb59194dbdfdd6ae67eddc2807"
+          "sha256": "bac2923024ffc7d2b4c8b3c3818e663f069e34abe3ee2c8949797dba88c7f024"
         }
       ]
     },
@@ -106,7 +114,7 @@
       "evidence": [
         {
           "path": "tests/p0/review.test.ts",
-          "sha256": "d357429d797ed3d35fd596d6a29047b5ca7ba92ce43de802deb778eac7039c61"
+          "sha256": "9a0764fee35afc5f41d5791029066b8cae5d6ff9d7ded2701e0071e60557a572"
         }
       ]
     },
@@ -123,12 +131,32 @@
     },
     {
       "id": "E10",
-      "status": "blocked",
-      "reason": "CI, tarballs, offline e documentação implementados; aceite de release ainda incompleto; deploy Jenkins excluído pelo solicitante. Pendências confirmadas: init --yes agora preserva inteiro.css customizado, coberto por teste; migrate ainda retorna sugestões sem diff/backup/checksum reexecutável.",
+      "status": "needs_review",
+      "reason": "CI e verificação completa passaram; init preserva customizações; migração CSS possui preview vinculado, backups e checksums; compatibilidade histórica 1.1.0 preserva 316 tokens, exports, tipos, MCP, provider SSR e seis comandos. Validação final e aprovações de release permanecem pendentes; Jenkins excluído pelo solicitante.",
       "evidence": [
         {
           "path": "docs/P0_OPERATIONS.md",
-          "sha256": "5c874d09d88b75e634e47dbad8ba7ade48e45aa58c5b9f167fa34d23924756e6"
+          "sha256": "0da38d84ced856d4ee34850bdf284b6d6005a806f24bacf8aee5127c42448833"
+        },
+        {
+          "path": "tests/p0/migration.test.ts",
+          "sha256": "605ea24be3bb754ed4785c73755d9b35f0a975f3ceb6bcc07767207847b3f95a"
+        },
+        {
+          "path": "tests/p0/compatibility.test.ts",
+          "sha256": "1f75b63324b0993d56788edce7d9b626d49f34b32dfbc6fadc933f12d553e8ac"
+        },
+        {
+          "path": "artifacts/p0-legacy-compatibility.json",
+          "sha256": "9b93fb0cda5d77a9d6590a9c2dd8dc337dcddcfafb4862a9297d8d78074908c3"
+        },
+        {
+          "path": "artifacts/p0-verification.json",
+          "sha256": "e3195b456994d9085de619b9d6460bd009b1b72d056fde19913c8d564ff4ba94"
+        },
+        {
+          "path": "artifacts/p0-offline.json",
+          "sha256": "2e571f26b57f8e85697ac18fdfede125fa5de25ea0cf3d2a1f00b4039ffe501d"
         }
       ]
     },
@@ -139,7 +167,7 @@
       "evidence": [
         {
           "path": "docs/P0_IMPLEMENTATION.md",
-          "sha256": "d284083beb21e729dcc436068c4e0dbe163d070966fc55f01858c4ff6a600ba6"
+          "sha256": "fef50c671553dc9d72176656ff094af1f03b8728052e97b1f98f571fb5b187fb"
         }
       ]
     },
@@ -150,7 +178,7 @@
       "evidence": [
         {
           "path": "tests/p0/contracts.test.ts",
-          "sha256": "60735b44741a45336781eb363587fa8e4208d1f35707cbf2bce8df93c71202db"
+          "sha256": "52289552c478a62141401588437fca529d1901763e9349bc1991c134720b2e44"
         }
       ]
     },
@@ -161,7 +189,7 @@
       "evidence": [
         {
           "path": "tests/p0/contracts.test.ts",
-          "sha256": "60735b44741a45336781eb363587fa8e4208d1f35707cbf2bce8df93c71202db"
+          "sha256": "52289552c478a62141401588437fca529d1901763e9349bc1991c134720b2e44"
         }
       ]
     },
@@ -173,6 +201,10 @@
         {
           "path": "tests/p0/context.test.ts",
           "sha256": "9e77ddfe572acba5c276bcc20a82b6cd32c828726b3114f26c83ce3f568d08f7"
+        },
+        {
+          "path": "tests/p0/task-context.test.ts",
+          "sha256": "f00f0211309f65a13353535b65cb47ea134cb6bea58b0400d5149f83d33ae320"
         }
       ]
     },
@@ -293,7 +325,7 @@
       "evidence": [
         {
           "path": "tests/p0/governance.test.ts",
-          "sha256": "846e80fb97adad3628ea64bf1dad975b6b32e6ef074e37afb2e442bc2a00ef28"
+          "sha256": "5303cc070a2558721d201c2eafc21e1ea5145b1b3d6992f78e16a5e4a25ac233"
         }
       ]
     },
@@ -315,7 +347,7 @@
       "evidence": [
         {
           "path": "tests/p0/contracts.test.ts",
-          "sha256": "60735b44741a45336781eb363587fa8e4208d1f35707cbf2bce8df93c71202db"
+          "sha256": "52289552c478a62141401588437fca529d1901763e9349bc1991c134720b2e44"
         }
       ]
     },
@@ -326,7 +358,7 @@
       "evidence": [
         {
           "path": "tests/p0/repair-controller.test.ts",
-          "sha256": "b7b526966f57df9dc4723e0fcc7231e6f827f1eb59194dbdfdd6ae67eddc2807"
+          "sha256": "bac2923024ffc7d2b4c8b3c3818e663f069e34abe3ee2c8949797dba88c7f024"
         }
       ]
     },
@@ -337,7 +369,7 @@
       "evidence": [
         {
           "path": "tests/p0/review.test.ts",
-          "sha256": "d357429d797ed3d35fd596d6a29047b5ca7ba92ce43de802deb778eac7039c61"
+          "sha256": "9a0764fee35afc5f41d5791029066b8cae5d6ff9d7ded2701e0071e60557a572"
         }
       ]
     },
@@ -359,7 +391,7 @@
       "evidence": [
         {
           "path": ".github/workflows/ci.yml",
-          "sha256": "dcf9d39fd4dab8dca721ff305ce972533a90595d2d2b0fbee2804db5d1aa10c2"
+          "sha256": "540047c507343a57635c6838911bad979eb3969e8a96c4148843b34b08ba6f85"
         }
       ]
     },
@@ -370,7 +402,15 @@
       "evidence": [
         {
           "path": "docs/P0_OPERATIONS.md",
-          "sha256": "5c874d09d88b75e634e47dbad8ba7ade48e45aa58c5b9f167fa34d23924756e6"
+          "sha256": "0da38d84ced856d4ee34850bdf284b6d6005a806f24bacf8aee5127c42448833"
+        },
+        {
+          "path": "tests/p0/compatibility.test.ts",
+          "sha256": "1f75b63324b0993d56788edce7d9b626d49f34b32dfbc6fadc933f12d553e8ac"
+        },
+        {
+          "path": "tests/p0/migration.test.ts",
+          "sha256": "605ea24be3bb754ed4785c73755d9b35f0a975f3ceb6bcc07767207847b3f95a"
         }
       ]
     },
@@ -403,7 +443,7 @@
       "evidence": [
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "67efeb9bc07e4fd3a3bb52ca304055e9194f97dfd10a1da9b6d388077bf13643"
+          "sha256": "e3195b456994d9085de619b9d6460bd009b1b72d056fde19913c8d564ff4ba94"
         }
       ]
     },
@@ -414,7 +454,7 @@
       "evidence": [
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "67efeb9bc07e4fd3a3bb52ca304055e9194f97dfd10a1da9b6d388077bf13643"
+          "sha256": "e3195b456994d9085de619b9d6460bd009b1b72d056fde19913c8d564ff4ba94"
         }
       ]
     },
@@ -425,7 +465,7 @@
       "evidence": [
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "67efeb9bc07e4fd3a3bb52ca304055e9194f97dfd10a1da9b6d388077bf13643"
+          "sha256": "e3195b456994d9085de619b9d6460bd009b1b72d056fde19913c8d564ff4ba94"
         }
       ]
     },
@@ -447,7 +487,7 @@
       "evidence": [
         {
           "path": "tests/p0/governance.test.ts",
-          "sha256": "846e80fb97adad3628ea64bf1dad975b6b32e6ef074e37afb2e442bc2a00ef28"
+          "sha256": "5303cc070a2558721d201c2eafc21e1ea5145b1b3d6992f78e16a5e4a25ac233"
         }
       ]
     },
@@ -469,7 +509,7 @@
       "evidence": [
         {
           "path": "tests/p0/contracts.test.ts",
-          "sha256": "60735b44741a45336781eb363587fa8e4208d1f35707cbf2bce8df93c71202db"
+          "sha256": "52289552c478a62141401588437fca529d1901763e9349bc1991c134720b2e44"
         }
       ]
     },
@@ -502,7 +542,7 @@
       "evidence": [
         {
           "path": "scripts/smoke-offline.mjs",
-          "sha256": "b55e3c76daa83c129998ea3a58cdf6cb530307aa7c92b92a75028686e7e9815e"
+          "sha256": "74c8500fd074a621bbd263911c39a6a98e4bf648aec6a672998aee53099f0bb3"
         }
       ]
     },
@@ -513,7 +553,15 @@
       "evidence": [
         {
           "path": "docs/P0_IMPLEMENTATION.md",
-          "sha256": "d284083beb21e729dcc436068c4e0dbe163d070966fc55f01858c4ff6a600ba6"
+          "sha256": "fef50c671553dc9d72176656ff094af1f03b8728052e97b1f98f571fb5b187fb"
+        },
+        {
+          "path": "artifacts/p0-legacy-compatibility.json",
+          "sha256": "9b93fb0cda5d77a9d6590a9c2dd8dc337dcddcfafb4862a9297d8d78074908c3"
+        },
+        {
+          "path": "tests/p0/compatibility.test.ts",
+          "sha256": "1f75b63324b0993d56788edce7d9b626d49f34b32dfbc6fadc933f12d553e8ac"
         }
       ]
     },
@@ -590,7 +638,7 @@
       "evidence": [
         {
           "path": "tests/p0/repair-controller.test.ts",
-          "sha256": "b7b526966f57df9dc4723e0fcc7231e6f827f1eb59194dbdfdd6ae67eddc2807"
+          "sha256": "bac2923024ffc7d2b4c8b3c3818e663f069e34abe3ee2c8949797dba88c7f024"
         }
       ]
     },
@@ -601,7 +649,7 @@
       "evidence": [
         {
           "path": "tests/p0/review.test.ts",
-          "sha256": "d357429d797ed3d35fd596d6a29047b5ca7ba92ce43de802deb778eac7039c61"
+          "sha256": "9a0764fee35afc5f41d5791029066b8cae5d6ff9d7ded2701e0071e60557a572"
         }
       ]
     },
@@ -612,7 +660,7 @@
       "evidence": [
         {
           "path": "tests/p0/cli.test.ts",
-          "sha256": "dd416d987bf5a40f97a9118e3adaef174ce844666d04b3772a1438b57acb93dc"
+          "sha256": "f11804ee3a1a91553342cf0e8402fb84a854f2a1e12f1f7ad61087fdf95b86c6"
         }
       ]
     },
@@ -634,7 +682,7 @@
       "evidence": [
         {
           "path": "tests/p0/review.test.ts",
-          "sha256": "d357429d797ed3d35fd596d6a29047b5ca7ba92ce43de802deb778eac7039c61"
+          "sha256": "9a0764fee35afc5f41d5791029066b8cae5d6ff9d7ded2701e0071e60557a572"
         }
       ]
     },

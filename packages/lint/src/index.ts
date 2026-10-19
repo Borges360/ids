@@ -1,4 +1,15 @@
 import ts from "typescript";
+export {
+  planMigration,
+  applyMigration,
+  validateMigrationPolicy,
+} from "./migration.ts";
+export type {
+  MigrationMapping,
+  MigrationPolicy,
+  MigrationPlan,
+  MigrationPatch,
+} from "./migration.ts";
 import postcss from "postcss";
 import { parse as parseHtml } from "parse5";
 import { parse as parseVue } from "@vue/compiler-sfc";

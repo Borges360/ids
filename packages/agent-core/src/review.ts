@@ -5,10 +5,13 @@ import {
   type Config,
   type EvidenceBundle,
   type GateResult,
+  validateSchema,
 } from "@inteiro/contracts";
-import { canonical,reviewSourceHash,readEvidence } from "@inteiro/contracts";
+import { canonical, reviewSourceHash, readEvidence } from "@inteiro/contracts";
 import { verify, createPublicKey } from "node:crypto";
 import { execFileSync } from "node:child_process";
+import { taskManifestErrors, type TaskManifest } from "./task-context.ts";
+import { contextTaskHash } from "./context.ts";
 export const REVIEW_AXES = [
   "hierarchy",
   "composition",
@@ -34,6 +37,8 @@ export interface ReviewDecision {
   }[];
 }
 export function validateReview(review: ReviewDecision, report: EvidenceBundle) {
+  if (!validateSchema("review", review).valid)
+    return ["Invalid qualitative review schema"];
   const errors = [];
   if (
     review.runId !== report.runId ||
@@ -67,8 +72,8 @@ export function reviewRequest(report: EvidenceBundle, config: Config) {
   return {
     schemaVersion: "1.0",
     runId: report.runId,
-    sourceHash:report.sourceHash,
-    sourceCommit:report.gitSha,
+    sourceHash: report.sourceHash,
+    sourceCommit: report.gitSha,
     evidenceHash: report.hash,
     status: "needs_review",
     method: config.review.method,
@@ -89,9 +94,11 @@ export async function reviewGate(
   config: Config,
   gates: GateResult[] = [],
 ): Promise<GateResult> {
-  let task: { type: string };
+  let task: TaskManifest;
   try {
     task = JSON.parse(await safeRead(root, ".inteiro/task.json"));
+    if (taskManifestErrors(task, root).length)
+      throw new Error("Invalid task manifest");
   } catch {
     return {
       name: "review",
@@ -104,14 +111,17 @@ export async function reviewGate(
       durationMs: 0,
     };
   }
-  if (!config.review.requiredFor.includes(task.type))
+  if (
+    !config.review.requiredFor.includes(task.type) &&
+    task.reviewRequired !== true
+  )
     return {
       name: "review",
       status: "passed",
       findings: [],
       durationMs: 0,
       reason: "Task classification does not require qualitative review",
-      taskHash: hash(task),
+      taskHash: contextTaskHash(task),
     };
   try {
     const decision = JSON.parse(
@@ -120,7 +130,7 @@ export async function reviewGate(
       signature: string;
       configHash: string;
       sourceCommit: string;
-      sourceHash:string;
+      sourceHash: string;
       taskHash: string;
       artifactHashes: string[];
       expiresAt: string;
@@ -149,8 +159,8 @@ export async function reviewGate(
       throw new Error("Invalid reviewer identity/signature");
     if (
       decision.configHash !== hash(config) ||
-      decision.taskHash !== hash(task) ||
-      decision.sourceHash !== await reviewSourceHash(root) ||
+      decision.taskHash !== contextTaskHash(task) ||
+      decision.sourceHash !== (await reviewSourceHash(root)) ||
       !/^[a-f0-9]{40}$/.test(decision.sourceCommit) ||
       hash([...decision.artifactHashes].sort()) !== hash(hashes) ||
       !Number.isFinite(Date.parse(decision.expiresAt)) ||
@@ -159,8 +169,15 @@ export async function reviewGate(
       throw new Error(
         "Review does not match current artifacts, task, commit or policy",
       );
-    const report = await readEvidence(root,config.reporting.outDir+'/'+decision.runId+'/summary.json');
-    if(decision.sourceCommit!==report.gitSha||decision.sourceHash!==report.sourceHash)throw new Error('Review source provenance mismatch');
+    const report = await readEvidence(
+      root,
+      config.reporting.outDir + "/" + decision.runId + "/summary.json",
+    );
+    if (
+      decision.sourceCommit !== report.gitSha ||
+      decision.sourceHash !== report.sourceHash
+    )
+      throw new Error("Review source provenance mismatch");
     const errors = validateReview(decision, report);
     if (errors.length) throw new Error(errors.join("; "));
     const unacceptable = decision.axes.some((a) => a.score < 2);

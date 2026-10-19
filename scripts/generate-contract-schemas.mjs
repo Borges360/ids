@@ -1,5 +1,10 @@
 import { mkdir, writeFile } from "node:fs/promises";
-import { DEFAULTS, STATES } from "../packages/contracts/src/index.ts";
+import {
+  DEFAULTS,
+  STATES,
+  TASK_TYPES,
+  RUN_ID_PATTERN,
+} from "../packages/contracts/src/index.ts";
 const infer = (v) =>
   Array.isArray(v)
     ? { type: "array", items: v.length ? infer(v[0]) : { type: "string" } }
@@ -53,6 +58,224 @@ const base = {
 };
 const contracts = {
   config: config,
+  "migration-policy": {
+    type: "object",
+    additionalProperties: false,
+    required: ["schemaVersion", "mappings"],
+    properties: {
+      schemaVersion: { const: "1.0" },
+      mappings: {
+        type: "array",
+        items: {
+          type: "object",
+          additionalProperties: false,
+          required: [
+            "from",
+            "tokenId",
+            "files",
+            "selectors",
+            "properties",
+            "owner",
+            "reason",
+            "approvalRef",
+          ],
+          properties: {
+            from: { type: "string", minLength: 1 },
+            tokenId: { type: "string", minLength: 1 },
+            files: {
+              type: "array",
+              minItems: 1,
+              uniqueItems: true,
+              items: { type: "string", minLength: 1 },
+            },
+            selectors: {
+              type: "array",
+              minItems: 1,
+              uniqueItems: true,
+              items: { type: "string", minLength: 1 },
+            },
+            properties: {
+              type: "array",
+              minItems: 1,
+              uniqueItems: true,
+              items: { type: "string", minLength: 1 },
+            },
+            owner: { type: "string", minLength: 1 },
+            reason: { type: "string", minLength: 1 },
+            approvalRef: { type: "string", minLength: 1 },
+          },
+        },
+      },
+    },
+  },
+  "task-manifest": {
+    type: "object",
+    required: [
+      "schemaVersion",
+      "id",
+      "type",
+      "description",
+      "patternIds",
+      "scope",
+      "acceptanceCriteria",
+    ],
+    properties: {
+      schemaVersion: { const: "1.0" },
+      id: { type: "string", pattern: "^[a-zA-Z0-9][a-zA-Z0-9._-]{0,159}$" },
+      type: { enum: TASK_TYPES },
+      description: { type: "string", minLength: 1 },
+      patternIds: {
+        type: "array",
+        uniqueItems: true,
+        items: { type: "string" },
+      },
+      scope: {
+        type: "object",
+        additionalProperties: false,
+        required: ["allowedFiles"],
+        properties: {
+          allowedFiles: {
+            type: "array",
+            minItems: 1,
+            uniqueItems: true,
+            items: { type: "string", minLength: 1 },
+          },
+        },
+      },
+      acceptanceCriteria: {
+        type: "array",
+        minItems: 1,
+        items: { type: "string", minLength: 1 },
+      },
+      contextBundleId: { type: "string", pattern: "^context:[a-f0-9]{64}$" },
+      configHash: { type: "string", pattern: "^[a-f0-9]{64}$" },
+      reviewRequired: { type: "boolean" },
+      excludedByRequester: { type: "array", items: { type: "string" } },
+      contractRefs: {
+        type: "array",
+        uniqueItems: true,
+        items: {
+          type: "object",
+          additionalProperties: false,
+          required: ["path", "sha256"],
+          properties: {
+            path: { type: "string", minLength: 1 },
+            sha256: { type: "string", pattern: "^[a-f0-9]{64}$" },
+          },
+        },
+      },
+    },
+  },
+  "context-bundle": {
+    type: "object",
+    additionalProperties: false,
+    required: [
+      "schemaVersion",
+      "inteiroVersion",
+      "createdAt",
+      "configId",
+      "requestId",
+      "configHash",
+      "harness",
+      "taskType",
+      "taskHash",
+      "identity",
+      "patterns",
+      "provenance",
+      "resolutionErrors",
+      "requiredChecks",
+      "acceptance",
+      "constraints",
+      "status",
+      "bundleId",
+      "estimatedTokens",
+      "budgetTokens",
+      "missingPatterns",
+      "limits",
+    ],
+    properties: {
+      schemaVersion: { const: "1.0" },
+      inteiroVersion: { type: "string" },
+      createdAt: { type: "string" },
+      configId: { type: "string" },
+      requestId: {
+        type: "string",
+        pattern:
+          "^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$",
+      },
+      configHash: { type: "string", pattern: "^[a-f0-9]{64}$" },
+      taskHash: { type: "string", pattern: "^[a-f0-9]{64}$" },
+      harness: { type: "string" },
+      taskType: { enum: TASK_TYPES },
+      identity: { type: "array", items: { type: "string" } },
+      patterns: {
+        type: "array",
+        items: {
+          type: "object",
+          additionalProperties: false,
+          required: ["id", "states", "tokens", "markup", "examples", "reason"],
+          properties: {
+            id: { type: "string" },
+            states: { type: "array", items: { type: "string" } },
+            tokens: { type: "array", items: { type: "string" } },
+            markup: { type: "string" },
+            examples: { type: "array", items: { type: "string" } },
+            reason: { type: "string" },
+          },
+        },
+      },
+      provenance: {
+        type: "array",
+        items: {
+          type: "object",
+          required: ["path", "sha256", "required"],
+          properties: {
+            path: { type: "string" },
+            sha256: { type: "string", pattern: "^[a-f0-9]{64}$" },
+            required: { type: "boolean" },
+          },
+        },
+      },
+      requiredChecks: { type: "array", items: { type: "string" } },
+      resolutionErrors: { type: "array", items: { type: "string" } },
+      acceptance: {
+        type: "object",
+        required: [
+          "viewports",
+          "routesFile",
+          "fixturesDirectory",
+          "baselinePolicy",
+          "requiredReviewTypes",
+        ],
+        properties: {
+          viewports: config.properties.browser.properties.viewports,
+          routesFile: { type: "string" },
+          fixturesDirectory: { type: "string" },
+          baselinePolicy: { type: "string" },
+          requiredReviewTypes: { type: "array", items: { type: "string" } },
+        },
+      },
+      constraints: {
+        type: "object",
+        required: [
+          "maxAttempts",
+          "maxChangedFiles",
+          "maxDiffLines",
+          "prohibitedActions",
+        ],
+        properties: {
+          ...config.properties.repair.properties,
+          prohibitedActions: { type: "array", items: { type: "string" } },
+        },
+      },
+      status: { enum: ["passed", "blocked"] },
+      bundleId: { type: "string", pattern: "^context:[a-f0-9]{64}$" },
+      estimatedTokens: { type: "integer", minimum: 0 },
+      budgetTokens: { type: "integer", minimum: 1 },
+      missingPatterns: { type: "array", items: { type: "string" } },
+      limits: { type: "array", items: { type: "string" } },
+    },
+  },
   "design-contract": {
     type: "object",
     properties: {
@@ -103,7 +326,7 @@ const contracts = {
     properties: {
       ...base,
       configHash: { type: "string", pattern: "^[a-f0-9]{64}$" },
-      runId: { type: "string", pattern: "^run-" },
+      runId: { type: "string", pattern: RUN_ID_PATTERN },
       status: { enum: STATES },
       gates: {
         type: "array",
@@ -143,7 +366,7 @@ const contracts = {
       "axes",
     ],
     properties: {
-      runId: { type: "string" },
+      runId: { type: "string", pattern: RUN_ID_PATTERN },
       evidenceHash: { type: "string", pattern: "^[a-f0-9]{64}$" },
       reviewer: { type: "string", minLength: 1 },
       approvalRef: { type: "string", minLength: 1 },

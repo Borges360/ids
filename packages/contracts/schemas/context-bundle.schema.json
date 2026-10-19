@@ -1,0 +1,262 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://inteiro.dev/schemas/1.0/context-bundle.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "inteiroVersion",
+    "createdAt",
+    "configId",
+    "requestId",
+    "configHash",
+    "harness",
+    "taskType",
+    "taskHash",
+    "identity",
+    "patterns",
+    "provenance",
+    "resolutionErrors",
+    "requiredChecks",
+    "acceptance",
+    "constraints",
+    "status",
+    "bundleId",
+    "estimatedTokens",
+    "budgetTokens",
+    "missingPatterns",
+    "limits"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "inteiroVersion": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "configId": {
+      "type": "string"
+    },
+    "requestId": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$"
+    },
+    "configHash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "taskHash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "harness": {
+      "type": "string"
+    },
+    "taskType": {
+      "enum": [
+        "new-page",
+        "change-page",
+        "component",
+        "fix",
+        "refactor",
+        "new-pattern",
+        "significant-layout-change",
+        "identity-change"
+      ]
+    },
+    "identity": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "patterns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "states",
+          "tokens",
+          "markup",
+          "examples",
+          "reason"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "states": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "tokens": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "markup": {
+            "type": "string"
+          },
+          "examples": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "sha256",
+          "required"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "required": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "requiredChecks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "resolutionErrors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "acceptance": {
+      "type": "object",
+      "required": [
+        "viewports",
+        "routesFile",
+        "fixturesDirectory",
+        "baselinePolicy",
+        "requiredReviewTypes"
+      ],
+      "properties": {
+        "viewports": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "width": {
+                "type": "number"
+              },
+              "height": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "id",
+              "width",
+              "height"
+            ]
+          }
+        },
+        "routesFile": {
+          "type": "string"
+        },
+        "fixturesDirectory": {
+          "type": "string"
+        },
+        "baselinePolicy": {
+          "type": "string"
+        },
+        "requiredReviewTypes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "required": [
+        "maxAttempts",
+        "maxChangedFiles",
+        "maxDiffLines",
+        "prohibitedActions"
+      ],
+      "properties": {
+        "maxAttempts": {
+          "type": "number"
+        },
+        "maxChangedFiles": {
+          "type": "number"
+        },
+        "maxDiffLines": {
+          "type": "number"
+        },
+        "prohibitedActions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "status": {
+      "enum": [
+        "passed",
+        "blocked"
+      ]
+    },
+    "bundleId": {
+      "type": "string",
+      "pattern": "^context:[a-f0-9]{64}$"
+    },
+    "estimatedTokens": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "budgetTokens": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "missingPatterns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "limits": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

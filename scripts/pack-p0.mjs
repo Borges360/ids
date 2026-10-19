@@ -5,8 +5,13 @@ import {
   readdir,
   cp,
   chmod,
+  mkdtemp,
+  rm,
+  realpath,
 } from "node:fs/promises";
-import { resolve, join } from "node:path";
+import { resolve, join, dirname, basename } from "node:path";
+import { createHash } from "node:crypto";
+import { reviewSourceHash } from "../packages/contracts/src/index.ts";
 import { transform } from "esbuild";
 import { spawnSync } from "node:child_process";
 const names = [
@@ -24,9 +29,19 @@ const names = [
 ];
 const npmCli = process.env.npm_execpath;
 if (!npmCli) throw new Error("Run this script through npm run pack:p0");
-const stage = resolve("artifacts/npm-stage"),
-  dest = resolve("artifacts/tarballs");
-await mkdir(stage, { recursive: true });
+await mkdir("artifacts", { recursive: true });
+for (const script of [
+  "packages/tokens/src/build.ts",
+  "scripts/build-composition.mjs",
+  "scripts/build-react.mjs",
+]) {
+  const build = spawnSync(process.execPath, [script], { encoding: "utf8" });
+  if (build.status !== 0) throw new Error(build.stdout + build.stderr);
+}
+const stage = await mkdtemp(resolve("artifacts/npm-stage-")),
+  declarationsRoot = await mkdtemp(resolve("artifacts/type-declarations-")),
+  dest = resolve("artifacts/tarballs"),
+  packages = [];
 await mkdir(dest, { recursive: true });
 const declarations = spawnSync(
   process.execPath,
@@ -39,7 +54,7 @@ const declarations = spawnSync(
     "--noEmit",
     "false",
     "--outDir",
-    "artifacts/type-declarations",
+    declarationsRoot,
   ],
   { encoding: "utf8" },
 );
@@ -115,12 +130,7 @@ for (const name of names) {
   if (name !== "react") await compile();
   if (name !== "react") {
     const copyTypes = async (rel = "") => {
-      const source = join(
-        "artifacts/type-declarations/packages",
-        name,
-        "src",
-        rel,
-      );
+      const source = join(join(declarationsRoot, "packages"), name, "src", rel);
       for (const entry of await readdir(source, { withFileTypes: true })) {
         const next = join(rel, entry.name),
           target = join(dir, "runtime", next);
@@ -182,5 +192,43 @@ for (const name of names) {
   );
   if (result.status !== 0) throw new Error(result.stderr);
   const packed = JSON.parse(result.stdout);
+  const entry = packed[0],
+    bytes = await readFile(join(dest, entry.filename));
+  if (
+    entry.integrity !==
+    "sha512-" + createHash("sha512").update(bytes).digest("base64")
+  )
+    throw new Error("Packed integrity mismatch");
+  packages.push({
+    name: entry.name,
+    version: entry.version,
+    filename: entry.filename,
+    integrity: entry.integrity,
+    shasum: entry.shasum,
+  });
   console.log(packed[0].filename + " " + packed[0].integrity);
+}
+await writeFile(
+  "artifacts/p0-package-manifest.json",
+  JSON.stringify(
+    {
+      schemaVersion: "1.0",
+      sourceHash: await reviewSourceHash(process.cwd()),
+      packages,
+    },
+    null,
+    2,
+  ) + "\n",
+);
+const artifactRoot = await realpath(resolve("artifacts"));
+for (const path of [stage, declarationsRoot]) {
+  const actual = await realpath(path);
+  if (
+    dirname(actual) !== artifactRoot ||
+    !["npm-stage-", "type-declarations-"].some((prefix) =>
+      basename(actual).startsWith(prefix),
+    )
+  )
+    throw new Error("Unexpected temporary build path");
+  await rm(actual, { recursive: true, force: true });
 }

@@ -9,7 +9,12 @@ import {
   resolveConfig,
 } from "../packages/contracts/src/index.ts";
 import { runBenchmark } from "../packages/evaluation/src/index.ts";
+import { VERSION } from "../packages/tokens/src/index.ts";
 const errors = [];
+const packageVersion = JSON.parse(
+  await readFile("packages/tokens/package.json", "utf8"),
+).version;
+if (VERSION !== packageVersion) errors.push("token-version-metadata");
 for (const p of patterns) {
   if (!validateSchema("pattern", p).valid || validatePattern(p).length)
     errors.push(p.id);

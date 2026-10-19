@@ -3,14 +3,18 @@
 Quick-start em um consumidor instalado:
 
 ```sh
-npx inteiro init --yes
+npx inteiro init --harness pi --yes
 npx inteiro agents install pi --yes
-npx inteiro contract inspect --json
-npx inteiro lint . --format json
-npx inteiro visual test --json
+npx inteiro context plan --task "Formulário de cadastro" --type component --files src/form.html --patterns form-layout --acceptance "Erros associados aos campos e envio validado" --record --json
+npx inteiro context verify --task-context --json
+npx inteiro gate run --profile pr --start --json
 ```
 
 Configure primeiro rotas, fixtures sintéticas e `browser.baseURL` em `inteiro.config.json`. Storybook não é requisito do consumidor. Use `--start` somente para autorizar o `browser.startCommand` local; o runner não executa shell recebido da página ou da DSL de ações. URLs não locais exigem allowlist explícita.
+
+O exemplo configura `context.harness=pi` na inicialização. Para uma configuração existente, preserve seu plano e use `context resolve --record --json`; se necessário passe `--harness pi` aos comandos de contexto e gate. `context plan` recusa sobrescrever um manifesto. A declaração deve conter classificação, arquivos permitidos, padrões e critérios de aceite. `contractRefs` permite vincular documentos locais por caminho e checksum verificado. `--dry-run` não grava manifesto nem recibo.
+
+O gate obrigatório `task-context` refaz a resolução e verifica conteúdo, hash, configuração, tarefa, padrões oficiais e proveniência do recibo em `.inteiro/contexts/`. Mudanças de requisito, escopo, instrução ou política exigem nova resolução. `loaded=unobserved` continua explícito; `used=declared` registra o vínculo declarado, sem alegar observar o interior de um modelo. IDs com formato correto e recibos cujo conteúdo foi adulterado não satisfazem o gate nem autorizam reparo automático.
 
 ## Instalação e execução offline
 
@@ -67,6 +71,15 @@ O import valida commit/dataset/config/ambiente, deduplica modelo/tarefa/amostra 
 ## Migração e rollback
 
 `init` preserva configurações existentes. `audit` legado continua disponível. Use `migrate --dry-run` para inspecionar sugestões antes de alterar a aplicação. Comece observando findings; corrija o corpus existente antes de impor o gate inteiro na branch protegida. Não publique uma release declarada P0 completa enquanto faltarem baselines aprovadas, revisão exigida ou evidências de aceite. Rollback restaura versões, configuração e registro anteriores, preservando histórico de evidências.
+
+`migrate` aplica somente substituições de declarações CSS aprovadas por escopo explícito. A política declara `schemaVersion=1.0` e `mappings`; cada entrada contém `from`, `tokenId`, `files`, `selectors`, `properties`, `owner`, `reason` e `approvalRef`. Arquivo, seletor, propriedade e valor devem corresponder exatamente. Por exemplo: mapear `#6D5DC7` para `color.identity.primary` apenas em `src/legacy.css`, seletor `.choose`, propriedade `color`, quando a intenção documentada for uma escolha da identidade. Um mesmo hex usado em outro papel permanece para revisão. Famílias tipográficas podem ser mapeadas para `font.family.sans` ou `font.family.machine` pelo mesmo mecanismo.
+
+```sh
+npx inteiro migrate src --mapping .inteiro/migration-policies/choice.json --dry-run --json
+npx inteiro migrate src --mapping .inteiro/migration-policies/choice.json --yes --plan-hash HASH_DO_PREVIEW --json
+```
+
+O preview contém diff e hashes antes/depois. A aplicação refaz o plano, recusa o hash desatualizado e grava originais em `.inteiro/migration-backups/<planHash>/`, com manifesto de checksums, antes de editar. Comentários, formatação, finais de linha e declarações fora do escopo permanecem. Fontes com encoding sem round-trip UTF-8 e erros de parser bloqueiam a aplicação. Sintaxes React/Vue/Svelte/HTML continuam preservadas, com `unsupported-syntax` para migração automática; use os diagnósticos do lint e revisão semântica nessas fontes. A migração pode aplicar o subset CSS autorizado e manter `needs_review` para o restante; isso não certifica o frontend. Backups são locais e ignorados pelo Git. Sem `--yes`, a inspeção legada permanece não bloqueante, com estado explícito em JSON.
 
 O deploy Jenkins foi retirado do escopo pelo solicitante; nenhuma execução de deploy integra a evidência desta entrega.
 

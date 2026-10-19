@@ -6,6 +6,9 @@ Uso:
 Contratos e gates P0:
   contract inspect --json
   context verify|resolve --harness <id> --json
+  context plan --task <texto> --files <paths> --patterns <ids> --acceptance <texto> [--record]
+  context resolve --record --json
+  context verify --task-context --json
   compose list|show|find|validate|propose <id>
   lint [path] --format json --changed
   visual test --json [--start]
@@ -40,13 +43,15 @@ Comandos:
   agents doctor                Diagnóstico de instalação
 
   audit [path]                 Auditoria de conformidade (hex, a11y, RTL)
-  migrate [path]               Sugere migração de hex/legado para tokens
+  migrate [path]               Preview de migração e checksums; preserva casos ambíguos
+    --mapping <policy.json> --dry-run
+    --mapping <policy.json> --yes --plan-hash <hash>
 
 Opções globais:
   --help, -h                   Ajuda
   --json                       Saída JSON
   --dry-run                    Não escreve arquivos
-  --yes, -y                    Não interativo; permite overwrite
+  --yes, -y                    Confirma gravações gerenciadas; init preserva CSS existente
   --format <fmt>               Formato de exportação
   --theme <name>               Tema
   --layer <layer>              primitive|semantic|component
@@ -56,4 +61,5 @@ Opções globais:
 
 Códigos de saída:
   0 ok | 2 uso | 3 não encontrado | 4 inválido | 5 IO
+  6 qualidade reprovada | 7 bloqueio/revisão pendente | 8 infraestrutura
 `;

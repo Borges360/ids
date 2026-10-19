@@ -99,5 +99,5 @@ export interface CatalogStats {
 }
 
 export const PREFIX = "in";
-export const VERSION = "1.1.0";
+export const VERSION = "1.2.0";
 export const DTCG_SPEC = "2025.10";
