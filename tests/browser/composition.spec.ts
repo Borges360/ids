@@ -204,7 +204,7 @@ test("Escape dismisses a tooltip before its containing disclosure", async ({
   );
   await page.locator("main").evaluate((main) => {
     main.innerHTML =
-      '<details open><summary>Grupo</summary><span class="in-tooltip" data-in-tooltip><button aria-describedby="nested-tip">Ajuda interna</button><span role="tooltip" id="nested-tip">Ajuda complementar</span></span></details>';
+      '<details open><summary>Grupo</summary><span class="in-tooltip-wrap" data-in-tooltip><button aria-describedby="nested-tip">Ajuda interna</button><span class="in-tooltip" role="tooltip" id="nested-tip">Ajuda complementar</span></span></details>';
   });
   await page.evaluate(async () => {
     const path = "/packages/composition/src/behavior.js";
@@ -345,13 +345,16 @@ for (const pattern of patterns)
     await page.evaluate(() => {
       document.documentElement.dir = "rtl";
       document.body.style.zoom = "2";
-      document.querySelectorAll("p,h1,h2,td,th").forEach((element, index) => {
-        if (index % 2 === 0)
+      document
+        .querySelectorAll(
+          "p,h1,h2,h3,td,th,caption,label,button,summary,legend,nav a",
+        )
+        .forEach((element) => {
           element.append(
             " — Conteúdo traduzido com palavras extensas: " +
-              "Informação".repeat(12),
+              "Informação".repeat(20),
           );
-      });
+        });
     });
     expect(
       await page.evaluate(

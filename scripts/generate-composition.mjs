@@ -99,7 +99,7 @@ const samples = {
   ],
   tooltip: [
     "Dica ajuda acessível",
-    '<span class="in-tooltip" data-in-tooltip><button class="in-button in-button--secondary" aria-describedby="tip">Ajuda</button><span role="tooltip" id="tip">Informações sobre esta ação.</span></span>',
+    '<span class="in-tooltip-wrap" data-in-tooltip><button class="in-button in-button--secondary" aria-describedby="tip">Ajuda</button><span class="in-tooltip" role="tooltip" id="tip">Informações sobre esta ação.</span></span>',
   ],
   alert: [
     "Alerta feedback",

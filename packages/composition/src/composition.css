@@ -3,6 +3,7 @@
 .in-composition {
   min-inline-size: 0;
   max-inline-size: 100%;
+  overflow-wrap: anywhere;
   color: var(--in-color-text-primary);
   background: var(--in-color-background-canvas);
   font-family: var(--in-font-family-sans);
@@ -26,6 +27,13 @@
   align-items: center;
   min-inline-size: var(--in-button-size-md-height);
   min-block-size: var(--in-button-size-md-height);
+  max-inline-size: 100%;
+  box-sizing: border-box;
+}
+.in-composition .in-choice,
+.in-composition legend {
+  max-inline-size: 100%;
+  box-sizing: border-box;
 }
 .in-composition nav {
   display: flex;
@@ -139,16 +147,20 @@
   max-block-size: 100dvh;
   inline-size: min(90vi, 24rem);
 }
-.in-tooltip {
+.in-tooltip-wrap[data-in-tooltip] {
   position: relative;
   display: inline-block;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  box-sizing: border-box;
 }
-.in-tooltip [role="tooltip"] {
+.in-tooltip-wrap[data-in-tooltip] [role="tooltip"] {
   display: none;
   position: absolute;
   inset-block-start: 100%;
+  inset-block-end: auto;
   inset-inline-start: 0;
-  z-index: 1;
+  z-index: var(--in-z-tooltip);
   inline-size: 24ch;
   max-inline-size: 80vi;
   padding: var(--in-space-small);
@@ -156,9 +168,14 @@
   color: var(--in-color-text-primary);
   border: 1px solid var(--in-color-border-subtle);
 }
-.in-tooltip:is(:hover, :focus-within):not([data-in-dismissed])
-  [role="tooltip"] {
+.in-tooltip-wrap[data-in-tooltip]:is(:hover, :focus-within):not(
+    [data-in-dismissed]
+  )
+  [role="tooltip"]:not([hidden]) {
   display: block;
+}
+.in-tooltip-wrap[data-in-tooltip][data-in-dismissed] [role="tooltip"] {
+  display: none;
 }
 .in-composition :where(p, h1, h2, h3, td) {
   overflow-wrap: anywhere;

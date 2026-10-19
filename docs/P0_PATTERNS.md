@@ -42,6 +42,8 @@ A matriz também mede os alvos de interação em cada estado. O gate de navegado
 
 Padrões de dados vazios e erros têm ações explícitas. Conteúdo longo pode quebrar dentro dos containers, sem esconder overflow do documento. As regras usam propriedades lógicas para RTL, grid com mínimo limitado à largura disponível e redução de movimento conforme preferência do usuário.
 
+O teste de reflow acrescenta texto traduzido e palavras extensas aos títulos, parágrafos, células, legendas, labels, botões, summaries e links de navegação, preservando os controles nativos dentro dos labels. Ele combina RTL com zoom de 200%. Os controles podem crescer na vertical para manter o texto legível. O tooltip usa `in-tooltip-wrap` no contêiner marcado com `data-in-tooltip` e `in-tooltip` somente no balão; suas regras específicas não mudam o tooltip React nem exibem conteúdo com `hidden`.
+
 ## Limites dos exemplos
 
 Os exemplos são referências sintéticas de apresentação e estados. Serviços, dados, autorização, ordenação, paginação remota e efeitos de negócio pertencem à aplicação. `tooltip` deve conter apenas ajuda complementar; informação indispensável deve aparecer no conteúdo principal. Não use o catálogo como evidência de aprovação estética ou baseline assinada.
