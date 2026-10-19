@@ -164,7 +164,7 @@ for (const path of [
         task,
         adapter,
       );
-      expect(["needs_review", "error"]).toContain(result.status);
+      expect(result.status).toBe("needs_review");
       expect(await readFile(join(root, "src/ui.css"), "utf8")).toBe(
         "a { color: red; }",
       );
@@ -253,5 +253,150 @@ it("rejects oversized and stale patches and rolls back on validation exception",
     expect(failed.status).toBe("error");
     expect(await readFile(join(root, "src/ui.css"), "utf8")).toBe(
       "a { color: red; }",
+    );
+  }));
+
+it("enforces the line budget across the whole repair cycle", async () =>
+  fixture(async (root) => {
+    const limited = structuredClone(config);
+    limited.repair.maxDiffLines = 1;
+    let checks = 0;
+    const make = () =>
+      bundle(limited, [
+        {
+          name: "static",
+          status: "failed",
+          findings: [
+            finding("IN-TOKEN-001", "failure " + checks, {
+              file: "src/ui.css",
+            }),
+          ],
+          durationMs: 0,
+        },
+      ]);
+    const adapter: RepairConsumer = {
+      propose: async (e) => ({
+        edits: [
+          {
+            path: "src/ui.css",
+            baseHash: e.files[0]!.sha256,
+            content: e.files[0]!.content + "\n/* change */",
+          },
+        ],
+      }),
+      validate: async () => {
+        checks++;
+        return make();
+      },
+    };
+    const result = await runRepairController(
+      root,
+      limited,
+      make(),
+      task,
+      adapter,
+    );
+    expect(result.reason).toBe("diff-limit-or-no-change");
+    expect(result.attempts).toBe(1);
+    expect(await readFile(join(root, "src/ui.css"), "utf8")).toBe(
+      "a { color: red; }\n/* change */",
+    );
+  }));
+it("enforces the unique-file budget across attempts", async () =>
+  fixture(async (root) => {
+    await writeFile(join(root, "src/other.css"), "b {}");
+    const limited = structuredClone(config);
+    limited.repair.maxChangedFiles = 1;
+    let proposals = 0,
+      checks = 0;
+    const make = () =>
+      bundle(limited, [
+        {
+          name: "static",
+          status: "failed",
+          findings: [
+            finding("IN-TOKEN-001", "failure " + checks, {
+              file: "src/ui.css",
+            }),
+          ],
+          durationMs: 0,
+        },
+      ]);
+    const adapter: RepairConsumer = {
+      propose: async (e) => {
+        const file = e.files[proposals++]!;
+        return {
+          edits: [
+            {
+              path: file.path,
+              baseHash: file.sha256,
+              content: file.content + "\n/* change */",
+            },
+          ],
+        };
+      },
+      validate: async () => {
+        checks++;
+        return make();
+      },
+    };
+    const result = await runRepairController(
+      root,
+      limited,
+      make(),
+      { ...task, allowedFiles: ["src/ui.css", "src/other.css"] },
+      adapter,
+    );
+    expect(result.reason).toBe("cumulative-file-limit");
+    expect(result.attempts).toBe(1);
+    expect(await readFile(join(root, "src/other.css"), "utf8")).toBe("b {}");
+  }));
+it("protects checks that first pass during a repair", async () =>
+  fixture(async (root) => {
+    let full = 0;
+    const make = (staticPassed: boolean, label: string) =>
+      bundle(config, [
+        { name: "contracts", status: "passed", findings: [], durationMs: 0 },
+        {
+          name: "static",
+          status: staticPassed ? "passed" : "failed",
+          findings: staticPassed
+            ? []
+            : [finding("IN-TOKEN-001", label, { file: "src/ui.css" })],
+          durationMs: 0,
+        },
+        {
+          name: "browser",
+          status: "failed",
+          findings: [finding("VIS-LAYOUT-001", label, { file: "src/ui.css" })],
+          durationMs: 0,
+        },
+      ]);
+    const adapter: RepairConsumer = {
+      propose: async (e) => ({
+        edits: [
+          {
+            path: "src/ui.css",
+            baseHash: e.files[0]!.sha256,
+            content: e.files[0]!.content + "\n/* change */",
+          },
+        ],
+      }),
+      validate: async (scope) =>
+        scope === "affected"
+          ? report("passed")
+          : make(++full === 1, "failure " + full),
+    };
+    const result = await runRepairController(
+      root,
+      config,
+      make(false, "initial"),
+      task,
+      adapter,
+    );
+    expect(result.reason).toBe("previously-passed-check-regressed");
+    expect(result.attempts).toBe(2);
+    expect(await readFile(join(root, "src/ui.css"), "utf8")).toBe(
+      "a { color: red; }\n/* change */",
     );
   }));

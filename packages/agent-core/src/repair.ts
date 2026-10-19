@@ -22,24 +22,30 @@ export function repairContext(
   const allowedFiles = task.allowedFiles ?? [
     ...new Set(findings.flatMap((f) => (f.file ? [f.file] : []))),
   ];
-  const forbidden = history.some(
-    (h) =>
-      h.diffLines > config.repair.maxDiffLines ||
-      h.changedFiles.length > config.repair.maxChangedFiles ||
-      h.changedFiles.some((f) =>
-        /(?:baseline|snapshot|inteiro\.config|policy|Jenkinsfile|\.env)/i.test(
-          f,
-        ),
-      ) ||
-      h.changedFiles.some((f) => !allowedFiles.includes(f)),
-  );
+  const forbidden =
+    history.reduce((sum, h) => sum + h.diffLines, 0) >
+      config.repair.maxDiffLines ||
+    new Set(history.flatMap((h) => h.changedFiles)).size >
+      config.repair.maxChangedFiles ||
+    history.some(
+      (h) =>
+        h.diffLines > config.repair.maxDiffLines ||
+        h.changedFiles.length > config.repair.maxChangedFiles ||
+        h.changedFiles.some((f) =>
+          /(?:baseline|snapshot|inteiro\.config|policy|Jenkinsfile|\.env)/i.test(
+            f,
+          ),
+        ) ||
+        h.changedFiles.some((f) => !allowedFiles.includes(f)),
+    );
   const repeated = history.some((h) => h.signature === signature);
-  const status =
-    report.status === "passed"
+  const status = forbidden
+    ? "needs_review"
+    : report.status === "passed"
       ? "passed"
       : report.status !== "failed"
         ? report.status
-        : forbidden || repeated || attempt >= config.repair.maxAttempts
+        : repeated || attempt >= config.repair.maxAttempts
           ? "needs_review"
           : "repairable";
   return {
@@ -53,11 +59,13 @@ export function repairContext(
     maxAttempts: config.repair.maxAttempts,
     reason: forbidden
       ? "scope-or-policy-violation"
-      : repeated
-        ? "repeated-failure"
-        : attempt >= config.repair.maxAttempts
-          ? "attempt-limit"
-          : report.status,
+      : report.status !== "failed"
+        ? report.status
+        : repeated
+          ? "repeated-failure"
+          : attempt >= config.repair.maxAttempts
+            ? "attempt-limit"
+            : report.status,
     scope: {
       allowedFiles,
       maxChangedFiles: config.repair.maxChangedFiles,

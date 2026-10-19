@@ -187,7 +187,12 @@ export async function runRepairController(
       const seen = new Set<string>();
       let lines = 0;
       for (const edit of proposal.edits) {
-        const path = normalized(edit.path);
+        let path: string;
+        try {
+          path = normalized(edit.path);
+        } catch {
+          return finish("needs_review", "scope-or-policy-violation");
+        }
         if (
           !allowed.has(path) ||
           forbiddenPath.test(path) ||
@@ -206,7 +211,17 @@ export async function runRepairController(
           return finish("blocked", "stale-patch");
         lines += changedLines(before, edit.content);
       }
-      if (!lines || lines > config.repair.maxDiffLines)
+      const totalFiles = new Set([
+        ...history.flatMap((entry) => entry.changedFiles),
+        ...seen,
+      ]);
+      if (totalFiles.size > config.repair.maxChangedFiles)
+        return finish("needs_review", "cumulative-file-limit");
+      if (
+        !lines ||
+        lines + history.reduce((sum, entry) => sum + entry.diffLines, 0) >
+          config.repair.maxDiffLines
+      )
         return finish("needs_review", "diff-limit-or-no-change");
       // All edits are checked before the first write. Roll back if validation fails or regresses.
       const rollback = async () => {
@@ -267,6 +282,8 @@ export async function runRepairController(
           await rollback();
           return finish(report.status, "full-validation-stopped");
         }
+        for (const gate of report.gates)
+          if (gate.status === "passed") previouslyPassed.add(gate.name);
       } catch (error) {
         await rollback();
         throw error;

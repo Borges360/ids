@@ -115,6 +115,20 @@ describe("P0 baseline and repair governance", () => {
       ]).reason,
     ).toBe("scope-or-policy-violation");
   });
+  it("cannot hide a forbidden repair behind a passed report", () => {
+    const passed = bundle(DEFAULTS, [
+      { name: "static", status: "passed", findings: [], durationMs: 0 },
+    ]);
+    expect(
+      repairContext(passed, DEFAULTS, [
+        {
+          signature: "earlier",
+          changedFiles: ["inteiro.config.json"],
+          diffLines: 1,
+        },
+      ]).status,
+    ).toBe("needs_review");
+  });
   it("does not invent missing model cost", () =>
     expect(
       metrics([
