@@ -22,7 +22,9 @@
   ],
   "requiredTokens": [
     "color.background.canvas",
-    "color.text.primary"
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring"
   ],
   "allowedDependencies": [
     "@inteiro/tokens",
@@ -64,5 +66,5 @@
     "dados",
     "table"
   ],
-  "markup": "<section data-in-table data-in-page-size=\"2\"><div class=\"in-table-scroll\" role=\"region\" aria-label=\"Resultados\" tabindex=\"0\"><table class=\"in-data-table\"><caption>Resultados sintéticos</caption><thead><tr><th scope=\"col\" aria-sort=\"none\"><button type=\"button\" data-in-sort=\"0\">Ordenar por nome</button></th><th scope=\"col\">Estado</th></tr></thead><tbody><tr><th scope=\"row\">Zeta</th><td>Ativo</td></tr><tr><th scope=\"row\">Alfa</th><td>Ativo</td></tr><tr><th scope=\"row\">Beta</th><td>Arquivado</td></tr></tbody></table></div><nav aria-label=\"Paginação de resultados\"><button type=\"button\" data-in-page=\"-1\" disabled>Anterior</button><span role=\"status\" data-in-page-status>1 / 2</span><button type=\"button\" data-in-page=\"1\">Próxima</button></nav></section>"
+  "markup": "<section data-in-table data-in-page-size=\"2\"><div class=\"in-table-scroll\" role=\"region\" aria-label=\"Resultados\" tabindex=\"0\"><table class=\"in-data-table\"><caption>Resultados sintéticos</caption><thead><tr><th scope=\"col\" aria-sort=\"none\"><button class=\"in-button in-button--ghost\" type=\"button\" data-in-sort=\"0\">Ordenar por nome</button></th><th scope=\"col\">Estado</th></tr></thead><tbody><tr><th scope=\"row\">Zeta</th><td>Ativo</td></tr><tr><th scope=\"row\">Alfa</th><td>Ativo</td></tr><tr><th scope=\"row\">Beta</th><td>Arquivado</td></tr></tbody></table></div><nav aria-label=\"Paginação de resultados\"><button class=\"in-button in-button--secondary\" type=\"button\" data-in-page=\"-1\" disabled>Anterior</button><span role=\"status\" data-in-page-status>1 / 2</span><button class=\"in-button in-button--secondary\" type=\"button\" data-in-page=\"1\">Próxima</button></nav></section>"
 }

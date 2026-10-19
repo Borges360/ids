@@ -15,7 +15,9 @@
   ],
   "requiredTokens": [
     "color.background.canvas",
-    "color.text.primary"
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring"
   ],
   "allowedDependencies": [
     "@inteiro/tokens",
@@ -44,5 +46,5 @@
     "teclado",
     "tabs"
   ],
-  "markup": "<div role=\"tablist\" aria-label=\"Detalhes\"><button id=\"tab-one\" role=\"tab\" aria-selected=\"true\" aria-controls=\"panel-one\">Resumo</button><button id=\"tab-two\" role=\"tab\" tabindex=\"-1\" aria-selected=\"false\" aria-controls=\"panel-two\">Histórico</button></div><section id=\"panel-one\" role=\"tabpanel\" aria-labelledby=\"tab-one\">Resumo sintético</section><section id=\"panel-two\" role=\"tabpanel\" aria-labelledby=\"tab-two\" hidden>Histórico sintético</section>"
+  "markup": "<div class=\"in-tabs\" role=\"tablist\" aria-label=\"Detalhes\"><button id=\"tab-one\" role=\"tab\" aria-selected=\"true\" aria-controls=\"panel-one\">Resumo</button><button id=\"tab-two\" role=\"tab\" tabindex=\"-1\" aria-selected=\"false\" aria-controls=\"panel-two\">Histórico</button></div><section id=\"panel-one\" role=\"tabpanel\" aria-labelledby=\"tab-one\">Resumo sintético</section><section id=\"panel-two\" role=\"tabpanel\" aria-labelledby=\"tab-two\" hidden>Histórico sintético</section>"
 }

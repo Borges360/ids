@@ -18,7 +18,12 @@
   ],
   "requiredTokens": [
     "color.background.canvas",
-    "color.text.primary"
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring",
+    "input.height.md",
+    "color.border.interactive",
+    "color.background.surface"
   ],
   "allowedDependencies": [
     "@inteiro/tokens",
@@ -52,5 +57,5 @@
     "ajuda",
     "validação"
   ],
-  "markup": "<div class=\"in-field-group\"><label for=\"field\">Nome</label><input id=\"field\" aria-describedby=\"help\"><p id=\"help\">Nome fictício.</p></div>"
+  "markup": "<div class=\"in-field-group\"><label class=\"in-field__label\" for=\"field\">Nome</label><input class=\"in-input\" id=\"field\" aria-describedby=\"help\"><p class=\"in-field-help\" id=\"help\">Nome fictício.</p></div>"
 }

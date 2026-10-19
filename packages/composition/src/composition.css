@@ -15,6 +15,8 @@
 .in-composition :where(input, select, textarea, button) {
   max-inline-size: 100%;
   box-sizing: border-box;
+}
+:where(.in-composition) :where(input, select, textarea, button) {
   font: inherit;
 }
 .in-composition nav a,
@@ -51,6 +53,38 @@
   display: grid;
   gap: var(--in-space-large);
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+}
+.in-form-layout {
+  grid-template-columns: minmax(0, 1fr);
+  max-inline-size: 48rem;
+}
+.in-field-group .in-input {
+  inline-size: 100%;
+}
+.in-composition .in-input,
+.in-composition .in-choice,
+.in-composition [role="tab"] {
+  min-inline-size: var(--in-touch-target-min);
+  min-block-size: var(--in-touch-target-min);
+}
+.in-field-help,
+.in-field-error {
+  margin-block: 0;
+  font-size: var(--in-type-body-sm-size);
+  line-height: var(--in-type-body-sm-line-height);
+  color: var(--in-color-text-secondary);
+}
+.in-field-error {
+  color: var(--in-color-status-danger);
+}
+.in-choice-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--in-space-medium);
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-inline-size: 0;
 }
 .in-page-header,
 .in-topbar,

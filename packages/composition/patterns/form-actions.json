@@ -15,7 +15,11 @@
   ],
   "requiredTokens": [
     "color.background.canvas",
-    "color.text.primary"
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring",
+    "color.action.primary.background",
+    "color.action.primary.foreground"
   ],
   "allowedDependencies": [
     "@inteiro/tokens",
@@ -42,5 +46,5 @@
     "ações",
     "formulário"
   ],
-  "markup": "<div class=\"in-form-actions\"><button type=\"submit\">Salvar rascunho</button><button type=\"button\">Cancelar</button></div>"
+  "markup": "<div class=\"in-form-actions\"><button class=\"in-button in-button--primary\" type=\"submit\">Salvar rascunho</button><button class=\"in-button in-button--quiet\" type=\"button\">Cancelar</button></div>"
 }

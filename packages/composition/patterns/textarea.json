@@ -18,7 +18,12 @@
   ],
   "requiredTokens": [
     "color.background.canvas",
-    "color.text.primary"
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring",
+    "input.height.md",
+    "color.border.interactive",
+    "color.background.surface"
   ],
   "allowedDependencies": [
     "@inteiro/tokens",
@@ -26,6 +31,7 @@
   ],
   "accessibility": {
     "semantics": [
+      "div",
       "label",
       "textarea"
     ],
@@ -49,5 +55,5 @@
     "longo",
     "multiline"
   ],
-  "markup": "<label for=\"text\">Descrição</label><textarea id=\"text\" rows=\"4\"></textarea>"
+  "markup": "<div class=\"in-field-group\"><label class=\"in-field__label\" for=\"text\">Descrição</label><textarea class=\"in-input\" id=\"text\" rows=\"4\"></textarea></div>"
 }

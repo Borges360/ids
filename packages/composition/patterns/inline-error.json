@@ -15,7 +15,12 @@
   ],
   "requiredTokens": [
     "color.background.canvas",
-    "color.text.primary"
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring",
+    "input.height.md",
+    "color.border.interactive",
+    "color.background.surface"
   ],
   "allowedDependencies": [
     "@inteiro/tokens",
@@ -23,6 +28,7 @@
   ],
   "accessibility": {
     "semantics": [
+      "div",
       "label",
       "input",
       "p"
@@ -44,5 +50,5 @@
     "campo",
     "mensagem"
   ],
-  "markup": "<label for=\"invalid\">Nome</label><input id=\"invalid\" aria-invalid=\"true\" aria-describedby=\"error\"><p id=\"error\">Informe um nome.</p>"
+  "markup": "<div class=\"in-field-group\"><label class=\"in-field__label\" for=\"invalid\">Nome</label><input class=\"in-input\" id=\"invalid\" aria-invalid=\"true\" aria-describedby=\"error\"><p class=\"in-field-error\" id=\"error\">Informe um nome.</p></div>"
 }

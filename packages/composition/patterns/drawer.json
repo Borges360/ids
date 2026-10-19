@@ -17,7 +17,9 @@
   ],
   "requiredTokens": [
     "color.background.canvas",
-    "color.text.primary"
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring"
   ],
   "allowedDependencies": [
     "@inteiro/tokens",
@@ -48,5 +50,5 @@
     "modal",
     "lateral"
   ],
-  "markup": "<button data-in-open=\"drawer\">Abrir painel</button><dialog class=\"in-drawer\" id=\"drawer\" aria-labelledby=\"drawer-title\"><h2 id=\"drawer-title\">Detalhes</h2><button data-in-close autofocus>Fechar painel</button></dialog>"
+  "markup": "<button class=\"in-button in-button--secondary\" data-in-open=\"drawer\">Abrir painel</button><dialog class=\"in-drawer\" id=\"drawer\" aria-labelledby=\"drawer-title\"><h2 id=\"drawer-title\">Detalhes</h2><button class=\"in-button in-button--quiet\" data-in-close autofocus>Fechar painel</button></dialog>"
 }

@@ -19,7 +19,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -72,7 +74,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -121,7 +125,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -169,7 +175,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -217,7 +225,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -264,7 +274,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -320,7 +332,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -362,7 +376,7 @@
       "dados",
       "table"
     ],
-    "markup": "<section data-in-table data-in-page-size=\"2\"><div class=\"in-table-scroll\" role=\"region\" aria-label=\"Resultados\" tabindex=\"0\"><table class=\"in-data-table\"><caption>Resultados sintéticos</caption><thead><tr><th scope=\"col\" aria-sort=\"none\"><button type=\"button\" data-in-sort=\"0\">Ordenar por nome</button></th><th scope=\"col\">Estado</th></tr></thead><tbody><tr><th scope=\"row\">Zeta</th><td>Ativo</td></tr><tr><th scope=\"row\">Alfa</th><td>Ativo</td></tr><tr><th scope=\"row\">Beta</th><td>Arquivado</td></tr></tbody></table></div><nav aria-label=\"Paginação de resultados\"><button type=\"button\" data-in-page=\"-1\" disabled>Anterior</button><span role=\"status\" data-in-page-status>1 / 2</span><button type=\"button\" data-in-page=\"1\">Próxima</button></nav></section>"
+    "markup": "<section data-in-table data-in-page-size=\"2\"><div class=\"in-table-scroll\" role=\"region\" aria-label=\"Resultados\" tabindex=\"0\"><table class=\"in-data-table\"><caption>Resultados sintéticos</caption><thead><tr><th scope=\"col\" aria-sort=\"none\"><button class=\"in-button in-button--ghost\" type=\"button\" data-in-sort=\"0\">Ordenar por nome</button></th><th scope=\"col\">Estado</th></tr></thead><tbody><tr><th scope=\"row\">Zeta</th><td>Ativo</td></tr><tr><th scope=\"row\">Alfa</th><td>Ativo</td></tr><tr><th scope=\"row\">Beta</th><td>Arquivado</td></tr></tbody></table></div><nav aria-label=\"Paginação de resultados\"><button class=\"in-button in-button--secondary\" type=\"button\" data-in-page=\"-1\" disabled>Anterior</button><span role=\"status\" data-in-page-status>1 / 2</span><button class=\"in-button in-button--secondary\" type=\"button\" data-in-page=\"1\">Próxima</button></nav></section>"
   },
   {
     "schemaVersion": "1.0",
@@ -384,7 +398,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -436,7 +452,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -491,7 +509,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -546,7 +566,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -598,7 +620,14 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring",
+      "input.height.md",
+      "color.border.interactive",
+      "color.background.surface",
+      "color.action.primary.background",
+      "color.action.primary.foreground"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -607,6 +636,7 @@
     "accessibility": {
       "semantics": [
         "form",
+        "div",
         "label",
         "input",
         "button"
@@ -627,7 +657,7 @@
       "filtros",
       "busca"
     ],
-    "markup": "<form role=\"search\" class=\"in-filter-bar\"><label for=\"search\">Buscar</label><input id=\"search\" type=\"search\"><button>Filtrar</button></form>"
+    "markup": "<form role=\"search\" class=\"in-filter-bar\"><div class=\"in-field-group\"><label class=\"in-field__label\" for=\"search\">Buscar</label><input class=\"in-input\" id=\"search\" type=\"search\"></div><button class=\"in-button in-button--primary\">Filtrar</button></form>"
   },
   {
     "schemaVersion": "1.0",
@@ -652,7 +682,14 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring",
+      "input.height.md",
+      "color.border.interactive",
+      "color.background.surface",
+      "color.action.primary.background",
+      "color.action.primary.foreground"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -687,7 +724,7 @@
       "cadastro",
       "layout"
     ],
-    "markup": "<form class=\"in-form-layout\" data-in-validate><div class=\"in-field-group\"><label for=\"name\">Nome (obrigatório)</label><input id=\"name\" required aria-describedby=\"help\"><p id=\"help\">Informe um nome fictício.</p></div><div class=\"in-form-actions\"><button>Salvar rascunho</button></div></form>"
+    "markup": "<form class=\"in-form-layout\" data-in-validate><div class=\"in-field-group\"><label class=\"in-field__label\" for=\"name\">Nome (obrigatório)</label><input class=\"in-input\" id=\"name\" required aria-describedby=\"help\"><p class=\"in-field-help\" id=\"help\">Informe um nome fictício.</p></div><div class=\"in-form-actions\"><button class=\"in-button in-button--primary\">Salvar rascunho</button></div></form>"
   },
   {
     "schemaVersion": "1.0",
@@ -709,7 +746,12 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring",
+      "input.height.md",
+      "color.border.interactive",
+      "color.background.surface"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -743,7 +785,7 @@
       "ajuda",
       "validação"
     ],
-    "markup": "<div class=\"in-field-group\"><label for=\"field\">Nome</label><input id=\"field\" aria-describedby=\"help\"><p id=\"help\">Nome fictício.</p></div>"
+    "markup": "<div class=\"in-field-group\"><label class=\"in-field__label\" for=\"field\">Nome</label><input class=\"in-input\" id=\"field\" aria-describedby=\"help\"><p class=\"in-field-help\" id=\"help\">Nome fictício.</p></div>"
   },
   {
     "schemaVersion": "1.0",
@@ -765,7 +807,12 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring",
+      "input.height.md",
+      "color.border.interactive",
+      "color.background.surface"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -773,6 +820,7 @@
     ],
     "accessibility": {
       "semantics": [
+        "div",
         "label",
         "select",
         "option"
@@ -796,7 +844,7 @@
       "seleção",
       "nativa"
     ],
-    "markup": "<label for=\"select\">Estado</label><select id=\"select\"><option>Ativo</option><option>Arquivado</option></select>"
+    "markup": "<div class=\"in-field-group\"><label class=\"in-field__label\" for=\"select\">Estado</label><select class=\"in-input\" id=\"select\"><option>Ativo</option><option>Arquivado</option></select></div>"
   },
   {
     "schemaVersion": "1.0",
@@ -818,7 +866,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -848,7 +898,7 @@
       "caixa",
       "seleção"
     ],
-    "markup": "<label><input type=\"checkbox\"> Incluir arquivados</label>"
+    "markup": "<label class=\"in-choice\"><input type=\"checkbox\"> Incluir arquivados</label>"
   },
   {
     "schemaVersion": "1.0",
@@ -870,7 +920,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -903,7 +955,7 @@
       "exclusiva",
       "radio"
     ],
-    "markup": "<fieldset><legend>Densidade</legend><label><input type=\"radio\" name=\"density\" checked> Calm</label><label><input type=\"radio\" name=\"density\"> Focus</label></fieldset>"
+    "markup": "<fieldset class=\"in-choice-group\"><legend>Densidade</legend><label class=\"in-choice\"><input type=\"radio\" name=\"density\" checked> Calm</label><label class=\"in-choice\"><input type=\"radio\" name=\"density\"> Focus</label></fieldset>"
   },
   {
     "schemaVersion": "1.0",
@@ -925,7 +977,12 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring",
+      "input.height.md",
+      "color.border.interactive",
+      "color.background.surface"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -933,6 +990,7 @@
     ],
     "accessibility": {
       "semantics": [
+        "div",
         "label",
         "textarea"
       ],
@@ -956,7 +1014,7 @@
       "longo",
       "multiline"
     ],
-    "markup": "<label for=\"text\">Descrição</label><textarea id=\"text\" rows=\"4\"></textarea>"
+    "markup": "<div class=\"in-field-group\"><label class=\"in-field__label\" for=\"text\">Descrição</label><textarea class=\"in-input\" id=\"text\" rows=\"4\"></textarea></div>"
   },
   {
     "schemaVersion": "1.0",
@@ -975,7 +1033,11 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring",
+      "color.action.primary.background",
+      "color.action.primary.foreground"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -1002,7 +1064,7 @@
       "ações",
       "formulário"
     ],
-    "markup": "<div class=\"in-form-actions\"><button type=\"submit\">Salvar rascunho</button><button type=\"button\">Cancelar</button></div>"
+    "markup": "<div class=\"in-form-actions\"><button class=\"in-button in-button--primary\" type=\"submit\">Salvar rascunho</button><button class=\"in-button in-button--quiet\" type=\"button\">Cancelar</button></div>"
   },
   {
     "schemaVersion": "1.0",
@@ -1021,7 +1083,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -1071,7 +1135,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -1103,7 +1169,7 @@
       "modal",
       "foco"
     ],
-    "markup": "<button data-in-open=\"dialog\">Abrir diálogo</button><dialog id=\"dialog\" aria-labelledby=\"dialog-title\"><h2 id=\"dialog-title\">Confirmação</h2><p>Revise os dados.</p><button data-in-close autofocus>Fechar</button></dialog>"
+    "markup": "<button class=\"in-button in-button--secondary\" data-in-open=\"dialog\">Abrir diálogo</button><dialog id=\"dialog\" aria-labelledby=\"dialog-title\"><h2 id=\"dialog-title\">Confirmação</h2><p>Revise os dados.</p><button class=\"in-button in-button--quiet\" data-in-close autofocus>Fechar</button></dialog>"
   },
   {
     "schemaVersion": "1.0",
@@ -1124,7 +1190,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -1155,7 +1223,7 @@
       "modal",
       "lateral"
     ],
-    "markup": "<button data-in-open=\"drawer\">Abrir painel</button><dialog class=\"in-drawer\" id=\"drawer\" aria-labelledby=\"drawer-title\"><h2 id=\"drawer-title\">Detalhes</h2><button data-in-close autofocus>Fechar painel</button></dialog>"
+    "markup": "<button class=\"in-button in-button--secondary\" data-in-open=\"drawer\">Abrir painel</button><dialog class=\"in-drawer\" id=\"drawer\" aria-labelledby=\"drawer-title\"><h2 id=\"drawer-title\">Detalhes</h2><button class=\"in-button in-button--quiet\" data-in-close autofocus>Fechar painel</button></dialog>"
   },
   {
     "schemaVersion": "1.0",
@@ -1176,7 +1244,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -1209,7 +1279,7 @@
       "não",
       "modal"
     ],
-    "markup": "<button popovertarget=\"popover\">Mais informações</button><div id=\"popover\" popover><h2>Informações</h2><p>Conteúdo complementar.</p></div>"
+    "markup": "<button class=\"in-button in-button--secondary\" popovertarget=\"popover\">Mais informações</button><div id=\"popover\" popover><h2>Informações</h2><p>Conteúdo complementar.</p></div>"
   },
   {
     "schemaVersion": "1.0",
@@ -1230,7 +1300,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -1263,7 +1335,7 @@
       "ações",
       "disclosure"
     ],
-    "markup": "<details><summary>Ações</summary><ul><li><button type=\"button\">Editar</button></li><li><button type=\"button\">Arquivar</button></li></ul></details>"
+    "markup": "<details><summary>Ações</summary><ul><li><button class=\"in-button in-button--ghost\" type=\"button\">Editar</button></li><li><button class=\"in-button in-button--ghost\" type=\"button\">Arquivar</button></li></ul></details>"
   },
   {
     "schemaVersion": "1.0",
@@ -1282,7 +1354,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -1310,7 +1384,7 @@
       "ajuda",
       "acessível"
     ],
-    "markup": "<span class=\"in-tooltip\" data-in-tooltip><button aria-describedby=\"tip\">Ajuda</button><span role=\"tooltip\" id=\"tip\">Informações sobre esta ação.</span></span>"
+    "markup": "<span class=\"in-tooltip\" data-in-tooltip><button class=\"in-button in-button--secondary\" aria-describedby=\"tip\">Ajuda</button><span role=\"tooltip\" id=\"tip\">Informações sobre esta ação.</span></span>"
   },
   {
     "schemaVersion": "1.0",
@@ -1329,7 +1403,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -1376,7 +1452,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -1421,7 +1499,12 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring",
+      "input.height.md",
+      "color.border.interactive",
+      "color.background.surface"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -1429,6 +1512,7 @@
     ],
     "accessibility": {
       "semantics": [
+        "div",
         "label",
         "input",
         "p"
@@ -1450,7 +1534,7 @@
       "campo",
       "mensagem"
     ],
-    "markup": "<label for=\"invalid\">Nome</label><input id=\"invalid\" aria-invalid=\"true\" aria-describedby=\"error\"><p id=\"error\">Informe um nome.</p>"
+    "markup": "<div class=\"in-field-group\"><label class=\"in-field__label\" for=\"invalid\">Nome</label><input class=\"in-input\" id=\"invalid\" aria-invalid=\"true\" aria-describedby=\"error\"><p class=\"in-field-error\" id=\"error\">Informe um nome.</p></div>"
   },
   {
     "schemaVersion": "1.0",
@@ -1469,7 +1553,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -1516,7 +1602,11 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring",
+      "color.action.primary.background",
+      "color.action.primary.foreground"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -1545,7 +1635,7 @@
       "estado",
       "vazio"
     ],
-    "markup": "<section aria-label=\"Sem resultados\"><h2>Nenhum registro</h2><p>Crie um registro para começar.</p><button type=\"button\">Criar registro</button></section>"
+    "markup": "<section aria-label=\"Sem resultados\"><h2>Nenhum registro</h2><p>Crie um registro para começar.</p><button class=\"in-button in-button--primary\" type=\"button\">Criar registro</button></section>"
   },
   {
     "schemaVersion": "1.0",
@@ -1564,7 +1654,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -1610,7 +1702,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -1655,7 +1749,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -1701,7 +1797,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -1730,7 +1828,7 @@
       "teclado",
       "tabs"
     ],
-    "markup": "<div role=\"tablist\" aria-label=\"Detalhes\"><button id=\"tab-one\" role=\"tab\" aria-selected=\"true\" aria-controls=\"panel-one\">Resumo</button><button id=\"tab-two\" role=\"tab\" tabindex=\"-1\" aria-selected=\"false\" aria-controls=\"panel-two\">Histórico</button></div><section id=\"panel-one\" role=\"tabpanel\" aria-labelledby=\"tab-one\">Resumo sintético</section><section id=\"panel-two\" role=\"tabpanel\" aria-labelledby=\"tab-two\" hidden>Histórico sintético</section>"
+    "markup": "<div class=\"in-tabs\" role=\"tablist\" aria-label=\"Detalhes\"><button id=\"tab-one\" role=\"tab\" aria-selected=\"true\" aria-controls=\"panel-one\">Resumo</button><button id=\"tab-two\" role=\"tab\" tabindex=\"-1\" aria-selected=\"false\" aria-controls=\"panel-two\">Histórico</button></div><section id=\"panel-one\" role=\"tabpanel\" aria-labelledby=\"tab-one\">Resumo sintético</section><section id=\"panel-two\" role=\"tabpanel\" aria-labelledby=\"tab-two\" hidden>Histórico sintético</section>"
   },
   {
     "schemaVersion": "1.0",
@@ -1749,7 +1847,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -1798,7 +1898,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -1844,7 +1946,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -1891,7 +1995,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -1940,7 +2046,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -1988,7 +2096,9 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",
@@ -2035,7 +2145,11 @@
     ],
     "requiredTokens": [
       "color.background.canvas",
-      "color.text.primary"
+      "color.text.primary",
+      "touch.target.min",
+      "color.focus.ring",
+      "color.action.commit.background",
+      "color.action.commit.foreground"
     ],
     "allowedDependencies": [
       "@inteiro/tokens",

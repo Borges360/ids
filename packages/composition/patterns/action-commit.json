@@ -15,7 +15,11 @@
   ],
   "requiredTokens": [
     "color.background.canvas",
-    "color.text.primary"
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring",
+    "color.action.commit.background",
+    "color.action.commit.foreground"
   ],
   "allowedDependencies": [
     "@inteiro/tokens",

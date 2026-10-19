@@ -17,7 +17,9 @@
   ],
   "requiredTokens": [
     "color.background.canvas",
-    "color.text.primary"
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring"
   ],
   "allowedDependencies": [
     "@inteiro/tokens",
@@ -50,5 +52,5 @@
     "ações",
     "disclosure"
   ],
-  "markup": "<details><summary>Ações</summary><ul><li><button type=\"button\">Editar</button></li><li><button type=\"button\">Arquivar</button></li></ul></details>"
+  "markup": "<details><summary>Ações</summary><ul><li><button class=\"in-button in-button--ghost\" type=\"button\">Editar</button></li><li><button class=\"in-button in-button--ghost\" type=\"button\">Arquivar</button></li></ul></details>"
 }

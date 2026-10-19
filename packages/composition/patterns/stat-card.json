@@ -18,7 +18,9 @@
   ],
   "requiredTokens": [
     "color.background.canvas",
-    "color.text.primary"
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring"
   ],
   "allowedDependencies": [
     "@inteiro/tokens",

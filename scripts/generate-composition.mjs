@@ -27,7 +27,7 @@ const samples = {
   ],
   "data-table": [
     "Tabela paginada dados table",
-    '<section data-in-table data-in-page-size="2"><div class="in-table-scroll" role="region" aria-label="Resultados" tabindex="0"><table class="in-data-table"><caption>Resultados sintéticos</caption><thead><tr><th scope="col" aria-sort="none"><button type="button" data-in-sort="0">Ordenar por nome</button></th><th scope="col">Estado</th></tr></thead><tbody><tr><th scope="row">Zeta</th><td>Ativo</td></tr><tr><th scope="row">Alfa</th><td>Ativo</td></tr><tr><th scope="row">Beta</th><td>Arquivado</td></tr></tbody></table></div><nav aria-label="Paginação de resultados"><button type="button" data-in-page="-1" disabled>Anterior</button><span role="status" data-in-page-status>1 / 2</span><button type="button" data-in-page="1">Próxima</button></nav></section>',
+    '<section data-in-table data-in-page-size="2"><div class="in-table-scroll" role="region" aria-label="Resultados" tabindex="0"><table class="in-data-table"><caption>Resultados sintéticos</caption><thead><tr><th scope="col" aria-sort="none"><button class="in-button in-button--ghost" type="button" data-in-sort="0">Ordenar por nome</button></th><th scope="col">Estado</th></tr></thead><tbody><tr><th scope="row">Zeta</th><td>Ativo</td></tr><tr><th scope="row">Alfa</th><td>Ativo</td></tr><tr><th scope="row">Beta</th><td>Arquivado</td></tr></tbody></table></div><nav aria-label="Paginação de resultados"><button class="in-button in-button--secondary" type="button" data-in-page="-1" disabled>Anterior</button><span role="status" data-in-page-status>1 / 2</span><button class="in-button in-button--secondary" type="button" data-in-page="1">Próxima</button></nav></section>',
   ],
   "data-list": [
     "Lista dados",
@@ -47,35 +47,35 @@ const samples = {
   ],
   "filter-bar": [
     "Filtros busca",
-    '<form role="search" class="in-filter-bar"><label for="search">Buscar</label><input id="search" type="search"><button>Filtrar</button></form>',
+    '<form role="search" class="in-filter-bar"><div class="in-field-group"><label class="in-field__label" for="search">Buscar</label><input class="in-input" id="search" type="search"></div><button class="in-button in-button--primary">Filtrar</button></form>',
   ],
   "form-layout": [
     "Formulário cadastro layout",
-    '<form class="in-form-layout" data-in-validate><div class="in-field-group"><label for="name">Nome (obrigatório)</label><input id="name" required aria-describedby="help"><p id="help">Informe um nome fictício.</p></div><div class="in-form-actions"><button>Salvar rascunho</button></div></form>',
+    '<form class="in-form-layout" data-in-validate><div class="in-field-group"><label class="in-field__label" for="name">Nome (obrigatório)</label><input class="in-input" id="name" required aria-describedby="help"><p class="in-field-help" id="help">Informe um nome fictício.</p></div><div class="in-form-actions"><button class="in-button in-button--primary">Salvar rascunho</button></div></form>',
   ],
   "field-group": [
     "Campo label ajuda validação",
-    '<div class="in-field-group"><label for="field">Nome</label><input id="field" aria-describedby="help"><p id="help">Nome fictício.</p></div>',
+    '<div class="in-field-group"><label class="in-field__label" for="field">Nome</label><input class="in-input" id="field" aria-describedby="help"><p class="in-field-help" id="help">Nome fictício.</p></div>',
   ],
   select: [
     "Seleção nativa",
-    '<label for="select">Estado</label><select id="select"><option>Ativo</option><option>Arquivado</option></select>',
+    '<div class="in-field-group"><label class="in-field__label" for="select">Estado</label><select class="in-input" id="select"><option>Ativo</option><option>Arquivado</option></select></div>',
   ],
   checkbox: [
     "Caixa seleção",
-    '<label><input type="checkbox"> Incluir arquivados</label>',
+    '<label class="in-choice"><input type="checkbox"> Incluir arquivados</label>',
   ],
   "radio-group": [
     "Opção exclusiva radio",
-    '<fieldset><legend>Densidade</legend><label><input type="radio" name="density" checked> Calm</label><label><input type="radio" name="density"> Focus</label></fieldset>',
+    '<fieldset class="in-choice-group"><legend>Densidade</legend><label class="in-choice"><input type="radio" name="density" checked> Calm</label><label class="in-choice"><input type="radio" name="density"> Focus</label></fieldset>',
   ],
   textarea: [
     "Texto longo multiline",
-    '<label for="text">Descrição</label><textarea id="text" rows="4"></textarea>',
+    '<div class="in-field-group"><label class="in-field__label" for="text">Descrição</label><textarea class="in-input" id="text" rows="4"></textarea></div>',
   ],
   "form-actions": [
     "Ações formulário",
-    '<div class="in-form-actions"><button type="submit">Salvar rascunho</button><button type="button">Cancelar</button></div>',
+    '<div class="in-form-actions"><button class="in-button in-button--primary" type="submit">Salvar rascunho</button><button class="in-button in-button--quiet" type="button">Cancelar</button></div>',
   ],
   stepper: [
     "Etapas fluxo progressão",
@@ -83,23 +83,23 @@ const samples = {
   ],
   dialog: [
     "Diálogo modal foco",
-    '<button data-in-open="dialog">Abrir diálogo</button><dialog id="dialog" aria-labelledby="dialog-title"><h2 id="dialog-title">Confirmação</h2><p>Revise os dados.</p><button data-in-close autofocus>Fechar</button></dialog>',
+    '<button class="in-button in-button--secondary" data-in-open="dialog">Abrir diálogo</button><dialog id="dialog" aria-labelledby="dialog-title"><h2 id="dialog-title">Confirmação</h2><p>Revise os dados.</p><button class="in-button in-button--quiet" data-in-close autofocus>Fechar</button></dialog>',
   ],
   drawer: [
     "Painel modal lateral",
-    '<button data-in-open="drawer">Abrir painel</button><dialog class="in-drawer" id="drawer" aria-labelledby="drawer-title"><h2 id="drawer-title">Detalhes</h2><button data-in-close autofocus>Fechar painel</button></dialog>',
+    '<button class="in-button in-button--secondary" data-in-open="drawer">Abrir painel</button><dialog class="in-drawer" id="drawer" aria-labelledby="drawer-title"><h2 id="drawer-title">Detalhes</h2><button class="in-button in-button--quiet" data-in-close autofocus>Fechar painel</button></dialog>',
   ],
   popover: [
     "Conteúdo flutuante não modal",
-    '<button popovertarget="popover">Mais informações</button><div id="popover" popover><h2>Informações</h2><p>Conteúdo complementar.</p></div>',
+    '<button class="in-button in-button--secondary" popovertarget="popover">Mais informações</button><div id="popover" popover><h2>Informações</h2><p>Conteúdo complementar.</p></div>',
   ],
   "dropdown-menu": [
     "Menu ações disclosure",
-    '<details><summary>Ações</summary><ul><li><button type="button">Editar</button></li><li><button type="button">Arquivar</button></li></ul></details>',
+    '<details><summary>Ações</summary><ul><li><button class="in-button in-button--ghost" type="button">Editar</button></li><li><button class="in-button in-button--ghost" type="button">Arquivar</button></li></ul></details>',
   ],
   tooltip: [
     "Dica ajuda acessível",
-    '<span class="in-tooltip" data-in-tooltip><button aria-describedby="tip">Ajuda</button><span role="tooltip" id="tip">Informações sobre esta ação.</span></span>',
+    '<span class="in-tooltip" data-in-tooltip><button class="in-button in-button--secondary" aria-describedby="tip">Ajuda</button><span role="tooltip" id="tip">Informações sobre esta ação.</span></span>',
   ],
   alert: [
     "Alerta feedback",
@@ -111,7 +111,7 @@ const samples = {
   ],
   "inline-error": [
     "Erro campo mensagem",
-    '<label for="invalid">Nome</label><input id="invalid" aria-invalid="true" aria-describedby="error"><p id="error">Informe um nome.</p>',
+    '<div class="in-field-group"><label class="in-field__label" for="invalid">Nome</label><input class="in-input" id="invalid" aria-invalid="true" aria-describedby="error"><p class="in-field-error" id="error">Informe um nome.</p></div>',
   ],
   success: [
     "Sucesso confirmação",
@@ -119,7 +119,7 @@ const samples = {
   ],
   "empty-state": [
     "Estado vazio",
-    '<section aria-label="Sem resultados"><h2>Nenhum registro</h2><p>Crie um registro para começar.</p><button type="button">Criar registro</button></section>',
+    '<section aria-label="Sem resultados"><h2>Nenhum registro</h2><p>Crie um registro para começar.</p><button class="in-button in-button--primary" type="button">Criar registro</button></section>',
   ],
   skeleton: [
     "Carregamento skeleton",
@@ -132,7 +132,7 @@ const samples = {
   ],
   tabs: [
     "Abas teclado tabs",
-    '<div role="tablist" aria-label="Detalhes"><button id="tab-one" role="tab" aria-selected="true" aria-controls="panel-one">Resumo</button><button id="tab-two" role="tab" tabindex="-1" aria-selected="false" aria-controls="panel-two">Histórico</button></div><section id="panel-one" role="tabpanel" aria-labelledby="tab-one">Resumo sintético</section><section id="panel-two" role="tabpanel" aria-labelledby="tab-two" hidden>Histórico sintético</section>',
+    '<div class="in-tabs" role="tablist" aria-label="Detalhes"><button id="tab-one" role="tab" aria-selected="true" aria-controls="panel-one">Resumo</button><button id="tab-two" role="tab" tabindex="-1" aria-selected="false" aria-controls="panel-two">Histórico</button></div><section id="panel-one" role="tabpanel" aria-labelledby="tab-one">Resumo sintético</section><section id="panel-two" role="tabpanel" aria-labelledby="tab-two" hidden>Histórico sintético</section>',
   ],
   breadcrumb: [
     "Caminho navegação migalhas",
@@ -212,7 +212,29 @@ for (const [id, [description, markup]] of Object.entries(samples)) {
             : ["content"],
     variants: ["default"],
     states,
-    requiredTokens: tokens,
+    requiredTokens: [
+      ...new Set([
+        ...tokens,
+        "touch.target.min",
+        "color.focus.ring",
+        ...(markup.includes('class="in-input"')
+          ? [
+              "input.height.md",
+              "color.border.interactive",
+              "color.background.surface",
+            ]
+          : []),
+        ...(markup.includes("in-button--primary")
+          ? [
+              "color.action.primary.background",
+              "color.action.primary.foreground",
+            ]
+          : []),
+        ...(markup.includes("in-button--commit")
+          ? ["color.action.commit.background", "color.action.commit.foreground"]
+          : []),
+      ]),
+    ],
     allowedDependencies: ["@inteiro/tokens", "@inteiro/design-system"],
     accessibility: {
       semantics: [

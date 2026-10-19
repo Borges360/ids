@@ -17,7 +17,9 @@
   ],
   "requiredTokens": [
     "color.background.canvas",
-    "color.text.primary"
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring"
   ],
   "allowedDependencies": [
     "@inteiro/tokens",
@@ -49,5 +51,5 @@
     "modal",
     "foco"
   ],
-  "markup": "<button data-in-open=\"dialog\">Abrir diálogo</button><dialog id=\"dialog\" aria-labelledby=\"dialog-title\"><h2 id=\"dialog-title\">Confirmação</h2><p>Revise os dados.</p><button data-in-close autofocus>Fechar</button></dialog>"
+  "markup": "<button class=\"in-button in-button--secondary\" data-in-open=\"dialog\">Abrir diálogo</button><dialog id=\"dialog\" aria-labelledby=\"dialog-title\"><h2 id=\"dialog-title\">Confirmação</h2><p>Revise os dados.</p><button class=\"in-button in-button--quiet\" data-in-close autofocus>Fechar</button></dialog>"
 }

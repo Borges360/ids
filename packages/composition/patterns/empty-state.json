@@ -15,7 +15,11 @@
   ],
   "requiredTokens": [
     "color.background.canvas",
-    "color.text.primary"
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring",
+    "color.action.primary.background",
+    "color.action.primary.foreground"
   ],
   "allowedDependencies": [
     "@inteiro/tokens",
@@ -44,5 +48,5 @@
     "estado",
     "vazio"
   ],
-  "markup": "<section aria-label=\"Sem resultados\"><h2>Nenhum registro</h2><p>Crie um registro para começar.</p><button type=\"button\">Criar registro</button></section>"
+  "markup": "<section aria-label=\"Sem resultados\"><h2>Nenhum registro</h2><p>Crie um registro para começar.</p><button class=\"in-button in-button--primary\" type=\"button\">Criar registro</button></section>"
 }

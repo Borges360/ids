@@ -18,7 +18,12 @@
   ],
   "requiredTokens": [
     "color.background.canvas",
-    "color.text.primary"
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring",
+    "input.height.md",
+    "color.border.interactive",
+    "color.background.surface"
   ],
   "allowedDependencies": [
     "@inteiro/tokens",
@@ -26,6 +31,7 @@
   ],
   "accessibility": {
     "semantics": [
+      "div",
       "label",
       "select",
       "option"
@@ -49,5 +55,5 @@
     "seleção",
     "nativa"
   ],
-  "markup": "<label for=\"select\">Estado</label><select id=\"select\"><option>Ativo</option><option>Arquivado</option></select>"
+  "markup": "<div class=\"in-field-group\"><label class=\"in-field__label\" for=\"select\">Estado</label><select class=\"in-input\" id=\"select\"><option>Ativo</option><option>Arquivado</option></select></div>"
 }

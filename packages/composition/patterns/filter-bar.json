@@ -15,7 +15,14 @@
   ],
   "requiredTokens": [
     "color.background.canvas",
-    "color.text.primary"
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring",
+    "input.height.md",
+    "color.border.interactive",
+    "color.background.surface",
+    "color.action.primary.background",
+    "color.action.primary.foreground"
   ],
   "allowedDependencies": [
     "@inteiro/tokens",
@@ -24,6 +31,7 @@
   "accessibility": {
     "semantics": [
       "form",
+      "div",
       "label",
       "input",
       "button"
@@ -44,5 +52,5 @@
     "filtros",
     "busca"
   ],
-  "markup": "<form role=\"search\" class=\"in-filter-bar\"><label for=\"search\">Buscar</label><input id=\"search\" type=\"search\"><button>Filtrar</button></form>"
+  "markup": "<form role=\"search\" class=\"in-filter-bar\"><div class=\"in-field-group\"><label class=\"in-field__label\" for=\"search\">Buscar</label><input class=\"in-input\" id=\"search\" type=\"search\"></div><button class=\"in-button in-button--primary\">Filtrar</button></form>"
 }

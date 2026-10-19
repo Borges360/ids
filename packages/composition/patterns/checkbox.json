@@ -18,7 +18,9 @@
   ],
   "requiredTokens": [
     "color.background.canvas",
-    "color.text.primary"
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring"
   ],
   "allowedDependencies": [
     "@inteiro/tokens",
@@ -48,5 +50,5 @@
     "caixa",
     "seleção"
   ],
-  "markup": "<label><input type=\"checkbox\"> Incluir arquivados</label>"
+  "markup": "<label class=\"in-choice\"><input type=\"checkbox\"> Incluir arquivados</label>"
 }

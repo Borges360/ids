@@ -18,7 +18,9 @@
   ],
   "requiredTokens": [
     "color.background.canvas",
-    "color.text.primary"
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring"
   ],
   "allowedDependencies": [
     "@inteiro/tokens",
@@ -51,5 +53,5 @@
     "exclusiva",
     "radio"
   ],
-  "markup": "<fieldset><legend>Densidade</legend><label><input type=\"radio\" name=\"density\" checked> Calm</label><label><input type=\"radio\" name=\"density\"> Focus</label></fieldset>"
+  "markup": "<fieldset class=\"in-choice-group\"><legend>Densidade</legend><label class=\"in-choice\"><input type=\"radio\" name=\"density\" checked> Calm</label><label class=\"in-choice\"><input type=\"radio\" name=\"density\"> Focus</label></fieldset>"
 }

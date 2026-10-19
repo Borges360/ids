@@ -12,6 +12,8 @@ Use um único `main` e um título principal por página. O `app-shell` já cont�
 
 Formulários usam controles nativos com `label`, ajuda e mensagens associadas. `disabled`, `invalid` e `readonly` têm exemplos executáveis. O estado inválido apresenta mensagem textual; não depende apenas de cor. O navegador valida campos obrigatórios e foca a primeira falha. Uma ação `commit` representa publicação ou outra fronteira de negócio, explicada por `aria-describedby`.
 
+Os exemplos usam `in-input`, `in-choice`, `in-button` e `in-tabs` da biblioteca. Ação principal, ação contextual e publicação têm variantes distintas. A área acionável tem pelo menos 44 × 44 CSS px nas duas densidades; checkbox e rádio podem usar o label associado como área de clique. O estado inválido preserva os IDs de ajuda e acrescenta a mensagem de erro em `aria-describedby`. Controles que não suportam `readonly`, como select, checkbox e rádio, ficam desabilitados no exemplo correspondente.
+
 Tabelas usam caption, cabeçalhos com scope e um wrapper focável com scroll horizontal local. O documento não deve ter overflow. O aplicativo continua responsável por conectar ordenação e paginação aos seus dados; a apresentação não inventa lógica de negócio.
 
 ## Teclado e foco
@@ -32,6 +34,8 @@ Tabelas usam caption, cabeçalhos com scope e um wrapper focável com scroll hor
 `renderPattern(id, state)` de `@inteiro/composition/render` produz HTML determinístico para os estados declarados. O manifesto `story-matrix.json` associa cada estado a uma story. Os exemplos `examples/<id>-<state>.html` funcionam sem servidor de Storybook.
 
 O teste `tests/browser/composition.spec.ts` aplica a matriz pareada em PR e amplia larguras com `INTEIRO_FULL_MATRIX=1`. Ele verifica overflow, semântica e o subconjunto automatizável de WCAG 2.2 AA usando axe; captura imagens sem promovê-las a golden. Há testes de teclado para tabs e modal. A revisão manual continua necessária para critérios qualitativos e critérios de acessibilidade não automatizados.
+
+A matriz também mede os alvos de interação em cada estado. O gate de navegador emite `VIS-TARGET-001` quando botões, campos, summaries, tabs ou links de navegação visíveis têm área acionável menor que 44 × 44 CSS px. Links em texto corrido ficam fora dessa política de controles. A medição não comprova ausência de oclusão nem substitui a avaliação das exceções e dos demais critérios WCAG.
 
 Padrões de dados vazios e erros têm ações explícitas. Conteúdo longo pode quebrar dentro dos containers, sem esconder overflow do documento. As regras usam propriedades lógicas para RTL, grid com mínimo limitado à largura disponível e redução de movimento conforme preferência do usuário.
 

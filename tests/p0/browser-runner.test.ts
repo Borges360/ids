@@ -6,7 +6,11 @@ import { join } from "node:path";
 import { generateKeyPairSync, sign } from "node:crypto";
 import { DEFAULTS, hash, canonical } from "@inteiro/contracts";
 import { visualTest } from "@inteiro/visual";
-import { createResponseAliases, sanitizeCapture } from "@inteiro/visual";
+import {
+  createResponseAliases,
+  sanitizeCapture,
+  inspectInteractionTargets,
+} from "@inteiro/visual";
 import { chromium } from "@playwright/test";
 import {
   registry,
@@ -16,6 +20,31 @@ import {
 describe.skipIf(process.env.INTEIRO_BROWSER_UNIT !== "1")(
   "P0 real browser pipeline and baseline lifecycle",
   () => {
+    it("measures real 44px targets and associated labels without inventing regions", async () => {
+      const browser = await chromium.launch({ headless: true });
+      try {
+        const page = await browser.newPage();
+        await page.setContent(
+          '<style>button,input{box-sizing:border-box} .large{width:44px;height:44px} label{display:inline-flex;align-items:center;width:120px;height:44px} .small{width:20px;height:20px}</style><button class="large">Adequado</button><button id="small" class="small">×</button><input id="text" class="small"><label><input type="checkbox">Opção</label><label for="external">Externa</label><input id="external" type="radio"><nav><a id="nav" href="#">Ir</a></nav><p><a href="#">Link em prosa</a></p><button hidden>Oculto</button><div style="display:none"><button>Outro oculto</button></div>',
+        );
+        const targets = await inspectInteractionTargets(page);
+        expect(targets).toHaveLength(6);
+        expect(
+          targets
+            .filter((target) => target.undersized)
+            .map((target) => target.id)
+            .sort(),
+        ).toEqual(["nav", "small", "text"]);
+        expect(targets.find((target) => target.name === "Opção")).toMatchObject(
+          { undersized: false, targetHeight: 44 },
+        );
+        expect(
+          targets.find((target) => target.id === "external"),
+        ).toMatchObject({ undersized: false, targetHeight: 44 });
+      } finally {
+        await browser.close();
+      }
+    });
     it("consumes response aliases once in arrival order across repeated and concurrent waits", async () => {
       const server = createServer((_req, res) => {
         res.setHeader("content-type", "text/html");
@@ -92,12 +121,15 @@ describe.skipIf(process.env.INTEIRO_BROWSER_UNIT !== "1")(
     it("blocks initial golden, rejects tampering, compares approved image and detects overflow", async () => {
       const root = await mkdtemp(join(tmpdir(), "inteiro-browser-"));
       let overflow = false;
+      let smallTarget = false;
       const server = createServer((req, res) => {
         res.setHeader("content-type", "text/html");
         res.end(
           '<!doctype html><html lang="pt-BR"><meta charset="utf-8"><title>Fixture</title><body><main' +
             (overflow ? ' style="width:2000px"' : "") +
-            '><h1>Teste sintético</h1><button type="button">Ação</button><p id="result">Carregando</p></main><script>fetch("/api/state",{method:"POST"}).then(r=>r.json()).then(data=>document.getElementById("result").textContent=data.message)</script></body></html>',
+            '><h1>Teste sintético</h1><button type="button" style="width:80px;height:' +
+            (smallTarget ? "20" : "44") +
+            'px">Ação</button><p id="result">Carregando</p></main><script>fetch("/api/state",{method:"POST"}).then(r=>r.json()).then(data=>document.getElementById("result").textContent=data.message)</script></body></html>',
         );
       });
       await new Promise<void>((r) => server.listen(0, "127.0.0.1", r));
@@ -240,6 +272,13 @@ describe.skipIf(process.env.INTEIRO_BROWSER_UNIT !== "1")(
         );
         expect(regression.findings.map((f) => f.ruleId)).toContain(
           "VIS-DIFF-001",
+        );
+        overflow = false;
+        smallTarget = true;
+        const targetRegression = await visualTest(root, config);
+        expect(targetRegression.status).toBe("failed");
+        expect(targetRegression.findings.map((f) => f.ruleId)).toContain(
+          "VIS-TARGET-001",
         );
       } finally {
         await new Promise<void>((r) => server.close(() => r()));

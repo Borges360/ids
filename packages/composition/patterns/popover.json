@@ -17,7 +17,9 @@
   ],
   "requiredTokens": [
     "color.background.canvas",
-    "color.text.primary"
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring"
   ],
   "allowedDependencies": [
     "@inteiro/tokens",
@@ -50,5 +52,5 @@
     "não",
     "modal"
   ],
-  "markup": "<button popovertarget=\"popover\">Mais informações</button><div id=\"popover\" popover><h2>Informações</h2><p>Conteúdo complementar.</p></div>"
+  "markup": "<button class=\"in-button in-button--secondary\" popovertarget=\"popover\">Mais informações</button><div id=\"popover\" popover><h2>Informações</h2><p>Conteúdo complementar.</p></div>"
 }

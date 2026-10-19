@@ -15,6 +15,11 @@ import {
 import { registry, proposeBaseline, verifyApproval } from "./baseline.ts";
 import type { Page, Locator } from "@playwright/test";
 import { discoverRoutes, coverageFindings } from "./coverage.ts";
+import { inspectInteractionTargets } from "./targets.ts";
+export {
+  inspectInteractionTargets,
+  type InteractionTarget,
+} from "./targets.ts";
 import {
   createResponseAliases,
   matchesResponse,
@@ -602,6 +607,12 @@ export async function visualTest(
                 );
               if (dom.images || dom.fonts !== "loaded")
                 add("VIS-DATA-001", "Broken image or font");
+              for (const target of await inspectInteractionTargets(page))
+                if (target.undersized)
+                  add(
+                    "VIS-TARGET-001",
+                    `INTEIRO target below 44×44 CSS px: ${target.tag}${target.id ? "#" + target.id : ""} ${target.name} (${target.targetWidth}×${target.targetHeight})`,
+                  );
               await page.addScriptTag({ path: axePath });
               const axe = await page.evaluate(async () => {
                 const a = (

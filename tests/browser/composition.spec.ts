@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 import axe from "axe-core";
 import { patterns } from "../../packages/composition/src/index.ts";
 import { renderPattern } from "../../packages/composition/src/render.ts";
+import { inspectInteractionTargets } from "../../packages/visual/src/targets.ts";
 const full = process.env.INTEIRO_FULL_MATRIX === "1";
 for (const [i, p] of patterns.entries())
   for (const state of p.states)
@@ -52,8 +53,39 @@ for (const [i, p] of patterns.entries())
             const { enhance } = await import(path);
             enhance(document.body);
           });
-        await page.evaluate(()=>document.fonts.ready);
+          await page.evaluate(() => document.fonts.ready);
           await expect(page.locator("h1")).toBeVisible();
+          if (state === "readonly") {
+            await expect(
+              page.locator(
+                'input[type="checkbox"]:not(:disabled),input[type="radio"]:not(:disabled),select:not(:disabled)',
+              ),
+            ).toHaveCount(0);
+            await expect(
+              page.locator(
+                'input:not([type="checkbox"]):not([type="radio"]):not([readonly]),textarea:not([readonly])',
+              ),
+            ).toHaveCount(0);
+          }
+          if (state === "invalid") {
+            for (const field of await page
+              .locator("input,select,textarea")
+              .all()) {
+              await expect(field).toHaveAttribute("aria-invalid", "true");
+              const descriptions =
+                (await field.getAttribute("aria-describedby"))?.split(/\s+/) ??
+                [];
+              expect(descriptions).toContain("pattern-error");
+              await expect(page.locator("#pattern-error")).toBeVisible();
+              if (p.id === "form-layout" || p.id === "field-group")
+                expect(descriptions).toContain("help");
+            }
+          }
+          expect(
+            (await inspectInteractionTargets(page)).filter(
+              (target) => target.undersized,
+            ),
+          ).toEqual([]);
           expect(
             await page.evaluate(
               () => document.documentElement.scrollWidth <= innerWidth + 1,
