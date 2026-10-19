@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0",
   "version": "1.2.0",
-  "sourceCommit": "860a23845833bf567e10e22c85a5417444438925",
-  "sourceHash": "c5a19a644e2bd7e11e4c48c42919a712919e9d20214127b41edee27c86e9810d",
+  "sourceCommit": "23f82707bcfd4bc48f87290f31c3fece3e60e5cf",
+  "sourceHash": "fff078d57cd6dfc8d778d08d1716262c3b9fd10a061cea26d1f74707f6bf3fdc",
   "configHash": "73321ceb9109b83c59e32ee0aae79ce253e52876053200a9287d311ab7d26784",
   "policyHash": "",
   "scopeExclusions": [
@@ -73,7 +73,7 @@
       "evidence": [
         {
           "path": "tests/p0/governance.test.ts",
-          "sha256": "9e0327fced89144da9fcbe8881a4cb3d9133b8fcf7f4691a37f3977cf5854654"
+          "sha256": "846e80fb97adad3628ea64bf1dad975b6b32e6ef074e37afb2e442bc2a00ef28"
         }
       ]
     },
@@ -95,7 +95,7 @@
       "evidence": [
         {
           "path": "tests/p0/repair-controller.test.ts",
-          "sha256": "e0116f7eb5bad2729f9620e6a6de5df570353b72b344e4a2cb3115ae0b472336"
+          "sha256": "b7b526966f57df9dc4723e0fcc7231e6f827f1eb59194dbdfdd6ae67eddc2807"
         }
       ]
     },
@@ -124,11 +124,11 @@
     {
       "id": "E10",
       "status": "blocked",
-      "reason": "CI, tarballs, offline e documentação implementados; aceite de release ainda incompleto; deploy Jenkins excluído pelo solicitante. Pendências confirmadas: init --yes ainda pode substituir inteiro.css customizado; migrate ainda retorna sugestões sem diff/backup/checksum reexecutável.",
+      "reason": "CI, tarballs, offline e documentação implementados; aceite de release ainda incompleto; deploy Jenkins excluído pelo solicitante. Pendências confirmadas: init --yes agora preserva inteiro.css customizado, coberto por teste; migrate ainda retorna sugestões sem diff/backup/checksum reexecutável.",
       "evidence": [
         {
           "path": "docs/P0_OPERATIONS.md",
-          "sha256": "6c14f9615701e46981f0b09326a502a1b8883b4642ce529c7911f19b162ce582"
+          "sha256": "5c874d09d88b75e634e47dbad8ba7ade48e45aa58c5b9f167fa34d23924756e6"
         }
       ]
     },
@@ -139,7 +139,7 @@
       "evidence": [
         {
           "path": "docs/P0_IMPLEMENTATION.md",
-          "sha256": "0e1423e6b4f4c832b87a3431ee45cfe988bf6b067f78f3bb62c2b2a91110248b"
+          "sha256": "d284083beb21e729dcc436068c4e0dbe163d070966fc55f01858c4ff6a600ba6"
         }
       ]
     },
@@ -293,7 +293,7 @@
       "evidence": [
         {
           "path": "tests/p0/governance.test.ts",
-          "sha256": "9e0327fced89144da9fcbe8881a4cb3d9133b8fcf7f4691a37f3977cf5854654"
+          "sha256": "846e80fb97adad3628ea64bf1dad975b6b32e6ef074e37afb2e442bc2a00ef28"
         }
       ]
     },
@@ -326,7 +326,7 @@
       "evidence": [
         {
           "path": "tests/p0/repair-controller.test.ts",
-          "sha256": "e0116f7eb5bad2729f9620e6a6de5df570353b72b344e4a2cb3115ae0b472336"
+          "sha256": "b7b526966f57df9dc4723e0fcc7231e6f827f1eb59194dbdfdd6ae67eddc2807"
         }
       ]
     },
@@ -359,7 +359,7 @@
       "evidence": [
         {
           "path": ".github/workflows/ci.yml",
-          "sha256": "3b0b0f40d29e70bfaea6b70720628e3c0f7b9023058bf921cd00ab648598cb04"
+          "sha256": "dcf9d39fd4dab8dca721ff305ce972533a90595d2d2b0fbee2804db5d1aa10c2"
         }
       ]
     },
@@ -370,7 +370,7 @@
       "evidence": [
         {
           "path": "docs/P0_OPERATIONS.md",
-          "sha256": "6c14f9615701e46981f0b09326a502a1b8883b4642ce529c7911f19b162ce582"
+          "sha256": "5c874d09d88b75e634e47dbad8ba7ade48e45aa58c5b9f167fa34d23924756e6"
         }
       ]
     },
@@ -447,7 +447,7 @@
       "evidence": [
         {
           "path": "tests/p0/governance.test.ts",
-          "sha256": "9e0327fced89144da9fcbe8881a4cb3d9133b8fcf7f4691a37f3977cf5854654"
+          "sha256": "846e80fb97adad3628ea64bf1dad975b6b32e6ef074e37afb2e442bc2a00ef28"
         }
       ]
     },
@@ -513,7 +513,7 @@
       "evidence": [
         {
           "path": "docs/P0_IMPLEMENTATION.md",
-          "sha256": "0e1423e6b4f4c832b87a3431ee45cfe988bf6b067f78f3bb62c2b2a91110248b"
+          "sha256": "d284083beb21e729dcc436068c4e0dbe163d070966fc55f01858c4ff6a600ba6"
         }
       ]
     },
@@ -590,7 +590,7 @@
       "evidence": [
         {
           "path": "tests/p0/repair-controller.test.ts",
-          "sha256": "e0116f7eb5bad2729f9620e6a6de5df570353b72b344e4a2cb3115ae0b472336"
+          "sha256": "b7b526966f57df9dc4723e0fcc7231e6f827f1eb59194dbdfdd6ae67eddc2807"
         }
       ]
     },
@@ -612,7 +612,7 @@
       "evidence": [
         {
           "path": "tests/p0/cli.test.ts",
-          "sha256": "7cb250edc76c17792c9cc870b84ce201fb2f02808099053d5a2f345568e791db"
+          "sha256": "dd416d987bf5a40f97a9118e3adaef174ce844666d04b3772a1438b57acb93dc"
         }
       ]
     },
