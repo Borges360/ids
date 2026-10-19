@@ -15,17 +15,31 @@ export interface Observation {
   humanMinutes: number | null;
   evidencePath?: string;
   evidenceHash?: string;
+  outcome?: "accepted" | "model_failure" | "environment_error" | "incomplete";
 }
 export function metrics(rows: Observation[]) {
-  const accepted = rows.filter((r) => r.accepted),
+  const evaluated = rows.filter(
+      (r) => r.accepted || r.outcome === "model_failure",
+    ),
+    accepted = evaluated.filter((r) => r.accepted),
     costKnown = rows.every((r) => r.cost !== null);
   return {
     tasks: rows.length,
+    evaluatedTasks: evaluated.length,
+    environmentErrors: rows.filter((r) => r.outcome === "environment_error")
+      .length,
+    incompleteObservations: rows.filter((r) => r.outcome === "incomplete")
+      .length,
+    unclassifiedFailures: rows.filter(
+      (r) => !r.accepted && r.outcome === undefined,
+    ).length,
     accepted: accepted.length,
-    acceptanceRate: rows.length ? accepted.length / rows.length : 0,
-    firstPassRate: rows.length
-      ? rows.filter((r) => r.initialAccepted).length / rows.length
-      : 0,
+    acceptanceRate: evaluated.length
+      ? accepted.length / evaluated.length
+      : null,
+    firstPassRate: evaluated.length
+      ? evaluated.filter((r) => r.initialAccepted).length / evaluated.length
+      : null,
     totalCost: costKnown ? rows.reduce((s, r) => s + r.cost!, 0) : null,
     costPerAcceptedTask:
       costKnown && accepted.length

@@ -417,6 +417,132 @@ const contracts = {
       "artifacts",
     ],
   },
+  "experiment-input": {
+    type: "object",
+    additionalProperties: false,
+    required: [
+      "schemaVersion",
+      "idsCommit",
+      "datasetHash",
+      "configHash",
+      "environmentHash",
+      "observations",
+    ],
+    properties: {
+      schemaVersion: { const: "1.0" },
+      idsCommit: { type: "string", pattern: "^[a-f0-9]{40}$" },
+      datasetHash: { type: "string", pattern: "^[a-f0-9]{64}$" },
+      configHash: { type: "string", pattern: "^[a-f0-9]{64}$" },
+      environmentHash: { type: "string", pattern: "^[a-f0-9]{64}$" },
+      observations: {
+        type: "array",
+        minItems: 1,
+        items: {
+          type: "object",
+          additionalProperties: false,
+          required: [
+            "caseId",
+            "model",
+            "ablation",
+            "seed",
+            "accepted",
+            "initialAccepted",
+            "attempts",
+            "durationMs",
+            "cost",
+            "tokensIn",
+            "tokensOut",
+            "humanMinutes",
+          ],
+          properties: {
+            caseId: { type: "string", pattern: "\\S" },
+            model: { type: "string", pattern: "\\S" },
+            ablation: {
+              enum: [
+                "unassisted",
+                "context",
+                "composition-lint",
+                "visual-repair",
+              ],
+            },
+            seed: {
+              type: "integer",
+              minimum: Number.MIN_SAFE_INTEGER,
+              maximum: Number.MAX_SAFE_INTEGER,
+            },
+            accepted: { type: "boolean" },
+            initialAccepted: { type: "boolean" },
+            attempts: { type: "integer", minimum: 1, maximum: 3 },
+            durationMs: { type: "number", minimum: 0 },
+            cost: { type: ["number", "null"], minimum: 0 },
+            tokensIn: {
+              type: ["integer", "null"],
+              minimum: 0,
+              maximum: Number.MAX_SAFE_INTEGER,
+            },
+            tokensOut: {
+              type: ["integer", "null"],
+              minimum: 0,
+              maximum: Number.MAX_SAFE_INTEGER,
+            },
+            humanMinutes: { type: ["number", "null"], minimum: 0 },
+            evidencePath: { type: "string", pattern: "\\S" },
+            evidenceHash: { type: "string", pattern: "^[a-f0-9]{64}$" },
+            outcome: {
+              enum: [
+                "accepted",
+                "model_failure",
+                "environment_error",
+                "incomplete",
+              ],
+            },
+          },
+          dependencies: {
+            evidencePath: ["evidenceHash"],
+            evidenceHash: ["evidencePath"],
+          },
+          allOf: [
+            {
+              if: { properties: { initialAccepted: { const: true } } },
+              then: {
+                properties: {
+                  accepted: { const: true },
+                  attempts: { const: 1 },
+                },
+              },
+            },
+            {
+              if: { properties: { accepted: { const: true } } },
+              then: { required: ["evidencePath", "evidenceHash"] },
+            },
+            {
+              if: {
+                required: ["outcome"],
+                properties: { outcome: { const: "accepted" } },
+              },
+              then: { properties: { accepted: { const: true } } },
+            },
+            {
+              if: {
+                required: ["outcome"],
+                properties: {
+                  outcome: {
+                    enum: ["model_failure", "environment_error", "incomplete"],
+                  },
+                },
+              },
+              then: {
+                properties: {
+                  accepted: { const: false },
+                  initialAccepted: { const: false },
+                },
+              },
+            },
+          ],
+        },
+      },
+    },
+  },
   "repair-context": {
     type: "object",
     required: [

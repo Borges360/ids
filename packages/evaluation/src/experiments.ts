@@ -1,5 +1,12 @@
-import { readFile, writeFile, mkdir } from "node:fs/promises";
-import { hash, safePath, safeRead, readEvidence } from "@inteiro/contracts";
+import { writeFile, mkdir } from "node:fs/promises";
+import {
+  hash,
+  safePath,
+  safeRead,
+  readEvidence,
+  validateSchema,
+  type EvidenceBundle,
+} from "@inteiro/contracts";
 import { metrics, type Observation } from "./index.ts";
 export const ABLATIONS = [
   "unassisted",
@@ -8,6 +15,13 @@ export const ABLATIONS = [
   "visual-repair",
 ] as const;
 export function percentile(values: number[], q: number) {
+  if (
+    !Number.isFinite(q) ||
+    q < 0 ||
+    q > 1 ||
+    values.some((value) => !Number.isFinite(value))
+  )
+    throw new Error("Invalid percentile input");
   if (!values.length) return null;
   const sorted = [...values].sort((a, b) => a - b);
   return sorted[
@@ -15,6 +29,14 @@ export function percentile(values: number[], q: number) {
   ]!;
 }
 export function wilson(successes: number, n: number) {
+  if (
+    !Number.isSafeInteger(n) ||
+    !Number.isSafeInteger(successes) ||
+    n < 0 ||
+    successes < 0 ||
+    successes > n
+  )
+    throw new Error("Invalid proportion counts");
   if (!n) return { low: 0, high: 1 };
   const z = 1.96,
     p = successes / n,
@@ -24,17 +46,16 @@ export function wilson(successes: number, n: number) {
   return { low: Math.max(0, mid - delta), high: Math.min(1, mid + delta) };
 }
 export function summarizeExperiments(rows: Observation[]) {
-  const groups = [...new Set(rows.map((r) => r.model + "|" + r.ablation))];
+  const groupKey = (r: Observation) => JSON.stringify([r.model, r.ablation]);
+  const groups = [...new Set(rows.map(groupKey))];
   return groups.map((key) => {
-    const group = rows.filter((r) => r.model + "|" + r.ablation === key);
+    const group = rows.filter((r) => groupKey(r) === key);
+    const summary = metrics(group);
     return {
       model: group[0]!.model,
       ablation: group[0]!.ablation,
-      ...metrics(group),
-      acceptanceInterval95: wilson(
-        group.filter((r) => r.accepted).length,
-        group.length,
-      ),
+      ...summary,
+      acceptanceInterval95: wilson(summary.accepted, summary.evaluatedTasks),
       durationMedian: percentile(
         group.map((r) => r.durationMs),
         0.5,
@@ -63,60 +84,110 @@ export function summarizeExperiments(rows: Observation[]) {
     };
   });
 }
+export interface RecordedExperimentInput {
+  schemaVersion: "1.0";
+  idsCommit: string;
+  datasetHash: string;
+  configHash: string;
+  environmentHash: string;
+  observations: Observation[];
+}
+function completeAcceptance(evidence: EvidenceBundle, row: Observation) {
+  const required = ["context", "task-context", "static", "browser", "review"];
+  if (
+    required.some(
+      (name) =>
+        evidence.gates.filter(
+          (gate) => gate.name === name && gate.status === "passed",
+        ).length !== 1,
+    ) ||
+    new Set(evidence.gates.map((gate) => gate.name)).size !==
+      evidence.gates.length ||
+    evidence.gates.some(
+      (gate) =>
+        gate.status !== "passed" ||
+        gate.findings.some(
+          (finding) => !["passed", "waived"].includes(finding.status),
+        ),
+    ) ||
+    evidence.findings.some(
+      (finding) => !["passed", "waived"].includes(finding.status),
+    ) ||
+    !/^[a-f0-9]{40}$/.test(evidence.gitSha ?? "") ||
+    !/^[a-f0-9]{64}$/.test(evidence.sourceHash ?? "")
+  )
+    throw new Error(
+      "Accepted observations require complete passing gate evidence",
+    );
+  const context = evidence.gates.find((gate) => gate.name === "context")!;
+  const task = evidence.gates.find((gate) => gate.name === "task-context")!;
+  const lint = evidence.gates.find((gate) => gate.name === "static")!;
+  const browser = evidence.gates.find((gate) => gate.name === "browser")!;
+  if (
+    context.discoverable !== true ||
+    !Array.isArray(context.provenance) ||
+    !context.provenance.length ||
+    task.taskId !== row.caseId ||
+    typeof task.taskHash !== "string" ||
+    !/^[a-f0-9]{64}$/.test(task.taskHash) ||
+    lint.adoption !== "enforce-all" ||
+    lint.coverage !== 1 ||
+    !Number.isSafeInteger(lint.files) ||
+    (lint.files as number) < 1 ||
+    !Number.isSafeInteger(browser.executed) ||
+    (browser.executed as number) < 1 ||
+    !Array.isArray(browser.captures) ||
+    browser.captures.length !== browser.executed ||
+    typeof browser.environmentFingerprint !== "string" ||
+    !/^[a-f0-9]{64}$/.test(browser.environmentFingerprint)
+  )
+    throw new Error(
+      "Incomplete task, source coverage or browser execution evidence",
+    );
+  for (const capture of browser.captures) {
+    if (
+      !capture ||
+      typeof capture !== "object" ||
+      typeof capture.actual !== "string" ||
+      typeof capture.sha256 !== "string" ||
+      !/^[a-f0-9]{64}$/.test(capture.sha256) ||
+      capture.environmentFingerprint !== browser.environmentFingerprint ||
+      ["route", "state", "viewport", "theme", "density"].some(
+        (field) => typeof capture[field] !== "string" || !capture[field].trim(),
+      ) ||
+      !evidence.artifacts.some(
+        (artifact) =>
+          artifact.path === capture.actual &&
+          artifact.sha256 === capture.sha256,
+      )
+    )
+      throw new Error(
+        "Browser capture is not bound to complete acceptance evidence",
+      );
+  }
+}
 export async function importExperiment(
   root: string,
   path: string,
   outDir: string,
 ) {
-  const input = JSON.parse(await safeRead(root, path)) as {
-    schemaVersion: string;
-    idsCommit: string;
-    datasetHash: string;
-    configHash: string;
-    environmentHash: string;
-    observations: Observation[];
-  };
-  if (
-    input.schemaVersion !== "1.0" ||
-    !input.idsCommit ||
-    ![input.datasetHash, input.configHash, input.environmentHash].every((h) =>
-      /^[a-f0-9]{64}$/.test(h),
-    ) ||
-    !input.observations.length
-  )
-    throw new Error("Invalid experiment provenance");
+  const input: RecordedExperimentInput = JSON.parse(await safeRead(root, path));
+  if (!validateSchema("experiment-input", input).valid)
+    throw new Error("Invalid experiment provenance or observation schema");
   const keys = new Set<string>();
   for (const row of input.observations) {
-    const key = [row.model, row.ablation, row.caseId, row.seed].join("|");
+    const key = JSON.stringify([row.model, row.ablation, row.caseId, row.seed]);
     if (keys.has(key)) throw new Error("Duplicate model/task/sample");
     keys.add(key);
-    if (
-      !row.model ||
-      !row.caseId ||
-      !ABLATIONS.includes(row.ablation as (typeof ABLATIONS)[number]) ||
-      !Number.isInteger(row.seed) ||
-      !Number.isInteger(row.attempts) ||
-      row.attempts < 1 ||
-      row.attempts > 3 ||
-      !Number.isFinite(row.durationMs) ||
-      row.durationMs < 0 ||
-      (row.cost !== null && (!Number.isFinite(row.cost) || row.cost < 0))
-    )
-      throw new Error("Invalid observation");
-    if (row.accepted) {
-      if (!row.evidencePath || !row.evidenceHash)
-        throw new Error(
-          "Accepted observations require independent gate evidence",
-        );
+    if (row.evidencePath) {
       const evidence = await readEvidence(root, row.evidencePath);
       if (
-        evidence.status !== "passed" ||
+        (row.accepted && evidence.status !== "passed") ||
         evidence.hash !== row.evidenceHash ||
         evidence.configHash !== input.configHash
       )
-        throw new Error(
-          "Observation acceptance does not match validated gate evidence",
-        );
+        throw new Error("Observation does not match validated gate evidence");
+      if (row.accepted) completeAcceptance(evidence, row);
     }
   }
   const result = {
@@ -150,6 +221,7 @@ export async function importExperiment(
     "tokensIn",
     "tokensOut",
     "humanMinutes",
+    "outcome",
   ] as const;
   const csv = [
     cols.join(","),

@@ -76,7 +76,11 @@ Cada execução gera summary JSON, SARIF, JUnit, HTML, ambiente e cobertura em `
 npx inteiro benchmark run --observations experiment.json --json
 ```
 
-O import valida commit/dataset/config/ambiente, deduplica modelo/tarefa/amostra e exporta JSON, CSV e HTML com medianas, P90 e intervalos de Wilson. Custo desconhecido permanece `null`. O experimento real de dois modelos e o smoke com agentes reais foram retirados do escopo por orientação do solicitante nesta entrega.
+O import usa `experiment-input.schema.json`: exige SHA completo do commit, hashes de dataset/config/ambiente, booleanos reais e contadores não negativos (tokens inteiros seguros). `initialAccepted=true` exige aceitação final e uma única tentativa. Identidades de modelo/tarefa/amostra são deduplicadas sem ambiguidade por delimitadores. Evidência fornecida é relida e seus hashes e configuração são conferidos. Uma tarefa aceita precisa dos cinco gates completos (`context`, `task-context`, `static`, `browser`, `review`), cobertura estática integral em `enforce-all`, identidade da tarefa correspondente e capturas vinculadas aos artefatos. Um relatório só de lint ou sem execução de navegador não comprova aceitação.
+
+`outcome` distingue `accepted`, `model_failure`, `environment_error` e `incomplete`. Falhas sem classificação ficam em `unclassifiedFailures`; não são automaticamente atribuídas ao modelo. As taxas usam apenas tarefas aceitas ou classificadas como falha de modelo; sem esse denominador a taxa é `null`. Custos de todas as observações entram no custo total, inclusive infraestrutura, e valores desconhecidos permanecem `null`. JSON, CSV e HTML incluem essas contagens, medianas, P90 e intervalos de Wilson.
+
+A validação dos hashes declarados e dos relatórios ainda não atesta a fixação do protocolo, versões ou independência do dataset; esses critérios permanecem pendentes no ledger de E09. O experimento real de dois modelos e o smoke com agentes reais foram retirados do escopo por orientação do solicitante nesta entrega.
 
 ## Migração e rollback
 
