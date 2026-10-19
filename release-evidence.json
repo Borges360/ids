@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0",
   "version": "1.2.0",
-  "sourceCommit": "cd7403e4a0ce6c8e4f01fbb0ae7cfaf429a68619",
-  "sourceHash": "e601fdba1a4ad7dbd9abb0d19a6f4601160480274f09364e98fa4a9e9a6c5d92",
+  "sourceCommit": "0737f065c987440991f15dcfa13b312899f0e0fa",
+  "sourceHash": "ffb791829d362c0612ab68b10c6d3c12501b308bdbb3f61ebc2a546e36ee8225",
   "configHash": "c01aff1aced7f9f3957c622ca3870d094ec3f2c7744c2e05bf0086a6414e8270",
   "policyHash": "",
   "scopeExclusions": [
@@ -13,12 +13,12 @@
   "requirements": [
     {
       "id": "E00",
-      "status": "blocked",
-      "reason": "Contratos e precedência parcial implementados. Auditoria sintética confirmou que flags ainda ampliam repair.maxAttempts/maxChangedFiles/maxDiffLines, context.maxTokens, visual.colorThreshold e browser.allowedOrigins apesar de limites de organização mais restritivos. Correção e testes de precedência por campo são necessários antes do aceite.",
+      "status": "needs_review",
+      "reason": "Restrições de organização agora têm schema versionado e são cumulativas entre API e arquivo. Limites usam mínimo, permissões de origem/padrão usam interseção, obrigações usam união; campos sem efeito e conflitos são recusados. Testes de flags, duas fontes, pin de viewport/fontes e validação passaram. O aceite transversal da fundação e da configuração ainda requer auditoria.",
       "evidence": [
         {
           "path": "tests/p0/contracts.test.ts",
-          "sha256": "34b290158ec036899c00a796b7a4f7d48ea1ace79af448f71cf5c088e0dc46ff"
+          "sha256": "2cd380fa6a3ed1ca1d54d58d3dd44d1f5cc6462e5a05625dc134731b8f94194d"
         },
         {
           "path": "artifacts/p0-contract-response-catalog-tests.log",
@@ -26,7 +26,7 @@
         },
         {
           "path": "packages/contracts/schemas/config.schema.json",
-          "sha256": "743b83631d29ff648948c3c3bdac8ca42f90226300a7ea4e661f5a031ad33932"
+          "sha256": "c1137b863a78c6c04678c483e2c9c3e04a9cb301b830d0b267232fb1ca720ceb"
         },
         {
           "path": "artifacts/p0-gate-contract-hardening.json",
@@ -43,13 +43,29 @@
         {
           "path": "artifacts/p0-gate-overlay.json",
           "sha256": "8b1c604c6bf34f4b6f2bc5c76da54c82c9b285575940a43c538978bdf74005b9"
+        },
+        {
+          "path": "tests/p0/organization-policy.test.ts",
+          "sha256": "07f83544431f1fa1d6aace32fae9636f08ed39bf8993bb87d2a8cfb40aec6865"
+        },
+        {
+          "path": "packages/contracts/schemas/organization-policy.schema.json",
+          "sha256": "8aa562bd51ba77f5ed2c5e7a6b6520c53bc7f7a3c111f48c7af77ddeb118a3c8"
+        },
+        {
+          "path": "artifacts/p0-organization-policy-audit-fixed.json",
+          "sha256": "6eb4c40396184d667cbcf31b3e689afec22095914364078b2a395b1aea97cf62"
+        },
+        {
+          "path": "artifacts/p0-gate-policy.json",
+          "sha256": "92038f403c0b9edee77609d67eaa3182783eea92255fdcb0179ef31bf3ab7125"
         }
       ]
     },
     {
       "id": "E01",
-      "status": "needs_review",
-      "reason": "Instalação, integridade, schemas de tarefa/contexto, vínculo verificável ao plano e hashes de documentos implementados; testes de adulteração, escopo, configuração, CLI e autorização de reparo passaram. Aceite final do mantenedor pendente; smoke com agentes reais excluído pelo solicitante.",
+      "status": "blocked",
+      "reason": "Instalação e vínculo de contexto são verificáveis sem alegar observação interna do agente. A auditoria de arquivos Cursor confirmou alwaysApply=false e globs=[] classificados como scoped, embora não haja nenhum glob de ativação. Esse diagnóstico deve indicar modo manual; o parsing da ativação e a auditoria restante de E01 ainda precisam ser concluídos. Smoke com agentes reais continua excluído pelo solicitante.",
       "evidence": [
         {
           "path": "tests/p0/context.test.ts",
@@ -78,13 +94,21 @@
         {
           "path": "artifacts/p0-gate-overlay.json",
           "sha256": "8b1c604c6bf34f4b6f2bc5c76da54c82c9b285575940a43c538978bdf74005b9"
+        },
+        {
+          "path": "artifacts/p0-cursor-empty-globs-audit-policy.json",
+          "sha256": "14ee73947143f731fc03a8c32b3ab2f105acfac9e8dc5677c10c9bb2550e7a56"
+        },
+        {
+          "path": "artifacts/p0-gate-policy.json",
+          "sha256": "92038f403c0b9edee77609d67eaa3182783eea92255fdcb0179ef31bf3ab7125"
         }
       ]
     },
     {
       "id": "E02",
       "status": "blocked",
-      "reason": "Escape corrigido em dropdown e popover open, com restauração de foco por diálogo e fechamento da camada interna. Passaram 16 testes focados, 1717 testes de navegador em Windows e Linux e 97 stories. A auditoria ampliada de texto traduzido em labels, botões, legends, summaries e links confirmou overflow em 25 dos 41 padrões a 375 px. Essa correção, cobertura de strings vazias/casos negativos por padrão e revisão qualitativa continuam pendentes.",
+      "reason": "Escape e foco por camada corrigidos. Reflow ampliado passou nos 41 padrões com labels, botões, summaries, legends e navegação longos em RTL/zoom 200%; auditoria separada a 375 px não encontrou overflow. Tooltip reutiliza contêiner/balão corretos sem mudar o React. Ainda faltam a cobertura de strings vazias e casos negativos específicos por padrão, demais critérios de composição e revisão qualitativa.",
       "evidence": [
         {
           "path": "tests/p0/composition.test.ts",
@@ -125,6 +149,14 @@
         {
           "path": "artifacts/p0-overlay-linux.log",
           "sha256": "07b4694643ad7b4570ec7028c1662c2de32b127807b489789077311a17ec0eef"
+        },
+        {
+          "path": "artifacts/p0-policy-reflow-tests.log",
+          "sha256": "4c8033dcc819a95c97d168e054a452979ed468977c6ea9d8656948c34b5e5c24"
+        },
+        {
+          "path": "artifacts/p0-translated-controls-audit-fixed.json",
+          "sha256": "98e1f527dd2a5f316c2e5c9a5eeabfde4ec93220b99a362226e33bd17242a0cb"
         }
       ]
     },
@@ -175,6 +207,10 @@
         {
           "path": "artifacts/p0-gate-overlay.json",
           "sha256": "8b1c604c6bf34f4b6f2bc5c76da54c82c9b285575940a43c538978bdf74005b9"
+        },
+        {
+          "path": "artifacts/p0-gate-policy.json",
+          "sha256": "92038f403c0b9edee77609d67eaa3182783eea92255fdcb0179ef31bf3ab7125"
         }
       ]
     },
@@ -230,7 +266,7 @@
     {
       "id": "E08",
       "status": "blocked",
-      "reason": "Rubrica e decisões assinadas implementadas; decisão qualitativa de produto pendente. Pendência confirmada: dataset de pares com referências humanas e métricas de concordância do revisor ainda não disponíveis. Auditoria de proveniência confirmou que novo arquivo e mutação em src/ não alteram reviewSourceHash, enquanto o controle em packages/ altera. A cobertura das fontes precisa ser corrigida.",
+      "reason": "O hash de fontes agora cobre novos arquivos sem whitelist de diretórios e fontes ignoradas declaradas; testes cobrem src, assets, stage e exclusões operacionais. Porém a auditoria negativa confirmou que reviewGate aceita uma captura intermediária modificada quando a captura final permanece igual. O vínculo de todas as capturas, a calibração e a auditoria restante da revisão continuam pendentes.",
       "evidence": [
         {
           "path": "tests/p0/review.test.ts",
@@ -239,6 +275,18 @@
         {
           "path": "artifacts/p0-source-hash-audit-overlay.json",
           "sha256": "f66adf29217dc8ed4f21e9c59d5f8f37ad1d150becf12dbcc035089237b70095"
+        },
+        {
+          "path": "tests/p0/source-hash.test.ts",
+          "sha256": "f61d9a22d9a2cb390b5044130beb386304cdef2c7b26a5c29f2b55a005970a28"
+        },
+        {
+          "path": "artifacts/p0-source-hash-audit-fixed.json",
+          "sha256": "6ebfcc305d3df78d5659f4702d5a6df3a9b7f63453e59ef71ed0e914b07e96de"
+        },
+        {
+          "path": "artifacts/p0-review-action-audit-policy.log",
+          "sha256": "289af9d1ed3913a9ff2260ddf6fdc4588099e04bc2249b1f6bbeb20b2629321d"
         }
       ]
     },
@@ -260,7 +308,7 @@
       "evidence": [
         {
           "path": "docs/P0_OPERATIONS.md",
-          "sha256": "b06c77eaba9c48c5446c889c1e82d19c8b9512a652042ec51028c9a7886fa584"
+          "sha256": "3248937ff3c70cd15aa5ecf1f2efbffcfe73aa459464fa1ba65957705cb3dd32"
         },
         {
           "path": "tests/p0/migration.test.ts",
@@ -276,11 +324,11 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "e3195b456994d9085de619b9d6460bd009b1b72d056fde19913c8d564ff4ba94"
+          "sha256": "db3344cc6050ba1b6bf93a5b3b4d9ee68dd94b1ae9ac9108c40e64a606051a0a"
         },
         {
           "path": "artifacts/p0-offline.json",
-          "sha256": "6a58c1de5d9027aaca388a06ee37532ed74228f4dd43687cf6d52b1d59464ea9"
+          "sha256": "a222607a37398b6ef23c88c1726ed9633986464b933ec1ec8cf66a72daf77347"
         },
         {
           "path": "artifacts/p0-node22-bound-migration.log",
@@ -292,7 +340,7 @@
         },
         {
           "path": "artifacts/p0-package-manifest.json",
-          "sha256": "66becf84da6c25eb540532907bb3505dee01b3128b67f9f470ee0ca647fa8b92"
+          "sha256": "e97852b30430376f988008621bf6108d26377fcd3aef02c5a5ca4ac963429b43"
         },
         {
           "path": "artifacts/linux-bound-migration/p0-offline.json",
@@ -345,6 +393,22 @@
         {
           "path": "artifacts/p0-gate-overlay.json",
           "sha256": "8b1c604c6bf34f4b6f2bc5c76da54c82c9b285575940a43c538978bdf74005b9"
+        },
+        {
+          "path": "artifacts/p0-policy-verification.log",
+          "sha256": "7f73d7eab1fe7764dcf2b75b6a63a17fb0a94c8ed016ff59d109f49f5d58b7d1"
+        },
+        {
+          "path": "artifacts/p0-policy-node22.log",
+          "sha256": "794de9378a2f7858d31768729a3ff308f25a183040f444c8b5a603a088435900"
+        },
+        {
+          "path": "artifacts/p0-policy-linux.log",
+          "sha256": "d1946f753f96267ae3d14ac954608ad10c63b06577c2a2c91ee304193f58cfc8"
+        },
+        {
+          "path": "artifacts/p0-gate-policy.json",
+          "sha256": "92038f403c0b9edee77609d67eaa3182783eea92255fdcb0179ef31bf3ab7125"
         }
       ]
     },
@@ -366,7 +430,7 @@
       "evidence": [
         {
           "path": "tests/p0/contracts.test.ts",
-          "sha256": "34b290158ec036899c00a796b7a4f7d48ea1ace79af448f71cf5c088e0dc46ff"
+          "sha256": "2cd380fa6a3ed1ca1d54d58d3dd44d1f5cc6462e5a05625dc134731b8f94194d"
         }
       ]
     },
@@ -377,7 +441,7 @@
       "evidence": [
         {
           "path": "tests/p0/contracts.test.ts",
-          "sha256": "34b290158ec036899c00a796b7a4f7d48ea1ace79af448f71cf5c088e0dc46ff"
+          "sha256": "2cd380fa6a3ed1ca1d54d58d3dd44d1f5cc6462e5a05625dc134731b8f94194d"
         }
       ]
     },
@@ -429,7 +493,7 @@
       "evidence": [
         {
           "path": "tests/browser/composition.spec.ts",
-          "sha256": "e14c24204e1f5defecdd2dfeab4a79103402e1d111c69c04c367edabab25e3a4"
+          "sha256": "1445e652b2ff8da00598ea86280ed1a0edc3b155b3c4326e38d95da409abf421"
         }
       ]
     },
@@ -440,7 +504,7 @@
       "evidence": [
         {
           "path": "tests/browser/composition.spec.ts",
-          "sha256": "e14c24204e1f5defecdd2dfeab4a79103402e1d111c69c04c367edabab25e3a4"
+          "sha256": "1445e652b2ff8da00598ea86280ed1a0edc3b155b3c4326e38d95da409abf421"
         }
       ]
     },
@@ -451,7 +515,7 @@
       "evidence": [
         {
           "path": "tests/browser/composition.spec.ts",
-          "sha256": "e14c24204e1f5defecdd2dfeab4a79103402e1d111c69c04c367edabab25e3a4"
+          "sha256": "1445e652b2ff8da00598ea86280ed1a0edc3b155b3c4326e38d95da409abf421"
         }
       ]
     },
@@ -495,7 +559,7 @@
       "evidence": [
         {
           "path": "tests/browser/composition.spec.ts",
-          "sha256": "e14c24204e1f5defecdd2dfeab4a79103402e1d111c69c04c367edabab25e3a4"
+          "sha256": "1445e652b2ff8da00598ea86280ed1a0edc3b155b3c4326e38d95da409abf421"
         }
       ]
     },
@@ -539,7 +603,7 @@
       "evidence": [
         {
           "path": "tests/p0/contracts.test.ts",
-          "sha256": "34b290158ec036899c00a796b7a4f7d48ea1ace79af448f71cf5c088e0dc46ff"
+          "sha256": "2cd380fa6a3ed1ca1d54d58d3dd44d1f5cc6462e5a05625dc134731b8f94194d"
         },
         {
           "path": "artifacts/p0-gate-context-migration.json",
@@ -598,7 +662,7 @@
       "evidence": [
         {
           "path": "docs/P0_OPERATIONS.md",
-          "sha256": "b06c77eaba9c48c5446c889c1e82d19c8b9512a652042ec51028c9a7886fa584"
+          "sha256": "3248937ff3c70cd15aa5ecf1f2efbffcfe73aa459464fa1ba65957705cb3dd32"
         },
         {
           "path": "tests/p0/compatibility.test.ts",
@@ -639,11 +703,11 @@
       "evidence": [
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "e3195b456994d9085de619b9d6460bd009b1b72d056fde19913c8d564ff4ba94"
+          "sha256": "db3344cc6050ba1b6bf93a5b3b4d9ee68dd94b1ae9ac9108c40e64a606051a0a"
         },
         {
           "path": "artifacts/p0-final-ci.log",
-          "sha256": "d1928b09d677c067c7420516d73784709180af88275b1b7487bf3560b60d6010"
+          "sha256": "6ae1d855a3cb8279823906ef8b0d55c7d729bcd650fc04c6fdccef83c219502e"
         }
       ]
     },
@@ -654,11 +718,11 @@
       "evidence": [
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "e3195b456994d9085de619b9d6460bd009b1b72d056fde19913c8d564ff4ba94"
+          "sha256": "db3344cc6050ba1b6bf93a5b3b4d9ee68dd94b1ae9ac9108c40e64a606051a0a"
         },
         {
           "path": "artifacts/p0-final-browser-full.log",
-          "sha256": "26ab8fab1284d2c373b74c0b1eb2b2ce8f88cf7e8ee67e819885c03772c6fc65"
+          "sha256": "b72403ae84bcf64841f655b611b3937209f2a2ef06aa02e9980d038179e1fd31"
         },
         {
           "path": "artifacts/p0-linux-bound-migration.log",
@@ -673,11 +737,11 @@
       "evidence": [
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "e3195b456994d9085de619b9d6460bd009b1b72d056fde19913c8d564ff4ba94"
+          "sha256": "db3344cc6050ba1b6bf93a5b3b4d9ee68dd94b1ae9ac9108c40e64a606051a0a"
         },
         {
           "path": "artifacts/p0-offline.json",
-          "sha256": "6a58c1de5d9027aaca388a06ee37532ed74228f4dd43687cf6d52b1d59464ea9"
+          "sha256": "a222607a37398b6ef23c88c1726ed9633986464b933ec1ec8cf66a72daf77347"
         },
         {
           "path": "artifacts/p0-node22-bound-migration.log",
@@ -729,7 +793,7 @@
       "evidence": [
         {
           "path": "tests/p0/contracts.test.ts",
-          "sha256": "34b290158ec036899c00a796b7a4f7d48ea1ace79af448f71cf5c088e0dc46ff"
+          "sha256": "2cd380fa6a3ed1ca1d54d58d3dd44d1f5cc6462e5a05625dc134731b8f94194d"
         }
       ]
     },
@@ -755,7 +819,7 @@
         },
         {
           "path": "tests/p0/contracts.test.ts",
-          "sha256": "34b290158ec036899c00a796b7a4f7d48ea1ace79af448f71cf5c088e0dc46ff"
+          "sha256": "2cd380fa6a3ed1ca1d54d58d3dd44d1f5cc6462e5a05625dc134731b8f94194d"
         }
       ]
     },
