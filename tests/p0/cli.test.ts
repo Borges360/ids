@@ -217,6 +217,14 @@ describe("P0 command transport", () => {
     const r = invoke(["compose", "show", "nonexistent", "--json"]);
     expect(r.code).toBe(3);
     expect(JSON.parse(r.stdout).status).toBe("blocked");
+    const result = JSON.parse(r.stdout);
+    const catalog = JSON.parse(invoke(["compose", "list", "--json"]).stdout);
+    expect(result.suggestions.length).toBeGreaterThan(0);
+    expect(result.suggestionDetails).toHaveLength(result.suggestions.length);
+    for (const id of result.suggestions)
+      expect(catalog.some((pattern: { id: string }) => pattern.id === id)).toBe(
+        true,
+      );
   });
   it("keeps dry-run visual execution mutation free", async () => {
     const root = await mkdtemp(join(tmpdir(), "inteiro-dry-"));

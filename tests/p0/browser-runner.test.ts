@@ -16,6 +16,53 @@ import {
 describe.skipIf(process.env.INTEIRO_BROWSER_UNIT !== "1")(
   "P0 real browser pipeline and baseline lifecycle",
   () => {
+    it("consumes response aliases once in arrival order across repeated and concurrent waits", async () => {
+      const server = createServer((_req, res) => {
+        res.setHeader("content-type", "text/html");
+        res.end("<!doctype html><title>synthetic fixture</title>");
+      });
+      await new Promise<void>((r) => server.listen(0, "127.0.0.1", r));
+      const browser = await chromium.launch({ headless: true });
+      try {
+        const baseURL =
+          "http://127.0.0.1:" + (server.address() as { port: number }).port;
+        const page = await browser.newPage();
+        await page.goto(baseURL);
+        const responses = createResponseAliases(
+          page,
+          [{ url: "/api", alias: "result", body: {} }],
+          baseURL,
+          2000,
+        );
+        const request = () =>
+          page.evaluate(async () => {
+            await (await fetch("/api")).text();
+          });
+        await request();
+        await request();
+        await expect.poll(() => responses.observations.length).toBe(2);
+        await responses.waitFor("result");
+        await responses.waitFor("result");
+        const completed: number[] = [];
+        const first = responses.waitFor("result").then(() => {
+          completed.push(1);
+        });
+        const second = responses.waitFor("result").then(() => {
+          completed.push(2);
+        });
+        await request();
+        await first;
+        expect(completed).toEqual([1]);
+        await request();
+        await second;
+        expect(completed).toEqual([1, 2]);
+        expect(responses.observations).toHaveLength(4);
+        responses.dispose();
+      } finally {
+        await browser.close();
+        await new Promise<void>((r) => server.close(() => r()));
+      }
+    });
     it("times out missing responses, rejects unknown aliases and sanitizes capture DOM", async () => {
       const browser = await chromium.launch({ headless: true });
       try {

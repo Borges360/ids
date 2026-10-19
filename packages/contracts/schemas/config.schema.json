@@ -30,6 +30,10 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
+        "contract": {
+          "type": "string",
+          "const": "@inteiro/design-system"
+        },
         "theme": {
           "type": "array",
           "items": {

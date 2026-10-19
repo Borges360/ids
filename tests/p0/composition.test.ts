@@ -4,6 +4,7 @@ import {
   patterns,
   validatePattern,
   validateComposition,
+  suggestPatterns,
 } from "@inteiro/composition";
 import { validateSchema } from "@inteiro/contracts";
 import { renderPattern } from "../../packages/composition/src/render.ts";
@@ -39,6 +40,16 @@ describe("P0 composition catalog", () => {
       validateComposition({ patternId: "data-table", states: ["default"] })
         .status,
     ).toBe("failed"));
+  it("offers actual catalog alternatives for unknown identifiers without accepting them", () => {
+    expect(suggestPatterns("data-tabl")[0]?.pattern.id).toBe("data-table");
+    for (const query of ["nonexistent", "", "x".repeat(10000)]) {
+      const result = validateComposition({ patternId: query });
+      expect(result.status).toBe("blocked");
+      expect(result.suggestions?.length).toBeGreaterThan(0);
+      for (const id of result.suggestions ?? [])
+        expect(patterns.some((pattern) => pattern.id === id)).toBe(true);
+    }
+  });
   it("has no unknown semantic variables in composition CSS", async () => {
     const css = await readFile(
       new URL(

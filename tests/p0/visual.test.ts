@@ -25,6 +25,9 @@ describe("P0 deterministic browser contracts", () => {
       [{ url: "/api", method: 42 }],
       [{ url: "/api", method: "SHELL" }],
       [{ url: "/api", status: 999 }],
+      [{ url: "/api", alias: 42 }],
+      [{ url: "/api", alias: null }],
+      [{ url: "/api", alias: {} }],
       [
         { url: "/api", alias: "a" },
         { url: "/b", alias: "a" },

@@ -50,6 +50,45 @@ export function findPatterns(query: string, k = 5) {
     .slice(0, Math.max(1, Math.min(k, 20)))
     .map((p) => ({ ...p, reason: "Lexical matches: " + p.score }));
 }
+/** Suggestions always reference published patterns, never an invented match. */
+export function suggestPatterns(query: string, k = 5) {
+  const lexical = findPatterns(query, k);
+  if (lexical.length) return lexical;
+  const input = query.toLowerCase().slice(0, 256);
+  const distance = (id: string) => {
+    let row = Array.from({ length: id.length + 1 }, (_, i) => i);
+    for (let i = 0; i < input.length; i++) {
+      const next = [i + 1];
+      for (let j = 0; j < id.length; j++)
+        next.push(
+          Math.min(
+            next[j]! + 1,
+            row[j + 1]! + 1,
+            row[j]! + (input[i] === id[j] ? 0 : 1),
+          ),
+        );
+      row = next;
+    }
+    return row[id.length]!;
+  };
+  return patterns
+    .map((pattern) => ({
+      pattern,
+      score: -distance(pattern.id),
+      reason:
+        "Identifier spelling proximity only; review suitability before use",
+    }))
+    .sort(
+      (a, b) =>
+        b.score - a.score ||
+        (a.pattern.id < b.pattern.id
+          ? -1
+          : a.pattern.id > b.pattern.id
+            ? 1
+            : 0),
+    )
+    .slice(0, Math.max(1, Math.min(k, 20)));
+}
 export function validatePattern(pattern: Pattern) {
   const tokens = new Set(allTokens().map((t) => t.id));
   return [
@@ -84,7 +123,7 @@ export function validateComposition(input: {
           status: "blocked",
         }),
       ],
-      suggestions: findPatterns(input.patternId).map((x) => x.pattern.id),
+      suggestions: suggestPatterns(input.patternId).map((x) => x.pattern.id),
     };
   const findings = validatePattern(p);
   if (input.variant && !p.variants.includes(input.variant))

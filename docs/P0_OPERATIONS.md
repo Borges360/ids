@@ -91,6 +91,8 @@ O exemplo `examples/pi/repair-adapter.ts` consome a CLI com `spawn`, sem shell, 
 
 ## Matriz de release
 
+Hashes de objetos usam ordenação lexical UTF-16 das chaves, sem depender do locale do sistema. Configurações resolvidas incluem `design.contract=@inteiro/design-system`. Após essa atualização, refaça os recibos com `context resolve --record`; decisões assinadas que não correspondam mais aos hashes devem voltar ao fluxo de revisão, sem aprovação automática. A mudança de hash não autoriza substituir goldens.
+
 O perfil `release` adiciona o gate `release`: exige os 58 IDs de épicos, work packages, DoD e cenários, todos aprovados com evidências cujo hash corresponda aos arquivos. `release-evidence.json` registra o estado auditável e as exclusões solicitadas; sua presença sozinha não aprova a entrega. A matriz atual mantém as pendências de aceite explícitas.
 
 A assinatura do mantenedor usa a política `.inteiro/reviewers.json`. O payload Ed25519 é `canonical({ledger, approval})`, onde `ledger` é o documento sem o campo `approval` e `approval` contém `reviewer`, `approvalRef`, `approvedAt` e `expiresAt`, sem `signature`. A assinatura Base64 fica em `approval.signature`. Ela vincula requisitos, evidências, versão, hash de fontes/configuração/política e exclusões. O agente não cria essa assinatura para a biblioteca; os testes usam somente chaves sintéticas temporárias.

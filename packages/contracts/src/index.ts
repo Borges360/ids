@@ -81,7 +81,8 @@ export function canonical(value: unknown): string {
       "{" +
       Object.entries(value)
         .filter(([, v]) => v !== undefined)
-        .sort(([a], [b]) => a.localeCompare(b))
+        // UTF-16 lexical order is independent of the host's locale/ICU data.
+        .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))
         .map(([k, v]) => JSON.stringify(k) + ":" + canonical(v))
         .join(",") +
       "}"
@@ -186,6 +187,30 @@ export async function safeRead(root: string, path: string): Promise<string> {
   return readFile(target, "utf8");
 }
 export function redact(value: string): string {
+  const sensitiveKey =
+    /^(?:password|secret|api[_-]?key|access[_-]?token|refresh[_-]?token|client[_-]?secret|authorization)$/i;
+  // Reports are serialized JSON. Redact structured values before text scanning:
+  // quoted keys, escaped quotes and whitespace in secrets must remain valid JSON.
+  if (/^\s*[\[{]/.test(value)) {
+    try {
+      const visit = (node: unknown): unknown => {
+        if (Array.isArray(node)) return node.map(visit);
+        if (node && typeof node === "object")
+          return Object.fromEntries(
+            Object.entries(node).map(([key, entry]) => [
+              key,
+              sensitiveKey.test(key) ? "[REDACTED]" : visit(entry),
+            ]),
+          );
+        return typeof node === "string" ? redact(node) : node;
+      };
+      const parsed: unknown = JSON.parse(value);
+      const clean = JSON.stringify(visit(parsed));
+      return clean === JSON.stringify(parsed) ? value : clean;
+    } catch {
+      // Logs and truncated JSON still receive conservative text redaction.
+    }
+  }
   return value
     .replace(
       /\b(?:gh[pousr]_[\w]{20,}|github_pat_[\w]+|sk-[\w-]{16,}|AKIA[A-Z0-9]{16})\b/g,
@@ -193,8 +218,8 @@ export function redact(value: string): string {
     )
     .replace(/(Bearer\s+)[\w.\-]+/gi, "$1[REDACTED]")
     .replace(
-      /((?:password|secret|api[_-]?key|access[_-]?token)\s*[=:]\s*["']?)[^\s"',}]+/gi,
-      "$1[REDACTED]",
+      /((?:\bpassword|\bsecret|\bapi[_-]?key|\baccess[_-]?token|\brefresh[_-]?token|\bclient[_-]?secret|\bauthorization)["']?\s*[=:]\s*)(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|[^\s"',}\]]+)/gi,
+      '$1"[REDACTED]"',
     )
     .replace(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/gi, "[EMAIL]");
 }
@@ -202,6 +227,7 @@ export const DEFAULTS = {
   schemaVersion: "1.0",
   project: { id: "app", root: ".", framework: "auto" },
   design: {
+    contract: "@inteiro/design-system",
     theme: ["dark", "light"],
     density: ["calm", "focus"],
     strictTokens: true,
@@ -279,6 +305,8 @@ export function merge<T>(base: T, overrides: unknown): T {
   return out as T;
 }
 export function validateConfig(config: Config): void {
+  if (config.design.contract !== "@inteiro/design-system")
+    throw new Error("Unsupported design contract: " + config.design.contract);
   if (
     !["observe", "enforce-new", "enforce-all"].includes(config.static.adoption)
   )

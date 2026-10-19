@@ -18,6 +18,7 @@ const infer = (v) =>
         }
       : { type: typeof v };
 const config = infer(DEFAULTS);
+config.properties.design.properties.contract.const = "@inteiro/design-system";
 config.properties.browser.properties.fontAssets = {
   type: "array",
   items: {

@@ -45,6 +45,10 @@ A comparação histórica usa o commit `c8c945e10b509c3b2057abca86ac5b6dd10c8717
 
 ## Evidências e condição de conclusão
 
+O endurecimento dos contratos cobre ordenação lexical UTF-16 independente do locale para hashes, resolução explícita de `design.contract=@inteiro/design-system` e redaction estruturada de JSON, inclusive valores com espaços/aspas e segredos aninhados. JSON público preserva a formatação original. Os testes de relatório verificam ausência dos valores sensíveis nos quatro formatos; isso não certifica, por si só, o conteúdo de traces de rede.
+
+As esperas por alias de resposta consomem uma resposta por ação, inclusive quando a resposta chegou antes da espera ou quando há esperas simultâneas. Aliases de tipos inválidos são recusados antes da execução. O cenário de composição inexistente permanece `blocked`, com sugestões que apontam apenas para IDs publicados; proximidade ortográfica não comprova adequação semântica.
+
 Logs e artefatos locais ficam em `artifacts/` e `.inteiro/reports/`; essas pastas não devem ser publicadas automaticamente. O registro `release-evidence.json` indica os comandos e os estados de aceite. Os testes de aprovação usam chaves e candidatos temporários em diretórios de teste: eles não aprovam nenhuma imagem da biblioteca.
 
 A execução técnica de uma captura e a aprovação de uma imagem são eventos diferentes. Uma release não pode ser declarada 100% P0 enquanto faltarem baseline de produto aprovada, revisão qualitativa requerida e matriz de aceite do mantenedor. O status de release permanece pendente nesses casos, mesmo quando os testes técnicos passam.

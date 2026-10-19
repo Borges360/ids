@@ -18,6 +18,7 @@ import {
   getPattern,
   validateComposition,
   findPatterns,
+  suggestPatterns,
   validatePattern,
 } from "@inteiro/composition";
 import { lintProject } from "@inteiro/lint";
@@ -230,7 +231,12 @@ export async function gateCommand(
             data: {
               status: "blocked",
               message: "Pattern not found",
-              suggestions: findPatterns(cmd[2] ?? "").map((p) => p.pattern.id),
+              suggestions: suggestPatterns(cmd[2] ?? "").map(
+                (p) => p.pattern.id,
+              ),
+              suggestionDetails: suggestPatterns(cmd[2] ?? "").map(
+                ({ pattern, reason }) => ({ id: pattern.id, reason }),
+              ),
             },
           };
     }

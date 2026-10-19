@@ -69,7 +69,11 @@ export function validateResponseFixtures(
       errors.push("Duplicate response fixture: " + request);
     requests.add(request);
     if (mock.alias !== undefined) {
-      if (!/^[a-zA-Z0-9_-]{1,80}$/.test(mock.alias) || aliases.has(mock.alias))
+      if (
+        typeof mock.alias !== "string" ||
+        !/^[a-zA-Z0-9_-]{1,80}$/.test(mock.alias) ||
+        aliases.has(mock.alias)
+      )
         errors.push("Invalid or duplicate response alias");
       aliases.add(mock.alias);
     }
@@ -95,7 +99,7 @@ export function createResponseAliases(
   const errors = validateResponseFixtures(responses, baseURL);
   if (errors.length) throw new Error(errors.join("; "));
   const specs = responses.filter((r) => r.alias),
-    seen = new Set<string>();
+    completed = new Map<string, (Error | null)[]>();
   const pending = new Map<
     string,
     Set<{
@@ -120,26 +124,28 @@ export function createResponseAliases(
     const failure = await response.finished();
     if (disposed) return;
     const alias = spec.alias!;
-    if (failure) {
-      for (const waiter of pending.get(alias) ?? []) {
-        clearTimeout(waiter.timer);
-        waiter.reject(new Error("Response alias failed: " + alias));
-      }
-      pending.delete(alias);
-      return;
-    }
-    seen.add(alias);
-    observations.push({
-      alias,
-      method: response.request().method(),
-      path: spec.url,
-      status: response.status(),
-    });
-    for (const waiter of pending.get(alias) ?? []) {
+    if (!failure)
+      observations.push({
+        alias,
+        method: response.request().method(),
+        path: spec.url,
+        status: response.status(),
+      });
+    const error = failure ? new Error("Response alias failed: " + alias) : null;
+    // Each wait consumes one completed response. A previous request must never
+    // satisfy a later action, and a single response cannot release two waiters.
+    const waiters = pending.get(alias);
+    const waiter = waiters?.values().next().value;
+    if (waiter) {
+      waiters!.delete(waiter);
       clearTimeout(waiter.timer);
-      waiter.resolve();
+      if (error) waiter.reject(error);
+      else waiter.resolve();
+    } else {
+      const queue = completed.get(alias) ?? [];
+      queue.push(error);
+      completed.set(alias, queue);
     }
-    pending.delete(alias);
   };
   const listener = (response: Response) => {
     void receive(response).catch(() => {
@@ -153,7 +159,12 @@ export function createResponseAliases(
       if (disposed) throw new Error("Response observation session closed");
       if (!specs.some((s) => s.alias === alias))
         throw new Error("Unknown response alias: " + alias);
-      if (seen.has(alias)) return;
+      const queue = completed.get(alias);
+      if (queue?.length) {
+        const error = queue.shift();
+        if (error) throw error;
+        return;
+      }
       await new Promise<void>((resolve, reject) => {
         const waiters = pending.get(alias) ?? new Set();
         const waiter = {
@@ -177,6 +188,7 @@ export function createResponseAliases(
           waiter.reject(new Error("Response observation session closed"));
         }
       pending.clear();
+      completed.clear();
     },
   };
 }
