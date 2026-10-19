@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0",
   "version": "1.2.0",
-  "sourceCommit": "b5d40fab5a2aa1d79dcac07eb292e8f8241ad297",
-  "sourceHash": "af019c420a0fa85f1f9e31825aca271b1525138b918dd710215dd6f45b1210d7",
+  "sourceCommit": "cd7403e4a0ce6c8e4f01fbb0ae7cfaf429a68619",
+  "sourceHash": "e601fdba1a4ad7dbd9abb0d19a6f4601160480274f09364e98fa4a9e9a6c5d92",
   "configHash": "c01aff1aced7f9f3957c622ca3870d094ec3f2c7744c2e05bf0086a6414e8270",
   "policyHash": "",
   "scopeExclusions": [
@@ -13,8 +13,8 @@
   "requirements": [
     {
       "id": "E00",
-      "status": "needs_review",
-      "reason": "Contratos, precedência, estados e relatórios implementados; aceite transversal ainda em auditoria.",
+      "status": "blocked",
+      "reason": "Contratos e precedência parcial implementados. Auditoria sintética confirmou que flags ainda ampliam repair.maxAttempts/maxChangedFiles/maxDiffLines, context.maxTokens, visual.colorThreshold e browser.allowedOrigins apesar de limites de organização mais restritivos. Correção e testes de precedência por campo são necessários antes do aceite.",
       "evidence": [
         {
           "path": "tests/p0/contracts.test.ts",
@@ -35,6 +35,14 @@
         {
           "path": "artifacts/p0-gate-controls.json",
           "sha256": "f45828dfdddfe2311a1e37d667fcf7d7600f4047fbecb4d4124cbc092d2b3202"
+        },
+        {
+          "path": "artifacts/p0-organization-policy-audit-overlay.json",
+          "sha256": "4631a0ab5a6b35877925d7bbddc649f4d9f1ad279a827de22607ecf1005537e9"
+        },
+        {
+          "path": "artifacts/p0-gate-overlay.json",
+          "sha256": "8b1c604c6bf34f4b6f2bc5c76da54c82c9b285575940a43c538978bdf74005b9"
         }
       ]
     },
@@ -66,13 +74,17 @@
         {
           "path": "artifacts/p0-gate-controls.json",
           "sha256": "f45828dfdddfe2311a1e37d667fcf7d7600f4047fbecb4d4124cbc092d2b3202"
+        },
+        {
+          "path": "artifacts/p0-gate-overlay.json",
+          "sha256": "8b1c604c6bf34f4b6f2bc5c76da54c82c9b285575940a43c538978bdf74005b9"
         }
       ]
     },
     {
       "id": "E02",
       "status": "blocked",
-      "reason": "Alvos corrigidos: 0 violações nos mesmos 28 controles e nos 9 links de navegação medidos a 375 px. Matriz com 1703 testes de navegador passou em Windows e Linux, incluindo alvos nos estados de composição. Erros preservam ajuda e mensagem associadas; readonly usa disabled nos controles sem suporte. Auditoria de teclado ainda confirma Escape sem fechamento no dropdown-menu e no estado open do popover; esses comportamentos, demais requisitos do catálogo e revisão qualitativa continuam pendentes.",
+      "reason": "Escape corrigido em dropdown e popover open, com restauração de foco por diálogo e fechamento da camada interna. Passaram 16 testes focados, 1717 testes de navegador em Windows e Linux e 97 stories. A auditoria ampliada de texto traduzido em labels, botões, legends, summaries e links confirmou overflow em 25 dos 41 padrões a 375 px. Essa correção, cobertura de strings vazias/casos negativos por padrão e revisão qualitativa continuam pendentes.",
       "evidence": [
         {
           "path": "tests/p0/composition.test.ts",
@@ -93,6 +105,26 @@
         {
           "path": "artifacts/p0-overlay-escape-audit-controls.json",
           "sha256": "81d254106a4d78cfaac379f6aa78cf1740599a4ef63fe2c90b6dc1b7762924bd"
+        },
+        {
+          "path": "artifacts/p0-overlay-keyboard-tests.log",
+          "sha256": "6c9dda313da4669d1701c90b0ef8bf3f5caf1378d1d865fdd549e66ef2f60b3a"
+        },
+        {
+          "path": "artifacts/p0-overlay-escape-audit-fixed.json",
+          "sha256": "327055eb0cdd2ea3185a4d8d53ef644f46412bfc33049b8b2a5c7a9ba5575138"
+        },
+        {
+          "path": "artifacts/p0-translated-controls-audit-overlay.json",
+          "sha256": "a7a1011f702f35acb744f69f12ddb2f6955faa602d9d4541e44a4b374f6897a7"
+        },
+        {
+          "path": "artifacts/p0-overlay-full-browser.log",
+          "sha256": "83a13b0351c53fead0d847640c3dfc77f95e5243e6bd2b685b15993dcce24d72"
+        },
+        {
+          "path": "artifacts/p0-overlay-linux.log",
+          "sha256": "07b4694643ad7b4570ec7028c1662c2de32b127807b489789077311a17ec0eef"
         }
       ]
     },
@@ -139,6 +171,10 @@
         {
           "path": "artifacts/p0-gate-controls.json",
           "sha256": "f45828dfdddfe2311a1e37d667fcf7d7600f4047fbecb4d4124cbc092d2b3202"
+        },
+        {
+          "path": "artifacts/p0-gate-overlay.json",
+          "sha256": "8b1c604c6bf34f4b6f2bc5c76da54c82c9b285575940a43c538978bdf74005b9"
         }
       ]
     },
@@ -165,6 +201,10 @@
         {
           "path": "artifacts/p0-controls-stories.log",
           "sha256": "2474bf6021c3ca0d9e3cc46d5291201213c779cf01e03b4bf297ea75d325cbb7"
+        },
+        {
+          "path": "artifacts/p0-overlay-stories.log",
+          "sha256": "6735379180abe2aca9aabb7ed51761a0c5925134d6cac6f79aa31a89dec955c8"
         }
       ]
     },
@@ -190,11 +230,15 @@
     {
       "id": "E08",
       "status": "blocked",
-      "reason": "Rubrica e decisões assinadas implementadas; decisão qualitativa de produto pendente. Pendência confirmada: dataset de pares com referências humanas e métricas de concordância do revisor ainda não disponíveis.",
+      "reason": "Rubrica e decisões assinadas implementadas; decisão qualitativa de produto pendente. Pendência confirmada: dataset de pares com referências humanas e métricas de concordância do revisor ainda não disponíveis. Auditoria de proveniência confirmou que novo arquivo e mutação em src/ não alteram reviewSourceHash, enquanto o controle em packages/ altera. A cobertura das fontes precisa ser corrigida.",
       "evidence": [
         {
           "path": "tests/p0/review.test.ts",
           "sha256": "9a0764fee35afc5f41d5791029066b8cae5d6ff9d7ded2701e0071e60557a572"
+        },
+        {
+          "path": "artifacts/p0-source-hash-audit-overlay.json",
+          "sha256": "f66adf29217dc8ed4f21e9c59d5f8f37ad1d150becf12dbcc035089237b70095"
         }
       ]
     },
@@ -236,7 +280,7 @@
         },
         {
           "path": "artifacts/p0-offline.json",
-          "sha256": "59683e818014b0312ac448fde3d65a8bd6a2cbd05fbcac2103f3e7606212277b"
+          "sha256": "6a58c1de5d9027aaca388a06ee37532ed74228f4dd43687cf6d52b1d59464ea9"
         },
         {
           "path": "artifacts/p0-node22-bound-migration.log",
@@ -248,7 +292,7 @@
         },
         {
           "path": "artifacts/p0-package-manifest.json",
-          "sha256": "9ead062cd4473863e692f5fb936a89841a7e0a2fe7bb16488a26a81857bf57b0"
+          "sha256": "66becf84da6c25eb540532907bb3505dee01b3128b67f9f470ee0ca647fa8b92"
         },
         {
           "path": "artifacts/linux-bound-migration/p0-offline.json",
@@ -277,6 +321,30 @@
         {
           "path": "artifacts/p0-gate-controls.json",
           "sha256": "f45828dfdddfe2311a1e37d667fcf7d7600f4047fbecb4d4124cbc092d2b3202"
+        },
+        {
+          "path": "artifacts/p0-overlay-pack.log",
+          "sha256": "235724b45c43ce6ac2a95ce306aa67a9a28be6044b997a5449afd141e076a932"
+        },
+        {
+          "path": "artifacts/p0-overlay-offline.log",
+          "sha256": "962b6159254657f115d6715dbd1aa2bac58585d81d62235c1c4ed63fc5842c5d"
+        },
+        {
+          "path": "artifacts/p0-overlay-node22.log",
+          "sha256": "4f54fd12fd9eaddd9a63dac1fac0a5c139765075ee7628f2be814272e7584c52"
+        },
+        {
+          "path": "artifacts/p0-source-hash-audit-overlay.json",
+          "sha256": "f66adf29217dc8ed4f21e9c59d5f8f37ad1d150becf12dbcc035089237b70095"
+        },
+        {
+          "path": "artifacts/p0-overlay-linux.log",
+          "sha256": "07b4694643ad7b4570ec7028c1662c2de32b127807b489789077311a17ec0eef"
+        },
+        {
+          "path": "artifacts/p0-gate-overlay.json",
+          "sha256": "8b1c604c6bf34f4b6f2bc5c76da54c82c9b285575940a43c538978bdf74005b9"
         }
       ]
     },
@@ -361,7 +429,7 @@
       "evidence": [
         {
           "path": "tests/browser/composition.spec.ts",
-          "sha256": "7298fff6f8ee09f5b8505b09a8e6693cc172ce40223f25df3225e15cba842743"
+          "sha256": "e14c24204e1f5defecdd2dfeab4a79103402e1d111c69c04c367edabab25e3a4"
         }
       ]
     },
@@ -372,7 +440,7 @@
       "evidence": [
         {
           "path": "tests/browser/composition.spec.ts",
-          "sha256": "7298fff6f8ee09f5b8505b09a8e6693cc172ce40223f25df3225e15cba842743"
+          "sha256": "e14c24204e1f5defecdd2dfeab4a79103402e1d111c69c04c367edabab25e3a4"
         }
       ]
     },
@@ -383,7 +451,7 @@
       "evidence": [
         {
           "path": "tests/browser/composition.spec.ts",
-          "sha256": "7298fff6f8ee09f5b8505b09a8e6693cc172ce40223f25df3225e15cba842743"
+          "sha256": "e14c24204e1f5defecdd2dfeab4a79103402e1d111c69c04c367edabab25e3a4"
         }
       ]
     },
@@ -427,7 +495,7 @@
       "evidence": [
         {
           "path": "tests/browser/composition.spec.ts",
-          "sha256": "7298fff6f8ee09f5b8505b09a8e6693cc172ce40223f25df3225e15cba842743"
+          "sha256": "e14c24204e1f5defecdd2dfeab4a79103402e1d111c69c04c367edabab25e3a4"
         }
       ]
     },
@@ -609,7 +677,7 @@
         },
         {
           "path": "artifacts/p0-offline.json",
-          "sha256": "59683e818014b0312ac448fde3d65a8bd6a2cbd05fbcac2103f3e7606212277b"
+          "sha256": "6a58c1de5d9027aaca388a06ee37532ed74228f4dd43687cf6d52b1d59464ea9"
         },
         {
           "path": "artifacts/p0-node22-bound-migration.log",
