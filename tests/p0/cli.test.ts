@@ -7,11 +7,19 @@ import {
   readdir,
   rm,
   mkdir,
+  realpath,
 } from "node:fs/promises";
 import { tmpdir } from "node:os";
-import { join, resolve } from "node:path";
+import { join, resolve, dirname, basename } from "node:path";
 import { pathToFileURL } from "node:url";
-import { DEFAULTS } from "@inteiro/contracts";
+import {
+  DEFAULTS,
+  bundle,
+  hash,
+  resolveConfig,
+  writeReport,
+  validateSchema,
+} from "@inteiro/contracts";
 const cli = resolve("packages/cli/src/cli.ts");
 function invoke(args: string[]) {
   try {
@@ -28,6 +36,106 @@ function invoke(args: string[]) {
   }
 }
 describe("P0 command transport", () => {
+  it("preserves separate review and repair requests for the same evidence run", async () => {
+    const root = await mkdtemp(join(tmpdir(), "inteiro-request-files-"));
+    try {
+      await mkdir(join(root, ".inteiro"));
+      await writeFile(
+        join(root, "inteiro.config.json"),
+        JSON.stringify({
+          ...DEFAULTS,
+          project: { ...DEFAULTS.project, framework: "html" },
+        }),
+      );
+      await writeFile(
+        join(root, ".inteiro/task.json"),
+        JSON.stringify({
+          schemaVersion: "1.0",
+          id: "synthetic-transport",
+          type: "component",
+          description: "Synthetic app shell",
+          patternIds: ["app-shell"],
+          scope: { allowedFiles: ["ui.html"] },
+          acceptanceCriteria: ["Request transport preserves both artifacts"],
+        }),
+      );
+      await writeFile(
+        join(root, "ui.html"),
+        "<main><h1>Synthetic fixture</h1></main>",
+      );
+      const image = Buffer.from(
+        "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aS2kAAAAASUVORK5CYII=",
+        "base64",
+      );
+      await writeFile(join(root, "fixture.png"), image);
+      const git = (...args: string[]) =>
+        execFileSync(
+          "git",
+          ["-c", "core.hooksPath=" + join(root, "unused-hooks"), ...args],
+          { cwd: root, stdio: "ignore" },
+        );
+      git("init", "--initial-branch=codex/synthetic-transport");
+      git("add", ".");
+      git(
+        "-c",
+        "user.name=Synthetic fixture",
+        "-c",
+        "user.email=fixture@example.invalid",
+        "commit",
+        "-m",
+        "Synthetic transport",
+      );
+      const { config } = await resolveConfig(root);
+      const report = bundle(config, [
+        {
+          name: "browser",
+          status: "passed",
+          findings: [],
+          durationMs: 0,
+          captures: [{ actual: "fixture.png", sha256: hash(image) }],
+        },
+      ]);
+      await writeReport(root, config, report);
+      const args = [
+        "request",
+        "--run-id",
+        report.runId,
+        "--cwd",
+        root,
+        "--json",
+      ];
+      const dry = invoke(["review", ...args, "--dry-run"]);
+      expect(JSON.parse(dry.stdout).kind).toBe("review-request");
+      const directory = join(root, config.reporting.outDir, report.runId);
+      expect(await readdir(directory)).not.toContain("review.json");
+      const review = invoke(["review", ...args]);
+      expect(JSON.parse(review.stdout).status).toBe("needs_review");
+      expect(
+        validateSchema("review-request", JSON.parse(review.stdout)).valid,
+      ).toBe(true);
+      const before = await readFile(join(directory, "review.json"), "utf8");
+      const repair = invoke(["repair", ...args]);
+      expect(JSON.parse(repair.stdout).kind).toBe("repair-context");
+      expect(
+        validateSchema("repair-context", JSON.parse(repair.stdout)).valid,
+      ).toBe(true);
+      expect(await readFile(join(directory, "review.json"), "utf8")).toBe(
+        before,
+      );
+      expect(
+        JSON.parse(await readFile(join(directory, "repair.json"), "utf8"))
+          .runId,
+      ).toBe(report.runId);
+    } finally {
+      const target = await realpath(root);
+      if (
+        dirname(target) !== (await realpath(tmpdir())) ||
+        !basename(target).startsWith("inteiro-request-files-")
+      )
+        throw Error("Unsafe cleanup");
+      await rm(target, { recursive: true, force: true });
+    }
+  });
   it("requires the reviewed migration hash, backs up applied changes and preserves a second run", async () => {
     const root = await mkdtemp(join(tmpdir(), "inteiro-migration-cli-"));
     try {

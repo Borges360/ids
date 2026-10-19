@@ -1,0 +1,99 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://inteiro.dev/schemas/1.0/repair-context.schema.json",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "kind",
+    "runId",
+    "configHash",
+    "status",
+    "signature",
+    "attempt",
+    "maxAttempts",
+    "scope",
+    "findings",
+    "requiredChecks",
+    "prohibitedActions"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "kind": {
+      "const": "repair-context"
+    },
+    "runId": {
+      "type": "string",
+      "pattern": "^run-[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$"
+    },
+    "configHash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "status": {
+      "enum": [
+        "not_run",
+        "running",
+        "passed",
+        "failed",
+        "blocked",
+        "needs_review",
+        "waived",
+        "error",
+        "repairable"
+      ]
+    },
+    "signature": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "attempt": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "maxAttempts": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "scope": {
+      "type": "object",
+      "required": [
+        "allowedFiles",
+        "maxChangedFiles",
+        "maxDiffLines"
+      ],
+      "properties": {
+        "allowedFiles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "maxChangedFiles": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maxDiffLines": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "findings": {
+      "type": "array"
+    },
+    "requiredChecks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "prohibitedActions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

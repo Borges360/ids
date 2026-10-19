@@ -12,6 +12,7 @@ import {
   TASK_TYPES,
 } from "@inteiro/contracts";
 import { findPatterns, getPattern } from "@inteiro/composition";
+import { cursorActivation } from "./cursor-activation.ts";
 const paths: Record<string, string[]> = {
   pi: ["AGENTS.md", ".pi/skills/inteiro/SKILL.md"],
   codex: ["AGENTS.md", ".agents/skills/inteiro/SKILL.md"],
@@ -39,6 +40,7 @@ export async function verifyContext(
   const start = performance.now(),
     findings = [],
     provenance = [];
+  const contents = new Map<string, string>();
   const required = paths[harness];
   if (!required)
     return {
@@ -62,18 +64,57 @@ export async function verifyContext(
     const installation = JSON.parse(
       await safeRead(root, ".inteiro/" + harness + ".installed.json"),
     );
+    if (
+      !installation ||
+      typeof installation !== "object" ||
+      Array.isArray(installation) ||
+      (installation.harness !== undefined &&
+        installation.harness !== harness) ||
+      (installation.schemaVersion !== undefined &&
+        installation.schemaVersion !== "1.0") ||
+      (installation.conflicts !== undefined &&
+        (!Array.isArray(installation.conflicts) ||
+          installation.conflicts.some(
+            (path: unknown) => typeof path !== "string",
+          )))
+    )
+      throw new Error("Invalid installation metadata");
     if (installation.conflicts?.length)
       findings.push(
         finding("IN-CTX-001", "Installation conflicts must be resolved", {
           status: "blocked",
         }),
       );
-  } catch {}
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== "ENOENT")
+      findings.push(
+        finding("IN-CTX-001", "Invalid installation metadata", {
+          status: "blocked",
+        }),
+      );
+  }
   try {
-    integrity = JSON.parse(
+    const recorded = JSON.parse(
       await safeRead(root, ".inteiro/" + harness + ".integrity.json"),
     );
-  } catch {}
+    if (
+      !recorded ||
+      typeof recorded !== "object" ||
+      Array.isArray(recorded) ||
+      Object.values(recorded).some(
+        (value) => typeof value !== "string" || !/^[a-f0-9]{64}$/.test(value),
+      )
+    )
+      throw new Error("Invalid integrity metadata");
+    integrity = recorded;
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== "ENOENT")
+      findings.push(
+        finding("IN-CTX-001", "Invalid integrity metadata", {
+          status: "blocked",
+        }),
+      );
+  }
   if (config.context.requireProof && !Object.keys(integrity).length)
     findings.push(
       finding(
@@ -84,8 +125,39 @@ export async function verifyContext(
     );
   for (const path of required) {
     try {
-      const text = await safeRead(root, path);
-      provenance.push({ path, sha256: hash(text), required: true });
+      const bytes = await readFile(safePath(root, path));
+      const text = bytes.toString("utf8");
+      const digest = hash(bytes);
+      const stored = integrity[path];
+      const legacy =
+        stored !== undefined && stored !== digest && stored === hash(text);
+      contents.set(path, text);
+      provenance.push({
+        path,
+        sha256: digest,
+        required: true,
+        integrityFormat: legacy
+          ? "legacy-canonical-json"
+          : stored === digest
+            ? "raw-bytes"
+            : "unverified",
+      });
+      if (!Buffer.from(text, "utf8").equals(bytes))
+        findings.push(
+          finding(
+            "IN-CTX-001",
+            "Required context is not valid UTF-8: " + path,
+            { file: path, status: "blocked" },
+          ),
+        );
+      if (config.context.requireProof && !stored)
+        findings.push(
+          finding(
+            "IN-CTX-001",
+            "Installation integrity proof missing for: " + path,
+            { file: path, status: "blocked" },
+          ),
+        );
       if (!/inteiro/i.test(text))
         findings.push(
           finding(
@@ -94,7 +166,7 @@ export async function verifyContext(
             { file: path, status: "blocked" },
           ),
         );
-      if (integrity[path] && integrity[path] !== hash(text))
+      if (stored && stored !== digest && !legacy)
         findings.push(
           finding(
             "IN-CTX-001",
@@ -112,15 +184,19 @@ export async function verifyContext(
     }
   }
   let activation = "harness-discovery";
+  let activationDetails: ReturnType<typeof cursorActivation> | undefined;
   if (harness === "cursor") {
-    const text = await readFile(resolve(root, required.at(-1)!), "utf8").catch(
-      () => "",
-    );
-    activation = /alwaysApply:\s*true/.test(text)
-      ? "automatic"
-      : /globs:\s*\S/.test(text)
-        ? "scoped"
-        : "manual";
+    const text = contents.get(required.at(-1)!) ?? "";
+    activationDetails = cursorActivation(text);
+    activation = activationDetails.activation;
+    if (activation === "unresolved")
+      findings.push(
+        finding(
+          "IN-CTX-001",
+          "Invalid or unsupported Cursor activation metadata",
+          { status: "blocked" },
+        ),
+      );
   }
   return {
     name: "context",
@@ -133,6 +209,7 @@ export async function verifyContext(
     used: "unobserved",
     compliant: "not_run",
     activation,
+    ...(activationDetails ? { activationDetails } : {}),
     provenance,
   };
 }
@@ -140,7 +217,7 @@ export async function recordContextIntegrity(root: string, harness: string) {
   const integrity: Record<string, string> = {};
   for (const p of paths[harness] ?? []) {
     try {
-      integrity[p] = hash(await safeRead(root, p));
+      integrity[p] = hash(await readFile(safePath(root, p)));
     } catch {}
   }
   await mkdir(resolve(root, ".inteiro"), { recursive: true });

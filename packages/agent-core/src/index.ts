@@ -28,7 +28,7 @@ export {
   verifyContext,
   recordContextIntegrity,
 } from "./context.ts";
-export { repairContext,resolvedRepairContext } from "./repair.ts";
+export { repairContext, resolvedRepairContext } from "./repair.ts";
 export { runRepairController } from "./repair-controller.ts";
 export type {
   RepairEdit,
@@ -51,8 +51,14 @@ export type { ContextTask } from "./context.ts";
 export type { ReleaseEvidence } from "./release.ts";
 export {
   reviewRequest,
+  resolvedReviewRequest,
   validateReview,
   reviewGate,
   REVIEW_AXES,
+} from "./review.ts";
+export type {
+  ReviewDecision,
+  SignedReviewDecision,
+  ReviewCaptureReference,
 } from "./review.ts";
 export { projectContracts } from "./contracts.ts";

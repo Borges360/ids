@@ -27,7 +27,7 @@ import {
   resolveContext,
   resolvedRepairContext,
   reviewGate,
-  reviewRequest,
+  resolvedReviewRequest,
   releaseGate,
   recordTaskContext,
   taskContextGate,
@@ -428,11 +428,12 @@ export async function gateCommand(
     const data =
       cmd[0] === "repair"
         ? await resolvedRepairContext(root, config, report)
-        : reviewRequest(report, config);
+        : await resolvedReviewRequest(root, config, report);
     if (!bool(flags, "dry-run")) {
-      await mkdir(safePath(root, ".inteiro/reviews"), { recursive: true });
+      const requestDirectory = config.reporting.outDir + "/" + report.runId;
+      await mkdir(safePath(root, requestDirectory), { recursive: true });
       await writeFile(
-        safePath(root, ".inteiro/reviews/" + report.runId + ".json"),
+        safePath(root, requestDirectory + "/" + cmd[0] + ".json"),
         JSON.stringify(data, null, 2),
       );
     }

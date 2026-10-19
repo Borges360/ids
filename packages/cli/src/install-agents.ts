@@ -244,7 +244,7 @@ export async function installHarness(
         join(cwd, ".cursor", "rules", "inteiro.mdc"),
         `---
 description: INTEIRO Identity Design System — regras sempre aplicáveis em UI.
-globs: **/*.{css,scss,html,tsx,jsx,vue,svelte}
+globs: "**/*.{css,scss,html,ts,tsx,js,jsx,vue,svelte}"
 alwaysApply: false
 ---
 

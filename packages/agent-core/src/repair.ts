@@ -57,6 +57,7 @@ export function repairContext(
           : "repairable";
   return {
     schemaVersion: "1.0",
+    kind: "repair-context" as const,
     runId: report.runId,
     contextBundleId: task.contextBundleId,
     configHash: report.configHash,

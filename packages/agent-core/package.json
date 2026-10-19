@@ -20,7 +20,8 @@
   "dependencies": {
     "@inteiro/composition": "^1.2.0",
     "@inteiro/contracts": "^1.2.0",
-    "@inteiro/tokens": "1.2.0"
+    "@inteiro/tokens": "1.2.0",
+    "yaml": "2.9.1"
   },
   "engines": {
     "node": ">=22.14"
