@@ -138,6 +138,7 @@ for (const mutation of [
   "private-path",
   "routes-hash",
   "missing-validation",
+  "invalid-seed",
 ] as const)
   it("refuses " + mutation + " before creating a worker", async () => {
     const fixture = await bootstrapFixture();
@@ -147,6 +148,20 @@ for (const mutation of [
           join(fixture.dataset, "artifacts/tarballs/inteiro-cli-1.2.0.tgz"),
           "changed",
         );
+      if (mutation === "invalid-seed") {
+        const metaPath = join(fixture.dataset, fixture.validation.path),
+          meta = JSON.parse(await readFile(metaPath, "utf8"));
+        const fixturePath = join(fixture.dataset, meta.fixtures[0].path),
+          data = JSON.parse(await readFile(fixturePath, "utf8"));
+        data.seed = -1;
+        await writeFile(fixturePath, JSON.stringify(data));
+        meta.fixtures[0].sha256 = hash(await readFile(fixturePath));
+        await writeFile(metaPath, JSON.stringify(meta));
+        const path = join(fixture.dataset, "benchmarks/tasks.public.json"),
+          catalog = JSON.parse(await readFile(path, "utf8"));
+        catalog.tasks[0].validation.sha256 = hash(await readFile(metaPath));
+        await writeFile(path, JSON.stringify(catalog));
+      }
       if (mutation === "lock") {
         const path = join(fixture.dataset, "artifacts/dependency-lock.json"),
           lock = JSON.parse(await readFile(path, "utf8"));

@@ -16,6 +16,16 @@ import { registry, proposeBaseline, verifyApproval } from "./baseline.ts";
 import type { Page, Locator } from "@playwright/test";
 import { discoverRoutes, coverageFindings } from "./coverage.ts";
 import { inspectInteractionTargets } from "./targets.ts";
+import {
+  fixtureRandomSeed,
+  installFixtureRandom,
+  RANDOM_PROFILE,
+} from "./determinism.ts";
+export {
+  fixtureRandomSeed,
+  installFixtureRandom,
+  RANDOM_PROFILE,
+} from "./determinism.ts";
 export {
   inspectInteractionTargets,
   type InteractionTarget,
@@ -54,6 +64,7 @@ export interface Route {
 export interface Fixture {
   classification: "synthetic" | "restricted";
   clock: string;
+  seed?: number;
   responses?: ResponseFixture[];
 }
 const allowedActions = [
@@ -325,6 +336,7 @@ export async function visualTest(
       arch: process.arch,
       browser: browser.version(),
       profile: config.browser.environment,
+      randomness: RANDOM_PROFILE,
       fontAssets: config.browser.fontAssets,
     });
     const artifactDir = config.reporting.outDir + "/captures-" + Date.now();
@@ -382,12 +394,16 @@ export async function visualTest(
             }
             if (
               !["synthetic", "restricted"].includes(fixture.classification) ||
-              !Number.isFinite(Date.parse(fixture.clock))
+              !Number.isFinite(Date.parse(fixture.clock)) ||
+              (fixture.seed !== undefined &&
+                (!Number.isInteger(fixture.seed) ||
+                  fixture.seed < 0 ||
+                  fixture.seed > 0xffffffff))
             ) {
               findings.push(
                 finding(
                   "VIS-DATA-001",
-                  "Fixture must declare classification and frozen clock",
+                  "Fixture must declare classification, frozen clock and optional unsigned 32-bit seed",
                   {
                     route: route.path,
                     viewport: viewportId,
@@ -427,6 +443,8 @@ export async function visualTest(
               reducedMotion: "reduce",
               serviceWorkers: "block",
             });
+            const randomSeed = fixtureRandomSeed(fixture);
+            await installFixtureRandom(context, randomSeed);
             await context.tracing.start({
               screenshots: false,
               snapshots: false,
@@ -747,6 +765,8 @@ export async function visualTest(
                 sha256: hash(actual),
                 fixtureHash: hash(fixture),
                 environmentFingerprint,
+                randomSeed,
+                randomProfile: RANDOM_PROFILE,
               });
               executed++;
             } catch (e) {

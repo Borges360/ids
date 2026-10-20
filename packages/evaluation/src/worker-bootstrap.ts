@@ -125,6 +125,16 @@ export async function planWorkerBootstrap(
     if (ids.has(fixture.id)) throw Error("Duplicate public fixture ID");
     ids.add(fixture.id);
     await readPublic(fixture, ".inteiro/fixtures/" + fixture.id + ".json");
+    const data = JSON.parse(publicFiles.at(-1)!.bytes.toString());
+    if (
+      data.classification !== "synthetic" ||
+      !Number.isFinite(Date.parse(data.clock)) ||
+      (data.seed !== undefined &&
+        (!Number.isInteger(data.seed) ||
+          data.seed < 0 ||
+          data.seed > 0xffffffff))
+    )
+      throw Error("Invalid synthetic public fixture clock or random seed");
   }
   const manifestBytes = Buffer.from(
       await safeRead(root, options.distributionManifest),

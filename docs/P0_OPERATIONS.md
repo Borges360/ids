@@ -22,6 +22,8 @@ A Recursive variável completa acompanha `@inteiro/composition/fonts`, com os ar
 
 `@inteiro/contracts` valida JSON Schema sem navegador, frameworks ou SDK de IA. `@inteiro/composition` fornece manifestos/HTML/CSS. `@inteiro/lint` agrega parsers TypeScript, PostCSS, HTML, Vue e Svelte. O pacote opcional `@inteiro/visual` é instalado no workspace de desenvolvimento com `@playwright/test`, Chromium e `axe-core`. Tokens não recebem dependência de browser. Após instalação e download dos browsers, os comandos determinísticos não precisam de rede externa.
 
+As fixtures visuais declaram um relógio fixo e podem declarar `seed` inteiro entre 0 e 4294967295. Sem esse campo, a semente deriva do hash do conteúdo completo da fixture. O runner instala `Math.random()` determinístico antes dos scripts da aplicação, em cada documento e iframe, e reinicia a sequência ao navegar ou recarregar. Capturas registram `randomSeed` e `randomProfile`; o perfil também integra o fingerprint de ambiente, impedindo reutilização silenciosa de aprovação criada com outro mecanismo. As APIs criptográficas permanecem nativas; fixtures devem evitar depender delas para conteúdo visual variável.
+
 ```sh
 npm install -D @inteiro/visual @playwright/test axe-core
 npx playwright install chromium

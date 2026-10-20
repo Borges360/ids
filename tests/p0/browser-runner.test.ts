@@ -10,6 +10,8 @@ import {
   createResponseAliases,
   sanitizeCapture,
   inspectInteractionTargets,
+  fixtureRandomSeed,
+  installFixtureRandom,
 } from "@inteiro/visual";
 import { chromium } from "@playwright/test";
 import {
@@ -20,6 +22,47 @@ import {
 describe.skipIf(process.env.INTEIRO_BROWSER_UNIT !== "1")(
   "P0 real browser pipeline and baseline lifecycle",
   () => {
+    it("seeds page scripts, reloads and frames before application code", async () => {
+      const browser = await chromium.launch({ headless: true });
+      try {
+        const read = async (seed: number) => {
+          const context = await browser.newContext();
+          try {
+            await installFixtureRandom(context, seed);
+            await context.route("**/*", (route) =>
+              route.fulfill({
+                contentType: "text/html",
+                body:
+                  "<!doctype html><script>window.values=[Math.random(),Math.random(),Math.random()];window.nativeCrypto=crypto.getRandomValues(new Uint32Array(1)).length;</script>" +
+                  (new URL(route.request().url()).pathname === "/"
+                    ? '<iframe src="/frame"></iframe>'
+                    : ""),
+              }),
+            );
+            const page = await context.newPage();
+            await page.goto("http://fixture.test/");
+            const values = await page.evaluate(() => (window as any).values);
+            expect(
+              await page.evaluate(() => (window as any).nativeCrypto),
+            ).toBe(1);
+            expect(
+              await page.frames()[1]!.evaluate(() => (window as any).values),
+            ).toEqual(values);
+            await page.reload();
+            expect(await page.evaluate(() => (window as any).values)).toEqual(
+              values,
+            );
+            return values;
+          } finally {
+            await context.close();
+          }
+        };
+        expect(await read(0)).toEqual(await read(0));
+        expect(await read(0)).not.toEqual(await read(1));
+      } finally {
+        await browser.close();
+      }
+    });
     it("keeps HTML hidden controls hidden when component display rules apply", async () => {
       const browser = await chromium.launch({ headless: true });
       try {
@@ -160,7 +203,7 @@ describe.skipIf(process.env.INTEIRO_BROWSER_UNIT !== "1")(
             (overflow ? ' style="width:2000px"' : "") +
             '><h1>Teste sintético</h1><button type="button" style="width:80px;height:' +
             (smallTarget ? "20" : "44") +
-            'px">Ação</button><p id="result">Carregando</p></main><script>fetch("/api/state",{method:"POST"}).then(r=>r.json()).then(data=>document.getElementById("result").textContent=data.message)</script></body></html>',
+            'px">Ação</button><p id="result">Carregando</p><p id="random"></p></main><script>document.getElementById("random").textContent=Math.random().toFixed(8);fetch("/api/state",{method:"POST"}).then(r=>r.json()).then(data=>document.getElementById("result").textContent=data.message)</script></body></html>',
         );
       });
       await new Promise<void>((r) => server.listen(0, "127.0.0.1", r));
@@ -220,6 +263,17 @@ describe.skipIf(process.env.INTEIRO_BROWSER_UNIT !== "1")(
         const initial = await visualTest(root, config, { propose: true });
         expect(initial.status, JSON.stringify(initial)).toBe("blocked");
         expect(initial.findings.map((f) => f.ruleId)).toContain("VIS-BASE-001");
+        expect((initial.captures as any[])[0]).toMatchObject({
+          randomSeed: fixtureRandomSeed(
+            JSON.parse(
+              await readFile(
+                join(root, ".inteiro/fixtures/synthetic.json"),
+                "utf8",
+              ),
+            ),
+          ),
+          randomProfile: "math-random-lcg32-v1",
+        });
         expect(initial.responseObservations).toEqual([
           expect.objectContaining({
             alias: "state",
