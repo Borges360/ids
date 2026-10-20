@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0",
   "version": "1.2.0",
-  "sourceCommit": "9d52a83d6622a2c44293e17548046f1946d0d974",
-  "sourceHash": "3797e923b89998ac9a0fb77b731cf11080a92e4db5f031a63cd478ef682eb2be",
+  "sourceCommit": "d847cf7efaa4b6bf8b0039aa97691330c7b2e9a4",
+  "sourceHash": "d68244445319bef58f4f13ac730e2e116ede3a316f6b0c231aa2b8c4aa21e0bd",
   "configHash": "c01aff1aced7f9f3957c622ca3870d094ec3f2c7744c2e05bf0086a6414e8270",
   "policyHash": "",
   "scopeExclusions": [
@@ -622,7 +622,7 @@
     {
       "id": "E09",
       "status": "blocked",
-      "reason": "Os 40 casos têm critérios executáveis independentes e controles positivos/negativos. O aceite agora exige grading, cinco gates, fonte/commit/configuração correspondentes, critério e fixture íntegros, cobertura completa de cenários/passos e browser coerente. Artefatos são resolvidos na raiz do candidato via workerId controlado pelo avaliador; reuso de worker, snapshot trocado, alterações posteriores e bootstrap incompleto são recusados. O protocolo congelado exige esse vínculo para aceitações. 440 testes unitários, seis ensaios de browser do contrato, 11 pacotes offline e API/CLI/tipos instalados em Node 24/22 passaram. Restam bootstrap completo dos candidatos, decomposição do custo real e atestações portáveis do produtor. Experimentos reais e aprovação humana final da meta foram excluídos pelo solicitante; governança visual do produto permanece.",
+      "reason": "40 casos possuem critérios independentes e controles positivos/negativos; aceite vincula grading e gates à fonte, commit, configuração e raiz do candidato. A decomposição do custo total agora inclui tokens de todos os modelos, ferramentas, revisão humana e infraestrutura; eventos têm IDs únicos, moeda comum, null explícito, reconciliação decimal e rejeição de overflow. Grupos separam moedas e preservam totais legados sem alegar cobertura completa; protocolo congelado exige os quatro componentes conhecidos e orçamento respeitado. Tokens por tarefa aceita incluem falhas; tempo até aceite usa somente aceitações. 464 testes unitários e 11 pacotes offline passaram; APIs/CLI/CSV/tipos instalados foram verificados em Node 24/22. Restam bootstrap completo dos candidatos e evidência portátil do produtor. Experimentos reais e aprovação humana final da meta estão excluídos; billingAttested/publicationReady permanecem false.",
       "evidence": [
         {
           "path": "tests/p0/evaluation.test.ts",
@@ -751,6 +751,10 @@
         {
           "path": "artifacts/p0-functional-binding-proof.json",
           "sha256": "ab28890a241c7d8c9accc6b5d193198abce67db94a48fbfdf4f6de5047d3f9d0"
+        },
+        {
+          "path": "artifacts/p0-cost-accounting-proof.json",
+          "sha256": "bdacee39825db476b49323fb795db6f8ffe1a0327cc435afc9ee763eacb534d6"
         }
       ]
     },
@@ -1653,7 +1657,7 @@
     {
       "id": "WP-20",
       "status": "blocked",
-      "reason": "Os 40 casos têm critérios executáveis independentes e controles positivos/negativos. O aceite agora exige grading, cinco gates, fonte/commit/configuração correspondentes, critério e fixture íntegros, cobertura completa de cenários/passos e browser coerente. Artefatos são resolvidos na raiz do candidato via workerId controlado pelo avaliador; reuso de worker, snapshot trocado, alterações posteriores e bootstrap incompleto são recusados. O protocolo congelado exige esse vínculo para aceitações. 440 testes unitários, seis ensaios de browser do contrato, 11 pacotes offline e API/CLI/tipos instalados em Node 24/22 passaram. Restam bootstrap completo dos candidatos, decomposição do custo real e atestações portáveis do produtor. Experimentos reais e aprovação humana final da meta foram excluídos pelo solicitante; governança visual do produto permanece.",
+      "reason": "40 casos possuem critérios independentes e controles positivos/negativos; aceite vincula grading e gates à fonte, commit, configuração e raiz do candidato. A decomposição do custo total agora inclui tokens de todos os modelos, ferramentas, revisão humana e infraestrutura; eventos têm IDs únicos, moeda comum, null explícito, reconciliação decimal e rejeição de overflow. Grupos separam moedas e preservam totais legados sem alegar cobertura completa; protocolo congelado exige os quatro componentes conhecidos e orçamento respeitado. Tokens por tarefa aceita incluem falhas; tempo até aceite usa somente aceitações. 464 testes unitários e 11 pacotes offline passaram; APIs/CLI/CSV/tipos instalados foram verificados em Node 24/22. Restam bootstrap completo dos candidatos e evidência portátil do produtor. Experimentos reais e aprovação humana final da meta estão excluídos; billingAttested/publicationReady permanecem false.",
       "evidence": [
         {
           "path": "tests/p0/evaluation.test.ts",
@@ -1742,6 +1746,10 @@
         {
           "path": "artifacts/p0-functional-binding-proof.json",
           "sha256": "ab28890a241c7d8c9accc6b5d193198abce67db94a48fbfdf4f6de5047d3f9d0"
+        },
+        {
+          "path": "artifacts/p0-cost-accounting-proof.json",
+          "sha256": "bdacee39825db476b49323fb795db6f8ffe1a0327cc435afc9ee763eacb534d6"
         }
       ]
     },
