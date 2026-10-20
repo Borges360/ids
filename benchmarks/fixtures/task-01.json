@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.0",
+  "classification": "synthetic",
+  "clock": "2026-01-01T12:00:00.000Z",
+  "seed": 1,
+  "routes": [
+    {
+      "id": "create",
+      "path": "/api/users",
+      "method": "POST",
+      "responses": [
+        {
+          "status": 201,
+          "json": {
+            "id": "1",
+            "name": "Rafa Silva",
+            "email": "rafa@example.test"
+          }
+        }
+      ]
+    }
+  ]
+}

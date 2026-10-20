@@ -1,4 +1,5 @@
 import { writeFile, mkdir, access } from "node:fs/promises";
+import { resolve } from "node:path";
 import {
   resolveConfig,
   hash,
@@ -440,6 +441,28 @@ export async function gateCommand(
     return done(data, data.status);
   }
   if (cmd[0] === "benchmark") {
+    if (flag(flags, "grading")) {
+      if (
+        !flag(flags, "candidate") ||
+        ["calibration", "observations", "protocol", "suite"].some((key) =>
+          flag(flags, key),
+        )
+      )
+        throw new Error(
+          "--grading requires --candidate and cannot combine benchmark input modes",
+        );
+      const { gradeBenchmarkTask } =
+        await import("@inteiro/evaluation/grading");
+      const result = await gradeBenchmarkTask(
+        root,
+        resolve(root, flag(flags, "candidate")),
+        flag(flags, "grading"),
+        { dryRun: bool(flags, "dry-run") },
+      );
+      return done(result, result.status);
+    }
+    if (cmd[1] === "grade" || flag(flags, "candidate"))
+      throw new Error("benchmark grade requires --grading and --candidate");
     if (flag(flags, "calibration")) {
       if (
         flag(flags, "observations") ||

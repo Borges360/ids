@@ -1,0 +1,1686 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://inteiro.dev/schemas/1.0/task-grading.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "kind",
+    "caseId",
+    "entry",
+    "fixture",
+    "scenarios"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "kind": {
+      "const": "independent-task-criteria"
+    },
+    "caseId": {
+      "type": "string",
+      "pattern": "^(?:task-[0-9]{2}|heldout-[0-9]+)$"
+    },
+    "entry": {
+      "type": "string",
+      "pattern": "^/src/.*\\.html$"
+    },
+    "fixture": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "pattern": "\\S"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "scenarios": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "viewport",
+          "theme",
+          "density",
+          "direction",
+          "steps"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "\\S"
+          },
+          "viewport": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "width",
+              "height"
+            ],
+            "properties": {
+              "width": {
+                "type": "integer",
+                "minimum": 320,
+                "maximum": 3840
+              },
+              "height": {
+                "type": "integer",
+                "minimum": 320,
+                "maximum": 2160
+              }
+            }
+          },
+          "theme": {
+            "enum": [
+              "dark",
+              "light",
+              "contrast-dark",
+              "contrast-light"
+            ]
+          },
+          "density": {
+            "enum": [
+              "calm",
+              "focus"
+            ]
+          },
+          "direction": {
+            "enum": [
+              "ltr",
+              "rtl"
+            ]
+          },
+          "steps": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op",
+                    "locator"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "click"
+                    },
+                    "locator": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "text"
+                          ],
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "label"
+                          ],
+                          "properties": {
+                            "label": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "testId"
+                          ],
+                          "properties": {
+                            "testId": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "role"
+                          ],
+                          "properties": {
+                            "role": {
+                              "enum": [
+                                "button",
+                                "textbox",
+                                "dialog",
+                                "navigation",
+                                "list",
+                                "listitem",
+                                "status",
+                                "alert",
+                                "heading",
+                                "checkbox",
+                                "combobox",
+                                "row",
+                                "cell",
+                                "tab",
+                                "tabpanel",
+                                "link"
+                              ]
+                            },
+                            "name": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op",
+                    "locator"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "check"
+                    },
+                    "locator": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "text"
+                          ],
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "label"
+                          ],
+                          "properties": {
+                            "label": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "testId"
+                          ],
+                          "properties": {
+                            "testId": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "role"
+                          ],
+                          "properties": {
+                            "role": {
+                              "enum": [
+                                "button",
+                                "textbox",
+                                "dialog",
+                                "navigation",
+                                "list",
+                                "listitem",
+                                "status",
+                                "alert",
+                                "heading",
+                                "checkbox",
+                                "combobox",
+                                "row",
+                                "cell",
+                                "tab",
+                                "tabpanel",
+                                "link"
+                              ]
+                            },
+                            "name": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op",
+                    "locator"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "uncheck"
+                    },
+                    "locator": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "text"
+                          ],
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "label"
+                          ],
+                          "properties": {
+                            "label": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "testId"
+                          ],
+                          "properties": {
+                            "testId": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "role"
+                          ],
+                          "properties": {
+                            "role": {
+                              "enum": [
+                                "button",
+                                "textbox",
+                                "dialog",
+                                "navigation",
+                                "list",
+                                "listitem",
+                                "status",
+                                "alert",
+                                "heading",
+                                "checkbox",
+                                "combobox",
+                                "row",
+                                "cell",
+                                "tab",
+                                "tabpanel",
+                                "link"
+                              ]
+                            },
+                            "name": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op",
+                    "locator"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "expect-visible"
+                    },
+                    "locator": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "text"
+                          ],
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "label"
+                          ],
+                          "properties": {
+                            "label": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "testId"
+                          ],
+                          "properties": {
+                            "testId": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "role"
+                          ],
+                          "properties": {
+                            "role": {
+                              "enum": [
+                                "button",
+                                "textbox",
+                                "dialog",
+                                "navigation",
+                                "list",
+                                "listitem",
+                                "status",
+                                "alert",
+                                "heading",
+                                "checkbox",
+                                "combobox",
+                                "row",
+                                "cell",
+                                "tab",
+                                "tabpanel",
+                                "link"
+                              ]
+                            },
+                            "name": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op",
+                    "locator"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "expect-hidden"
+                    },
+                    "locator": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "text"
+                          ],
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "label"
+                          ],
+                          "properties": {
+                            "label": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "testId"
+                          ],
+                          "properties": {
+                            "testId": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "role"
+                          ],
+                          "properties": {
+                            "role": {
+                              "enum": [
+                                "button",
+                                "textbox",
+                                "dialog",
+                                "navigation",
+                                "list",
+                                "listitem",
+                                "status",
+                                "alert",
+                                "heading",
+                                "checkbox",
+                                "combobox",
+                                "row",
+                                "cell",
+                                "tab",
+                                "tabpanel",
+                                "link"
+                              ]
+                            },
+                            "name": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op",
+                    "locator"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "expect-focused"
+                    },
+                    "locator": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "text"
+                          ],
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "label"
+                          ],
+                          "properties": {
+                            "label": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "testId"
+                          ],
+                          "properties": {
+                            "testId": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "role"
+                          ],
+                          "properties": {
+                            "role": {
+                              "enum": [
+                                "button",
+                                "textbox",
+                                "dialog",
+                                "navigation",
+                                "list",
+                                "listitem",
+                                "status",
+                                "alert",
+                                "heading",
+                                "checkbox",
+                                "combobox",
+                                "row",
+                                "cell",
+                                "tab",
+                                "tabpanel",
+                                "link"
+                              ]
+                            },
+                            "name": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op",
+                    "locator"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "expect-enabled"
+                    },
+                    "locator": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "text"
+                          ],
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "label"
+                          ],
+                          "properties": {
+                            "label": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "testId"
+                          ],
+                          "properties": {
+                            "testId": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "role"
+                          ],
+                          "properties": {
+                            "role": {
+                              "enum": [
+                                "button",
+                                "textbox",
+                                "dialog",
+                                "navigation",
+                                "list",
+                                "listitem",
+                                "status",
+                                "alert",
+                                "heading",
+                                "checkbox",
+                                "combobox",
+                                "row",
+                                "cell",
+                                "tab",
+                                "tabpanel",
+                                "link"
+                              ]
+                            },
+                            "name": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op",
+                    "locator"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "expect-disabled"
+                    },
+                    "locator": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "text"
+                          ],
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "label"
+                          ],
+                          "properties": {
+                            "label": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "testId"
+                          ],
+                          "properties": {
+                            "testId": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "role"
+                          ],
+                          "properties": {
+                            "role": {
+                              "enum": [
+                                "button",
+                                "textbox",
+                                "dialog",
+                                "navigation",
+                                "list",
+                                "listitem",
+                                "status",
+                                "alert",
+                                "heading",
+                                "checkbox",
+                                "combobox",
+                                "row",
+                                "cell",
+                                "tab",
+                                "tabpanel",
+                                "link"
+                              ]
+                            },
+                            "name": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op",
+                    "locator",
+                    "value"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "fill"
+                    },
+                    "locator": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "text"
+                          ],
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "label"
+                          ],
+                          "properties": {
+                            "label": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "testId"
+                          ],
+                          "properties": {
+                            "testId": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "role"
+                          ],
+                          "properties": {
+                            "role": {
+                              "enum": [
+                                "button",
+                                "textbox",
+                                "dialog",
+                                "navigation",
+                                "list",
+                                "listitem",
+                                "status",
+                                "alert",
+                                "heading",
+                                "checkbox",
+                                "combobox",
+                                "row",
+                                "cell",
+                                "tab",
+                                "tabpanel",
+                                "link"
+                              ]
+                            },
+                            "name": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "value": {
+                      "type": "string",
+                      "pattern": "\\S"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op",
+                    "locator",
+                    "value"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "press"
+                    },
+                    "locator": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "text"
+                          ],
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "label"
+                          ],
+                          "properties": {
+                            "label": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "testId"
+                          ],
+                          "properties": {
+                            "testId": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "role"
+                          ],
+                          "properties": {
+                            "role": {
+                              "enum": [
+                                "button",
+                                "textbox",
+                                "dialog",
+                                "navigation",
+                                "list",
+                                "listitem",
+                                "status",
+                                "alert",
+                                "heading",
+                                "checkbox",
+                                "combobox",
+                                "row",
+                                "cell",
+                                "tab",
+                                "tabpanel",
+                                "link"
+                              ]
+                            },
+                            "name": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "value": {
+                      "type": "string",
+                      "pattern": "\\S"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op",
+                    "locator",
+                    "value"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "select"
+                    },
+                    "locator": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "text"
+                          ],
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "label"
+                          ],
+                          "properties": {
+                            "label": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "testId"
+                          ],
+                          "properties": {
+                            "testId": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "role"
+                          ],
+                          "properties": {
+                            "role": {
+                              "enum": [
+                                "button",
+                                "textbox",
+                                "dialog",
+                                "navigation",
+                                "list",
+                                "listitem",
+                                "status",
+                                "alert",
+                                "heading",
+                                "checkbox",
+                                "combobox",
+                                "row",
+                                "cell",
+                                "tab",
+                                "tabpanel",
+                                "link"
+                              ]
+                            },
+                            "name": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "value": {
+                      "type": "string",
+                      "pattern": "\\S"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op",
+                    "locator",
+                    "value"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "expect-text"
+                    },
+                    "locator": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "text"
+                          ],
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "label"
+                          ],
+                          "properties": {
+                            "label": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "testId"
+                          ],
+                          "properties": {
+                            "testId": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "role"
+                          ],
+                          "properties": {
+                            "role": {
+                              "enum": [
+                                "button",
+                                "textbox",
+                                "dialog",
+                                "navigation",
+                                "list",
+                                "listitem",
+                                "status",
+                                "alert",
+                                "heading",
+                                "checkbox",
+                                "combobox",
+                                "row",
+                                "cell",
+                                "tab",
+                                "tabpanel",
+                                "link"
+                              ]
+                            },
+                            "name": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "value": {
+                      "type": "string",
+                      "pattern": "\\S"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op",
+                    "locator",
+                    "value"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "expect-value"
+                    },
+                    "locator": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "text"
+                          ],
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "label"
+                          ],
+                          "properties": {
+                            "label": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "testId"
+                          ],
+                          "properties": {
+                            "testId": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "role"
+                          ],
+                          "properties": {
+                            "role": {
+                              "enum": [
+                                "button",
+                                "textbox",
+                                "dialog",
+                                "navigation",
+                                "list",
+                                "listitem",
+                                "status",
+                                "alert",
+                                "heading",
+                                "checkbox",
+                                "combobox",
+                                "row",
+                                "cell",
+                                "tab",
+                                "tabpanel",
+                                "link"
+                              ]
+                            },
+                            "name": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "value": {
+                      "type": "string",
+                      "pattern": "\\S"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op",
+                    "locator",
+                    "count"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "expect-count"
+                    },
+                    "locator": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "text"
+                          ],
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "label"
+                          ],
+                          "properties": {
+                            "label": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "testId"
+                          ],
+                          "properties": {
+                            "testId": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "role"
+                          ],
+                          "properties": {
+                            "role": {
+                              "enum": [
+                                "button",
+                                "textbox",
+                                "dialog",
+                                "navigation",
+                                "list",
+                                "listitem",
+                                "status",
+                                "alert",
+                                "heading",
+                                "checkbox",
+                                "combobox",
+                                "row",
+                                "cell",
+                                "tab",
+                                "tabpanel",
+                                "link"
+                              ]
+                            },
+                            "name": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "count": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 10000
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op",
+                    "locator",
+                    "values"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "expect-ordered-text"
+                    },
+                    "locator": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "text"
+                          ],
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "label"
+                          ],
+                          "properties": {
+                            "label": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "testId"
+                          ],
+                          "properties": {
+                            "testId": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "role"
+                          ],
+                          "properties": {
+                            "role": {
+                              "enum": [
+                                "button",
+                                "textbox",
+                                "dialog",
+                                "navigation",
+                                "list",
+                                "listitem",
+                                "status",
+                                "alert",
+                                "heading",
+                                "checkbox",
+                                "combobox",
+                                "row",
+                                "cell",
+                                "tab",
+                                "tabpanel",
+                                "link"
+                              ]
+                            },
+                            "name": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "values": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "\\S"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op",
+                    "locator",
+                    "name",
+                    "value"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "expect-attribute"
+                    },
+                    "locator": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "text"
+                          ],
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "label"
+                          ],
+                          "properties": {
+                            "label": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "testId"
+                          ],
+                          "properties": {
+                            "testId": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "role"
+                          ],
+                          "properties": {
+                            "role": {
+                              "enum": [
+                                "button",
+                                "textbox",
+                                "dialog",
+                                "navigation",
+                                "list",
+                                "listitem",
+                                "status",
+                                "alert",
+                                "heading",
+                                "checkbox",
+                                "combobox",
+                                "row",
+                                "cell",
+                                "tab",
+                                "tabpanel",
+                                "link"
+                              ]
+                            },
+                            "name": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "name": {
+                      "type": "string",
+                      "pattern": "\\S"
+                    },
+                    "value": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op",
+                    "name",
+                    "value"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "expect-root-attribute"
+                    },
+                    "name": {
+                      "type": "string",
+                      "pattern": "\\S"
+                    },
+                    "value": {
+                      "type": "string",
+                      "pattern": "\\S"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op",
+                    "id",
+                    "count",
+                    "body"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "expect-request"
+                    },
+                    "id": {
+                      "type": "string",
+                      "pattern": "\\S"
+                    },
+                    "count": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 100
+                    },
+                    "body": {
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op",
+                    "id"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "respond"
+                    },
+                    "id": {
+                      "type": "string",
+                      "pattern": "\\S"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "reload"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "expect-no-overflow"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -2,6 +2,10 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { benchmarkProtocolSchema } from "./benchmark-protocol-schema.mjs";
 import { calibrationSchemas } from "./calibration-schemas.mjs";
 import {
+  taskGradingSchema,
+  taskFixtureSchema,
+} from "./task-grading-schema.mjs";
+import {
   DEFAULTS,
   STATES,
   TASK_TYPES,
@@ -421,6 +425,8 @@ const contracts = {
     ],
   },
   ...calibrationSchemas([...REVIEW_AXES]),
+  "task-grading": taskGradingSchema,
+  "task-fixture": taskFixtureSchema,
   "benchmark-protocol": benchmarkProtocolSchema,
   "experiment-input": {
     type: "object",

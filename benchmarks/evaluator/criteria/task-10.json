@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "task-10",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/task-10.json",
+    "sha256": "fc357f41df16f5bc9e63a35718bfa3eb8af05a0d73682b794de90ad96d868835"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 320,
+        "height": 812
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "rtl",
+      "steps": [
+        {
+          "op": "expect-text",
+          "locator": {
+            "testId": "content-title"
+          },
+          "value": "سجل المستندات"
+        },
+        {
+          "op": "expect-text",
+          "locator": {
+            "testId": "content-body"
+          },
+          "value": "مستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستندمستند"
+        },
+        {
+          "op": "expect-root-attribute",
+          "name": "dir",
+          "value": "rtl"
+        },
+        {
+          "op": "expect-request",
+          "id": "content",
+          "count": 1,
+          "body": null
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

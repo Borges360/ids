@@ -15,6 +15,10 @@ for (const [i, p] of patterns.entries())
             ["dark", "focus"],
             ["light", "calm"],
             ["light", "focus"],
+            ["contrast-dark", "calm"],
+            ["contrast-dark", "focus"],
+            ["contrast-light", "calm"],
+            ["contrast-light", "focus"],
           ]
         : [[i % 2 ? "light" : "dark", i % 2 ? "calm" : "focus"]]) {
         test(`${p.id} ${state} ${width} ${theme} ${density}: semantics, layout and accessibility`, async ({

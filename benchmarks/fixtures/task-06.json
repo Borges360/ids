@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.0",
+  "classification": "synthetic",
+  "clock": "2026-01-01T12:00:00.000Z",
+  "seed": 6,
+  "routes": [
+    {
+      "id": "items",
+      "path": "/api/items",
+      "method": "GET",
+      "responses": [
+        {
+          "status": 503,
+          "json": {
+            "message": "Synthetic unavailable"
+          },
+          "release": "initial"
+        },
+        {
+          "status": 200,
+          "json": {
+            "items": []
+          },
+          "release": "empty"
+        },
+        {
+          "status": 200,
+          "json": {
+            "items": [
+              {
+                "id": 1,
+                "name": "Documento de teste"
+              }
+            ]
+          },
+          "release": "success"
+        }
+      ]
+    }
+  ]
+}

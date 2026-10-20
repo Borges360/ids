@@ -1,16 +1,20 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { spawnSync, execFileSync } from "node:child_process";
 import { resolve } from "node:path";
+import { randomUUID } from "node:crypto";
 import { reviewSourceHash } from "../packages/contracts/src/index.ts";
 const npmCli = process.env.npm_execpath;
 if (!npmCli) throw new Error("Run through npm run verify:p0");
 await mkdir("artifacts", { recursive: true });
+const runDirectory = "artifacts/verification-" + randomUUID();
+await mkdir(runDirectory);
 const tasks = [
   ...(process.argv.includes("--clean")
     ? [{ name: "install", args: ["ci", "--no-audit", "--no-fund"] }]
     : []),
   { name: "ci", args: ["run", "ci"] },
   { name: "browser-gate", args: ["run", "test:browser-gate"] },
+  { name: "benchmark-grading", args: ["run", "test:benchmark-grading"] },
   { name: "stories", args: ["run", "test:stories"] },
   {
     name: "browser-full",
@@ -22,6 +26,7 @@ const tasks = [
   { name: "offline", args: ["run", "smoke:offline", "--", "--seed-cache"] },
 ];
 const report = {
+  runDirectory,
   schemaVersion: "1.0",
   startedAt: new Date().toISOString(),
   finishedAt: null,
@@ -49,7 +54,7 @@ for (const task of tasks) {
       STORYBOOK_DISABLE_TELEMETRY: "1",
     },
   });
-  const log = "artifacts/p0-final-" + task.name + ".log";
+  const log = runDirectory + "/" + task.name + ".log";
   await writeFile(log, (child.stdout ?? "") + "\n" + (child.stderr ?? ""));
   report.checks.push({
     name: task.name,
@@ -72,6 +77,10 @@ for (const task of tasks) {
     "artifacts/p0-verification.json",
     JSON.stringify(report, null, 2),
   );
+  await writeFile(
+    runDirectory + "/verification.json",
+    JSON.stringify(report, null, 2),
+  );
   console.log(task.name + ": " + child.status);
   if (child.status !== 0) {
     report.status = "failed";
@@ -92,6 +101,10 @@ if (report.finishedSourceHash !== report.sourceHash) {
 }
 report.finishedAt = new Date().toISOString();
 if (report.status === "running") report.status = "passed";
+await writeFile(
+  runDirectory + "/verification.json",
+  JSON.stringify(report, null, 2),
+);
 await writeFile(
   "artifacts/p0-verification.json",
   JSON.stringify(report, null, 2),

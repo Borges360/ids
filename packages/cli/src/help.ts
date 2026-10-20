@@ -19,6 +19,7 @@ Contratos e gates P0:
   benchmark run --suite p0-smoke --json
   benchmark run --observations <file> [--protocol <file>] [--dry-run] --json
   benchmark run --calibration <file> [--dry-run] --json
+  benchmark grade --grading <file> --candidate <git-root> [--dry-run] --json
   doctor --deep --json
 
 Comandos:

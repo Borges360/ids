@@ -5,14 +5,19 @@
   "exports": {
     ".": "./src/index.ts",
     "./experiments": "./src/experiments.ts",
-    "./calibration": "./src/calibration.ts"
+    "./calibration": "./src/calibration.ts",
+    "./grading": "./src/grading.ts"
   },
   "files": [
     "src"
   ],
   "dependencies": {
     "@inteiro/contracts": "1.2.0",
-    "@inteiro/lint": "1.2.0"
+    "@inteiro/lint": "1.2.0",
+    "@inteiro/composition": "1.2.0"
+  },
+  "peerDependencies": {
+    "@playwright/test": ">=1.58.0"
   },
   "license": "MIT"
 }

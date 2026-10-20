@@ -44,6 +44,8 @@ interface DatasetTask {
   difficulty?: string;
   requirement: string;
   initialImplementation: string;
+  initialFiles?: string[];
+  instructions?: string;
   contract: string;
   fixtures: string[];
   grading: Snapshot;
@@ -174,6 +176,8 @@ export async function validateExperimentProtocol(
         );
       for (const file of [
         task.initialImplementation,
+        ...(task.initialFiles ?? []),
+        ...(task.instructions ? [task.instructions] : []),
         task.contract,
         ...task.fixtures,
       ]) {

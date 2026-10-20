@@ -20,6 +20,37 @@ import {
 describe.skipIf(process.env.INTEIRO_BROWSER_UNIT !== "1")(
   "P0 real browser pipeline and baseline lifecycle",
   () => {
+    it("keeps HTML hidden controls hidden when component display rules apply", async () => {
+      const browser = await chromium.launch({ headless: true });
+      try {
+        const page = await browser.newPage();
+        const css = await readFile(
+          "packages/composition/dist/composition.css",
+          "utf8",
+        );
+        await page.setContent(
+          `<style>${css}</style><main class="in-composition"><nav hidden data-case="hidden"><a href="#">Oculto</a></nav><button hidden data-case="hidden">Oculto</button><section hidden data-case="hidden">Oculto</section><span hidden="until-found" id="find">Encontrável</span></main>`,
+        );
+        expect(
+          await page
+            .locator('[data-case="hidden"]')
+            .evaluateAll((nodes) =>
+              nodes.every(
+                (node) =>
+                  getComputedStyle(node).display === "none" &&
+                  node.getClientRects().length === 0,
+              ),
+            ),
+        ).toBe(true);
+        expect(
+          await page
+            .locator("#find")
+            .evaluate((node) => getComputedStyle(node).display),
+        ).not.toBe("none");
+      } finally {
+        await browser.close();
+      }
+    });
     it("measures real 44px targets and associated labels without inventing regions", async () => {
       const browser = await chromium.launch({ headless: true });
       try {

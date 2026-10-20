@@ -1,5 +1,9 @@
 @import "../../design-system/src/inteiro.css";
 @import "./fonts.css";
+.in-composition[hidden]:not([hidden="until-found" i]),
+.in-composition [hidden]:not([hidden="until-found" i]) {
+  display: none !important;
+}
 .in-composition {
   min-inline-size: 0;
   max-inline-size: 100%;

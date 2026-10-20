@@ -1,0 +1,113 @@
+{
+  "schemaVersion": "1.0",
+  "project": {
+    "id": "synthetic-benchmark-candidate",
+    "root": ".",
+    "framework": "html"
+  },
+  "design": {
+    "theme": ["dark", "light"],
+    "density": ["calm", "focus"],
+    "strictTokens": true
+  },
+  "context": {
+    "mode": "enforced",
+    "harness": "pi",
+    "requireProof": true,
+    "maxTokens": 4000
+  },
+  "composition": {
+    "allowed": [],
+    "customPatterns": "review-required"
+  },
+  "static": {
+    "profile": "strict",
+    "include": ["src/**/*.{html,js,css}"],
+    "exclude": ["**/dist/**", "**/node_modules/**", "**/vendor/**"],
+    "forbiddenImports": [],
+    "forbiddenTokens": [],
+    "suppressionPolicy": "approved-only"
+  },
+  "browser": {
+    "baseURL": "http://127.0.0.1:4173",
+    "startCommand": "node .inteiro/serve.mjs",
+    "readyPath": "/src/index.html",
+    "timeoutMs": 60000,
+    "environment": "pinned-chromium",
+    "routesFile": "inteiro.routes.json",
+    "allowedOrigins": [],
+    "viewports": [
+      {
+        "id": "small",
+        "width": 320,
+        "height": 812
+      },
+      {
+        "id": "mobile",
+        "width": 375,
+        "height": 812
+      },
+      {
+        "id": "tablet",
+        "width": 768,
+        "height": 1024
+      },
+      {
+        "id": "wide",
+        "width": 1024,
+        "height": 900
+      },
+      {
+        "id": "desktop",
+        "width": 1440,
+        "height": 900
+      }
+    ],
+    "requiredFonts": ["Recursive"],
+    "fontAssets": [
+      {
+        "path": "node_modules/@inteiro/composition/fonts/recursive-cyrillic-ext-full-normal.woff2",
+        "sha256": "f0c477ced747cc3224792ba0fe884a9e8e5406ce0a9e487ead2fc9426fb68206"
+      },
+      {
+        "path": "node_modules/@inteiro/composition/fonts/recursive-vietnamese-full-normal.woff2",
+        "sha256": "19a0b495aed1471f301247933d7e34c462a5a9f3b5fb2313a5ddf5a76fa65eed"
+      },
+      {
+        "path": "node_modules/@inteiro/composition/fonts/recursive-latin-ext-full-normal.woff2",
+        "sha256": "2f888e0fde56aeba4e22693acf2f7608783f261bc31247909573dc2d12f5554f"
+      },
+      {
+        "path": "node_modules/@inteiro/composition/fonts/recursive-latin-full-normal.woff2",
+        "sha256": "14ef41458aeba3d812284c4e32ee956910b88845062c61e91cc8578c2b78bccb"
+      }
+    ],
+    "routeRoots": []
+  },
+  "visual": {
+    "baselineDir": "tests/visual/__snapshots__",
+    "policy": "approved-only",
+    "maxDiffPixelRatio": 0.002,
+    "colorThreshold": 0.1,
+    "fullPage": true,
+    "missingBaseline": "block"
+  },
+  "review": {
+    "requiredFor": ["new-pattern", "new-page", "significant-layout-change"],
+    "method": "human-or-multimodal-plus-approval",
+    "allowExternalProvider": false
+  },
+  "repair": {
+    "maxAttempts": 2,
+    "maxChangedFiles": 8,
+    "maxDiffLines": 450
+  },
+  "benchmark": {
+    "suite": "p0-smoke",
+    "dataset": "benchmarks/p0-smoke.json"
+  },
+  "reporting": {
+    "outDir": ".inteiro/reports",
+    "formats": ["json", "html", "sarif", "junit"]
+  }
+}

@@ -40,6 +40,7 @@
     "check:p0": "node scripts/check-p0.mjs",
     "build:fixtures": "node scripts/build-framework-fixtures.mjs --next",
     "test:browser-gate": "node scripts/test-browser-gate.mjs",
+    "test:benchmark-grading": "node scripts/test-task-grading.mjs",
     "pack:p0": "node scripts/pack-p0.mjs",
     "smoke:offline": "node scripts/smoke-offline.mjs",
     "measure:p0": "node scripts/measure-p0.mjs --canary",
