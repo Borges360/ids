@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0",
   "version": "1.2.0",
-  "sourceCommit": "1ad509f90b15c54907d3b47678b1ef52c82174e6",
-  "sourceHash": "1e6c57615bfaca639b5103b6cbd57281d076d2d37d059cf00739119d4dddde22",
+  "sourceCommit": "7d4512b9e03fc8f164adfd67a8a68ae84964cde1",
+  "sourceHash": "a15003140ec6fadade8cf9dc935fdd3c08f7eda7b346bda7ec82dfaa20afe918",
   "configHash": "c01aff1aced7f9f3957c622ca3870d094ec3f2c7744c2e05bf0086a6414e8270",
   "policyHash": "",
   "scopeExclusions": [
@@ -62,7 +62,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -145,7 +145,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -172,7 +172,7 @@
     {
       "id": "E02",
       "status": "blocked",
-      "reason": "Escape e foco por camada corrigidos. Reflow ampliado passou nos 41 padrões com labels, botões, summaries, legends e navegação longos em RTL/zoom 200%; auditoria separada a 375 px não encontrou overflow. Tooltip reutiliza contêiner/balão corretos sem mudar o React. Ainda faltam a cobertura de strings vazias e casos negativos específicos por padrão, demais critérios de composição e revisão qualitativa.",
+      "reason": "Escape e foco por camada corrigidos. Reflow ampliado passou nos 41 padrões com labels, botões, summaries, legends e navegação longos em RTL/zoom 200%; auditoria separada a 375 px não encontrou overflow. Tooltip reutiliza contêiner/balão corretos sem mudar o React. Ainda faltam a cobertura de strings vazias e casos negativos específicos por padrão, demais critérios de composição e revisão qualitativa. O ensaio independente detectou e corrigiu CSS que exibia nav/button com atributo hidden; hidden=until-found foi preservado. A matriz de composição passou a cobrir também contrast-dark/light, em duas densidades e cinco larguras: 3357 testes de navegador passaram. Essas provas não encerram os demais critérios ainda pendentes.",
       "evidence": [
         {
           "path": "tests/p0/composition.test.ts",
@@ -224,7 +224,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -245,6 +245,22 @@
         {
           "path": "artifacts/p0-experiment-dry-verification.json",
           "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+        },
+        {
+          "path": "packages/composition/src/composition.css",
+          "sha256": "2a0acf4c1b0a3c3f7ef69c14ffe0d2c2a3ad23a40b2a2a66d7df2bff1f5b495d"
+        },
+        {
+          "path": "tests/p0/browser-runner.test.ts",
+          "sha256": "7b862b9be6c5a058405f3878c7273ce6f74963ccc0dc41b69277040a9db606bb"
+        },
+        {
+          "path": "tests/browser/composition.spec.ts",
+          "sha256": "a527222b944d2dec45874244f19189b417987423a91c73b6b451fb17ecc09a12"
+        },
+        {
+          "path": "artifacts/p0-functional-grading-proof.json",
+          "sha256": "4fcbb3db90d3c429b5c0af950e48f9bea0c9dcb4634d6729c215670db993ed9d"
         }
       ]
     },
@@ -259,7 +275,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -286,11 +302,11 @@
     {
       "id": "E04",
       "status": "needs_review",
-      "reason": "Lifecycle, fixtures, ações, axe, fontes e comparação visual implementados. VIS-TARGET-001 agora mede controles e links de navegação a 44 CSS px, com testes reais positivos, labels associados e regressão de botão de 20 px. As medições de dimensão não comprovam oclusão, alcance nem cobertura integral da WCAG; a auditoria desses requisitos continua pendente.",
+      "reason": "Lifecycle, fixtures, ações, axe, fontes e comparação visual implementados. VIS-TARGET-001 agora mede controles e links de navegação a 44 CSS px, com testes reais positivos, labels associados e regressão de botão de 20 px. As medições de dimensão não comprovam oclusão, alcance nem cobertura integral da WCAG; a auditoria desses requisitos continua pendente. A matriz ampliada nos quatro temas e os seis testes do pipeline de navegador passaram. O gate PR executou 492 capturas e seus 984 artefatos foram verificados; somente baseline sem aprovação e revisão humana pendente impedem esse gate. A medição de dimensão continua sem provar oclusão/alcance integral.",
       "evidence": [
         {
           "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "e6f6a92a1ea7c54f346be7bcefe19ac47a84540750d7481074b942c1620ff799"
+          "sha256": "7b862b9be6c5a058405f3878c7273ce6f74963ccc0dc41b69277040a9db606bb"
         },
         {
           "path": "artifacts/p0-response-alias-browser.log",
@@ -326,7 +342,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -347,6 +363,14 @@
         {
           "path": "artifacts/p0-experiment-dry-verification.json",
           "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+        },
+        {
+          "path": "artifacts/p0-functional-grading-proof.json",
+          "sha256": "4fcbb3db90d3c429b5c0af950e48f9bea0c9dcb4634d6729c215670db993ed9d"
+        },
+        {
+          "path": "artifacts/p0-grading-pr-gate.json",
+          "sha256": "76d65ea2aaece674ec580542616e74cc4887568e7fef363775f24c8d6b9ce595"
         }
       ]
     },
@@ -361,7 +385,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -404,7 +428,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -447,7 +471,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -534,7 +558,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -586,7 +610,7 @@
         },
         {
           "path": "docs/P0_OPERATIONS.md",
-          "sha256": "caa137e4f816a30b34eabefb528dc6b2a44f7cb3e1c087fdeb0b19bcaa3281b7"
+          "sha256": "4d0a372a2f78be63cb2486ab0bd776d13380076ef27687657a12eb19245faad6"
         },
         {
           "path": "artifacts/p0-calibration-verification.json",
@@ -597,7 +621,7 @@
     {
       "id": "E09",
       "status": "blocked",
-      "reason": "Validador de protocolo congelado implementado: commits e bytes Git do dataset/recursos, snapshots de ambiente, versões declaradas, permissões sem acesso ao avaliador ou histórico Git, orçamento comum e matriz completa modelo/tarefa/ablação/seed. Evidências fornecidas são vinculadas à configuração, versão IDS e ambiente do navegador. 340 testes passam no CI; 11 pacotes offline e API/CLI/tipos instalados em Node 24 e 22.14 passam com matriz sintética de 960 observações, sem agentes reais. O resultado identifica publicação como não pronta. Permanecem pendentes critérios executáveis independentes das 40 tarefas reais, atestações de execução/aplicação de permissões e prompt, custo decomposto e calibração humana. Experimento real continua excluído pelo solicitante. Capturas finais agora registram browserVersion, permitindo conferir a versão de navegador no protocolo congelado; os cinco testes reais de navegador e o CI com 365 testes passam. Nenhum experimento de modelos foi executado. Engine de medição da calibração agora existe e a mediana de amostras pares foi corrigida; a avaliação humana real permanece ausente. CI atual com 406 testes e pacotes instalados em Node 24/22.14 passam.",
+      "reason": "10 das 40 tarefas agora possuem starter relacionado ao domínio, instruções, fontes iniciais, fixture de API e critério executável independente com SHA fixado. O executor valida JSON, captura fonte/commit/configuração, usa servidor estático isolado e contexto Chromium novo, bloqueia egress e controla clock/RNG/respostas pendentes. Os dez starters incompletos e dez mutações conhecidas são reprovados; dez referências funcionais reservadas ao avaliador passam. Ainda faltam migrar vinte tarefas públicas e dez reservadas, preparar/isolar workspaces reais, vincular recibos de grading às observações aceitas, atestar execução/permissões/prompt e decompor custos. Calibração humana e aprovações de produto continuam ausentes. Comparação real de modelos permanece excluída pelo solicitante.",
       "evidence": [
         {
           "path": "tests/p0/evaluation.test.ts",
@@ -609,7 +633,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -649,7 +673,7 @@
         },
         {
           "path": "packages/evaluation/src/protocol.ts",
-          "sha256": "2d3c6fc6d0c001cb76e481d725730fb0bc629520b66c8bf446d78b8fcbe52827"
+          "sha256": "87e79cfc6c56cd5860c38c148fe1ce2fa06a7d6bcf8dca7b4c26621c18e808a5"
         },
         {
           "path": "tests/p0/benchmark-protocol.test.ts",
@@ -657,7 +681,7 @@
         },
         {
           "path": "docs/P0_OPERATIONS.md",
-          "sha256": "caa137e4f816a30b34eabefb528dc6b2a44f7cb3e1c087fdeb0b19bcaa3281b7"
+          "sha256": "4d0a372a2f78be63cb2486ab0bd776d13380076ef27687657a12eb19245faad6"
         },
         {
           "path": "artifacts/p0-protocol-verification.json",
@@ -669,7 +693,7 @@
         },
         {
           "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "e6f6a92a1ea7c54f346be7bcefe19ac47a84540750d7481074b942c1620ff799"
+          "sha256": "7b862b9be6c5a058405f3878c7273ce6f74963ccc0dc41b69277040a9db606bb"
         },
         {
           "path": "artifacts/p0-repair-verification.json",
@@ -686,17 +710,45 @@
         {
           "path": "artifacts/p0-calibration-verification.json",
           "sha256": "6cbfebd9fb9c175f553cb77bb94f89db8d428d9823e08a05dbdc197d2596875d"
+        },
+        {
+          "path": "benchmarks/tasks.public.json",
+          "sha256": "d02a8b281db2ed109e7f809734fef12940b75f5fb8cb32f3b67a4d46654bfbea"
+        },
+        {
+          "path": "benchmarks/tasks.heldout.json",
+          "sha256": "2ebacd7430fdaef9fecf184eb249e03e4101362c28d2d77a1c3051e278671cf7"
+        },
+        {
+          "path": "packages/evaluation/src/grading.ts",
+          "sha256": "9f4a2fe630e77ea271d8cf1a884e954067087c5e57d1bb86fe86b685680ca9fc"
+        },
+        {
+          "path": "packages/contracts/schemas/task-grading.schema.json",
+          "sha256": "9a11fe2fd18089d46d4a0ffa0d1508d38fa2854402dc5e358720eb15c26e6bc8"
+        },
+        {
+          "path": "packages/contracts/schemas/task-fixture.schema.json",
+          "sha256": "e9a36c73a999af578f355ecbd74a0c56e2db164ba599b2d2b93eddc4e8d98def"
+        },
+        {
+          "path": "tests/p0/task-grading.test.ts",
+          "sha256": "ed61af8c41b1f6dc3b310838c602bfe5bdb5b2a8191e696fe37097ca64d93728"
+        },
+        {
+          "path": "artifacts/p0-functional-grading-proof.json",
+          "sha256": "4fcbb3db90d3c429b5c0af950e48f9bea0c9dcb4634d6729c215670db993ed9d"
         }
       ]
     },
     {
       "id": "E10",
       "status": "needs_review",
-      "reason": "CI e verificação completa passaram; init preserva customizações; migração CSS possui preview vinculado, backups e checksums; compatibilidade histórica 1.1.0 preserva 316 tokens, exports, tipos, MCP, provider SSR e seis comandos. Validação final e aprovações de release permanecem pendentes; Jenkins excluído pelo solicitante.",
+      "reason": "CI e verificação completa passaram; init preserva customizações; migração CSS possui preview vinculado, backups e checksums; compatibilidade histórica 1.1.0 preserva 316 tokens, exports, tipos, MCP, provider SSR e seis comandos. Validação final e aprovações de release permanecem pendentes; Jenkins excluído pelo solicitante. verify:p0 agora inclui grading e preserva logs/manifesto por diretório de execução, sem sobrescrever os logs históricos. Oito etapas passaram com fonte inalterada; o pacote instalado foi validado em Node 24 e a API/CLI/servidor/fontes/tipos em Node 22.14. O gate PR permanece bloqueado por aprovações de produto. Exportação portátil completa das evidências e prova remota de CI ainda não foram concluídas.",
       "evidence": [
         {
           "path": "docs/P0_OPERATIONS.md",
-          "sha256": "caa137e4f816a30b34eabefb528dc6b2a44f7cb3e1c087fdeb0b19bcaa3281b7"
+          "sha256": "4d0a372a2f78be63cb2486ab0bd776d13380076ef27687657a12eb19245faad6"
         },
         {
           "path": "tests/p0/migration.test.ts",
@@ -712,11 +764,11 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-offline.json",
-          "sha256": "1c2b85459eddc850c4df205eaecf4fa79ef2994f53e1e8e9df04acfc9ef2d1ca"
+          "sha256": "5af7e9e00737b315764e2d9a33b15a62bce4848fdb1a81dca5993e281b3a4522"
         },
         {
           "path": "artifacts/p0-node22-bound-migration.log",
@@ -728,7 +780,7 @@
         },
         {
           "path": "artifacts/p0-package-manifest.json",
-          "sha256": "35261ed860fe5204ef9d212acaf635a73378e0bbe66a074c16a610e51c155703"
+          "sha256": "1e1a6293438589bd2caad7031edfa0c8b0245dde5c12ca91d843d67383f8b668"
         },
         {
           "path": "artifacts/linux-bound-migration/p0-offline.json",
@@ -817,6 +869,14 @@
         {
           "path": "artifacts/p0-experiment-dry-verification.json",
           "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+        },
+        {
+          "path": "scripts/verify-p0.mjs",
+          "sha256": "5f66a576b87be2efcdc85634b7a54f66a4e3a1b672171ed2f6fdb106846dea99"
+        },
+        {
+          "path": "artifacts/p0-functional-grading-proof.json",
+          "sha256": "4fcbb3db90d3c429b5c0af950e48f9bea0c9dcb4634d6729c215670db993ed9d"
         }
       ]
     },
@@ -831,7 +891,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -866,7 +926,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -901,7 +961,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -940,7 +1000,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -979,7 +1039,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -1014,7 +1074,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -1045,11 +1105,11 @@
       "evidence": [
         {
           "path": "tests/browser/composition.spec.ts",
-          "sha256": "1445e652b2ff8da00598ea86280ed1a0edc3b155b3c4326e38d95da409abf421"
+          "sha256": "a527222b944d2dec45874244f19189b417987423a91c73b6b451fb17ecc09a12"
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -1080,11 +1140,11 @@
       "evidence": [
         {
           "path": "tests/browser/composition.spec.ts",
-          "sha256": "1445e652b2ff8da00598ea86280ed1a0edc3b155b3c4326e38d95da409abf421"
+          "sha256": "a527222b944d2dec45874244f19189b417987423a91c73b6b451fb17ecc09a12"
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -1115,11 +1175,11 @@
       "evidence": [
         {
           "path": "tests/browser/composition.spec.ts",
-          "sha256": "1445e652b2ff8da00598ea86280ed1a0edc3b155b3c4326e38d95da409abf421"
+          "sha256": "a527222b944d2dec45874244f19189b417987423a91c73b6b451fb17ecc09a12"
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -1154,7 +1214,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -1189,7 +1249,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -1220,11 +1280,11 @@
       "evidence": [
         {
           "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "e6f6a92a1ea7c54f346be7bcefe19ac47a84540750d7481074b942c1620ff799"
+          "sha256": "7b862b9be6c5a058405f3878c7273ce6f74963ccc0dc41b69277040a9db606bb"
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -1255,11 +1315,11 @@
       "evidence": [
         {
           "path": "tests/browser/composition.spec.ts",
-          "sha256": "1445e652b2ff8da00598ea86280ed1a0edc3b155b3c4326e38d95da409abf421"
+          "sha256": "a527222b944d2dec45874244f19189b417987423a91c73b6b451fb17ecc09a12"
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -1294,7 +1354,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -1329,7 +1389,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -1364,7 +1424,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -1403,7 +1463,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -1462,7 +1522,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -1521,7 +1581,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -1569,7 +1629,7 @@
         },
         {
           "path": "docs/P0_OPERATIONS.md",
-          "sha256": "caa137e4f816a30b34eabefb528dc6b2a44f7cb3e1c087fdeb0b19bcaa3281b7"
+          "sha256": "4d0a372a2f78be63cb2486ab0bd776d13380076ef27687657a12eb19245faad6"
         },
         {
           "path": "artifacts/p0-calibration-verification.json",
@@ -1580,7 +1640,7 @@
     {
       "id": "WP-20",
       "status": "blocked",
-      "reason": "Validador de protocolo congelado implementado: commits e bytes Git do dataset/recursos, snapshots de ambiente, versões declaradas, permissões sem acesso ao avaliador ou histórico Git, orçamento comum e matriz completa modelo/tarefa/ablação/seed. Evidências fornecidas são vinculadas à configuração, versão IDS e ambiente do navegador. 340 testes passam no CI; 11 pacotes offline e API/CLI/tipos instalados em Node 24 e 22.14 passam com matriz sintética de 960 observações, sem agentes reais. O resultado identifica publicação como não pronta. Permanecem pendentes critérios executáveis independentes das 40 tarefas reais, atestações de execução/aplicação de permissões e prompt, custo decomposto e calibração humana. Experimento real continua excluído pelo solicitante.",
+      "reason": "10 das 40 tarefas agora possuem starter relacionado ao domínio, instruções, fontes iniciais, fixture de API e critério executável independente com SHA fixado. O executor valida JSON, captura fonte/commit/configuração, usa servidor estático isolado e contexto Chromium novo, bloqueia egress e controla clock/RNG/respostas pendentes. Os dez starters incompletos e dez mutações conhecidas são reprovados; dez referências funcionais reservadas ao avaliador passam. Ainda faltam migrar vinte tarefas públicas e dez reservadas, preparar/isolar workspaces reais, vincular recibos de grading às observações aceitas, atestar execução/permissões/prompt e decompor custos. Calibração humana e aprovações de produto continuam ausentes. Comparação real de modelos permanece excluída pelo solicitante.",
       "evidence": [
         {
           "path": "tests/p0/evaluation.test.ts",
@@ -1588,7 +1648,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -1616,7 +1676,7 @@
         },
         {
           "path": "packages/evaluation/src/protocol.ts",
-          "sha256": "2d3c6fc6d0c001cb76e481d725730fb0bc629520b66c8bf446d78b8fcbe52827"
+          "sha256": "87e79cfc6c56cd5860c38c148fe1ce2fa06a7d6bcf8dca7b4c26621c18e808a5"
         },
         {
           "path": "tests/p0/benchmark-protocol.test.ts",
@@ -1624,11 +1684,39 @@
         },
         {
           "path": "docs/P0_OPERATIONS.md",
-          "sha256": "caa137e4f816a30b34eabefb528dc6b2a44f7cb3e1c087fdeb0b19bcaa3281b7"
+          "sha256": "4d0a372a2f78be63cb2486ab0bd776d13380076ef27687657a12eb19245faad6"
         },
         {
           "path": "artifacts/p0-protocol-verification.json",
           "sha256": "4c1a26c6991a7ed41a38128c27c929a668e1b525ec0b7d54fd3864c2014f966b"
+        },
+        {
+          "path": "benchmarks/tasks.public.json",
+          "sha256": "d02a8b281db2ed109e7f809734fef12940b75f5fb8cb32f3b67a4d46654bfbea"
+        },
+        {
+          "path": "benchmarks/tasks.heldout.json",
+          "sha256": "2ebacd7430fdaef9fecf184eb249e03e4101362c28d2d77a1c3051e278671cf7"
+        },
+        {
+          "path": "packages/evaluation/src/grading.ts",
+          "sha256": "9f4a2fe630e77ea271d8cf1a884e954067087c5e57d1bb86fe86b685680ca9fc"
+        },
+        {
+          "path": "packages/contracts/schemas/task-grading.schema.json",
+          "sha256": "9a11fe2fd18089d46d4a0ffa0d1508d38fa2854402dc5e358720eb15c26e6bc8"
+        },
+        {
+          "path": "packages/contracts/schemas/task-fixture.schema.json",
+          "sha256": "e9a36c73a999af578f355ecbd74a0c56e2db164ba599b2d2b93eddc4e8d98def"
+        },
+        {
+          "path": "tests/p0/task-grading.test.ts",
+          "sha256": "ed61af8c41b1f6dc3b310838c602bfe5bdb5b2a8191e696fe37097ca64d93728"
+        },
+        {
+          "path": "artifacts/p0-functional-grading-proof.json",
+          "sha256": "4fcbb3db90d3c429b5c0af950e48f9bea0c9dcb4634d6729c215670db993ed9d"
         }
       ]
     },
@@ -1643,7 +1731,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -1674,7 +1762,7 @@
       "evidence": [
         {
           "path": "docs/P0_OPERATIONS.md",
-          "sha256": "caa137e4f816a30b34eabefb528dc6b2a44f7cb3e1c087fdeb0b19bcaa3281b7"
+          "sha256": "4d0a372a2f78be63cb2486ab0bd776d13380076ef27687657a12eb19245faad6"
         },
         {
           "path": "tests/p0/compatibility.test.ts",
@@ -1686,7 +1774,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -1721,7 +1809,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -1756,7 +1844,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -1787,7 +1875,7 @@
       "evidence": [
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-final-ci.log",
@@ -1822,7 +1910,7 @@
       "evidence": [
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-final-browser-full.log",
@@ -1861,11 +1949,11 @@
       "evidence": [
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-offline.json",
-          "sha256": "1c2b85459eddc850c4df205eaecf4fa79ef2994f53e1e8e9df04acfc9ef2d1ca"
+          "sha256": "5af7e9e00737b315764e2d9a33b15a62bce4848fdb1a81dca5993e281b3a4522"
         },
         {
           "path": "artifacts/p0-node22-bound-migration.log",
@@ -1904,7 +1992,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -1939,7 +2027,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -1978,7 +2066,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -2013,7 +2101,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -2048,7 +2136,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -2079,7 +2167,7 @@
       "evidence": [
         {
           "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "e6f6a92a1ea7c54f346be7bcefe19ac47a84540750d7481074b942c1620ff799"
+          "sha256": "7b862b9be6c5a058405f3878c7273ce6f74963ccc0dc41b69277040a9db606bb"
         },
         {
           "path": "tests/p0/contracts.test.ts",
@@ -2087,7 +2175,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -2122,7 +2210,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -2165,7 +2253,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -2200,7 +2288,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -2231,11 +2319,11 @@
       "evidence": [
         {
           "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "e6f6a92a1ea7c54f346be7bcefe19ac47a84540750d7481074b942c1620ff799"
+          "sha256": "7b862b9be6c5a058405f3878c7273ce6f74963ccc0dc41b69277040a9db606bb"
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -2266,11 +2354,11 @@
       "evidence": [
         {
           "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "e6f6a92a1ea7c54f346be7bcefe19ac47a84540750d7481074b942c1620ff799"
+          "sha256": "7b862b9be6c5a058405f3878c7273ce6f74963ccc0dc41b69277040a9db606bb"
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -2301,11 +2389,11 @@
       "evidence": [
         {
           "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "e6f6a92a1ea7c54f346be7bcefe19ac47a84540750d7481074b942c1620ff799"
+          "sha256": "7b862b9be6c5a058405f3878c7273ce6f74963ccc0dc41b69277040a9db606bb"
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -2340,7 +2428,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -2371,11 +2459,11 @@
       "evidence": [
         {
           "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "e6f6a92a1ea7c54f346be7bcefe19ac47a84540750d7481074b942c1620ff799"
+          "sha256": "7b862b9be6c5a058405f3878c7273ce6f74963ccc0dc41b69277040a9db606bb"
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -2410,7 +2498,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -2445,7 +2533,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -2484,7 +2572,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -2519,7 +2607,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -2554,7 +2642,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
@@ -2589,7 +2677,7 @@
         },
         {
           "path": "artifacts/p0-verification.json",
-          "sha256": "0f1e12edb213c6302d332e352d100208d1ef905f4e050e32a7aac7c8e07e0687"
+          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
         },
         {
           "path": "artifacts/p0-review-linux.log",
