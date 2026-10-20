@@ -19,6 +19,34 @@ export function parseGateOutput(
   const { hash: expected, ...payload } = report;
   if (hash(payload) !== expected)
     throw new Error("Gate evidence hash mismatch");
+  const indexed = new Map(
+    report.gates
+      .flatMap((gate) => gate.findings)
+      .map((item) => [item.fingerprint, item]),
+  );
+  if (
+    indexed.size !== report.findings.length ||
+    new Set(report.findings.map((item) => item.fingerprint)).size !==
+      report.findings.length ||
+    report.gates
+      .flatMap((gate) => gate.findings)
+      .some((item) => hash(indexed.get(item.fingerprint)) !== hash(item)) ||
+    report.findings.some(
+      (item) => hash(indexed.get(item.fingerprint)) !== hash(item),
+    ) ||
+    report.gates.some(
+      (gate) =>
+        gate.status === "passed" &&
+        gate.findings.some(
+          (item) =>
+            ["error", "blocker"].includes(item.severity) &&
+            !["passed", "waived"].includes(item.status),
+        ),
+    )
+  )
+    throw new Error(
+      "Gate findings contradict the reported status or finding index",
+    );
   if (aggregate(report.gates) !== report.status)
     throw new Error("Gate aggregate status mismatch");
   if (code !== exitCode(report.status))

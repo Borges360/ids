@@ -196,6 +196,9 @@ describe.skipIf(process.env.INTEIRO_BROWSER_UNIT !== "1")(
             status: 200,
           }),
         ]);
+        expect(
+          (initial.captures as { browserVersion: string }[])[0]!.browserVersion,
+        ).toMatch(/^\d+\./);
         const actionCaptures = initial.actionCaptures as {
           actual: string;
           sha256: string;

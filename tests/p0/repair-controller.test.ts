@@ -19,6 +19,10 @@ import {
 import { installHarness } from "../../packages/cli/src/install-agents.ts";
 import { parseGateOutput } from "@inteiro/agent-core";
 import { createPiValidator } from "../../examples/pi/repair-adapter.ts";
+import {
+  initializeRepairGit,
+  passingRepairEvidence,
+} from "../helpers/repair-evidence.ts";
 
 const config = structuredClone(DEFAULTS);
 config.context.harness = "pi";
@@ -117,6 +121,7 @@ function consumer(validate: RepairConsumer["validate"]): RepairConsumer {
 
 it("validates affected subset then full gate before accepting a bounded patch", async () =>
   fixture(async (root, task) => {
+    initializeRepairGit(root);
     const scopes: string[] = [];
     const result = await runRepairController(
       root,
@@ -125,7 +130,9 @@ it("validates affected subset then full gate before accepting a bounded patch", 
       task,
       consumer(async (scope) => {
         scopes.push(scope);
-        return report("passed");
+        return scope === "full"
+          ? passingRepairEvidence(root, config)
+          : report("passed");
       }),
     );
     expect(result.status).toBe("passed");

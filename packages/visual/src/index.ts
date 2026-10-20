@@ -737,6 +737,7 @@ export async function visualTest(
               for (const f of per) f.evidenceRefs.push(actualPath);
               captures.push({
                 key,
+                browserVersion: browser.version(),
                 route: route.path,
                 state: state.id,
                 viewport: viewportId,

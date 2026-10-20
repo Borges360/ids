@@ -12,6 +12,7 @@ import { parseGateOutput } from "./gate-protocol.ts";
 import { exitCode, isRunId } from "@inteiro/contracts";
 import { safeRead } from "@inteiro/contracts";
 import { verifyStoredContext, type TaskManifest } from "./task-context.ts";
+import { assertRepairAcceptance } from "./repair-validation.ts";
 
 export interface RepairEdit {
   path: string;
@@ -98,6 +99,7 @@ export async function runRepairController(
     report: EvidenceBundle;
   }[] = [{ scope: "initial", attempt: 0, report: initial }];
   let report = initial;
+  let acceptanceFailure: string | undefined;
   const finish = (status: GateStatus, reason: string) => {
     steps.push({
       state: status,
@@ -115,6 +117,7 @@ export async function runRepairController(
       history,
       validations,
       report,
+      ...(acceptanceFailure ? { acceptanceFailure } : {}),
     };
   };
   try {
@@ -156,6 +159,21 @@ export async function runRepairController(
   );
   while (true) {
     if (unsafeReport(report)) return finish("blocked", "security-stop");
+    if (report.status === "passed") {
+      try {
+        await assertRepairAcceptance(
+          root,
+          config,
+          report,
+          task.contextBundleId,
+        );
+      } catch (error) {
+        acceptanceFailure = redact(
+          error instanceof Error ? error.message : String(error),
+        );
+        return finish("blocked", "incomplete-full-validation");
+      }
+    }
     const envelope = repairContext(report, config, history, {
       allowedFiles: [...allowed],
       contextBundleId: task.contextBundleId,
@@ -298,6 +316,22 @@ export async function runRepairController(
         if (["blocked", "error"].includes(report.status)) {
           await rollback();
           return finish(report.status, "full-validation-stopped");
+        }
+        if (report.status === "passed") {
+          try {
+            await assertRepairAcceptance(
+              root,
+              config,
+              report,
+              task.contextBundleId,
+            );
+          } catch (error) {
+            acceptanceFailure = redact(
+              error instanceof Error ? error.message : String(error),
+            );
+            await rollback();
+            return finish("blocked", "incomplete-full-validation");
+          }
         }
         for (const gate of report.gates)
           if (gate.status === "passed") previouslyPassed.add(gate.name);

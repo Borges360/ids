@@ -1,5 +1,5 @@
 import { spawn } from "node:child_process";
-import { createRequire } from "node:module";
+import { fileURLToPath } from "node:url";
 import {
   parseGateOutput,
   resolvedRepairContext,
@@ -11,8 +11,7 @@ import { resolveConfig } from "@inteiro/contracts";
 
 /** Reference for a Pi extension. No Pi hooks or model SDK are assumed. */
 export function createPiValidator(root: string) {
-  const require = createRequire(import.meta.url);
-  const cli = require.resolve("@inteiro/cli");
+  const cli = fileURLToPath(import.meta.resolve("@inteiro/cli"));
   return async (scope: "affected" | "full") => {
     const args = [
       cli,
