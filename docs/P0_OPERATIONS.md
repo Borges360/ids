@@ -82,7 +82,19 @@ O import usa `experiment-input.schema.json`: exige SHA completo do commit, hashe
 
 `outcome` distingue `accepted`, `model_failure`, `environment_error` e `incomplete`. Falhas sem classificação ficam em `unclassifiedFailures`; não são automaticamente atribuídas ao modelo. As taxas usam apenas tarefas aceitas ou classificadas como falha de modelo; sem esse denominador a taxa é `null`. Custos de todas as observações entram no custo total, inclusive infraestrutura, e valores desconhecidos permanecem `null`. JSON, CSV e HTML incluem essas contagens, medianas, P90 e intervalos de Wilson.
 
-A validação dos hashes declarados e dos relatórios ainda não atesta a fixação do protocolo, versões ou independência do dataset; esses critérios permanecem pendentes no ledger de E09. O experimento real de dois modelos e o smoke com agentes reais foram retirados do escopo por orientação do solicitante nesta entrega.
+Sem protocolo, o relatório declara `protocol.status=not_verified` e `publicationReady=false`. Para conferir um plano congelado e sua amostragem registrada:
+
+```sh
+npx inteiro benchmark run --observations experiment.json --protocol evaluator/protocol.json --dry-run --json
+```
+
+O contrato `benchmark-protocol.schema.json` exige commit do IDS, commit e SHA-256 dos dois datasets, hash de configuração, snapshot de ambiente, ao menos dois modelos com versões, hash de prompt compartilhado, três seeds distintas, as quatro ablações, permissões e orçamento comum. O ambiente declara `idsVersion`, `harness: {name, version}` e `browser: {name, version, fingerprint}`. `environmentHash` é o SHA-256 dos bytes desse arquivo; `datasetHash` é `hash({public: publicSnapshot.sha256, heldout: heldoutSnapshot.sha256})`, usando a função canônica de `@inteiro/contracts`.
+
+Cada snapshot contém `path` e `sha256`. Os datasets precisam de 30 tarefas públicas (dez `simple`, dez `medium`, dez `complex`) e dez ocultas, sem IDs duplicados. Cada tarefa declara `id`, `requirement`, `initialImplementation`, `contract`, `fixtures` (arquivos), `grading: {path, sha256}` e `maxRepairAttempts`. As tarefas públicas também declaram `difficulty`. Os bytes dos datasets, implementações iniciais, contratos, fixtures e critérios são conferidos contra o commit fixado. Os datasets atuais ainda precisam dos critérios executáveis independentes para atender a esse contrato.
+
+As permissões são `readRoots`, `writeRoots`, `tools` e `network: "deny"`; raízes são paths existentes relativos ao projeto, sem globs. Nenhuma raiz de leitura ou escrita pode incluir o protocolo, o dataset oculto ou os critérios do avaliador, inclusive por symlink. O orçamento declara `maxAttempts` (até três), `maxDurationMs`, `maxTokens`, `maxCost` e `currency` (ISO de três letras). Toda combinação modelo/tarefa/ablação/seed precisa aparecer exatamente uma vez; tokens, custo, tempo humano e desfecho devem ser conhecidos, sem exceder orçamento. Por exemplo, dois modelos × 40 tarefas × quatro ablações × três seeds exigem 960 observações.
+
+Uma validação desse plano retorna `protocol.status=passed`, hash do protocolo e escopo `frozen-declarations-and-recorded-sampling`. `publicationReady` continua `false`: a conferência dos registros não atesta execução externa, aplicação real das permissões, entrega do prompt, independência dos critérios ou calibração humana. Esses critérios permanecem pendentes no ledger de E09. O experimento real de dois modelos e o smoke com agentes reais foram retirados do escopo por orientação do solicitante nesta entrega.
 
 ## Migração e rollback
 

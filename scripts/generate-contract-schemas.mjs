@@ -1,4 +1,5 @@
 import { mkdir, writeFile } from "node:fs/promises";
+import { benchmarkProtocolSchema } from "./benchmark-protocol-schema.mjs";
 import {
   DEFAULTS,
   STATES,
@@ -417,6 +418,7 @@ const contracts = {
       "artifacts",
     ],
   },
+  "benchmark-protocol": benchmarkProtocolSchema,
   "experiment-input": {
     type: "object",
     additionalProperties: false,

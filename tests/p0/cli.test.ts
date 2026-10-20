@@ -36,6 +36,17 @@ function invoke(args: string[]) {
   }
 }
 describe("P0 command transport", () => {
+  it("does not silently ignore a protocol without recorded observations", () => {
+    const result = invoke([
+      "benchmark",
+      "run",
+      "--protocol",
+      "unused.json",
+      "--json",
+    ]);
+    expect(result.code).toBe(8);
+    expect(result.stdout).toContain("--protocol requires --observations");
+  });
   it("does not publish benchmark reports during a dry-run import", async () => {
     const root = await mkdtemp(join(tmpdir(), "inteiro-benchmark-dry-"));
     try {

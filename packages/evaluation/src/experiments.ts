@@ -8,6 +8,11 @@ import {
   type EvidenceBundle,
 } from "@inteiro/contracts";
 import { metrics, type Observation } from "./index.ts";
+import { validateExperimentProtocol } from "./protocol.ts";
+export {
+  validateExperimentProtocol,
+  type BenchmarkProtocol,
+} from "./protocol.ts";
 export const ABLATIONS = [
   "unassisted",
   "context",
@@ -170,7 +175,7 @@ export async function importExperiment(
   root: string,
   path: string,
   outDir: string,
-  options: { dryRun?: boolean } = {},
+  options: { dryRun?: boolean; protocolPath?: string } = {},
 ) {
   const input: RecordedExperimentInput = JSON.parse(await safeRead(root, path));
   if (!validateSchema("experiment-input", input).valid)
@@ -191,6 +196,13 @@ export async function importExperiment(
       if (row.accepted) completeAcceptance(evidence, row);
     }
   }
+  const protocol = options.protocolPath
+    ? await validateExperimentProtocol(root, options.protocolPath, input)
+    : {
+        status: "not_verified" as const,
+        publicationReady: false as const,
+        limitations: ["No frozen protocol supplied; descriptive import only."],
+      };
   const result = {
     schemaVersion: "1.0",
     kind: "recorded-harness-observations",
@@ -201,6 +213,7 @@ export async function importExperiment(
     environmentHash: input.environmentHash,
     status: options.dryRun ? ("not_run" as const) : ("passed" as const),
     dryRun: options.dryRun === true,
+    protocol,
     groups: summarizeExperiments(input.observations),
     observations: input.observations,
   };

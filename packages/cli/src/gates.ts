@@ -440,6 +440,8 @@ export async function gateCommand(
     return done(data, data.status);
   }
   if (cmd[0] === "benchmark") {
+    if (flag(flags, "protocol") && !flag(flags, "observations"))
+      throw new Error("--protocol requires --observations");
     if (flag(flags, "observations")) {
       const { importExperiment } =
         await import("@inteiro/evaluation/experiments");
@@ -447,7 +449,12 @@ export async function gateCommand(
         root,
         flag(flags, "observations"),
         config.reporting.outDir + "/benchmark",
-        { dryRun: bool(flags, "dry-run") },
+        {
+          dryRun: bool(flags, "dry-run"),
+          ...(flag(flags, "protocol")
+            ? { protocolPath: flag(flags, "protocol") }
+            : {}),
+        },
       );
       return done(result, result.status);
     }
