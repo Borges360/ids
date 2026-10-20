@@ -1,4 +1,10 @@
-import { mkdir, writeFile, readFile, copyFile } from "node:fs/promises";
+import {
+  mkdir,
+  writeFile,
+  readFile,
+  copyFile,
+  realpath,
+} from "node:fs/promises";
 import { join } from "node:path";
 import { createHash, generateKeyPairSync } from "node:crypto";
 import { hash } from "@inteiro/contracts";
@@ -142,8 +148,12 @@ export async function bootstrapFixture(realDistribution = false) {
     );
     if (offline.sourceHash !== manifest.sourceHash)
       throw Error("Dependency lock provenance differs");
+    const consumerName = offline.consumerRoot.split(/[\\/]/).at(-1);
+    if (!/^offline-consumer-[a-f0-9]{16}$/.test(consumerName ?? ""))
+      throw Error("Invalid offline consumer identity");
+    const consumer = await realpath(join("artifacts", consumerName));
     await copyFile(
-      join(offline.consumerRoot, "package-lock.json"),
+      join(consumer, "package-lock.json"),
       join(fixture.dataset, "artifacts/dependency-lock.json"),
     );
   } else {
