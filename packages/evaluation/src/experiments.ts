@@ -1,14 +1,8 @@
 import { writeFile, mkdir } from "node:fs/promises";
-import {
-  hash,
-  safePath,
-  safeRead,
-  readEvidence,
-  validateSchema,
-  type EvidenceBundle,
-} from "@inteiro/contracts";
+import { hash, safePath, safeRead, validateSchema } from "@inteiro/contracts";
 import { metrics, type Observation } from "./index.ts";
 import { validateExperimentProtocol } from "./protocol.ts";
+import { observationEvidence, catalogGrading } from "./observation-evidence.ts";
 export {
   validateExperimentProtocol,
   type BenchmarkProtocol,
@@ -103,80 +97,6 @@ export interface RecordedExperimentInput {
   environmentHash: string;
   observations: Observation[];
 }
-function completeAcceptance(evidence: EvidenceBundle, row: Observation) {
-  const required = ["context", "task-context", "static", "browser", "review"];
-  if (
-    required.some(
-      (name) =>
-        evidence.gates.filter(
-          (gate) => gate.name === name && gate.status === "passed",
-        ).length !== 1,
-    ) ||
-    new Set(evidence.gates.map((gate) => gate.name)).size !==
-      evidence.gates.length ||
-    evidence.gates.some(
-      (gate) =>
-        gate.status !== "passed" ||
-        gate.findings.some(
-          (finding) => !["passed", "waived"].includes(finding.status),
-        ),
-    ) ||
-    evidence.findings.some(
-      (finding) => !["passed", "waived"].includes(finding.status),
-    ) ||
-    !/^[a-f0-9]{40}$/.test(evidence.gitSha ?? "") ||
-    !/^[a-f0-9]{64}$/.test(evidence.sourceHash ?? "")
-  )
-    throw new Error(
-      "Accepted observations require complete passing gate evidence",
-    );
-  const context = evidence.gates.find((gate) => gate.name === "context")!;
-  const task = evidence.gates.find((gate) => gate.name === "task-context")!;
-  const lint = evidence.gates.find((gate) => gate.name === "static")!;
-  const browser = evidence.gates.find((gate) => gate.name === "browser")!;
-  if (
-    context.discoverable !== true ||
-    !Array.isArray(context.provenance) ||
-    !context.provenance.length ||
-    task.taskId !== row.caseId ||
-    typeof task.taskHash !== "string" ||
-    !/^[a-f0-9]{64}$/.test(task.taskHash) ||
-    lint.adoption !== "enforce-all" ||
-    lint.coverage !== 1 ||
-    !Number.isSafeInteger(lint.files) ||
-    (lint.files as number) < 1 ||
-    !Number.isSafeInteger(browser.executed) ||
-    (browser.executed as number) < 1 ||
-    !Array.isArray(browser.captures) ||
-    browser.captures.length !== browser.executed ||
-    typeof browser.environmentFingerprint !== "string" ||
-    !/^[a-f0-9]{64}$/.test(browser.environmentFingerprint)
-  )
-    throw new Error(
-      "Incomplete task, source coverage or browser execution evidence",
-    );
-  for (const capture of browser.captures) {
-    if (
-      !capture ||
-      typeof capture !== "object" ||
-      typeof capture.actual !== "string" ||
-      typeof capture.sha256 !== "string" ||
-      !/^[a-f0-9]{64}$/.test(capture.sha256) ||
-      capture.environmentFingerprint !== browser.environmentFingerprint ||
-      ["route", "state", "viewport", "theme", "density"].some(
-        (field) => typeof capture[field] !== "string" || !capture[field].trim(),
-      ) ||
-      !evidence.artifacts.some(
-        (artifact) =>
-          artifact.path === capture.actual &&
-          artifact.sha256 === capture.sha256,
-      )
-    )
-      throw new Error(
-        "Browser capture is not bound to complete acceptance evidence",
-      );
-  }
-}
 export async function importExperiment(
   root: string,
   path: string,
@@ -187,20 +107,41 @@ export async function importExperiment(
   if (!validateSchema("experiment-input", input).valid)
     throw new Error("Invalid experiment provenance or observation schema");
   const keys = new Set<string>();
+  const workers = new Set<string>();
+  let cataloguePaths: string[] | undefined;
+  if (options.protocolPath && input.observations.some((row) => row.accepted)) {
+    const declaration = JSON.parse(await safeRead(root, options.protocolPath));
+    if (!validateSchema("benchmark-protocol", declaration).valid)
+      throw Error("Invalid frozen benchmark protocol schema");
+    cataloguePaths = [
+      declaration.dataset.public.path,
+      declaration.dataset.heldout.path,
+    ];
+  }
+  const snapshots = new Map<
+    string,
+    Awaited<ReturnType<typeof catalogGrading>>
+  >();
   for (const row of input.observations) {
     const key = JSON.stringify([row.model, row.ablation, row.caseId, row.seed]);
     if (keys.has(key)) throw new Error("Duplicate model/task/sample");
     keys.add(key);
-    if (row.evidencePath) {
-      const evidence = await readEvidence(root, row.evidencePath);
-      if (
-        (row.accepted && evidence.status !== "passed") ||
-        evidence.hash !== row.evidenceHash ||
-        evidence.configHash !== input.configHash
-      )
-        throw new Error("Observation does not match validated gate evidence");
-      if (row.accepted) completeAcceptance(evidence, row);
+    if (row.workerId) {
+      if (workers.has(row.workerId))
+        throw Error("Worker reused by multiple experiment samples");
+      workers.add(row.workerId);
     }
+    if (row.accepted && !snapshots.has(row.caseId))
+      snapshots.set(
+        row.caseId,
+        await catalogGrading(root, row.caseId, cataloguePaths),
+      );
+    await observationEvidence(
+      root,
+      row,
+      input.configHash,
+      snapshots.get(row.caseId),
+    );
   }
   const protocol = options.protocolPath
     ? await validateExperimentProtocol(root, options.protocolPath, input)

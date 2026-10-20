@@ -553,12 +553,15 @@ export async function gradeBenchmarkTask(
     agentExecution: "not_run" as const,
   };
   const directory = ".inteiro/reports/" + runId;
+  const receipt = { ...report, hash: hash(report) };
+  if (!validateSchema("task-grading-result", receipt).valid)
+    throw Error("Generated functional grading receipt violates its schema");
   await mkdir(safePath(candidate, directory), { recursive: true });
   await writeFile(
     safePath(candidate, directory + "/grading.json"),
-    JSON.stringify({ ...report, hash: hash(report) }, null, 2),
+    JSON.stringify(receipt, null, 2),
   );
-  return { ...report, hash: hash(report) };
+  return receipt;
 }
 
 /** Serves only candidate src/public and public INTEIRO assets; never evaluator files. */

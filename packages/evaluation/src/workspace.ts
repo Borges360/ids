@@ -55,7 +55,7 @@ export interface WorkerReceipt {
   editableFiles: string[];
   budget: { maxChangedFiles: number; maxDiffLines: number };
   image: string;
-  readyForValidation: false;
+  readyForValidation: boolean;
   hash: string;
 }
 const receiptPattern =
@@ -111,10 +111,25 @@ async function loadReceipt(datasetRoot: string, id: string) {
     receipt.id !== id ||
     hash(payload) !== expected ||
     receipt.image !== WORKER_IMAGE ||
+    typeof receipt.readyForValidation !== "boolean" ||
     !Array.isArray(receipt.editableFiles) ||
     !Array.isArray(receipt.protectedFiles)
   )
     throw Error("Invalid evaluator-owned worker receipt");
+  return receipt;
+}
+/** Reads evaluator-owned authority, never a receipt supplied by the candidate. */
+export async function readBenchmarkWorkerReceipt(
+  datasetRoot: string,
+  id: string,
+) {
+  const receipt = await loadReceipt(datasetRoot, id);
+  const actual = await realpath(receipt.root);
+  if (
+    actual !== receipt.root ||
+    (await realpath(git(actual, "rev-parse", "--show-toplevel"))) !== actual
+  )
+    throw Error("Worker root identity changed");
   return receipt;
 }
 /** Materializes inputs only. Dependency/harness bootstrap and product approvals are separate prerequisites. */

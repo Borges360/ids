@@ -1,14 +1,9 @@
 import { execFileSync } from "node:child_process";
 import { readFile, realpath } from "node:fs/promises";
 import { relative, sep } from "node:path";
-import {
-  hash,
-  safePath,
-  safeRead,
-  validateSchema,
-  readEvidence,
-} from "@inteiro/contracts";
+import { hash, safePath, safeRead, validateSchema } from "@inteiro/contracts";
 import type { RecordedExperimentInput } from "./experiments.ts";
+import { observationEvidence } from "./observation-evidence.ts";
 
 interface Snapshot {
   path: string;
@@ -221,14 +216,34 @@ export async function validateExperimentProtocol(
       "Protocol environment versions/fingerprint missing or mismatched",
     );
   const expected = new Set<string>();
+  const workers = new Set<string>();
   for (const model of names)
     for (const ablation of protocol.ablations)
       for (const task of allTasks)
         for (const seed of protocol.seeds)
           expected.add(JSON.stringify([model, ablation, task.id, seed]));
   for (const row of input.observations) {
-    if (row.evidencePath) {
-      const evidence = await readEvidence(root, row.evidencePath);
+    if (row.accepted && !row.workerId)
+      throw Error("Frozen accepted samples require an isolated worker receipt");
+    if (row.workerId) {
+      if (workers.has(row.workerId))
+        throw Error("Worker reused by multiple protocol samples");
+      workers.add(row.workerId);
+    }
+    const verified = await observationEvidence(
+      root,
+      row,
+      input.configHash,
+      allTasks.find((task) => task.id === row.caseId)?.grading,
+    );
+    if (verified) {
+      const evidence = verified!.evidence;
+      if (
+        verified.worker &&
+        verified.worker.datasetHash !==
+          hash([protocol.dataset.public, protocol.dataset.heldout])
+      )
+        throw Error("Worker was prepared from another frozen dataset snapshot");
       const browser = evidence.gates.find((gate) => gate.name === "browser");
       if (
         evidence.hash !== row.evidenceHash ||

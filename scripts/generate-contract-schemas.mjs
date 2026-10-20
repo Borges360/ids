@@ -4,6 +4,7 @@ import { calibrationSchemas } from "./calibration-schemas.mjs";
 import {
   taskGradingSchema,
   taskFixtureSchema,
+  taskGradingResultSchema,
 } from "./task-grading-schema.mjs";
 import {
   DEFAULTS,
@@ -426,6 +427,7 @@ const contracts = {
   },
   ...calibrationSchemas([...REVIEW_AXES]),
   "task-grading": taskGradingSchema,
+  "task-grading-result": taskGradingResultSchema,
   "task-fixture": taskFixtureSchema,
   "benchmark-protocol": benchmarkProtocolSchema,
   "experiment-input": {
@@ -499,6 +501,13 @@ const contracts = {
             humanMinutes: { type: ["number", "null"], minimum: 0 },
             evidencePath: { type: "string", pattern: "\\S" },
             evidenceHash: { type: "string", pattern: "^[a-f0-9]{64}$" },
+            gradingPath: { type: "string", pattern: "\\S" },
+            gradingHash: { type: "string", pattern: "^[a-f0-9]{64}$" },
+            workerId: {
+              type: "string",
+              pattern:
+                "^worker-[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$",
+            },
             outcome: {
               enum: [
                 "accepted",
@@ -511,6 +520,8 @@ const contracts = {
           dependencies: {
             evidencePath: ["evidenceHash"],
             evidenceHash: ["evidencePath"],
+            gradingPath: ["gradingHash"],
+            gradingHash: ["gradingPath"],
           },
           allOf: [
             {
@@ -524,7 +535,14 @@ const contracts = {
             },
             {
               if: { properties: { accepted: { const: true } } },
-              then: { required: ["evidencePath", "evidenceHash"] },
+              then: {
+                required: [
+                  "evidencePath",
+                  "evidenceHash",
+                  "gradingPath",
+                  "gradingHash",
+                ],
+              },
             },
             {
               if: {

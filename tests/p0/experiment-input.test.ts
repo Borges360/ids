@@ -6,6 +6,7 @@ import {
   realpath,
   readFile,
   readdir,
+  mkdir,
 } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
 import { tmpdir } from "node:os";
@@ -166,7 +167,7 @@ async function acceptedFixture(
         { path: "fixture.html", sha256: hash(html), required: true },
       ],
     }),
-    gate("task-context", { taskId: "fixture", taskHash: "f".repeat(64) }),
+    gate("task-context", { taskId: "task-01", taskHash: "f".repeat(64) }),
     gate("static", { files: 1, coverage: 1, adoption: "enforce-all" }),
     gate("browser", {
       executed: 1,
@@ -182,26 +183,106 @@ async function acceptedFixture(
           viewport: "mobile",
           theme: "dark",
           density: "calm",
+          browserVersion: "synthetic",
         },
       ],
     }),
     gate("review"),
   ];
   mutate?.(gates);
+  await mkdir(join(root, "benchmarks/evaluator/criteria"), { recursive: true });
+  await mkdir(join(root, "benchmarks/fixtures"), { recursive: true });
+  const fixturePath = "benchmarks/fixtures/task-01.json";
+  await writeFile(
+    join(root, fixturePath),
+    JSON.stringify({
+      schemaVersion: "1.0",
+      classification: "synthetic",
+      clock: "2026-01-01T00:00:00.000Z",
+      seed: 1,
+      routes: [],
+    }),
+  );
+  const fixtureRef = {
+    path: fixturePath,
+    sha256: hash(await readFile(join(root, fixturePath))),
+  };
+  const plan = {
+    schemaVersion: "1.0",
+    kind: "independent-task-criteria",
+    caseId: "task-01",
+    entry: "/src/index.html",
+    fixture: fixtureRef,
+    scenarios: [
+      {
+        id: "synthetic-contract-only",
+        viewport: { width: 375, height: 812 },
+        theme: "dark",
+        density: "calm",
+        direction: "ltr",
+        steps: [{ op: "expect-visible", locator: { role: "heading" } }],
+      },
+    ],
+  };
+  const gradingPath = "benchmarks/evaluator/criteria/task-01.json";
+  await writeFile(join(root, gradingPath), JSON.stringify(plan));
+  const snapshot = {
+    path: gradingPath,
+    sha256: hash(await readFile(join(root, gradingPath))),
+  };
+  await writeFile(
+    join(root, "benchmarks/tasks.public.json"),
+    JSON.stringify({ tasks: [{ id: "task-01", grading: snapshot }] }),
+  );
+  await writeFile(
+    join(root, "benchmarks/tasks.heldout.json"),
+    JSON.stringify({ tasks: [] }),
+  );
   const evidence = bundle(DEFAULTS, gates);
   await writeReport(root, DEFAULTS, evidence);
+  const gradePayload = {
+    schemaVersion: "1.0",
+    kind: "independent-task-grading",
+    runId: evidence.runId,
+    caseId: "task-01",
+    sourceHash: evidence.sourceHash,
+    gitSha: evidence.gitSha,
+    configHash: evidence.configHash,
+    grading: snapshot,
+    fixture: fixtureRef,
+    plannedScenarios: 1,
+    assertionTimeoutMs: 3000,
+    status: "passed",
+    executed: 1,
+    results: [
+      {
+        id: "synthetic-contract-only",
+        status: "passed",
+        completedSteps: 1,
+        plannedSteps: 1,
+      },
+    ],
+    browserVersion: "synthetic",
+    agentExecution: "not_run",
+  };
+  const grading = { ...gradePayload, hash: hash(gradePayload) };
+  const receiptPath = ".inteiro/reports/functional.json";
+  await writeFile(join(root, receiptPath), JSON.stringify(grading));
   const input = {
     ...valid(),
     configHash: hash(DEFAULTS),
     observations: [
       {
         ...valid().observations[0]!,
+        caseId: "task-01",
         accepted: true,
         initialAccepted: true,
         outcome: "accepted",
         evidencePath:
           DEFAULTS.reporting.outDir + "/" + evidence.runId + "/summary.json",
         evidenceHash: evidence.hash,
+        gradingPath: receiptPath,
+        gradingHash: grading.hash,
       },
     ],
   };
@@ -215,6 +296,83 @@ it("imports a complete synthetic accepted task without implying a real model run
     expect(result.groups[0]!.acceptanceRate).toBe(1);
     expect(result.groups[0]!.firstPassRate).toBe(1);
     expect(result.groups[0]!.totalCost).toBeNull();
+  }));
+for (const [name, patch] of [
+  ["wrong task", (report: any) => (report.caseId = "task-02")],
+  ["wrong source", (report: any) => (report.sourceHash = "a".repeat(64))],
+  ["wrong consumer commit", (report: any) => (report.gitSha = "b".repeat(40))],
+  ["wrong config", (report: any) => (report.configHash = "d".repeat(64))],
+  ["failed status", (report: any) => (report.status = "failed")],
+  [
+    "missing scenario",
+    (report: any) => {
+      report.results = [];
+      report.executed = 0;
+    },
+  ],
+  [
+    "extra scenario",
+    (report: any) => report.results.push({ ...report.results[0] }),
+  ],
+  ["wrong scenario", (report: any) => (report.results[0].id = "other")],
+  ["unfinished steps", (report: any) => (report.results[0].completedSteps = 0)],
+  ["failed scenario", (report: any) => (report.results[0].status = "failed")],
+  ["wrong browser", (report: any) => (report.browserVersion = "other-browser")],
+  [
+    "replaced criteria",
+    (report: any) => (report.grading.sha256 = "d".repeat(64)),
+  ],
+  [
+    "replaced fixture",
+    (report: any) => (report.fixture.sha256 = "e".repeat(64)),
+  ],
+  ["forged count", (report: any) => (report.plannedScenarios = 2)],
+] as const)
+  it("rejects independent grading with " + name, () =>
+    fixture(async (root) => {
+      const input = await acceptedFixture(root),
+        row = input.observations[0]!;
+      const path = join(root, row.gradingPath),
+        receipt = JSON.parse(await readFile(path, "utf8"));
+      patch(receipt);
+      const { hash: discarded, ...payload } = receipt;
+      void discarded;
+      receipt.hash = hash(payload);
+      row.gradingHash = receipt.hash;
+      await writeFile(path, JSON.stringify(receipt));
+      await writeFile(join(root, "input.json"), JSON.stringify(input));
+      await expect(
+        importExperiment(root, "input.json", "out"),
+      ).rejects.toThrow();
+    }),
+  );
+it("rejects grading receipt bytes changed without updating their registered hash", () =>
+  fixture(async (root) => {
+    const input = await acceptedFixture(root);
+    const path = join(root, input.observations[0]!.gradingPath);
+    const receipt = JSON.parse(await readFile(path, "utf8"));
+    receipt.results[0].completedSteps = 0;
+    await writeFile(path, JSON.stringify(receipt));
+    await expect(importExperiment(root, "input.json", "out")).rejects.toThrow();
+  }));
+it("requires functional proof in addition to the complete passing gates", () =>
+  fixture(async (root) => {
+    const input = await acceptedFixture(root);
+    const row: any = input.observations[0]!;
+    delete row.gradingPath;
+    delete row.gradingHash;
+    await writeFile(join(root, "input.json"), JSON.stringify(input));
+    await expect(importExperiment(root, "input.json", "out")).rejects.toThrow(
+      "schema",
+    );
+  }));
+it("rejects independent fixture mutation after grading", () =>
+  fixture(async (root) => {
+    await acceptedFixture(root);
+    await writeFile(join(root, "benchmarks/fixtures/task-01.json"), "{}");
+    await expect(importExperiment(root, "input.json", "out")).rejects.toThrow(
+      "fixture changed",
+    );
   }));
 for (const [name, mutate] of [
   [

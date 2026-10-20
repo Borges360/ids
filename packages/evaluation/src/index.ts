@@ -15,6 +15,9 @@ export interface Observation {
   humanMinutes: number | null;
   evidencePath?: string;
   evidenceHash?: string;
+  gradingPath?: string;
+  gradingHash?: string;
+  workerId?: string;
   outcome?: "accepted" | "model_failure" | "environment_error" | "incomplete";
 }
 export function metrics(rows: Observation[]) {

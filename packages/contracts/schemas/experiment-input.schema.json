@@ -126,6 +126,18 @@
             "type": "string",
             "pattern": "^[a-f0-9]{64}$"
           },
+          "gradingPath": {
+            "type": "string",
+            "pattern": "\\S"
+          },
+          "gradingHash": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "workerId": {
+            "type": "string",
+            "pattern": "^worker-[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$"
+          },
           "outcome": {
             "enum": [
               "accepted",
@@ -141,6 +153,12 @@
           ],
           "evidenceHash": [
             "evidencePath"
+          ],
+          "gradingPath": [
+            "gradingHash"
+          ],
+          "gradingHash": [
+            "gradingPath"
           ]
         },
         "allOf": [
@@ -174,7 +192,9 @@
             "then": {
               "required": [
                 "evidencePath",
-                "evidenceHash"
+                "evidenceHash",
+                "gradingPath",
+                "gradingHash"
               ]
             }
           },

@@ -180,3 +180,78 @@ export const taskFixtureSchema = (() => {
     },
   });
 })();
+export const taskGradingResultSchema = (() => {
+  const text = { type: "string", pattern: "\\S" };
+  const sha = { type: "string", pattern: "^[a-f0-9]{64}$" };
+  const object = (properties, optional = []) => ({
+    type: "object",
+    additionalProperties: false,
+    required: Object.keys(properties).filter((key) => !optional.includes(key)),
+    properties,
+  });
+  const snapshot = object({ path: text, sha256: sha });
+  const frame = object({
+    cssWidth: { type: "number", exclusiveMinimum: 0 },
+    dpr: { type: "number", exclusiveMinimum: 0 },
+  });
+  const result = object(
+    {
+      id: text,
+      status: { enum: ["passed", "failed"] },
+      completedSteps: { type: "integer", minimum: 0 },
+      plannedSteps: { type: "integer", minimum: 1 },
+      message: text,
+      zoom: object({
+        method: { const: "native-browser-tab-zoom" },
+        factor: { enum: [1, 2] },
+        before: frame,
+        after: frame,
+      }),
+    },
+    ["message", "zoom"],
+  );
+  return {
+    ...object(
+      {
+        schemaVersion: { const: "1.0" },
+        kind: { const: "independent-task-grading" },
+        runId: { type: "string", pattern: "^run-[a-f0-9-]{36}$" },
+        caseId: text,
+        sourceHash: sha,
+        gitSha: { type: "string", pattern: "^[a-f0-9]{40}$" },
+        configHash: sha,
+        grading: snapshot,
+        fixture: snapshot,
+        plannedScenarios: { type: "integer", minimum: 1 },
+        assertionTimeoutMs: { type: "integer", minimum: 500, maximum: 30000 },
+        status: { enum: ["passed", "failed", "error", "not_run"] },
+        executed: { type: "integer", minimum: 0 },
+        results: { type: "array", items: result },
+        browserVersion: text,
+        message: text,
+        agentExecution: { const: "not_run" },
+        hash: sha,
+      },
+      ["browserVersion", "message", "hash"],
+    ),
+    allOf: [
+      {
+        if: { properties: { status: { const: "passed" } } },
+        then: {
+          required: ["browserVersion", "hash"],
+          properties: { executed: { minimum: 1 }, results: { minItems: 1 } },
+        },
+      },
+      {
+        if: { properties: { status: { const: "not_run" } } },
+        then: {
+          properties: { executed: { const: 0 }, results: { maxItems: 0 } },
+        },
+      },
+      {
+        if: { properties: { status: { enum: ["passed", "failed", "error"] } } },
+        then: { required: ["hash"] },
+      },
+    ],
+  };
+})();

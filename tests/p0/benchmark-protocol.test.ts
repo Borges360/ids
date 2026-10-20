@@ -356,3 +356,17 @@ it("marks imports without a protocol as descriptive and binds explicit validatio
     protocolHash: hash(protocol),
   });
 });
+it("rejects an accepted frozen sample without an isolated worker receipt", async () => {
+  const recording = structuredClone(input);
+  Object.assign(recording.observations[0]!, {
+    accepted: true,
+    outcome: "accepted",
+    evidencePath: "evaluator/missing.json",
+    evidenceHash: "a".repeat(64),
+    gradingPath: "evaluator/missing-grade.json",
+    gradingHash: "b".repeat(64),
+  });
+  await expect(
+    validateExperimentProtocol(root, "evaluator/protocol.json", recording),
+  ).rejects.toThrow("isolated worker");
+});

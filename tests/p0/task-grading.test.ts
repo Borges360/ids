@@ -57,6 +57,7 @@ it("plans without launching Chromium or writing a candidate report", async () =>
       caseId: "task-01",
     });
     expect(report.sourceHash).toMatch(/^[a-f0-9]{64}$/);
+    expect(validateSchema("task-grading-result", report).valid).toBe(true);
     expect(await readdir(candidate.root)).toEqual(before);
     await expect(
       gradeBenchmarkTask(
@@ -223,6 +224,9 @@ for (const id of ids)
           expect(report.executed).toBe(report.plannedScenarios);
           expect(report.agentExecution).toBe("not_run");
           expect(report.sourceHash).toMatch(/^[a-f0-9]{64}$/);
+          expect(validateSchema("task-grading-result", report).valid).toBe(
+            true,
+          );
           if (mode === "reference" && ["task-27", "heldout-7"].includes(id)) {
             expect(report.results.map((result) => result.zoom?.factor)).toEqual(
               [1, 2],
