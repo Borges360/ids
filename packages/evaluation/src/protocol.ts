@@ -46,6 +46,7 @@ interface DatasetTask {
   fixtures: string[];
   grading: Snapshot;
   maxRepairAttempts: number;
+  validation?: { path: string; sha256: string };
 }
 const nonblank = (value: unknown): value is string =>
   typeof value === "string" && /\S/.test(value);
@@ -183,6 +184,24 @@ export async function validateExperimentProtocol(
       await snapshot(root, task.grading);
       await frozen(task.grading.path);
       hidden.push(task.grading.path);
+      if (task.validation) {
+        const bytes = await snapshot(root, task.validation);
+        await frozen(task.validation.path, bytes);
+        const validation = JSON.parse(bytes.toString());
+        if (
+          !validateSchema("worker-validation", validation).valid ||
+          validation.caseId !== task.id
+        )
+          throw Error("Invalid public task validation snapshot");
+        for (const resource of [
+          validation.routes,
+          ...validation.fixtures,
+          ...(validation.reviewPolicy ? [validation.reviewPolicy] : []),
+        ]) {
+          const content = await snapshot(root, resource);
+          await frozen(resource.path, content);
+        }
+      }
       allTasks.push(task);
     }
   }
@@ -247,6 +266,16 @@ export async function validateExperimentProtocol(
     );
     if (verified) {
       const evidence = verified!.evidence;
+      if (
+        row.accepted &&
+        (!verified.worker?.bootstrap ||
+          verified.worker.bootstrap.sourceCommit !== protocol.idsCommit ||
+          verified.worker.bootstrap.validationHash !==
+            allTasks.find((task) => task.id === row.caseId)?.validation?.sha256)
+      )
+        throw Error(
+          "Worker bootstrap differs from frozen IDS or validation snapshot",
+        );
       if (
         verified.worker &&
         verified.worker.datasetHash !==

@@ -36,6 +36,33 @@ function invoke(args: string[]) {
   }
 }
 describe("P0 command transport", () => {
+  it.each([
+    {
+      args: ["--bootstrap"],
+      message: "requires --packages-manifest and --dependency-lock",
+    },
+    {
+      args: ["--packages-manifest", "unused.json"],
+      message: "Bootstrap options require --bootstrap",
+    },
+    {
+      args: ["--npm-cli", "unused.js"],
+      message: "Bootstrap options require --bootstrap",
+    },
+  ])("rejects incomplete bootstrap CLI options: $args", ({ args, message }) => {
+    const result = invoke([
+      "benchmark",
+      "prepare",
+      "--case",
+      "task-01",
+      "--target",
+      "unused-worker",
+      ...args,
+      "--json",
+    ]);
+    expect(result.code).toBe(8);
+    expect(result.stdout).toContain(message);
+  });
   it("does not silently ignore a protocol without recorded observations", () => {
     const result = invoke([
       "benchmark",

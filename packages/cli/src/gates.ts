@@ -444,13 +444,44 @@ export async function gateCommand(
     if (cmd[1] === "prepare") {
       if (!flag(flags, "case") || !flag(flags, "target"))
         throw Error("benchmark prepare requires --case and --target");
+      if (
+        bool(flags, "bootstrap") &&
+        (!flag(flags, "packages-manifest") || !flag(flags, "dependency-lock"))
+      )
+        throw Error(
+          "Offline bootstrap requires --packages-manifest and --dependency-lock",
+        );
+      if (
+        !bool(flags, "bootstrap") &&
+        ["packages-manifest", "dependency-lock", "npm-cache", "npm-cli"].some(
+          (key) => flag(flags, key),
+        )
+      )
+        throw Error("Bootstrap options require --bootstrap");
       const { prepareBenchmarkWorker } =
         await import("@inteiro/evaluation/workspace");
       const result = await prepareBenchmarkWorker(
         root,
         flag(flags, "target"),
         flag(flags, "case"),
-        { dryRun: bool(flags, "dry-run") },
+        {
+          dryRun: bool(flags, "dry-run"),
+          ...(bool(flags, "bootstrap")
+            ? {
+                bootstrap: {
+                  distributionManifest: flag(flags, "packages-manifest"),
+                  dependencyLock: flag(flags, "dependency-lock"),
+                  harness: (flag(flags, "harness") || "pi") as "pi" | "codex",
+                  ...(flag(flags, "npm-cli")
+                    ? { npmCli: flag(flags, "npm-cli") }
+                    : {}),
+                  ...(flag(flags, "npm-cache")
+                    ? { npmCache: flag(flags, "npm-cache") }
+                    : {}),
+                },
+              }
+            : {}),
+        },
       );
       return done(result, result.status);
     }

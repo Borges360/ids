@@ -1,6 +1,7 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { benchmarkProtocolSchema } from "./benchmark-protocol-schema.mjs";
 import { calibrationSchemas } from "./calibration-schemas.mjs";
+import { workerValidationSchema } from "./worker-validation-schema.mjs";
 import {
   taskCostBreakdownSchema,
   taskCostEventsSchema,
@@ -431,6 +432,7 @@ const contracts = {
   },
   ...calibrationSchemas([...REVIEW_AXES]),
   "task-grading": taskGradingSchema,
+  "worker-validation": workerValidationSchema,
   "task-cost-breakdown": taskCostBreakdownSchema,
   "task-cost-events": taskCostEventsSchema,
   "task-grading-result": taskGradingResultSchema,

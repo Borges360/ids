@@ -29,6 +29,10 @@ const names = [
 ];
 const npmCli = process.env.npm_execpath;
 if (!npmCli) throw new Error("Run this script through npm run pack:p0");
+const revision = spawnSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" });
+if (revision.status !== 0 || !/^[a-f0-9]{40}$/.test(revision.stdout.trim()))
+  throw new Error("Cannot pin package distribution to a Git commit");
+const sourceCommit = revision.stdout.trim();
 await mkdir("artifacts", { recursive: true });
 for (const script of [
   "packages/tokens/src/build.ts",
@@ -213,6 +217,7 @@ await writeFile(
   JSON.stringify(
     {
       schemaVersion: "1.0",
+      sourceCommit,
       sourceHash: await reviewSourceHash(process.cwd()),
       packages,
     },

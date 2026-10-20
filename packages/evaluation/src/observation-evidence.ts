@@ -164,6 +164,13 @@ export async function observationEvidence(
     throw Error("Observation does not match validated gate evidence");
   if (row.accepted) {
     completeGateAcceptance(evidence, row);
+    if (
+      worker?.bootstrap?.configHash !== undefined &&
+      worker.bootstrap.configHash !== evidence.configHash
+    )
+      throw Error(
+        "Accepted gate configuration differs from bootstrapped worker",
+      );
     const expectedGrading =
       snapshot ?? (await catalogGrading(datasetRoot, row.caseId));
     if (worker && worker.gradingHash !== expectedGrading.sha256)

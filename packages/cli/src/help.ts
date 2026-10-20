@@ -21,6 +21,7 @@ Contratos e gates P0:
   benchmark run --calibration <file> [--dry-run] --json
   benchmark grade --grading <file> --candidate <git-root> [--dry-run] --json
   benchmark prepare --case <id> --target <new-dir> [--dry-run] --json
+  benchmark prepare --case <id> --target <new-dir> --bootstrap --packages-manifest <file> --dependency-lock <file> --harness pi|codex --json
   benchmark worker-audit --worker <receipt-id> --json
   doctor --deep --json
 

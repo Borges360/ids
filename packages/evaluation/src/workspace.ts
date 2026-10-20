@@ -26,7 +26,14 @@ import {
   validateSchema,
   resolveConfig,
   redact,
+  DEFAULTS,
 } from "@inteiro/contracts";
+import {
+  planWorkerBootstrap,
+  executeWorkerBootstrap,
+  type BootstrapOptions,
+} from "./worker-bootstrap.ts";
+export type { BootstrapOptions, PublicValidation } from "./worker-bootstrap.ts";
 
 export const WORKER_IMAGE =
   "node:24-bookworm-slim@sha256:a5f4366e834695d5f363b920c104953a535d3a9864d1bdf74566a0ebe01daee5";
@@ -41,6 +48,7 @@ interface WorkerTask {
   fixtures: string[];
   grading: { path: string; sha256: string };
   maxRepairAttempts: number;
+  validation?: { path: string; sha256: string };
 }
 export interface WorkerReceipt {
   schemaVersion: "1.0";
@@ -56,6 +64,8 @@ export interface WorkerReceipt {
   budget: { maxChangedFiles: number; maxDiffLines: number };
   image: string;
   readyForValidation: boolean;
+  bootstrap?: Awaited<ReturnType<typeof executeWorkerBootstrap>>;
+  operationalDirectories?: string[];
   hash: string;
 }
 const receiptPattern =
@@ -67,7 +77,11 @@ const within = (parent: string, child: string) => {
     (!isAbsolute(path) && path !== ".." && !path.startsWith(".." + sep))
   );
 };
-async function files(root: string, directory = ""): Promise<string[]> {
+async function files(
+  root: string,
+  directory = "",
+  operationalDirectories: string[] = [],
+): Promise<string[]> {
   const result: string[] = [];
   for (const item of await readdir(safePath(root, directory || "."), {
     withFileTypes: true,
@@ -76,16 +90,55 @@ async function files(root: string, directory = ""): Promise<string[]> {
     if (
       path === ".git" ||
       path === "node_modules" ||
-      path === ".inteiro/reports"
+      path === ".inteiro/reports" ||
+      operationalDirectories.includes(path)
     )
       continue;
     if (item.isSymbolicLink())
       throw Error("Symlinks are not permitted in prepared workspaces");
-    if (item.isDirectory()) result.push(...(await files(root, path)));
+    if (item.isDirectory())
+      result.push(...(await files(root, path, operationalDirectories)));
     else if (item.isFile()) result.push(path);
     else throw Error("Only regular workspace files are permitted");
   }
   return result.sort();
+}
+function operationalPaths(
+  root: string,
+  baseline: string,
+  editableFiles: string[],
+) {
+  const paths = [
+    ".inteiro/reviews",
+    relative(root, safePath(root, baseline)).replaceAll("\\", "/"),
+  ];
+  const controls = [
+    ...editableFiles,
+    "inteiro.config.json",
+    "package.json",
+    "package-lock.json",
+    "AGENTS.md",
+    ".git",
+    ".inteiro/task.json",
+    ".inteiro/worker.json",
+    ".inteiro/reviewers.json",
+    ".inteiro/bootstrap.json",
+    "node_modules",
+  ];
+  for (const path of paths)
+    if (
+      !path ||
+      path === "." ||
+      controls.some(
+        (file) =>
+          within(safePath(root, path), safePath(root, file)) ||
+          within(safePath(root, file), safePath(root, path)),
+      )
+    )
+      throw Error(
+        "Operational output directory overlaps worker source or controls",
+      );
+  return paths;
 }
 function git(root: string, ...args: string[]) {
   return execFileSync(
@@ -112,10 +165,21 @@ async function loadReceipt(datasetRoot: string, id: string) {
     hash(payload) !== expected ||
     receipt.image !== WORKER_IMAGE ||
     typeof receipt.readyForValidation !== "boolean" ||
+    (receipt.readyForValidation &&
+      (!receipt.bootstrap ||
+        receipt.bootstrap.kind !== "offline-worker-bootstrap" ||
+        receipt.bootstrap.readyForValidation !== true ||
+        !/^[a-f0-9]{40}$/.test(receipt.bootstrap.sourceCommit))) ||
     !Array.isArray(receipt.editableFiles) ||
     !Array.isArray(receipt.protectedFiles)
   )
     throw Error("Invalid evaluator-owned worker receipt");
+  if (
+    receipt.operationalDirectories !== undefined &&
+    (!Array.isArray(receipt.operationalDirectories) ||
+      receipt.operationalDirectories.some((path) => typeof path !== "string"))
+  )
+    throw Error("Invalid worker operational directories");
   return receipt;
 }
 /** Reads evaluator-owned authority, never a receipt supplied by the candidate. */
@@ -132,12 +196,12 @@ export async function readBenchmarkWorkerReceipt(
     throw Error("Worker root identity changed");
   return receipt;
 }
-/** Materializes inputs only. Dependency/harness bootstrap and product approvals are separate prerequisites. */
+/** Materializes task inputs; optional trusted offline bootstrap completes validator prerequisites. */
 export async function prepareBenchmarkWorker(
   datasetRoot: string,
   target: string,
   caseId: string,
-  options: { dryRun?: boolean } = {},
+  options: { dryRun?: boolean; bootstrap?: BootstrapOptions } = {},
 ) {
   const root = await realpath(datasetRoot);
   const datasets = await Promise.all(
@@ -226,6 +290,14 @@ export async function prepareBenchmarkWorker(
       criteria.fixture.sha256
   )
     throw Error("Worker fixture is not bound to its grading snapshot");
+  const bootstrapPlan = options.bootstrap
+    ? await planWorkerBootstrap(
+        root,
+        caseId,
+        task.validation,
+        options.bootstrap,
+      )
+    : undefined;
   const requested = resolve(root, target),
     parent = await realpath(dirname(requested)),
     destination = join(parent, basename(requested));
@@ -245,6 +317,12 @@ export async function prepareBenchmarkWorker(
   const editableFiles = inputs
     .filter((input) => input.path.startsWith("src/"))
     .map((input) => input.path);
+  const operationalDirectories = operationalPaths(
+    destination,
+    JSON.parse(configBytes.toString()).visual?.baselineDir ??
+      DEFAULTS.visual.baselineDir,
+    editableFiles,
+  );
   if (options.dryRun)
     return {
       status: "not_run" as const,
@@ -252,6 +330,7 @@ export async function prepareBenchmarkWorker(
       root: destination,
       editableFiles,
       readyForValidation: false as const,
+      bootstrapPlanned: !!bootstrapPlan,
     };
   const id = "worker-" + randomUUID();
   await mkdir(destination);
@@ -265,7 +344,7 @@ export async function prepareBenchmarkWorker(
       await mkdir(safePath(destination, directory), { recursive: true });
     await writeFile(
       join(destination, ".gitignore"),
-      "node_modules/\n.inteiro/reports/\n",
+      "node_modules/\n.inteiro/reports/\n.inteiro/packages/\n",
     );
     await writeFile(join(destination, ".gitattributes"), "* text eol=lf\n");
     await writeFile(
@@ -309,6 +388,58 @@ export async function prepareBenchmarkWorker(
     for (const directory of directories) await chmod(directory, 0o777);
     for (const path of editableFiles)
       await chmod(safePath(destination, path), 0o666);
+    const initialResolvedConfig = structuredClone(
+      (await resolveConfig(destination)).config,
+    );
+    const bootstrap = bootstrapPlan
+      ? await executeWorkerBootstrap(
+          destination,
+          root,
+          {
+            id: caseId,
+            description: task.functionalRequirement,
+            editableFiles,
+          },
+          bootstrapPlan,
+        )
+      : undefined;
+    for (const input of inputs.filter(
+      (input) => input.path !== "inteiro.config.json",
+    ))
+      if (
+        hash(await readFile(safePath(destination, input.path))) !==
+        hash(input.bytes)
+      )
+        throw Error("Bootstrap changed initial task source");
+    const actualConfig = structuredClone(
+      (await resolveConfig(destination)).config,
+    );
+    actualConfig.context.harness = initialResolvedConfig.context.harness;
+    if (hash(actualConfig) !== hash(initialResolvedConfig))
+      throw Error("Bootstrap changed task constraints");
+    if (bootstrap) {
+      await writeFile(
+        safePath(destination, ".inteiro/bootstrap.json"),
+        JSON.stringify(bootstrap, null, 2),
+      );
+      await writeFile(
+        safePath(destination, ".inteiro/worker.json"),
+        JSON.stringify(
+          {
+            schemaVersion: "1.0",
+            id,
+            caseId,
+            editableFiles,
+            dependencies: "installed-offline",
+            harness: bootstrap.harness,
+            readyForValidation: true,
+            validationStatus: "not_run",
+          },
+          null,
+          2,
+        ),
+      );
+    }
     git(destination, "init");
     git(destination, "config", "core.autocrlf", "false");
     git(destination, "add", ".");
@@ -324,9 +455,9 @@ export async function prepareBenchmarkWorker(
       "-m",
       "Prepared benchmark inputs; no model execution or product approval",
     );
-    const protectedPaths = (await files(destination)).filter(
-      (path) => !editableFiles.includes(path),
-    );
+    const protectedPaths = (
+      await files(destination, "", operationalDirectories)
+    ).filter((path) => !editableFiles.includes(path));
     protectedPaths.push(".git/config", ".git/HEAD");
     const { config } = await resolveConfig(destination);
     const payload = {
@@ -355,7 +486,9 @@ export async function prepareBenchmarkWorker(
         maxDiffLines: Math.min(450, config.repair.maxDiffLines),
       },
       image: WORKER_IMAGE,
-      readyForValidation: false as const,
+      operationalDirectories,
+      readyForValidation: !!bootstrap,
+      ...(bootstrap ? { bootstrap } : {}),
     };
     const receipt: WorkerReceipt = { ...payload, hash: hash(payload) };
     const registry = safePath(root, ".inteiro/reports/workers");
@@ -383,7 +516,11 @@ export async function auditBenchmarkWorker(datasetRoot: string, id: string) {
     (await realpath(git(actual, "rev-parse", "--show-toplevel"))) !== actual
   )
     throw Error("Worker root identity changed");
-  const inventory = await files(actual),
+  const inventory = await files(
+      actual,
+      "",
+      receipt.operationalDirectories ?? [],
+    ),
     expected = new Set([
       ...receipt.editableFiles,
       ...receipt.protectedFiles.map((file) => file.path),
@@ -448,7 +585,7 @@ export async function auditBenchmarkWorker(datasetRoot: string, id: string) {
     diffLines: lines,
     changedFiles: stats.length,
     receiptHash: receipt.hash,
-    readyForValidation: false as const,
+    readyForValidation: receipt.readyForValidation,
   };
 }
 /** The external harness must expose this restricted route instead of a host shell. */
