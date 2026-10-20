@@ -505,6 +505,12 @@ export async function lintSource(
       active.push(
         finding("IN-EXC-001", "Invalid or expired exception", { file }),
       );
+  if (options.strict)
+    for (const item of active)
+      if (item.severity === "warning" && item.status === "needs_review") {
+        item.severity = "error";
+        item.status = "failed";
+      }
   const statuses = active.map((f) => ({
     name: f.ruleId,
     status: f.status,
@@ -522,7 +528,12 @@ export async function lintSource(
 export async function lintProject(
   root: string,
   config: Config,
-  options: { changed?: boolean; target?: string; baseline?: string } = {},
+  options: {
+    changed?: boolean;
+    target?: string;
+    baseline?: string;
+    strict?: boolean;
+  } = {},
 ) {
   const started = performance.now(),
     files: string[] = [],
@@ -595,6 +606,7 @@ export async function lintProject(
           forbiddenImports: config.static.forbiddenImports,
           forbiddenTokens: config.static.forbiddenTokens,
           exceptions,
+          strict: !!options.strict,
         },
       ),
     );
@@ -651,6 +663,7 @@ export async function lintProject(
     status,
     findings: allFindings,
     adoption: config.static.adoption,
+    strict: !!options.strict,
     durationMs: performance.now() - started,
     files: selected.length,
     ignored,

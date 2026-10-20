@@ -22,7 +22,13 @@ import {
   suggestPatterns,
   validatePattern,
 } from "@inteiro/composition";
-import { lintProject } from "@inteiro/lint";
+import {
+  lintProject,
+  planMigration,
+  applyMigration,
+  validateMigrationPolicy,
+  type MigrationPolicy,
+} from "@inteiro/lint";
 import {
   verifyContext,
   resolveContext,
@@ -71,9 +77,10 @@ export async function gateCommand(
     data,
     text: JSON.stringify(data, null, 2),
   });
-  const save = async (gates: GateResult[]) => {
+  const save = async (gates: GateResult[], dryRun = false) => {
     const report = bundle(config, gates);
-    if (!bool(flags, "dry-run")) await writeReport(root, config, report);
+    if (!bool(flags, "dry-run") && !dryRun)
+      await writeReport(root, config, report);
     if (flag(flags, "format") === "sarif") {
       const sarif = JSON.parse(reportFormats(report).sarif);
       return done(sarif, report.status);
@@ -276,22 +283,89 @@ export async function gateCommand(
     }
   }
   if (cmd[0] === "lint") {
-    if (bool(flags, "fix"))
-      return {
-        exitCode: 2,
-        data: {
-          status: "blocked",
-          message:
-            "No unambiguous safe autofix applies. Inspect findings before changing source.",
-        },
-      };
-    const result = await lintProject(root, config, {
+    const fix = bool(flags, "fix"),
+      preview = bool(flags, "fix-dry-run"),
+      dryRun = preview || bool(flags, "dry-run");
+    if (
+      (flag(flags, "mapping") || flag(flags, "plan-hash")) &&
+      !fix &&
+      !preview
+    )
+      throw Error("Lint mapping options require --fix or --fix-dry-run");
+    if (bool(flags, "changed") && flag(flags, "mapping"))
+      throw Error(
+        "Scoped autofix requires an explicit path without --changed; use --fix-dry-run to inspect the scope",
+      );
+    if (flag(flags, "plan-hash") && !flag(flags, "mapping"))
+      throw Error("Lint --plan-hash requires --mapping");
+    let autofix: unknown;
+    if (fix || preview) {
+      const policy: MigrationPolicy = flag(flags, "mapping")
+        ? JSON.parse(await safeRead(root, flag(flags, "mapping")))
+        : { schemaVersion: "1.0", mappings: [] };
+      validateMigrationPolicy(root, policy);
+      if (policy.mappings.length) {
+        const plan = await planMigration(root, cmd[1] ?? ".", policy);
+        if (plan.status === "blocked")
+          return save(
+            [
+              {
+                name: "autofix",
+                status: "blocked",
+                findings: [
+                  finding(
+                    "IN-FIX-002",
+                    "Scoped autofix plan is blocked; source unchanged",
+                  ),
+                ],
+                durationMs: 0,
+                autofix: { ...plan, applied: false },
+              },
+            ],
+            dryRun,
+          );
+        if (fix && !dryRun && plan.patches.length && !flag(flags, "plan-hash"))
+          return save([
+            {
+              name: "autofix",
+              status: "blocked",
+              findings: [
+                finding(
+                  "IN-FIX-001",
+                  "Inspect --fix-dry-run, then apply with --fix --plan-hash " +
+                    plan.planHash,
+                ),
+              ],
+              durationMs: 0,
+              autofix: { ...plan, applied: false },
+            },
+          ]);
+        autofix =
+          fix && !dryRun && plan.patches.length
+            ? await applyMigration(
+                root,
+                cmd[1] ?? ".",
+                policy,
+                flag(flags, "plan-hash") || plan.planHash,
+              )
+            : { ...plan, applied: false };
+      } else
+        autofix = {
+          applied: false,
+          patches: [],
+          message: "No scoped safe fixes configured; source unchanged",
+        };
+    }
+    const result: GateResult = await lintProject(root, config, {
       target: cmd[1] ?? ".",
       changed: bool(flags, "changed"),
+      strict: bool(flags, "strict"),
       ...(flag(flags, "baseline") ? { baseline: flag(flags, "baseline") } : {}),
     });
-    const output = await save([result]);
-    if (config.static.adoption === "observe") output.exitCode = 0;
+    if (autofix !== undefined) result.autofix = autofix;
+    const output = await save([result], dryRun);
+    if (config.static.adoption === "observe" && !bool(flags, "strict"))
+      output.exitCode = 0;
     return output;
   }
   if (cmd[0] === "visual") {

@@ -10,7 +10,9 @@ Contratos e gates P0:
   context resolve --record --json
   context verify --task-context --json
   compose list|show|find|validate|propose <id>
-  lint [path] --format json --changed
+  lint [path] --format json|sarif|stylish [--changed] [--strict]
+  lint [path] --fix-dry-run [--mapping <policy.json>]
+  lint [path] --fix [--mapping <policy.json> --plan-hash <preview-hash>]
   visual test --json [--start]
   visual baseline propose|approve --review-id <id> --approval <file>
   review request --run-id <id>
