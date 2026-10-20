@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0",
   "version": "1.2.0",
-  "sourceCommit": "b5e9ada283d914e8a1cc793a62b5377decffdf05",
-  "sourceHash": "6e0393e649eabd3108a6fd5c752114820b7abbac4edec3672fb5a92e627e04f0",
+  "sourceCommit": "988d7e92ac85ebf7115389abb886431da7232ba4",
+  "sourceHash": "a1725319b05d47349c9f918d11749721ecbc44998ac675611361895143c1d526",
   "configHash": "c01aff1aced7f9f3957c622ca3870d094ec3f2c7744c2e05bf0086a6414e8270",
   "policyHash": "",
   "scopeExclusions": [
@@ -541,7 +541,7 @@
     {
       "id": "E09",
       "status": "blocked",
-      "reason": "O importador agora valida schema, booleanos/contadores, primeira aprovação, SHA do commit e identidades sem colisão; os seis casos inválidos reproduzidos são recusados. Aceitação exige os cinco gates, cobertura estática integral, tarefa correspondente, navegador executado e capturas íntegras. Métricas distinguem erros de ambiente, observações incompletas e falhas não classificadas. CI com 308 testes e pacotes instalados em Node 24/22.14 passaram. Ainda faltam protocolo fixado e comparável (versões, permissões, orçamento e amostragem), custos decompostos e critérios independentes executáveis do dataset; E09 permanece incompleto. Comparação real de modelos continua excluída pelo solicitante. Importação --dry-run validada em filesystem somente leitura e em Node 22.14/24, sem alterar relatórios; 310 testes unitários passam.",
+      "reason": "Validador de protocolo congelado implementado: commits e bytes Git do dataset/recursos, snapshots de ambiente, versões declaradas, permissões sem acesso ao avaliador ou histórico Git, orçamento comum e matriz completa modelo/tarefa/ablação/seed. Evidências fornecidas são vinculadas à configuração, versão IDS e ambiente do navegador. 340 testes passam no CI; 11 pacotes offline e API/CLI/tipos instalados em Node 24 e 22.14 passam com matriz sintética de 960 observações, sem agentes reais. O resultado identifica publicação como não pronta. Permanecem pendentes critérios executáveis independentes das 40 tarefas reais, atestações de execução/aplicação de permissões e prompt, custo decomposto e calibração humana. Experimento real continua excluído pelo solicitante.",
       "evidence": [
         {
           "path": "tests/p0/evaluation.test.ts",
@@ -586,6 +586,26 @@
         {
           "path": "artifacts/p0-experiment-dry-verification.json",
           "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+        },
+        {
+          "path": "packages/contracts/schemas/benchmark-protocol.schema.json",
+          "sha256": "d913883fbc55e34e8a6569ff820abbc80566f2ab5d04ca7b30f75096666e056c"
+        },
+        {
+          "path": "packages/evaluation/src/protocol.ts",
+          "sha256": "2d3c6fc6d0c001cb76e481d725730fb0bc629520b66c8bf446d78b8fcbe52827"
+        },
+        {
+          "path": "tests/p0/benchmark-protocol.test.ts",
+          "sha256": "bf4d8deab016182b3bec72bd6bb8c85a43e82fda6c9d39e0a172fa7c5fdadee7"
+        },
+        {
+          "path": "docs/P0_OPERATIONS.md",
+          "sha256": "b17283981221586380c4a2f8ea74d53d7176ee34bc48f7238bd81e20a9fee1fc"
+        },
+        {
+          "path": "artifacts/p0-protocol-verification.json",
+          "sha256": "4c1a26c6991a7ed41a38128c27c929a668e1b525ec0b7d54fd3864c2014f966b"
         }
       ]
     },
@@ -1399,8 +1419,8 @@
     },
     {
       "id": "WP-20",
-      "status": "needs_review",
-      "reason": "Dataset de benchmark + runner: implementação disponível; critério de saída a confirmar na auditoria final (Ablações, métricas e resultados).",
+      "status": "blocked",
+      "reason": "Validador de protocolo congelado implementado: commits e bytes Git do dataset/recursos, snapshots de ambiente, versões declaradas, permissões sem acesso ao avaliador ou histórico Git, orçamento comum e matriz completa modelo/tarefa/ablação/seed. Evidências fornecidas são vinculadas à configuração, versão IDS e ambiente do navegador. 340 testes passam no CI; 11 pacotes offline e API/CLI/tipos instalados em Node 24 e 22.14 passam com matriz sintética de 960 observações, sem agentes reais. O resultado identifica publicação como não pronta. Permanecem pendentes critérios executáveis independentes das 40 tarefas reais, atestações de execução/aplicação de permissões e prompt, custo decomposto e calibração humana. Experimento real continua excluído pelo solicitante.",
       "evidence": [
         {
           "path": "tests/p0/evaluation.test.ts",
@@ -1429,6 +1449,26 @@
         {
           "path": "artifacts/p0-experiment-dry-verification.json",
           "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+        },
+        {
+          "path": "packages/contracts/schemas/benchmark-protocol.schema.json",
+          "sha256": "d913883fbc55e34e8a6569ff820abbc80566f2ab5d04ca7b30f75096666e056c"
+        },
+        {
+          "path": "packages/evaluation/src/protocol.ts",
+          "sha256": "2d3c6fc6d0c001cb76e481d725730fb0bc629520b66c8bf446d78b8fcbe52827"
+        },
+        {
+          "path": "tests/p0/benchmark-protocol.test.ts",
+          "sha256": "bf4d8deab016182b3bec72bd6bb8c85a43e82fda6c9d39e0a172fa7c5fdadee7"
+        },
+        {
+          "path": "docs/P0_OPERATIONS.md",
+          "sha256": "b17283981221586380c4a2f8ea74d53d7176ee34bc48f7238bd81e20a9fee1fc"
+        },
+        {
+          "path": "artifacts/p0-protocol-verification.json",
+          "sha256": "4c1a26c6991a7ed41a38128c27c929a668e1b525ec0b7d54fd3864c2014f966b"
         }
       ]
     },
