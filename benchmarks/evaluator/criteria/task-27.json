@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "task-27",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/task-27.json",
+    "sha256": "f45e9c600a52dce85dd636c1cd7763dac93d9e56c14d780870520be6c45c984f"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "ltr",
+      "zoomFactor": 1,
+      "steps": [
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Nome"
+          },
+          "value": "Registro especial"
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "E-mail"
+          },
+          "value": "zoom@example.test"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Enviar dados"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "zoom",
+          "count": 1,
+          "body": {
+            "name": "Registro especial",
+            "email": "zoom@example.test"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Dados enviados"
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    },
+    {
+      "id": "desktop-functional",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "density": "focus",
+      "direction": "ltr",
+      "zoomFactor": 2,
+      "steps": [
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Nome"
+          },
+          "value": "Registro especial"
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "E-mail"
+          },
+          "value": "zoom@example.test"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Enviar dados"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "zoom",
+          "count": 1,
+          "body": {
+            "name": "Registro especial",
+            "email": "zoom@example.test"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Dados enviados"
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

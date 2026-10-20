@@ -1,0 +1,264 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "task-30",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/task-30.json",
+    "sha256": "7d01e85edb454708f166c1916054c123556d72c3c2cabc169e7c63849d20c55d"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 320,
+        "height": 900
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "expect-value",
+          "locator": {
+            "label": "Título"
+          },
+          "value": "Registro especial"
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Título"
+          },
+          "value": "Documento revisado"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Visualizar"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "preview-title"
+          },
+          "value": "Documento revisado"
+        },
+        {
+          "op": "expect-request",
+          "id": "publish",
+          "count": 0,
+          "body": null
+        },
+        {
+          "op": "expect-attribute",
+          "locator": {
+            "role": "button",
+            "name": "Publicar conteúdo"
+          },
+          "name": "data-variant",
+          "value": "commit"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Publicar conteúdo"
+          }
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Cancelar"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "publish",
+          "count": 0,
+          "body": null
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Publicar conteúdo"
+          }
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Confirmar publicação"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "publish",
+          "count": 1,
+          "body": {
+            "title": "Documento revisado",
+            "revision": 7
+          }
+        },
+        {
+          "op": "expect-disabled",
+          "locator": {
+            "role": "button",
+            "name": "Confirmar publicação"
+          }
+        },
+        {
+          "op": "respond",
+          "id": "published"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Publicação concluída"
+        },
+        {
+          "op": "expect-hidden",
+          "locator": {
+            "role": "dialog",
+            "name": "Publicar versão"
+          }
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    },
+    {
+      "id": "desktop-functional",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "density": "focus",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "expect-value",
+          "locator": {
+            "label": "Título"
+          },
+          "value": "Registro especial"
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Título"
+          },
+          "value": "Documento revisado"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Visualizar"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "preview-title"
+          },
+          "value": "Documento revisado"
+        },
+        {
+          "op": "expect-request",
+          "id": "publish",
+          "count": 0,
+          "body": null
+        },
+        {
+          "op": "expect-attribute",
+          "locator": {
+            "role": "button",
+            "name": "Publicar conteúdo"
+          },
+          "name": "data-variant",
+          "value": "commit"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Publicar conteúdo"
+          }
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Cancelar"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "publish",
+          "count": 0,
+          "body": null
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Publicar conteúdo"
+          }
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Confirmar publicação"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "publish",
+          "count": 1,
+          "body": {
+            "title": "Documento revisado",
+            "revision": 7
+          }
+        },
+        {
+          "op": "expect-disabled",
+          "locator": {
+            "role": "button",
+            "name": "Confirmar publicação"
+          }
+        },
+        {
+          "op": "respond",
+          "id": "published"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Publicação concluída"
+        },
+        {
+          "op": "expect-hidden",
+          "locator": {
+            "role": "dialog",
+            "name": "Publicar versão"
+          }
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

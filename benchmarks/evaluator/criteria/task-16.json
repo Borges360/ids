@@ -1,0 +1,208 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "task-16",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/task-16.json",
+    "sha256": "c218296e336f788aae5d76b4817d4f03b8e0c41ecb5784da021d77d8c355c8b5"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Enviar arquivo"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "upload",
+          "count": 0,
+          "body": null
+        },
+        {
+          "op": "upload",
+          "locator": {
+            "label": "Arquivo"
+          },
+          "file": {
+            "name": "relatorio.txt",
+            "mimeType": "text/plain",
+            "content": "dados sintéticos"
+          }
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Enviar arquivo"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "upload",
+          "count": 1,
+          "body": {
+            "name": "relatorio.txt",
+            "content": "dados sintéticos"
+          }
+        },
+        {
+          "op": "expect-disabled",
+          "locator": {
+            "role": "button",
+            "name": "Enviar arquivo"
+          }
+        },
+        {
+          "op": "expect-attribute",
+          "locator": {
+            "role": "progressbar",
+            "name": "Progresso do envio"
+          },
+          "name": "aria-valuenow",
+          "value": "0"
+        },
+        {
+          "op": "respond",
+          "id": "uploaded"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Envio concluído"
+        },
+        {
+          "op": "expect-enabled",
+          "locator": {
+            "role": "button",
+            "name": "Enviar arquivo"
+          }
+        },
+        {
+          "op": "expect-attribute",
+          "locator": {
+            "role": "progressbar",
+            "name": "Progresso do envio"
+          },
+          "name": "aria-valuenow",
+          "value": "100"
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    },
+    {
+      "id": "desktop-functional",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "density": "focus",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Enviar arquivo"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "upload",
+          "count": 0,
+          "body": null
+        },
+        {
+          "op": "upload",
+          "locator": {
+            "label": "Arquivo"
+          },
+          "file": {
+            "name": "relatorio.txt",
+            "mimeType": "text/plain",
+            "content": "dados sintéticos"
+          }
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Enviar arquivo"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "upload",
+          "count": 1,
+          "body": {
+            "name": "relatorio.txt",
+            "content": "dados sintéticos"
+          }
+        },
+        {
+          "op": "expect-disabled",
+          "locator": {
+            "role": "button",
+            "name": "Enviar arquivo"
+          }
+        },
+        {
+          "op": "expect-attribute",
+          "locator": {
+            "role": "progressbar",
+            "name": "Progresso do envio"
+          },
+          "name": "aria-valuenow",
+          "value": "0"
+        },
+        {
+          "op": "respond",
+          "id": "uploaded"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Envio concluído"
+        },
+        {
+          "op": "expect-enabled",
+          "locator": {
+            "role": "button",
+            "name": "Enviar arquivo"
+          }
+        },
+        {
+          "op": "expect-attribute",
+          "locator": {
+            "role": "progressbar",
+            "name": "Progresso do envio"
+          },
+          "name": "aria-valuenow",
+          "value": "100"
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

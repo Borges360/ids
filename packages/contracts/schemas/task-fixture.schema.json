@@ -75,6 +75,12 @@
                 "release": {
                   "type": "string",
                   "pattern": "\\S"
+                },
+                "abort": {
+                  "enum": [
+                    "connectionreset",
+                    "timedout"
+                  ]
                 }
               }
             }

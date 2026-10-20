@@ -1,0 +1,306 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "heldout-2",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/heldout-2.json",
+    "sha256": "a6a748b6518395fca0aa11eb990ecfe1f4ff0dba2fc13127c89508654366298a"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 320,
+        "height": 900
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "rtl",
+      "steps": [
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Continuar"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "label": "Nome"
+          }
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Nome"
+          },
+          "value": "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana "
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Continuar"
+          }
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Revisar"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "label": "Endereço"
+          }
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Endereço"
+          },
+          "value": "Rua Sintética 24"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Voltar"
+          }
+        },
+        {
+          "op": "expect-value",
+          "locator": {
+            "label": "Nome"
+          },
+          "value": "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana "
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Nome"
+          },
+          "value": "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana  atualizado"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Continuar"
+          }
+        },
+        {
+          "op": "expect-value",
+          "locator": {
+            "label": "Endereço"
+          },
+          "value": "Rua Sintética 24"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Revisar"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "review-name"
+          },
+          "value": "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana  atualizado"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "review-address"
+          },
+          "value": "Rua Sintética 24"
+        },
+        {
+          "op": "expect-request",
+          "id": "enroll",
+          "count": 0,
+          "body": null
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Confirmar cadastro"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "enroll",
+          "count": 1,
+          "body": {
+            "name": "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana  atualizado",
+            "address": "Rua Sintética 24"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Cadastro confirmado"
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    },
+    {
+      "id": "desktop-functional",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "density": "focus",
+      "direction": "rtl",
+      "steps": [
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Continuar"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "label": "Nome"
+          }
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Nome"
+          },
+          "value": "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana "
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Continuar"
+          }
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Revisar"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "label": "Endereço"
+          }
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Endereço"
+          },
+          "value": "Rua Sintética 24"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Voltar"
+          }
+        },
+        {
+          "op": "expect-value",
+          "locator": {
+            "label": "Nome"
+          },
+          "value": "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana "
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Nome"
+          },
+          "value": "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana  atualizado"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Continuar"
+          }
+        },
+        {
+          "op": "expect-value",
+          "locator": {
+            "label": "Endereço"
+          },
+          "value": "Rua Sintética 24"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Revisar"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "review-name"
+          },
+          "value": "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana  atualizado"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "review-address"
+          },
+          "value": "Rua Sintética 24"
+        },
+        {
+          "op": "expect-request",
+          "id": "enroll",
+          "count": 0,
+          "body": null
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Confirmar cadastro"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "enroll",
+          "count": 1,
+          "body": {
+            "name": "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana  atualizado",
+            "address": "Rua Sintética 24"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Cadastro confirmado"
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

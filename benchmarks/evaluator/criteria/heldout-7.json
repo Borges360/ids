@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "heldout-7",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/heldout-7.json",
+    "sha256": "0dcedf9e4b91b00bb5833ba261eabfc64a3d9965a662fa6f2f8db060c6460237"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 768,
+        "height": 900
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "rtl",
+      "zoomFactor": 1,
+      "steps": [
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Nome"
+          },
+          "value": "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana "
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "E-mail"
+          },
+          "value": "zoom@example.test"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Enviar dados"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "zoom",
+          "count": 1,
+          "body": {
+            "name": "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana ",
+            "email": "zoom@example.test"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Dados enviados"
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    },
+    {
+      "id": "desktop-functional",
+      "viewport": {
+        "width": 768,
+        "height": 900
+      },
+      "theme": "dark",
+      "density": "focus",
+      "direction": "rtl",
+      "zoomFactor": 2,
+      "steps": [
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Nome"
+          },
+          "value": "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana "
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "E-mail"
+          },
+          "value": "zoom@example.test"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Enviar dados"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "zoom",
+          "count": 1,
+          "body": {
+            "name": "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana ",
+            "email": "zoom@example.test"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Dados enviados"
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

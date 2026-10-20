@@ -32,7 +32,10 @@ export type GradeLocator =
         | "cell"
         | "tab"
         | "tabpanel"
-        | "link";
+        | "link"
+        | "menu"
+        | "menuitem"
+        | "progressbar";
       name?: string;
     }
   | { text: string }
@@ -47,6 +50,7 @@ export interface GradeStep {
   id?: string;
   body?: Record<string, unknown> | null;
   values?: string[];
+  file?: { name: string; mimeType: string; content: string };
 }
 export interface TaskGrading {
   schemaVersion: "1.0";
@@ -60,6 +64,7 @@ export interface TaskGrading {
     theme: string;
     density: string;
     direction: string;
+    zoomFactor?: number;
     steps: GradeStep[];
   }[];
 }
@@ -67,6 +72,7 @@ interface Response {
   status: number;
   json: unknown;
   release?: string;
+  abort?: "connectionreset" | "timedout";
 }
 interface Fixture {
   schemaVersion: "1.0";
@@ -91,8 +97,15 @@ export async function gradeBenchmarkTask(
   datasetRoot: string,
   candidateRoot: string,
   gradingPath: string,
-  options: { dryRun?: boolean } = {},
+  options: { dryRun?: boolean; assertionTimeoutMs?: number } = {},
 ) {
+  const assertionTimeoutMs = options.assertionTimeoutMs ?? 3000;
+  if (
+    !Number.isInteger(assertionTimeoutMs) ||
+    assertionTimeoutMs < 500 ||
+    assertionTimeoutMs > 30000
+  )
+    throw Error("Invalid grading assertion timeout");
   const specificationBytes = await readFile(safePath(datasetRoot, gradingPath));
   const spec: TaskGrading = JSON.parse(specificationBytes.toString("utf8"));
   if (!validateSchema("task-grading", spec).valid)
@@ -144,6 +157,14 @@ export async function gradeBenchmarkTask(
     )
   )
     throw Error("Invalid synthetic grading response fixture");
+  const routeIds = new Set(fixture.routes.map((route) => route.id));
+  for (const scenario of spec.scenarios)
+    for (const step of scenario.steps) {
+      if (step.op === "expect-request" && !routeIds.has(step.id!))
+        throw Error("Unknown grading request identity");
+      if (step.op === "respond" && !releaseIds.includes(step.id!))
+        throw Error("Unknown grading response release identity");
+    }
   const candidate = await realpath(candidateRoot);
   const git = (...args: string[]) =>
     execFileSync("git", args, {
@@ -169,6 +190,7 @@ export async function gradeBenchmarkTask(
     grading: { path: gradingPath, sha256: hash(specificationBytes) },
     fixture: spec.fixture,
     plannedScenarios: spec.scenarios.length,
+    assertionTimeoutMs,
   };
   if (options.dryRun)
     return {
@@ -178,7 +200,9 @@ export async function gradeBenchmarkTask(
       results: [],
       agentExecution: "not_run" as const,
     };
-  const { chromium, expect } = await import("@playwright/test");
+  const { chromium, expect: baseExpect } = await import("@playwright/test");
+  const expect = baseExpect.configure({ timeout: assertionTimeoutMs });
+  const { gradingContext } = await import("./grading-context.ts");
   const server = await createBenchmarkServer(candidate);
   await new Promise<void>((resolve, reject) => {
     server.once("error", reject);
@@ -191,6 +215,9 @@ export async function gradeBenchmarkTask(
     completedSteps: number;
     plannedSteps: number;
     message?: string;
+    zoom?: Awaited<
+      ReturnType<Awaited<ReturnType<typeof gradingContext>>["applyZoom"]>
+    >;
   }[] = [];
   let infrastructureError: string | undefined,
     browserVersion: string | undefined;
@@ -200,14 +227,20 @@ export async function gradeBenchmarkTask(
     const origin =
       "http://127.0.0.1:" + (server.address() as { port: number }).port;
     for (const scenario of spec.scenarios) {
-      const context = await browser.newContext({
-        viewport: scenario.viewport,
-        locale: "pt-BR",
-        timezoneId: "UTC",
-        reducedMotion: "reduce",
-        serviceWorkers: "block",
-        acceptDownloads: false,
-      });
+      const runtime = await gradingContext(
+        browser,
+        {
+          viewport: scenario.viewport,
+          locale: "pt-BR",
+          timezoneId: "UTC",
+          reducedMotion: "reduce",
+          serviceWorkers: "block",
+          acceptDownloads: false,
+        },
+        scenario.zoomFactor,
+      );
+      const { context } = runtime;
+      let zoom: Awaited<ReturnType<typeof runtime.applyZoom>>;
       const observations = new Map<
           string,
           { body: unknown; contentType: string | null }[]
@@ -294,10 +327,14 @@ export async function gradeBenchmarkTask(
             await new Promise<void>((resolve) =>
               pending.set(response.release!, resolve),
             );
+          if (response.abort) {
+            await route.abort(response.abort);
+            return;
+          }
           await route.fulfill({ status: response.status, json: response.json });
         });
         const page = await context.newPage();
-        page.setDefaultTimeout(3000);
+        page.setDefaultTimeout(assertionTimeoutMs);
         await page.goto(origin + spec.entry, {
           waitUntil: "domcontentloaded",
           timeout: 10000,
@@ -307,9 +344,52 @@ export async function gradeBenchmarkTask(
           document.documentElement.dataset.inDensity = density;
           document.documentElement.dir = direction;
         }, scenario);
+        try {
+          zoom = await runtime.applyZoom(page, origin);
+        } catch (error) {
+          infrastructureError = "Native zoom setup failed: " + String(error);
+          throw error;
+        }
         for (const step of scenario.steps) {
           const target = step.locator ? locate(page, step.locator) : undefined;
           switch (step.op) {
+            case "upload":
+              await target!.setInputFiles({
+                name: step.file!.name,
+                mimeType: step.file!.mimeType,
+                buffer: Buffer.from(step.file!.content, "utf8"),
+              });
+              break;
+            case "expect-token-style":
+              await expect
+                .poll(() =>
+                  target!.evaluate(
+                    (element, { property, token }) => {
+                      if (
+                        !getComputedStyle(element)
+                          .getPropertyValue(token)
+                          .trim()
+                      )
+                        return false;
+                      const probe = document.createElement("span");
+                      probe.style.setProperty(property, `var(${token})`);
+                      element.append(probe);
+                      try {
+                        return (
+                          getComputedStyle(element).getPropertyValue(
+                            property,
+                          ) ===
+                          getComputedStyle(probe).getPropertyValue(property)
+                        );
+                      } finally {
+                        probe.remove();
+                      }
+                    },
+                    { property: step.name!, token: step.value! },
+                  ),
+                )
+                .toBe(true);
+              break;
             case "click":
               await target!.click();
               break;
@@ -346,6 +426,9 @@ export async function gradeBenchmarkTask(
             case "expect-text":
               await expect(target!).toContainText(step.value!);
               break;
+            case "expect-exact-text":
+              await expect(target!).toHaveText(step.value!);
+              break;
             case "expect-value":
               await expect(target!).toHaveValue(step.value!);
               break;
@@ -371,6 +454,17 @@ export async function gradeBenchmarkTask(
               break;
             case "reload":
               await page.reload({ waitUntil: "domcontentloaded" });
+              break;
+            case "back":
+              await page.goBack({ waitUntil: "domcontentloaded" });
+              break;
+            case "expect-path":
+              await expect
+                .poll(() => {
+                  const url = new URL(page.url());
+                  return url.pathname + url.search;
+                })
+                .toBe(step.value!);
               break;
             case "expect-no-overflow":
               await expect
@@ -415,6 +509,7 @@ export async function gradeBenchmarkTask(
           status: "passed",
           completedSteps,
           plannedSteps: scenario.steps.length,
+          ...(zoom ? { zoom } : {}),
         });
       } catch (error) {
         results.push({
@@ -422,13 +517,14 @@ export async function gradeBenchmarkTask(
           status: "failed",
           completedSteps,
           plannedSteps: scenario.steps.length,
+          ...(zoom ? { zoom } : {}),
           message: redact(
             error instanceof Error ? error.message : String(error),
           ),
         });
       } finally {
         for (const release of pending.values()) release();
-        await context.close();
+        await runtime.close();
       }
     }
     if ((await reviewSourceHash(candidate)) !== sourceHash)

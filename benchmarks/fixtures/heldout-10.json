@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "1.0",
+  "classification": "synthetic",
+  "clock": "2026-02-01T12:00:00.000Z",
+  "seed": 409,
+  "routes": [
+    {
+      "id": "draft",
+      "path": "/api/draft",
+      "method": "GET",
+      "responses": [
+        {
+          "status": 200,
+          "json": {
+            "title": "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana ",
+            "revision": 7
+          }
+        }
+      ]
+    },
+    {
+      "id": "publish",
+      "path": "/api/publish",
+      "method": "POST",
+      "responses": [
+        {
+          "status": 200,
+          "json": {
+            "ok": true
+          },
+          "release": "published"
+        }
+      ]
+    }
+  ]
+}

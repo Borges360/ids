@@ -1,9 +1,9 @@
 export const taskGradingSchema = (() => {
   const text = { type: "string", pattern: "\\S" };
-  const object = (properties) => ({
+  const object = (properties, optional = []) => ({
     type: "object",
     additionalProperties: false,
-    required: Object.keys(properties),
+    required: Object.keys(properties).filter((key) => !optional.includes(key)),
     properties,
   });
   const locator = {
@@ -34,6 +34,9 @@ export const taskGradingSchema = (() => {
               "tab",
               "tabpanel",
               "link",
+              "menu",
+              "menuitem",
+              "progressbar",
             ],
           },
           name: text,
@@ -44,6 +47,19 @@ export const taskGradingSchema = (() => {
   const step = (op, properties = {}) =>
     object({ op: { const: op }, ...properties });
   const steps = [
+    step("upload", {
+      locator,
+      file: object({
+        name: { type: "string", pattern: "^[a-zA-Z0-9._-]+$" },
+        mimeType: text,
+        content: { type: "string", maxLength: 65536 },
+      }),
+    }),
+    step("expect-token-style", {
+      locator,
+      name: { enum: ["color", "background-color", "font-family"] },
+      value: { type: "string", pattern: "^--in-[a-z][a-z0-9-]+$" },
+    }),
     ...[
       "click",
       "check",
@@ -55,7 +71,12 @@ export const taskGradingSchema = (() => {
       "expect-disabled",
     ].map((op) => step(op, { locator })),
     ...["fill", "press", "select", "expect-text", "expect-value"].map((op) =>
-      step(op, { locator, value: text }),
+      step(op, {
+        locator,
+        value: ["fill", "expect-value", "select"].includes(op)
+          ? { type: "string", maxLength: 65536 }
+          : text,
+      }),
     ),
     step("expect-count", {
       locator,
@@ -78,6 +99,14 @@ export const taskGradingSchema = (() => {
     }),
     step("respond", { id: text }),
     step("reload"),
+    step("back"),
+    step("expect-exact-text", {
+      locator,
+      value: { type: "string", maxLength: 65536 },
+    }),
+    step("expect-path", {
+      value: { type: "string", pattern: "^/src/[^\\s#]*$" },
+    }),
     step("expect-no-overflow"),
   ];
   return object({
@@ -92,17 +121,21 @@ export const taskGradingSchema = (() => {
     scenarios: {
       type: "array",
       minItems: 1,
-      items: object({
-        id: text,
-        viewport: object({
-          width: { type: "integer", minimum: 320, maximum: 3840 },
-          height: { type: "integer", minimum: 320, maximum: 2160 },
-        }),
-        theme: { enum: ["dark", "light", "contrast-dark", "contrast-light"] },
-        density: { enum: ["calm", "focus"] },
-        direction: { enum: ["ltr", "rtl"] },
-        steps: { type: "array", minItems: 1, items: { oneOf: steps } },
-      }),
+      items: object(
+        {
+          id: text,
+          viewport: object({
+            width: { type: "integer", minimum: 320, maximum: 3840 },
+            height: { type: "integer", minimum: 320, maximum: 2160 },
+          }),
+          theme: { enum: ["dark", "light", "contrast-dark", "contrast-light"] },
+          density: { enum: ["calm", "focus"] },
+          direction: { enum: ["ltr", "rtl"] },
+          zoomFactor: { enum: [1, 2] },
+          steps: { type: "array", minItems: 1, items: { oneOf: steps } },
+        },
+        ["zoomFactor"],
+      ),
     },
   });
 })();
@@ -139,6 +172,7 @@ export const taskFixtureSchema = (() => {
               status: { type: "integer", minimum: 200, maximum: 599 },
               json: {},
               release: text,
+              abort: { enum: ["connectionreset", "timedout"] },
             },
           },
         },

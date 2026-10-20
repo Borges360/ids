@@ -1,0 +1,208 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "task-23",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/task-23.json",
+    "sha256": "16ca11541dba63689b079c5b8225d8e0c17d8bf1bc09b14071749bf9e90a303a"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 320,
+        "height": 900
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Registros"
+          },
+          "values": [
+            "Registro Alfa",
+            "Registro Beta",
+            "Registro Gama"
+          ]
+        },
+        {
+          "op": "check",
+          "locator": {
+            "role": "checkbox",
+            "name": "Selecionar Registro Beta"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Selecionados 1"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Ordenar"
+          }
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Registros"
+          },
+          "values": [
+            "Registro Gama",
+            "Registro Beta",
+            "Registro Alfa"
+          ]
+        },
+        {
+          "op": "expect-attribute",
+          "locator": {
+            "role": "checkbox",
+            "name": "Selecionar Registro Beta"
+          },
+          "name": "aria-checked",
+          "value": "true"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Limpar seleção"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Selecionados 0"
+        },
+        {
+          "op": "expect-attribute",
+          "locator": {
+            "role": "checkbox",
+            "name": "Selecionar Registro Beta"
+          },
+          "name": "aria-checked",
+          "value": "false"
+        },
+        {
+          "op": "expect-request",
+          "id": "selection",
+          "count": 1,
+          "body": null
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    },
+    {
+      "id": "desktop-functional",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "density": "focus",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Registros"
+          },
+          "values": [
+            "Registro Alfa",
+            "Registro Beta",
+            "Registro Gama"
+          ]
+        },
+        {
+          "op": "check",
+          "locator": {
+            "role": "checkbox",
+            "name": "Selecionar Registro Beta"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Selecionados 1"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Ordenar"
+          }
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Registros"
+          },
+          "values": [
+            "Registro Gama",
+            "Registro Beta",
+            "Registro Alfa"
+          ]
+        },
+        {
+          "op": "expect-attribute",
+          "locator": {
+            "role": "checkbox",
+            "name": "Selecionar Registro Beta"
+          },
+          "name": "aria-checked",
+          "value": "true"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Limpar seleção"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Selecionados 0"
+        },
+        {
+          "op": "expect-attribute",
+          "locator": {
+            "role": "checkbox",
+            "name": "Selecionar Registro Beta"
+          },
+          "name": "aria-checked",
+          "value": "false"
+        },
+        {
+          "op": "expect-request",
+          "id": "selection",
+          "count": 1,
+          "body": null
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

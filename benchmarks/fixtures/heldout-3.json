@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "1.0",
+  "classification": "synthetic",
+  "clock": "2026-02-01T12:00:00.000Z",
+  "seed": 402,
+  "routes": [
+    {
+      "id": "selection",
+      "path": "/api/selection",
+      "method": "GET",
+      "responses": [
+        {
+          "status": 200,
+          "json": {
+            "items": [
+              {
+                "id": "b",
+                "name": "تقرير تشغيلي مترجم — Beta"
+              },
+              {
+                "id": "a",
+                "name": "تقرير تشغيلي مترجم — Alfa"
+              },
+              {
+                "id": "c",
+                "name": "تقرير تشغيلي مترجم — Gama"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

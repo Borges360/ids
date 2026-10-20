@@ -1,0 +1,140 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "task-29",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/task-29.json",
+    "sha256": "8b573915e9d6a17714062531f30798977d296d2d71eac874d35da7b9625364ed"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 320,
+        "height": 900
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "expect-visible",
+          "locator": {
+            "role": "alert"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "recovery",
+          "count": 1,
+          "body": null
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Tentar novamente"
+          }
+        },
+        {
+          "op": "expect-hidden",
+          "locator": {
+            "role": "alert"
+          }
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Documentos"
+          },
+          "values": [
+            "Registro especial",
+            "Documento revisado"
+          ]
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Conexão restaurada"
+        },
+        {
+          "op": "expect-request",
+          "id": "recovery",
+          "count": 2,
+          "body": null
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    },
+    {
+      "id": "desktop-functional",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "density": "focus",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "expect-visible",
+          "locator": {
+            "role": "alert"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "recovery",
+          "count": 1,
+          "body": null
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Tentar novamente"
+          }
+        },
+        {
+          "op": "expect-hidden",
+          "locator": {
+            "role": "alert"
+          }
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Documentos"
+          },
+          "values": [
+            "Registro especial",
+            "Documento revisado"
+          ]
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Conexão restaurada"
+        },
+        {
+          "op": "expect-request",
+          "id": "recovery",
+          "count": 2,
+          "body": null
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

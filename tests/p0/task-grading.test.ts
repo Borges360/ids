@@ -8,15 +8,23 @@ import {
   createBenchmarkServer,
 } from "@inteiro/evaluation/grading";
 import { gradingCandidate } from "../helpers/grading-candidate.ts";
-const ids = Array.from(
-  { length: 10 },
-  (_, index) => "task-" + String(index + 1).padStart(2, "0"),
-);
+const ids = [
+  ...Array.from(
+    { length: 30 },
+    (_, index) => "task-" + String(index + 1).padStart(2, "0"),
+  ),
+  ...Array.from({ length: 10 }, (_, index) => "heldout-" + (index + 1)),
+];
 it("binds each migrated task to independent criteria, fixture and matching domain starter", async () => {
   const dataset = JSON.parse(
     await readFile("benchmarks/tasks.public.json", "utf8"),
   );
-  for (const task of dataset.tasks.slice(0, 10)) {
+  const heldout = JSON.parse(
+    await readFile("benchmarks/tasks.heldout.json", "utf8"),
+  );
+  expect(dataset.tasks).toHaveLength(30);
+  expect(heldout.tasks).toHaveLength(10);
+  for (const task of [...dataset.tasks, ...heldout.tasks]) {
     const bytes = await readFile(task.grading.path);
     expect(hash(bytes)).toBe(task.grading.sha256);
     const plan = JSON.parse(bytes.toString());
@@ -152,6 +160,31 @@ it("resolves a CLI candidate relative to the dataset root and rejects incomplete
   }
 });
 it.skipIf(process.env.INTEIRO_GRADE_BROWSER !== "1")(
+  "exact text rejects an extra digit in a total",
+  async () => {
+    const candidate = await gradingCandidate("task-12", "reference");
+    try {
+      const path = join(candidate.root, "src/app.js");
+      const source = await readFile(path, "utf8");
+      expect(source).toContain(".total);");
+      await writeFile(path, source.replace(".total);", ".total+'0');"));
+      const report = await gradeBenchmarkTask(
+        process.cwd(),
+        candidate.root,
+        "benchmarks/evaluator/criteria/task-12.json",
+        { assertionTimeoutMs: 1000 },
+      );
+      expect(report.status).toBe("failed");
+      expect(
+        report.results.every((result) => result.completedSteps === 4),
+      ).toBe(true);
+    } finally {
+      await candidate.cleanup();
+    }
+  },
+  30000,
+);
+it.skipIf(process.env.INTEIRO_GRADE_BROWSER !== "1")(
   "rejects a non-JSON form submission even if the UI announces success",
   async () => {
     const candidate = await gradingCandidate("task-01", "reference");
@@ -182,6 +215,7 @@ for (const id of ids)
             process.cwd(),
             candidate.root,
             `benchmarks/evaluator/criteria/${id}.json`,
+            mode === "reference" ? {} : { assertionTimeoutMs: 1000 },
           );
           expect(report.status, JSON.stringify(report.results)).toBe(
             mode === "reference" ? "passed" : "failed",
@@ -189,6 +223,15 @@ for (const id of ids)
           expect(report.executed).toBe(report.plannedScenarios);
           expect(report.agentExecution).toBe("not_run");
           expect(report.sourceHash).toMatch(/^[a-f0-9]{64}$/);
+          if (mode === "reference" && ["task-27", "heldout-7"].includes(id)) {
+            expect(report.results.map((result) => result.zoom?.factor)).toEqual(
+              [1, 2],
+            );
+            expect(report.results[1]!.zoom!.after.cssWidth).toBeCloseTo(
+              report.results[1]!.zoom!.before.cssWidth / 2,
+              0,
+            );
+          }
         } finally {
           await candidate.cleanup();
         }

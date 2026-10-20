@@ -1,0 +1,306 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "task-22",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/task-22.json",
+    "sha256": "5194ae7dadf70b3d66213899a06243b75b892478d574f00dba150de513d3e5ae"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 320,
+        "height": 900
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Continuar"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "label": "Nome"
+          }
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Nome"
+          },
+          "value": "Registro especial"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Continuar"
+          }
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Revisar"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "label": "Endereço"
+          }
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Endereço"
+          },
+          "value": "Rua Sintética 24"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Voltar"
+          }
+        },
+        {
+          "op": "expect-value",
+          "locator": {
+            "label": "Nome"
+          },
+          "value": "Registro especial"
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Nome"
+          },
+          "value": "Registro especial atualizado"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Continuar"
+          }
+        },
+        {
+          "op": "expect-value",
+          "locator": {
+            "label": "Endereço"
+          },
+          "value": "Rua Sintética 24"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Revisar"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "review-name"
+          },
+          "value": "Registro especial atualizado"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "review-address"
+          },
+          "value": "Rua Sintética 24"
+        },
+        {
+          "op": "expect-request",
+          "id": "enroll",
+          "count": 0,
+          "body": null
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Confirmar cadastro"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "enroll",
+          "count": 1,
+          "body": {
+            "name": "Registro especial atualizado",
+            "address": "Rua Sintética 24"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Cadastro confirmado"
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    },
+    {
+      "id": "desktop-functional",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "density": "focus",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Continuar"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "label": "Nome"
+          }
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Nome"
+          },
+          "value": "Registro especial"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Continuar"
+          }
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Revisar"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "label": "Endereço"
+          }
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Endereço"
+          },
+          "value": "Rua Sintética 24"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Voltar"
+          }
+        },
+        {
+          "op": "expect-value",
+          "locator": {
+            "label": "Nome"
+          },
+          "value": "Registro especial"
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Nome"
+          },
+          "value": "Registro especial atualizado"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Continuar"
+          }
+        },
+        {
+          "op": "expect-value",
+          "locator": {
+            "label": "Endereço"
+          },
+          "value": "Rua Sintética 24"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Revisar"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "review-name"
+          },
+          "value": "Registro especial atualizado"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "review-address"
+          },
+          "value": "Rua Sintética 24"
+        },
+        {
+          "op": "expect-request",
+          "id": "enroll",
+          "count": 0,
+          "body": null
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Confirmar cadastro"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "enroll",
+          "count": 1,
+          "body": {
+            "name": "Registro especial atualizado",
+            "address": "Rua Sintética 24"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Cadastro confirmado"
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

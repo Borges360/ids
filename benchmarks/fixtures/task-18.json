@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0",
+  "classification": "synthetic",
+  "clock": "2026-01-01T12:00:00.000Z",
+  "seed": 107,
+  "routes": [
+    {
+      "id": "order",
+      "path": "/api/order",
+      "method": "POST",
+      "responses": [
+        {
+          "status": 200,
+          "json": {
+            "id": "order-1"
+          }
+        }
+      ]
+    }
+  ]
+}

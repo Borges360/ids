@@ -103,11 +103,238 @@
               "rtl"
             ]
           },
+          "zoomFactor": {
+            "enum": [
+              1,
+              2
+            ]
+          },
           "steps": {
             "type": "array",
             "minItems": 1,
             "items": {
               "oneOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op",
+                    "locator",
+                    "file"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "upload"
+                    },
+                    "locator": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "text"
+                          ],
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "label"
+                          ],
+                          "properties": {
+                            "label": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "testId"
+                          ],
+                          "properties": {
+                            "testId": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "role"
+                          ],
+                          "properties": {
+                            "role": {
+                              "enum": [
+                                "button",
+                                "textbox",
+                                "dialog",
+                                "navigation",
+                                "list",
+                                "listitem",
+                                "status",
+                                "alert",
+                                "heading",
+                                "checkbox",
+                                "combobox",
+                                "row",
+                                "cell",
+                                "tab",
+                                "tabpanel",
+                                "link",
+                                "menu",
+                                "menuitem",
+                                "progressbar"
+                              ]
+                            },
+                            "name": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "file": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "name",
+                        "mimeType",
+                        "content"
+                      ],
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "pattern": "^[a-zA-Z0-9._-]+$"
+                        },
+                        "mimeType": {
+                          "type": "string",
+                          "pattern": "\\S"
+                        },
+                        "content": {
+                          "type": "string",
+                          "maxLength": 65536
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op",
+                    "locator",
+                    "name",
+                    "value"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "expect-token-style"
+                    },
+                    "locator": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "text"
+                          ],
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "label"
+                          ],
+                          "properties": {
+                            "label": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "testId"
+                          ],
+                          "properties": {
+                            "testId": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "role"
+                          ],
+                          "properties": {
+                            "role": {
+                              "enum": [
+                                "button",
+                                "textbox",
+                                "dialog",
+                                "navigation",
+                                "list",
+                                "listitem",
+                                "status",
+                                "alert",
+                                "heading",
+                                "checkbox",
+                                "combobox",
+                                "row",
+                                "cell",
+                                "tab",
+                                "tabpanel",
+                                "link",
+                                "menu",
+                                "menuitem",
+                                "progressbar"
+                              ]
+                            },
+                            "name": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "name": {
+                      "enum": [
+                        "color",
+                        "background-color",
+                        "font-family"
+                      ]
+                    },
+                    "value": {
+                      "type": "string",
+                      "pattern": "^--in-[a-z][a-z0-9-]+$"
+                    }
+                  }
+                },
                 {
                   "type": "object",
                   "additionalProperties": false,
@@ -184,7 +411,10 @@
                                 "cell",
                                 "tab",
                                 "tabpanel",
-                                "link"
+                                "link",
+                                "menu",
+                                "menuitem",
+                                "progressbar"
                               ]
                             },
                             "name": {
@@ -273,7 +503,10 @@
                                 "cell",
                                 "tab",
                                 "tabpanel",
-                                "link"
+                                "link",
+                                "menu",
+                                "menuitem",
+                                "progressbar"
                               ]
                             },
                             "name": {
@@ -362,7 +595,10 @@
                                 "cell",
                                 "tab",
                                 "tabpanel",
-                                "link"
+                                "link",
+                                "menu",
+                                "menuitem",
+                                "progressbar"
                               ]
                             },
                             "name": {
@@ -451,7 +687,10 @@
                                 "cell",
                                 "tab",
                                 "tabpanel",
-                                "link"
+                                "link",
+                                "menu",
+                                "menuitem",
+                                "progressbar"
                               ]
                             },
                             "name": {
@@ -540,7 +779,10 @@
                                 "cell",
                                 "tab",
                                 "tabpanel",
-                                "link"
+                                "link",
+                                "menu",
+                                "menuitem",
+                                "progressbar"
                               ]
                             },
                             "name": {
@@ -629,7 +871,10 @@
                                 "cell",
                                 "tab",
                                 "tabpanel",
-                                "link"
+                                "link",
+                                "menu",
+                                "menuitem",
+                                "progressbar"
                               ]
                             },
                             "name": {
@@ -718,7 +963,10 @@
                                 "cell",
                                 "tab",
                                 "tabpanel",
-                                "link"
+                                "link",
+                                "menu",
+                                "menuitem",
+                                "progressbar"
                               ]
                             },
                             "name": {
@@ -807,7 +1055,10 @@
                                 "cell",
                                 "tab",
                                 "tabpanel",
-                                "link"
+                                "link",
+                                "menu",
+                                "menuitem",
+                                "progressbar"
                               ]
                             },
                             "name": {
@@ -897,7 +1148,10 @@
                                 "cell",
                                 "tab",
                                 "tabpanel",
-                                "link"
+                                "link",
+                                "menu",
+                                "menuitem",
+                                "progressbar"
                               ]
                             },
                             "name": {
@@ -910,7 +1164,7 @@
                     },
                     "value": {
                       "type": "string",
-                      "pattern": "\\S"
+                      "maxLength": 65536
                     }
                   }
                 },
@@ -991,7 +1245,10 @@
                                 "cell",
                                 "tab",
                                 "tabpanel",
-                                "link"
+                                "link",
+                                "menu",
+                                "menuitem",
+                                "progressbar"
                               ]
                             },
                             "name": {
@@ -1085,7 +1342,10 @@
                                 "cell",
                                 "tab",
                                 "tabpanel",
-                                "link"
+                                "link",
+                                "menu",
+                                "menuitem",
+                                "progressbar"
                               ]
                             },
                             "name": {
@@ -1098,7 +1358,7 @@
                     },
                     "value": {
                       "type": "string",
-                      "pattern": "\\S"
+                      "maxLength": 65536
                     }
                   }
                 },
@@ -1179,7 +1439,10 @@
                                 "cell",
                                 "tab",
                                 "tabpanel",
-                                "link"
+                                "link",
+                                "menu",
+                                "menuitem",
+                                "progressbar"
                               ]
                             },
                             "name": {
@@ -1273,7 +1536,10 @@
                                 "cell",
                                 "tab",
                                 "tabpanel",
-                                "link"
+                                "link",
+                                "menu",
+                                "menuitem",
+                                "progressbar"
                               ]
                             },
                             "name": {
@@ -1286,7 +1552,7 @@
                     },
                     "value": {
                       "type": "string",
-                      "pattern": "\\S"
+                      "maxLength": 65536
                     }
                   }
                 },
@@ -1367,7 +1633,10 @@
                                 "cell",
                                 "tab",
                                 "tabpanel",
-                                "link"
+                                "link",
+                                "menu",
+                                "menuitem",
+                                "progressbar"
                               ]
                             },
                             "name": {
@@ -1462,7 +1731,10 @@
                                 "cell",
                                 "tab",
                                 "tabpanel",
-                                "link"
+                                "link",
+                                "menu",
+                                "menuitem",
+                                "progressbar"
                               ]
                             },
                             "name": {
@@ -1560,7 +1832,10 @@
                                 "cell",
                                 "tab",
                                 "tabpanel",
-                                "link"
+                                "link",
+                                "menu",
+                                "menuitem",
+                                "progressbar"
                               ]
                             },
                             "name": {
@@ -1661,6 +1936,132 @@
                   "properties": {
                     "op": {
                       "const": "reload"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "back"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op",
+                    "locator",
+                    "value"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "expect-exact-text"
+                    },
+                    "locator": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "text"
+                          ],
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "label"
+                          ],
+                          "properties": {
+                            "label": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "testId"
+                          ],
+                          "properties": {
+                            "testId": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "role"
+                          ],
+                          "properties": {
+                            "role": {
+                              "enum": [
+                                "button",
+                                "textbox",
+                                "dialog",
+                                "navigation",
+                                "list",
+                                "listitem",
+                                "status",
+                                "alert",
+                                "heading",
+                                "checkbox",
+                                "combobox",
+                                "row",
+                                "cell",
+                                "tab",
+                                "tabpanel",
+                                "link",
+                                "menu",
+                                "menuitem",
+                                "progressbar"
+                              ]
+                            },
+                            "name": {
+                              "type": "string",
+                              "pattern": "\\S"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "value": {
+                      "type": "string",
+                      "maxLength": 65536
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "op",
+                    "value"
+                  ],
+                  "properties": {
+                    "op": {
+                      "const": "expect-path"
+                    },
+                    "value": {
+                      "type": "string",
+                      "pattern": "^/src/[^\\s#]*$"
                     }
                   }
                 },
