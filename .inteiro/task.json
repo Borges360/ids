@@ -532,6 +532,8 @@
       "packages/contracts/schemas/review-calibration-reviewers.schema.json",
       "packages/contracts/schemas/review-request.schema.json",
       "packages/contracts/schemas/review.schema.json",
+      "packages/contracts/schemas/task-cost-breakdown.schema.json",
+      "packages/contracts/schemas/task-cost-events.schema.json",
       "packages/contracts/schemas/task-fixture.schema.json",
       "packages/contracts/schemas/task-grading-result.schema.json",
       "packages/contracts/schemas/task-grading.schema.json",
@@ -542,6 +544,7 @@
       "packages/contracts/src/validate.ts",
       "packages/evaluation/package.json",
       "packages/evaluation/src/calibration.ts",
+      "packages/evaluation/src/cost-accounting.ts",
       "packages/evaluation/src/experiments.ts",
       "packages/evaluation/src/grading-context.ts",
       "packages/evaluation/src/grading.ts",
@@ -588,6 +591,7 @@
       "scripts/serve-demo.mjs",
       "scripts/serve-fixtures.mjs",
       "scripts/smoke-offline.mjs",
+      "scripts/task-cost-schema.mjs",
       "scripts/task-grading-schema.mjs",
       "scripts/test-browser-gate.mjs",
       "scripts/test-task-grading.mjs",
@@ -613,6 +617,7 @@
       "tests/p0/context-integrity.test.ts",
       "tests/p0/context.test.ts",
       "tests/p0/contracts.test.ts",
+      "tests/p0/cost-accounting.test.ts",
       "tests/p0/coverage.test.ts",
       "tests/p0/cursor-activation.test.ts",
       "tests/p0/evaluation.test.ts",
@@ -649,5 +654,5 @@
     }
   ],
   "configHash": "c01aff1aced7f9f3957c622ca3870d094ec3f2c7744c2e05bf0086a6414e8270",
-  "contextBundleId": "context:06454be4bc7f5f520f5a5dbc3285c5b4502461c2355ddd4bee559afc9824d6e5"
+  "contextBundleId": "context:d3bbd013e32c7f1098ca1cd302bbad7bcd92e14e945028b23099d4b1e92760e9"
 }

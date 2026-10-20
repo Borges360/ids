@@ -7,7 +7,8 @@
     "./experiments": "./src/experiments.ts",
     "./calibration": "./src/calibration.ts",
     "./grading": "./src/grading.ts",
-    "./workspace": "./src/workspace.ts"
+    "./workspace": "./src/workspace.ts",
+    "./costs": "./src/cost-accounting.ts"
   },
   "files": [
     "src"

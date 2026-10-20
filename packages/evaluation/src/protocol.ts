@@ -4,6 +4,7 @@ import { relative, sep } from "node:path";
 import { hash, safePath, safeRead, validateSchema } from "@inteiro/contracts";
 import type { RecordedExperimentInput } from "./experiments.ts";
 import { observationEvidence } from "./observation-evidence.ts";
+import { reconcileTaskCost } from "./cost-accounting.ts";
 
 interface Snapshot {
   path: string;
@@ -223,6 +224,14 @@ export async function validateExperimentProtocol(
         for (const seed of protocol.seeds)
           expected.add(JSON.stringify([model, ablation, task.id, seed]));
   for (const row of input.observations) {
+    const accounting = reconcileTaskCost(row);
+    if (
+      !accounting.complete ||
+      accounting.currency !== protocol.budget.currency
+    )
+      throw Error(
+        "Frozen samples require complete cost components in the budget currency",
+      );
     if (row.accepted && !row.workerId)
       throw Error("Frozen accepted samples require an isolated worker receipt");
     if (row.workerId) {
@@ -275,8 +284,8 @@ export async function validateExperimentProtocol(
       row.tokensIn === null ||
       row.tokensOut === null ||
       row.tokensIn + row.tokensOut > protocol.budget.maxTokens ||
-      row.cost === null ||
-      row.cost > protocol.budget.maxCost ||
+      accounting.total === null ||
+      accounting.total > protocol.budget.maxCost ||
       row.humanMinutes === null ||
       !row.outcome ||
       ["incomplete", "environment_error"].includes(row.outcome)

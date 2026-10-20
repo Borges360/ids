@@ -3,6 +3,7 @@ import { hash, safePath, safeRead, validateSchema } from "@inteiro/contracts";
 import { metrics, type Observation } from "./index.ts";
 import { validateExperimentProtocol } from "./protocol.ts";
 import { observationEvidence, catalogGrading } from "./observation-evidence.ts";
+import { reconcileTaskCost } from "./cost-accounting.ts";
 export {
   validateExperimentProtocol,
   type BenchmarkProtocol,
@@ -55,14 +56,20 @@ export function median(values: number[]) {
     : sorted[middle - 1]! / 2 + sorted[middle]! / 2;
 }
 export function summarizeExperiments(rows: Observation[]) {
-  const groupKey = (r: Observation) => JSON.stringify([r.model, r.ablation]);
+  const groupKey = (r: Observation) =>
+    JSON.stringify([r.model, r.ablation, r.costBreakdown?.currency ?? null]);
   const groups = [...new Set(rows.map(groupKey))];
   return groups.map((key) => {
     const group = rows.filter((r) => groupKey(r) === key);
     const summary = metrics(group);
+    const costs = group.flatMap((row) => {
+      const total = reconcileTaskCost(row).total;
+      return total === null ? [] : [total];
+    });
     return {
       model: group[0]!.model,
       ablation: group[0]!.ablation,
+      currency: group[0]!.costBreakdown?.currency ?? null,
       ...summary,
       acceptanceInterval95: wilson(summary.accepted, summary.evaluatedTasks),
       durationMedian: median(group.map((r) => r.durationMs)),
@@ -70,13 +77,16 @@ export function summarizeExperiments(rows: Observation[]) {
         group.map((r) => r.durationMs),
         0.9,
       ),
-      costMedian: median(
-        group.flatMap((r) => (r.cost === null ? [] : [r.cost])),
+      timeToAcceptedMedian: median(
+        group.filter((row) => row.accepted).map((row) => row.durationMs),
       ),
-      costP90: percentile(
-        group.flatMap((r) => (r.cost === null ? [] : [r.cost])),
+      timeToAcceptedP90: percentile(
+        group.filter((row) => row.accepted).map((row) => row.durationMs),
         0.9,
       ),
+      costKnownObservations: costs.length,
+      costMedian: median(costs),
+      costP90: percentile(costs, 0.9),
       sampleCounts: Object.fromEntries(
         [...new Set(group.map((r) => r.caseId))].map((id) => [
           id,
@@ -123,6 +133,7 @@ export async function importExperiment(
     Awaited<ReturnType<typeof catalogGrading>>
   >();
   for (const row of input.observations) {
+    reconcileTaskCost(row);
     const key = JSON.stringify([row.model, row.ablation, row.caseId, row.seed]);
     if (keys.has(key)) throw new Error("Duplicate model/task/sample");
     keys.add(key);
@@ -181,6 +192,12 @@ export async function importExperiment(
     "attempts",
     "durationMs",
     "cost",
+    "currency",
+    "total_task_cost",
+    "model_token_cost",
+    "tool_cost",
+    "human_review_cost",
+    "infrastructure_cost",
     "tokensIn",
     "tokensOut",
     "humanMinutes",
@@ -188,11 +205,30 @@ export async function importExperiment(
   ] as const;
   const csv = [
     cols.join(","),
-    ...input.observations.map((row) =>
-      cols
-        .map((k) => '"' + String(row[k] ?? "").replaceAll('"', '""') + '"')
-        .join(","),
-    ),
+    ...input.observations.map((row) => {
+      const accounting = reconcileTaskCost(row);
+      return cols
+        .map((k) => {
+          const value =
+            k === "currency"
+              ? accounting.currency
+              : k === "total_task_cost"
+                ? accounting.complete
+                  ? accounting.total
+                  : null
+                : k === "model_token_cost"
+                  ? row.costBreakdown?.modelTokens
+                  : k === "tool_cost"
+                    ? row.costBreakdown?.tools
+                    : k === "human_review_cost"
+                      ? row.costBreakdown?.humanReview
+                      : k === "infrastructure_cost"
+                        ? row.costBreakdown?.infrastructure
+                        : row[k];
+          return '"' + String(value ?? "").replaceAll('"', '""') + '"';
+        })
+        .join(",");
+    }),
   ].join("\n");
   await writeFile(safePath(root, outDir + "/results.csv"), csv);
   await writeFile(

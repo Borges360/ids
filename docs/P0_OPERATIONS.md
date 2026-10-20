@@ -140,6 +140,18 @@ Uma observação `accepted=true` exige `gradingPath` e `gradingHash`, além de `
 
 Registros legados sem `workerId` são conferidos na raiz de importação e permanecem descritivos, com `publicationReady=false`. A integridade dos recibos não certifica entrega de prompts, execução de modelos ou julgamento humano. O bootstrap completo dos candidatos continua em implementação; o importador recusa usá-los como prova de aceite antes dessa conclusão.
 
+### Custos por tarefa e eventos do harness
+
+`costBreakdown` usa `schemaVersion=1.0`, `currency` (três letras maiúsculas) e quatro valores monetários: `modelTokens`, `tools`, `humanReview` e `infrastructure`. Cada componente é um número não negativo ou `null` explícito. `modelTokens` inclui os custos de todos os modelos usados na tarefa, inclusive revisão por modelo; `humanReview` representa trabalho humano. O produtor deve classificar cada cobrança uma vez.
+
+`aggregateTaskCostEvents(currency, events)` de `@inteiro/evaluation/costs` agrega eventos com `id`, `category`, `currency` e `cost`. IDs duplicados e moedas divergentes são recusados. Uma categoria sem eventos ou com evento de custo desconhecido permanece `null`; um zero conhecido precisa ser informado explicitamente. O resultado contém o breakdown, subtotais conhecidos e hash dos eventos. `billingAttested=false` descreve a origem declarada desses valores.
+
+A soma usa as representações decimais registradas e rejeita estouro numérico. Com todos os componentes conhecidos, o total é derivado; o campo original `cost=null` permanece no registro de entrada. Se um total também for declarado, ele precisa reconciliar com a soma. Com componentes parciais, um total declarado pode ser preservado, mas não pode ser menor que os componentes conhecidos. `accounting.totalTaskCost` fica `null` enquanto houver lacunas; `accounting.components` mostra cobertura, total e subtotal conhecido por categoria. `totalCost` mantém compatibilidade com registros legados de total declarado, identificados por `legacyObservations` e moeda `null`.
+
+As estatísticas agrupam modelo, ablação e moeda. Mediana e P90 de custo usam os totais conhecidos, com `costKnownObservations` indicando a cobertura. O protocolo congelado exige quatro componentes conhecidos na mesma moeda do orçamento e aplica `maxCost` ao total calculado. O CSV inclui `currency`, `total_task_cost`, `model_token_cost`, `tool_cost`, `human_review_cost` e `infrastructure_cost`; campos desconhecidos ficam vazios.
+
+`tokensPerAcceptedTask` divide todos os tokens registrados, inclusive os gastos em falhas, pelo número de tarefas aceitas. Uso desconhecido mantém o total e a razão como `null`; `knownTokenSubtotal` expõe apenas o que foi registrado. Contagens inválidas e somas que perdem precisão inteira são recusadas. `timeToAcceptedMedian` e `timeToAcceptedP90` usam `durationMs` somente das tarefas aceitas. Esses cálculos não constituem resultado de um experimento real com modelos.
+
 ## Migração e rollback
 
 `init` preserva configurações existentes. `audit` legado continua disponível. Use `migrate --dry-run` para inspecionar sugestões antes de alterar a aplicação. Comece observando findings; corrija o corpus existente antes de impor o gate inteiro na branch protegida. Não publique uma release declarada P0 completa enquanto faltarem baselines aprovadas, revisão exigida ou evidências de aceite. Rollback restaura versões, configuração e registro anteriores, preservando histórico de evidências.

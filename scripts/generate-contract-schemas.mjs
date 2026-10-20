@@ -2,6 +2,10 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { benchmarkProtocolSchema } from "./benchmark-protocol-schema.mjs";
 import { calibrationSchemas } from "./calibration-schemas.mjs";
 import {
+  taskCostBreakdownSchema,
+  taskCostEventsSchema,
+} from "./task-cost-schema.mjs";
+import {
   taskGradingSchema,
   taskFixtureSchema,
   taskGradingResultSchema,
@@ -427,6 +431,8 @@ const contracts = {
   },
   ...calibrationSchemas([...REVIEW_AXES]),
   "task-grading": taskGradingSchema,
+  "task-cost-breakdown": taskCostBreakdownSchema,
+  "task-cost-events": taskCostEventsSchema,
   "task-grading-result": taskGradingResultSchema,
   "task-fixture": taskFixtureSchema,
   "benchmark-protocol": benchmarkProtocolSchema,
@@ -488,6 +494,7 @@ const contracts = {
             attempts: { type: "integer", minimum: 1, maximum: 3 },
             durationMs: { type: "number", minimum: 0 },
             cost: { type: ["number", "null"], minimum: 0 },
+            costBreakdown: taskCostBreakdownSchema,
             tokensIn: {
               type: ["integer", "null"],
               minimum: 0,

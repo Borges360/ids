@@ -143,6 +143,14 @@ beforeAll(async () => {
             attempts: 1,
             durationMs: 10,
             cost: 0.01,
+            costBreakdown: {
+              schemaVersion: "1.0",
+              currency: "USD",
+              modelTokens: 0.006,
+              tools: 0.002,
+              humanReview: 0,
+              infrastructure: 0.002,
+            },
             tokensIn: 10,
             tokensOut: 5,
             humanMinutes: 0,
@@ -217,7 +225,10 @@ for (const [name, patch] of [
   ],
   [
     "unknown cost",
-    (value: RecordedExperimentInput) => (value.observations[0]!.cost = null),
+    (value: RecordedExperimentInput) => {
+      value.observations[0]!.cost = null;
+      value.observations[0]!.costBreakdown!.modelTokens = null;
+    },
   ],
   [
     "unknown tokens",
@@ -370,3 +381,37 @@ it("rejects an accepted frozen sample without an isolated worker receipt", async
     validateExperimentProtocol(root, "evaluator/protocol.json", recording),
   ).rejects.toThrow("isolated worker");
 });
+it("derives a known total from complete components without inventing an unknown charge", async () => {
+  const recording = structuredClone(input);
+  recording.observations[0]!.cost = null;
+  await expect(
+    validateExperimentProtocol(root, "evaluator/protocol.json", recording),
+  ).resolves.toMatchObject({ status: "passed", publicationReady: false });
+});
+for (const [name, patch] of [
+  [
+    "another currency",
+    (recording: RecordedExperimentInput) => {
+      recording.observations[0]!.costBreakdown!.currency = "BRL";
+    },
+  ],
+  [
+    "partial components",
+    (recording: RecordedExperimentInput) => {
+      recording.observations[0]!.costBreakdown!.humanReview = null;
+    },
+  ],
+  [
+    "missing breakdown",
+    (recording: RecordedExperimentInput) => {
+      delete recording.observations[0]!.costBreakdown;
+    },
+  ],
+] as const)
+  it("rejects frozen cost accounting with " + name, async () => {
+    const recording = structuredClone(input);
+    patch(recording);
+    await expect(
+      validateExperimentProtocol(root, "evaluator/protocol.json", recording),
+    ).rejects.toThrow("cost components");
+  });

@@ -1,5 +1,21 @@
 import { safeRead, hash, type Config } from "@inteiro/contracts";
 import { lintSource } from "@inteiro/lint";
+import {
+  summarizeTaskCosts,
+  type TaskCostBreakdown,
+} from "./cost-accounting.ts";
+export {
+  reconcileTaskCost,
+  summarizeTaskCosts,
+  aggregateTaskCostEvents,
+  sumTaskCosts,
+  COST_COMPONENTS,
+} from "./cost-accounting.ts";
+export type {
+  TaskCostBreakdown,
+  TaskCostEvent,
+  CostComponent,
+} from "./cost-accounting.ts";
 export interface Observation {
   caseId: string;
   model: string;
@@ -10,6 +26,7 @@ export interface Observation {
   attempts: number;
   durationMs: number;
   cost: number | null;
+  costBreakdown?: TaskCostBreakdown;
   tokensIn: number | null;
   tokensOut: number | null;
   humanMinutes: number | null;
@@ -21,11 +38,25 @@ export interface Observation {
   outcome?: "accepted" | "model_failure" | "environment_error" | "incomplete";
 }
 export function metrics(rows: Observation[]) {
+  const accounting = summarizeTaskCosts(rows);
+  let knownTokenSubtotal = 0;
+  for (const row of rows)
+    for (const value of [row.tokensIn, row.tokensOut])
+      if (value !== null) {
+        if (!Number.isSafeInteger(value) || value < 0)
+          throw Error("Invalid recorded token count");
+        knownTokenSubtotal += value;
+        if (!Number.isSafeInteger(knownTokenSubtotal))
+          throw Error("Token aggregate overflow");
+      }
+  const unknownTokenObservations = rows.filter(
+    (row) => row.tokensIn === null || row.tokensOut === null,
+  ).length;
+  const totalTokens = unknownTokenObservations ? null : knownTokenSubtotal;
   const evaluated = rows.filter(
       (r) => r.accepted || r.outcome === "model_failure",
     ),
-    accepted = evaluated.filter((r) => r.accepted),
-    costKnown = rows.every((r) => r.cost !== null);
+    accepted = evaluated.filter((r) => r.accepted);
   return {
     tasks: rows.length,
     evaluatedTasks: evaluated.length,
@@ -43,15 +74,23 @@ export function metrics(rows: Observation[]) {
     firstPassRate: evaluated.length
       ? evaluated.filter((r) => r.initialAccepted).length / evaluated.length
       : null,
-    totalCost: costKnown ? rows.reduce((s, r) => s + r.cost!, 0) : null,
+    totalCost: accounting.totalCost,
     costPerAcceptedTask:
-      costKnown && accepted.length
-        ? rows.reduce((s, r) => s + r.cost!, 0) / accepted.length
+      accounting.totalCost !== null && accepted.length
+        ? accounting.totalCost / accepted.length
         : null,
     meanAttempts: rows.length
       ? rows.reduce((s, r) => s + r.attempts, 0) / rows.length
       : 0,
-    unknownCost: rows.filter((r) => r.cost === null).length,
+    unknownCost: accounting.unknownTotals,
+    totalTokens,
+    knownTokenSubtotal,
+    unknownTokenObservations,
+    tokensPerAcceptedTask:
+      totalTokens !== null && accepted.length
+        ? totalTokens / accepted.length
+        : null,
+    accounting,
   };
 }
 export async function runBenchmark(root: string, config: Config) {
