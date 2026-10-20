@@ -18,6 +18,7 @@ Contratos e gates P0:
   gate run --profile dev|pr|ci|main|nightly|release --json
   benchmark run --suite p0-smoke --json
   benchmark run --observations <file> [--protocol <file>] [--dry-run] --json
+  benchmark run --calibration <file> [--dry-run] --json
   doctor --deep --json
 
 Comandos:

@@ -2,10 +2,16 @@ import { it, expect } from "vitest";
 import {
   wilson,
   percentile,
+  median,
   summarizeExperiments,
 } from "@inteiro/evaluation/experiments";
 import { metrics, type Observation } from "@inteiro/evaluation";
 it("reports bounded Wilson intervals and distribution percentiles", () => {
+  expect(median([1, 2, 3, 4])).toBe(2.5);
+  expect(median([4, 1, 3])).toBe(3);
+  expect(median([1e308, 1e308])).toBe(1e308);
+  expect(median([])).toBeNull();
+  expect(() => median([NaN])).toThrow();
   const ci = wilson(9, 10);
   expect(ci.low).toBeGreaterThan(0);
   expect(ci.high).toBeLessThan(1);

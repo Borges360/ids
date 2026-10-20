@@ -6,6 +6,7 @@ import {
   type EvidenceBundle,
   type GateResult,
   validateSchema,
+  REVIEW_AXES,
 } from "@inteiro/contracts";
 import { canonical, reviewSourceHash, readEvidence } from "@inteiro/contracts";
 import { verify, createPublicKey } from "node:crypto";
@@ -13,15 +14,7 @@ import { readFile } from "node:fs/promises";
 import { safePath } from "@inteiro/contracts";
 import { taskManifestErrors, type TaskManifest } from "./task-context.ts";
 import { contextTaskHash } from "./context.ts";
-export const REVIEW_AXES = [
-  "hierarchy",
-  "composition",
-  "density",
-  "identity",
-  "content",
-  "responsiveness",
-  "robustness",
-] as const;
+export { REVIEW_AXES } from "@inteiro/contracts";
 export interface ReviewDecision {
   runId: string;
   evidenceHash: string;

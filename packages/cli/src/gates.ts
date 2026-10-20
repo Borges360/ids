@@ -440,6 +440,25 @@ export async function gateCommand(
     return done(data, data.status);
   }
   if (cmd[0] === "benchmark") {
+    if (flag(flags, "calibration")) {
+      if (
+        flag(flags, "observations") ||
+        flag(flags, "protocol") ||
+        flag(flags, "suite")
+      )
+        throw new Error(
+          "--calibration cannot be combined with observation/protocol/suite inputs",
+        );
+      const { calibrateReviews } =
+        await import("@inteiro/evaluation/calibration");
+      const result = await calibrateReviews(
+        root,
+        flag(flags, "calibration"),
+        config.reporting.outDir + "/calibration",
+        { dryRun: bool(flags, "dry-run") },
+      );
+      return done(result, result.status);
+    }
     if (flag(flags, "protocol") && !flag(flags, "observations"))
       throw new Error("--protocol requires --observations");
     if (flag(flags, "observations")) {

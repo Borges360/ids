@@ -50,6 +50,16 @@ export function wilson(successes: number, n: number) {
     delta = (z * Math.sqrt((p * (1 - p)) / n + (z * z) / (4 * n * n))) / den;
   return { low: Math.max(0, mid - delta), high: Math.min(1, mid + delta) };
 }
+export function median(values: number[]) {
+  if (values.some((value) => !Number.isFinite(value)))
+    throw Error("Invalid median input");
+  if (!values.length) return null;
+  const sorted = [...values].sort((a, b) => a - b),
+    middle = Math.floor(sorted.length / 2);
+  return sorted.length % 2
+    ? sorted[middle]!
+    : sorted[middle - 1]! / 2 + sorted[middle]! / 2;
+}
 export function summarizeExperiments(rows: Observation[]) {
   const groupKey = (r: Observation) => JSON.stringify([r.model, r.ablation]);
   const groups = [...new Set(rows.map(groupKey))];
@@ -61,17 +71,13 @@ export function summarizeExperiments(rows: Observation[]) {
       ablation: group[0]!.ablation,
       ...summary,
       acceptanceInterval95: wilson(summary.accepted, summary.evaluatedTasks),
-      durationMedian: percentile(
-        group.map((r) => r.durationMs),
-        0.5,
-      ),
+      durationMedian: median(group.map((r) => r.durationMs)),
       durationP90: percentile(
         group.map((r) => r.durationMs),
         0.9,
       ),
-      costMedian: percentile(
+      costMedian: median(
         group.flatMap((r) => (r.cost === null ? [] : [r.cost])),
-        0.5,
       ),
       costP90: percentile(
         group.flatMap((r) => (r.cost === null ? [] : [r.cost])),

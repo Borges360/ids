@@ -23,6 +23,15 @@ export const STATES = [
   "error",
 ] as const;
 export type GateStatus = (typeof STATES)[number];
+export const REVIEW_AXES = [
+  "hierarchy",
+  "composition",
+  "density",
+  "identity",
+  "content",
+  "responsiveness",
+  "robustness",
+] as const;
 export const RUN_ID_PATTERN =
   "^run-[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$";
 export function isRunId(value: unknown): value is string {

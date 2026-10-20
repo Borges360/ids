@@ -1,10 +1,12 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { benchmarkProtocolSchema } from "./benchmark-protocol-schema.mjs";
+import { calibrationSchemas } from "./calibration-schemas.mjs";
 import {
   DEFAULTS,
   STATES,
   TASK_TYPES,
   RUN_ID_PATTERN,
+  REVIEW_AXES,
 } from "../packages/contracts/src/index.ts";
 const infer = (v) =>
   Array.isArray(v)
@@ -418,6 +420,7 @@ const contracts = {
       "artifacts",
     ],
   },
+  ...calibrationSchemas([...REVIEW_AXES]),
   "benchmark-protocol": benchmarkProtocolSchema,
   "experiment-input": {
     type: "object",
@@ -688,15 +691,7 @@ const contracts = {
           ],
           properties: {
             axis: {
-              enum: [
-                "hierarchy",
-                "composition",
-                "density",
-                "identity",
-                "content",
-                "responsiveness",
-                "robustness",
-              ],
+              enum: [...REVIEW_AXES],
             },
             score: { type: "integer", minimum: 0, maximum: 4 },
             evidenceId: { type: "string", pattern: "\\S" },
