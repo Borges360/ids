@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0",
   "version": "1.2.0",
-  "sourceCommit": "ee45f33bd7f75fa9e015f4851ed17f7fe4ee33be",
-  "sourceHash": "1841bc5a20c4b7f60aff77eee5ca5245b46c29db70077b6983355b4af9df8dee",
+  "sourceCommit": "07a69373ceaf8058af78dc33924d8d52e9d12c9f",
+  "sourceHash": "5a9c1e169f267b2565cd7fd26a66379460398ea1967eaed4d97791201429d42e",
   "configHash": "c01aff1aced7f9f3957c622ca3870d094ec3f2c7744c2e05bf0086a6414e8270",
   "policyHash": "",
   "scopeExclusions": [
@@ -307,7 +307,7 @@
     {
       "id": "E04",
       "status": "needs_review",
-      "reason": "Lifecycle, fixtures, ações, axe, fontes e comparação visual implementados. VIS-TARGET-001 agora mede controles e links de navegação a 44 CSS px, com testes reais positivos, labels associados e regressão de botão de 20 px. As medições de dimensão não comprovam oclusão, alcance nem cobertura integral da WCAG; a auditoria desses requisitos continua pendente. A matriz ampliada nos quatro temas e os seis testes do pipeline de navegador passaram. O gate PR executou 492 capturas e seus 984 artefatos foram verificados; somente baseline sem aprovação e revisão humana pendente impedem esse gate. A medição de dimensão continua sem provar oclusão/alcance integral.",
+      "reason": "Lifecycle, fixtures, ações, axe, fontes e comparação visual implementados. VIS-TARGET-001 agora mede controles e links de navegação a 44 CSS px, com testes reais positivos, labels associados e regressão de botão de 20 px. As medições de dimensão não comprovam oclusão, alcance nem cobertura integral da WCAG; a auditoria desses requisitos continua pendente. A matriz ampliada nos quatro temas e os seis testes do pipeline de navegador passaram. O gate PR executou 492 capturas e seus 984 artefatos foram verificados; somente baseline sem aprovação e revisão humana pendente impedem esse gate. A medição de dimensão continua sem provar oclusão/alcance integral. Aleatoriedade visual agora usa seed uint32 explícito ou hash da fixture completa, instalado antes dos scripts em documentos/iframes e reiniciado ao navegar. Recibos registram seed/perfil e o fingerprint inclui o mecanismo; APIs criptográficas permanecem nativas. Fixture pública com seed inválido é recusada antes de preparar candidato. 490 testes unitários e 16 testes direcionados, incluindo 7 de Chromium real, passaram; lifecycle sintético compara página com conteúdo aleatório. Pacotes instaláveis e matriz visual da raiz deste source aguardam próxima integração conjunta; continuam pendências de interação e fixtures avançadas.",
       "evidence": [
         {
           "path": "tests/p0/browser-runner.test.ts",
@@ -376,6 +376,10 @@
         {
           "path": "artifacts/p0-grading-pr-gate.json",
           "sha256": "76d65ea2aaece674ec580542616e74cc4887568e7fef363775f24c8d6b9ce595"
+        },
+        {
+          "path": "artifacts/p0-browser-random-proof.json",
+          "sha256": "f07dd9567c513476c77fa33e76d24b99506b35e0aaef3bb325ddd381e143a2be"
         }
       ]
     },
