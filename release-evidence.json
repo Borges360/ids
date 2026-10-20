@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0",
   "version": "1.2.0",
-  "sourceCommit": "95ad41092c30c0cdadf0a8b3e3dc2d3058a63b24",
-  "sourceHash": "2007b6c95a16868186e83b058ee728aa9c606f3d08c5fb4f09816c24a28486d5",
+  "sourceCommit": "1ad509f90b15c54907d3b47678b1ef52c82174e6",
+  "sourceHash": "1e6c57615bfaca639b5103b6cbd57281d076d2d37d059cf00739119d4dddde22",
   "configHash": "c01aff1aced7f9f3957c622ca3870d094ec3f2c7744c2e05bf0086a6414e8270",
   "policyHash": "",
   "scopeExclusions": [
@@ -498,7 +498,7 @@
     {
       "id": "E08",
       "status": "blocked",
-      "reason": "Decisões assinadas agora vinculam capturas finais e intermediárias, incluindo multiplicidade, rota/estado/viewport/tema/densidade/índice de ação e bytes atuais. Troca de associação ou captura invalida a decisão. Review e repair têm tipos, schemas e arquivos separados. Testes de adulteração e CLI passaram. Ainda faltam dataset humano de referência e calibração do revisor (concordância, correlação, falsos bloqueios, falhas graves perdidas e custo). Não houve aprovação de baseline ou revisão de produção.",
+      "reason": "Engine de calibração implementado com schemas públicos, referências assinadas Ed25519 e política separada para identidades humanas/sintéticas; cobre rubrica de sete eixos, pares de capturas, texto longo, overlays e calm/focus. Mede concordância/erro por eixo, Spearman com empates, ranking, falsos bloqueios, falhas graves perdidas, insuficiência, custos e tokens desconhecidos. Evidência insuficiente pode omitir notas sem inventá-las; cobertura e denominadores são explícitos. CLI/API/dry-run/tipos instalados em Node 24 e 22.14 e CI com 406 testes (41 de calibração) passaram. As referências executadas são exclusivamente sintéticas; corpus humano real, calibração empírica e aprovação visual de produto seguem pendentes. Nenhuma identidade humana ou baseline de produção foi criada/aprovada.",
       "evidence": [
         {
           "path": "tests/p0/review.test.ts",
@@ -559,17 +559,49 @@
         {
           "path": "artifacts/p0-experiment-dry-verification.json",
           "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+        },
+        {
+          "path": "packages/evaluation/src/calibration.ts",
+          "sha256": "305b068f155ea9006b704d4cf2ebe3cff478804d63d751c9ebf60294006a7d9c"
+        },
+        {
+          "path": "packages/contracts/schemas/review-calibration-input.schema.json",
+          "sha256": "a8b6a6e180f3a667001815f7e26fb4fb9f6f4c9d37f486fb44b949de53bf2e83"
+        },
+        {
+          "path": "packages/contracts/schemas/review-calibration-reference.schema.json",
+          "sha256": "50d92636f50de4a5386833a41c1ebdfeb49bf04d1832730a92f646cd76e96b03"
+        },
+        {
+          "path": "packages/contracts/schemas/review-calibration-reviewers.schema.json",
+          "sha256": "6d7e6e65e6a556f656ca020797baac6b9f44ac7c3a7f343ae040f7e31ec2c8ca"
+        },
+        {
+          "path": "tests/p0/calibration.test.ts",
+          "sha256": "b0b2c1354de059ed76448432c7b1c7e803e7c0f91714ecb627c1cd398e34b395"
+        },
+        {
+          "path": "tests/helpers/calibration-fixture.ts",
+          "sha256": "898e2609e1d2ea1565f6119fa54b450747d277c23eaeafc3716bc1dd31d8bce6"
+        },
+        {
+          "path": "docs/P0_OPERATIONS.md",
+          "sha256": "caa137e4f816a30b34eabefb528dc6b2a44f7cb3e1c087fdeb0b19bcaa3281b7"
+        },
+        {
+          "path": "artifacts/p0-calibration-verification.json",
+          "sha256": "6cbfebd9fb9c175f553cb77bb94f89db8d428d9823e08a05dbdc197d2596875d"
         }
       ]
     },
     {
       "id": "E09",
       "status": "blocked",
-      "reason": "Validador de protocolo congelado implementado: commits e bytes Git do dataset/recursos, snapshots de ambiente, versões declaradas, permissões sem acesso ao avaliador ou histórico Git, orçamento comum e matriz completa modelo/tarefa/ablação/seed. Evidências fornecidas são vinculadas à configuração, versão IDS e ambiente do navegador. 340 testes passam no CI; 11 pacotes offline e API/CLI/tipos instalados em Node 24 e 22.14 passam com matriz sintética de 960 observações, sem agentes reais. O resultado identifica publicação como não pronta. Permanecem pendentes critérios executáveis independentes das 40 tarefas reais, atestações de execução/aplicação de permissões e prompt, custo decomposto e calibração humana. Experimento real continua excluído pelo solicitante. Capturas finais agora registram browserVersion, permitindo conferir a versão de navegador no protocolo congelado; os cinco testes reais de navegador e o CI com 365 testes passam. Nenhum experimento de modelos foi executado.",
+      "reason": "Validador de protocolo congelado implementado: commits e bytes Git do dataset/recursos, snapshots de ambiente, versões declaradas, permissões sem acesso ao avaliador ou histórico Git, orçamento comum e matriz completa modelo/tarefa/ablação/seed. Evidências fornecidas são vinculadas à configuração, versão IDS e ambiente do navegador. 340 testes passam no CI; 11 pacotes offline e API/CLI/tipos instalados em Node 24 e 22.14 passam com matriz sintética de 960 observações, sem agentes reais. O resultado identifica publicação como não pronta. Permanecem pendentes critérios executáveis independentes das 40 tarefas reais, atestações de execução/aplicação de permissões e prompt, custo decomposto e calibração humana. Experimento real continua excluído pelo solicitante. Capturas finais agora registram browserVersion, permitindo conferir a versão de navegador no protocolo congelado; os cinco testes reais de navegador e o CI com 365 testes passam. Nenhum experimento de modelos foi executado. Engine de medição da calibração agora existe e a mediana de amostras pares foi corrigida; a avaliação humana real permanece ausente. CI atual com 406 testes e pacotes instalados em Node 24/22.14 passam.",
       "evidence": [
         {
           "path": "tests/p0/evaluation.test.ts",
-          "sha256": "3151159f781cce0a3e6a257ce5a4a187765757f291650b297fddb3846cba7086"
+          "sha256": "d6cb311a16f32a8df19b3d220a9b70fc4cbc99fdad8e143d6e77130daecf1907"
         },
         {
           "path": "artifacts/p0-experiment-validation-audit-review.json",
@@ -625,7 +657,7 @@
         },
         {
           "path": "docs/P0_OPERATIONS.md",
-          "sha256": "5aad3b3b8777c8bcdec1eab7a3de5834772445f84d0117ecfffc96aed0029222"
+          "sha256": "caa137e4f816a30b34eabefb528dc6b2a44f7cb3e1c087fdeb0b19bcaa3281b7"
         },
         {
           "path": "artifacts/p0-protocol-verification.json",
@@ -642,6 +674,18 @@
         {
           "path": "artifacts/p0-repair-verification.json",
           "sha256": "8ab518edbde20c3d0f8ec144f75b149572aa1428f832f132c8c937c5445c0f09"
+        },
+        {
+          "path": "packages/evaluation/src/calibration.ts",
+          "sha256": "305b068f155ea9006b704d4cf2ebe3cff478804d63d751c9ebf60294006a7d9c"
+        },
+        {
+          "path": "tests/p0/calibration.test.ts",
+          "sha256": "b0b2c1354de059ed76448432c7b1c7e803e7c0f91714ecb627c1cd398e34b395"
+        },
+        {
+          "path": "artifacts/p0-calibration-verification.json",
+          "sha256": "6cbfebd9fb9c175f553cb77bb94f89db8d428d9823e08a05dbdc197d2596875d"
         }
       ]
     },
@@ -652,7 +696,7 @@
       "evidence": [
         {
           "path": "docs/P0_OPERATIONS.md",
-          "sha256": "5aad3b3b8777c8bcdec1eab7a3de5834772445f84d0117ecfffc96aed0029222"
+          "sha256": "caa137e4f816a30b34eabefb528dc6b2a44f7cb3e1c087fdeb0b19bcaa3281b7"
         },
         {
           "path": "tests/p0/migration.test.ts",
@@ -672,7 +716,7 @@
         },
         {
           "path": "artifacts/p0-offline.json",
-          "sha256": "7354b2d43eccf17bf0451dd366e183f0d4c96ed5e9c200ec4c0ca919dfe87bdb"
+          "sha256": "1c2b85459eddc850c4df205eaecf4fa79ef2994f53e1e8e9df04acfc9ef2d1ca"
         },
         {
           "path": "artifacts/p0-node22-bound-migration.log",
@@ -684,7 +728,7 @@
         },
         {
           "path": "artifacts/p0-package-manifest.json",
-          "sha256": "dd77534a28adc33d32bfa94eded495335e848e954a4d7164b98ec450b3a88261"
+          "sha256": "35261ed860fe5204ef9d212acaf635a73378e0bbe66a074c16a610e51c155703"
         },
         {
           "path": "artifacts/linux-bound-migration/p0-offline.json",
@@ -1468,8 +1512,8 @@
     },
     {
       "id": "WP-19",
-      "status": "needs_review",
-      "reason": "Human/Multimodal Review Gate: implementação disponível; critério de saída a confirmar na auditoria final (Rubrica, política e controle de egress).",
+      "status": "blocked",
+      "reason": "Engine de calibração implementado com schemas públicos, referências assinadas Ed25519 e política separada para identidades humanas/sintéticas; cobre rubrica de sete eixos, pares de capturas, texto longo, overlays e calm/focus. Mede concordância/erro por eixo, Spearman com empates, ranking, falsos bloqueios, falhas graves perdidas, insuficiência, custos e tokens desconhecidos. Evidência insuficiente pode omitir notas sem inventá-las; cobertura e denominadores são explícitos. CLI/API/dry-run/tipos instalados em Node 24 e 22.14 e CI com 406 testes (41 de calibração) passaram. As referências executadas são exclusivamente sintéticas; corpus humano real, calibração empírica e aprovação visual de produto seguem pendentes. Nenhuma identidade humana ou baseline de produção foi criada/aprovada.",
       "evidence": [
         {
           "path": "tests/p0/review.test.ts",
@@ -1498,6 +1542,38 @@
         {
           "path": "artifacts/p0-experiment-dry-verification.json",
           "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+        },
+        {
+          "path": "packages/evaluation/src/calibration.ts",
+          "sha256": "305b068f155ea9006b704d4cf2ebe3cff478804d63d751c9ebf60294006a7d9c"
+        },
+        {
+          "path": "packages/contracts/schemas/review-calibration-input.schema.json",
+          "sha256": "a8b6a6e180f3a667001815f7e26fb4fb9f6f4c9d37f486fb44b949de53bf2e83"
+        },
+        {
+          "path": "packages/contracts/schemas/review-calibration-reference.schema.json",
+          "sha256": "50d92636f50de4a5386833a41c1ebdfeb49bf04d1832730a92f646cd76e96b03"
+        },
+        {
+          "path": "packages/contracts/schemas/review-calibration-reviewers.schema.json",
+          "sha256": "6d7e6e65e6a556f656ca020797baac6b9f44ac7c3a7f343ae040f7e31ec2c8ca"
+        },
+        {
+          "path": "tests/p0/calibration.test.ts",
+          "sha256": "b0b2c1354de059ed76448432c7b1c7e803e7c0f91714ecb627c1cd398e34b395"
+        },
+        {
+          "path": "tests/helpers/calibration-fixture.ts",
+          "sha256": "898e2609e1d2ea1565f6119fa54b450747d277c23eaeafc3716bc1dd31d8bce6"
+        },
+        {
+          "path": "docs/P0_OPERATIONS.md",
+          "sha256": "caa137e4f816a30b34eabefb528dc6b2a44f7cb3e1c087fdeb0b19bcaa3281b7"
+        },
+        {
+          "path": "artifacts/p0-calibration-verification.json",
+          "sha256": "6cbfebd9fb9c175f553cb77bb94f89db8d428d9823e08a05dbdc197d2596875d"
         }
       ]
     },
@@ -1508,7 +1584,7 @@
       "evidence": [
         {
           "path": "tests/p0/evaluation.test.ts",
-          "sha256": "3151159f781cce0a3e6a257ce5a4a187765757f291650b297fddb3846cba7086"
+          "sha256": "d6cb311a16f32a8df19b3d220a9b70fc4cbc99fdad8e143d6e77130daecf1907"
         },
         {
           "path": "artifacts/p0-verification.json",
@@ -1548,7 +1624,7 @@
         },
         {
           "path": "docs/P0_OPERATIONS.md",
-          "sha256": "5aad3b3b8777c8bcdec1eab7a3de5834772445f84d0117ecfffc96aed0029222"
+          "sha256": "caa137e4f816a30b34eabefb528dc6b2a44f7cb3e1c087fdeb0b19bcaa3281b7"
         },
         {
           "path": "artifacts/p0-protocol-verification.json",
@@ -1598,7 +1674,7 @@
       "evidence": [
         {
           "path": "docs/P0_OPERATIONS.md",
-          "sha256": "5aad3b3b8777c8bcdec1eab7a3de5834772445f84d0117ecfffc96aed0029222"
+          "sha256": "caa137e4f816a30b34eabefb528dc6b2a44f7cb3e1c087fdeb0b19bcaa3281b7"
         },
         {
           "path": "tests/p0/compatibility.test.ts",
@@ -1789,7 +1865,7 @@
         },
         {
           "path": "artifacts/p0-offline.json",
-          "sha256": "7354b2d43eccf17bf0451dd366e183f0d4c96ed5e9c200ec4c0ca919dfe87bdb"
+          "sha256": "1c2b85459eddc850c4df205eaecf4fa79ef2994f53e1e8e9df04acfc9ef2d1ca"
         },
         {
           "path": "artifacts/p0-node22-bound-migration.log",
@@ -1968,7 +2044,7 @@
       "evidence": [
         {
           "path": "tests/p0/evaluation.test.ts",
-          "sha256": "3151159f781cce0a3e6a257ce5a4a187765757f291650b297fddb3846cba7086"
+          "sha256": "d6cb311a16f32a8df19b3d220a9b70fc4cbc99fdad8e143d6e77130daecf1907"
         },
         {
           "path": "artifacts/p0-verification.json",
