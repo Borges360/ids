@@ -8,7 +8,8 @@
   "scopeExclusions": [
     "Deploy Jenkins: retirado pelo solicitante.",
     "Experimento real com dois perfis de modelo: excluído pelo solicitante.",
-    "Smoke com agentes reais Pi/Codex: excluído pelo solicitante; adapters e CLI offline permanecem no escopo."
+    "Smoke com agentes reais Pi/Codex: excluído pelo solicitante; adapters e CLI offline permanecem no escopo.",
+    "Aprovação humana final da meta: removida pelo solicitante; mecanismos de revisão do produto permanecem."
   ],
   "requirements": [
     {
@@ -621,7 +622,7 @@
     {
       "id": "E09",
       "status": "blocked",
-      "reason": "10 das 40 tarefas agora possuem starter relacionado ao domínio, instruções, fontes iniciais, fixture de API e critério executável independente com SHA fixado. O executor valida JSON, captura fonte/commit/configuração, usa servidor estático isolado e contexto Chromium novo, bloqueia egress e controla clock/RNG/respostas pendentes. Os dez starters incompletos e dez mutações conhecidas são reprovados; dez referências funcionais reservadas ao avaliador passam. Ainda faltam migrar vinte tarefas públicas e dez reservadas, preparar/isolar workspaces reais, vincular recibos de grading às observações aceitas, atestar execução/permissões/prompt e decompor custos. Calibração humana e aprovações de produto continuam ausentes. Comparação real de modelos permanece excluída pelo solicitante.",
+      "reason": "Preparação seletiva de candidatos e execução Node isolada em Docker implementadas: controles somente leitura, arquivos editáveis exatos, rede bloqueada, limites de recursos e tamanho, limpeza por timeout e recibo fora do candidato. Validação: 418 testes unitários, 11 testes de isolamento/CLI, 11 pacotes offline e API/CLI/tipos instalados em Node 24 e 22. Restam migração de 30 tarefas, bootstrap de dependências/harness/rotas e vínculo dos recibos funcionais ao protocolo. Experimentos reais excluídos pelo solicitante.",
       "evidence": [
         {
           "path": "tests/p0/evaluation.test.ts",
@@ -738,6 +739,10 @@
         {
           "path": "artifacts/p0-functional-grading-proof.json",
           "sha256": "4fcbb3db90d3c429b5c0af950e48f9bea0c9dcb4634d6729c215670db993ed9d"
+        },
+        {
+          "path": "artifacts/p0-worker-isolation-proof.json",
+          "sha256": "2494a9ecbb7e18c26039948cac61830c58e610008cd78edd84fe4eefa98c7258"
         }
       ]
     },
@@ -1640,7 +1645,7 @@
     {
       "id": "WP-20",
       "status": "blocked",
-      "reason": "10 das 40 tarefas agora possuem starter relacionado ao domínio, instruções, fontes iniciais, fixture de API e critério executável independente com SHA fixado. O executor valida JSON, captura fonte/commit/configuração, usa servidor estático isolado e contexto Chromium novo, bloqueia egress e controla clock/RNG/respostas pendentes. Os dez starters incompletos e dez mutações conhecidas são reprovados; dez referências funcionais reservadas ao avaliador passam. Ainda faltam migrar vinte tarefas públicas e dez reservadas, preparar/isolar workspaces reais, vincular recibos de grading às observações aceitas, atestar execução/permissões/prompt e decompor custos. Calibração humana e aprovações de produto continuam ausentes. Comparação real de modelos permanece excluída pelo solicitante.",
+      "reason": "Preparação seletiva de candidatos e execução Node isolada em Docker implementadas: controles somente leitura, arquivos editáveis exatos, rede bloqueada, limites de recursos e tamanho, limpeza por timeout e recibo fora do candidato. Validação: 418 testes unitários, 11 testes de isolamento/CLI, 11 pacotes offline e API/CLI/tipos instalados em Node 24 e 22. Restam migração de 30 tarefas, bootstrap de dependências/harness/rotas e vínculo dos recibos funcionais ao protocolo. Experimentos reais excluídos pelo solicitante.",
       "evidence": [
         {
           "path": "tests/p0/evaluation.test.ts",
@@ -1717,6 +1722,10 @@
         {
           "path": "artifacts/p0-functional-grading-proof.json",
           "sha256": "4fcbb3db90d3c429b5c0af950e48f9bea0c9dcb4634d6729c215670db993ed9d"
+        },
+        {
+          "path": "artifacts/p0-worker-isolation-proof.json",
+          "sha256": "2494a9ecbb7e18c26039948cac61830c58e610008cd78edd84fe4eefa98c7258"
         }
       ]
     },

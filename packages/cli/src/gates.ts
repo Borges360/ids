@@ -441,6 +441,25 @@ export async function gateCommand(
     return done(data, data.status);
   }
   if (cmd[0] === "benchmark") {
+    if (cmd[1] === "prepare") {
+      if (!flag(flags, "case") || !flag(flags, "target"))
+        throw Error("benchmark prepare requires --case and --target");
+      const { prepareBenchmarkWorker } =
+        await import("@inteiro/evaluation/workspace");
+      const result = await prepareBenchmarkWorker(
+        root,
+        flag(flags, "target"),
+        flag(flags, "case"),
+        { dryRun: bool(flags, "dry-run") },
+      );
+      return done(result, result.status);
+    }
+    if (cmd[1] === "worker-audit") {
+      const { auditBenchmarkWorker } =
+        await import("@inteiro/evaluation/workspace");
+      const result = await auditBenchmarkWorker(root, flag(flags, "worker"));
+      return done(result, result.status);
+    }
     if (flag(flags, "grading")) {
       if (
         !flag(flags, "candidate") ||

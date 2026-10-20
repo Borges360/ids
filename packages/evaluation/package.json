@@ -6,7 +6,8 @@
     ".": "./src/index.ts",
     "./experiments": "./src/experiments.ts",
     "./calibration": "./src/calibration.ts",
-    "./grading": "./src/grading.ts"
+    "./grading": "./src/grading.ts",
+    "./workspace": "./src/workspace.ts"
   },
   "files": [
     "src"
