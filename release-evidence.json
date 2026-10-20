@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0",
   "version": "1.2.0",
-  "sourceCommit": "988d7e92ac85ebf7115389abb886431da7232ba4",
-  "sourceHash": "a1725319b05d47349c9f918d11749721ecbc44998ac675611361895143c1d526",
+  "sourceCommit": "95ad41092c30c0cdadf0a8b3e3dc2d3058a63b24",
+  "sourceHash": "2007b6c95a16868186e83b058ee728aa9c606f3d08c5fb4f09816c24a28486d5",
   "configHash": "c01aff1aced7f9f3957c622ca3870d094ec3f2c7744c2e05bf0086a6414e8270",
   "policyHash": "",
   "scopeExclusions": [
@@ -290,7 +290,7 @@
       "evidence": [
         {
           "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "56ce2e270329bf3abbcdc3720fd92dfe823a486fb503a7e6b29d766318013c7e"
+          "sha256": "e6f6a92a1ea7c54f346be7bcefe19ac47a84540750d7481074b942c1620ff799"
         },
         {
           "path": "artifacts/p0-response-alias-browser.log",
@@ -431,11 +431,11 @@
     {
       "id": "E07",
       "status": "needs_review",
-      "reason": "Envelope e controlador com tentativas, escopo e rollback testados; integração Pi usa CLI JSON sem execução de agentes.",
+      "reason": "O controlador agora exige gate completo para concluir: cinco gates únicos, sourceHash/commit/configuração e tarefa/contexto atuais, cobertura estática enforce-all, matriz declarada de rotas/estados/viewports/temas/densidades, screenshots intermediários, bytes registrados e revisão qualitativa novamente conferida. Relatórios verdes incompletos são bloqueados com rollback e acceptanceFailure; o transporte recusa findings omitidos/duplicados/contraditórios. O adapter Pi usa resolução ESM compatível com o CLI instalado e foi exercitado como processo determinístico offline, sem agente. CI com 365 testes, cinco testes de navegador e 11 pacotes/consumidores em Node 24 e 22.14 passaram. A aceitação global P0 permanece dependente das demais lacunas e revisões do ledger.",
       "evidence": [
         {
           "path": "tests/p0/repair-controller.test.ts",
-          "sha256": "bac2923024ffc7d2b4c8b3c3818e663f069e34abe3ee2c8949797dba88c7f024"
+          "sha256": "08bcc9cce43a76554d6b376b4b887232520b32f1737d6feafc9265df27667c3e"
         },
         {
           "path": "tests/p0/task-context.test.ts",
@@ -468,6 +468,30 @@
         {
           "path": "artifacts/p0-experiment-dry-verification.json",
           "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+        },
+        {
+          "path": "packages/agent-core/src/repair-validation.ts",
+          "sha256": "6e0035551f1fc13898a8ae5d459d8c149a620e66cb0d849b4c51ef7fcf157f76"
+        },
+        {
+          "path": "packages/agent-core/src/gate-protocol.ts",
+          "sha256": "c25184cad5893145b94111907546ae164abc0859844939362030851406812501"
+        },
+        {
+          "path": "tests/p0/repair-acceptance.test.ts",
+          "sha256": "65160e6d029a6e3915a044748ba327f2cac27f33f875bb7594c2ff62f3fc8242"
+        },
+        {
+          "path": "tests/helpers/repair-evidence.ts",
+          "sha256": "78289daf60893b1ecfcb2b0ca49ce499dad1f30a9ab0dbd97bccb38eb2737cff"
+        },
+        {
+          "path": "examples/pi/repair-adapter.ts",
+          "sha256": "c90b983936825e3e3293ec9e32fa7f9a7e826895200dc11aa7426513a2439a7c"
+        },
+        {
+          "path": "artifacts/p0-repair-verification.json",
+          "sha256": "8ab518edbde20c3d0f8ec144f75b149572aa1428f832f132c8c937c5445c0f09"
         }
       ]
     },
@@ -498,7 +522,7 @@
         },
         {
           "path": "tests/p0/cli.test.ts",
-          "sha256": "90af7190aa29a61927c66793b8f9a9eee1ed213b2c49ee427b18833f0fa5b95d"
+          "sha256": "9de7d8b03439baeee46dee02a1a6bcdad9952dae5ba67c56be557de8fe6251e6"
         },
         {
           "path": "packages/contracts/schemas/review-request.schema.json",
@@ -541,7 +565,7 @@
     {
       "id": "E09",
       "status": "blocked",
-      "reason": "Validador de protocolo congelado implementado: commits e bytes Git do dataset/recursos, snapshots de ambiente, versões declaradas, permissões sem acesso ao avaliador ou histórico Git, orçamento comum e matriz completa modelo/tarefa/ablação/seed. Evidências fornecidas são vinculadas à configuração, versão IDS e ambiente do navegador. 340 testes passam no CI; 11 pacotes offline e API/CLI/tipos instalados em Node 24 e 22.14 passam com matriz sintética de 960 observações, sem agentes reais. O resultado identifica publicação como não pronta. Permanecem pendentes critérios executáveis independentes das 40 tarefas reais, atestações de execução/aplicação de permissões e prompt, custo decomposto e calibração humana. Experimento real continua excluído pelo solicitante.",
+      "reason": "Validador de protocolo congelado implementado: commits e bytes Git do dataset/recursos, snapshots de ambiente, versões declaradas, permissões sem acesso ao avaliador ou histórico Git, orçamento comum e matriz completa modelo/tarefa/ablação/seed. Evidências fornecidas são vinculadas à configuração, versão IDS e ambiente do navegador. 340 testes passam no CI; 11 pacotes offline e API/CLI/tipos instalados em Node 24 e 22.14 passam com matriz sintética de 960 observações, sem agentes reais. O resultado identifica publicação como não pronta. Permanecem pendentes critérios executáveis independentes das 40 tarefas reais, atestações de execução/aplicação de permissões e prompt, custo decomposto e calibração humana. Experimento real continua excluído pelo solicitante. Capturas finais agora registram browserVersion, permitindo conferir a versão de navegador no protocolo congelado; os cinco testes reais de navegador e o CI com 365 testes passam. Nenhum experimento de modelos foi executado.",
       "evidence": [
         {
           "path": "tests/p0/evaluation.test.ts",
@@ -601,11 +625,23 @@
         },
         {
           "path": "docs/P0_OPERATIONS.md",
-          "sha256": "b17283981221586380c4a2f8ea74d53d7176ee34bc48f7238bd81e20a9fee1fc"
+          "sha256": "5aad3b3b8777c8bcdec1eab7a3de5834772445f84d0117ecfffc96aed0029222"
         },
         {
           "path": "artifacts/p0-protocol-verification.json",
           "sha256": "4c1a26c6991a7ed41a38128c27c929a668e1b525ec0b7d54fd3864c2014f966b"
+        },
+        {
+          "path": "packages/visual/src/index.ts",
+          "sha256": "4b05a69bc6302587f3d154e7ffdaf3fb679df854eaaa8469a54ede5e93c5fcc0"
+        },
+        {
+          "path": "tests/p0/browser-runner.test.ts",
+          "sha256": "e6f6a92a1ea7c54f346be7bcefe19ac47a84540750d7481074b942c1620ff799"
+        },
+        {
+          "path": "artifacts/p0-repair-verification.json",
+          "sha256": "8ab518edbde20c3d0f8ec144f75b149572aa1428f832f132c8c937c5445c0f09"
         }
       ]
     },
@@ -616,7 +652,7 @@
       "evidence": [
         {
           "path": "docs/P0_OPERATIONS.md",
-          "sha256": "dd2f894e94b7108c4f1f16a16ce6723faeed32ee8f1859735141cc82b83a9e5c"
+          "sha256": "5aad3b3b8777c8bcdec1eab7a3de5834772445f84d0117ecfffc96aed0029222"
         },
         {
           "path": "tests/p0/migration.test.ts",
@@ -636,7 +672,7 @@
         },
         {
           "path": "artifacts/p0-offline.json",
-          "sha256": "ce13a440edcddd5f77e36d2ebb0f17d5faa416895e41fc4ca8bd37a1583641c0"
+          "sha256": "7354b2d43eccf17bf0451dd366e183f0d4c96ed5e9c200ec4c0ca919dfe87bdb"
         },
         {
           "path": "artifacts/p0-node22-bound-migration.log",
@@ -648,7 +684,7 @@
         },
         {
           "path": "artifacts/p0-package-manifest.json",
-          "sha256": "07abadf07fc55cc57f0d9941b34805607cad0551b7cf59591c66659153bdeb76"
+          "sha256": "dd77534a28adc33d32bfa94eded495335e848e954a4d7164b98ec450b3a88261"
         },
         {
           "path": "artifacts/linux-bound-migration/p0-offline.json",
@@ -1140,7 +1176,7 @@
       "evidence": [
         {
           "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "56ce2e270329bf3abbcdc3720fd92dfe823a486fb503a7e6b29d766318013c7e"
+          "sha256": "e6f6a92a1ea7c54f346be7bcefe19ac47a84540750d7481074b942c1620ff799"
         },
         {
           "path": "artifacts/p0-verification.json",
@@ -1311,7 +1347,7 @@
     {
       "id": "WP-17",
       "status": "needs_review",
-      "reason": "Evidence Bundle JSON/SARIF/JUnit/HTML: implementação disponível; critério de saída a confirmar na auditoria final (Consumer parseável e report consistente).",
+      "reason": "O controlador agora exige gate completo para concluir: cinco gates únicos, sourceHash/commit/configuração e tarefa/contexto atuais, cobertura estática enforce-all, matriz declarada de rotas/estados/viewports/temas/densidades, screenshots intermediários, bytes registrados e revisão qualitativa novamente conferida. Relatórios verdes incompletos são bloqueados com rollback e acceptanceFailure; o transporte recusa findings omitidos/duplicados/contraditórios. O adapter Pi usa resolução ESM compatível com o CLI instalado e foi exercitado como processo determinístico offline, sem agente. CI com 365 testes, cinco testes de navegador e 11 pacotes/consumidores em Node 24 e 22.14 passaram. A aceitação global P0 permanece dependente das demais lacunas e revisões do ledger.",
       "evidence": [
         {
           "path": "tests/p0/contracts.test.ts",
@@ -1344,17 +1380,41 @@
         {
           "path": "artifacts/p0-experiment-dry-verification.json",
           "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+        },
+        {
+          "path": "packages/agent-core/src/repair-validation.ts",
+          "sha256": "6e0035551f1fc13898a8ae5d459d8c149a620e66cb0d849b4c51ef7fcf157f76"
+        },
+        {
+          "path": "packages/agent-core/src/gate-protocol.ts",
+          "sha256": "c25184cad5893145b94111907546ae164abc0859844939362030851406812501"
+        },
+        {
+          "path": "tests/p0/repair-acceptance.test.ts",
+          "sha256": "65160e6d029a6e3915a044748ba327f2cac27f33f875bb7594c2ff62f3fc8242"
+        },
+        {
+          "path": "tests/helpers/repair-evidence.ts",
+          "sha256": "78289daf60893b1ecfcb2b0ca49ce499dad1f30a9ab0dbd97bccb38eb2737cff"
+        },
+        {
+          "path": "examples/pi/repair-adapter.ts",
+          "sha256": "c90b983936825e3e3293ec9e32fa7f9a7e826895200dc11aa7426513a2439a7c"
+        },
+        {
+          "path": "artifacts/p0-repair-verification.json",
+          "sha256": "8ab518edbde20c3d0f8ec144f75b149572aa1428f832f132c8c937c5445c0f09"
         }
       ]
     },
     {
       "id": "WP-18",
       "status": "needs_review",
-      "reason": "Repair Envelope e controller de tentativas: implementação disponível; critério de saída a confirmar na auditoria final (Sem loops/alterações indevidas).",
+      "reason": "O controlador agora exige gate completo para concluir: cinco gates únicos, sourceHash/commit/configuração e tarefa/contexto atuais, cobertura estática enforce-all, matriz declarada de rotas/estados/viewports/temas/densidades, screenshots intermediários, bytes registrados e revisão qualitativa novamente conferida. Relatórios verdes incompletos são bloqueados com rollback e acceptanceFailure; o transporte recusa findings omitidos/duplicados/contraditórios. O adapter Pi usa resolução ESM compatível com o CLI instalado e foi exercitado como processo determinístico offline, sem agente. CI com 365 testes, cinco testes de navegador e 11 pacotes/consumidores em Node 24 e 22.14 passaram. A aceitação global P0 permanece dependente das demais lacunas e revisões do ledger.",
       "evidence": [
         {
           "path": "tests/p0/repair-controller.test.ts",
-          "sha256": "bac2923024ffc7d2b4c8b3c3818e663f069e34abe3ee2c8949797dba88c7f024"
+          "sha256": "08bcc9cce43a76554d6b376b4b887232520b32f1737d6feafc9265df27667c3e"
         },
         {
           "path": "artifacts/p0-verification.json",
@@ -1379,6 +1439,30 @@
         {
           "path": "artifacts/p0-experiment-dry-verification.json",
           "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+        },
+        {
+          "path": "packages/agent-core/src/repair-validation.ts",
+          "sha256": "6e0035551f1fc13898a8ae5d459d8c149a620e66cb0d849b4c51ef7fcf157f76"
+        },
+        {
+          "path": "packages/agent-core/src/gate-protocol.ts",
+          "sha256": "c25184cad5893145b94111907546ae164abc0859844939362030851406812501"
+        },
+        {
+          "path": "tests/p0/repair-acceptance.test.ts",
+          "sha256": "65160e6d029a6e3915a044748ba327f2cac27f33f875bb7594c2ff62f3fc8242"
+        },
+        {
+          "path": "tests/helpers/repair-evidence.ts",
+          "sha256": "78289daf60893b1ecfcb2b0ca49ce499dad1f30a9ab0dbd97bccb38eb2737cff"
+        },
+        {
+          "path": "examples/pi/repair-adapter.ts",
+          "sha256": "c90b983936825e3e3293ec9e32fa7f9a7e826895200dc11aa7426513a2439a7c"
+        },
+        {
+          "path": "artifacts/p0-repair-verification.json",
+          "sha256": "8ab518edbde20c3d0f8ec144f75b149572aa1428f832f132c8c937c5445c0f09"
         }
       ]
     },
@@ -1464,7 +1548,7 @@
         },
         {
           "path": "docs/P0_OPERATIONS.md",
-          "sha256": "b17283981221586380c4a2f8ea74d53d7176ee34bc48f7238bd81e20a9fee1fc"
+          "sha256": "5aad3b3b8777c8bcdec1eab7a3de5834772445f84d0117ecfffc96aed0029222"
         },
         {
           "path": "artifacts/p0-protocol-verification.json",
@@ -1514,7 +1598,7 @@
       "evidence": [
         {
           "path": "docs/P0_OPERATIONS.md",
-          "sha256": "dd2f894e94b7108c4f1f16a16ce6723faeed32ee8f1859735141cc82b83a9e5c"
+          "sha256": "5aad3b3b8777c8bcdec1eab7a3de5834772445f84d0117ecfffc96aed0029222"
         },
         {
           "path": "tests/p0/compatibility.test.ts",
@@ -1705,7 +1789,7 @@
         },
         {
           "path": "artifacts/p0-offline.json",
-          "sha256": "ce13a440edcddd5f77e36d2ebb0f17d5faa416895e41fc4ca8bd37a1583641c0"
+          "sha256": "7354b2d43eccf17bf0451dd366e183f0d4c96ed5e9c200ec4c0ca919dfe87bdb"
         },
         {
           "path": "artifacts/p0-node22-bound-migration.log",
@@ -1919,7 +2003,7 @@
       "evidence": [
         {
           "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "56ce2e270329bf3abbcdc3720fd92dfe823a486fb503a7e6b29d766318013c7e"
+          "sha256": "e6f6a92a1ea7c54f346be7bcefe19ac47a84540750d7481074b942c1620ff799"
         },
         {
           "path": "tests/p0/contracts.test.ts",
@@ -2071,7 +2155,7 @@
       "evidence": [
         {
           "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "56ce2e270329bf3abbcdc3720fd92dfe823a486fb503a7e6b29d766318013c7e"
+          "sha256": "e6f6a92a1ea7c54f346be7bcefe19ac47a84540750d7481074b942c1620ff799"
         },
         {
           "path": "artifacts/p0-verification.json",
@@ -2106,7 +2190,7 @@
       "evidence": [
         {
           "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "56ce2e270329bf3abbcdc3720fd92dfe823a486fb503a7e6b29d766318013c7e"
+          "sha256": "e6f6a92a1ea7c54f346be7bcefe19ac47a84540750d7481074b942c1620ff799"
         },
         {
           "path": "artifacts/p0-verification.json",
@@ -2141,7 +2225,7 @@
       "evidence": [
         {
           "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "56ce2e270329bf3abbcdc3720fd92dfe823a486fb503a7e6b29d766318013c7e"
+          "sha256": "e6f6a92a1ea7c54f346be7bcefe19ac47a84540750d7481074b942c1620ff799"
         },
         {
           "path": "artifacts/p0-verification.json",
@@ -2211,7 +2295,7 @@
       "evidence": [
         {
           "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "56ce2e270329bf3abbcdc3720fd92dfe823a486fb503a7e6b29d766318013c7e"
+          "sha256": "e6f6a92a1ea7c54f346be7bcefe19ac47a84540750d7481074b942c1620ff799"
         },
         {
           "path": "artifacts/p0-verification.json",
@@ -2246,7 +2330,7 @@
       "evidence": [
         {
           "path": "tests/p0/repair-controller.test.ts",
-          "sha256": "bac2923024ffc7d2b4c8b3c3818e663f069e34abe3ee2c8949797dba88c7f024"
+          "sha256": "08bcc9cce43a76554d6b376b4b887232520b32f1737d6feafc9265df27667c3e"
         },
         {
           "path": "artifacts/p0-verification.json",
@@ -2316,7 +2400,7 @@
       "evidence": [
         {
           "path": "tests/p0/cli.test.ts",
-          "sha256": "90af7190aa29a61927c66793b8f9a9eee1ed213b2c49ee427b18833f0fa5b95d"
+          "sha256": "9de7d8b03439baeee46dee02a1a6bcdad9952dae5ba67c56be557de8fe6251e6"
         },
         {
           "path": "tests/p0/composition.test.ts",
