@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0",
   "version": "1.2.0",
-  "sourceCommit": "407628301e996a0954c90e4317ec5452c9a2e6a5",
-  "sourceHash": "2a4e8b243f666816688afc48ace4f41c4c581771cd754d76f46f02cf3b5c2105",
+  "sourceCommit": "9d52a83d6622a2c44293e17548046f1946d0d974",
+  "sourceHash": "3797e923b89998ac9a0fb77b731cf11080a92e4db5f031a63cd478ef682eb2be",
   "configHash": "c01aff1aced7f9f3957c622ca3870d094ec3f2c7744c2e05bf0086a6414e8270",
   "policyHash": "",
   "scopeExclusions": [
@@ -622,7 +622,7 @@
     {
       "id": "E09",
       "status": "blocked",
-      "reason": "Os 40 casos (30 públicos e dez reservados) agora têm starters, instruções, fixtures sintéticas e critérios executáveis independentes; 40 controles válidos passam e 40 starters/40 defeitos conhecidos falham. Upload real, associação de estilos a tokens, texto exato, histórico entre rotas, conexão abortada e zoom nativo 100%/200% estão cobertos. Validação congelada: 421 testes unitários, 126 funcionais, 11 pacotes offline, API/CLI/tipos em Node 24/22 e quatro controles de browser via pacote instalado no Windows. A execução Node de edição já tem isolamento físico e recibo externo. Restam bootstrap de dependências/harness/contexto/rotas, vínculo do grading e raízes por candidato ao protocolo, e decomposição do custo real. Experimentos reais excluídos pelo solicitante.",
+      "reason": "Os 40 casos têm critérios executáveis independentes e controles positivos/negativos. O aceite agora exige grading, cinco gates, fonte/commit/configuração correspondentes, critério e fixture íntegros, cobertura completa de cenários/passos e browser coerente. Artefatos são resolvidos na raiz do candidato via workerId controlado pelo avaliador; reuso de worker, snapshot trocado, alterações posteriores e bootstrap incompleto são recusados. O protocolo congelado exige esse vínculo para aceitações. 440 testes unitários, seis ensaios de browser do contrato, 11 pacotes offline e API/CLI/tipos instalados em Node 24/22 passaram. Restam bootstrap completo dos candidatos, decomposição do custo real e atestações portáveis do produtor. Experimentos reais e aprovação humana final da meta foram excluídos pelo solicitante; governança visual do produto permanece.",
       "evidence": [
         {
           "path": "tests/p0/evaluation.test.ts",
@@ -747,6 +747,10 @@
         {
           "path": "artifacts/p0-benchmark-expansion-proof.json",
           "sha256": "e4a3c3edfff4fb7866c7a028c855e3c8e23cc6b5ff65176c17e533bf144e24ca"
+        },
+        {
+          "path": "artifacts/p0-functional-binding-proof.json",
+          "sha256": "ab28890a241c7d8c9accc6b5d193198abce67db94a48fbfdf4f6de5047d3f9d0"
         }
       ]
     },
@@ -1649,7 +1653,7 @@
     {
       "id": "WP-20",
       "status": "blocked",
-      "reason": "Os 40 casos (30 públicos e dez reservados) agora têm starters, instruções, fixtures sintéticas e critérios executáveis independentes; 40 controles válidos passam e 40 starters/40 defeitos conhecidos falham. Upload real, associação de estilos a tokens, texto exato, histórico entre rotas, conexão abortada e zoom nativo 100%/200% estão cobertos. Validação congelada: 421 testes unitários, 126 funcionais, 11 pacotes offline, API/CLI/tipos em Node 24/22 e quatro controles de browser via pacote instalado no Windows. A execução Node de edição já tem isolamento físico e recibo externo. Restam bootstrap de dependências/harness/contexto/rotas, vínculo do grading e raízes por candidato ao protocolo, e decomposição do custo real. Experimentos reais excluídos pelo solicitante.",
+      "reason": "Os 40 casos têm critérios executáveis independentes e controles positivos/negativos. O aceite agora exige grading, cinco gates, fonte/commit/configuração correspondentes, critério e fixture íntegros, cobertura completa de cenários/passos e browser coerente. Artefatos são resolvidos na raiz do candidato via workerId controlado pelo avaliador; reuso de worker, snapshot trocado, alterações posteriores e bootstrap incompleto são recusados. O protocolo congelado exige esse vínculo para aceitações. 440 testes unitários, seis ensaios de browser do contrato, 11 pacotes offline e API/CLI/tipos instalados em Node 24/22 passaram. Restam bootstrap completo dos candidatos, decomposição do custo real e atestações portáveis do produtor. Experimentos reais e aprovação humana final da meta foram excluídos pelo solicitante; governança visual do produto permanece.",
       "evidence": [
         {
           "path": "tests/p0/evaluation.test.ts",
@@ -1734,6 +1738,10 @@
         {
           "path": "artifacts/p0-benchmark-expansion-proof.json",
           "sha256": "e4a3c3edfff4fb7866c7a028c855e3c8e23cc6b5ff65176c17e533bf144e24ca"
+        },
+        {
+          "path": "artifacts/p0-functional-binding-proof.json",
+          "sha256": "ab28890a241c7d8c9accc6b5d193198abce67db94a48fbfdf4f6de5047d3f9d0"
         }
       ]
     },
