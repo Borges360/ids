@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0",
   "version": "1.2.0",
-  "sourceCommit": "d847cf7efaa4b6bf8b0039aa97691330c7b2e9a4",
-  "sourceHash": "d68244445319bef58f4f13ac730e2e116ede3a316f6b0c231aa2b8c4aa21e0bd",
+  "sourceCommit": "326585efd4f681078a7c7232bb903bdad5d653cf",
+  "sourceHash": "786692d0c306675bffb5140c4e1453c27180329998010f80c77ff7ac949b597c",
   "configHash": "c01aff1aced7f9f3957c622ca3870d094ec3f2c7744c2e05bf0086a6414e8270",
   "policyHash": "",
   "scopeExclusions": [
@@ -622,7 +622,7 @@
     {
       "id": "E09",
       "status": "blocked",
-      "reason": "40 casos possuem critérios independentes e controles positivos/negativos; aceite vincula grading e gates à fonte, commit, configuração e raiz do candidato. A decomposição do custo total agora inclui tokens de todos os modelos, ferramentas, revisão humana e infraestrutura; eventos têm IDs únicos, moeda comum, null explícito, reconciliação decimal e rejeição de overflow. Grupos separam moedas e preservam totais legados sem alegar cobertura completa; protocolo congelado exige os quatro componentes conhecidos e orçamento respeitado. Tokens por tarefa aceita incluem falhas; tempo até aceite usa somente aceitações. 464 testes unitários e 11 pacotes offline passaram; APIs/CLI/CSV/tipos instalados foram verificados em Node 24/22. Restam bootstrap completo dos candidatos e evidência portátil do produtor. Experimentos reais e aprovação humana final da meta estão excluídos; billingAttested/publicationReady permanecem false.",
+      "reason": "40 casos possuem critérios independentes e controles positivos/negativos; aceite vincula grading e gates à fonte, commit, configuração e raiz do candidato. A decomposição do custo total agora inclui tokens de todos os modelos, ferramentas, revisão humana e infraestrutura; eventos têm IDs únicos, moeda comum, null explícito, reconciliação decimal e rejeição de overflow. Grupos separam moedas e preservam totais legados sem alegar cobertura completa; protocolo congelado exige os quatro componentes conhecidos e orçamento respeitado. Tokens por tarefa aceita incluem falhas; tempo até aceite usa somente aceitações. 464 testes unitários e 11 pacotes offline passaram; APIs/CLI/CSV/tipos instalados foram verificados em Node 24/22. Restam bootstrap completo dos candidatos e evidência portátil do produtor. Experimentos reais e aprovação humana final da meta estão excluídos; billingAttested/publicationReady permanecem false. Bootstrap offline implementado com distribuição/lock fixados, npm sem lifecycle scripts, instalação Pi/Codex e contexto verificado, rotas/fixtures/fontes conferidas e controles selados. Política pública de revisores protegida; artefatos operacionais externos não equivalem a aprovação. 476 testes unitários, 11 testes direcionados incluindo Docker real, 11 pacotes e API/CLI/tipos instalados em Node 24 Windows e Node 22 Linux passaram. Ainda faltam snapshots públicos completos de validação das 40 tarefas de produção e evidência portátil do produtor; não há execução de modelos nem aprovação de produto.",
       "evidence": [
         {
           "path": "tests/p0/evaluation.test.ts",
@@ -755,6 +755,10 @@
         {
           "path": "artifacts/p0-cost-accounting-proof.json",
           "sha256": "bdacee39825db476b49323fb795db6f8ffe1a0327cc435afc9ee763eacb534d6"
+        },
+        {
+          "path": "artifacts/p0-worker-bootstrap-proof.json",
+          "sha256": "3259c7333024493000592b3a296a53f9244002818107807f73cdc59e34cf11e9"
         }
       ]
     },
@@ -1657,7 +1661,7 @@
     {
       "id": "WP-20",
       "status": "blocked",
-      "reason": "40 casos possuem critérios independentes e controles positivos/negativos; aceite vincula grading e gates à fonte, commit, configuração e raiz do candidato. A decomposição do custo total agora inclui tokens de todos os modelos, ferramentas, revisão humana e infraestrutura; eventos têm IDs únicos, moeda comum, null explícito, reconciliação decimal e rejeição de overflow. Grupos separam moedas e preservam totais legados sem alegar cobertura completa; protocolo congelado exige os quatro componentes conhecidos e orçamento respeitado. Tokens por tarefa aceita incluem falhas; tempo até aceite usa somente aceitações. 464 testes unitários e 11 pacotes offline passaram; APIs/CLI/CSV/tipos instalados foram verificados em Node 24/22. Restam bootstrap completo dos candidatos e evidência portátil do produtor. Experimentos reais e aprovação humana final da meta estão excluídos; billingAttested/publicationReady permanecem false.",
+      "reason": "40 casos possuem critérios independentes e controles positivos/negativos; aceite vincula grading e gates à fonte, commit, configuração e raiz do candidato. A decomposição do custo total agora inclui tokens de todos os modelos, ferramentas, revisão humana e infraestrutura; eventos têm IDs únicos, moeda comum, null explícito, reconciliação decimal e rejeição de overflow. Grupos separam moedas e preservam totais legados sem alegar cobertura completa; protocolo congelado exige os quatro componentes conhecidos e orçamento respeitado. Tokens por tarefa aceita incluem falhas; tempo até aceite usa somente aceitações. 464 testes unitários e 11 pacotes offline passaram; APIs/CLI/CSV/tipos instalados foram verificados em Node 24/22. Restam bootstrap completo dos candidatos e evidência portátil do produtor. Experimentos reais e aprovação humana final da meta estão excluídos; billingAttested/publicationReady permanecem false. Bootstrap offline implementado com distribuição/lock fixados, npm sem lifecycle scripts, instalação Pi/Codex e contexto verificado, rotas/fixtures/fontes conferidas e controles selados. Política pública de revisores protegida; artefatos operacionais externos não equivalem a aprovação. 476 testes unitários, 11 testes direcionados incluindo Docker real, 11 pacotes e API/CLI/tipos instalados em Node 24 Windows e Node 22 Linux passaram. Ainda faltam snapshots públicos completos de validação das 40 tarefas de produção e evidência portátil do produtor; não há execução de modelos nem aprovação de produto.",
       "evidence": [
         {
           "path": "tests/p0/evaluation.test.ts",
@@ -1750,6 +1754,10 @@
         {
           "path": "artifacts/p0-cost-accounting-proof.json",
           "sha256": "bdacee39825db476b49323fb795db6f8ffe1a0327cc435afc9ee763eacb534d6"
+        },
+        {
+          "path": "artifacts/p0-worker-bootstrap-proof.json",
+          "sha256": "3259c7333024493000592b3a296a53f9244002818107807f73cdc59e34cf11e9"
         }
       ]
     },
