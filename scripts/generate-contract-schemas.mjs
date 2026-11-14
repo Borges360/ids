@@ -1,3 +1,4 @@
+import { technicalAttestationSchemas } from "./technical-attestation-schemas.mjs";
 import { mkdir, writeFile } from "node:fs/promises";
 import { benchmarkProtocolSchema } from "./benchmark-protocol-schema.mjs";
 import { calibrationSchemas } from "./calibration-schemas.mjs";
@@ -31,6 +32,10 @@ const infer = (v) =>
         }
       : { type: typeof v };
 const config = infer(DEFAULTS);
+config.properties.governance.properties.mode.enum = [
+  "human-approval",
+  "technical-autonomous",
+];
 config.properties.design.properties.contract.const = "@inteiro/design-system";
 config.properties.design.properties.theme.items.enum = [
   "dark",
@@ -85,6 +90,7 @@ const base = {
   configId: { type: "string" },
 };
 const contracts = {
+  ...technicalAttestationSchemas,
   config: config,
   "organization-policy": {
     type: "object",
@@ -95,6 +101,7 @@ const contracts = {
       schemaVersion: { const: "1.0" },
       ...Object.fromEntries(
         Object.entries({
+          governance: ["mode"],
           design: ["strictTokens", "theme", "density"],
           context: ["requireProof", "maxTokens"],
           composition: ["allowed"],
@@ -116,7 +123,7 @@ const contracts = {
           visual: ["maxDiffPixelRatio", "colorThreshold", "fullPage"],
           review: ["requiredFor", "allowExternalProvider"],
           repair: ["maxAttempts", "maxChangedFiles", "maxDiffLines"],
-          reporting: ["formats"],
+          reporting: ["formats", "retentionDays", "baselineRetentionDays"],
         }).map(([section, keys]) => [
           section,
           {
@@ -398,8 +405,55 @@ const contracts = {
   },
   "evidence-bundle": {
     type: "object",
+    allOf: [
+      {
+        if: { required: ["evidenceFormat"] },
+        then: {
+          required: [
+            "projectId",
+            "gitSha",
+            "sourceHash",
+            "contractHash",
+            "startedAt",
+            "finishedAt",
+            "exitCode",
+          ],
+          properties: {
+            evidenceFormat: { const: "inteiro-evidence/v1.1" },
+            projectId: { type: "string" },
+            gitSha: { type: "string" },
+            sourceHash: { type: "string" },
+            contractHash: { type: "string", pattern: "^[a-f0-9]{64}$" },
+            startedAt: { type: "string", format: "date-time" },
+            finishedAt: { type: "string", format: "date-time" },
+            exitCode: { type: "integer" },
+            artifacts: {
+              items: {
+                type: "object",
+                required: [
+                  "path",
+                  "relativePath",
+                  "sha256",
+                  "mediaType",
+                  "privacyClass",
+                ],
+                properties: {
+                  path: { type: "string" },
+                  relativePath: { type: "string" },
+                  sha256: { type: "string", pattern: "^[a-f0-9]{64}$" },
+                  mediaType: { type: "string" },
+                  privacyClass: { enum: ["public", "internal", "restricted"] },
+                },
+              },
+            },
+          },
+        },
+      },
+    ],
     properties: {
       ...base,
+      governanceContractHash: { type: "string", pattern: "^[a-f0-9]{64}$" },
+      profile: { enum: ["dev", "pr", "ci", "main", "nightly", "release"] },
       configHash: { type: "string", pattern: "^[a-f0-9]{64}$" },
       runId: { type: "string", pattern: RUN_ID_PATTERN },
       status: { enum: STATES },

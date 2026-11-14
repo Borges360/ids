@@ -475,17 +475,35 @@ describe("P0 command transport", () => {
       await rm(root, { recursive: true, force: true });
     }
   });
-  it("does not accept self-approval without signed artifact decision", () => {
-    const r = invoke([
-      "visual",
-      "baseline",
-      "approve",
-      "--review-id",
-      "agent-said-yes",
-      "--json",
-    ]);
-    expect(r.code).toBe(7);
-    expect(JSON.parse(r.stdout).status).toBe("needs_review");
+  it.each([
+    ["human-approval", "needs_review"],
+    ["technical-autonomous", "blocked"],
+  ])("does not accept self-approval in %s governance", async (mode, status) => {
+    const root = await mkdtemp(join(tmpdir(), "inteiro-no-self-approval-"));
+    try {
+      await writeFile(
+        join(root, "inteiro.config.json"),
+        JSON.stringify({
+          schemaVersion: "1.0",
+          project: { id: "fixture" },
+          governance: { mode },
+        }),
+      );
+      const r = invoke([
+        "visual",
+        "baseline",
+        "approve",
+        "--review-id",
+        "agent-said-yes",
+        "--json",
+        "--cwd",
+        root,
+      ]);
+      expect(r.code).toBe(7);
+      expect(JSON.parse(r.stdout).status).toBe(status);
+    } finally {
+      await rm(root, { recursive: true, force: true });
+    }
   });
   it("returns typed infrastructure failure for bad config", async () => {
     const root = await mkdtemp(join(tmpdir(), "inteiro-config-"));

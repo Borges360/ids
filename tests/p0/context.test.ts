@@ -8,6 +8,22 @@ import {
   resolveContext,
 } from "../../packages/agent-core/src/context.ts";
 import { installHarness } from "../../packages/cli/src/install-agents.ts";
+it('Codex context-only installation preserves another plugin identity and verifies skills', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'inteiro-shared-plugin-'));
+  try {
+    await mkdir(join(root, '.codex-plugin'), { recursive: true });
+    const plugin = JSON.stringify({ name: 'harness', skills: './.agents/skills' });
+    await writeFile(join(root, '.codex-plugin/plugin.json'), plugin);
+    const result = await installHarness(root, 'codex', { dryRun: false, yes: true, contextOnly: true });
+    expect(result.status).toBe('passed');
+    expect(await readFile(join(root, '.codex-plugin/plugin.json'), 'utf8')).toBe(plugin);
+    const config = structuredClone(DEFAULTS);
+    config.context.harness = 'codex';
+    expect((await verifyContext(root, config)).status).toBe('passed');
+    await expect(readFile(join(root, 'mcp.json'))).rejects.toThrow();
+    await expect(readFile(join(root, 'plugin.json'))).rejects.toThrow();
+  } finally { await rm(root, { recursive: true, force: true }); }
+});
 describe("P0 harness integration evidence", () => {
   it('preserves conflicting consumer skills and reports the conflict',async()=>{
     const root=await mkdtemp(join(tmpdir(),'inteiro-conflict-'));try{await mkdir(join(root,'.pi/skills/inteiro'),{recursive:true});const path=join(root,'.pi/skills/inteiro/SKILL.md');await writeFile(path,'User-owned customized skill');const result=await installHarness(root,'pi',{dryRun:false,yes:true});expect(result.status).toBe('needs_review');expect(await readFile(path,'utf8')).toBe('User-owned customized skill');const config=structuredClone(DEFAULTS);config.context.harness='pi';expect((await verifyContext(root,config)).status).toBe('blocked');}finally{await rm(root,{recursive:true,force:true});}

@@ -8,6 +8,7 @@ import {
   hash,
   validateSchema,
   redact,
+  governanceContractHash,
 } from "@inteiro/contracts";
 export interface BootstrapOptions {
   distributionManifest: string;
@@ -24,6 +25,29 @@ export interface PublicValidation {
   routes: { path: string; sha256: string };
   fixtures: { id: string; path: string; sha256: string }[];
   reviewPolicy?: { path: string; sha256: string };
+  technicalPolicy?: { path: string; sha256: string };
+  governanceContractHash?: string;
+  coverage?: {
+    states: Record<
+      string,
+      | { applicable: false; reason: string }
+      | {
+          applicable: true;
+          scenario: string;
+          phase: "final" | "action-capture";
+          actionIndex?: number;
+        }
+    >;
+    viewports: string[];
+    themes: string[];
+    densities: string[];
+    keyboard: { scenario: string; actionIndex: number }[];
+    content: {
+      classification: "synthetic";
+      fixture: { path: string; sha256: string };
+    };
+    reducedMotion: "reduce";
+  };
 }
 export interface BootstrapPlan {
   manifestPath: string;
@@ -64,14 +88,11 @@ const publicPath = (path: string) =>
       (part) => !part || part === "." || part === ".." || part.startsWith("."),
     ) &&
   !path.includes("\\");
-export async function planWorkerBootstrap(
+export async function readPublicWorkerValidation(
   root: string,
   caseId: string,
   validationRef: { path: string; sha256: string } | undefined,
-  options: BootstrapOptions,
-): Promise<BootstrapPlan> {
-  if (!["pi", "codex"].includes(options.harness))
-    throw Error("Worker bootstrap requires pi or codex harness");
+) {
   if (!validationRef || !publicPath(validationRef.path))
     throw Error(
       "A versioned public validation manifest is required before worker bootstrap",
@@ -97,6 +118,22 @@ export async function planWorkerBootstrap(
     publicFiles.push({ path: target, bytes });
   };
   await readPublic(validation.routes, "inteiro.routes.json");
+  if (validation.technicalPolicy) {
+    await readPublic(
+      validation.technicalPolicy,
+      ".inteiro/technical-attestors.json",
+    );
+    const policy = JSON.parse(publicFiles.at(-1)!.bytes.toString());
+    if (!validateSchema("technical-authority-policy", policy).valid)
+      throw Error("Invalid public technical authority policy");
+    for (const value of Object.values(policy.authorities))
+      if (
+        typeof value !== "string" ||
+        !value.startsWith("-----BEGIN PUBLIC KEY-----") ||
+        createPublicKey(value).asymmetricKeyType !== "ed25519"
+      )
+        throw Error("Technical policy must contain Ed25519 public keys only");
+  }
   if (validation.reviewPolicy) {
     await readPublic(validation.reviewPolicy, ".inteiro/reviewers.json");
     const policy = JSON.parse(publicFiles.at(-1)!.bytes.toString());
@@ -136,6 +173,94 @@ export async function planWorkerBootstrap(
     )
       throw Error("Invalid synthetic public fixture clock or random seed");
   }
+  const routes = JSON.parse(
+    publicFiles
+      .find((file) => file.path === "inteiro.routes.json")!
+      .bytes.toString(),
+  );
+  if (
+    routes.schemaVersion !== "1.0" ||
+    !Array.isArray(routes.routes) ||
+    !routes.routes.length ||
+    routes.routes.some(
+      (route: any) =>
+        !ids.has(route.fixture) ||
+        !Array.isArray(route.states) ||
+        !route.states.length ||
+        route.states.some(
+          (state: any) => state.fixture && !ids.has(state.fixture),
+        ),
+    )
+  )
+    throw Error("Public routes reference undeclared fixtures");
+  if (validation.coverage) {
+    const coverage = validation.coverage;
+    const scenarios = routes.routes.flatMap((route: any) => route.states);
+    const scenario = (id: string) =>
+      scenarios.find((state: any) => state.id === id);
+    for (const declaration of Object.values(coverage.states)) {
+      if (!declaration.applicable) continue;
+      const state = scenario(declaration.scenario);
+      if (
+        !state ||
+        (declaration.phase === "action-capture" &&
+          state.actions?.[declaration.actionIndex!]?.type !== "screenshot")
+      )
+        throw Error("Public coverage references an unexecutable state capture");
+    }
+    for (const item of coverage.keyboard) {
+      if (
+        !["keyboard", "expectFocused"].includes(
+          scenario(item.scenario)?.actions?.[item.actionIndex]?.type,
+        )
+      )
+        throw Error(
+          "Public keyboard coverage references an unexecutable action",
+        );
+    }
+    for (const viewport of coverage.viewports)
+      if (
+        !routes.routes.some((route: any) => route.viewports.includes(viewport))
+      )
+        throw Error("Public coverage references an undeclared viewport");
+    for (const theme of coverage.themes)
+      for (const density of coverage.densities)
+        if (
+          !routes.routes.some((route: any) =>
+            route.modes.includes(theme + "-" + density),
+          )
+        )
+          throw Error(
+            "Public coverage references an undeclared theme/density mode",
+          );
+    if (
+      !validation.fixtures.some(
+        (fixture) =>
+          fixture.path === coverage.content.fixture.path &&
+          fixture.sha256 === coverage.content.fixture.sha256,
+      )
+    )
+      throw Error("Public content coverage references an undeclared fixture");
+  }
+  return { validation, validationHash: validationRef.sha256, publicFiles };
+}
+export async function planWorkerBootstrap(
+  root: string,
+  caseId: string,
+  validationRef: { path: string; sha256: string } | undefined,
+  options: BootstrapOptions,
+): Promise<BootstrapPlan> {
+  if (!["pi", "codex"].includes(options.harness))
+    throw Error("Worker bootstrap requires pi or codex harness");
+  const { validation, validationHash, publicFiles } =
+    await readPublicWorkerValidation(root, caseId, validationRef);
+  if (
+    validation.governanceContractHash !== undefined &&
+    validation.governanceContractHash !== governanceContractHash()
+  )
+    throw Error(
+      "Public validation governance contract differs from the evaluator",
+    );
   const manifestBytes = Buffer.from(
       await safeRead(root, options.distributionManifest),
     ),
@@ -213,7 +338,7 @@ export async function planWorkerBootstrap(
     lock,
     lockHash: hash(lockBytes),
     validation,
-    validationHash: validationRef.sha256,
+    validationHash,
     publicFiles,
     options,
   };
@@ -253,7 +378,7 @@ function node(root: string, args: string[], timeout = 60000) {
     );
   return result.stdout;
 }
-const verifyScript = `import {readFile} from 'node:fs/promises';import {resolveConfig,safeRead,safePath,hash} from '@inteiro/contracts';import {validateRoutes,validateResponseFixtures} from '@inteiro/visual';const root=process.cwd();const {config}=await resolveConfig(root);const manifest=JSON.parse(await safeRead(root,config.browser.routesFile));const errors=validateRoutes(manifest.routes,config);if(errors.length)throw Error('Incomplete worker visual contract');const seen=new Set();for(const route of manifest.routes){for(const state of route.states){if(seen.has(route.id+':'+state.id))throw Error('Duplicate visual state');seen.add(route.id+':'+state.id);const fixture=JSON.parse(await safeRead(root,'.inteiro/fixtures/'+(state.fixture??route.fixture)+'.json'));if(fixture.classification!=='synthetic'||!Number.isFinite(Date.parse(fixture.clock))||validateResponseFixtures(fixture.responses??[],config.browser.baseURL).length)throw Error('Invalid synthetic visual fixture');}}for(const asset of config.browser.fontAssets)if(hash(await readFile(safePath(root,asset.path)))!==asset.sha256)throw Error('Worker font asset differs from contract');console.log(JSON.stringify({status:'passed',routes:manifest.routes.length,states:seen.size,configHash:hash(config)}));`;
+const verifyScript = `import {readFile} from 'node:fs/promises';import {resolveConfig,safeRead,safePath,hash,validateSchema,governanceContractHash} from '@inteiro/contracts';import {validateRoutes,validateResponseFixtures,validateFixtureActions} from '@inteiro/visual';const root=process.cwd();const {config}=await resolveConfig(root);const manifest=JSON.parse(await safeRead(root,config.browser.routesFile));if(config.governance.mode==='technical-autonomous'&&!validateSchema('technical-authority-policy',JSON.parse(await safeRead(root,'.inteiro/technical-attestors.json'))).valid)throw Error('Invalid installed technical authority');const errors=validateRoutes(manifest.routes,config);if(errors.length)throw Error('Incomplete worker visual contract');const seen=new Set();for(const route of manifest.routes){for(const state of route.states){if(seen.has(route.id+':'+state.id))throw Error('Duplicate visual state');seen.add(route.id+':'+state.id);const fixture=JSON.parse(await safeRead(root,'.inteiro/fixtures/'+(state.fixture??route.fixture)+'.json'));if(fixture.classification!=='synthetic'||!Number.isFinite(Date.parse(fixture.clock))||validateResponseFixtures(fixture.responses??[],config.browser.baseURL).length||validateFixtureActions(fixture.responses??[],state.actions).length)throw Error('Invalid synthetic visual fixture');}}for(const asset of config.browser.fontAssets)if(hash(await readFile(safePath(root,asset.path)))!==asset.sha256)throw Error('Worker font asset differs from contract');console.log(JSON.stringify({status:'passed',routes:manifest.routes.length,states:seen.size,configHash:hash(config),governanceContractHash:governanceContractHash()}));`;
 export async function executeWorkerBootstrap(
   root: string,
   datasetRoot: string,
@@ -383,9 +508,17 @@ export async function executeWorkerBootstrap(
   );
   if (validation.status !== "passed")
     throw Error("Visual prerequisites are incomplete");
+  if (
+    plan.validation.governanceContractHash &&
+    validation.governanceContractHash !== plan.validation.governanceContractHash
+  )
+    throw Error(
+      "Installed governance contract differs from the public task snapshot",
+    );
   return {
     schemaVersion: "1.0" as const,
     kind: "offline-worker-bootstrap" as const,
+    governanceContractHash: validation.governanceContractHash,
     sourceCommit: plan.sourceCommit,
     sourceHash: plan.sourceHash,
     distributionHash: plan.manifestHash,

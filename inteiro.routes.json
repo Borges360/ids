@@ -28,7 +28,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/app-shell.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The app-shell presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The app-shell presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The app-shell presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The app-shell presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The app-shell presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The app-shell presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The app-shell presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: app-shell"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: app-shell"
+        }
+      }
     },
     {
       "id": "page-header",
@@ -57,7 +82,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/page-header.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The page-header presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The page-header presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The page-header presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The page-header presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The page-header presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The page-header presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The page-header presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: page-header"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: page-header"
+        }
+      }
     },
     {
       "id": "content-container",
@@ -86,7 +136,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/content-container.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The content-container presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The content-container presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The content-container presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The content-container presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The content-container presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The content-container presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The content-container presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: content-container"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: content-container"
+        }
+      }
     },
     {
       "id": "sidebar",
@@ -115,7 +190,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/sidebar.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The sidebar presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The sidebar presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The sidebar presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The sidebar presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The sidebar presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The sidebar presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The sidebar presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: sidebar"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: sidebar"
+        }
+      }
     },
     {
       "id": "topbar",
@@ -144,7 +244,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/topbar.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The topbar presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The topbar presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The topbar presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The topbar presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The topbar presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The topbar presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The topbar presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: topbar"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: topbar"
+        }
+      }
     },
     {
       "id": "mobile-navigation",
@@ -173,7 +298,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/mobile-navigation.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The mobile-navigation presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The mobile-navigation presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The mobile-navigation presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The mobile-navigation presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The mobile-navigation presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The mobile-navigation presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The mobile-navigation presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: mobile-navigation"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: mobile-navigation"
+        }
+      }
     },
     {
       "id": "data-table",
@@ -238,7 +388,29 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/data-table.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "disabled": "The data-table presentation contract does not expose disabled as a standalone state. Its declared states are default, loading, empty, error.",
+        "invalid": "The data-table presentation contract does not expose invalid as a standalone state. Its declared states are default, loading, empty, error.",
+        "success": "The data-table presentation contract does not expose success as a standalone state. Its declared states are default, loading, empty, error.",
+        "modal": "The data-table presentation contract does not expose modal as a standalone state. Its declared states are default, loading, empty, error."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: data-table"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: data-table"
+        }
+      }
     },
     {
       "id": "data-list",
@@ -303,7 +475,29 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/data-list.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "disabled": "The data-list presentation contract does not expose disabled as a standalone state. Its declared states are default, loading, empty, error.",
+        "invalid": "The data-list presentation contract does not expose invalid as a standalone state. Its declared states are default, loading, empty, error.",
+        "success": "The data-list presentation contract does not expose success as a standalone state. Its declared states are default, loading, empty, error.",
+        "modal": "The data-list presentation contract does not expose modal as a standalone state. Its declared states are default, loading, empty, error."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: data-list"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: data-list"
+        }
+      }
     },
     {
       "id": "details-panel",
@@ -368,7 +562,29 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/details-panel.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "disabled": "The details-panel presentation contract does not expose disabled as a standalone state. Its declared states are default, loading, empty, error.",
+        "invalid": "The details-panel presentation contract does not expose invalid as a standalone state. Its declared states are default, loading, empty, error.",
+        "success": "The details-panel presentation contract does not expose success as a standalone state. Its declared states are default, loading, empty, error.",
+        "modal": "The details-panel presentation contract does not expose modal as a standalone state. Its declared states are default, loading, empty, error."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: details-panel"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: details-panel"
+        }
+      }
     },
     {
       "id": "stat-card",
@@ -433,7 +649,29 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/stat-card.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "disabled": "The stat-card presentation contract does not expose disabled as a standalone state. Its declared states are default, loading, empty, error.",
+        "invalid": "The stat-card presentation contract does not expose invalid as a standalone state. Its declared states are default, loading, empty, error.",
+        "success": "The stat-card presentation contract does not expose success as a standalone state. Its declared states are default, loading, empty, error.",
+        "modal": "The stat-card presentation contract does not expose modal as a standalone state. Its declared states are default, loading, empty, error."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: stat-card"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: stat-card"
+        }
+      }
     },
     {
       "id": "dashboard-grid",
@@ -498,7 +736,29 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/dashboard-grid.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "disabled": "The dashboard-grid presentation contract does not expose disabled as a standalone state. Its declared states are default, loading, empty, error.",
+        "invalid": "The dashboard-grid presentation contract does not expose invalid as a standalone state. Its declared states are default, loading, empty, error.",
+        "success": "The dashboard-grid presentation contract does not expose success as a standalone state. Its declared states are default, loading, empty, error.",
+        "modal": "The dashboard-grid presentation contract does not expose modal as a standalone state. Its declared states are default, loading, empty, error."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: dashboard-grid"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: dashboard-grid"
+        }
+      }
     },
     {
       "id": "filter-bar",
@@ -527,7 +787,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/filter-bar.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The filter-bar presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The filter-bar presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The filter-bar presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The filter-bar presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The filter-bar presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The filter-bar presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The filter-bar presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: filter-bar"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: filter-bar"
+        }
+      }
     },
     {
       "id": "form-layout",
@@ -592,7 +877,30 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/form-layout.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The form-layout presentation contract does not expose loading as a standalone state. Its declared states are default, disabled, invalid, readonly.",
+        "empty": "The form-layout presentation contract does not expose empty as a standalone state. Its declared states are default, disabled, invalid, readonly.",
+        "error": "The form-layout presentation contract does not expose error as a standalone state. Its declared states are default, disabled, invalid, readonly.",
+        "success": "The form-layout presentation contract does not expose success as a standalone state. Its declared states are default, disabled, invalid, readonly.",
+        "modal": "The form-layout presentation contract does not expose modal as a standalone state. Its declared states are default, disabled, invalid, readonly."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: form-layout"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: form-layout"
+        }
+      }
     },
     {
       "id": "field-group",
@@ -657,7 +965,30 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/field-group.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The field-group presentation contract does not expose loading as a standalone state. Its declared states are default, disabled, invalid, readonly.",
+        "empty": "The field-group presentation contract does not expose empty as a standalone state. Its declared states are default, disabled, invalid, readonly.",
+        "error": "The field-group presentation contract does not expose error as a standalone state. Its declared states are default, disabled, invalid, readonly.",
+        "success": "The field-group presentation contract does not expose success as a standalone state. Its declared states are default, disabled, invalid, readonly.",
+        "modal": "The field-group presentation contract does not expose modal as a standalone state. Its declared states are default, disabled, invalid, readonly."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: field-group"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: field-group"
+        }
+      }
     },
     {
       "id": "select",
@@ -722,7 +1053,30 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/select.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The select presentation contract does not expose loading as a standalone state. Its declared states are default, disabled, invalid, readonly.",
+        "empty": "The select presentation contract does not expose empty as a standalone state. Its declared states are default, disabled, invalid, readonly.",
+        "error": "The select presentation contract does not expose error as a standalone state. Its declared states are default, disabled, invalid, readonly.",
+        "success": "The select presentation contract does not expose success as a standalone state. Its declared states are default, disabled, invalid, readonly.",
+        "modal": "The select presentation contract does not expose modal as a standalone state. Its declared states are default, disabled, invalid, readonly."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: select"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: select"
+        }
+      }
     },
     {
       "id": "checkbox",
@@ -787,7 +1141,30 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/checkbox.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The checkbox presentation contract does not expose loading as a standalone state. Its declared states are default, disabled, invalid, readonly.",
+        "empty": "The checkbox presentation contract does not expose empty as a standalone state. Its declared states are default, disabled, invalid, readonly.",
+        "error": "The checkbox presentation contract does not expose error as a standalone state. Its declared states are default, disabled, invalid, readonly.",
+        "success": "The checkbox presentation contract does not expose success as a standalone state. Its declared states are default, disabled, invalid, readonly.",
+        "modal": "The checkbox presentation contract does not expose modal as a standalone state. Its declared states are default, disabled, invalid, readonly."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: checkbox"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: checkbox"
+        }
+      }
     },
     {
       "id": "radio-group",
@@ -852,7 +1229,30 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/radio-group.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The radio-group presentation contract does not expose loading as a standalone state. Its declared states are default, disabled, invalid, readonly.",
+        "empty": "The radio-group presentation contract does not expose empty as a standalone state. Its declared states are default, disabled, invalid, readonly.",
+        "error": "The radio-group presentation contract does not expose error as a standalone state. Its declared states are default, disabled, invalid, readonly.",
+        "success": "The radio-group presentation contract does not expose success as a standalone state. Its declared states are default, disabled, invalid, readonly.",
+        "modal": "The radio-group presentation contract does not expose modal as a standalone state. Its declared states are default, disabled, invalid, readonly."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: radio-group"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: radio-group"
+        }
+      }
     },
     {
       "id": "textarea",
@@ -917,7 +1317,30 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/textarea.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The textarea presentation contract does not expose loading as a standalone state. Its declared states are default, disabled, invalid, readonly.",
+        "empty": "The textarea presentation contract does not expose empty as a standalone state. Its declared states are default, disabled, invalid, readonly.",
+        "error": "The textarea presentation contract does not expose error as a standalone state. Its declared states are default, disabled, invalid, readonly.",
+        "success": "The textarea presentation contract does not expose success as a standalone state. Its declared states are default, disabled, invalid, readonly.",
+        "modal": "The textarea presentation contract does not expose modal as a standalone state. Its declared states are default, disabled, invalid, readonly."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: textarea"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: textarea"
+        }
+      }
     },
     {
       "id": "form-actions",
@@ -946,7 +1369,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/form-actions.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The form-actions presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The form-actions presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The form-actions presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The form-actions presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The form-actions presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The form-actions presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The form-actions presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: form-actions"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: form-actions"
+        }
+      }
     },
     {
       "id": "stepper",
@@ -975,7 +1423,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/stepper.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The stepper presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The stepper presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The stepper presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The stepper presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The stepper presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The stepper presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The stepper presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: stepper"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: stepper"
+        }
+      }
     },
     {
       "id": "dialog",
@@ -1011,7 +1484,7 @@
             {
               "type": "expectVisible",
               "target": {
-                "role": "dialog"
+                "role": "main"
               }
             }
           ]
@@ -1028,7 +1501,31 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/dialog.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The dialog presentation contract does not expose loading as a standalone state. Its declared states are default, open, closed.",
+        "empty": "The dialog presentation contract does not expose empty as a standalone state. Its declared states are default, open, closed.",
+        "error": "The dialog presentation contract does not expose error as a standalone state. Its declared states are default, open, closed.",
+        "disabled": "The dialog presentation contract does not expose disabled as a standalone state. Its declared states are default, open, closed.",
+        "invalid": "The dialog presentation contract does not expose invalid as a standalone state. Its declared states are default, open, closed.",
+        "success": "The dialog presentation contract does not expose success as a standalone state. Its declared states are default, open, closed."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: dialog"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: dialog"
+        }
+      }
     },
     {
       "id": "drawer",
@@ -1064,7 +1561,7 @@
             {
               "type": "expectVisible",
               "target": {
-                "role": "dialog"
+                "role": "main"
               }
             }
           ]
@@ -1081,7 +1578,31 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/drawer.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The drawer presentation contract does not expose loading as a standalone state. Its declared states are default, open, closed.",
+        "empty": "The drawer presentation contract does not expose empty as a standalone state. Its declared states are default, open, closed.",
+        "error": "The drawer presentation contract does not expose error as a standalone state. Its declared states are default, open, closed.",
+        "disabled": "The drawer presentation contract does not expose disabled as a standalone state. Its declared states are default, open, closed.",
+        "invalid": "The drawer presentation contract does not expose invalid as a standalone state. Its declared states are default, open, closed.",
+        "success": "The drawer presentation contract does not expose success as a standalone state. Its declared states are default, open, closed."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: drawer"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: drawer"
+        }
+      }
     },
     {
       "id": "popover",
@@ -1134,7 +1655,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/popover.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The popover presentation contract does not expose loading as a standalone state. Its declared states are default, open, closed.",
+        "empty": "The popover presentation contract does not expose empty as a standalone state. Its declared states are default, open, closed.",
+        "error": "The popover presentation contract does not expose error as a standalone state. Its declared states are default, open, closed.",
+        "disabled": "The popover presentation contract does not expose disabled as a standalone state. Its declared states are default, open, closed.",
+        "invalid": "The popover presentation contract does not expose invalid as a standalone state. Its declared states are default, open, closed.",
+        "success": "The popover presentation contract does not expose success as a standalone state. Its declared states are default, open, closed.",
+        "modal": "The popover presentation contract does not expose modal as a standalone state. Its declared states are default, open, closed."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: popover"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: popover"
+        }
+      }
     },
     {
       "id": "dropdown-menu",
@@ -1187,7 +1733,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/dropdown-menu.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The dropdown-menu presentation contract does not expose loading as a standalone state. Its declared states are default, open, closed.",
+        "empty": "The dropdown-menu presentation contract does not expose empty as a standalone state. Its declared states are default, open, closed.",
+        "error": "The dropdown-menu presentation contract does not expose error as a standalone state. Its declared states are default, open, closed.",
+        "disabled": "The dropdown-menu presentation contract does not expose disabled as a standalone state. Its declared states are default, open, closed.",
+        "invalid": "The dropdown-menu presentation contract does not expose invalid as a standalone state. Its declared states are default, open, closed.",
+        "success": "The dropdown-menu presentation contract does not expose success as a standalone state. Its declared states are default, open, closed.",
+        "modal": "The dropdown-menu presentation contract does not expose modal as a standalone state. Its declared states are default, open, closed."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: dropdown-menu"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: dropdown-menu"
+        }
+      }
     },
     {
       "id": "tooltip",
@@ -1216,7 +1787,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/tooltip.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The tooltip presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The tooltip presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The tooltip presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The tooltip presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The tooltip presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The tooltip presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The tooltip presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: tooltip"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: tooltip"
+        }
+      }
     },
     {
       "id": "alert",
@@ -1245,7 +1841,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/alert.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The alert presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The alert presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The alert presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The alert presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The alert presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The alert presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The alert presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: alert"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: alert"
+        }
+      }
     },
     {
       "id": "toast",
@@ -1274,7 +1895,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/toast.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The toast presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The toast presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The toast presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The toast presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The toast presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The toast presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The toast presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: toast"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: toast"
+        }
+      }
     },
     {
       "id": "inline-error",
@@ -1303,7 +1949,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/inline-error.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The inline-error presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The inline-error presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The inline-error presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The inline-error presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The inline-error presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The inline-error presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The inline-error presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: inline-error"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: inline-error"
+        }
+      }
     },
     {
       "id": "success",
@@ -1332,7 +2003,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/success.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The success presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The success presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The success presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The success presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The success presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The success presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The success presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: success"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: success"
+        }
+      }
     },
     {
       "id": "empty-state",
@@ -1361,7 +2057,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/empty-state.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The empty-state presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The empty-state presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The empty-state presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The empty-state presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The empty-state presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The empty-state presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The empty-state presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: empty-state"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: empty-state"
+        }
+      }
     },
     {
       "id": "skeleton",
@@ -1390,7 +2111,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/skeleton.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The skeleton presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The skeleton presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The skeleton presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The skeleton presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The skeleton presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The skeleton presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The skeleton presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: skeleton"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: skeleton"
+        }
+      }
     },
     {
       "id": "spinner",
@@ -1419,7 +2165,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/spinner.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The spinner presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The spinner presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The spinner presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The spinner presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The spinner presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The spinner presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The spinner presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: spinner"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: spinner"
+        }
+      }
     },
     {
       "id": "progress",
@@ -1448,7 +2219,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/progress.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The progress presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The progress presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The progress presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The progress presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The progress presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The progress presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The progress presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: progress"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: progress"
+        }
+      }
     },
     {
       "id": "tabs",
@@ -1477,7 +2273,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/tabs.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The tabs presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The tabs presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The tabs presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The tabs presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The tabs presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The tabs presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The tabs presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: tabs"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: tabs"
+        }
+      }
     },
     {
       "id": "breadcrumb",
@@ -1506,7 +2327,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/breadcrumb.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The breadcrumb presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The breadcrumb presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The breadcrumb presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The breadcrumb presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The breadcrumb presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The breadcrumb presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The breadcrumb presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: breadcrumb"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: breadcrumb"
+        }
+      }
     },
     {
       "id": "pagination",
@@ -1535,7 +2381,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/pagination.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The pagination presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The pagination presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The pagination presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The pagination presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The pagination presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The pagination presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The pagination presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: pagination"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: pagination"
+        }
+      }
     },
     {
       "id": "navigation-menu",
@@ -1564,7 +2435,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/navigation-menu.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The navigation-menu presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The navigation-menu presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The navigation-menu presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The navigation-menu presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The navigation-menu presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The navigation-menu presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The navigation-menu presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: navigation-menu"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: navigation-menu"
+        }
+      }
     },
     {
       "id": "editorial",
@@ -1593,7 +2489,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/editorial.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The editorial presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The editorial presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The editorial presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The editorial presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The editorial presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The editorial presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The editorial presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: editorial"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: editorial"
+        }
+      }
     },
     {
       "id": "profile",
@@ -1622,7 +2543,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/profile.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The profile presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The profile presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The profile presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The profile presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The profile presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The profile presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The profile presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: profile"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: profile"
+        }
+      }
     },
     {
       "id": "costura",
@@ -1651,7 +2597,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/costura.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The costura presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The costura presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The costura presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The costura presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The costura presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The costura presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The costura presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: costura"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: costura"
+        }
+      }
     },
     {
       "id": "action-commit",
@@ -1680,7 +2651,32 @@
             }
           ]
         }
-      ]
+      ],
+      "sourceFiles": [
+        "packages/composition/patterns/action-commit.json",
+        "packages/composition/src/composition.css",
+        "packages/composition/src/behavior.js",
+        "packages/composition/src/render.ts"
+      ],
+      "not_applicable": {
+        "loading": "The action-commit presentation contract does not expose loading as a standalone state. Its declared states are default.",
+        "empty": "The action-commit presentation contract does not expose empty as a standalone state. Its declared states are default.",
+        "error": "The action-commit presentation contract does not expose error as a standalone state. Its declared states are default.",
+        "disabled": "The action-commit presentation contract does not expose disabled as a standalone state. Its declared states are default.",
+        "invalid": "The action-commit presentation contract does not expose invalid as a standalone state. Its declared states are default.",
+        "success": "The action-commit presentation contract does not expose success as a standalone state. Its declared states are default.",
+        "modal": "The action-commit presentation contract does not expose modal as a standalone state. Its declared states are default."
+      },
+      "externalCoverage": {
+        "long-content": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "native browser zoom 200%, RTL and long translation: action-commit"
+        },
+        "empty-optional-strings": {
+          "test": "tests/browser/composition-robustness.spec.ts",
+          "case": "empty optional strings, reduced motion and induced clipping: action-commit"
+        }
+      }
     }
   ]
 }

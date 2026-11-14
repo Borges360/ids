@@ -31,6 +31,7 @@ import {
 import {
   planWorkerBootstrap,
   executeWorkerBootstrap,
+  readPublicWorkerValidation,
   type BootstrapOptions,
 } from "./worker-bootstrap.ts";
 export type { BootstrapOptions, PublicValidation } from "./worker-bootstrap.ts";
@@ -290,6 +291,28 @@ export async function prepareBenchmarkWorker(
       criteria.fixture.sha256
   )
     throw Error("Worker fixture is not bound to its grading snapshot");
+  if (task.validation) {
+    const publicValidation = await readPublicWorkerValidation(
+      root,
+      caseId,
+      task.validation,
+    );
+    inputs.push(...publicValidation.publicFiles);
+    inputs.push({
+      path: ".inteiro/public-validation.json",
+      bytes: Buffer.from(
+        JSON.stringify({
+          kind: "public-validation-provenance",
+          caseId,
+          manifestHash: publicValidation.validationHash,
+          resources: publicValidation.publicFiles.map((file) => ({
+            path: file.path,
+            sha256: hash(file.bytes),
+          })),
+        }),
+      ),
+    });
+  }
   const bootstrapPlan = options.bootstrap
     ? await planWorkerBootstrap(
         root,
@@ -301,6 +324,16 @@ export async function prepareBenchmarkWorker(
   const requested = resolve(root, target),
     parent = await realpath(dirname(requested)),
     destination = join(parent, basename(requested));
+  if (
+    bootstrapPlan &&
+    JSON.parse(configBytes.toString()).governance?.mode ===
+      "technical-autonomous" &&
+    (!bootstrapPlan.validation.technicalPolicy ||
+      !bootstrapPlan.validation.governanceContractHash)
+  )
+    throw Error(
+      "Autonomous bootstrap requires the public authority and mandatory gate contract",
+    );
   if (
     within(destination, root) ||
     (within(root, destination) && !within(join(root, "artifacts"), destination))

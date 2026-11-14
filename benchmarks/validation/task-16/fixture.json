@@ -1,0 +1,24 @@
+{
+  "classification": "synthetic",
+  "clock": "2026-01-01T12:00:00.000Z",
+  "seed": 105,
+  "syntheticText": [
+    "rafa@example.test"
+  ],
+  "responses": [
+    {
+      "url": "/api/upload",
+      "method": "POST",
+      "sequence": [
+        {
+          "body": {
+            "ok": true
+          },
+          "status": 200,
+          "alias": "upload-0",
+          "release": "uploaded"
+        }
+      ]
+    }
+  ]
+}

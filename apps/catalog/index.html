@@ -1,1 +1,137 @@
-<!doctype html><html lang="pt-BR" data-in-theme="light" data-in-density="calm"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>INTEIRO — Padrões P0</title><link rel="stylesheet" href="/packages/composition/src/composition.css"><body><main class="in-container"><h1>Padrões P0</h1><p>Catálogo HTML/CSS agnóstico. Estados, teclado e tokens têm contratos locais verificáveis.</p><label for="pattern">Padrão</label><select id="pattern"><option value="app-shell">app-shell — Estrutura da aplicação shell</option><option value="page-header">page-header — Cabeçalho de página header</option><option value="content-container">content-container — Container conteúdo responsivo</option><option value="sidebar">sidebar — Barra lateral navegação</option><option value="topbar">topbar — Barra superior</option><option value="mobile-navigation">mobile-navigation — Menu navegação mobile</option><option value="data-table">data-table — Tabela paginada dados table</option><option value="data-list">data-list — Lista dados</option><option value="details-panel">details-panel — Painel detalhes</option><option value="stat-card">stat-card — Indicador estatística KPI</option><option value="dashboard-grid">dashboard-grid — Dashboard operacional grade</option><option value="filter-bar">filter-bar — Filtros busca</option><option value="form-layout">form-layout — Formulário cadastro layout</option><option value="field-group">field-group — Campo label ajuda validação</option><option value="select">select — Seleção nativa</option><option value="checkbox">checkbox — Caixa seleção</option><option value="radio-group">radio-group — Opção exclusiva radio</option><option value="textarea">textarea — Texto longo multiline</option><option value="form-actions">form-actions — Ações formulário</option><option value="stepper">stepper — Etapas fluxo progressão</option><option value="dialog">dialog — Diálogo modal foco</option><option value="drawer">drawer — Painel modal lateral</option><option value="popover">popover — Conteúdo flutuante não modal</option><option value="dropdown-menu">dropdown-menu — Menu ações disclosure</option><option value="tooltip">tooltip — Dica ajuda acessível</option><option value="alert">alert — Alerta feedback</option><option value="toast">toast — Notificação status</option><option value="inline-error">inline-error — Erro campo mensagem</option><option value="success">success — Sucesso confirmação</option><option value="empty-state">empty-state — Estado vazio</option><option value="skeleton">skeleton — Carregamento skeleton</option><option value="spinner">spinner — Carregamento espera</option><option value="progress">progress — Progresso tarefa</option><option value="tabs">tabs — Abas teclado tabs</option><option value="breadcrumb">breadcrumb — Caminho navegação migalhas</option><option value="pagination">pagination — Paginação navegação</option><option value="navigation-menu">navigation-menu — Menu navegação principal</option><option value="editorial">editorial — Texto editorial identidade</option><option value="profile">profile — Perfil identidade pessoa</option><option value="costura">costura — Costura marca identidade</option><option value="action-commit">action-commit — Publicação fronteira ação commit</option></select><iframe title="Exemplo do padrão" id="example" width="100%" height="640" src="/packages/composition/examples/app-shell.html"></iframe></main><script>document.getElementById('pattern').addEventListener('change',e=>document.getElementById('example').src='/packages/composition/examples/'+e.target.value+'.html')</script></body></html>
+<!doctype html>
+<html lang="en" data-in-theme="light" data-in-density="calm">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A framework-agnostic HTML/CSS catalog. States, keyboard behavior and tokens have verifiable local contracts."
+    />
+    <title>INTEIRO — P0 patterns</title>
+    <link rel="stylesheet" href="/packages/composition/src/composition.css" />
+  </head>
+  <body>
+    <main class="in-container in-composition">
+      <header class="in-page-header">
+        <div>
+          <h1 data-i18n="title">P0 patterns</h1>
+          <p data-i18n="intro">
+            A framework-agnostic HTML/CSS catalog. States, keyboard behavior and
+            tokens have verifiable local contracts.
+          </p>
+        </div>
+        <div class="in-field">
+          <label
+            class="in-field__label"
+            for="interface-language"
+            data-i18n="language"
+            >Interface language</label
+          >
+          <select class="in-input" id="interface-language" name="language">
+            <option value="en">English</option>
+            <option value="pt-BR">Português (Brasil)</option>
+          </select>
+        </div>
+      </header>
+      <div class="in-field">
+        <label class="in-field__label" for="pattern" data-i18n="pattern"
+          >Pattern</label
+        >
+        <select class="in-input" id="pattern" name="pattern">
+          <option value="app-shell">
+            app-shell — Estrutura da aplicação shell
+          </option>
+          <option value="page-header">
+            page-header — Cabeçalho de página header
+          </option>
+          <option value="content-container">
+            content-container — Container conteúdo responsivo
+          </option>
+          <option value="sidebar">sidebar — Barra lateral navegação</option>
+          <option value="topbar">topbar — Barra superior</option>
+          <option value="mobile-navigation">
+            mobile-navigation — Menu navegação mobile
+          </option>
+          <option value="data-table">
+            data-table — Tabela paginada dados table
+          </option>
+          <option value="data-list">data-list — Lista dados</option>
+          <option value="details-panel">details-panel — Painel detalhes</option>
+          <option value="stat-card">
+            stat-card — Indicador estatística KPI
+          </option>
+          <option value="dashboard-grid">
+            dashboard-grid — Dashboard operacional grade
+          </option>
+          <option value="filter-bar">filter-bar — Filtros busca</option>
+          <option value="form-layout">
+            form-layout — Formulário cadastro layout
+          </option>
+          <option value="field-group">
+            field-group — Campo label ajuda validação
+          </option>
+          <option value="select">select — Seleção nativa</option>
+          <option value="checkbox">checkbox — Caixa seleção</option>
+          <option value="radio-group">
+            radio-group — Opção exclusiva radio
+          </option>
+          <option value="textarea">textarea — Texto longo multiline</option>
+          <option value="form-actions">form-actions — Ações formulário</option>
+          <option value="stepper">stepper — Etapas fluxo progressão</option>
+          <option value="dialog">dialog — Diálogo modal foco</option>
+          <option value="drawer">drawer — Painel modal lateral</option>
+          <option value="popover">
+            popover — Conteúdo flutuante não modal
+          </option>
+          <option value="dropdown-menu">
+            dropdown-menu — Menu ações disclosure
+          </option>
+          <option value="tooltip">tooltip — Dica ajuda acessível</option>
+          <option value="alert">alert — Alerta feedback</option>
+          <option value="toast">toast — Notificação status</option>
+          <option value="inline-error">
+            inline-error — Erro campo mensagem
+          </option>
+          <option value="success">success — Sucesso confirmação</option>
+          <option value="empty-state">empty-state — Estado vazio</option>
+          <option value="skeleton">skeleton — Carregamento skeleton</option>
+          <option value="spinner">spinner — Carregamento espera</option>
+          <option value="progress">progress — Progresso tarefa</option>
+          <option value="tabs">tabs — Abas teclado tabs</option>
+          <option value="breadcrumb">
+            breadcrumb — Caminho navegação migalhas
+          </option>
+          <option value="pagination">pagination — Paginação navegação</option>
+          <option value="navigation-menu">
+            navigation-menu — Menu navegação principal
+          </option>
+          <option value="editorial">
+            editorial — Texto editorial identidade
+          </option>
+          <option value="profile">profile — Perfil identidade pessoa</option>
+          <option value="costura">costura — Costura marca identidade</option>
+          <option value="action-commit">
+            action-commit — Publicação fronteira ação commit
+          </option>
+        </select>
+      </div>
+      <iframe
+        title="Pattern example"
+        id="example"
+        width="100%"
+        height="640"
+        src="/packages/composition/examples/app-shell.html"
+      ></iframe>
+    </main>
+    <script type="module">
+      import { initCatalogLanguage } from "./language.js";
+
+      const pattern = document.getElementById("pattern");
+      const example = document.getElementById("example");
+      pattern.addEventListener("change", () => {
+        example.src = `/packages/composition/examples/${pattern.value}.html`;
+      });
+      initCatalogLanguage();
+    </script>
+  </body>
+</html>

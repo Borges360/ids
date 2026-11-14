@@ -1,2755 +1,890 @@
 {
   "schemaVersion": "1.0",
   "version": "1.2.0",
-  "sourceCommit": "07a69373ceaf8058af78dc33924d8d52e9d12c9f",
-  "sourceHash": "5a9c1e169f267b2565cd7fd26a66379460398ea1967eaed4d97791201429d42e",
-  "configHash": "c01aff1aced7f9f3957c622ca3870d094ec3f2c7744c2e05bf0086a6414e8270",
-  "policyHash": "",
+  "sourceCommit": "1264974462da7b1259e38cf23043c62860d6ad1c",
+  "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+  "configHash": "230f7b708bee8866788b3164a8f9da0c50e91c6a078e7a349797179d9f0fc24f",
+  "policyHash": "9fa8c3d65cdcae6004421f40e85aae4c203688fc1b3d6e07a957b0ddc8a6018e",
+  "governanceContractHash": "9b4864d548d799f25ed7cb174c6e9e95e3e7ede5e65544f07e8bb88d4b36347d",
   "scopeExclusions": [
-    "Deploy Jenkins: retirado pelo solicitante.",
-    "Experimento real com dois perfis de modelo: excluído pelo solicitante.",
-    "Smoke com agentes reais Pi/Codex: excluído pelo solicitante; adapters e CLI offline permanecem no escopo.",
-    "Aprovação humana final da meta: removida pelo solicitante; mecanismos de revisão do produto permanecem."
+    "jenkins-deploy",
+    "real-model-comparison",
+    "real-agent-smoke",
+    "human-final-approval",
+    "human-aesthetic-judgment",
+    "human-calibration"
   ],
+  "approval": null,
   "requirements": [
     {
       "id": "E00",
-      "status": "needs_review",
-      "reason": "Restrições de organização agora têm schema versionado e são cumulativas entre API e arquivo. Limites usam mínimo, permissões de origem/padrão usam interseção, obrigações usam união; campos sem efeito e conflitos são recusados. Testes de flags, duas fontes, pin de viewport/fontes e validação passaram. O aceite transversal da fundação e da configuração ainda requer auditoria.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/contracts.test.ts",
-          "sha256": "2cd380fa6a3ed1ca1d54d58d3dd44d1f5cc6462e5a05625dc134731b8f94194d"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-contract-response-catalog-tests.log",
-          "sha256": "7c43ee2909d6e13f2ac2d73f727f2e3031aec978e42e0ef564e236ec0cda5ef3"
-        },
-        {
-          "path": "packages/contracts/schemas/config.schema.json",
-          "sha256": "c1137b863a78c6c04678c483e2c9c3e04a9cb301b830d0b267232fb1ca720ceb"
-        },
-        {
-          "path": "artifacts/p0-gate-contract-hardening.json",
-          "sha256": "38fc647163219e30579b83f91f554e10a74171dea2e857212911df3e50ca3069"
-        },
-        {
-          "path": "artifacts/p0-gate-controls.json",
-          "sha256": "f45828dfdddfe2311a1e37d667fcf7d7600f4047fbecb4d4124cbc092d2b3202"
-        },
-        {
-          "path": "artifacts/p0-organization-policy-audit-overlay.json",
-          "sha256": "4631a0ab5a6b35877925d7bbddc649f4d9f1ad279a827de22607ecf1005537e9"
-        },
-        {
-          "path": "artifacts/p0-gate-overlay.json",
-          "sha256": "8b1c604c6bf34f4b6f2bc5c76da54c82c9b285575940a43c538978bdf74005b9"
-        },
-        {
-          "path": "tests/p0/organization-policy.test.ts",
-          "sha256": "07f83544431f1fa1d6aace32fae9636f08ed39bf8993bb87d2a8cfb40aec6865"
-        },
-        {
-          "path": "packages/contracts/schemas/organization-policy.schema.json",
-          "sha256": "8aa562bd51ba77f5ed2c5e7a6b6520c53bc7f7a3c111f48c7af77ddeb118a3c8"
-        },
-        {
-          "path": "artifacts/p0-organization-policy-audit-fixed.json",
-          "sha256": "6eb4c40396184d667cbcf31b3e689afec22095914364078b2a395b1aea97cf62"
-        },
-        {
-          "path": "artifacts/p0-gate-policy.json",
-          "sha256": "92038f403c0b9edee77609d67eaa3182783eea92255fdcb0179ef31bf3ab7125"
-        },
-        {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "E01",
-      "status": "needs_review",
-      "reason": "Parsing YAML da ativação Cursor agora distingue automatic/scoped/agent-requested/manual e recusa metadados inválidos; globs=[] foi confirmado como manual. Integridade registra SHA-256 dos bytes, cobre cada arquivo obrigatório e identifica recibos legados. 22 testes de ativação, 3 testes de integridade e smoke offline passaram. O aceite transversal dos critérios CT-01..06 ainda requer auditoria; execução real de agentes continua excluída pelo solicitante.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/context.test.ts",
-          "sha256": "9e77ddfe572acba5c276bcc20a82b6cd32c828726b3114f26c83ce3f568d08f7"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "tests/p0/task-context.test.ts",
-          "sha256": "f00f0211309f65a13353535b65cb47ea134cb6bea58b0400d5149f83d33ae320"
-        },
-        {
-          "path": "artifacts/p0-task-context-verified.json",
-          "sha256": "270d65bfa311c9356d23173364de6729e8375af8dcd6213da44cd769b9b334fa"
-        },
-        {
-          "path": "artifacts/p0-gate-context-migration.json",
-          "sha256": "6a134b671974e89ce92bef67e9735f159ab70e7269449d05f08768edf34bdd9f"
-        },
-        {
-          "path": "artifacts/p0-gate-contract-hardening.json",
-          "sha256": "38fc647163219e30579b83f91f554e10a74171dea2e857212911df3e50ca3069"
-        },
-        {
-          "path": "artifacts/p0-gate-controls.json",
-          "sha256": "f45828dfdddfe2311a1e37d667fcf7d7600f4047fbecb4d4124cbc092d2b3202"
-        },
-        {
-          "path": "artifacts/p0-gate-overlay.json",
-          "sha256": "8b1c604c6bf34f4b6f2bc5c76da54c82c9b285575940a43c538978bdf74005b9"
-        },
-        {
-          "path": "artifacts/p0-cursor-empty-globs-audit-policy.json",
-          "sha256": "14ee73947143f731fc03a8c32b3ab2f105acfac9e8dc5677c10c9bb2550e7a56"
-        },
-        {
-          "path": "artifacts/p0-gate-policy.json",
-          "sha256": "92038f403c0b9edee77609d67eaa3182783eea92255fdcb0179ef31bf3ab7125"
-        },
-        {
-          "path": "tests/p0/cursor-activation.test.ts",
-          "sha256": "2fae183642865243dd8ce46a1faed86c0629afe1cbce4d4cf3e696b66cde73c9"
-        },
-        {
-          "path": "tests/p0/context-integrity.test.ts",
-          "sha256": "da9afa9b2a1430428a0508b4caaf1902f78746361f8a5c4f959faffd8d13b7b2"
-        },
-        {
-          "path": "artifacts/p0-cursor-empty-globs-audit-fixed.json",
-          "sha256": "0d9c28d3133958dc9d4f43afb0e266c847e716069ee0cdc902b9ab53fab6cdbd"
-        },
-        {
-          "path": "artifacts/p0-context-review-verified.json",
-          "sha256": "e84edd11be6dae1692f48d6c01a3873cad23bf0abe3625a329478364a2a42d2e"
-        },
-        {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "E02",
-      "status": "blocked",
-      "reason": "Escape e foco por camada corrigidos. Reflow ampliado passou nos 41 padrões com labels, botões, summaries, legends e navegação longos em RTL/zoom 200%; auditoria separada a 375 px não encontrou overflow. Tooltip reutiliza contêiner/balão corretos sem mudar o React. Ainda faltam a cobertura de strings vazias e casos negativos específicos por padrão, demais critérios de composição e revisão qualitativa. O ensaio independente detectou e corrigiu CSS que exibia nav/button com atributo hidden; hidden=until-found foi preservado. A matriz de composição passou a cobrir também contrast-dark/light, em duas densidades e cinco larguras: 3357 testes de navegador passaram. Essas provas não encerram os demais critérios ainda pendentes.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/composition.test.ts",
-          "sha256": "dc13623b083ef94ba9f1f4d4b32bd29c017a817b1bf743a220b9c5ef657acb0e"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-mobile-target-audit.json",
-          "sha256": "2cd12e711cfdcd6ced65ff6ba56ad08eaf0442da6cafd3f4724ff72dece49643"
-        },
-        {
-          "path": "artifacts/p0-controls-full-browser.log",
-          "sha256": "e733af3f51ef20204fd8f3a6ce925132703b8b66bc395396cf61956c6af2fcbd"
-        },
-        {
-          "path": "artifacts/p0-mobile-target-audit-controls.json",
-          "sha256": "0b977e7183c185727909a8ba72e7bd386812b840dfc540707d186ba54a63ff60"
-        },
-        {
-          "path": "artifacts/p0-overlay-escape-audit-controls.json",
-          "sha256": "81d254106a4d78cfaac379f6aa78cf1740599a4ef63fe2c90b6dc1b7762924bd"
-        },
-        {
-          "path": "artifacts/p0-overlay-keyboard-tests.log",
-          "sha256": "6c9dda313da4669d1701c90b0ef8bf3f5caf1378d1d865fdd549e66ef2f60b3a"
-        },
-        {
-          "path": "artifacts/p0-overlay-escape-audit-fixed.json",
-          "sha256": "327055eb0cdd2ea3185a4d8d53ef644f46412bfc33049b8b2a5c7a9ba5575138"
-        },
-        {
-          "path": "artifacts/p0-translated-controls-audit-overlay.json",
-          "sha256": "a7a1011f702f35acb744f69f12ddb2f6955faa602d9d4541e44a4b374f6897a7"
-        },
-        {
-          "path": "artifacts/p0-overlay-full-browser.log",
-          "sha256": "83a13b0351c53fead0d847640c3dfc77f95e5243e6bd2b685b15993dcce24d72"
-        },
-        {
-          "path": "artifacts/p0-overlay-linux.log",
-          "sha256": "07b4694643ad7b4570ec7028c1662c2de32b127807b489789077311a17ec0eef"
-        },
-        {
-          "path": "artifacts/p0-policy-reflow-tests.log",
-          "sha256": "4c8033dcc819a95c97d168e054a452979ed468977c6ea9d8656948c34b5e5c24"
-        },
-        {
-          "path": "artifacts/p0-translated-controls-audit-fixed.json",
-          "sha256": "98e1f527dd2a5f316c2e5c9a5eeabfde4ec93220b99a362226e33bd17242a0cb"
-        },
-        {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
-        },
-        {
-          "path": "packages/composition/src/composition.css",
-          "sha256": "2a0acf4c1b0a3c3f7ef69c14ffe0d2c2a3ad23a40b2a2a66d7df2bff1f5b495d"
-        },
-        {
-          "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "7b862b9be6c5a058405f3878c7273ce6f74963ccc0dc41b69277040a9db606bb"
-        },
-        {
-          "path": "tests/browser/composition.spec.ts",
-          "sha256": "a527222b944d2dec45874244f19189b417987423a91c73b6b451fb17ecc09a12"
-        },
-        {
-          "path": "artifacts/p0-functional-grading-proof.json",
-          "sha256": "4fcbb3db90d3c429b5c0af950e48f9bea0c9dcb4634d6729c215670db993ed9d"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "E03",
-      "status": "needs_review",
-      "reason": "Corpus AST por regra e framework implementado; validação de cobertura completa ainda em auditoria. CLI --strict agora promove avisos ativos a erros e bloqueia mesmo em observe. --fix-dry-run preserva fontes e não grava relatórios/backups; --fix usa mappings explícitos e hash do preview, recusa planos antigos, preserva formatação e permanece idempotente ao repetir o comando. Sem mapping, o resultado normal do lint permanece visível. 480 testes unitários e 11 pacotes offline passaram; API e CLI instaladas verificadas em Node 24 Windows e Node 22 Linux. Não há declaração de aceite integral da meta.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/static.test.ts",
-          "sha256": "cabfc3f2588f2a264977071fcaad9306e9da826ac278a008836de6eeccfbde2a"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
-        },
-        {
-          "path": "artifacts/p0-lint-options-proof.json",
-          "sha256": "c5e5f229dce788736324f2af5ad1a139c357f5d7ddba173d4476c7181191d189"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "E04",
-      "status": "needs_review",
-      "reason": "Lifecycle, fixtures, ações, axe, fontes e comparação visual implementados. VIS-TARGET-001 agora mede controles e links de navegação a 44 CSS px, com testes reais positivos, labels associados e regressão de botão de 20 px. As medições de dimensão não comprovam oclusão, alcance nem cobertura integral da WCAG; a auditoria desses requisitos continua pendente. A matriz ampliada nos quatro temas e os seis testes do pipeline de navegador passaram. O gate PR executou 492 capturas e seus 984 artefatos foram verificados; somente baseline sem aprovação e revisão humana pendente impedem esse gate. A medição de dimensão continua sem provar oclusão/alcance integral. Aleatoriedade visual agora usa seed uint32 explícito ou hash da fixture completa, instalado antes dos scripts em documentos/iframes e reiniciado ao navegar. Recibos registram seed/perfil e o fingerprint inclui o mecanismo; APIs criptográficas permanecem nativas. Fixture pública com seed inválido é recusada antes de preparar candidato. 490 testes unitários e 16 testes direcionados, incluindo 7 de Chromium real, passaram; lifecycle sintético compara página com conteúdo aleatório. Pacotes instaláveis e matriz visual da raiz deste source aguardam próxima integração conjunta; continuam pendências de interação e fixtures avançadas.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "7b862b9be6c5a058405f3878c7273ce6f74963ccc0dc41b69277040a9db606bb"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-response-alias-browser.log",
-          "sha256": "6055760e16e96527d2aaed4bb9342e54a0dbc5e851863b3ea52405c3640e75dd"
-        },
-        {
-          "path": "tests/p0/visual.test.ts",
-          "sha256": "2bb7ba92a27449262f3950d766b75b0ce0e2a2d3e5afe44768bba44431a38509"
-        },
-        {
-          "path": "artifacts/p0-gate-contract-hardening.json",
-          "sha256": "38fc647163219e30579b83f91f554e10a74171dea2e857212911df3e50ca3069"
-        },
-        {
-          "path": "artifacts/p0-target-browser-tests.log",
-          "sha256": "03e5d961be29f43065c46c2a66bfd0be7a058a4e82f65a2120c3fc707ec641d7"
-        },
-        {
-          "path": "packages/visual/src/targets.ts",
-          "sha256": "cc102cc7b7f81d4fb3d15e1cdeae05c189409051072b766db08e6dc17fd79c34"
-        },
-        {
-          "path": "artifacts/p0-gate-controls.json",
-          "sha256": "f45828dfdddfe2311a1e37d667fcf7d7600f4047fbecb4d4124cbc092d2b3202"
-        },
-        {
-          "path": "artifacts/p0-gate-overlay.json",
-          "sha256": "8b1c604c6bf34f4b6f2bc5c76da54c82c9b285575940a43c538978bdf74005b9"
-        },
-        {
-          "path": "artifacts/p0-gate-policy.json",
-          "sha256": "92038f403c0b9edee77609d67eaa3182783eea92255fdcb0179ef31bf3ab7125"
-        },
-        {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
-        },
-        {
-          "path": "artifacts/p0-functional-grading-proof.json",
-          "sha256": "4fcbb3db90d3c429b5c0af950e48f9bea0c9dcb4634d6729c215670db993ed9d"
-        },
-        {
-          "path": "artifacts/p0-grading-pr-gate.json",
-          "sha256": "76d65ea2aaece674ec580542616e74cc4887568e7fef363775f24c8d6b9ce595"
-        },
-        {
-          "path": "artifacts/p0-browser-random-proof.json",
-          "sha256": "f07dd9567c513476c77fa33e76d24b99506b35e0aaef3bb325ddd381e143a2be"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "E05",
-      "status": "needs_review",
-      "reason": "Assinatura e cadeia de baselines verificadas em fixtures sintéticas; revisão de produto pendente.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/governance.test.ts",
-          "sha256": "5303cc070a2558721d201c2eafc21e1ea5145b1b3d6992f78e16a5e4a25ac233"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "E06",
-      "status": "needs_review",
-      "reason": "Catálogo e 82 stories executáveis; aceite visual do mantenedor pendente.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "packages/composition/story-matrix.json",
-          "sha256": "1c9e313245b5447f3ffac8570f170a6514a8ffaae13e9ee27cd140e4bf3bf082"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-controls-stories.log",
-          "sha256": "2474bf6021c3ca0d9e3cc46d5291201213c779cf01e03b4bf297ea75d325cbb7"
-        },
-        {
-          "path": "artifacts/p0-overlay-stories.log",
-          "sha256": "6735379180abe2aca9aabb7ed51761a0c5925134d6cac6f79aa31a89dec955c8"
-        },
-        {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "E07",
-      "status": "needs_review",
-      "reason": "O controlador agora exige gate completo para concluir: cinco gates únicos, sourceHash/commit/configuração e tarefa/contexto atuais, cobertura estática enforce-all, matriz declarada de rotas/estados/viewports/temas/densidades, screenshots intermediários, bytes registrados e revisão qualitativa novamente conferida. Relatórios verdes incompletos são bloqueados com rollback e acceptanceFailure; o transporte recusa findings omitidos/duplicados/contraditórios. O adapter Pi usa resolução ESM compatível com o CLI instalado e foi exercitado como processo determinístico offline, sem agente. CI com 365 testes, cinco testes de navegador e 11 pacotes/consumidores em Node 24 e 22.14 passaram. A aceitação global P0 permanece dependente das demais lacunas e revisões do ledger.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/repair-controller.test.ts",
-          "sha256": "08bcc9cce43a76554d6b376b4b887232520b32f1737d6feafc9265df27667c3e"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "tests/p0/task-context.test.ts",
-          "sha256": "f00f0211309f65a13353535b65cb47ea134cb6bea58b0400d5149f83d33ae320"
-        },
-        {
-          "path": "artifacts/p0-gate-context-migration.json",
-          "sha256": "6a134b671974e89ce92bef67e9735f159ab70e7269449d05f08768edf34bdd9f"
-        },
-        {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
-        },
-        {
-          "path": "packages/agent-core/src/repair-validation.ts",
-          "sha256": "6e0035551f1fc13898a8ae5d459d8c149a620e66cb0d849b4c51ef7fcf157f76"
-        },
-        {
-          "path": "packages/agent-core/src/gate-protocol.ts",
-          "sha256": "c25184cad5893145b94111907546ae164abc0859844939362030851406812501"
-        },
-        {
-          "path": "tests/p0/repair-acceptance.test.ts",
-          "sha256": "65160e6d029a6e3915a044748ba327f2cac27f33f875bb7594c2ff62f3fc8242"
-        },
-        {
-          "path": "tests/helpers/repair-evidence.ts",
-          "sha256": "78289daf60893b1ecfcb2b0ca49ce499dad1f30a9ab0dbd97bccb38eb2737cff"
-        },
-        {
-          "path": "examples/pi/repair-adapter.ts",
-          "sha256": "c90b983936825e3e3293ec9e32fa7f9a7e826895200dc11aa7426513a2439a7c"
-        },
-        {
-          "path": "artifacts/p0-repair-verification.json",
-          "sha256": "8ab518edbde20c3d0f8ec144f75b149572aa1428f832f132c8c937c5445c0f09"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "E08",
-      "status": "blocked",
-      "reason": "Engine de calibração implementado com schemas públicos, referências assinadas Ed25519 e política separada para identidades humanas/sintéticas; cobre rubrica de sete eixos, pares de capturas, texto longo, overlays e calm/focus. Mede concordância/erro por eixo, Spearman com empates, ranking, falsos bloqueios, falhas graves perdidas, insuficiência, custos e tokens desconhecidos. Evidência insuficiente pode omitir notas sem inventá-las; cobertura e denominadores são explícitos. CLI/API/dry-run/tipos instalados em Node 24 e 22.14 e CI com 406 testes (41 de calibração) passaram. As referências executadas são exclusivamente sintéticas; corpus humano real, calibração empírica e aprovação visual de produto seguem pendentes. Nenhuma identidade humana ou baseline de produção foi criada/aprovada.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/review.test.ts",
-          "sha256": "bc8024d3e97e8e988d8be424f9542f3a71b3b775d4bfc36c586c0408471a67e7"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-source-hash-audit-overlay.json",
-          "sha256": "f66adf29217dc8ed4f21e9c59d5f8f37ad1d150becf12dbcc035089237b70095"
-        },
-        {
-          "path": "tests/p0/source-hash.test.ts",
-          "sha256": "f61d9a22d9a2cb390b5044130beb386304cdef2c7b26a5c29f2b55a005970a28"
-        },
-        {
-          "path": "artifacts/p0-source-hash-audit-fixed.json",
-          "sha256": "6ebfcc305d3df78d5659f4702d5a6df3a9b7f63453e59ef71ed0e914b07e96de"
-        },
-        {
-          "path": "artifacts/p0-review-action-audit-policy.log",
-          "sha256": "289af9d1ed3913a9ff2260ddf6fdc4588099e04bc2249b1f6bbeb20b2629321d"
-        },
-        {
-          "path": "tests/p0/cli.test.ts",
-          "sha256": "9de7d8b03439baeee46dee02a1a6bcdad9952dae5ba67c56be557de8fe6251e6"
-        },
-        {
-          "path": "packages/contracts/schemas/review-request.schema.json",
-          "sha256": "68732c9b4618fd2b1b4d0d0f07ab5b824757870d698d81da9ea4f4b9e5561434"
-        },
-        {
-          "path": "packages/contracts/schemas/repair-context.schema.json",
-          "sha256": "115964ca8d8a35ef0e7727ff83b6de7a4a1e6fe4f1b416ef533a411c5fa5fd30"
-        },
-        {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-review-request-current.json",
-          "sha256": "dbfb0d5a60a47fa09ef1e05d5d6187b99614579b4dccff21302de1353f5c7031"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
-        },
-        {
-          "path": "packages/evaluation/src/calibration.ts",
-          "sha256": "305b068f155ea9006b704d4cf2ebe3cff478804d63d751c9ebf60294006a7d9c"
-        },
-        {
-          "path": "packages/contracts/schemas/review-calibration-input.schema.json",
-          "sha256": "a8b6a6e180f3a667001815f7e26fb4fb9f6f4c9d37f486fb44b949de53bf2e83"
-        },
-        {
-          "path": "packages/contracts/schemas/review-calibration-reference.schema.json",
-          "sha256": "50d92636f50de4a5386833a41c1ebdfeb49bf04d1832730a92f646cd76e96b03"
-        },
-        {
-          "path": "packages/contracts/schemas/review-calibration-reviewers.schema.json",
-          "sha256": "6d7e6e65e6a556f656ca020797baac6b9f44ac7c3a7f343ae040f7e31ec2c8ca"
-        },
-        {
-          "path": "tests/p0/calibration.test.ts",
-          "sha256": "b0b2c1354de059ed76448432c7b1c7e803e7c0f91714ecb627c1cd398e34b395"
-        },
-        {
-          "path": "tests/helpers/calibration-fixture.ts",
-          "sha256": "898e2609e1d2ea1565f6119fa54b450747d277c23eaeafc3716bc1dd31d8bce6"
-        },
-        {
-          "path": "docs/P0_OPERATIONS.md",
-          "sha256": "4d0a372a2f78be63cb2486ab0bd776d13380076ef27687657a12eb19245faad6"
-        },
-        {
-          "path": "artifacts/p0-calibration-verification.json",
-          "sha256": "6cbfebd9fb9c175f553cb77bb94f89db8d428d9823e08a05dbdc197d2596875d"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "E09",
-      "status": "blocked",
-      "reason": "40 casos possuem critérios independentes e controles positivos/negativos; aceite vincula grading e gates à fonte, commit, configuração e raiz do candidato. A decomposição do custo total agora inclui tokens de todos os modelos, ferramentas, revisão humana e infraestrutura; eventos têm IDs únicos, moeda comum, null explícito, reconciliação decimal e rejeição de overflow. Grupos separam moedas e preservam totais legados sem alegar cobertura completa; protocolo congelado exige os quatro componentes conhecidos e orçamento respeitado. Tokens por tarefa aceita incluem falhas; tempo até aceite usa somente aceitações. 464 testes unitários e 11 pacotes offline passaram; APIs/CLI/CSV/tipos instalados foram verificados em Node 24/22. Restam bootstrap completo dos candidatos e evidência portátil do produtor. Experimentos reais e aprovação humana final da meta estão excluídos; billingAttested/publicationReady permanecem false. Bootstrap offline implementado com distribuição/lock fixados, npm sem lifecycle scripts, instalação Pi/Codex e contexto verificado, rotas/fixtures/fontes conferidas e controles selados. Política pública de revisores protegida; artefatos operacionais externos não equivalem a aprovação. 476 testes unitários, 11 testes direcionados incluindo Docker real, 11 pacotes e API/CLI/tipos instalados em Node 24 Windows e Node 22 Linux passaram. Ainda faltam snapshots públicos completos de validação das 40 tarefas de produção e evidência portátil do produtor; não há execução de modelos nem aprovação de produto.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/evaluation.test.ts",
-          "sha256": "d6cb311a16f32a8df19b3d220a9b70fc4cbc99fdad8e143d6e77130daecf1907"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-experiment-validation-audit-review.json",
-          "sha256": "928c45928b627e904c114623fb8257b5d1aed9fd008e2e77302d89bda2833f1e"
-        },
-        {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "packages/contracts/schemas/experiment-input.schema.json",
-          "sha256": "3c0bbe586ad5789022be2be8c0c17e483400f7df4bd6269037efa1d75e4dc755"
-        },
-        {
-          "path": "tests/p0/experiment-input.test.ts",
-          "sha256": "b3beebee010b73166dc7610a687449f976ee10fbde046f2eb68cf55e2def15aa"
-        },
-        {
-          "path": "artifacts/p0-experiment-validation-audit-fixed.json",
-          "sha256": "fdeb9b1da1968b81b55f5a92205851f2539bf1940f4942fb9a7eec25300f8c3c"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
-        },
-        {
-          "path": "packages/contracts/schemas/benchmark-protocol.schema.json",
-          "sha256": "d913883fbc55e34e8a6569ff820abbc80566f2ab5d04ca7b30f75096666e056c"
-        },
-        {
-          "path": "packages/evaluation/src/protocol.ts",
-          "sha256": "87e79cfc6c56cd5860c38c148fe1ce2fa06a7d6bcf8dca7b4c26621c18e808a5"
-        },
-        {
-          "path": "tests/p0/benchmark-protocol.test.ts",
-          "sha256": "bf4d8deab016182b3bec72bd6bb8c85a43e82fda6c9d39e0a172fa7c5fdadee7"
-        },
-        {
-          "path": "docs/P0_OPERATIONS.md",
-          "sha256": "4d0a372a2f78be63cb2486ab0bd776d13380076ef27687657a12eb19245faad6"
-        },
-        {
-          "path": "artifacts/p0-protocol-verification.json",
-          "sha256": "4c1a26c6991a7ed41a38128c27c929a668e1b525ec0b7d54fd3864c2014f966b"
-        },
-        {
-          "path": "packages/visual/src/index.ts",
-          "sha256": "4b05a69bc6302587f3d154e7ffdaf3fb679df854eaaa8469a54ede5e93c5fcc0"
-        },
-        {
-          "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "7b862b9be6c5a058405f3878c7273ce6f74963ccc0dc41b69277040a9db606bb"
-        },
-        {
-          "path": "artifacts/p0-repair-verification.json",
-          "sha256": "8ab518edbde20c3d0f8ec144f75b149572aa1428f832f132c8c937c5445c0f09"
-        },
-        {
-          "path": "packages/evaluation/src/calibration.ts",
-          "sha256": "305b068f155ea9006b704d4cf2ebe3cff478804d63d751c9ebf60294006a7d9c"
-        },
-        {
-          "path": "tests/p0/calibration.test.ts",
-          "sha256": "b0b2c1354de059ed76448432c7b1c7e803e7c0f91714ecb627c1cd398e34b395"
-        },
-        {
-          "path": "artifacts/p0-calibration-verification.json",
-          "sha256": "6cbfebd9fb9c175f553cb77bb94f89db8d428d9823e08a05dbdc197d2596875d"
-        },
-        {
-          "path": "benchmarks/tasks.public.json",
-          "sha256": "d02a8b281db2ed109e7f809734fef12940b75f5fb8cb32f3b67a4d46654bfbea"
-        },
-        {
-          "path": "benchmarks/tasks.heldout.json",
-          "sha256": "2ebacd7430fdaef9fecf184eb249e03e4101362c28d2d77a1c3051e278671cf7"
-        },
-        {
-          "path": "packages/evaluation/src/grading.ts",
-          "sha256": "9f4a2fe630e77ea271d8cf1a884e954067087c5e57d1bb86fe86b685680ca9fc"
-        },
-        {
-          "path": "packages/contracts/schemas/task-grading.schema.json",
-          "sha256": "9a11fe2fd18089d46d4a0ffa0d1508d38fa2854402dc5e358720eb15c26e6bc8"
-        },
-        {
-          "path": "packages/contracts/schemas/task-fixture.schema.json",
-          "sha256": "e9a36c73a999af578f355ecbd74a0c56e2db164ba599b2d2b93eddc4e8d98def"
-        },
-        {
-          "path": "tests/p0/task-grading.test.ts",
-          "sha256": "ed61af8c41b1f6dc3b310838c602bfe5bdb5b2a8191e696fe37097ca64d93728"
-        },
-        {
-          "path": "artifacts/p0-functional-grading-proof.json",
-          "sha256": "4fcbb3db90d3c429b5c0af950e48f9bea0c9dcb4634d6729c215670db993ed9d"
-        },
-        {
-          "path": "artifacts/p0-worker-isolation-proof.json",
-          "sha256": "2494a9ecbb7e18c26039948cac61830c58e610008cd78edd84fe4eefa98c7258"
-        },
-        {
-          "path": "artifacts/p0-benchmark-expansion-proof.json",
-          "sha256": "e4a3c3edfff4fb7866c7a028c855e3c8e23cc6b5ff65176c17e533bf144e24ca"
-        },
-        {
-          "path": "artifacts/p0-functional-binding-proof.json",
-          "sha256": "ab28890a241c7d8c9accc6b5d193198abce67db94a48fbfdf4f6de5047d3f9d0"
-        },
-        {
-          "path": "artifacts/p0-cost-accounting-proof.json",
-          "sha256": "bdacee39825db476b49323fb795db6f8ffe1a0327cc435afc9ee763eacb534d6"
-        },
-        {
-          "path": "artifacts/p0-worker-bootstrap-proof.json",
-          "sha256": "3259c7333024493000592b3a296a53f9244002818107807f73cdc59e34cf11e9"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "E10",
-      "status": "needs_review",
-      "reason": "CI e verificação completa passaram; init preserva customizações; migração CSS possui preview vinculado, backups e checksums; compatibilidade histórica 1.1.0 preserva 316 tokens, exports, tipos, MCP, provider SSR e seis comandos. Validação final e aprovações de release permanecem pendentes; Jenkins excluído pelo solicitante. verify:p0 agora inclui grading e preserva logs/manifesto por diretório de execução, sem sobrescrever os logs históricos. Oito etapas passaram com fonte inalterada; o pacote instalado foi validado em Node 24 e a API/CLI/servidor/fontes/tipos em Node 22.14. O gate PR permanece bloqueado por aprovações de produto. Exportação portátil completa das evidências e prova remota de CI ainda não foram concluídas.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "docs/P0_OPERATIONS.md",
-          "sha256": "4d0a372a2f78be63cb2486ab0bd776d13380076ef27687657a12eb19245faad6"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "tests/p0/migration.test.ts",
-          "sha256": "605ea24be3bb754ed4785c73755d9b35f0a975f3ceb6bcc07767207847b3f95a"
-        },
-        {
-          "path": "tests/p0/compatibility.test.ts",
-          "sha256": "1f75b63324b0993d56788edce7d9b626d49f34b32dfbc6fadc933f12d553e8ac"
-        },
-        {
-          "path": "artifacts/p0-legacy-compatibility.json",
-          "sha256": "9b93fb0cda5d77a9d6590a9c2dd8dc337dcddcfafb4862a9297d8d78074908c3"
-        },
-        {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-offline.json",
-          "sha256": "5af7e9e00737b315764e2d9a33b15a62bce4848fdb1a81dca5993e281b3a4522"
-        },
-        {
-          "path": "artifacts/p0-node22-bound-migration.log",
-          "sha256": "39a8a0f5981d6db1e85d4959f2380681b3e80fc0d2ed6d1c75ec5db1bdbf6b25"
-        },
-        {
-          "path": "artifacts/p0-linux-bound-migration.log",
-          "sha256": "c9926dfe673606030d87b7bb7f3864885fd415bd2aeb059cd9c9c4e84348a8bc"
-        },
-        {
-          "path": "artifacts/p0-package-manifest.json",
-          "sha256": "1e1a6293438589bd2caad7031edfa0c8b0245dde5c12ca91d843d67383f8b668"
-        },
-        {
-          "path": "artifacts/linux-bound-migration/p0-offline.json",
-          "sha256": "88f359b21bf5ff935b59d2c35080881c8a3c342e65edefb678dd4ec3d6327480"
-        },
-        {
-          "path": "artifacts/p0-gate-contract-hardening.json",
-          "sha256": "38fc647163219e30579b83f91f554e10a74171dea2e857212911df3e50ca3069"
-        },
-        {
-          "path": "artifacts/p0-controls-pack.log",
-          "sha256": "af502f572bf77951c27a7fa9785eaf79dbffbb75151bd0119fd950aa66390fa4"
-        },
-        {
-          "path": "artifacts/p0-controls-offline.log",
-          "sha256": "915bd47ab7a5a5322a94f70211496433862474af560caae590f3957abf94d943"
-        },
-        {
-          "path": "artifacts/p0-controls-linux.log",
-          "sha256": "c68631d7e3699f7b3d496961c14af82856fc5e5c5626b81fb2c6dcda540e4a43"
-        },
-        {
-          "path": "artifacts/p0-controls-node22.log",
-          "sha256": "0e844642675fb77b97a4fa1efb0c1583ee6974050f5282dc2acebf82bcde818a"
-        },
-        {
-          "path": "artifacts/p0-gate-controls.json",
-          "sha256": "f45828dfdddfe2311a1e37d667fcf7d7600f4047fbecb4d4124cbc092d2b3202"
-        },
-        {
-          "path": "artifacts/p0-overlay-pack.log",
-          "sha256": "235724b45c43ce6ac2a95ce306aa67a9a28be6044b997a5449afd141e076a932"
-        },
-        {
-          "path": "artifacts/p0-overlay-offline.log",
-          "sha256": "962b6159254657f115d6715dbd1aa2bac58585d81d62235c1c4ed63fc5842c5d"
-        },
-        {
-          "path": "artifacts/p0-overlay-node22.log",
-          "sha256": "4f54fd12fd9eaddd9a63dac1fac0a5c139765075ee7628f2be814272e7584c52"
-        },
-        {
-          "path": "artifacts/p0-source-hash-audit-overlay.json",
-          "sha256": "f66adf29217dc8ed4f21e9c59d5f8f37ad1d150becf12dbcc035089237b70095"
-        },
-        {
-          "path": "artifacts/p0-overlay-linux.log",
-          "sha256": "07b4694643ad7b4570ec7028c1662c2de32b127807b489789077311a17ec0eef"
-        },
-        {
-          "path": "artifacts/p0-gate-overlay.json",
-          "sha256": "8b1c604c6bf34f4b6f2bc5c76da54c82c9b285575940a43c538978bdf74005b9"
-        },
-        {
-          "path": "artifacts/p0-policy-verification.log",
-          "sha256": "7f73d7eab1fe7764dcf2b75b6a63a17fb0a94c8ed016ff59d109f49f5d58b7d1"
-        },
-        {
-          "path": "artifacts/p0-policy-node22.log",
-          "sha256": "794de9378a2f7858d31768729a3ff308f25a183040f444c8b5a603a088435900"
-        },
-        {
-          "path": "artifacts/p0-policy-linux.log",
-          "sha256": "d1946f753f96267ae3d14ac954608ad10c63b06577c2a2c91ee304193f58cfc8"
-        },
-        {
-          "path": "artifacts/p0-gate-policy.json",
-          "sha256": "92038f403c0b9edee77609d67eaa3182783eea92255fdcb0179ef31bf3ab7125"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
-        },
-        {
-          "path": "scripts/verify-p0.mjs",
-          "sha256": "5f66a576b87be2efcdc85634b7a54f66a4e3a1b672171ed2f6fdb106846dea99"
-        },
-        {
-          "path": "artifacts/p0-functional-grading-proof.json",
-          "sha256": "4fcbb3db90d3c429b5c0af950e48f9bea0c9dcb4634d6729c215670db993ed9d"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "WP-01",
-      "status": "needs_review",
-      "reason": "Inventário de pacotes/APIs reais do 1.1.0 + ADRs: implementação disponível; critério de saída a confirmar na auditoria final (Paths atuais mapeados, divergências registradas).",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "docs/P0_IMPLEMENTATION.md",
-          "sha256": "15a4a160e4a46d9bd524a285c90d8a231f3646dd3ceea7a0cb4b680699fc7301"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "WP-02",
-      "status": "needs_review",
-      "reason": "`@inteiro/contracts`, schemas e estados: implementação disponível; critério de saída a confirmar na auditoria final (Validação de exemplos válidos/inválidos).",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/contracts.test.ts",
-          "sha256": "2cd380fa6a3ed1ca1d54d58d3dd44d1f5cc6462e5a05625dc134731b8f94194d"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "WP-03",
-      "status": "needs_review",
-      "reason": "`inteiro.config.json` + resolver de precedência: implementação disponível; critério de saída a confirmar na auditoria final (Tests de precedence, paths e overrides).",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/contracts.test.ts",
-          "sha256": "2cd380fa6a3ed1ca1d54d58d3dd44d1f5cc6462e5a05625dc134731b8f94194d"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "WP-04",
-      "status": "needs_review",
-      "reason": "Context resolver + bundle compacto: implementação disponível; critério de saída a confirmar na auditoria final (Proveniência e orçamento auditáveis).",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/context.test.ts",
-          "sha256": "9e77ddfe572acba5c276bcc20a82b6cd32c828726b3114f26c83ce3f568d08f7"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "tests/p0/task-context.test.ts",
-          "sha256": "f00f0211309f65a13353535b65cb47ea134cb6bea58b0400d5149f83d33ae320"
-        },
-        {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "WP-05",
-      "status": "needs_review",
-      "reason": "Doctor/adapter Pi e smoke tests dos demais: implementação disponível; critério de saída a confirmar na auditoria final (Instalação idempotente e detecção de conflitos).",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/context.test.ts",
-          "sha256": "9e77ddfe572acba5c276bcc20a82b6cd32c828726b3114f26c83ce3f568d08f7"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-task-context-current-verified.json",
-          "sha256": "da35d5cec1087c2a617b6c778967bebc32d8291c74c498d2ec25ff3e97bad0c2"
-        },
-        {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "WP-06",
-      "status": "needs_review",
-      "reason": "Manifesto de padrões + Composition Kit básico: implementação disponível; critério de saída a confirmar na auditoria final (API documentada, sem React obrigatório).",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/composition.test.ts",
-          "sha256": "dc13623b083ef94ba9f1f4d4b32bd29c017a817b1bf743a220b9c5ef657acb0e"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "WP-07",
-      "status": "needs_review",
-      "reason": "Padrões estrutura/navegação: implementação disponível; critério de saída a confirmar na auditoria final (A11y, mobile, states e stories).",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/browser/composition.spec.ts",
-          "sha256": "a527222b944d2dec45874244f19189b417987423a91c73b6b451fb17ecc09a12"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "WP-08",
-      "status": "needs_review",
-      "reason": "Padrões forms/feedback/overlays: implementação disponível; critério de saída a confirmar na auditoria final (A11y, teclado, estados e stories).",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/browser/composition.spec.ts",
-          "sha256": "a527222b944d2dec45874244f19189b417987423a91c73b6b451fb17ecc09a12"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "WP-09",
-      "status": "needs_review",
-      "reason": "Padrões dados/dashboard/editorial: implementação disponível; critério de saída a confirmar na auditoria final (Overflow, densidade e dados longos).",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/browser/composition.spec.ts",
-          "sha256": "a527222b944d2dec45874244f19189b417987423a91c73b6b451fb17ecc09a12"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "WP-10",
-      "status": "needs_review",
-      "reason": "Static Guard JS/TS/CSS: implementação disponível; critério de saída a confirmar na auditoria final (Rules por AST + corpus positivo/negativo).",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/static.test.ts",
-          "sha256": "cabfc3f2588f2a264977071fcaad9306e9da826ac278a008836de6eeccfbde2a"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "WP-11",
-      "status": "needs_review",
-      "reason": "Adaptadores de lint Vue/Svelte/HTML: implementação disponível; critério de saída a confirmar na auditoria final (Sem silêncio em sintaxe não suportada).",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/static.test.ts",
-          "sha256": "cabfc3f2588f2a264977071fcaad9306e9da826ac278a008836de6eeccfbde2a"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "WP-12",
-      "status": "needs_review",
-      "reason": "Browser runner, lifecycle e fixtures: implementação disponível; critério de saída a confirmar na auditoria final (Isolamento, readiness e JSON status).",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "7b862b9be6c5a058405f3878c7273ce6f74963ccc0dc41b69277040a9db606bb"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "WP-13",
-      "status": "needs_review",
-      "reason": "Checks DOM, flow, a11y, console: implementação disponível; critério de saída a confirmar na auditoria final (Casos negativos detectados e evidências).",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/browser/composition.spec.ts",
-          "sha256": "a527222b944d2dec45874244f19189b417987423a91c73b6b451fb17ecc09a12"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "WP-14",
-      "status": "needs_review",
-      "reason": "Screenshot comparator determinístico: implementação disponível; critério de saída a confirmar na auditoria final (Diff reproduzível em env fixo).",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/visual.test.ts",
-          "sha256": "2bb7ba92a27449262f3950d766b75b0ce0e2a2d3e5afe44768bba44431a38509"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "WP-15",
-      "status": "needs_review",
-      "reason": "Baseline Registry + aprovação: implementação disponível; critério de saída a confirmar na auditoria final (Sem autoapprove e hashes auditáveis).",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/governance.test.ts",
-          "sha256": "5303cc070a2558721d201c2eafc21e1ea5145b1b3d6992f78e16a5e4a25ac233"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "WP-16",
-      "status": "needs_review",
-      "reason": "Catálogo Storybook e índice JSON: implementação disponível; critério de saída a confirmar na auditoria final (100% padrões P0 documentados).",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "packages/composition/story-matrix.json",
-          "sha256": "1c9e313245b5447f3ffac8570f170a6514a8ffaae13e9ee27cd140e4bf3bf082"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "WP-17",
-      "status": "needs_review",
-      "reason": "O controlador agora exige gate completo para concluir: cinco gates únicos, sourceHash/commit/configuração e tarefa/contexto atuais, cobertura estática enforce-all, matriz declarada de rotas/estados/viewports/temas/densidades, screenshots intermediários, bytes registrados e revisão qualitativa novamente conferida. Relatórios verdes incompletos são bloqueados com rollback e acceptanceFailure; o transporte recusa findings omitidos/duplicados/contraditórios. O adapter Pi usa resolução ESM compatível com o CLI instalado e foi exercitado como processo determinístico offline, sem agente. CI com 365 testes, cinco testes de navegador e 11 pacotes/consumidores em Node 24 e 22.14 passaram. A aceitação global P0 permanece dependente das demais lacunas e revisões do ledger.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/contracts.test.ts",
-          "sha256": "2cd380fa6a3ed1ca1d54d58d3dd44d1f5cc6462e5a05625dc134731b8f94194d"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-gate-context-migration.json",
-          "sha256": "6a134b671974e89ce92bef67e9735f159ab70e7269449d05f08768edf34bdd9f"
-        },
-        {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
-        },
-        {
-          "path": "packages/agent-core/src/repair-validation.ts",
-          "sha256": "6e0035551f1fc13898a8ae5d459d8c149a620e66cb0d849b4c51ef7fcf157f76"
-        },
-        {
-          "path": "packages/agent-core/src/gate-protocol.ts",
-          "sha256": "c25184cad5893145b94111907546ae164abc0859844939362030851406812501"
-        },
-        {
-          "path": "tests/p0/repair-acceptance.test.ts",
-          "sha256": "65160e6d029a6e3915a044748ba327f2cac27f33f875bb7594c2ff62f3fc8242"
-        },
-        {
-          "path": "tests/helpers/repair-evidence.ts",
-          "sha256": "78289daf60893b1ecfcb2b0ca49ce499dad1f30a9ab0dbd97bccb38eb2737cff"
-        },
-        {
-          "path": "examples/pi/repair-adapter.ts",
-          "sha256": "c90b983936825e3e3293ec9e32fa7f9a7e826895200dc11aa7426513a2439a7c"
-        },
-        {
-          "path": "artifacts/p0-repair-verification.json",
-          "sha256": "8ab518edbde20c3d0f8ec144f75b149572aa1428f832f132c8c937c5445c0f09"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "WP-18",
-      "status": "needs_review",
-      "reason": "O controlador agora exige gate completo para concluir: cinco gates únicos, sourceHash/commit/configuração e tarefa/contexto atuais, cobertura estática enforce-all, matriz declarada de rotas/estados/viewports/temas/densidades, screenshots intermediários, bytes registrados e revisão qualitativa novamente conferida. Relatórios verdes incompletos são bloqueados com rollback e acceptanceFailure; o transporte recusa findings omitidos/duplicados/contraditórios. O adapter Pi usa resolução ESM compatível com o CLI instalado e foi exercitado como processo determinístico offline, sem agente. CI com 365 testes, cinco testes de navegador e 11 pacotes/consumidores em Node 24 e 22.14 passaram. A aceitação global P0 permanece dependente das demais lacunas e revisões do ledger.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/repair-controller.test.ts",
-          "sha256": "08bcc9cce43a76554d6b376b4b887232520b32f1737d6feafc9265df27667c3e"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
-        },
-        {
-          "path": "packages/agent-core/src/repair-validation.ts",
-          "sha256": "6e0035551f1fc13898a8ae5d459d8c149a620e66cb0d849b4c51ef7fcf157f76"
-        },
-        {
-          "path": "packages/agent-core/src/gate-protocol.ts",
-          "sha256": "c25184cad5893145b94111907546ae164abc0859844939362030851406812501"
-        },
-        {
-          "path": "tests/p0/repair-acceptance.test.ts",
-          "sha256": "65160e6d029a6e3915a044748ba327f2cac27f33f875bb7594c2ff62f3fc8242"
-        },
-        {
-          "path": "tests/helpers/repair-evidence.ts",
-          "sha256": "78289daf60893b1ecfcb2b0ca49ce499dad1f30a9ab0dbd97bccb38eb2737cff"
-        },
-        {
-          "path": "examples/pi/repair-adapter.ts",
-          "sha256": "c90b983936825e3e3293ec9e32fa7f9a7e826895200dc11aa7426513a2439a7c"
-        },
-        {
-          "path": "artifacts/p0-repair-verification.json",
-          "sha256": "8ab518edbde20c3d0f8ec144f75b149572aa1428f832f132c8c937c5445c0f09"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "WP-19",
-      "status": "blocked",
-      "reason": "Engine de calibração implementado com schemas públicos, referências assinadas Ed25519 e política separada para identidades humanas/sintéticas; cobre rubrica de sete eixos, pares de capturas, texto longo, overlays e calm/focus. Mede concordância/erro por eixo, Spearman com empates, ranking, falsos bloqueios, falhas graves perdidas, insuficiência, custos e tokens desconhecidos. Evidência insuficiente pode omitir notas sem inventá-las; cobertura e denominadores são explícitos. CLI/API/dry-run/tipos instalados em Node 24 e 22.14 e CI com 406 testes (41 de calibração) passaram. As referências executadas são exclusivamente sintéticas; corpus humano real, calibração empírica e aprovação visual de produto seguem pendentes. Nenhuma identidade humana ou baseline de produção foi criada/aprovada.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/review.test.ts",
-          "sha256": "bc8024d3e97e8e988d8be424f9542f3a71b3b775d4bfc36c586c0408471a67e7"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
-        },
-        {
-          "path": "packages/evaluation/src/calibration.ts",
-          "sha256": "305b068f155ea9006b704d4cf2ebe3cff478804d63d751c9ebf60294006a7d9c"
-        },
-        {
-          "path": "packages/contracts/schemas/review-calibration-input.schema.json",
-          "sha256": "a8b6a6e180f3a667001815f7e26fb4fb9f6f4c9d37f486fb44b949de53bf2e83"
-        },
-        {
-          "path": "packages/contracts/schemas/review-calibration-reference.schema.json",
-          "sha256": "50d92636f50de4a5386833a41c1ebdfeb49bf04d1832730a92f646cd76e96b03"
-        },
-        {
-          "path": "packages/contracts/schemas/review-calibration-reviewers.schema.json",
-          "sha256": "6d7e6e65e6a556f656ca020797baac6b9f44ac7c3a7f343ae040f7e31ec2c8ca"
-        },
-        {
-          "path": "tests/p0/calibration.test.ts",
-          "sha256": "b0b2c1354de059ed76448432c7b1c7e803e7c0f91714ecb627c1cd398e34b395"
-        },
-        {
-          "path": "tests/helpers/calibration-fixture.ts",
-          "sha256": "898e2609e1d2ea1565f6119fa54b450747d277c23eaeafc3716bc1dd31d8bce6"
-        },
-        {
-          "path": "docs/P0_OPERATIONS.md",
-          "sha256": "4d0a372a2f78be63cb2486ab0bd776d13380076ef27687657a12eb19245faad6"
-        },
-        {
-          "path": "artifacts/p0-calibration-verification.json",
-          "sha256": "6cbfebd9fb9c175f553cb77bb94f89db8d428d9823e08a05dbdc197d2596875d"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "WP-20",
-      "status": "blocked",
-      "reason": "40 casos possuem critérios independentes e controles positivos/negativos; aceite vincula grading e gates à fonte, commit, configuração e raiz do candidato. A decomposição do custo total agora inclui tokens de todos os modelos, ferramentas, revisão humana e infraestrutura; eventos têm IDs únicos, moeda comum, null explícito, reconciliação decimal e rejeição de overflow. Grupos separam moedas e preservam totais legados sem alegar cobertura completa; protocolo congelado exige os quatro componentes conhecidos e orçamento respeitado. Tokens por tarefa aceita incluem falhas; tempo até aceite usa somente aceitações. 464 testes unitários e 11 pacotes offline passaram; APIs/CLI/CSV/tipos instalados foram verificados em Node 24/22. Restam bootstrap completo dos candidatos e evidência portátil do produtor. Experimentos reais e aprovação humana final da meta estão excluídos; billingAttested/publicationReady permanecem false. Bootstrap offline implementado com distribuição/lock fixados, npm sem lifecycle scripts, instalação Pi/Codex e contexto verificado, rotas/fixtures/fontes conferidas e controles selados. Política pública de revisores protegida; artefatos operacionais externos não equivalem a aprovação. 476 testes unitários, 11 testes direcionados incluindo Docker real, 11 pacotes e API/CLI/tipos instalados em Node 24 Windows e Node 22 Linux passaram. Ainda faltam snapshots públicos completos de validação das 40 tarefas de produção e evidência portátil do produtor; não há execução de modelos nem aprovação de produto.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/evaluation.test.ts",
-          "sha256": "d6cb311a16f32a8df19b3d220a9b70fc4cbc99fdad8e143d6e77130daecf1907"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
-        },
-        {
-          "path": "packages/contracts/schemas/benchmark-protocol.schema.json",
-          "sha256": "d913883fbc55e34e8a6569ff820abbc80566f2ab5d04ca7b30f75096666e056c"
-        },
-        {
-          "path": "packages/evaluation/src/protocol.ts",
-          "sha256": "87e79cfc6c56cd5860c38c148fe1ce2fa06a7d6bcf8dca7b4c26621c18e808a5"
-        },
-        {
-          "path": "tests/p0/benchmark-protocol.test.ts",
-          "sha256": "bf4d8deab016182b3bec72bd6bb8c85a43e82fda6c9d39e0a172fa7c5fdadee7"
-        },
-        {
-          "path": "docs/P0_OPERATIONS.md",
-          "sha256": "4d0a372a2f78be63cb2486ab0bd776d13380076ef27687657a12eb19245faad6"
-        },
-        {
-          "path": "artifacts/p0-protocol-verification.json",
-          "sha256": "4c1a26c6991a7ed41a38128c27c929a668e1b525ec0b7d54fd3864c2014f966b"
-        },
-        {
-          "path": "benchmarks/tasks.public.json",
-          "sha256": "d02a8b281db2ed109e7f809734fef12940b75f5fb8cb32f3b67a4d46654bfbea"
-        },
-        {
-          "path": "benchmarks/tasks.heldout.json",
-          "sha256": "2ebacd7430fdaef9fecf184eb249e03e4101362c28d2d77a1c3051e278671cf7"
-        },
-        {
-          "path": "packages/evaluation/src/grading.ts",
-          "sha256": "9f4a2fe630e77ea271d8cf1a884e954067087c5e57d1bb86fe86b685680ca9fc"
-        },
-        {
-          "path": "packages/contracts/schemas/task-grading.schema.json",
-          "sha256": "9a11fe2fd18089d46d4a0ffa0d1508d38fa2854402dc5e358720eb15c26e6bc8"
-        },
-        {
-          "path": "packages/contracts/schemas/task-fixture.schema.json",
-          "sha256": "e9a36c73a999af578f355ecbd74a0c56e2db164ba599b2d2b93eddc4e8d98def"
-        },
-        {
-          "path": "tests/p0/task-grading.test.ts",
-          "sha256": "ed61af8c41b1f6dc3b310838c602bfe5bdb5b2a8191e696fe37097ca64d93728"
-        },
-        {
-          "path": "artifacts/p0-functional-grading-proof.json",
-          "sha256": "4fcbb3db90d3c429b5c0af950e48f9bea0c9dcb4634d6729c215670db993ed9d"
-        },
-        {
-          "path": "artifacts/p0-worker-isolation-proof.json",
-          "sha256": "2494a9ecbb7e18c26039948cac61830c58e610008cd78edd84fe4eefa98c7258"
-        },
-        {
-          "path": "artifacts/p0-benchmark-expansion-proof.json",
-          "sha256": "e4a3c3edfff4fb7866c7a028c855e3c8e23cc6b5ff65176c17e533bf144e24ca"
-        },
-        {
-          "path": "artifacts/p0-functional-binding-proof.json",
-          "sha256": "ab28890a241c7d8c9accc6b5d193198abce67db94a48fbfdf4f6de5047d3f9d0"
-        },
-        {
-          "path": "artifacts/p0-cost-accounting-proof.json",
-          "sha256": "bdacee39825db476b49323fb795db6f8ffe1a0327cc435afc9ee763eacb534d6"
-        },
-        {
-          "path": "artifacts/p0-worker-bootstrap-proof.json",
-          "sha256": "3259c7333024493000592b3a296a53f9244002818107807f73cdc59e34cf11e9"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "WP-21",
-      "status": "needs_review",
-      "reason": "Integração CI e profiles: implementação disponível; critério de saída a confirmar na auditoria final (PR/main/nightly/release funcionais).",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": ".github/workflows/ci.yml",
-          "sha256": "540047c507343a57635c6838911bad979eb3969e8a96c4148843b34b08ba6f85"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "WP-22",
-      "status": "needs_review",
-      "reason": "Migração 1.1.0 + guias por framework: implementação disponível; critério de saída a confirmar na auditoria final (App legado migra sem regressão).",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "docs/P0_OPERATIONS.md",
-          "sha256": "4d0a372a2f78be63cb2486ab0bd776d13380076ef27687657a12eb19245faad6"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "tests/p0/compatibility.test.ts",
-          "sha256": "1f75b63324b0993d56788edce7d9b626d49f34b32dfbc6fadc933f12d553e8ac"
-        },
-        {
-          "path": "tests/p0/migration.test.ts",
-          "sha256": "605ea24be3bb754ed4785c73755d9b35f0a975f3ceb6bcc07767207847b3f95a"
-        },
-        {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "WP-23",
-      "status": "needs_review",
-      "reason": "Hardening, security checks, performance: implementação disponível; critério de saída a confirmar na auditoria final (DoD-01 a DoD-12 e release readiness).",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/release.test.ts",
-          "sha256": "d755c4df99cd56692af1766414e3b8ed00282afed8f7cc67a9dbe45aefc17018"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "DoD-01",
-      "status": "needs_review",
-      "reason": "Os 11 épicos E00–E10 atingem suas condições de aceite: evidência técnica referenciada; aceite final não certificado.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/release.test.ts",
-          "sha256": "d755c4df99cd56692af1766414e3b8ed00282afed8f7cc67a9dbe45aefc17018"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "DoD-02",
-      "status": "needs_review",
-      "reason": "`npm run ci` legado continua passando, com novos checks compatíveis: evidência técnica referenciada; aceite final não certificado.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-final-ci.log",
-          "sha256": "528406384dde883e7b5ca4af2d6faaab4c2db3c1624dd50472eaa1d31c42397c"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "DoD-03",
-      "status": "needs_review",
-      "reason": "Projetos HTML, React/Next, Vue e Svelte adotam e validam o núcleo: evidência técnica referenciada; aceite final não certificado.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-final-browser-full.log",
-          "sha256": "eeaf4aa396bb0d4a4c4eae3e7228e9824ecdab553bcaa5256dd35b6ef3c750a9"
-        },
-        {
-          "path": "artifacts/p0-linux-bound-migration.log",
-          "sha256": "c9926dfe673606030d87b7bb7f3864885fd415bd2aeb059cd9c9c4e84348a8bc"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "DoD-04",
-      "status": "needs_review",
-      "reason": "CLI e MCP continuam funcionais offline após instalação: evidência técnica referenciada; aceite final não certificado.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-offline.json",
-          "sha256": "5af7e9e00737b315764e2d9a33b15a62bce4848fdb1a81dca5993e281b3a4522"
-        },
-        {
-          "path": "artifacts/p0-node22-bound-migration.log",
-          "sha256": "39a8a0f5981d6db1e85d4959f2380681b3e80fc0d2ed6d1c75ec5db1bdbf6b25"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "DoD-05",
-      "status": "needs_review",
-      "reason": "Todas as regras detectáveis possuem testes positivo/negativo: evidência técnica referenciada; aceite final não certificado.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/static.test.ts",
-          "sha256": "cabfc3f2588f2a264977071fcaad9306e9da826ac278a008836de6eeccfbde2a"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "DoD-06",
-      "status": "needs_review",
-      "reason": "Nenhuma baseline é promovida pelo agente sem aprovação: evidência técnica referenciada; aceite final não certificado.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/governance.test.ts",
-          "sha256": "5303cc070a2558721d201c2eafc21e1ea5145b1b3d6992f78e16a5e4a25ac233"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "DoD-07",
-      "status": "needs_review",
-      "reason": "Toda UI crítica alterada possui comparação visual + checks DOM/a11y: evidência técnica referenciada; aceite final não certificado.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "inteiro.routes.json",
-          "sha256": "eb1fea90ea5aa0897b47fbc5151bb5a5f34866e390e5287c73893b549b2a278e"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-gate-context-migration.json",
-          "sha256": "6a134b671974e89ce92bef67e9735f159ab70e7269449d05f08768edf34bdd9f"
-        },
-        {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "DoD-08",
-      "status": "needs_review",
-      "reason": "Nenhum `blocked`, `error`, `not_run` ou `needs_review` vira `passed`: evidência técnica referenciada; aceite final não certificado.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/contracts.test.ts",
-          "sha256": "2cd380fa6a3ed1ca1d54d58d3dd44d1f5cc6462e5a05625dc134731b8f94194d"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "DoD-09",
-      "status": "needs_review",
-      "reason": "Benchmarks reproduzíveis medem custo por tarefa aceita: evidência técnica referenciada; aceite final não certificado.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/evaluation.test.ts",
-          "sha256": "d6cb311a16f32a8df19b3d220a9b70fc4cbc99fdad8e143d6e77130daecf1907"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "DoD-10",
-      "status": "needs_review",
-      "reason": "Artefatos não contêm secrets/PII de fixtures de teste: evidência técnica referenciada; aceite final não certificado.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "7b862b9be6c5a058405f3878c7273ce6f74963ccc0dc41b69277040a9db606bb"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "tests/p0/contracts.test.ts",
-          "sha256": "2cd380fa6a3ed1ca1d54d58d3dd44d1f5cc6462e5a05625dc134731b8f94194d"
-        },
-        {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "DoD-11",
-      "status": "needs_review",
-      "reason": "Docs e exemplos são reexecutáveis da versão publicada: evidência técnica referenciada; aceite final não certificado.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "scripts/smoke-offline.mjs",
-          "sha256": "74c8500fd074a621bbd263911c39a6a98e4bf648aec6a672998aee53099f0bb3"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "DoD-12",
-      "status": "needs_review",
-      "reason": "Adoção de projeto 1.1.0 não exige reescrita do frontend: evidência técnica referenciada; aceite final não certificado.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "docs/P0_IMPLEMENTATION.md",
-          "sha256": "15a4a160e4a46d9bd524a285c90d8a231f3646dd3ceea7a0cb4b680699fc7301"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-legacy-compatibility.json",
-          "sha256": "9b93fb0cda5d77a9d6590a9c2dd8dc337dcddcfafb4862a9297d8d78074908c3"
-        },
-        {
-          "path": "tests/p0/compatibility.test.ts",
-          "sha256": "1f75b63324b0993d56788edce7d9b626d49f34b32dfbc6fadc933f12d553e8ac"
-        },
-        {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "SCN-01",
-      "status": "needs_review",
-      "reason": "Drift de token detectado: cenário coberto por implementação/teste; auditoria de aceite pendente.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/static.test.ts",
-          "sha256": "cabfc3f2588f2a264977071fcaad9306e9da826ac278a008836de6eeccfbde2a"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "SCN-02",
-      "status": "needs_review",
-      "reason": "Overflow em mobile detectado: cenário coberto por implementação/teste; auditoria de aceite pendente.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "7b862b9be6c5a058405f3878c7273ce6f74963ccc0dc41b69277040a9db606bb"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "SCN-03",
-      "status": "needs_review",
-      "reason": "Baseline inexistente: cenário coberto por implementação/teste; auditoria de aceite pendente.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "7b862b9be6c5a058405f3878c7273ce6f74963ccc0dc41b69277040a9db606bb"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "SCN-04",
-      "status": "needs_review",
-      "reason": "Mudança legítima aprovada: cenário coberto por implementação/teste; auditoria de aceite pendente.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "7b862b9be6c5a058405f3878c7273ce6f74963ccc0dc41b69277040a9db606bb"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "SCN-05",
-      "status": "needs_review",
-      "reason": "Instrução ignorada pelo modelo: cenário coberto por implementação/teste; auditoria de aceite pendente.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/context.test.ts",
-          "sha256": "9e77ddfe572acba5c276bcc20a82b6cd32c828726b3114f26c83ce3f568d08f7"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "SCN-06",
-      "status": "needs_review",
-      "reason": "Falha de browser: cenário coberto por implementação/teste; auditoria de aceite pendente.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/browser-runner.test.ts",
-          "sha256": "7b862b9be6c5a058405f3878c7273ce6f74963ccc0dc41b69277040a9db606bb"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "SCN-07",
-      "status": "needs_review",
-      "reason": "Loop guard: cenário coberto por implementação/teste; auditoria de aceite pendente.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/repair-controller.test.ts",
-          "sha256": "08bcc9cce43a76554d6b376b4b887232520b32f1737d6feafc9265df27667c3e"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "SCN-08",
-      "status": "needs_review",
-      "reason": "UI de dados sensíveis: cenário coberto por implementação/teste; auditoria de aceite pendente.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/review.test.ts",
-          "sha256": "bc8024d3e97e8e988d8be424f9542f3a71b3b775d4bfc36c586c0408471a67e7"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "SCN-09",
-      "status": "needs_review",
-      "reason": "Componente inexistente: cenário coberto por implementação/teste; auditoria de aceite pendente.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/cli.test.ts",
-          "sha256": "9de7d8b03439baeee46dee02a1a6bcdad9952dae5ba67c56be557de8fe6251e6"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "tests/p0/composition.test.ts",
-          "sha256": "dc13623b083ef94ba9f1f4d4b32bd29c017a817b1bf743a220b9c5ef657acb0e"
-        },
-        {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "SCN-10",
-      "status": "needs_review",
-      "reason": "Monorepo: cenário coberto por implementação/teste; auditoria de aceite pendente.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/context.test.ts",
-          "sha256": "9e77ddfe572acba5c276bcc20a82b6cd32c828726b3114f26c83ce3f568d08f7"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "SCN-11",
-      "status": "needs_review",
-      "reason": "Layout novo com UI aparentemente válida: cenário coberto por implementação/teste; auditoria de aceite pendente.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "tests/p0/review.test.ts",
-          "sha256": "bc8024d3e97e8e988d8be424f9542f3a71b3b775d4bfc36c586c0408471a67e7"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     },
     {
       "id": "SCN-12",
-      "status": "needs_review",
-      "reason": "Teste que oscila: cenário coberto por implementação/teste; auditoria de aceite pendente.",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
       "evidence": [
         {
-          "path": "scripts/measure-p0.mjs",
-          "sha256": "0d4d44beb1a44b2f9c1c24b01c64ef44da8e55c41d60961e1015dbc1d59f44b3"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
         },
         {
-          "path": "artifacts/p0-verification.json",
-          "sha256": "d6b6f8f0fde0e0a7e7120977992fe7779cb6991801454f91be8299cf82d3bd00"
-        },
-        {
-          "path": "artifacts/p0-review-linux.log",
-          "sha256": "78d78f32f780fd510ba7884a15b4dd9aa8fcb06f651c64eeed13316c7f3e4e21"
-        },
-        {
-          "path": "artifacts/p0-review-node22.log",
-          "sha256": "1b5f00a90aeed7ecc1ca034eac66e573b5cb8eeedde8b0c98b4bd882816f49c3"
-        },
-        {
-          "path": "artifacts/p0-gate-review-started.json",
-          "sha256": "22f2c1a5e5aa945587ceec913aa3ef239e333faad465e3c6275e7b8a5d03de28"
-        },
-        {
-          "path": "artifacts/p0-experiment-verification.json",
-          "sha256": "5ec8fcea135860460901e7063499e35c69cb30105357deb2956eb0c5ecbba8b6"
-        },
-        {
-          "path": "artifacts/p0-experiment-dry-verification.json",
-          "sha256": "7eb0ceaacb508593feceaae4f2a2e44a2f1dfbffd9d8f4b1aaef530acfa48298"
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
         }
       ]
     }
-  ],
-  "approval": null
+  ]
 }

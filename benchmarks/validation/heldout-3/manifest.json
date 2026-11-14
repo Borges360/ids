@@ -1,0 +1,99 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "public-worker-validation",
+  "governanceContractHash": "9b4864d548d799f25ed7cb174c6e9e95e3e7ede5e65544f07e8bb88d4b36347d",
+  "caseId": "heldout-3",
+  "patternIds": [
+    "data-table"
+  ],
+  "coverage": {
+    "states": {
+      "default": {
+        "applicable": true,
+        "scenario": "default",
+        "phase": "final"
+      },
+      "loading": {
+        "applicable": false,
+        "reason": "Task family 23 does not expose loading in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      },
+      "empty": {
+        "applicable": false,
+        "reason": "Task family 23 does not expose empty in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      },
+      "error": {
+        "applicable": false,
+        "reason": "Task family 23 does not expose error in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      },
+      "disabled": {
+        "applicable": false,
+        "reason": "Task family 23 does not expose disabled in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      },
+      "invalid": {
+        "applicable": false,
+        "reason": "Task family 23 does not expose invalid in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      },
+      "success": {
+        "applicable": false,
+        "reason": "Task family 23 does not expose success in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      },
+      "modal": {
+        "applicable": false,
+        "reason": "Task family 23 does not expose modal in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      },
+      "selected": {
+        "applicable": true,
+        "scenario": "primary-flow",
+        "phase": "action-capture",
+        "actionIndex": 5
+      },
+      "readonly": {
+        "applicable": false,
+        "reason": "Task family 23 does not expose readonly in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      },
+      "long-content": {
+        "applicable": false,
+        "reason": "Task family 23 does not expose long-content in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      }
+    },
+    "viewports": [
+      "mobile",
+      "tablet",
+      "desktop"
+    ],
+    "themes": [
+      "light",
+      "dark",
+      "contrast-light",
+      "contrast-dark"
+    ],
+    "densities": [
+      "calm",
+      "focus"
+    ],
+    "keyboard": [],
+    "content": {
+      "classification": "synthetic",
+      "fixture": {
+        "path": "benchmarks/validation/heldout-3/fixture.json",
+        "sha256": "2f082cf97b2abce6b9930dea36de37e6264fb9921cbaa82103a98f405bf3b8fe"
+      }
+    },
+    "reducedMotion": "reduce"
+  },
+  "routes": {
+    "path": "benchmarks/validation/heldout-3/routes.json",
+    "sha256": "2e1216d7993930aad5b8db52c1b9f71794d815b18f2cca5ae834c58c741df9e8"
+  },
+  "fixtures": [
+    {
+      "id": "heldout-3",
+      "path": "benchmarks/validation/heldout-3/fixture.json",
+      "sha256": "2f082cf97b2abce6b9930dea36de37e6264fb9921cbaa82103a98f405bf3b8fe"
+    }
+  ],
+  "technicalPolicy": {
+    "path": "benchmarks/validation/technical-authority-policy.json",
+    "sha256": "adcb4bb12807f564cb60e4de963f4ed2a8adfeb25526056132a3cfe58aec5020"
+  }
+}

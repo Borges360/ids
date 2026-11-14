@@ -1,0 +1,36 @@
+{
+  "classification": "synthetic",
+  "clock": "2026-01-01T12:00:00.000Z",
+  "seed": 106,
+  "syntheticText": [
+    "rafa@example.test",
+    "lia@example.test",
+    "rui@example.test"
+  ],
+  "responses": [
+    {
+      "url": "/api/profile",
+      "method": "GET",
+      "sequence": [
+        {
+          "body": {
+            "name": "Lia Moura",
+            "email": "lia@example.test",
+            "avatarUrl": null
+          },
+          "status": 200,
+          "alias": "profile-0"
+        },
+        {
+          "body": {
+            "name": "Rui Sá",
+            "email": "rui@example.test",
+            "avatarUrl": null
+          },
+          "status": 200,
+          "alias": "profile-1"
+        }
+      ]
+    }
+  ]
+}

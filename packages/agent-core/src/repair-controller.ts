@@ -47,7 +47,7 @@ export interface RepairConsumer {
   ): Promise<EvidenceBundle>;
 }
 const forbiddenPath =
-  /(?:^|\/)(?:\.env(?:\..*)?|\.git|\.github|\.inteiro|\.harness|node_modules|Jenkinsfile|.*(?:baseline|snapshot|policy|threshold|inteiro\.config|reviewers).*)($|\/)/i;
+  /(?:^(?:scripts|tests|benchmarks)\/)|(?:^packages\/(?:contracts|lint|visual|evaluation|agent-core|cli)\/)|(?:^|\/)(?:\.env(?:\..*)?|\.git|\.github|\.inteiro|\.harness|node_modules|Jenkinsfile|.*(?:baseline|snapshot|policy|threshold|inteiro\.config|reviewers|governance|attestation|gate-protocol|repair-validation|release-evidence|P0_AUTONOMOUS).*)($|\/)/i;
 function normalized(path: string): string {
   if (
     typeof path !== "string" ||
@@ -99,8 +99,14 @@ export async function runRepairController(
     report: EvidenceBundle;
   }[] = [{ scope: "initial", attempt: 0, report: initial }];
   let report = initial;
+  const repairStarted = performance.now();
   let acceptanceFailure: string | undefined;
   const finish = (status: GateStatus, reason: string) => {
+    if (
+      status === "needs_review" &&
+      config.governance.mode === "technical-autonomous"
+    )
+      status = "blocked";
     steps.push({
       state: status,
       attempt: history.length,
@@ -111,6 +117,7 @@ export async function runRepairController(
       schemaVersion: "1.0",
       status,
       reason,
+      durationMs: performance.now() - repairStarted,
       contextBundleId: task.contextBundleId,
       attempts: history.length,
       steps,

@@ -1,95 +1,172 @@
 <!doctype html>
-<html lang="pt-BR" data-in-theme="dark" data-in-density="focus">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>INTEIRO — Documentação</title>
-  <meta name="description" content="Documentação do INTEIRO, Personal Identity System: princípios, tokens DTCG, recipes CSS e guias de implementação." />
-  <link rel="stylesheet" href="/packages/tokens/dist/css/inteiro.css" />
-  <link rel="stylesheet" href="/packages/design-system/src/components.css" />
-  <link rel="stylesheet" href="/apps/demo/docs.css" />
-  <script>
-    try {
-      var theme = localStorage.getItem("inteiro-docs-theme");
-      var density = localStorage.getItem("inteiro-docs-density");
-      if (theme) document.documentElement.setAttribute("data-in-theme", theme);
-      if (density) document.documentElement.setAttribute("data-in-density", density);
-    } catch (error) { /* armazenamento indisponível */ }
-  </script>
-  <link rel="stylesheet" href="/packages/composition/src/fonts.css" />
-</head>
-<body class="in-root">
-  <a class="skip" href="#conteudo">Saltar para o conteúdo</a>
-  <div class="docs">
-    <aside id="sidebar" class="sidebar">
-      <a class="brand" href="#/introduction/overview">
-        <span class="brand__seam" aria-hidden="true"></span>
-        <span>
-          <span class="brand__name">INTEIRO</span>
-          <span class="brand__tag in-voice-human">dar forma à tensão</span>
-        </span>
-      </a>
-      <nav id="nav" aria-label="Documentação"></nav>
-      <div class="sidebar__foot">
-        <a href="#/resources/guide/changelog"><span id="version" class="in-voice-machine">v1.1.1</span></a>
-        <a href="#/governance/guide/contribuir">Contribuição</a>
-      </div>
-    </aside>
-    <div class="docs-main">
-      <header class="topbar">
-        <button type="button" class="in-button in-button--secondary menu-button" id="menu-button" aria-expanded="false" aria-controls="sidebar">Menu</button>
-        <nav id="crumbs" class="crumbs" aria-label="Trilha"></nav>
-        <button type="button" class="search-launch" id="open-search">
-          <span>Buscar</span>
-          <kbd id="search-kbd">Ctrl K</kbd>
-        </button>
-        <div class="appearance">
-          <label>Tema
-            <select id="theme" class="in-input" aria-label="Tema">
-              <option value="dark">dark</option>
-              <option value="light">light</option>
-              <option value="contrast-dark">contrast-dark</option>
-              <option value="contrast-light">contrast-light</option>
-            </select>
-          </label>
-          <label>Densidade
-            <select id="density" class="in-input" aria-label="Densidade">
-              <option value="focus">focus</option>
-              <option value="calm">calm</option>
-            </select>
-          </label>
+<html lang="en" data-in-theme="dark" data-in-density="focus">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>INTEIRO — Documentation</title>
+    <meta
+      name="description"
+      content="Interactive INTEIRO documentation for its principles, tokens, CSS recipes and implementation guides."
+    />
+    <link rel="stylesheet" href="/packages/tokens/dist/css/inteiro.css" />
+    <link rel="stylesheet" href="/packages/design-system/src/components.css" />
+    <link rel="stylesheet" href="/apps/demo/docs.css" />
+    <script>
+      try {
+        var theme = localStorage.getItem("inteiro-docs-theme");
+        var density = localStorage.getItem("inteiro-docs-density");
+        if (theme)
+          document.documentElement.setAttribute("data-in-theme", theme);
+        if (density)
+          document.documentElement.setAttribute("data-in-density", density);
+      } catch (error) {
+        /* armazenamento indisponível */
+      }
+    </script>
+    <link rel="stylesheet" href="/packages/composition/src/fonts.css" />
+  </head>
+  <body class="in-root">
+    <a class="skip" href="#conteudo" data-i18n="skip">Skip to content</a>
+    <div class="docs">
+      <aside id="sidebar" class="sidebar">
+        <a class="brand" href="#/introduction/overview">
+          <span class="brand__seam" aria-hidden="true"></span>
+          <span>
+            <span class="brand__name">INTEIRO</span>
+            <span class="brand__tag in-voice-human" data-i18n="brandTag"
+              >Shape the tension</span
+            >
+          </span>
+        </a>
+        <nav
+          id="nav"
+          data-i18n-aria="documentation"
+          aria-label="Documentation"
+        ></nav>
+        <div class="sidebar__foot">
+          <a href="#/resources/guide/changelog"
+            ><span id="version" class="in-voice-machine">v1.1.1</span></a
+          >
+          <a href="#/governance/guide/contribuir" data-i18n="contribution"
+            >Contribution</a
+          >
         </div>
-      </header>
-      <div class="docs-body">
-        <article id="conteudo" class="doc" tabindex="-1">
-          <h1 class="doc-title in-voice-signal">INTEIRO</h1>
-          <p>A documentação interativa carrega o catálogo em <span class="in-voice-machine">apps/demo/content</span>.</p>
-          <noscript>
-            <p>Sem JavaScript, use os textos em Markdown servidos por este mesmo servidor:</p>
-            <ul>
-              <li><a href="/docs/GETTING_STARTED.md">Começando</a></li>
-              <li><a href="/docs/BRAND.md">Marca</a></li>
-              <li><a href="/docs/COMPONENTS.md">Componentes</a></li>
-              <li><a href="/docs/TOKENS.md">Tokens</a></li>
-              <li><a href="/docs/ACCESSIBILITY.md">Acessibilidade</a></li>
-              <li><a href="/docs/ARCHITECTURE.md">Arquitetura</a></li>
-              <li><a href="/docs/CONTRIBUTING.md">Contribuição</a></li>
-            </ul>
-          </noscript>
-        </article>
-        <nav id="toc" class="toc" aria-label="Nesta página" hidden></nav>
+      </aside>
+      <div class="docs-main">
+        <header class="topbar">
+          <button
+            type="button"
+            class="in-button in-button--secondary menu-button"
+            id="menu-button"
+            data-i18n="menu"
+            aria-expanded="false"
+            aria-controls="sidebar"
+          >
+            Menu
+          </button>
+          <nav
+            id="crumbs"
+            class="crumbs"
+            data-i18n-aria="breadcrumb"
+            aria-label="Breadcrumb"
+          ></nav>
+          <button type="button" class="search-launch" id="open-search">
+            <span data-i18n="search">Search</span>
+            <kbd id="search-kbd">Ctrl K</kbd>
+          </button>
+          <div class="appearance">
+            <label
+              ><span data-i18n="theme">Theme</span>
+              <select
+                id="theme"
+                class="in-input"
+                data-i18n-aria="theme"
+                aria-label="Theme"
+              >
+                <option value="dark">dark</option>
+                <option value="light">light</option>
+                <option value="contrast-dark">contrast-dark</option>
+                <option value="contrast-light">contrast-light</option>
+              </select>
+            </label>
+            <label
+              ><span data-i18n="density">Density</span>
+              <select
+                id="density"
+                class="in-input"
+                data-i18n-aria="density"
+                aria-label="Density"
+              >
+                <option value="focus">focus</option>
+                <option value="calm">calm</option>
+              </select>
+            </label>
+            <label for="language"
+              ><span data-i18n="language">Language</span>
+              <select id="language" class="in-input" name="language">
+                <option value="en">English</option>
+                <option value="pt-BR">Português (Brasil)</option>
+              </select>
+            </label>
+          </div>
+        </header>
+        <div class="docs-body">
+          <article id="conteudo" class="doc" tabindex="-1">
+            <h1 class="doc-title in-voice-signal">INTEIRO</h1>
+            <p>
+              A documentação interativa carrega o catálogo em
+              <span class="in-voice-machine">apps/demo/content</span>.
+            </p>
+            <noscript>
+              <p>
+                Sem JavaScript, use os textos em Markdown servidos por este
+                mesmo servidor:
+              </p>
+              <ul>
+                <li><a href="/docs/GETTING_STARTED.md">Começando</a></li>
+                <li><a href="/docs/BRAND.md">Marca</a></li>
+                <li><a href="/docs/COMPONENTS.md">Componentes</a></li>
+                <li><a href="/docs/TOKENS.md">Tokens</a></li>
+                <li><a href="/docs/ACCESSIBILITY.md">Acessibilidade</a></li>
+                <li><a href="/docs/ARCHITECTURE.md">Arquitetura</a></li>
+                <li><a href="/docs/CONTRIBUTING.md">Contribuição</a></li>
+              </ul>
+            </noscript>
+          </article>
+          <nav
+            id="toc"
+            class="toc"
+            data-i18n-aria="onThisPage"
+            aria-label="On this page"
+            hidden
+          ></nav>
+        </div>
       </div>
     </div>
-  </div>
-  <div id="scrim" class="scrim" hidden></div>
-  <dialog id="search-dialog" class="search-dialog" aria-labelledby="search-title">
-    <h2 id="search-title" class="in-title">Buscar na documentação</h2>
-    <label class="in-field__label" for="search-input">Termo</label>
-    <input id="search-input" class="in-input" type="search" placeholder="costura, commit, token, button" autocomplete="off" />
-    <div id="search-results"></div>
-    <p id="search-status" class="visually-hidden" aria-live="polite"></p>
-  </dialog>
-  <p id="live" class="visually-hidden" aria-live="polite"></p>
-  <script type="module" src="/apps/demo/app.js"></script>
-</body>
+    <div id="scrim" class="scrim" hidden></div>
+    <dialog
+      id="search-dialog"
+      class="search-dialog"
+      aria-labelledby="search-title"
+    >
+      <h2 id="search-title" class="in-title" data-i18n="searchTitle">
+        Search documentation
+      </h2>
+      <label class="in-field__label" for="search-input" data-i18n="searchTerm"
+        >Search term</label
+      >
+      <input
+        id="search-input"
+        class="in-input"
+        type="search"
+        data-i18n-placeholder="searchPlaceholder"
+        placeholder="costura, commit, token, button"
+        autocomplete="off"
+      />
+      <div id="search-results"></div>
+      <p id="search-status" class="visually-hidden" aria-live="polite"></p>
+    </dialog>
+    <p id="live" class="visually-hidden" aria-live="polite"></p>
+    <script type="module" src="/apps/demo/app.js"></script>
+  </body>
 </html>

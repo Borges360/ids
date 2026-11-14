@@ -74,9 +74,10 @@ function mcpJson(): string {
 export async function installHarness(
   cwd: string,
   id: HarnessId,
-  opts: { dryRun: boolean; yes: boolean },
+  opts: { dryRun: boolean; yes: boolean; contextOnly?: boolean },
 ): Promise<InstallReport> {
   const harness = getHarness(id);
+  if (opts.contextOnly && id !== 'codex') throw new Error('context-only is supported for Codex only');
   const actions: string[] = [];
   const root = repoRoot();
   const conflicts: string[] = [];
@@ -145,6 +146,7 @@ export async function installHarness(
 
   if (id === "codex") {
     await copySkill(join(cwd, ".agents", "skills"));
+    if (!opts.contextOnly) {
     const plugin = {
       $schema: "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
       name: "inteiro",
@@ -178,6 +180,7 @@ export async function installHarness(
       ),
     );
     actions.push(await writeManaged(join(cwd, "mcp.json"), mcpJson(), opts));
+    }
   }
 
   if (id === "claude") {
@@ -346,7 +349,8 @@ ${topLevelSkills()[0]!.body}
         {
           harness: id,
           version: "1.2.0",
-          mechanism: harness.mechanism,
+          mechanism: opts.contextOnly ? 'AGENTS.md + Agent Skills (.agents/skills)' : harness.mechanism,
+          ...(opts.contextOnly ? { integrationMode: 'context-only' } : {}),
           verified: harness.verified,
           sources: harness.sources,
           schemaVersion: "1.0",

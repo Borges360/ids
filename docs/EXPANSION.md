@@ -5,7 +5,7 @@ O relatório de 18/10/2026 foi confrontado com o código: as paletas de sete fam
 | Recomendação | Entrega | Verificação |
 |---|---|---|
 | Fonte JSON única | `packages/tokens/source/catalog.json`, com metadados de origem, intenção, estados e acessibilidade | Validação, aliases, unicidade, testes de contrato |
-| CSS, SCSS, JS/TS, mobile | Geradores do catálogo; Style Dictionary exporta Android, além de Swift/Flutter existentes | `npm run build`, `npm run build:platforms` |
+| CSS, SCSS, JS/TS, mobile | Geradores do catálogo para Android, Swift e Flutter | `npm run build`, `npm run build:platforms` |
 | Figma/Tokens Studio | `dist/figma/tokens-studio.json`, `figma.variables.json` e plugin local `packages/figma-plugin` | Contrato de exportação; importação no app depende de acesso ao Figma |
 | Componentes | Biblioteca React tipada, estilos CSS compartilhados e arquivos ESM instaláveis | `docs/LIBRARY.md`, testes React e Storybook |
 | Formulários | Campos, textarea, seleção simples/múltipla, pesquisa, checkbox, radio, switch, data/hora, edição inline e login | Rótulos, mensagens associadas, validação nativa e testes de interação |

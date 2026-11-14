@@ -7,7 +7,7 @@ import {
 } from "node:fs/promises";
 import { join } from "node:path";
 import { createHash, generateKeyPairSync } from "node:crypto";
-import { hash } from "@inteiro/contracts";
+import { hash, governanceContractHash } from "@inteiro/contracts";
 import { workerFixture } from "./worker-fixture.ts";
 export async function bootstrapFixture(realDistribution = false) {
   const fixture = await workerFixture();
@@ -100,10 +100,22 @@ export async function bootstrapFixture(realDistribution = false) {
   const validation = await write("benchmarks/validation/task-01.json", {
     schemaVersion: "1.0",
     kind: "public-worker-validation",
+    governanceContractHash: governanceContractHash(),
     caseId: "task-01",
     patternIds: ["form-layout"],
     routes,
     fixtures: [{ id: "public-task-01", ...response }],
+    technicalPolicy: await write(
+      "benchmarks/validation/task-01/technical-policy.json",
+      {
+        schemaVersion: "1.0",
+        authorities: {
+          "synthetic-bootstrap-authority": generateKeyPairSync("ed25519")
+            .publicKey.export({ type: "spki", format: "pem" })
+            .toString(),
+        },
+      },
+    ),
     reviewPolicy: await write(
       "benchmarks/validation/task-01/reviewer-policy.json",
       {

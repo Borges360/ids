@@ -1,5 +1,8 @@
-import { readFile, mkdir, writeFile } from "node:fs/promises";
+import { readFile, mkdir, writeFile, unlink } from "node:fs/promises";
+import { inspectTracePrivacy } from "./trace-privacy.ts";
+export { inspectTracePrivacy } from "./trace-privacy.ts";
 import { createRequire } from "node:module";
+import { release, version } from "node:os";
 import { execFileSync, spawn } from "node:child_process";
 import {
   hash,
@@ -8,14 +11,32 @@ import {
   finding,
   aggregate,
   redact,
+  reviewSourceHash,
   type Config,
   type GateResult,
   type Finding,
 } from "@inteiro/contracts";
-import { registry, proposeBaseline, verifyApproval } from "./baseline.ts";
+import {
+  baselineContractHash,
+  registry,
+  proposeBaseline,
+  verifyApproval,
+} from "./baseline.ts";
+import { verifyTechnicalBaselineApproval } from "./technical-baseline.ts";
+import {
+  createFixtureResponder,
+  validateFixtureActions,
+} from "./fixture-responder.ts";
+export {
+  createFixtureResponder,
+  validateFixtureActions,
+} from "./fixture-responder.ts";
 import type { Page, Locator } from "@playwright/test";
+export { selectRouteImpact, changedSourceFiles } from "./impact.ts";
 import { discoverRoutes, coverageFindings } from "./coverage.ts";
 import { inspectInteractionTargets } from "./targets.ts";
+import { inspectTargetClipping } from "./clipping.ts";
+export { inspectTargetClipping } from "./clipping.ts";
 import {
   fixtureRandomSeed,
   installFixtureRandom,
@@ -35,6 +56,7 @@ import {
   matchesResponse,
   validateResponseFixtures,
   sanitizeCapture,
+  validateSyntheticText,
   type ResponseAliases,
   type ResponseFixture,
 } from "./actions.ts";
@@ -46,25 +68,43 @@ export {
 const require = createRequire(import.meta.url);
 export interface Action {
   type: string;
-  target?: { testId?: string; role?: string; name?: string };
+  target?: {
+    testId?: string;
+    role?: string;
+    name?: string;
+    label?: string;
+    document?: true;
+  };
   value?: string;
   key?: string;
   alias?: string;
+  attribute?: string;
+  stateId?: string;
+  file?: { name: string; mimeType: "text/plain"; content: string };
 }
 export interface Route {
+  sourceFiles?: string[];
   id: string;
   path: string;
   criticality: string;
   fixture: string;
   viewports: string[];
   modes: string[];
-  states: { id: string; path?: string; fixture?: string; actions: Action[] }[];
+  states: {
+    id: string;
+    path?: string;
+    fixture?: string;
+    actions: Action[];
+    viewports?: string[];
+    viewportReason?: string;
+  }[];
   not_applicable?: Record<string, string>;
 }
 export interface Fixture {
   classification: "synthetic" | "restricted";
   clock: string;
   seed?: number;
+  syntheticText?: string[];
   responses?: ResponseFixture[];
 }
 const allowedActions = [
@@ -74,9 +114,60 @@ const allowedActions = [
   "press",
   "expectVisible",
   "expectText",
+  "keyboard",
+  "expectFocused",
+  "expectReachable",
+  "expectUnclipped",
   "waitForResponseAlias",
+  "releaseResponseAlias",
+  "expectDisabled",
+  "expectEnabled",
+  "setInputFiles",
+  "reload",
+  "expectAttribute",
+  "expectValue",
+  "expectChecked",
   "screenshot",
 ];
+const keyboardKeys = new Set([
+  "Tab",
+  "Shift+Tab",
+  "ArrowUp",
+  "ArrowDown",
+  "ArrowLeft",
+  "ArrowRight",
+  "Home",
+  "End",
+  "Escape",
+  "Enter",
+  "Space",
+  "PageUp",
+  "PageDown",
+]);
+const assertionAttributes = new Set([
+  "aria-selected",
+  "aria-expanded",
+  "aria-invalid",
+  "aria-describedby",
+  "aria-controls",
+  "tabindex",
+  "data-in-theme",
+  "data-in-density",
+  "dir",
+  "readonly",
+]);
+export class VisualActionAssertionError extends Error {
+  readonly ruleId: "VIS-ACCESS-001" | "VIS-LAYOUT-001" | "VIS-STATE-001";
+  constructor(
+    ruleId: "VIS-ACCESS-001" | "VIS-LAYOUT-001" | "VIS-STATE-001",
+    message: string,
+    options?: ErrorOptions,
+  ) {
+    super(message, options);
+    this.ruleId = ruleId;
+    this.name = "VisualActionAssertionError";
+  }
+}
 export function validateRoutes(routes: Route[], config: Config) {
   const findings: Finding[] = [];
   const ids = new Set<string>();
@@ -135,6 +226,17 @@ export function validateRoutes(routes: Route[], config: Config) {
         throw new Error("Unknown mode " + mode);
     for (const state of r.states ?? []) {
       if (
+        state.viewports &&
+        (!state.viewports.length ||
+          state.viewports.some(
+            (id) => !config.browser.viewports.some((v) => v.id === id),
+          ) ||
+          !state.viewportReason?.trim())
+      )
+        throw Error(
+          "State viewport subset requires configured IDs and an explicit reason",
+        );
+      if (
         state.path &&
         new URL(state.path, config.browser.baseURL).origin !==
           new URL(config.browser.baseURL).origin
@@ -146,14 +248,54 @@ export function validateRoutes(routes: Route[], config: Config) {
         if (!allowedActions.includes(action.type))
           throw new Error("Unsafe/unsupported action " + action.type);
         if (
-          action.type === "waitForResponseAlias" &&
+          action.type === "expectAttribute" &&
+          !assertionAttributes.has(action.attribute ?? "")
+        )
+          throw Error("Unsupported state attribute assertion");
+        if (
+          action.type === "expectChecked" &&
+          !["true", "false"].includes(action.value ?? "true")
+        )
+          throw Error("Checked assertion requires a boolean value");
+        if (
+          action.stateId !== undefined &&
+          !/^[a-zA-Z0-9_-]{1,80}$/.test(action.stateId)
+        )
+          throw Error("Invalid declared capture state");
+        if (
+          action.type === "setInputFiles" &&
+          (!action.file ||
+            !/^[a-zA-Z0-9][a-zA-Z0-9._-]{0,100}$/.test(action.file.name) ||
+            action.file.mimeType !== "text/plain" ||
+            typeof action.file.content !== "string" ||
+            Buffer.byteLength(action.file.content) > 65536)
+        )
+          throw Error(
+            "File upload requires bounded synthetic text content and a safe filename",
+          );
+        if (
+          action.type === "keyboard" &&
+          (!keyboardKeys.has(action.key ?? "") || action.target !== undefined)
+        )
+          throw new Error(
+            "Keyboard action requires an allowlisted key and no target; it must not force focus",
+          );
+        if (
+          ["waitForResponseAlias", "releaseResponseAlias"].includes(
+            action.type,
+          ) &&
           (!action.alias || !/^[a-zA-Z0-9_-]{1,80}$/.test(action.alias))
         )
           throw new Error("Valid response alias required");
         if (
           action.type !== "waitForResponseAlias" &&
+          action.type !== "releaseResponseAlias" &&
           action.type !== "screenshot" &&
+          action.type !== "keyboard" &&
+          action.type !== "reload" &&
           !action.target?.role &&
+          !action.target?.label &&
+          !action.target?.document &&
           !action.target?.testId
         )
           throw new Error("Stable role/testId target required");
@@ -163,7 +305,9 @@ export function validateRoutes(routes: Route[], config: Config) {
   return findings;
 }
 function locator(page: Page, target: Action["target"]): Locator {
+  if (target?.document) return page.locator("html");
   if (target?.testId) return page.getByTestId(target.testId);
+  if (target?.label) return page.getByLabel(target.label, { exact: true });
   if (target?.role)
     return page.getByRole(
       target.role as Parameters<Page["getByRole"]>[0],
@@ -177,9 +321,34 @@ export async function runAction(
   runtime: {
     responses?: ResponseAliases;
     capture?: (action: Action) => Promise<void>;
+    timeoutMs?: number;
+    responder?: ReturnType<typeof createFixtureResponder>;
   } = {},
 ) {
   if (!allowedActions.includes(action.type)) throw new Error("Unsafe action");
+  if (action.type === "reload") {
+    await page.reload({ waitUntil: "domcontentloaded" });
+    return { reloaded: true };
+  }
+  if (action.type === "keyboard") {
+    if (!keyboardKeys.has(action.key ?? "") || action.target !== undefined)
+      throw new Error(
+        "Keyboard action requires an allowlisted key and no target; it must not force focus",
+      );
+    await page.keyboard.press(action.key!);
+    const focused = await page.evaluate(() => {
+      const element = document.activeElement;
+      return element
+        ? {
+            tag: element.tagName.toLowerCase(),
+            id: element.id,
+            testId: element.getAttribute("data-testid"),
+            role: element.getAttribute("role"),
+          }
+        : null;
+    });
+    return { key: action.key, focused };
+  }
   if (action.type === "screenshot") {
     if (!runtime.capture)
       throw new Error("Screenshot evidence executor required");
@@ -192,8 +361,78 @@ export async function runAction(
     await runtime.responses.waitFor(action.alias);
     return;
   }
+  if (action.type === "releaseResponseAlias") {
+    if (!runtime.responder || !action.alias)
+      throw Error("Fixture-bound response release required");
+    runtime.responder.release(action.alias);
+    return { alias: action.alias, released: true };
+  }
   const loc = locator(page, action.target);
   switch (action.type) {
+    case "expectAttribute":
+      if (!assertionAttributes.has(action.attribute ?? ""))
+        throw Error("Unsupported state attribute assertion");
+      await (
+        await import("@playwright/test")
+      )
+        .expect(loc)
+        .toHaveAttribute(action.attribute!, action.value ?? "", {
+          timeout: runtime.timeoutMs ?? 5000,
+        });
+      break;
+    case "expectValue":
+      await (
+        await import("@playwright/test")
+      )
+        .expect(loc)
+        .toHaveValue(action.value ?? "", {
+          timeout: runtime.timeoutMs ?? 5000,
+        });
+      break;
+    case "expectChecked":
+      if (!["true", "false"].includes(action.value ?? "true"))
+        throw Error("Checked assertion requires a boolean value");
+      if (action.value === "false")
+        await (
+          await import("@playwright/test")
+        )
+          .expect(loc)
+          .not.toBeChecked({ timeout: runtime.timeoutMs ?? 5000 });
+      else
+        await (
+          await import("@playwright/test")
+        )
+          .expect(loc)
+          .toBeChecked({ timeout: runtime.timeoutMs ?? 5000 });
+      break;
+    case "setInputFiles":
+      if (
+        !action.file ||
+        action.file.mimeType !== "text/plain" ||
+        !/^[a-zA-Z0-9][a-zA-Z0-9._-]{0,100}$/.test(action.file.name) ||
+        Buffer.byteLength(action.file.content) > 65536
+      )
+        throw Error("Invalid synthetic file upload");
+      await loc.setInputFiles({
+        name: action.file.name,
+        mimeType: action.file.mimeType,
+        buffer: Buffer.from(action.file.content),
+      });
+      break;
+    case "expectDisabled":
+      await (
+        await import("@playwright/test")
+      )
+        .expect(loc)
+        .toBeDisabled({ timeout: runtime.timeoutMs ?? 5000 });
+      break;
+    case "expectEnabled":
+      await (
+        await import("@playwright/test")
+      )
+        .expect(loc)
+        .toBeEnabled({ timeout: runtime.timeoutMs ?? 5000 });
+      break;
     case "click":
       await loc.click();
       break;
@@ -216,6 +455,92 @@ export async function runAction(
         .expect(loc)
         .toContainText(action.value ?? "");
       break;
+    case "expectFocused":
+      try {
+        await (
+          await import("@playwright/test")
+        )
+          .expect(loc)
+          .toBeFocused({ timeout: runtime.timeoutMs ?? 5000 });
+      } catch (error) {
+        throw new VisualActionAssertionError(
+          "VIS-ACCESS-001",
+          "Declared keyboard target does not have focus",
+          { cause: error },
+        );
+      }
+      return { target: action.target, focused: true };
+    case "expectReachable": {
+      await loc.waitFor({ state: "visible" });
+      if (!(await loc.isEnabled()))
+        throw new VisualActionAssertionError(
+          "VIS-STATE-001",
+          "Declared critical target is disabled",
+        );
+      try {
+        // Playwright's real actionability checks include hit testing, overlays,
+        // clipping/scrolling, stability, pointer-events and enabled state.
+        await loc.click({ trial: true, timeout: runtime.timeoutMs ?? 5000 });
+      } catch (error) {
+        throw new VisualActionAssertionError(
+          "VIS-LAYOUT-001",
+          "Declared critical target is not reachable by pointer",
+          { cause: error },
+        );
+      }
+      return {
+        target: action.target,
+        reachable: true,
+        boundingBox: await loc.boundingBox(),
+      };
+    }
+    case "expectUnclipped": {
+      await loc.waitFor({ state: "visible" });
+      await loc.scrollIntoViewIfNeeded();
+      const geometry = await inspectTargetClipping(loc);
+      if (geometry.clipped)
+        throw new VisualActionAssertionError(
+          "VIS-LAYOUT-001",
+          "Declared critical target is clipped: " + JSON.stringify(geometry),
+        );
+      return { target: action.target, ...geometry };
+    }
+  }
+  const focused = await page.evaluate(() => {
+    const element = document.activeElement;
+    return element
+      ? {
+          tag: element.tagName.toLowerCase(),
+          id: element.id,
+          testId: element.getAttribute("data-testid"),
+          role: element.getAttribute("role"),
+        }
+      : null;
+  });
+  return {
+    target: action.target,
+    focused,
+    boundingBox: await settledTargetBox(loc),
+  };
+}
+/**
+ * Post-action geometry is evidence, not another assertion. An action may
+ * legitimately rename or remove its own target asynchronously (for example, a
+ * submit label reset when the request completes), so resolve the current
+ * matches once without waiting instead of re-resolving the locator after a
+ * separate count(). Ambiguous matches remain a strict-mode error.
+ */
+async function settledTargetBox(loc: Locator) {
+  const handles = await loc.elementHandles();
+  try {
+    if (handles.length > 1)
+      throw new Error(
+        `strict mode violation: ${String(loc)} resolved to ${handles.length} elements after the action`,
+      );
+    const [handle] = handles;
+    return handle ? await handle.boundingBox() : null;
+  } finally {
+    await Promise.all(handles.map((handle) => handle.dispose()));
   }
 }
 export function comparePng(expected: Buffer, actual: Buffer, config: Config) {
@@ -271,7 +596,17 @@ export async function visualTest(
     findings: Finding[] = [],
     captures: Record<string, unknown>[] = [],
     actionCaptures: Record<string, unknown>[] = [],
+    actionObservations: Record<string, unknown>[] = [],
+    fixtureObservations: Record<string, unknown>[] = [],
     responseObservations: Record<string, unknown>[] = [];
+  const traceObservations: Record<string, unknown>[] = [];
+  const baselineStats = {
+    compared: 0,
+    authorized: 0,
+    different: 0,
+    missing: 0,
+    proposalRequests: 0,
+  };
   let browser:
       | Awaited<
           ReturnType<(typeof import("@playwright/test"))["chromium"]["launch"]>
@@ -293,6 +628,57 @@ export async function visualTest(
         config.browser.criticalRoutes,
       ),
     );
+    // All fixture references and aliases are checked before launching a browser.
+    for (const route of manifest.routes)
+      for (const state of route.states) {
+        const fixtureId = state.fixture ?? route.fixture;
+        try {
+          const fixture = JSON.parse(
+            await safeRead(root, ".inteiro/fixtures/" + fixtureId + ".json"),
+          ) as Fixture;
+          const errors = validateResponseFixtures(
+            fixture.responses ?? [],
+            config.browser.baseURL,
+          );
+          if (
+            fixture.syntheticText !== undefined &&
+            !validateSyntheticText(fixture.syntheticText)
+          )
+            errors.push("Invalid synthetic text exceptions");
+          if (
+            !["synthetic", "restricted"].includes(fixture.classification) ||
+            !Number.isFinite(Date.parse(fixture.clock)) ||
+            (fixture.seed !== undefined &&
+              (!Number.isInteger(fixture.seed) ||
+                fixture.seed < 0 ||
+                fixture.seed > 0xffffffff))
+          )
+            errors.push("Invalid fixture metadata");
+          if (!errors.length)
+            errors.push(
+              ...validateFixtureActions(fixture.responses ?? [], state.actions),
+            );
+          if (errors.length)
+            findings.push(
+              finding("VIS-DATA-001", errors.join("; "), {
+                route: route.path,
+                state: state.id,
+                status: "blocked",
+              }),
+            );
+        } catch (error) {
+          findings.push(
+            finding(
+              "VIS-DATA-001",
+              "Fixture unavailable or invalid: " +
+                fixtureId +
+                ": " +
+                String(error),
+              { route: route.path, state: state.id, status: "blocked" },
+            ),
+          );
+        }
+      }
     for (const asset of config.browser.fontAssets) {
       try {
         if (hash(await readFile(safePath(root, asset.path))) !== asset.sha256)
@@ -317,6 +703,31 @@ export async function visualTest(
         durationMs: performance.now() - start,
         executed,
       };
+    const views = (route: Route, state: Route["states"][number]) =>
+      (options.all
+        ? config.browser.viewports.map((v) => v.id)
+        : route.viewports
+      ).filter((id) => !state.viewports || state.viewports.includes(id));
+    const modeCount = (route: Route) =>
+      options.all
+        ? config.design.theme.length * config.design.density.length
+        : route.modes.length;
+    const caseCount = (routes: Route[]) =>
+      routes.reduce(
+        (total, route) =>
+          total +
+          route.states.reduce(
+            (sum, state) => sum + views(route, state).length * modeCount(route),
+            0,
+          ),
+        0,
+      );
+    const selectedRoutes = manifest.routes.filter(
+      (route) =>
+        !options.routeIds?.length || options.routeIds.includes(route.id),
+    );
+    const planned = caseCount(selectedRoutes),
+      omitted = caseCount(manifest.routes) - planned;
     const { chromium } = await import("@playwright/test");
     browser = await chromium.launch({ headless: true });
     if (config.browser.startCommand && options.authorizeStart)
@@ -325,20 +736,29 @@ export async function visualTest(
         shell: true,
         stdio: "ignore",
         detached: process.platform !== "win32",
+        windowsHide: true,
       });
     await readiness(
       new URL(config.browser.readyPath, config.browser.baseURL).href,
       config.browser.timeoutMs,
     );
     const entries = await registry(root, config.visual.baselineDir);
-    const environmentFingerprint = hash({
+    const sourceHash =
+      config.governance.mode === "technical-autonomous"
+        ? await reviewSourceHash(root)
+        : undefined;
+    const renderEnvironment = {
       platform: process.platform,
       arch: process.arch,
+      osRelease: release(),
+      osVersion: version(),
+      playwrightVersion: require("@playwright/test/package.json").version,
       browser: browser.version(),
       profile: config.browser.environment,
       randomness: RANDOM_PROFILE,
       fontAssets: config.browser.fontAssets,
-    });
+    };
+    const environmentFingerprint = hash(renderEnvironment);
     const artifactDir = config.reporting.outDir + "/captures-" + Date.now();
     await mkdir(safePath(root, artifactDir), { recursive: true });
     const axePath = require.resolve("axe-core/axe.min.js");
@@ -356,8 +776,12 @@ export async function visualTest(
     ))
       for (const state of route.states)
         for (const viewportId of options.all
-          ? config.browser.viewports.map((v) => v.id)
-          : route.viewports)
+          ? config.browser.viewports
+              .map((v) => v.id)
+              .filter((id) => !state.viewports || state.viewports.includes(id))
+          : route.viewports.filter(
+              (id) => !state.viewports || state.viewports.includes(id),
+            ))
           for (const mode of options.all
             ? config.design.theme.flatMap((theme) =>
                 config.design.density.map((density) => theme + "-" + density),
@@ -431,7 +855,13 @@ export async function visualTest(
                 finding(
                   "VIS-DATA-001",
                   "Restricted fixture capture requires local redaction review",
-                  { route: route.path, status: "needs_review" },
+                  {
+                    route: route.path,
+                    status:
+                      config.governance.mode === "technical-autonomous"
+                        ? "blocked"
+                        : "needs_review",
+                  },
                 ),
               );
               continue;
@@ -455,6 +885,12 @@ export async function visualTest(
               page,
               fixture.responses ?? [],
               config.browser.baseURL,
+              Math.min(10000, config.browser.timeoutMs),
+            );
+            const responder = createFixtureResponder(
+              fixture.responses ?? [],
+              config.browser.baseURL,
+              responses,
               Math.min(10000, config.browser.timeoutMs),
             );
             const per: Finding[] = [];
@@ -484,27 +920,26 @@ export async function visualTest(
                 add("VIS-RUNTIME-001", "Request to non-allowlisted origin");
                 return request.abort();
               }
-              const mock = fixture.responses?.find((r) =>
-                matchesResponse(
-                  url,
-                  request.request().method(),
-                  r,
-                  config.browser.baseURL,
-                ),
-              );
-              if (mock)
-                return request.fulfill({
-                  status: mock.status ?? 200,
-                  contentType: "application/json",
-                  body: JSON.stringify(mock.body),
-                });
+              try {
+                if (await responder.handle(request)) return;
+              } catch (error) {
+                add("VIS-DATA-001", String(error), "blocked");
+                await request.abort().catch(() => {});
+                return;
+              }
               return request.continue();
             });
-            page.on("pageerror", (error) =>
-              add("VIS-RUNTIME-001", error.message),
-            );
+            let observingRuntime = true;
+            page.on("pageerror", (error) => {
+              if (observingRuntime) add("VIS-RUNTIME-001", error.message);
+            });
             page.on("console", (msg) => {
-              if (msg.type() === "error") add("VIS-RUNTIME-001", msg.text());
+              if (
+                observingRuntime &&
+                msg.type() === "error" &&
+                !responder.expectedConsoleError(msg.location().url, msg.text())
+              )
+                add("VIS-RUNTIME-001", msg.text());
             });
             const key = hash({
               projectId: config.project.id,
@@ -515,13 +950,16 @@ export async function visualTest(
               density,
               browserVersion: browser.version(),
               renderProfile: config.browser.environment,
+              ...(config.governance.mode === "technical-autonomous"
+                ? { environmentFingerprint }
+                : {}),
             });
             const actualPath = artifactDir + "/" + key + "-actual.png";
             try {
               await page.clock.setFixedTime(new Date(fixture.clock));
               const response = await page.goto(
                 new URL(state.path ?? route.path, config.browser.baseURL).href,
-                { waitUntil: "networkidle" },
+                { waitUntil: "domcontentloaded" },
               );
               if (!response?.ok())
                 add(
@@ -567,45 +1005,107 @@ export async function visualTest(
                 content:
                   "*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}",
               });
-              for (const [actionIndex, action] of state.actions.entries())
-                await runAction(page, action, {
-                  responses,
-                  capture: async (captureAction) => {
-                    if (await sanitizeCapture(page))
-                      add(
-                        "SEC-DATA-001",
-                        "Sensitive-looking fixture text redacted from action screenshot; fixture review required",
-                        "blocked",
+              for (const [actionIndex, action] of state.actions.entries()) {
+                try {
+                  const observation = await runAction(page, action, {
+                    responses,
+                    responder,
+                    timeoutMs: Math.min(10000, config.browser.timeoutMs),
+                    capture: async (captureAction) => {
+                      if (await sanitizeCapture(page, fixture.syntheticText))
+                        add(
+                          "SEC-DATA-001",
+                          "Sensitive-looking fixture text redacted from action screenshot; fixture review required",
+                          "blocked",
+                        );
+                      const path =
+                        artifactDir +
+                        "/" +
+                        key +
+                        "-action-" +
+                        actionIndex +
+                        ".png";
+                      const bytes = captureAction.target
+                        ? await locator(page, captureAction.target).screenshot({
+                            path: safePath(root, path),
+                            animations: "disabled",
+                          })
+                        : await page.screenshot({
+                            path: safePath(root, path),
+                            fullPage: config.visual.fullPage,
+                            animations: "disabled",
+                          });
+                      actionCaptures.push({
+                        actual: path,
+                        sha256: hash(bytes),
+                        route: route.path,
+                        state: state.id,
+                        viewport: viewportId,
+                        theme,
+                        density,
+                        actionIndex,
+                        ...(captureAction.stateId
+                          ? { declaredState: captureAction.stateId }
+                          : {}),
+                      });
+                    },
+                  });
+                  actionObservations.push({
+                    route: route.path,
+                    state: state.id,
+                    viewport: viewportId,
+                    theme,
+                    density,
+                    actionIndex,
+                    type: action.type,
+                    status: "passed",
+                    ...observation,
+                  });
+                } catch (error) {
+                  let geometry: unknown = null;
+                  if (action.target) {
+                    try {
+                      geometry = await inspectTargetClipping(
+                        locator(page, action.target),
                       );
-                    const path =
-                      artifactDir +
-                      "/" +
-                      key +
-                      "-action-" +
-                      actionIndex +
-                      ".png";
-                    const bytes = captureAction.target
-                      ? await locator(page, captureAction.target).screenshot({
-                          path: safePath(root, path),
-                          animations: "disabled",
-                        })
-                      : await page.screenshot({
-                          path: safePath(root, path),
-                          fullPage: config.visual.fullPage,
-                          animations: "disabled",
-                        });
-                    actionCaptures.push({
-                      actual: path,
-                      sha256: hash(bytes),
-                      route: route.path,
-                      state: state.id,
-                      viewport: viewportId,
-                      theme,
-                      density,
-                      actionIndex,
-                    });
-                  },
-                });
+                    } catch {}
+                  }
+                  const focused = await page
+                    .evaluate(() => {
+                      const element = document.activeElement;
+                      return element
+                        ? {
+                            tag: element.tagName.toLowerCase(),
+                            id: element.id,
+                            testId: element.getAttribute("data-testid"),
+                          }
+                        : null;
+                    })
+                    .catch(() => null);
+                  actionObservations.push({
+                    route: route.path,
+                    state: state.id,
+                    viewport: viewportId,
+                    theme,
+                    density,
+                    actionIndex,
+                    type: action.type,
+                    target: action.target,
+                    status: "failed",
+                    geometry,
+                    focused,
+                    ruleId:
+                      error instanceof VisualActionAssertionError
+                        ? error.ruleId
+                        : "VIS-STATE-001",
+                    message: redact(String(error)),
+                  });
+                  throw error;
+                }
+              }
+              // A flow can navigate or reload. Settle fonts in the current document,
+              // rather than inspecting the loading flag from the previous page.
+              await page.evaluate(() => document.fonts.ready);
               const dom = await page.evaluate(() => ({
                 overflow: document.documentElement.scrollWidth > innerWidth + 1,
                 mains: document.querySelectorAll("main,[role=main]").length,
@@ -662,7 +1162,10 @@ export async function visualTest(
                     " " +
                     v.nodes.flatMap((n) => n.target).join(", "),
                 );
-              const redactions = await sanitizeCapture(page);
+              const redactions = await sanitizeCapture(
+                page,
+                fixture.syntheticText,
+              );
               if (redactions)
                 add(
                   "SEC-DATA-001",
@@ -677,10 +1180,11 @@ export async function visualTest(
               const baseline = entries.find(
                 (b) => b.key === key && b.state === "approved",
               );
-              if (!baseline)
+              if (!baseline) {
+                baselineStats.missing++;
                 add("VIS-BASE-001", "Approved baseline missing", "blocked");
-              else if (
-                baseline.contractHash !== hash(config) ||
+              } else if (
+                baseline.contractHash !== baselineContractHash(config) ||
                 baseline.fixtureHash !== hash(fixture) ||
                 baseline.environmentFingerprint !== environmentFingerprint
               )
@@ -700,10 +1204,25 @@ export async function visualTest(
                         ".approval.json",
                     ),
                   );
-                  const policy = JSON.parse(
-                    await safeRead(root, ".inteiro/reviewers.json"),
-                  );
-                  verifyApproval(approval, baseline, policy);
+                  if (config.governance.mode === "technical-autonomous") {
+                    const policy = JSON.parse(
+                      await safeRead(root, ".inteiro/technical-attestors.json"),
+                    );
+                    verifyTechnicalBaselineApproval(
+                      approval,
+                      baseline,
+                      policy,
+                      entries.find(
+                        (entry) => entry.id === baseline.previousBaselineId,
+                      ),
+                    );
+                  } else {
+                    const policy = JSON.parse(
+                      await safeRead(root, ".inteiro/reviewers.json"),
+                    );
+                    verifyApproval(approval, baseline, policy);
+                  }
+                  baselineStats.authorized++;
                 } catch (e) {
                   add(
                     "VIS-BASE-001",
@@ -716,6 +1235,8 @@ export async function visualTest(
                   add("VIS-BASE-001", "Baseline integrity mismatch", "blocked");
                 else {
                   const comparison = comparePng(expected, actual, config);
+                  baselineStats.compared++;
+                  if (!comparison.passed) baselineStats.different++;
                   await writeFile(
                     safePath(root, artifactDir + "/" + key + "-expected.png"),
                     expected,
@@ -733,14 +1254,21 @@ export async function visualTest(
               }
               if (
                 options.propose &&
-                !per.some((f) => !["VIS-BASE-001"].includes(f.ruleId))
-              )
+                per.some((f) =>
+                  ["VIS-BASE-001", "VIS-DIFF-001"].includes(f.ruleId),
+                ) &&
+                !per.some(
+                  (f) => !["VIS-BASE-001", "VIS-DIFF-001"].includes(f.ruleId),
+                )
+              ) {
+                baselineStats.proposalRequests++;
                 await proposeBaseline(root, config.visual.baselineDir, {
                   key,
                   image: actualPath,
                   sourceCommit: commit,
+                  ...(sourceHash ? { sourceHash } : {}),
                   sourcePullRequest: "",
-                  contractHash: hash(config),
+                  contractHash: baselineContractHash(config),
                   fixtureHash: hash(fixture),
                   environmentFingerprint,
                   projectId: config.project.id,
@@ -752,6 +1280,7 @@ export async function visualTest(
                   browserVersion: browser.version(),
                   renderProfile: config.browser.environment,
                 });
+              }
               for (const f of per) f.evidenceRefs.push(actualPath);
               captures.push({
                 key,
@@ -770,9 +1299,16 @@ export async function visualTest(
               });
               executed++;
             } catch (e) {
-              add("VIS-STATE-001", String(e));
+              add(
+                e instanceof VisualActionAssertionError
+                  ? e.ruleId
+                  : "VIS-STATE-001",
+                e instanceof VisualActionAssertionError && e.cause
+                  ? e.message + ": " + String(e.cause)
+                  : String(e),
+              );
               try {
-                if (await sanitizeCapture(page))
+                if (await sanitizeCapture(page, fixture.syntheticText))
                   add(
                     "SEC-DATA-001",
                     "Sensitive-looking fixture text redacted from failure screenshot; fixture review required",
@@ -787,6 +1323,9 @@ export async function visualTest(
                 for (const f of per) f.evidenceRefs.push(actualPath);
               } catch {}
             } finally {
+              // Disposing intentionally pending fixtures can cause ERR_FAILED in
+              // Chromium. Runtime evidence ends with the scenario, before teardown.
+              observingRuntime = false;
               responseObservations.push(
                 ...responses.observations.map((observation) => ({
                   ...observation,
@@ -795,18 +1334,53 @@ export async function visualTest(
                   viewport: viewportId,
                 })),
               );
-              responses.dispose();
-              // A trace may contain pre-sanitization response data. Discard it on a data finding.
-              await context.tracing.stop(
-                per.some((f) => f.ruleId === "SEC-DATA-001")
-                  ? {}
-                  : {
-                      path: safePath(
-                        root,
-                        artifactDir + "/" + key + "-trace.zip",
-                      ),
-                    },
+              fixtureObservations.push(
+                ...responder.observations.map((observation) => ({
+                  ...observation,
+                  route: route.path,
+                  state: state.id,
+                  viewport: viewportId,
+                })),
               );
+              responder.dispose();
+              responses.dispose();
+              // A missing reference is a governance block, not a failed UI flow.
+              const retainTrace =
+                per.some((f) => f.ruleId !== "VIS-BASE-001") &&
+                !per.some((f) => f.ruleId === "SEC-DATA-001");
+              const tracePath = artifactDir + "/" + key + "-trace.zip";
+              await context.tracing.stop(
+                retainTrace ? { path: safePath(root, tracePath) } : {},
+              );
+              if (retainTrace) {
+                try {
+                  const privacy = inspectTracePrivacy(
+                    await readFile(safePath(root, tracePath)),
+                    fixture.syntheticText ?? [],
+                  );
+                  traceObservations.push({
+                    route: route.path,
+                    state: state.id,
+                    viewport: viewportId,
+                    privacy,
+                  });
+                  if (privacy.status !== "passed") {
+                    await unlink(safePath(root, tracePath));
+                    add(
+                      "SEC-DATA-001",
+                      "Trace withheld after privacy inspection",
+                      "blocked",
+                    );
+                  }
+                } catch {
+                  await unlink(safePath(root, tracePath)).catch(() => {});
+                  add(
+                    "SEC-DATA-001",
+                    "Trace integrity or privacy could not be verified",
+                    "blocked",
+                  );
+                }
+              }
               await context.close();
               findings.push(...per);
             }
@@ -828,10 +1402,27 @@ export async function visualTest(
       findings,
       durationMs: performance.now() - start,
       executed,
+      planned,
+      omitted,
+      coverage: planned ? executed / planned : null,
+      routeCoverage: {
+        declared: manifest.routes.length,
+        selected: selectedRoutes.length,
+        covered: new Set(captures.map((c) => c.route)).size,
+        denominator: "selected-routes",
+        ratio: selectedRoutes.length
+          ? new Set(captures.map((c) => c.route)).size / selectedRoutes.length
+          : null,
+      },
+      baselineStats,
       captures,
       actionCaptures,
+      actionObservations,
       responseObservations,
+      fixtureObservations,
+      traceObservations,
       environmentFingerprint,
+      renderEnvironment,
     };
   } catch (e) {
     findings.push(

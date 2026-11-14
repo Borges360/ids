@@ -13,6 +13,14 @@ import {
   reportFormats,
   isRunId,
   type GateResult,
+  requiredGates,
+  governanceContractHash,
+  assertRequiredGates,
+  reviewSourceHash,
+  exportEvidenceArchive,
+  extractEvidenceArchive,
+  verifyExtractedEvidence,
+  pruneReports,
 } from "@inteiro/contracts";
 import {
   patterns,
@@ -36,11 +44,13 @@ import {
   reviewGate,
   resolvedReviewRequest,
   releaseGate,
+  releaseQualification,
   recordTaskContext,
   taskContextGate,
   taskManifestErrors,
   type TaskManifest,
 } from "@inteiro/agent-core";
+import { baselineContractHash } from "@inteiro/visual/baseline";
 import { runBenchmark } from "@inteiro/evaluation";
 import { projectContracts } from "@inteiro/agent-core";
 import { bool, flag } from "./args.ts";
@@ -50,6 +60,7 @@ export async function gateCommand(
   flags: Record<string, string | boolean>,
   cwd: string,
 ): Promise<CliResult | undefined> {
+  const commandStartedAt = new Date().toISOString();
   if (
     ![
       "contract",
@@ -61,6 +72,7 @@ export async function gateCommand(
       "review",
       "repair",
       "benchmark",
+      "report",
     ].includes(cmd[0] ?? "") &&
     !(cmd[0] === "doctor" && bool(flags, "deep"))
   )
@@ -72,13 +84,42 @@ export async function gateCommand(
     overrides.browser = { baseURL: flag(flags, "base-url") };
   const loaded = await resolveConfig(cwd, overrides),
     { config, root } = loaded;
+  const initialSourceHash =
+    cmd[0] === "gate"
+      ? await reviewSourceHash(root).catch(() => undefined)
+      : undefined;
   const done = (data: unknown, status = "passed"): CliResult => ({
     exitCode: exitCode(status as GateResult["status"]),
     data,
     text: JSON.stringify(data, null, 2),
   });
   const save = async (gates: GateResult[], dryRun = false) => {
+    if (
+      cmd[0] === "gate" &&
+      config.governance.mode === "technical-autonomous" &&
+      gates.every((gate) => gate.status === "passed")
+    ) {
+      try {
+        assertRequiredGates(gates, flag(flags, "profile") || "pr");
+      } catch (error) {
+        gates.push({
+          name: "governance",
+          status: "blocked",
+          durationMs: 0,
+          findings: [
+            finding("GOV-CONTRACT-001", String(error), { status: "blocked" }),
+          ],
+        });
+      }
+    }
     const report = bundle(config, gates);
+    report.startedAt = commandStartedAt;
+    if (initialSourceHash) report.sourceHash = initialSourceHash;
+    if (cmd[0] === "gate") {
+      report.profile = flag(flags, "profile") || "pr";
+    }
+    const { hash: _, ...payload } = report;
+    report.hash = hash(payload);
     if (!bool(flags, "dry-run") && !dryRun)
       await writeReport(root, config, report);
     if (flag(flags, "format") === "sarif") {
@@ -106,6 +147,53 @@ export async function gateCommand(
       };
     return done(report, report.status);
   };
+  if (cmd[0] === "report") {
+    if (cmd[1] === "prune")
+      return done(
+        await pruneReports(
+          root,
+          config,
+          bool(flags, "apply") && !bool(flags, "dry-run"),
+        ),
+      );
+    if (bool(flags, "dry-run"))
+      return done(
+        {
+          status: "not_run",
+          action: cmd[1],
+          message: "No portable evidence output written",
+        },
+        "not_run",
+      );
+    if (cmd[1] === "export" && flag(flags, "out"))
+      return done(
+        await exportEvidenceArchive(
+          root,
+          flag(flags, "summary") || config.reporting.outDir + "/latest.json",
+          flag(flags, "out"),
+        ),
+      );
+    if (cmd[1] === "extract" && flag(flags, "archive") && flag(flags, "out"))
+      return done(
+        await extractEvidenceArchive(
+          root,
+          flag(flags, "archive"),
+          flag(flags, "out"),
+        ),
+      );
+    if (cmd[1] === "verify" && flag(flags, "directory"))
+      return done(
+        await verifyExtractedEvidence(safePath(root, flag(flags, "directory"))),
+      );
+    return {
+      exitCode: 2,
+      data: {
+        status: "error",
+        message:
+          "Use report export --out, extract --archive --out, or verify --directory",
+      },
+    };
+  }
   if (cmd[0] === "contract")
     return done({
       ...loaded,
@@ -380,6 +468,38 @@ export async function gateCommand(
         "not_run",
       );
     const visual = await import("@inteiro/visual");
+    if (cmd[1] === "baseline" && cmd[2] === "promote-technical") {
+      if (
+        config.governance.mode !== "technical-autonomous" ||
+        !flag(flags, "attestation")
+      )
+        return done(
+          {
+            status: "blocked",
+            message:
+              "Autonomous mode and independent technical attestation required",
+          },
+          "blocked",
+        );
+      const { promoteTechnicalBaseline } =
+        await import("@inteiro/visual/technical-baseline");
+      const attestation = JSON.parse(
+        await safeRead(root, flag(flags, "attestation")),
+      );
+      if (attestation.configHash !== baselineContractHash(config))
+        throw Error("Technical attestation configuration changed");
+      const policy = JSON.parse(
+        await safeRead(root, ".inteiro/technical-attestors.json"),
+      );
+      return done(
+        await promoteTechnicalBaseline(
+          root,
+          config.visual.baselineDir,
+          attestation,
+          policy,
+        ),
+      );
+    }
     if (cmd[1] === "test" || cmd[2] === "propose")
       return save([
         await visual.visualTest(root, config, {
@@ -390,6 +510,15 @@ export async function gateCommand(
         }),
       ]);
     if (cmd[1] === "baseline" && cmd[2] === "approve") {
+      if (config.governance.mode === "technical-autonomous")
+        return done(
+          {
+            status: "blocked",
+            message:
+              "Use promote-technical with an independent automatic attestation",
+          },
+          "blocked",
+        );
       if (!flag(flags, "review-id") || !flag(flags, "approval"))
         return done(
           {
@@ -404,7 +533,7 @@ export async function gateCommand(
       );
       if (approval.reviewId !== flag(flags, "review-id"))
         throw new Error("Review ID mismatch");
-      if (approval.contractHash !== hash(config))
+      if (approval.contractHash !== baselineContractHash(config))
         throw new Error("Approval references a stale configuration");
       const policy = JSON.parse(
         await safeRead(root, ".inteiro/reviewers.json"),
@@ -447,14 +576,8 @@ export async function gateCommand(
         {
           status: "not_run",
           profile,
-          required: [
-            "context",
-            "task-context",
-            "static",
-            "browser",
-            "review",
-            ...(profile === "release" ? ["release"] : []),
-          ],
+          required: requiredGates(profile),
+          governanceContractHash: governanceContractHash(),
           configHash: hash(config),
         },
         "not_run",
@@ -465,13 +588,23 @@ export async function gateCommand(
       await lintProject(root, config),
     ];
     try {
-      const { visualTest } = await import("@inteiro/visual");
-      gates.push(
-        await visualTest(root, config, {
-          authorizeStart: bool(flags, "start"),
-          all: ["main", "nightly", "release"].includes(profile),
-        }),
+      const { visualTest, selectRouteImpact, changedSourceFiles } =
+        await import("@inteiro/visual");
+      const routes = JSON.parse(
+        await safeRead(root, config.browser.routesFile),
+      ).routes;
+      const impact = selectRouteImpact(
+        routes,
+        bool(flags, "changed") ? changedSourceFiles(root) : undefined,
+        profile,
       );
+      const result = await visualTest(root, config, {
+        authorizeStart: bool(flags, "start"),
+        all: ["ci", "main", "nightly", "release"].includes(profile),
+        ...(impact.scope === "affected" ? { routeIds: impact.routeIds } : {}),
+      });
+      result.impact = impact;
+      gates.push(result);
     } catch (e) {
       gates.push({
         name: "browser",
@@ -481,7 +614,25 @@ export async function gateCommand(
       });
     }
     gates.push(await reviewGate(root, config, gates));
-    if (profile === "release") gates.push(await releaseGate(root, config));
+    if (profile === "release") {
+      gates.push(
+        gates.every((gate) => gate.status === "passed")
+          ? await releaseQualification(root)
+          : {
+              name: "qualification",
+              status: "not_run",
+              durationMs: 0,
+              findings: [
+                finding(
+                  "REL-QUALIFICATION-001",
+                  "Source qualification awaits passing prerequisite gates",
+                  { status: "not_run" },
+                ),
+              ],
+            },
+      );
+      gates.push(await releaseGate(root, config));
+    }
     return save(gates);
   }
   if (cmd[0] === "review" || cmd[0] === "repair") {
@@ -500,6 +651,13 @@ export async function gateCommand(
           ? "/" + flag(flags, "run-id") + "/summary.json"
           : "/latest.json"),
     );
+    if (
+      cmd[0] === "review" &&
+      config.governance.mode === "technical-autonomous"
+    ) {
+      const result = await reviewGate(root, config, report.gates);
+      return done(result, result.status);
+    }
     const data =
       cmd[0] === "repair"
         ? await resolvedRepairContext(root, config, report)

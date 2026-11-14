@@ -376,6 +376,14 @@ describe.skipIf(process.env.INTEIRO_BROWSER_UNIT !== "1")(
     it("reports unreachable infrastructure without suggesting CSS repair", async () => {
       const root = await mkdtemp(join(tmpdir(), "inteiro-infra-"));
       try {
+        await mkdir(join(root, ".inteiro/fixtures"), { recursive: true });
+        await writeFile(
+          join(root, ".inteiro/fixtures/synthetic.json"),
+          JSON.stringify({
+            classification: "synthetic",
+            clock: "2026-01-01T00:00:00Z",
+          }),
+        );
         await writeFile(
           join(root, "inteiro.routes.json"),
           JSON.stringify({

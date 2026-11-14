@@ -1,0 +1,23 @@
+{
+  "classification": "synthetic",
+  "clock": "2026-02-01T12:00:00.000Z",
+  "seed": 303,
+  "syntheticText": [
+    "rafa@example.test"
+  ],
+  "responses": [
+    {
+      "url": "/api/identity",
+      "method": "GET",
+      "sequence": [
+        {
+          "body": {
+            "name": "Registro especial"
+          },
+          "status": 200,
+          "alias": "identity-0"
+        }
+      ]
+    }
+  ]
+}

@@ -205,13 +205,13 @@ it("refuses forged receipt hashes and invalid isolated tool limits", () =>
     );
   }));
 it.skipIf(process.env.INTEIRO_WORKER_DOCKER !== "1")(
-  "enforces physical read-only controls, hidden evaluator files and network denial",
+  "enforces physical read-only controls and references, hidden evaluator files and keys, and network denial",
   () =>
     fixture(async ({ dataset, target }) => {
       const result = await prepareBenchmarkWorker(dataset, target, "task-01");
       if (result.status !== "passed") throw Error("Unexpected plan");
       const before = await readFile(join(target, "package.json"), "utf8");
-      const program = `const fs=require('fs');fs.writeFileSync('src/app.js','// isolated edit\\n');const denied=(path)=>{try{fs.writeFileSync(path,'bad');return false}catch(e){return ['EROFS','EACCES'].includes(e.code)}};const controls=denied('package.json');const extraFileDenied=denied('src/unlisted.js');const privateAbsent=['/workspace/benchmarks/evaluator/criteria/task-01.json','/repo/benchmarks/evaluator/criteria/task-01.json'].every(p=>!fs.existsSync(p));const loopbackOnly=fs.readdirSync('/sys/class/net').join(',')==='lo';fetch('https://example.com',{signal:AbortSignal.timeout(1000)}).then(()=>process.exit(7)).catch(()=>console.log(JSON.stringify({controls,extraFileDenied,privateAbsent,loopbackOnly,networkDenied:true,noDockerSocket:!fs.existsSync('/var/run/docker.sock')})));`;
+      const program = `const fs=require('fs');fs.writeFileSync('src/app.js','// isolated edit\\n');const denied=(path)=>{try{fs.writeFileSync(path,'bad');return false}catch(e){return ['EROFS','EACCES'].includes(e.code)}};const controls=denied('package.json');const extraFileDenied=denied('src/unlisted.js');const privateAbsent=['/workspace/benchmarks/evaluator/criteria/task-01.json','/repo/benchmarks/evaluator/criteria/task-01.json'].every(p=>!fs.existsSync(p));const loopbackOnly=fs.readdirSync('/sys/class/net').join(',')==='lo';const createDenied=(path)=>{try{fs.mkdirSync(require('path').dirname(path),{recursive:true});fs.writeFileSync(path,'bad');return false}catch(e){return ['EROFS','EACCES'].includes(e.code)||(e.code==='ENOENT'&&!fs.existsSync(path))}};const referencesDenied=denied('.inteiro/worker.json')&&denied('inteiro.routes.json')&&createDenied('tests/visual/__snapshots__/registry.json')&&createDenied('.inteiro/technical-attestors.json');const attestorKeyAbsent=[process.env.HOME,'/root','/home/node'].filter(Boolean).every(h=>!fs.existsSync(require('path').join(h,'.codex')))&&!Object.values(process.env).some(v=>String(v).includes('PRIVATE KEY'));fetch('https://example.com',{signal:AbortSignal.timeout(1000)}).then(()=>process.exit(7)).catch(()=>console.log(JSON.stringify({controls,extraFileDenied,privateAbsent,referencesDenied,attestorKeyAbsent,loopbackOnly,networkDenied:true,noDockerSocket:!fs.existsSync('/var/run/docker.sock')})));`;
       const tool = await runBenchmarkWorkerNode(dataset, result.id, [
         "-e",
         program,
@@ -222,6 +222,10 @@ it.skipIf(process.env.INTEIRO_WORKER_DOCKER !== "1")(
         controls: true,
         extraFileDenied: true,
         privateAbsent: true,
+        // E05: the implementation executor cannot write protected references
+        // or reach the technical attestor's key material.
+        referencesDenied: true,
+        attestorKeyAbsent: true,
         loopbackOnly: true,
         networkDenied: true,
         noDockerSocket: true,

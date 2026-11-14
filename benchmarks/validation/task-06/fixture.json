@@ -1,0 +1,46 @@
+{
+  "classification": "synthetic",
+  "clock": "2026-01-01T12:00:00.000Z",
+  "seed": 6,
+  "syntheticText": [
+    "rafa@example.test"
+  ],
+  "responses": [
+    {
+      "url": "/api/items",
+      "method": "GET",
+      "sequence": [
+        {
+          "body": {
+            "message": "Synthetic unavailable"
+          },
+          "status": 503,
+          "alias": "items-0",
+          "release": "initial",
+          "expectedFailure": true
+        },
+        {
+          "body": {
+            "items": []
+          },
+          "status": 200,
+          "alias": "items-1",
+          "release": "empty"
+        },
+        {
+          "body": {
+            "items": [
+              {
+                "id": 1,
+                "name": "Documento de teste"
+              }
+            ]
+          },
+          "status": 200,
+          "alias": "items-2",
+          "release": "success"
+        }
+      ]
+    }
+  ]
+}

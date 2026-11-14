@@ -1,0 +1,115 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "automatic-technical-verification",
+  "purpose": "baseline-promotion",
+  "authority": "ids-technical-evaluator-v1",
+  "policyHash": "9fa8c3d65cdcae6004421f40e85aae4c203688fc1b3d6e07a957b0ddc8a6018e",
+  "governanceContractHash": "9b4864d548d799f25ed7cb174c6e9e95e3e7ede5e65544f07e8bb88d4b36347d",
+  "sourceHash": "114dfdba1a9d3e786d287116fe06852c5478f64834f3b9e36bc588b8ec39683d",
+  "sourceCommit": "1264974462da7b1259e38cf23043c62860d6ad1c",
+  "configHash": "230f7b708bee8866788b3164a8f9da0c50e91c6a078e7a349797179d9f0fc24f",
+  "status": "passed",
+  "exitCode": 0,
+  "requirements": [
+    "E05",
+    "WP-15",
+    "DoD-06"
+  ],
+  "checks": [
+    {
+      "command": "context",
+      "status": "passed",
+      "exitCode": 0,
+      "evidence": [
+        {
+          "path": ".inteiro/reports/technical-attestation-1792804969143/evaluation.json",
+          "sha256": "3ea8ab6a5e5f7a96e96c0e6efd34c318b5e00a944c02e8b33cf8620b7ab1a774"
+        }
+      ]
+    },
+    {
+      "command": "task-context",
+      "status": "passed",
+      "exitCode": 0,
+      "evidence": [
+        {
+          "path": ".inteiro/reports/technical-attestation-1792804969143/evaluation.json",
+          "sha256": "3ea8ab6a5e5f7a96e96c0e6efd34c318b5e00a944c02e8b33cf8620b7ab1a774"
+        }
+      ]
+    },
+    {
+      "command": "static",
+      "status": "passed",
+      "exitCode": 0,
+      "evidence": [
+        {
+          "path": ".inteiro/reports/technical-attestation-1792804969143/evaluation.json",
+          "sha256": "3ea8ab6a5e5f7a96e96c0e6efd34c318b5e00a944c02e8b33cf8620b7ab1a774"
+        }
+      ]
+    },
+    {
+      "command": "browser-layout",
+      "status": "passed",
+      "exitCode": 0,
+      "evidence": [
+        {
+          "path": ".inteiro/reports/technical-attestation-1792804969143/evaluation.json",
+          "sha256": "3ea8ab6a5e5f7a96e96c0e6efd34c318b5e00a944c02e8b33cf8620b7ab1a774"
+        }
+      ]
+    },
+    {
+      "command": "a11y",
+      "status": "passed",
+      "exitCode": 0,
+      "evidence": [
+        {
+          "path": ".inteiro/reports/technical-attestation-1792804969143/evaluation.json",
+          "sha256": "3ea8ab6a5e5f7a96e96c0e6efd34c318b5e00a944c02e8b33cf8620b7ab1a774"
+        }
+      ]
+    },
+    {
+      "command": "interaction",
+      "status": "passed",
+      "exitCode": 0,
+      "evidence": [
+        {
+          "path": ".inteiro/reports/technical-attestation-1792804969143/evaluation.json",
+          "sha256": "3ea8ab6a5e5f7a96e96c0e6efd34c318b5e00a944c02e8b33cf8620b7ab1a774"
+        }
+      ]
+    },
+    {
+      "command": "runtime",
+      "status": "passed",
+      "exitCode": 0,
+      "evidence": [
+        {
+          "path": ".inteiro/reports/technical-attestation-1792804969143/evaluation.json",
+          "sha256": "3ea8ab6a5e5f7a96e96c0e6efd34c318b5e00a944c02e8b33cf8620b7ab1a774"
+        }
+      ]
+    },
+    {
+      "command": "determinism",
+      "status": "passed",
+      "exitCode": 0,
+      "evidence": [
+        {
+          "path": ".inteiro/reports/technical-attestation-1792804969143/evaluation.json",
+          "sha256": "3ea8ab6a5e5f7a96e96c0e6efd34c318b5e00a944c02e8b33cf8620b7ab1a774"
+        }
+      ]
+    }
+  ],
+  "startedAt": "2026-10-24T00:14:56.588Z",
+  "finishedAt": "2026-10-24T01:22:49.144Z",
+  "expiresAt": "2027-01-22T01:33:39.550Z",
+  "candidateId": "baseline-90b1f2d966482f4f55576d81",
+  "candidateHash": "3a255ae39c219c27d9dbd7f61fb8d953fd54e8d512d2cac5c186f728d18b1d1b",
+  "imageSha256": "1730d5e3534982144d605ae60e3b30e6177194f5f4bdfe33b84cb9fd796789ae",
+  "signature": "n6AQgVMWGf2IWq7JsfLSTHl62+68jHyzAVhJk6EQCI6eQVZaHvsaBGXS38d55/41UZ/JnS1OHzMk4rnkS2cxBA=="
+}

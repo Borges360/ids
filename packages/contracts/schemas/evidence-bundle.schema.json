@@ -2,6 +2,89 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://inteiro.dev/schemas/1.0/evidence-bundle.schema.json",
   "type": "object",
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "evidenceFormat"
+        ]
+      },
+      "then": {
+        "required": [
+          "projectId",
+          "gitSha",
+          "sourceHash",
+          "contractHash",
+          "startedAt",
+          "finishedAt",
+          "exitCode"
+        ],
+        "properties": {
+          "evidenceFormat": {
+            "const": "inteiro-evidence/v1.1"
+          },
+          "projectId": {
+            "type": "string"
+          },
+          "gitSha": {
+            "type": "string"
+          },
+          "sourceHash": {
+            "type": "string"
+          },
+          "contractHash": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "startedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "finishedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "exitCode": {
+            "type": "integer"
+          },
+          "artifacts": {
+            "items": {
+              "type": "object",
+              "required": [
+                "path",
+                "relativePath",
+                "sha256",
+                "mediaType",
+                "privacyClass"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "relativePath": {
+                  "type": "string"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "mediaType": {
+                  "type": "string"
+                },
+                "privacyClass": {
+                  "enum": [
+                    "public",
+                    "internal",
+                    "restricted"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
   "properties": {
     "schemaVersion": {
       "const": "1.0"
@@ -18,6 +101,20 @@
     },
     "configId": {
       "type": "string"
+    },
+    "governanceContractHash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "profile": {
+      "enum": [
+        "dev",
+        "pr",
+        "ci",
+        "main",
+        "nightly",
+        "release"
+      ]
     },
     "configHash": {
       "type": "string",

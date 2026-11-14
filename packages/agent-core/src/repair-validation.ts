@@ -8,6 +8,8 @@ import {
   reviewSourceHash,
   type Config,
   type EvidenceBundle,
+  requiredGates,
+  assertGovernanceEvidence,
 } from "@inteiro/contracts";
 import { verifyStoredContext, type TaskManifest } from "./task-context.ts";
 import { reviewGate } from "./review.ts";
@@ -19,7 +21,9 @@ export async function assertRepairAcceptance(
   report: EvidenceBundle,
   contextBundleId: string,
 ) {
-  const required = ["context", "task-context", "static", "browser", "review"];
+  const required = requiredGates("pr");
+  if (config.governance.mode === "technical-autonomous")
+    assertGovernanceEvidence(report);
   if (
     report.status !== "passed" ||
     aggregate(report.gates) !== "passed" ||
@@ -139,6 +143,7 @@ export async function assertRepairAcceptance(
     for (const state of route.states)
       for (const viewport of route.viewports)
         for (const mode of route.modes) {
+          if (state.viewports && !state.viewports.includes(viewport)) continue;
           if (
             !state ||
             typeof state.id !== "string" ||

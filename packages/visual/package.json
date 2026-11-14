@@ -4,7 +4,8 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./baseline": "./src/baseline.ts"
+    "./baseline": "./src/baseline.ts",
+    "./technical-baseline": "./src/technical-baseline.ts"
   },
   "files": [
     "src"

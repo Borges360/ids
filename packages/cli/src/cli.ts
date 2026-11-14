@@ -503,6 +503,7 @@ export async function run(argv: string[]): Promise<number> {
           await installHarness(cwd, id, {
             dryRun: bool(flags, "dry-run"),
             yes: bool(flags, "yes") || bool(flags, "y"),
+            contextOnly: bool(flags, 'context-only'),
           }),
         );
       }

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1.0",
+  "id": "visual-baseline-executor-neutral-20261030",
+  "type": "fix",
+  "description": "Make visual baseline contract hashing independent of the executing harness while preserving current approved baseline signatures; validate Codex and Pi equivalence without modifying baseline records.",
+  "patternIds": [
+    "app-shell"
+  ],
+  "scope": {
+    "allowedFiles": [
+      "packages/visual/src/baseline.ts",
+      "packages/visual/src/index.ts",
+      "packages/cli/src/gates.ts",
+      "tests/p0/visual-contract-hash.test.ts"
+    ]
+  },
+  "acceptanceCriteria": [
+    "The visual baseline contract hash remains byte-for-byte compatible with existing Pi-approved records when only context.harness changes to Codex.",
+    "Visual or browser configuration changes continue to change the visual baseline contract hash.",
+    "Baseline registry, approval signatures, and PNG bytes remain unchanged.",
+    "The Codex PR visual gate no longer reports executor-only contract mismatches; any remaining findings are preserved."
+  ],
+  "configHash": "580f849de89ba3900321717b039016e7369f24f44cb0e242a89632680c386246",
+  "contextBundleId": "context:195204636fb4e4b0b649f40c5cf4fb28703a122f8923479c482b2e0b70ae4f1f"
+}

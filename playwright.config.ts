@@ -1,4 +1,7 @@
 import { defineConfig } from "@playwright/test";
+import { structuredResultFile } from "./scripts/structured-results.mjs";
+
+const results = structuredResultFile("playwright");
 export default defineConfig({
   testDir: "./tests/browser",
   workers: 1,
@@ -15,5 +18,9 @@ export default defineConfig({
       reuseExistingServer: false,
     },
   ],
-  reporter: [["list"], ["html", { open: "never" }]],
+  reporter: [
+    ["list"],
+    ["html", { open: "never" }],
+    ...(results ? [["json", { outputFile: results }] as ["json", object]] : []),
+  ],
 });

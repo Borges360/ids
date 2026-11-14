@@ -13,4 +13,4 @@ import { tokens } from "@inteiro/tokens/js";
 
 Componentes não devem usar primitivos de cor.
 
-Fonte editável: `source/catalog.json`. `npm run build` gera CSS, mapa SCSS, JS para navegador, TS, DTCG, Tokens Studio, Figma Variables, Swift e Flutter. `npm run build:platforms` na raiz gera Android via Style Dictionary. Tipos específicos do IDS e medidas de texto são extensões ao formato de intercâmbio DTCG.
+Fonte editável: `source/catalog.json`. `npm run build` gera CSS, mapa SCSS, JS para navegador, TS, DTCG, Tokens Studio, Figma Variables, Swift e Flutter. `npm run build:platforms` na raiz gera `dist/android/colors.xml` (`#AARRGGBB`, tema escuro, alfa preservado). Tipos específicos do IDS e medidas de texto são extensões ao formato de intercâmbio DTCG.

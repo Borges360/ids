@@ -5,6 +5,7 @@ type Constraints<T, K extends keyof T> = Partial<Pick<T, K>>;
 export interface OrganizationPolicy {
   $schema?: string;
   schemaVersion?: "1.0";
+  governance?: Partial<Config["governance"]>;
   design?: Constraints<Config["design"], "strictTokens" | "theme" | "density">;
   context?: Constraints<Config["context"], "requireProof" | "maxTokens">;
   composition?: Constraints<Config["composition"], "allowed">;
@@ -30,7 +31,10 @@ export interface OrganizationPolicy {
     "requiredFor" | "allowExternalProvider"
   >;
   repair?: Partial<Config["repair"]>;
-  reporting?: Constraints<Config["reporting"], "formats">;
+  reporting?: Constraints<
+    Config["reporting"],
+    "formats" | "retentionDays" | "baselineRetentionDays"
+  >;
 }
 
 export function normalizeOrigin(value: string): string {
@@ -65,7 +69,23 @@ export function applyOrganizationPolicies(
     Config["browser"]["viewports"][number]
   >();
   const mandatoryAssets = new Map<string, string>();
+  const modes = new Set(
+    policies.flatMap((p) => (p.governance?.mode ? [p.governance.mode] : [])),
+  );
+  if (modes.size > 1) throw Error("Conflicting organization governance modes");
   for (const policy of policies) {
+    if (policy.reporting?.retentionDays !== undefined)
+      config.reporting.retentionDays = Math.min(
+        config.reporting.retentionDays,
+        policy.reporting.retentionDays,
+      );
+    if (policy.reporting?.baselineRetentionDays !== undefined)
+      config.reporting.baselineRetentionDays = Math.max(
+        config.reporting.baselineRetentionDays,
+        policy.reporting.baselineRetentionDays,
+      );
+    if (policy.governance?.mode)
+      config.governance.mode = policy.governance.mode;
     if (policy.design?.strictTokens) config.design.strictTokens = true;
     if (policy.design?.theme)
       config.design.theme = union(config.design.theme, policy.design.theme);

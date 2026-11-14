@@ -46,7 +46,7 @@ export function repairContext(
         h.changedFiles.some((f) => !allowedFiles.includes(f)),
     );
   const repeated = history.some((h) => h.signature === signature);
-  const status = forbidden
+  const rawStatus = forbidden
     ? "needs_review"
     : report.status === "passed"
       ? "passed"
@@ -55,6 +55,11 @@ export function repairContext(
         : repeated || attempt >= config.repair.maxAttempts
           ? "needs_review"
           : "repairable";
+  const status =
+    rawStatus === "needs_review" &&
+    config.governance.mode === "technical-autonomous"
+      ? "blocked"
+      : rawStatus;
   return {
     schemaVersion: "1.0",
     kind: "repair-context" as const,
@@ -137,7 +142,10 @@ export async function resolvedRepairContext(
     if (result.status === "repairable" && !allowedFiles.length)
       return {
         ...result,
-        status: "needs_review",
+        status:
+          config.governance.mode === "technical-autonomous"
+            ? "blocked"
+            : "needs_review",
         reason: "affected-file-mapping-required",
       };
     return result;

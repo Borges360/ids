@@ -46,4 +46,6 @@ O teste de reflow acrescenta texto traduzido e palavras extensas aos títulos, p
 
 ## Limites dos exemplos
 
+A cobertura técnica rastreável dos 41 padrões está em `packages/composition/coverage-matrix.json`. `composition-robustness.spec.ts` acrescenta conteúdo opcional vazio, overflow induzido, teclado real, hover, reduced motion e reflow com tradução, RTL e zoom nativo de 200%. O manifesto declara cobertura; o resultado aprovado depende da execução na versão corrente: a auditoria de encerramento cruza cada dimensão declarada com o caso executado (`packages/agent-core/src/coverage-evidence.ts`) e registra `expected`, `passed` e `notApplicable` por mapa no índice por requisito. No modo `technical-autonomous`, a revisão técnica e a promoção de referências seguem o adendo `P0_AUTONOMOUS_SCOPE.md`; julgamento estético humano fica excluído.
+
 Os exemplos são referências sintéticas de apresentação e estados. Serviços, dados, autorização, ordenação, paginação remota e efeitos de negócio pertencem à aplicação. `tooltip` deve conter apenas ajuda complementar; informação indispensável deve aparecer no conteúdo principal. Não use o catálogo como evidência de aprovação estética ou baseline assinada.

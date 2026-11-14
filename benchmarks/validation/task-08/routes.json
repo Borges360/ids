@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "1.0",
+  "routes": [
+    {
+      "id": "task-08",
+      "path": "/src/index.html",
+      "criticality": "high",
+      "fixture": "task-08",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "light-calm",
+        "light-focus",
+        "dark-calm",
+        "dark-focus",
+        "contrast-light-calm",
+        "contrast-light-focus",
+        "contrast-dark-calm",
+        "contrast-dark-focus"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "primary-flow",
+          "actions": [
+            {
+              "type": "click",
+              "target": {
+                "role": "button",
+                "name": "Abrir detalhes"
+              }
+            },
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "dialog",
+                "name": "Detalhes do item"
+              }
+            },
+            {
+              "type": "expectFocused",
+              "target": {
+                "role": "button",
+                "name": "Fechar detalhes"
+              }
+            },
+            {
+              "type": "screenshot",
+              "stateId": "modal"
+            },
+            {
+              "type": "keyboard",
+              "key": "Escape"
+            },
+            {
+              "type": "expectFocused",
+              "target": {
+                "role": "button",
+                "name": "Abrir detalhes"
+              }
+            }
+          ],
+          "viewports": [
+            "small",
+            "mobile"
+          ],
+          "viewportReason": "Mobile overlay interaction; desktop rendering remains a default-state case."
+        }
+      ],
+      "not_applicable": {
+        "loading": "Task family 8 does not expose loading in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix.",
+        "empty": "Task family 8 does not expose empty in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix.",
+        "error": "Task family 8 does not expose error in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix.",
+        "disabled": "Task family 8 does not expose disabled in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix.",
+        "invalid": "Task family 8 does not expose invalid in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix.",
+        "success": "Task family 8 does not expose success in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix.",
+        "selected": "Task family 8 does not expose selected in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix.",
+        "readonly": "Task family 8 does not expose readonly in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix.",
+        "long-content": "Task family 8 does not expose long-content in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      }
+    }
+  ]
+}

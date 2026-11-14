@@ -7,6 +7,8 @@ import {
   type GateResult,
   validateSchema,
   REVIEW_AXES,
+  assertRequiredGates,
+  governanceContractHash,
 } from "@inteiro/contracts";
 import { canonical, reviewSourceHash, readEvidence } from "@inteiro/contracts";
 import { verify, createPublicKey } from "node:crypto";
@@ -259,6 +261,48 @@ export async function reviewGate(
       ],
       durationMs: 0,
     };
+  }
+  if (config.governance.mode === "technical-autonomous") {
+    try {
+      // This checks existing objective results; it never invents aesthetic scores.
+      assertRequiredGates([
+        ...gates.filter((g) => g.name !== "review"),
+        {
+          name: "review",
+          status: "passed",
+          findings: [],
+          durationMs: 0,
+        },
+      ]);
+      const images = captures(gates);
+      if (!images.length)
+        throw Error("Technical review requires visual captures");
+      for (const image of images)
+        if (hash(await readFile(safePath(root, image.actual))) !== image.sha256)
+          throw Error("Technical review capture integrity mismatch");
+      return {
+        name: "review",
+        status: "passed",
+        findings: [],
+        durationMs: 0,
+        kind: "automatic-technical-attestation",
+        governanceContractHash: governanceContractHash(),
+        taskHash: contextTaskHash(task),
+        qualitativeJudgment: "excluded",
+        humanApproval: "not-applicable",
+        captureHashes: images.map((image) => image.sha256),
+      };
+    } catch (error) {
+      return {
+        name: "review",
+        status: "blocked",
+        durationMs: 0,
+        findings: [
+          finding("VIS-REVIEW-TECH-001", String(error), { status: "blocked" }),
+        ],
+        kind: "automatic-technical-attestation",
+      };
+    }
   }
   if (
     !config.review.requiredFor.includes(task.type) &&

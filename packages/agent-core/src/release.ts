@@ -1,5 +1,6 @@
 import { verify, createPublicKey } from "node:crypto";
 import { readFile } from "node:fs/promises";
+import { execFileSync } from "node:child_process";
 import {
   canonical,
   finding,
@@ -9,7 +10,16 @@ import {
   reviewSourceHash,
   type Config,
   type GateResult,
+  governanceContractHash,
+  verifyTechnicalAttestation,
+  type TechnicalAttestation,
+  type TechnicalAuthorityPolicy,
+  GOVERNANCE_CONTRACT,
 } from "@inteiro/contracts";
+import {
+  verifyRequirementIndex,
+  type RequirementIndex,
+} from "./requirement-evidence.ts";
 
 export const RELEASE_REQUIREMENTS = [
   ...Array.from({ length: 11 }, (_, i) => "E" + String(i).padStart(2, "0")),
@@ -33,6 +43,7 @@ export interface ReleaseEvidence {
   sourceHash: string;
   configHash: string;
   policyHash: string;
+  governanceContractHash?: string;
   scopeExclusions: string[];
   requirements: {
     id: string;
@@ -122,6 +133,98 @@ export async function releaseGate(
             "Release evidence artifact mismatch for " + row.id,
           );
       }
+    if (config.governance.mode === "technical-autonomous") {
+      const authorityPolicy = JSON.parse(
+        await safeRead(root, ".inteiro/technical-attestors.json"),
+      ) as TechnicalAuthorityPolicy;
+      if (
+        ledger.governanceContractHash !== governanceContractHash() ||
+        hash([...ledger.scopeExclusions].sort()) !==
+          hash([...GOVERNANCE_CONTRACT.scopeExclusions].sort()) ||
+        ledger.policyHash !== hash(authorityPolicy) ||
+        ledger.sourceCommit !==
+          execFileSync("git", ["rev-parse", "HEAD"], {
+            cwd: root,
+            encoding: "utf8",
+          }).trim()
+      )
+        return stop(
+          "blocked",
+          "Autonomous release contract or source commit mismatch",
+        );
+      const indexes = new Map<string, Promise<RequirementIndex>>();
+      for (const row of ledger.requirements) {
+        // Test files and arbitrary logs alone cannot prove execution, and a
+        // shared receipt must resolve this ID to its own executed proof.
+        let verified = false;
+        for (const artifact of row.evidence) {
+          if (!artifact.path.endsWith(".json")) continue;
+          const receipt = JSON.parse(
+            await safeRead(root, artifact.path),
+          ) as TechnicalAttestation & {
+            requirementIndex?: { path: string; sha256: string };
+          };
+          if (receipt.kind !== "automatic-technical-verification") continue;
+          verifyTechnicalAttestation(receipt, authorityPolicy, ledger);
+          for (const check of receipt.checks)
+            for (const output of check.evidence)
+              if (
+                hash(await readFile(safePath(root, output.path))) !==
+                output.sha256
+              )
+                return stop(
+                  "blocked",
+                  "Automatic verification output changed for " + row.id,
+                );
+          const reference = receipt.requirementIndex;
+          if (
+            !reference ||
+            !row.evidence.some(
+              (value) =>
+                value.path === reference.path &&
+                value.sha256 === reference.sha256,
+            )
+          )
+            continue;
+          const key = reference.path + "\0" + reference.sha256;
+          if (!indexes.has(key))
+            indexes.set(key, verifyRequirementIndex(root, reference));
+          let index: RequirementIndex;
+          try {
+            index = await indexes.get(key)!;
+          } catch (error) {
+            return stop(
+              "blocked",
+              "Per-requirement evidence index rejected: " + String(error),
+            );
+          }
+          if (
+            index.sourceHash === ledger.sourceHash &&
+            receipt.requirements.includes(row.id) &&
+            index.requirements.some(
+              (entry) => entry.id === row.id && entry.status === "passed",
+            )
+          )
+            verified = true;
+        }
+        if (!verified)
+          return stop(
+            "blocked",
+            "Current automatic verification receipt and executed proof required for " +
+              row.id,
+          );
+      }
+      return {
+        name: "release",
+        status: "passed",
+        findings: [],
+        durationMs: performance.now() - started,
+        kind: "automatic-technical-attestation",
+        governanceContractHash: governanceContractHash(),
+        requirements: ids.length,
+        humanApproval: "not-applicable",
+      };
+    }
     const policy = JSON.parse(
       await safeRead(root, ".inteiro/reviewers.json"),
     ) as { reviewers: Record<string, string> };

@@ -6,8 +6,16 @@
     "framework": "html"
   },
   "design": {
-    "theme": ["dark", "light"],
-    "density": ["calm", "focus"],
+    "theme": [
+      "dark",
+      "light",
+      "contrast-dark",
+      "contrast-light"
+    ],
+    "density": [
+      "calm",
+      "focus"
+    ],
     "strictTokens": true
   },
   "context": {
@@ -22,8 +30,14 @@
   },
   "static": {
     "profile": "strict",
-    "include": ["src/**/*.{html,js,css}"],
-    "exclude": ["**/dist/**", "**/node_modules/**", "**/vendor/**"],
+    "include": [
+      "src/**/*.{html,js,css}"
+    ],
+    "exclude": [
+      "**/dist/**",
+      "**/node_modules/**",
+      "**/vendor/**"
+    ],
     "forbiddenImports": [],
     "forbiddenTokens": [],
     "suppressionPolicy": "approved-only"
@@ -63,7 +77,9 @@
         "height": 900
       }
     ],
-    "requiredFonts": ["Recursive"],
+    "requiredFonts": [
+      "Recursive"
+    ],
     "fontAssets": [
       {
         "path": "node_modules/@inteiro/composition/fonts/recursive-cyrillic-ext-full-normal.woff2",
@@ -93,7 +109,11 @@
     "missingBaseline": "block"
   },
   "review": {
-    "requiredFor": ["new-pattern", "new-page", "significant-layout-change"],
+    "requiredFor": [
+      "new-pattern",
+      "new-page",
+      "significant-layout-change"
+    ],
     "method": "human-or-multimodal-plus-approval",
     "allowExternalProvider": false
   },
@@ -108,6 +128,14 @@
   },
   "reporting": {
     "outDir": ".inteiro/reports",
-    "formats": ["json", "html", "sarif", "junit"]
+    "formats": [
+      "json",
+      "html",
+      "sarif",
+      "junit"
+    ]
+  },
+  "governance": {
+    "mode": "technical-autonomous"
   }
 }

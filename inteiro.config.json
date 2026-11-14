@@ -8,7 +8,9 @@
   "design": {
     "theme": [
       "dark",
-      "light"
+      "light",
+      "contrast-dark",
+      "contrast-light"
     ],
     "density": [
       "calm",
@@ -131,5 +133,8 @@
       "sarif",
       "junit"
     ]
+  },
+  "governance": {
+    "mode": "technical-autonomous"
   }
 }

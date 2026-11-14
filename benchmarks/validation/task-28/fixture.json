@@ -1,0 +1,49 @@
+{
+  "classification": "synthetic",
+  "clock": "2026-02-01T12:00:00.000Z",
+  "seed": 307,
+  "syntheticText": [
+    "rafa@example.test"
+  ],
+  "responses": [
+    {
+      "url": "/api/route-people",
+      "method": "GET",
+      "sequence": [
+        {
+          "body": {
+            "items": [
+              "Registro especial"
+            ]
+          },
+          "status": 200,
+          "alias": "people-0"
+        },
+        {
+          "body": {
+            "items": [
+              "Registro especial"
+            ]
+          },
+          "status": 200,
+          "alias": "people-1"
+        }
+      ]
+    },
+    {
+      "url": "/api/route-projects",
+      "method": "GET",
+      "sequence": [
+        {
+          "body": {
+            "items": [
+              "Documento revisado"
+            ]
+          },
+          "status": 200,
+          "alias": "projects-0"
+        }
+      ]
+    }
+  ]
+}

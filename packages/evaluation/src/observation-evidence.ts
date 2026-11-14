@@ -7,6 +7,9 @@ import {
   validateSchema,
   reviewSourceHash,
   type EvidenceBundle,
+  requiredGates,
+  assertGovernanceEvidence,
+  resolveConfig,
 } from "@inteiro/contracts";
 import type { Observation } from "./index.ts";
 import type { TaskGrading, gradeBenchmarkTask } from "./grading.ts";
@@ -165,6 +168,11 @@ export async function observationEvidence(
   if (row.accepted) {
     completeGateAcceptance(evidence, row);
     if (
+      (await resolveConfig(root)).config.governance.mode ===
+      "technical-autonomous"
+    )
+      assertGovernanceEvidence(evidence);
+    if (
       worker?.bootstrap?.configHash !== undefined &&
       worker.bootstrap.configHash !== evidence.configHash
     )
@@ -192,7 +200,9 @@ export function completeGateAcceptance(
   evidence: EvidenceBundle,
   row: Observation,
 ) {
-  const required = ["context", "task-context", "static", "browser", "review"];
+  const required = requiredGates("pr");
+  if (evidence.governanceContractHash !== undefined)
+    assertGovernanceEvidence(evidence);
   if (
     required.some(
       (name) =>

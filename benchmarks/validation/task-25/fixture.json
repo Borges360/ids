@@ -1,0 +1,25 @@
+{
+  "classification": "synthetic",
+  "clock": "2026-02-01T12:00:00.000Z",
+  "seed": 304,
+  "syntheticText": [
+    "rafa@example.test"
+  ],
+  "responses": [
+    {
+      "url": "/api/long-content",
+      "method": "GET",
+      "sequence": [
+        {
+          "body": {
+            "title": "Registro especial",
+            "body": "Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. ",
+            "identifier": "ID-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          },
+          "status": 200,
+          "alias": "content-0"
+        }
+      ]
+    }
+  ]
+}

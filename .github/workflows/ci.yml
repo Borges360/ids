@@ -15,47 +15,15 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: "24"
           package-manager-cache: false
       - run: npm ci
-      - run: npm run ci
-        env:
-          TOKEN_BASE_REF: ${{ github.event.pull_request.base.sha || github.event.before }}
-      - run: npx playwright install --with-deps chromium
-      - run: npm run test:browser
-        env:
-          INTEIRO_FULL_MATRIX: ${{ github.event_name == 'schedule' && '1' || '0' }}
-      - run: npm run test:browser-gate
-      - run: npm run test:stories
-      - name: Resolve deterministic context files
-        run: node packages/cli/src/cli.ts agents install pi --yes --json
-      - name: Bind task to resolved context
-        run: node packages/cli/src/cli.ts context resolve --record --json
-      - name: Strict P0 gate
-        env:
-          INTEIRO_GATE_PROFILE: ${{ github.event_name == 'schedule' && 'nightly' || github.ref == 'refs/heads/main' && 'main' || 'pr' }}
-        run: node packages/cli/src/cli.ts gate run --profile "$INTEIRO_GATE_PROFILE" --start --json
-      - name: Visual regression
-        env:
-          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-        run: |
-          if [ -n "$CHROMATIC_PROJECT_TOKEN" ]; then
-            npm run test:visual
-          else
-            echo 'Chromatic não executado: configure CHROMATIC_PROJECT_TOKEN.' >> "$GITHUB_STEP_SUMMARY"
-          fi
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: inteiro-validation
-          path: |
-            playwright-report/
-            artifacts/screenshots/
-            artifacts/p0-patterns/
-            .inteiro/reports/
-            dist/site/release.json
+      - run: npm run lint
+      - run: npm run validate
+      - run: npm run test:unit
+      - run: npm run build

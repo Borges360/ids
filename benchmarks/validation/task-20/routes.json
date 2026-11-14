@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "1.0",
+  "routes": [
+    {
+      "id": "task-20",
+      "path": "/src/index.html",
+      "criticality": "high",
+      "fixture": "task-20",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "light-calm",
+        "light-focus",
+        "dark-calm",
+        "dark-focus",
+        "contrast-light-calm",
+        "contrast-light-focus",
+        "contrast-dark-calm",
+        "contrast-dark-focus"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "primary-flow",
+          "actions": [
+            {
+              "type": "click",
+              "target": {
+                "role": "button",
+                "name": "Ações"
+              }
+            },
+            {
+              "type": "expectFocused",
+              "target": {
+                "role": "menuitem",
+                "name": "Editar"
+              }
+            },
+            {
+              "type": "keyboard",
+              "key": "ArrowDown"
+            },
+            {
+              "type": "expectFocused",
+              "target": {
+                "role": "menuitem",
+                "name": "Arquivar"
+              }
+            },
+            {
+              "type": "keyboard",
+              "key": "Enter"
+            },
+            {
+              "type": "waitForResponseAlias",
+              "alias": "archive-0"
+            },
+            {
+              "type": "expectText",
+              "target": {
+                "role": "status"
+              },
+              "value": "Registro arquivado"
+            }
+          ]
+        }
+      ],
+      "not_applicable": {
+        "loading": "Task family 20 does not expose loading in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix.",
+        "empty": "Task family 20 does not expose empty in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix.",
+        "error": "Task family 20 does not expose error in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix.",
+        "disabled": "Task family 20 does not expose disabled in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix.",
+        "invalid": "Task family 20 does not expose invalid in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix.",
+        "success": "Task family 20 does not expose success in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix.",
+        "modal": "Task family 20 does not expose modal in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix.",
+        "selected": "Task family 20 does not expose selected in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix.",
+        "readonly": "Task family 20 does not expose readonly in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix.",
+        "long-content": "Task family 20 does not expose long-content in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      }
+    }
+  ]
+}

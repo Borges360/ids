@@ -233,6 +233,7 @@ switch (benchmarkCase) {
       ["density", "inDensity", "calm"],
     ]) {
       const select = document.querySelector("#" + id);
+      select.classList.add("in-input");
       const saved = localStorage.getItem("synthetic-" + id) ?? fallback;
       select.value = saved;
       document.documentElement.dataset[attribute] = saved;

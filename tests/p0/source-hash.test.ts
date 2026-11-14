@@ -73,6 +73,40 @@ it("binds binary public assets as bytes", async () =>
     expect(await reviewSourceHash(root)).not.toBe(before);
   }));
 
+it("binds requirement contracts while keeping derived audit results outside the source hash", async () =>
+  fixture(async (root) => {
+    await mkdir(join(root, "docs"));
+    const path = join(root, "docs/P0_AUTONOMOUS_MATRIX.json");
+    const matrix = {
+      schemaVersion: "1.0",
+      requirements: [
+        {
+          id: "E00",
+          applicability: "mandatory",
+          requiredEvidence: "actual output",
+          remaining: "Pending qualification",
+          status: "not_run",
+          evidence: [],
+          qualification: { status: "pending" },
+        },
+      ],
+    };
+    await writeFile(path, JSON.stringify(matrix));
+    const original = await reviewSourceHash(root);
+    const derived = structuredClone(matrix);
+    Object.assign(derived.requirements[0]!, {
+      status: "passed",
+      evidence: ["artifacts/output.json"],
+      qualification: { status: "passed" },
+      remaining: "No pending work",
+    });
+    await writeFile(path, JSON.stringify(derived));
+    expect(await reviewSourceHash(root)).toBe(original);
+    derived.requirements[0]!.requiredEvidence = "weaker output";
+    await writeFile(path, JSON.stringify(derived));
+    expect(await reviewSourceHash(root)).not.toBe(original);
+  }));
+
 it("binds explicitly scoped ignored sources and keeps derived receipt IDs out of the hash", async () =>
   fixture(async (root) => {
     await mkdir(join(root, "src"));
@@ -101,7 +135,7 @@ it("binds explicitly scoped ignored sources and keeps derived receipt IDs out of
   }));
 
 it("does not bind operational evidence or untracked local credential files", async () =>
-  fixture(async (root) => {
+  fixture(async (root, git) => {
     const before = await reviewSourceHash(root);
     for (const directory of [
       ".inteiro/reports/run-test",
@@ -111,6 +145,8 @@ it("does not bind operational evidence or untracked local credential files", asy
       ".codex",
       ".cursor",
       ".pi",
+      "tests/visual/__snapshots__/history",
+      "tests/visual/__snapshots__/candidates",
     ]) {
       await mkdir(join(root, directory), { recursive: true });
       await writeFile(join(root, directory, "local.json"), "{}");
@@ -124,6 +160,8 @@ it("does not bind operational evidence or untracked local credential files", asy
       "release-evidence.json",
     ])
       await writeFile(join(root, path), "fixture-only");
+    expect(await reviewSourceHash(root)).toBe(before);
+    git("add", "tests/visual");
     expect(await reviewSourceHash(root)).toBe(before);
   }));
 

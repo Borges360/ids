@@ -4,6 +4,16 @@ import { existsSync, realpathSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { resolve, relative, isAbsolute, dirname } from "node:path";
 export { validateSchema } from "./validate.ts";
+export * from "./governance.ts";
+export * from "./attestation.ts";
+export { pruneReports } from "./retention.ts";
+export {
+  exportEvidenceArchive,
+  extractEvidenceArchive,
+  verifyExtractedEvidence,
+} from "./portable.ts";
+import { governanceContractHash } from "./governance.ts";
+import { executionMetrics } from "./metrics.ts";
 import { validateSchema } from "./validate.ts";
 import {
   applyOrganizationPolicies,
@@ -75,6 +85,15 @@ export interface GateResult {
   [key: string]: unknown;
 }
 export interface EvidenceBundle {
+  evidenceFormat?: "inteiro-evidence/v1.1";
+  projectId?: string;
+  contractHash?: string;
+  startedAt?: string;
+  finishedAt?: string;
+  finishedSourceHash?: string;
+  exitCode?: number;
+  profile?: string;
+  governanceContractHash?: string;
   sourceHash?: string;
   gitSha?: string;
   schemaVersion: string;
@@ -87,7 +106,13 @@ export interface EvidenceBundle {
   status: GateStatus;
   gates: GateResult[];
   findings: Finding[];
-  artifacts: { path: string; sha256: string }[];
+  artifacts: {
+    path: string;
+    sha256: string;
+    relativePath?: string;
+    mediaType?: string;
+    privacyClass?: "public" | "internal" | "restricted";
+  }[];
 }
 export function canonical(value: unknown): string {
   if (Array.isArray(value)) return "[" + value.map(canonical).join(",") + "]";
@@ -240,6 +265,7 @@ export function redact(value: string): string {
 }
 export const DEFAULTS = {
   schemaVersion: "1.0",
+  governance: { mode: "human-approval" },
   project: { id: "app", root: ".", framework: "auto" },
   design: {
     contract: "@inteiro/design-system",
@@ -300,6 +326,8 @@ export const DEFAULTS = {
   repair: { maxAttempts: 2, maxChangedFiles: 8, maxDiffLines: 450 },
   benchmark: { suite: "p0-smoke", dataset: "benchmarks/p0-smoke.json" },
   reporting: {
+    retentionDays: 14,
+    baselineRetentionDays: 90,
     outDir: ".inteiro/reports",
     formats: ["json", "html", "sarif", "junit"],
   },
@@ -320,6 +348,19 @@ export function merge<T>(base: T, overrides: unknown): T {
   return out as T;
 }
 export function validateConfig(config: Config): void {
+  if (
+    !Number.isInteger(config.reporting.retentionDays) ||
+    config.reporting.retentionDays < 1 ||
+    config.reporting.retentionDays > 3650 ||
+    !Number.isInteger(config.reporting.baselineRetentionDays) ||
+    config.reporting.baselineRetentionDays < config.reporting.retentionDays ||
+    config.reporting.baselineRetentionDays > 3650
+  )
+    throw Error("Invalid artifact retention policy");
+  if (
+    !["human-approval", "technical-autonomous"].includes(config.governance.mode)
+  )
+    throw new Error("Invalid governance mode");
   if (config.design.contract !== "@inteiro/design-system")
     throw new Error("Unsupported design contract: " + config.design.contract);
   if (
@@ -517,6 +558,9 @@ export function bundle(config: Config, gates: GateResult[]): EvidenceBundle {
   ];
   const data = {
     schemaVersion: "1.0",
+    ...(config.governance.mode === "technical-autonomous"
+      ? { governanceContractHash: governanceContractHash() }
+      : {}),
     inteiroVersion: "1.2.0",
     configId: config.project.id,
     configHash: hash(config),
@@ -659,29 +703,103 @@ export async function writeReport(
     p.replace("-actual.png", "-diff.png"),
     p.replace("-actual.png", "-trace.zip"),
   ]);
+  const requiredArtifacts = new Set([
+    ...captures,
+    ...report.findings.flatMap((f) => f.evidenceRefs),
+  ]);
+  const reportFailure = (
+    ruleId: string,
+    message: string,
+    status: GateStatus = "blocked",
+  ) => {
+    const item = finding(ruleId, message, { status });
+    let gate = report.gates.find((gate) => gate.name === "reporting");
+    if (!gate) {
+      gate = { name: "reporting", status, findings: [], durationMs: 0 };
+      report.gates.push(gate);
+    }
+    gate.findings.push(item);
+    gate.status = aggregate([
+      { ...gate, status },
+      ...report.gates.filter((g) => g.name === "reporting"),
+    ]);
+    report.findings.push(item);
+    report.status = aggregate(report.gates);
+  };
   for (const path of [
     ...new Set([...related, ...report.findings.flatMap((f) => f.evidenceRefs)]),
   ]) {
     try {
-      report.artifacts.push({
-        path,
-        sha256: hash(await readFile(safePath(root, path))),
-      });
-    } catch {}
+      const relativePath = relative(
+        resolve(root),
+        safePath(root, path),
+      ).replaceAll("\\", "/");
+      const sha256 = hash(await readFile(safePath(root, path)));
+      const previous = report.artifacts.find(
+        (artifact) => artifact.path === path,
+      );
+      if (previous && previous.sha256 !== sha256) {
+        reportFailure(
+          "REP-ARTIFACT-001",
+          "Declared artifact bytes changed: " + relativePath,
+        );
+        continue;
+      }
+      const metadata = {
+        path: relativePath,
+        relativePath,
+        sha256,
+        mediaType: path.endsWith(".png")
+          ? "image/png"
+          : path.endsWith(".zip")
+            ? "application/zip"
+            : path.endsWith(".json")
+              ? "application/json"
+              : "application/octet-stream",
+        privacyClass: "internal" as const,
+      };
+      if (previous) Object.assign(previous, metadata);
+      else report.artifacts.push(metadata);
+    } catch {
+      if (requiredArtifacts.has(path))
+        reportFailure(
+          "REP-ARTIFACT-001",
+          "Required artifact unavailable or unsafe: " + redact(String(path)),
+        );
+    }
   }
   let sourceHash = "unknown";
   try {
     sourceHash = await reviewSourceHash(root);
   } catch {}
+  if (report.sourceHash && report.sourceHash !== sourceHash)
+    reportFailure(
+      "REP-SOURCE-001",
+      "Source changed during gate execution",
+      "error",
+    );
+  if (
+    config.governance.mode === "technical-autonomous" &&
+    sourceHash === "unknown"
+  )
+    reportFailure("REP-SOURCE-001", "Source fingerprint unavailable", "error");
   Object.assign(report, {
-    sourceHash,
+    evidenceFormat: "inteiro-evidence/v1.1",
+    sourceHash: report.sourceHash ?? sourceHash,
+    finishedSourceHash: sourceHash,
     projectId: config.project.id,
     gitSha,
     contractHash: hash(config),
-    startedAt: report.createdAt,
+    startedAt: report.startedAt ?? report.createdAt,
     finishedAt: new Date().toISOString(),
     approval: [],
     exitCode: exitCode(report.status),
+    metrics: executionMetrics(report.gates),
+    retention: {
+      reportDays: config.reporting.retentionDays,
+      baselineMetadataDays: config.reporting.baselineRetentionDays,
+      versionedReferences: "preserved",
+    },
   });
   const { hash: _, ...payload } = report;
   report.hash = hash(payload);
@@ -716,7 +834,26 @@ export async function writeReport(
     escape(report.status) +
     "</h1><p>" +
     escape(report.runId) +
-    "</p><p>Capturas são evidências; aprovação estética e promoção de baseline exigem revisão autenticada.</p><section>" +
+    "</p><p>" +
+    (config.governance.mode === "technical-autonomous"
+      ? "Atestação técnica automática; julgamento estético e aprovação humana não integram este escopo."
+      : "Capturas são evidências; promoção de baseline exige revisão autenticada.") +
+    "</p><table><caption>Cobertura por gate</caption><thead><tr><th>Gate</th><th>Estado</th><th>Executado</th><th>Cobertura</th></tr></thead><tbody>" +
+    report.gates
+      .map(
+        (g) =>
+          "<tr><td>" +
+          escape(g.name) +
+          "</td><td>" +
+          escape(g.status) +
+          "</td><td>" +
+          escape(String(g.executed ?? "indisponível")) +
+          "</td><td>" +
+          escape(String(g.coverage ?? "indisponível")) +
+          "</td></tr>",
+      )
+      .join("") +
+    "</tbody></table><section>" +
     gallery +
     "</section><details><summary>Relatório JSON</summary><pre>" +
     escape(formats.json) +
@@ -781,7 +918,10 @@ export async function readEvidence(
   return report;
 }
 export async function reviewSourceHash(root: string): Promise<string> {
-  const tracked = execFileSync("git", ["ls-files", "-z"], {
+  // Baseline history is operational evidence and can outgrow the subprocess
+  // output bound. Exclude it in Git as well as in the final file filter.
+  const sourcePaths = ["--", ".", ":(exclude)tests/visual/__snapshots__/**"];
+  const tracked = execFileSync("git", ["ls-files", "-z", ...sourcePaths], {
     cwd: root,
     encoding: "utf8",
   })
@@ -789,7 +929,7 @@ export async function reviewSourceHash(root: string): Promise<string> {
     .filter(Boolean);
   const untracked = execFileSync(
     "git",
-    ["ls-files", "--others", "--exclude-standard", "-z"],
+    ["ls-files", "--others", "--exclude-standard", "-z", ...sourcePaths],
     { cwd: root, encoding: "utf8" },
   )
     .split("\0")
@@ -834,7 +974,22 @@ export async function reviewSourceHash(root: string): Promise<string> {
       throw error;
     }
     // Context receipts are operational metadata; the task's substantive plan remains bound.
-    if (path === ".inteiro/task.json") {
+    if (path === "docs/P0_AUTONOMOUS_MATRIX.json") {
+      const matrix = JSON.parse(content.toString("utf8"));
+      const requirements = matrix.requirements.map(
+        (row: Record<string, unknown>) => {
+          const {
+            status: _,
+            evidence: __,
+            qualification: ___,
+            remaining: ____,
+            ...contract
+          } = row;
+          return contract;
+        },
+      );
+      entries.push({ path, sha256: hash({ ...matrix, requirements }) });
+    } else if (path === ".inteiro/task.json") {
       const {
         contextBundleId: _,
         configHash: __,

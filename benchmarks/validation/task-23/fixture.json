@@ -1,0 +1,36 @@
+{
+  "classification": "synthetic",
+  "clock": "2026-02-01T12:00:00.000Z",
+  "seed": 302,
+  "syntheticText": [
+    "rafa@example.test"
+  ],
+  "responses": [
+    {
+      "url": "/api/selection",
+      "method": "GET",
+      "sequence": [
+        {
+          "body": {
+            "items": [
+              {
+                "id": "b",
+                "name": "Registro Beta"
+              },
+              {
+                "id": "a",
+                "name": "Registro Alfa"
+              },
+              {
+                "id": "c",
+                "name": "Registro Gama"
+              }
+            ]
+          },
+          "status": 200,
+          "alias": "selection-0"
+        }
+      ]
+    }
+  ]
+}

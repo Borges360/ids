@@ -1,0 +1,38 @@
+{
+  "classification": "synthetic",
+  "clock": "2026-02-01T12:00:00.000Z",
+  "seed": 409,
+  "syntheticText": [
+    "rafa@example.test"
+  ],
+  "responses": [
+    {
+      "url": "/api/draft",
+      "method": "GET",
+      "sequence": [
+        {
+          "body": {
+            "title": "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana ",
+            "revision": 7
+          },
+          "status": 200,
+          "alias": "draft-0"
+        }
+      ]
+    },
+    {
+      "url": "/api/publish",
+      "method": "POST",
+      "sequence": [
+        {
+          "body": {
+            "ok": true
+          },
+          "status": 200,
+          "alias": "publish-0",
+          "release": "published"
+        }
+      ]
+    }
+  ]
+}

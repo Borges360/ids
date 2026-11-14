@@ -39,6 +39,16 @@ export type {
 } from "./repair-controller.ts";
 export { parseGateOutput } from "./gate-protocol.ts";
 export { releaseGate, RELEASE_REQUIREMENTS } from "./release.ts";
+export { releaseQualification } from "./release-qualification.ts";
+export {
+  buildRequirementIndex,
+  verifyRequirementIndex,
+  matrixContractHash,
+} from "./requirement-evidence.ts";
+export type {
+  RequirementIndex,
+  RequirementProof,
+} from "./requirement-evidence.ts";
 export {
   recordTaskContext,
   verifyStoredContext,

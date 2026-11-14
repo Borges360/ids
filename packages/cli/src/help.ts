@@ -25,6 +25,10 @@ Contratos e gates P0:
   benchmark prepare --case <id> --target <new-dir> [--dry-run] --json
   benchmark prepare --case <id> --target <new-dir> --bootstrap --packages-manifest <file> --dependency-lock <file> --harness pi|codex --json
   benchmark worker-audit --worker <receipt-id> --json
+  report export --out <archive.json> [--summary <summary.json>] --json
+  report extract --archive <archive.json> --out <new-directory> --json
+  report verify --directory <extracted-directory> --json
+  report prune [--apply] --json
   doctor --deep --json
 
 Comandos:
@@ -47,6 +51,7 @@ Comandos:
 
   agents list                  Lista harnesses e mecanismos reais
   agents install <harness|all> Instala adaptador (codex|claude|devin|cursor|pi|hermes)
+    --context-only             Codex: registra AGENTS e skills sem substituir plugin/MCP existente
   agents uninstall <harness>   Remove arquivos gerenciados
   agents doctor                Diagnóstico de instalação
 

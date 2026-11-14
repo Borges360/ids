@@ -2,6 +2,8 @@
 
 ## Escopo confirmado
 
+O [adendo de escopo autônomo](P0_AUTONOMOUS_SCOPE.md) e a [matriz canônica](P0_AUTONOMOUS_MATRIX.json) formalizam a conclusão técnica sem aprovação humana. As assinaturas descritas abaixo pertencem ao modo compatível `human-approval`; não são condições de encerramento do modo `technical-autonomous`. O estado da implementação e da qualificação autônomas é determinado pela matriz e pelas evidências da versão correspondente.
+
 O arquivo `docs/INTEIRO_ESPECIFICACAO_P0.md` foi copiado da especificação fornecida pelo solicitante. Depois do pedido inicial, o solicitante retirou o deploy Jenkins, a comparação real entre perfis de modelo e o smoke com agentes reais. Essas frentes não devem constar como executadas nem aprovadas.
 
 ## Inventário e decisões
@@ -51,6 +53,6 @@ As esperas por alias de resposta consomem uma resposta por ação, inclusive qua
 
 Logs e artefatos locais ficam em `artifacts/` e `.inteiro/reports/`; essas pastas não devem ser publicadas automaticamente. O registro `release-evidence.json` indica os comandos e os estados de aceite. Os testes de aprovação usam chaves e candidatos temporários em diretórios de teste: eles não aprovam nenhuma imagem da biblioteca.
 
-A execução técnica de uma captura e a aprovação de uma imagem são eventos diferentes. Uma release não pode ser declarada 100% P0 enquanto faltarem baseline de produto aprovada, revisão qualitativa requerida e matriz de aceite do mantenedor. O status de release permanece pendente nesses casos, mesmo quando os testes técnicos passam.
+A execução técnica de uma captura e a promoção de uma referência são eventos diferentes. No modo `human-approval`, permanecem obrigatórias as assinaturas configuradas. No escopo autônomo, a condição de conclusão é a auditoria técnica completa da matriz e das evidências atuais, incluindo referências promovidas por autoridade técnica independente do implementador. Julgamento estético e assinatura humana não bloqueiam a meta; lacunas técnicas continuam bloqueantes.
 
 As medições de desempenho locais usam fixtures sintéticas e não comprovam SLO geral nem ROI de modelos. As verificações automatizadas de acessibilidade cobrem um subconjunto da WCAG. O estudo com dois perfis de modelo e o smoke ao vivo dos harnesses foram excluídos por solicitação explícita.

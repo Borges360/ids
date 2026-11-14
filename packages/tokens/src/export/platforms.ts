@@ -36,6 +36,35 @@ export function emitFlutter(): string {
   return lines.join("\n");
 }
 
+function androidColor(value: ColorValue | undefined, id: string): string {
+  if (!value?.hex || !/^#[0-9a-f]{6}$/i.test(value.hex))
+    throw new Error(`Android color export requires a resolved sRGB hex value: ${id}`);
+  const a = Math.round((value.alpha ?? 1) * 255).toString(16).padStart(2, "0");
+  return `#${a}${value.hex.slice(1)}`.toLowerCase();
+}
+
+/**
+ * Android resource colors (`#AARRGGBB`) for every color token, in catalog
+ * order, resolved in the dark theme. Names are `inteiro_` plus the token id in
+ * snake case. Alpha is preserved; translucent tokens are not flattened.
+ */
+export function emitAndroidColors(): string {
+  const dark = resolveAll("dark");
+  const colors = allTokens()
+    .filter((t) => t.type === "color")
+    .map((t) => `  <color name="inteiro_${t.id.replace(/[.-]/g, "_")}">${androidColor(dark.get(t.id)?.value as ColorValue, t.id)}</color>`);
+  return [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    "",
+    "<!--",
+    "  Do not edit directly, this file was auto-generated.",
+    "-->",
+    "<resources>",
+    ...colors,
+    "</resources>",
+  ].join("\n");
+}
+
 export function emitSwift(): string {
   const dark = resolveAll("dark");
   const lines = [

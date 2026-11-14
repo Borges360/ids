@@ -25,6 +25,18 @@ export async function workerFixture(sourceRoot = process.cwd()) {
     task.grading.path,
     "benchmarks/contract/serve.mjs",
   ];
+  if (task.validation) {
+    const validation = JSON.parse(
+      await readFile(join(sourceRoot, task.validation.path), "utf8"),
+    );
+    paths.push(
+      task.validation.path,
+      validation.routes.path,
+      ...validation.fixtures.map((file: { path: string }) => file.path),
+    );
+    if (validation.reviewPolicy) paths.push(validation.reviewPolicy.path);
+    if (validation.technicalPolicy) paths.push(validation.technicalPolicy.path);
+  }
   for (const path of paths) {
     const destination = join(dataset, path);
     await mkdir(dirname(destination), { recursive: true });

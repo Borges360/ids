@@ -14,7 +14,9 @@
   "scripts": {
     "build": "npm run build -w @inteiro/tokens && npm run build:composition && npm run build -w @inteiro/agent-core && npm run build -w @inteiro/cli && npm run build -w @inteiro/mcp && npm run build -w @inteiro/design-system && npm run build -w @inteiro/react && npm run build -w @inteiro/skills",
     "validate": "npm run validate -w @inteiro/tokens",
+    "pretest": "npm run build -w @inteiro/tokens && npm run build:composition",
     "test": "vitest run",
+    "test:unit": "vitest run --config vitest.unit.config.mjs",
     "test:contrast": "vitest run tests/contrast",
     "test:watch": "vitest",
     "lint": "tsc --noEmit -p tsconfig.json && eslint packages/react/src",
@@ -25,7 +27,7 @@
     "ci": "npm run lint && npm run validate && npm test && npm run build && npm run build:platforms && npm run build:docs && npm run build:fixtures && npm run build:storybook && npm run build:site && npm run check:tokens && npm run check:bundle && npm run pack:check && npm run check:p0 && npm run check:compat",
     "storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build",
-    "build:platforms": "node packages/tokens/style-dictionary.config.mjs",
+    "build:platforms": "node --experimental-strip-types packages/tokens/src/build-android.ts",
     "test:browser": "playwright test",
     "test:visual": "chromatic",
     "build:site": "node scripts/build-site.mjs",
@@ -42,6 +44,10 @@
     "test:browser-gate": "node scripts/test-browser-gate.mjs",
     "test:benchmark-grading": "node scripts/test-task-grading.mjs",
     "test:worker-isolation": "node scripts/test-worker-isolation.mjs",
+    "test:public-contracts": "node scripts/test-public-control.mjs --full",
+    "test:public-workers": "node scripts/qualify-public-workers.mjs",
+    "test:worker-bootstrap": "node scripts/test-worker-bootstrap.mjs",
+    "audit:dependencies": "node scripts/audit-dependencies.mjs",
     "pack:p0": "node scripts/pack-p0.mjs",
     "smoke:offline": "node scripts/smoke-offline.mjs",
     "measure:p0": "node scripts/measure-p0.mjs --canary",
@@ -71,7 +77,6 @@
     "next": "16.4.2",
     "prettier": "^3.9.10",
     "storybook": "^10.6.2",
-    "style-dictionary": "^5.7.0",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.71.2",
     "vitest": "^5.0.5",
@@ -134,5 +139,9 @@
   "bugs": {
     "url": "https://github.com/Borges360/ids/issues"
   },
-  "homepage": "https://github.com/Borges360/ids#readme"
+  "homepage": "https://github.com/Borges360/ids#readme",
+  "overrides": {
+    "minimatch@>=7 <11.0.1": "^11.0.8",
+    "glob@>=9 <14.0.2": "^14.0.5"
+  }
 }

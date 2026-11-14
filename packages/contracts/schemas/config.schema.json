@@ -8,6 +8,19 @@
       "type": "string",
       "const": "1.0"
     },
+    "governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "human-approval",
+            "technical-autonomous"
+          ]
+        }
+      }
+    },
     "project": {
       "type": "object",
       "additionalProperties": false,
@@ -314,6 +327,12 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
+        "retentionDays": {
+          "type": "number"
+        },
+        "baselineRetentionDays": {
+          "type": "number"
+        },
         "outDir": {
           "type": "string"
         },

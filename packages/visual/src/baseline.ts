@@ -1,8 +1,31 @@
 import { readFile, writeFile, mkdir, copyFile } from "node:fs/promises";
 import { verify, createPublicKey } from "node:crypto";
 import { dirname } from "node:path";
-import { hash, canonical, safePath, safeRead } from "@inteiro/contracts";
+import {
+  hash,
+  canonical,
+  safePath,
+  safeRead,
+  type Config,
+} from "@inteiro/contracts";
+import {
+  withBaselineRegistryLock,
+  writeBaselineRegistry,
+} from "./registry-storage.ts";
+
+/**
+ * Baseline approvals predate executor selection and bind the Pi-normalized
+ * configuration. The selected harness controls context resolution, not pixels;
+ * normalize that single field so Codex can verify the same signed baselines.
+ */
+export function baselineContractHash(config: Config): string {
+  const normalized = structuredClone(config);
+  normalized.context = { ...normalized.context, harness: "pi" };
+  return hash(normalized);
+}
+
 export interface Baseline {
+  sourceHash?: string;
   id: string;
   key: string;
   state:
@@ -69,7 +92,7 @@ export function baselineMetadataHash(candidate: Baseline): string {
   } = candidate;
   return hash(metadata);
 }
-export async function proposeBaseline(
+async function proposeBaselineUnlocked(
   root: string,
   dir: string,
   data: Omit<Baseline, "id" | "state" | "imageSha256" | "baselineVersion">,
@@ -102,11 +125,17 @@ export async function proposeBaseline(
   );
   if (predecessor) candidate.previousBaselineId = predecessor.id;
   entries.push(candidate);
-  await writeFile(
-    safePath(root, dir + "/registry.json"),
-    JSON.stringify(entries, null, 2),
-  );
+  await writeBaselineRegistry(root, dir, entries);
   return candidate;
+}
+export async function proposeBaseline(
+  root: string,
+  dir: string,
+  data: Parameters<typeof proposeBaselineUnlocked>[2],
+) {
+  return withBaselineRegistryLock(root, dir, () =>
+    proposeBaselineUnlocked(root, dir, data),
+  );
 }
 export function verifyApproval(
   approval: Approval,
@@ -150,7 +179,7 @@ export function verifyApproval(
   )
     throw new Error("Invalid review signature");
 }
-export async function approveBaseline(
+async function approveBaselineUnlocked(
   root: string,
   dir: string,
   approval: Approval,
@@ -182,12 +211,20 @@ export async function approveBaseline(
     approvalRef: approval.reviewId,
   });
   await writeFile(
-    safePath(root, dir + "/registry.json"),
-    JSON.stringify(entries, null, 2),
-  );
-  await writeFile(
     safePath(root, dir + "/" + candidate.id + ".approval.json"),
     JSON.stringify(approval, null, 2),
+    { flag: "wx" },
   );
+  await writeBaselineRegistry(root, dir, entries);
   return candidate;
+}
+export async function approveBaseline(
+  root: string,
+  dir: string,
+  approval: Approval,
+  policy: { reviewers: Record<string, string> },
+) {
+  return withBaselineRegistryLock(root, dir, () =>
+    approveBaselineUnlocked(root, dir, approval, policy),
+  );
 }

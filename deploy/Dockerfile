@@ -11,12 +11,14 @@ COPY stories stories
 COPY tsconfig.json ./
 RUN npm ci --no-audit --no-fund
 RUN npm run build && npm run build:platforms && npm run build:docs && npm run build:storybook
+RUN npm exec --offline -- esbuild scripts/serve-demo.mjs --bundle --platform=node --format=esm --outfile=runtime/scripts/serve-demo.mjs
 
 FROM node:24-bookworm-slim
 WORKDIR /app
 ENV NODE_ENV=production HOST=0.0.0.0 PORT=4173
-COPY --from=build /src/scripts/serve-demo.mjs ./scripts/serve-demo.mjs
+COPY --from=build /src/runtime/scripts/serve-demo.mjs ./scripts/serve-demo.mjs
 COPY --from=build /src/apps/demo ./apps/demo
+COPY --from=build /src/apps/catalog ./apps/catalog
 COPY --from=build /src/docs ./docs
 COPY --from=build /src/packages/tokens/dist ./packages/tokens/dist
 COPY --from=build /src/packages/design-system/src/components.css ./packages/design-system/src/components.css

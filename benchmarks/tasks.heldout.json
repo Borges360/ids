@@ -25,7 +25,11 @@
       "acceptance": [
         "Independent functional criteria in the immutable grading snapshot",
         "Full INTEIRO static/browser/review gates remain required"
-      ]
+      ],
+      "validation": {
+        "path": "benchmarks/validation/heldout-1/manifest.json",
+        "sha256": "03077e54237b1264de28a24a89cea6b00dd30fefeeac9c9569c74125ed433d65"
+      }
     },
     {
       "id": "heldout-2",
@@ -50,7 +54,11 @@
       "acceptance": [
         "Independent functional criteria in the immutable grading snapshot",
         "Full INTEIRO static/browser/review gates remain required"
-      ]
+      ],
+      "validation": {
+        "path": "benchmarks/validation/heldout-2/manifest.json",
+        "sha256": "08916cc3e91f9919e04b4ec69640d2ace3f6e194db12279303bb65ac4ce6a47d"
+      }
     },
     {
       "id": "heldout-3",
@@ -75,7 +83,11 @@
       "acceptance": [
         "Independent functional criteria in the immutable grading snapshot",
         "Full INTEIRO static/browser/review gates remain required"
-      ]
+      ],
+      "validation": {
+        "path": "benchmarks/validation/heldout-3/manifest.json",
+        "sha256": "c885f6a52e4d870dd6f2eb23d5e8ecb18bd7bd50af34876689816bc6408b3773"
+      }
     },
     {
       "id": "heldout-4",
@@ -100,7 +112,11 @@
       "acceptance": [
         "Independent functional criteria in the immutable grading snapshot",
         "Full INTEIRO static/browser/review gates remain required"
-      ]
+      ],
+      "validation": {
+        "path": "benchmarks/validation/heldout-4/manifest.json",
+        "sha256": "e3f1f474dc927841f61cf313d6d23f7650a39ca6fe76fa893c45fbb6512669ea"
+      }
     },
     {
       "id": "heldout-5",
@@ -125,7 +141,11 @@
       "acceptance": [
         "Independent functional criteria in the immutable grading snapshot",
         "Full INTEIRO static/browser/review gates remain required"
-      ]
+      ],
+      "validation": {
+        "path": "benchmarks/validation/heldout-5/manifest.json",
+        "sha256": "b4790baa35511dbdebf64311b30a7c7fc8dd0c6a550309d0631ad2cfd552784e"
+      }
     },
     {
       "id": "heldout-6",
@@ -150,7 +170,11 @@
       "acceptance": [
         "Independent functional criteria in the immutable grading snapshot",
         "Full INTEIRO static/browser/review gates remain required"
-      ]
+      ],
+      "validation": {
+        "path": "benchmarks/validation/heldout-6/manifest.json",
+        "sha256": "d7c0c2042caa1af970149aef7315c460c8a6055e6813ce8e7c4fa0def8603363"
+      }
     },
     {
       "id": "heldout-7",
@@ -175,7 +199,11 @@
       "acceptance": [
         "Independent functional criteria in the immutable grading snapshot",
         "Full INTEIRO static/browser/review gates remain required"
-      ]
+      ],
+      "validation": {
+        "path": "benchmarks/validation/heldout-7/manifest.json",
+        "sha256": "2c50ae9f06ba4c81f58d6b832f6a61db97f89ea2e4a6f6d41fb1c453bb495c87"
+      }
     },
     {
       "id": "heldout-8",
@@ -200,7 +228,11 @@
       "acceptance": [
         "Independent functional criteria in the immutable grading snapshot",
         "Full INTEIRO static/browser/review gates remain required"
-      ]
+      ],
+      "validation": {
+        "path": "benchmarks/validation/heldout-8/manifest.json",
+        "sha256": "124094dc19ed8273dac04eec7b7a6540781bd52a08323fb632d9ee4ee178be24"
+      }
     },
     {
       "id": "heldout-9",
@@ -225,7 +257,11 @@
       "acceptance": [
         "Independent functional criteria in the immutable grading snapshot",
         "Full INTEIRO static/browser/review gates remain required"
-      ]
+      ],
+      "validation": {
+        "path": "benchmarks/validation/heldout-9/manifest.json",
+        "sha256": "0237ba15fc7bd8451c24cac29881c36032f00469199a1be8ef58e2020ba9ca18"
+      }
     },
     {
       "id": "heldout-10",
@@ -250,7 +286,11 @@
       "acceptance": [
         "Independent functional criteria in the immutable grading snapshot",
         "Full INTEIRO static/browser/review gates remain required"
-      ]
+      ],
+      "validation": {
+        "path": "benchmarks/validation/heldout-10/manifest.json",
+        "sha256": "493f13549ef1206aeb825503550b7de31ba8a8ae5a20755598adba2cd3dfd217"
+      }
     }
   ]
 }

@@ -15,4 +15,4 @@ Portabilidade ≠ os mesmos componentes em todas as plataformas. Tokens universa
 | Flutter | `packages/tokens/dist/flutter/inteiro.dart` — cores/espaço, não widgets |
 | SwiftUI | `packages/tokens/dist/swift/Inteiro.swift` |
 
-Android recebe cores XML via Style Dictionary (`npm run build:platforms`); não há widgets Compose. Flutter/Swift também exportam tokens, sem widgets. Recursive precisa ser carregada pelo app (Google Fonts ou self-host OFL). Os arquivos Figma e o plugin local estão descritos em `EXPANSION.md`.
+Android recebe cores XML do gerador do catálogo (`npm run build:platforms`), com alfa preservado; não há widgets Compose. Flutter/Swift também exportam tokens, sem widgets. Recursive precisa ser carregada pelo app (Google Fonts ou self-host OFL). Os arquivos Figma e o plugin local estão descritos em `EXPANSION.md`.

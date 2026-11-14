@@ -1,0 +1,110 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "public-worker-validation",
+  "governanceContractHash": "9b4864d548d799f25ed7cb174c6e9e95e3e7ede5e65544f07e8bb88d4b36347d",
+  "caseId": "task-26",
+  "patternIds": [
+    "dialog"
+  ],
+  "coverage": {
+    "states": {
+      "default": {
+        "applicable": true,
+        "scenario": "default",
+        "phase": "final"
+      },
+      "loading": {
+        "applicable": false,
+        "reason": "Task family 26 does not expose loading in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      },
+      "empty": {
+        "applicable": false,
+        "reason": "Task family 26 does not expose empty in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      },
+      "error": {
+        "applicable": false,
+        "reason": "Task family 26 does not expose error in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      },
+      "disabled": {
+        "applicable": false,
+        "reason": "Task family 26 does not expose disabled in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      },
+      "invalid": {
+        "applicable": false,
+        "reason": "Task family 26 does not expose invalid in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      },
+      "success": {
+        "applicable": false,
+        "reason": "Task family 26 does not expose success in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      },
+      "modal": {
+        "applicable": true,
+        "scenario": "primary-flow",
+        "phase": "action-capture",
+        "actionIndex": 6
+      },
+      "selected": {
+        "applicable": false,
+        "reason": "Task family 26 does not expose selected in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      },
+      "readonly": {
+        "applicable": false,
+        "reason": "Task family 26 does not expose readonly in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      },
+      "long-content": {
+        "applicable": true,
+        "scenario": "primary-flow",
+        "phase": "action-capture",
+        "actionIndex": 6
+      }
+    },
+    "viewports": [
+      "mobile",
+      "tablet",
+      "desktop"
+    ],
+    "themes": [
+      "light",
+      "dark",
+      "contrast-light",
+      "contrast-dark"
+    ],
+    "densities": [
+      "calm",
+      "focus"
+    ],
+    "keyboard": [
+      {
+        "scenario": "primary-flow",
+        "actionIndex": 3
+      },
+      {
+        "scenario": "primary-flow",
+        "actionIndex": 9
+      }
+    ],
+    "content": {
+      "classification": "synthetic",
+      "fixture": {
+        "path": "benchmarks/validation/task-26/fixture.json",
+        "sha256": "f72a484910ed1f2d2bd5697cd19f01f6b3a413d549fefa9188458963be89dfe4"
+      }
+    },
+    "reducedMotion": "reduce"
+  },
+  "routes": {
+    "path": "benchmarks/validation/task-26/routes.json",
+    "sha256": "552b8683707102ab5b5cc31e078fc611695b20fc1d494925e4000d0ee40b9f95"
+  },
+  "fixtures": [
+    {
+      "id": "task-26",
+      "path": "benchmarks/validation/task-26/fixture.json",
+      "sha256": "f72a484910ed1f2d2bd5697cd19f01f6b3a413d549fefa9188458963be89dfe4"
+    }
+  ],
+  "technicalPolicy": {
+    "path": "benchmarks/validation/technical-authority-policy.json",
+    "sha256": "adcb4bb12807f564cb60e4de963f4ed2a8adfeb25526056132a3cfe58aec5020"
+  }
+}

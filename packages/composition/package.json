@@ -3,6 +3,7 @@
   "version": "1.2.0",
   "type": "module",
   "exports": {
+    "./coverage": "./coverage-matrix.json",
     ".": "./src/index.ts",
     "./behavior": "./src/behavior.js",
     "./css": "./dist/composition.css",
@@ -15,6 +16,7 @@
     "examples",
     "catalog.index.json",
     "story-matrix.json",
+    "coverage-matrix.json",
     "dist",
     "fonts"
   ],

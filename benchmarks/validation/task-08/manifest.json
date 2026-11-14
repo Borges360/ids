@@ -1,0 +1,112 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "public-worker-validation",
+  "governanceContractHash": "9b4864d548d799f25ed7cb174c6e9e95e3e7ede5e65544f07e8bb88d4b36347d",
+  "caseId": "task-08",
+  "patternIds": [
+    "drawer"
+  ],
+  "coverage": {
+    "states": {
+      "default": {
+        "applicable": true,
+        "scenario": "default",
+        "phase": "final"
+      },
+      "loading": {
+        "applicable": false,
+        "reason": "Task family 8 does not expose loading in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      },
+      "empty": {
+        "applicable": false,
+        "reason": "Task family 8 does not expose empty in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      },
+      "error": {
+        "applicable": false,
+        "reason": "Task family 8 does not expose error in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      },
+      "disabled": {
+        "applicable": false,
+        "reason": "Task family 8 does not expose disabled in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      },
+      "invalid": {
+        "applicable": false,
+        "reason": "Task family 8 does not expose invalid in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      },
+      "success": {
+        "applicable": false,
+        "reason": "Task family 8 does not expose success in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      },
+      "modal": {
+        "applicable": true,
+        "scenario": "primary-flow",
+        "phase": "action-capture",
+        "actionIndex": 3
+      },
+      "selected": {
+        "applicable": false,
+        "reason": "Task family 8 does not expose selected in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      },
+      "readonly": {
+        "applicable": false,
+        "reason": "Task family 8 does not expose readonly in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      },
+      "long-content": {
+        "applicable": false,
+        "reason": "Task family 8 does not expose long-content in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      }
+    },
+    "viewports": [
+      "mobile",
+      "tablet",
+      "desktop"
+    ],
+    "themes": [
+      "light",
+      "dark",
+      "contrast-light",
+      "contrast-dark"
+    ],
+    "densities": [
+      "calm",
+      "focus"
+    ],
+    "keyboard": [
+      {
+        "scenario": "primary-flow",
+        "actionIndex": 2
+      },
+      {
+        "scenario": "primary-flow",
+        "actionIndex": 4
+      },
+      {
+        "scenario": "primary-flow",
+        "actionIndex": 5
+      }
+    ],
+    "content": {
+      "classification": "synthetic",
+      "fixture": {
+        "path": "benchmarks/validation/task-08/fixture.json",
+        "sha256": "7fb261f0473352ff402251af5a533548a14950fc6038e1033ca8c82ac505a256"
+      }
+    },
+    "reducedMotion": "reduce"
+  },
+  "routes": {
+    "path": "benchmarks/validation/task-08/routes.json",
+    "sha256": "0a589b7b0aa7e2677335a8e3d36f9a91dd906e69f5f3146165d24a1ce4a27f63"
+  },
+  "fixtures": [
+    {
+      "id": "task-08",
+      "path": "benchmarks/validation/task-08/fixture.json",
+      "sha256": "7fb261f0473352ff402251af5a533548a14950fc6038e1033ca8c82ac505a256"
+    }
+  ],
+  "technicalPolicy": {
+    "path": "benchmarks/validation/technical-authority-policy.json",
+    "sha256": "adcb4bb12807f564cb60e4de963f4ed2a8adfeb25526056132a3cfe58aec5020"
+  }
+}

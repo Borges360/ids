@@ -4,6 +4,7 @@ import {
   exitCode,
   aggregate,
   type EvidenceBundle,
+  governanceContractHash,
 } from "@inteiro/contracts";
 
 /** Validate the single JSON document returned by a deterministic CLI validator. */
@@ -16,6 +17,11 @@ export function parseGateOutput(
   const report = JSON.parse(stdout) as EvidenceBundle;
   if (!validateSchema("evidence-bundle", report).valid)
     throw new Error("Invalid gate evidence schema");
+  if (
+    report.governanceContractHash !== undefined &&
+    report.governanceContractHash !== governanceContractHash()
+  )
+    throw new Error("Gate governance contract mismatch");
   const { hash: expected, ...payload } = report;
   if (hash(payload) !== expected)
     throw new Error("Gate evidence hash mismatch");
