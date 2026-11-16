@@ -44,7 +44,7 @@ npx playwright install chromium
 npx inteiro gate run --profile pr --json
 ```
 
-Perfis aceitos: `dev`, `pr`, `ci`, `main`, `nightly`, `release`. O runner amplia o escopo quando não há certeza sobre o conjunto alterado. Perfis protegidos sempre executam a matriz declarada; nenhum perfil transforma evidência ausente em sucesso. O workflow agendado amplia os viewports dos testes do catálogo.
+Perfis aceitos: `dev`, `pr`, `ci`, `main`, `nightly`, `release`. O runner amplia o escopo quando não há certeza sobre o conjunto alterado. Perfis protegidos sempre executam a matriz declarada; nenhum perfil transforma evidência ausente em sucesso. `INTEIRO_FULL_MATRIX=1` amplia os viewports dos testes do catálogo (`npm run test:browser`; `npm run verify:p0` já o define). Não há execução agendada do gate visual no GitHub.
 
 ## Contratos e políticas
 
@@ -72,9 +72,9 @@ Proteja política de revisão, configuração, registro e imagens com CODEOWNERS
 
 ### Prova local obrigatória do gate visual
 
-No modo `technical-autonomous`, a chave de cada baseline inclui `environmentFingerprint`: plataforma, arquitetura, `os.release()`, `os.version()`, Playwright, Chromium, perfil de aleatoriedade e fontes. As baselines aprovadas valem só para o ambiente em que `scripts/attest-baselines.mjs` capturou, repetiu e atestou as imagens; hoje, Windows `win32`/`10.0.26200`. Um runner hospedado do GitHub (`ubuntu`, kernel variável a cada imagem) gera outra impressão e recebe `VIS-BASE-001 "Approved baseline missing"` em todos os casos. A chave privada da autoridade técnica não pode ir para o runner. Por isso o workflow `inteiro-gates.yml` fica fora de `develop` até existir um executor atestado com ambiente fixo; a proposta está na branch `feature/inteiro-gates-ci`.
+No modo `technical-autonomous`, a chave de cada baseline inclui `environmentFingerprint`: plataforma, arquitetura, `os.release()`, `os.version()`, Playwright, Chromium, perfil de aleatoriedade e fontes. As baselines aprovadas valem só para o ambiente em que `scripts/attest-baselines.mjs` capturou, repetiu e atestou as imagens; hoje, Windows `win32`/`10.0.26200`. Um runner hospedado do GitHub (`ubuntu`, kernel variável a cada imagem) gera outra impressão e recebe `VIS-BASE-001 "Approved baseline missing"` em todos os casos. A chave privada da autoridade técnica não pode ir para o runner. Por decisão do projeto, o GitHub Actions do INTEIRO roda só o CI padrão do harness (`secrets.yml`, `gitflow.yml`, `config.yml`, gerados de `workspace/templates/workflows`) e o `ci.yml` de lint, validação, testes unitários e build; não há CI visual nem executor especial. A proposta de workflow visual (`inteiro-gates.yml`) foi encerrada sem merge e fica apenas como histórico na branch `feature/inteiro-gates-ci`.
 
-Até lá, todo PR que altere UI (CSS, tokens, componentes, padrões de composição, exemplos, rotas, fixtures ou baselines) exige a prova local, no host de atestação e com a árvore limpa:
+Assim, todo PR que altere UI (CSS, tokens, componentes, padrões de composição, exemplos, rotas, fixtures ou baselines) exige a prova local, no host de atestação e com a árvore limpa:
 
 ```sh
 node packages/cli/src/cli.ts agents install pi --yes --json   # quando o contexto ainda não estiver instalado
