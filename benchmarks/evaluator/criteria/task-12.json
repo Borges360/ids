@@ -1,0 +1,114 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "task-12",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/task-12.json",
+    "sha256": "75c28826436e52a1c570086bf9ab178da66ffb619bec0b4ae2fa348248be22ec"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "expect-token-style",
+          "locator": {
+            "testId": "painel"
+          },
+          "name": "color",
+          "value": "--in-color-text-primary"
+        },
+        {
+          "op": "expect-token-style",
+          "locator": {
+            "testId": "painel"
+          },
+          "name": "background-color",
+          "value": "--in-color-background-surface"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Atualizar"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "summary",
+          "count": 1,
+          "body": null
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Total 37"
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    },
+    {
+      "id": "desktop-functional",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "density": "focus",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "expect-token-style",
+          "locator": {
+            "testId": "painel"
+          },
+          "name": "color",
+          "value": "--in-color-text-primary"
+        },
+        {
+          "op": "expect-token-style",
+          "locator": {
+            "testId": "painel"
+          },
+          "name": "background-color",
+          "value": "--in-color-background-surface"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Atualizar"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "summary",
+          "count": 1,
+          "body": null
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Total 37"
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

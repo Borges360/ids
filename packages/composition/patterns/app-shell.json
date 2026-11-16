@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "1.0",
+  "id": "app-shell",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Estrutura da aplicação shell",
+  "slots": [
+    "navigation",
+    "header",
+    "main",
+    "footer"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "a",
+      "div",
+      "aside",
+      "nav",
+      "main",
+      "h1",
+      "p"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/app-shell.html",
+    "examples/app-shell-default.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "estrutura",
+    "da",
+    "aplicação",
+    "shell"
+  ],
+  "markup": "<a class=\"in-skip-link\" href=\"#content\">Pular conteúdo</a><div class=\"in-app-shell\"><aside><nav aria-label=\"Principal\"><a href=\"#content\">Início</a></nav></aside><main id=\"content\"><h1>Aplicação</h1><p>Conteúdo de exemplo</p></main></div>"
+}

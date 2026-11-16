@@ -1,0 +1,208 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "task-13",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/task-13.json",
+    "sha256": "672e72672f412c0c3f5a31f93e1a4402ad19b72e1ec9232462cd8a2eda731818"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "press",
+          "locator": {
+            "role": "tab",
+            "name": "Visão geral"
+          },
+          "value": "ArrowRight"
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "tab",
+            "name": "Histórico"
+          }
+        },
+        {
+          "op": "expect-attribute",
+          "locator": {
+            "role": "tab",
+            "name": "Histórico"
+          },
+          "name": "aria-selected",
+          "value": "true"
+        },
+        {
+          "op": "expect-visible",
+          "locator": {
+            "role": "tabpanel",
+            "name": "Histórico"
+          }
+        },
+        {
+          "op": "expect-hidden",
+          "locator": {
+            "role": "tabpanel",
+            "name": "Visão geral"
+          }
+        },
+        {
+          "op": "press",
+          "locator": {
+            "role": "tab",
+            "name": "Histórico"
+          },
+          "value": "Home"
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "tab",
+            "name": "Visão geral"
+          }
+        },
+        {
+          "op": "press",
+          "locator": {
+            "role": "tab",
+            "name": "Visão geral"
+          },
+          "value": "End"
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "tab",
+            "name": "Histórico"
+          }
+        },
+        {
+          "op": "press",
+          "locator": {
+            "role": "tab",
+            "name": "Histórico"
+          },
+          "value": "ArrowRight"
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "tab",
+            "name": "Visão geral"
+          }
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    },
+    {
+      "id": "desktop-functional",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "density": "focus",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "press",
+          "locator": {
+            "role": "tab",
+            "name": "Visão geral"
+          },
+          "value": "ArrowRight"
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "tab",
+            "name": "Histórico"
+          }
+        },
+        {
+          "op": "expect-attribute",
+          "locator": {
+            "role": "tab",
+            "name": "Histórico"
+          },
+          "name": "aria-selected",
+          "value": "true"
+        },
+        {
+          "op": "expect-visible",
+          "locator": {
+            "role": "tabpanel",
+            "name": "Histórico"
+          }
+        },
+        {
+          "op": "expect-hidden",
+          "locator": {
+            "role": "tabpanel",
+            "name": "Visão geral"
+          }
+        },
+        {
+          "op": "press",
+          "locator": {
+            "role": "tab",
+            "name": "Histórico"
+          },
+          "value": "Home"
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "tab",
+            "name": "Visão geral"
+          }
+        },
+        {
+          "op": "press",
+          "locator": {
+            "role": "tab",
+            "name": "Visão geral"
+          },
+          "value": "End"
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "tab",
+            "name": "Histórico"
+          }
+        },
+        {
+          "op": "press",
+          "locator": {
+            "role": "tab",
+            "name": "Histórico"
+          },
+          "value": "ArrowRight"
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "tab",
+            "name": "Visão geral"
+          }
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

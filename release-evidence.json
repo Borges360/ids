@@ -1,0 +1,890 @@
+{
+  "schemaVersion": "1.0",
+  "version": "1.2.0",
+  "sourceCommit": "1264974462da7b1259e38cf23043c62860d6ad1c",
+  "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+  "configHash": "230f7b708bee8866788b3164a8f9da0c50e91c6a078e7a349797179d9f0fc24f",
+  "policyHash": "9fa8c3d65cdcae6004421f40e85aae4c203688fc1b3d6e07a957b0ddc8a6018e",
+  "governanceContractHash": "9b4864d548d799f25ed7cb174c6e9e95e3e7ede5e65544f07e8bb88d4b36347d",
+  "scopeExclusions": [
+    "jenkins-deploy",
+    "real-model-comparison",
+    "real-agent-smoke",
+    "human-final-approval",
+    "human-aesthetic-judgment",
+    "human-calibration"
+  ],
+  "approval": null,
+  "requirements": [
+    {
+      "id": "E00",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "E01",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "E02",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "E03",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "E04",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "E05",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "E06",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "E07",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "E08",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "E09",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "E10",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "WP-01",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "WP-02",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "WP-03",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "WP-04",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "WP-05",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "WP-06",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "WP-07",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "WP-08",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "WP-09",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "WP-10",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "WP-11",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "WP-12",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "WP-13",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "WP-14",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "WP-15",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "WP-16",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "WP-17",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "WP-18",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "WP-19",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "WP-20",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "WP-21",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "WP-22",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "WP-23",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "DoD-01",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "DoD-02",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "DoD-03",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "DoD-04",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "DoD-05",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "DoD-06",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "DoD-07",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "DoD-08",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "DoD-09",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "DoD-10",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "DoD-11",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "DoD-12",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "SCN-01",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "SCN-02",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "SCN-03",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "SCN-04",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "SCN-05",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "SCN-06",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "SCN-07",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "SCN-08",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "SCN-09",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "SCN-10",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "SCN-11",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    },
+    {
+      "id": "SCN-12",
+      "status": "passed",
+      "reason": "Automatic technical qualification; human approval is not applicable.",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ]
+    }
+  ]
+}

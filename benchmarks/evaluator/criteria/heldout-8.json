@@ -1,0 +1,214 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "heldout-8",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/heldout-8.json",
+    "sha256": "2adb77a49ffa56da43666c4b665dc33be344634cdfb36fc7087dbed4c5edb10a"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 320,
+        "height": 900
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "rtl",
+      "steps": [
+        {
+          "op": "click",
+          "locator": {
+            "role": "link",
+            "name": "Pessoas"
+          }
+        },
+        {
+          "op": "expect-path",
+          "value": "/src/index.html?view=people"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "route-title"
+          },
+          "value": "Pessoas"
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Nota persistente"
+          },
+          "value": "Nota entre rotas"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "link",
+            "name": "Projetos"
+          }
+        },
+        {
+          "op": "expect-path",
+          "value": "/src/index.html?view=projects"
+        },
+        {
+          "op": "expect-value",
+          "locator": {
+            "label": "Nota persistente"
+          },
+          "value": "Nota entre rotas"
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Dados da rota"
+          },
+          "values": [
+            "Documentação internacional com revisão detalhada"
+          ]
+        },
+        {
+          "op": "back"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "route-title"
+          },
+          "value": "Pessoas"
+        },
+        {
+          "op": "expect-value",
+          "locator": {
+            "label": "Nota persistente"
+          },
+          "value": "Nota entre rotas"
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Dados da rota"
+          },
+          "values": [
+            "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana "
+          ]
+        },
+        {
+          "op": "expect-request",
+          "id": "projects",
+          "count": 1,
+          "body": null
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    },
+    {
+      "id": "desktop-functional",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "density": "focus",
+      "direction": "rtl",
+      "steps": [
+        {
+          "op": "click",
+          "locator": {
+            "role": "link",
+            "name": "Pessoas"
+          }
+        },
+        {
+          "op": "expect-path",
+          "value": "/src/index.html?view=people"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "route-title"
+          },
+          "value": "Pessoas"
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Nota persistente"
+          },
+          "value": "Nota entre rotas"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "link",
+            "name": "Projetos"
+          }
+        },
+        {
+          "op": "expect-path",
+          "value": "/src/index.html?view=projects"
+        },
+        {
+          "op": "expect-value",
+          "locator": {
+            "label": "Nota persistente"
+          },
+          "value": "Nota entre rotas"
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Dados da rota"
+          },
+          "values": [
+            "Documentação internacional com revisão detalhada"
+          ]
+        },
+        {
+          "op": "back"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "route-title"
+          },
+          "value": "Pessoas"
+        },
+        {
+          "op": "expect-value",
+          "locator": {
+            "label": "Nota persistente"
+          },
+          "value": "Nota entre rotas"
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Dados da rota"
+          },
+          "values": [
+            "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana "
+          ]
+        },
+        {
+          "op": "expect-request",
+          "id": "projects",
+          "count": 1,
+          "body": null
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

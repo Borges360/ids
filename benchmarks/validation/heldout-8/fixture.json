@@ -1,0 +1,49 @@
+{
+  "classification": "synthetic",
+  "clock": "2026-02-01T12:00:00.000Z",
+  "seed": 407,
+  "syntheticText": [
+    "rafa@example.test"
+  ],
+  "responses": [
+    {
+      "url": "/api/route-people",
+      "method": "GET",
+      "sequence": [
+        {
+          "body": {
+            "items": [
+              "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana "
+            ]
+          },
+          "status": 200,
+          "alias": "people-0"
+        },
+        {
+          "body": {
+            "items": [
+              "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana "
+            ]
+          },
+          "status": 200,
+          "alias": "people-1"
+        }
+      ]
+    },
+    {
+      "url": "/api/route-projects",
+      "method": "GET",
+      "sequence": [
+        {
+          "body": {
+            "items": [
+              "Documentação internacional com revisão detalhada"
+            ]
+          },
+          "status": 200,
+          "alias": "projects-0"
+        }
+      ]
+    }
+  ]
+}

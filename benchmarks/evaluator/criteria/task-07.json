@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "task-07",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/task-07.json",
+    "sha256": "9830c7d22d5617ca2de12820c5367c8b92016c84b882a1f02431be2e1528b566"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Editar observação"
+          }
+        },
+        {
+          "op": "expect-visible",
+          "locator": {
+            "role": "dialog",
+            "name": "Editar observação"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "label": "Assunto"
+          }
+        },
+        {
+          "op": "press",
+          "locator": {
+            "label": "Assunto"
+          },
+          "value": "Shift+Tab"
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "button",
+            "name": "Fechar"
+          }
+        },
+        {
+          "op": "press",
+          "locator": {
+            "role": "button",
+            "name": "Fechar"
+          },
+          "value": "Tab"
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "label": "Assunto"
+          }
+        },
+        {
+          "op": "press",
+          "locator": {
+            "label": "Assunto"
+          },
+          "value": "Escape"
+        },
+        {
+          "op": "expect-hidden",
+          "locator": {
+            "role": "dialog",
+            "name": "Editar observação"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "button",
+            "name": "Editar observação"
+          }
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

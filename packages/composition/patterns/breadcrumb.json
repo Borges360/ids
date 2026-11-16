@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.0",
+  "id": "breadcrumb",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Caminho navegação migalhas",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "nav",
+      "ol",
+      "li",
+      "a"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/breadcrumb.html",
+    "examples/breadcrumb-default.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "caminho",
+    "navegação",
+    "migalhas"
+  ],
+  "markup": "<nav aria-label=\"Localização\"><ol><li><a href=\"/\">Início</a></li><li aria-current=\"page\">Página</li></ol></nav>"
+}

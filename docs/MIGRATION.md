@@ -1,5 +1,15 @@
 # Migração
 
+## De 1.1 para 1.2
+
+Atualize os pacotes `@inteiro/*` juntos para 1.2.0. Os 316 tokens anteriores e as recipes continuam disponíveis. A fonte editável passa de módulos TypeScript para `packages/tokens/source/catalog.json`; o build gera os demais arquivos. O catálogo de tokens tem versão 1.1.0 por adicionar 22 extensões compatíveis.
+
+O React agora requer build e exporta ESM e declarações, além do provider. Instale também o tarball `@inteiro/react` se usar a biblioteca. Importe o CSS de tokens e componentes; nenhuma dependência Emotion é necessária. Os nomes `primary`, `commit`, `secondary` etc. foram preservados; `solid`, `outline` e `text` são aliases na API React.
+
+Consulte `docs/LIBRARY.md`, `docs/EXPANSION.md` e o Storybook. Reinicie consumidores do servidor MCP após atualizar o pacote para descobrir `inteiro_get_component`.
+
+## De uma identidade genérica
+
 De um sistema genérico (Inter + roxo + accent laranja) para INTEIRO:
 
 | Antes | Depois |

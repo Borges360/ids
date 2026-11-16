@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.1.1
+
+### Added
+- MCP `inteiro_get_visual_review` aceita um inventário de rotas e gera uma matriz concreta de viewports, temas e estados sem multiplicar todas as dimensões.
+- O plano MCP entrega totais de cobertura e deixa explícito que não captura nem interpreta a interface renderizada.
+- `inteiro_audit` sinaliza riscos de `overflow-wrap:anywhere`, `white-space:nowrap` e `overflow:hidden` para revisão em capturas.
+- Protocolo visual agora inclui registro reproduzível de defeitos, ação corretiva, validação, reversão e decisão de saída.
+
+### Changed
+- Critérios de revisão reforçam quebras naturais de texto, consistência de escala e alinhamento, clipping, navegação estreita e controles em 320px.
+- Pacotes e dependências internas atualizados para `1.1.1`; valores do catálogo de tokens seguem em `1.0.0`.
+
 ## 1.1.0
 
 ### Added
@@ -30,3 +42,18 @@
 
 ### Migration
 - Primeira versão. Ver MIGRATION.md para o legado BG/System.
+# 1.2.0 — 2026-10-18
+
+## Added
+- Biblioteca React com formulários, navegação, overlays, feedback, dados e templates; contrato consultável no MCP.
+- Fonte JSON única; 22 tokens de extensão; exportação Figma/Tokens Studio e plugin local de variáveis.
+- Storybook, axe, testes de teclado/navegador, orçamento de bundle, CI e Jenkinsfile.
+- Guias de biblioteca, governança, implantação e rastreabilidade das recomendações.
+
+## Fixed
+- Tema automático passa a aplicar todos os valores light, inclusive em providers aninhados.
+- Pacote React incluído em typecheck e distribuído como ESM com declarações.
+
+## Migration
+- Catálogo de tokens 1.1.0: editar `source/catalog.json`; exports anteriores preservados. Pacotes IDS 1.2.0.
+- React exige build antes de consumir pelo workspace ou tarball. Consulte `docs/LIBRARY.md`.

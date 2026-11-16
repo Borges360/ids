@@ -1,0 +1,264 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "heldout-10",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/heldout-10.json",
+    "sha256": "c9be404ccb892edbafd991e500c93e231403bd46e47d2fc82579b14b696d6bb0"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 320,
+        "height": 900
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "rtl",
+      "steps": [
+        {
+          "op": "expect-value",
+          "locator": {
+            "label": "Título"
+          },
+          "value": "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana "
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Título"
+          },
+          "value": "Documentação internacional com revisão detalhada"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Visualizar"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "preview-title"
+          },
+          "value": "Documentação internacional com revisão detalhada"
+        },
+        {
+          "op": "expect-request",
+          "id": "publish",
+          "count": 0,
+          "body": null
+        },
+        {
+          "op": "expect-attribute",
+          "locator": {
+            "role": "button",
+            "name": "Publicar conteúdo"
+          },
+          "name": "data-variant",
+          "value": "commit"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Publicar conteúdo"
+          }
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Cancelar"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "publish",
+          "count": 0,
+          "body": null
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Publicar conteúdo"
+          }
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Confirmar publicação"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "publish",
+          "count": 1,
+          "body": {
+            "title": "Documentação internacional com revisão detalhada",
+            "revision": 7
+          }
+        },
+        {
+          "op": "expect-disabled",
+          "locator": {
+            "role": "button",
+            "name": "Confirmar publicação"
+          }
+        },
+        {
+          "op": "respond",
+          "id": "published"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Publicação concluída"
+        },
+        {
+          "op": "expect-hidden",
+          "locator": {
+            "role": "dialog",
+            "name": "Publicar versão"
+          }
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    },
+    {
+      "id": "desktop-functional",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "density": "focus",
+      "direction": "rtl",
+      "steps": [
+        {
+          "op": "expect-value",
+          "locator": {
+            "label": "Título"
+          },
+          "value": "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana "
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Título"
+          },
+          "value": "Documentação internacional com revisão detalhada"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Visualizar"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "preview-title"
+          },
+          "value": "Documentação internacional com revisão detalhada"
+        },
+        {
+          "op": "expect-request",
+          "id": "publish",
+          "count": 0,
+          "body": null
+        },
+        {
+          "op": "expect-attribute",
+          "locator": {
+            "role": "button",
+            "name": "Publicar conteúdo"
+          },
+          "name": "data-variant",
+          "value": "commit"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Publicar conteúdo"
+          }
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Cancelar"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "publish",
+          "count": 0,
+          "body": null
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Publicar conteúdo"
+          }
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Confirmar publicação"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "publish",
+          "count": 1,
+          "body": {
+            "title": "Documentação internacional com revisão detalhada",
+            "revision": 7
+          }
+        },
+        {
+          "op": "expect-disabled",
+          "locator": {
+            "role": "button",
+            "name": "Confirmar publicação"
+          }
+        },
+        {
+          "op": "respond",
+          "id": "published"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Publicação concluída"
+        },
+        {
+          "op": "expect-hidden",
+          "locator": {
+            "role": "dialog",
+            "name": "Publicar versão"
+          }
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "1.0",
+  "routes": [
+    {
+      "id": "task-26",
+      "path": "/src/index.html",
+      "criticality": "high",
+      "fixture": "task-26",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "light-calm",
+        "light-focus",
+        "dark-calm",
+        "dark-focus",
+        "contrast-light-calm",
+        "contrast-light-focus",
+        "contrast-dark-calm",
+        "contrast-dark-focus"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "primary-flow",
+          "actions": [
+            {
+              "type": "click",
+              "target": {
+                "role": "button",
+                "name": "Ler documento"
+              }
+            },
+            {
+              "type": "waitForResponseAlias",
+              "alias": "document-0"
+            },
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "dialog",
+                "name": "Documento completo"
+              }
+            },
+            {
+              "type": "expectFocused",
+              "target": {
+                "role": "button",
+                "name": "Fechar documento"
+              }
+            },
+            {
+              "type": "expectReachable",
+              "target": {
+                "role": "button",
+                "name": "Aceitar documento"
+              }
+            },
+            {
+              "type": "expectText",
+              "target": {
+                "testId": "document-body"
+              },
+              "value": "Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. "
+            },
+            {
+              "type": "screenshot",
+              "stateId": "modal"
+            },
+            {
+              "type": "click",
+              "target": {
+                "role": "button",
+                "name": "Aceitar documento"
+              }
+            },
+            {
+              "type": "expectText",
+              "target": {
+                "role": "status"
+              },
+              "value": "Documento aceito"
+            },
+            {
+              "type": "expectFocused",
+              "target": {
+                "role": "button",
+                "name": "Ler documento"
+              }
+            }
+          ]
+        }
+      ],
+      "not_applicable": {
+        "loading": "Task family 26 does not expose loading in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix.",
+        "empty": "Task family 26 does not expose empty in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix.",
+        "error": "Task family 26 does not expose error in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix.",
+        "disabled": "Task family 26 does not expose disabled in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix.",
+        "invalid": "Task family 26 does not expose invalid in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix.",
+        "success": "Task family 26 does not expose success in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix.",
+        "selected": "Task family 26 does not expose selected in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix.",
+        "readonly": "Task family 26 does not expose readonly in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      }
+    }
+  ]
+}

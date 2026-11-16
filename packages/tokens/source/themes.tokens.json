@@ -19,7 +19,7 @@
                 "consumerFacing": true,
                 "intent": "Interior e silêncio. Fundo sobre o qual a hierarquia se revela.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -45,7 +45,7 @@
                 "consumerFacing": true,
                 "intent": "Camada imediatamente acima do canvas, sem flutuação teatral.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -71,7 +71,7 @@
                 "consumerFacing": true,
                 "intent": "Elevação por diferença de superfície + borda, não por sombra enorme.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -97,7 +97,7 @@
                 "consumerFacing": true,
                 "intent": "Recuo perceptivo para conteúdo não editável ou agrupado.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -117,7 +117,7 @@
                 "consumerFacing": true,
                 "intent": "Voz racional da interface. Humano, não frio.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -143,7 +143,7 @@
                 "consumerFacing": true,
                 "intent": "Hierarquia por cor semântica, não por opacity.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -169,7 +169,7 @@
                 "consumerFacing": true,
                 "intent": "Ainda deve ser legível. Densidade permitida; desordem não.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -195,7 +195,7 @@
                 "consumerFacing": true,
                 "intent": "Garante contraste sobre identity e commit.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -215,7 +215,7 @@
                 "consumerFacing": true,
                 "intent": "A estrutura deve ser silenciosa.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -241,7 +241,7 @@
                 "consumerFacing": true,
                 "intent": "Sinaliza que o objeto é acionável sem gritar.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -259,7 +259,7 @@
                 "consumerFacing": true,
                 "intent": "Aumento de contraste sob intenção, não decoração.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -279,7 +279,7 @@
                 "consumerFacing": true,
                 "intent": "Violeta = estou escolhendo. Seleção, identidade, foco.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -297,7 +297,7 @@
                 "consumerFacing": true,
                 "intent": "Hover comunica affordance, não urgência.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -315,7 +315,7 @@
                 "consumerFacing": true,
                 "intent": "Laranja = estou tornando real. Deploy, publicar, aplicar.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -333,7 +333,7 @@
                 "consumerFacing": true,
                 "intent": "Hover de commit, não de primary.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -351,7 +351,7 @@
                 "consumerFacing": true,
                 "intent": "Seleção/contexto INTEIRO sem Costura decorativa.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -371,7 +371,7 @@
                 "consumerFacing": true,
                 "intent": "Confirmação factual, não celebração.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -389,7 +389,7 @@
                 "consumerFacing": true,
                 "intent": "Cautela sem ruptura. Não é laranja de commit.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -407,7 +407,7 @@
                 "consumerFacing": true,
                 "intent": "Excluir, falha, invalid.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -425,7 +425,7 @@
                 "consumerFacing": true,
                 "intent": "Dado que entra no sistema, não identidade.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -451,7 +451,7 @@
                 "consumerFacing": true,
                 "intent": "Estado sem gritar. Resolução em segundo plano perceptivo.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -477,7 +477,7 @@
                 "consumerFacing": true,
                 "intent": "Atenção contida.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -503,7 +503,7 @@
                 "consumerFacing": true,
                 "intent": "Ruptura visível sem inundar a tela de vermelho.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -529,7 +529,7 @@
                 "consumerFacing": true,
                 "intent": "Informação externa, silenciada.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -549,7 +549,7 @@
                 "consumerFacing": true,
                 "intent": "Foco ≠ seleção. Navegação atual deve ser distinguível.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -569,7 +569,7 @@
                 "consumerFacing": true,
                 "intent": "Seleção é estado persistente, distinto de foco.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -598,7 +598,7 @@
                 "consumerFacing": true,
                 "intent": "Modal e command palette precisam de recuo do contexto.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -619,7 +619,7 @@
                   "consumerFacing": true,
                   "intent": "Primary = escolher. Nunca quatro botões violet na mesma fileira.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -637,7 +637,7 @@
                   "consumerFacing": true,
                   "intent": "Affordance, não urgência.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -655,7 +655,7 @@
                   "consumerFacing": true,
                   "intent": "Foreground escuro no dark sobre violeta; claro no light.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             }
@@ -675,7 +675,7 @@
                   "consumerFacing": true,
                   "intent": "Publicar, deploy, aplicar mudança externa.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -693,7 +693,7 @@
                   "consumerFacing": true,
                   "intent": "A decisão se aproxima.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -711,7 +711,7 @@
                   "consumerFacing": true,
                   "intent": "Foreground escuro no dark; branco no light.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             }
@@ -731,7 +731,7 @@
                   "consumerFacing": true,
                   "intent": "Excluir, ruptura.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -749,7 +749,7 @@
                   "consumerFacing": true,
                   "intent": "Legível sobre rupture.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             }
@@ -769,7 +769,7 @@
                   "consumerFacing": true,
                   "intent": "Disabled é estado real, distinto de readonly.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -787,7 +787,7 @@
                   "consumerFacing": true,
                   "intent": "Ainda precisa ser perceptível como desabilitado, não invisível.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             }
@@ -809,7 +809,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -827,7 +827,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -845,7 +845,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -863,7 +863,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -881,7 +881,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -899,7 +899,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -925,7 +925,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -951,7 +951,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             }
@@ -985,7 +985,7 @@
                 "consumerFacing": true,
                 "intent": "Interior e silêncio. Fundo sobre o qual a hierarquia se revela.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -1011,7 +1011,7 @@
                 "consumerFacing": true,
                 "intent": "Camada imediatamente acima do canvas, sem flutuação teatral.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -1037,7 +1037,7 @@
                 "consumerFacing": true,
                 "intent": "Elevação por diferença de superfície + borda, não por sombra enorme.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -1063,7 +1063,7 @@
                 "consumerFacing": true,
                 "intent": "Recuo perceptivo para conteúdo não editável ou agrupado.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -1091,7 +1091,7 @@
                 "consumerFacing": true,
                 "intent": "Voz racional da interface. Humano, não frio.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -1117,7 +1117,7 @@
                 "consumerFacing": true,
                 "intent": "Hierarquia por cor semântica, não por opacity.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -1143,7 +1143,7 @@
                 "consumerFacing": true,
                 "intent": "Ainda deve ser legível. Densidade permitida; desordem não.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -1161,7 +1161,7 @@
                 "consumerFacing": true,
                 "intent": "Garante contraste sobre identity e commit.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -1181,7 +1181,7 @@
                 "consumerFacing": true,
                 "intent": "A estrutura deve ser silenciosa.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -1207,7 +1207,7 @@
                 "consumerFacing": true,
                 "intent": "Sinaliza que o objeto é acionável sem gritar.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -1225,7 +1225,7 @@
                 "consumerFacing": true,
                 "intent": "Aumento de contraste sob intenção, não decoração.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -1245,7 +1245,7 @@
                 "consumerFacing": true,
                 "intent": "Violeta = estou escolhendo. Seleção, identidade, foco.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -1263,7 +1263,7 @@
                 "consumerFacing": true,
                 "intent": "Hover comunica affordance, não urgência.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -1281,7 +1281,7 @@
                 "consumerFacing": true,
                 "intent": "Laranja = estou tornando real. Deploy, publicar, aplicar.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -1299,7 +1299,7 @@
                 "consumerFacing": true,
                 "intent": "Hover de commit, não de primary.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -1317,7 +1317,7 @@
                 "consumerFacing": true,
                 "intent": "Seleção/contexto INTEIRO sem Costura decorativa.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -1337,7 +1337,7 @@
                 "consumerFacing": true,
                 "intent": "Confirmação factual, não celebração.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -1355,7 +1355,7 @@
                 "consumerFacing": true,
                 "intent": "Cautela sem ruptura. Não é laranja de commit.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -1373,7 +1373,7 @@
                 "consumerFacing": true,
                 "intent": "Excluir, falha, invalid.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -1391,7 +1391,7 @@
                 "consumerFacing": true,
                 "intent": "Dado que entra no sistema, não identidade.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -1409,7 +1409,7 @@
                 "consumerFacing": true,
                 "intent": "Estado sem gritar. Resolução em segundo plano perceptivo.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -1427,7 +1427,7 @@
                 "consumerFacing": true,
                 "intent": "Atenção contida.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -1445,7 +1445,7 @@
                 "consumerFacing": true,
                 "intent": "Ruptura visível sem inundar a tela de vermelho.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -1463,7 +1463,7 @@
                 "consumerFacing": true,
                 "intent": "Informação externa, silenciada.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -1483,7 +1483,7 @@
                 "consumerFacing": true,
                 "intent": "Foco ≠ seleção. Navegação atual deve ser distinguível.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -1503,7 +1503,7 @@
                 "consumerFacing": true,
                 "intent": "Seleção é estado persistente, distinto de foco.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -1532,7 +1532,7 @@
                 "consumerFacing": true,
                 "intent": "Modal e command palette precisam de recuo do contexto.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -1553,7 +1553,7 @@
                   "consumerFacing": true,
                   "intent": "Primary = escolher. Nunca quatro botões violet na mesma fileira.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -1571,7 +1571,7 @@
                   "consumerFacing": true,
                   "intent": "Affordance, não urgência.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -1597,7 +1597,7 @@
                   "consumerFacing": true,
                   "intent": "Foreground escuro no dark sobre violeta; claro no light.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             }
@@ -1617,7 +1617,7 @@
                   "consumerFacing": true,
                   "intent": "Publicar, deploy, aplicar mudança externa.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -1635,7 +1635,7 @@
                   "consumerFacing": true,
                   "intent": "A decisão se aproxima.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -1661,7 +1661,7 @@
                   "consumerFacing": true,
                   "intent": "Foreground escuro no dark; branco no light.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             }
@@ -1681,7 +1681,7 @@
                   "consumerFacing": true,
                   "intent": "Excluir, ruptura.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -1707,7 +1707,7 @@
                   "consumerFacing": true,
                   "intent": "Legível sobre rupture.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             }
@@ -1727,7 +1727,7 @@
                   "consumerFacing": true,
                   "intent": "Disabled é estado real, distinto de readonly.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -1745,7 +1745,7 @@
                   "consumerFacing": true,
                   "intent": "Ainda precisa ser perceptível como desabilitado, não invisível.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             }
@@ -1767,7 +1767,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -1785,7 +1785,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -1803,7 +1803,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -1821,7 +1821,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -1839,7 +1839,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -1857,7 +1857,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -1883,7 +1883,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -1901,7 +1901,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             }
@@ -1927,7 +1927,7 @@
                 "consumerFacing": true,
                 "intent": "Interior e silêncio. Fundo sobre o qual a hierarquia se revela.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -1953,7 +1953,7 @@
                 "consumerFacing": true,
                 "intent": "Camada imediatamente acima do canvas, sem flutuação teatral.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -1971,7 +1971,7 @@
                 "consumerFacing": true,
                 "intent": "Elevação por diferença de superfície + borda, não por sombra enorme.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -1997,7 +1997,7 @@
                 "consumerFacing": true,
                 "intent": "Recuo perceptivo para conteúdo não editável ou agrupado.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -2025,7 +2025,7 @@
                 "consumerFacing": true,
                 "intent": "Voz racional da interface. Humano, não frio.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -2051,7 +2051,7 @@
                 "consumerFacing": true,
                 "intent": "Hierarquia por cor semântica, não por opacity.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -2069,7 +2069,7 @@
                 "consumerFacing": true,
                 "intent": "Ainda deve ser legível. Densidade permitida; desordem não.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -2095,7 +2095,7 @@
                 "consumerFacing": true,
                 "intent": "Garante contraste sobre identity e commit.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -2115,7 +2115,7 @@
                 "consumerFacing": true,
                 "intent": "A estrutura deve ser silenciosa.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -2133,7 +2133,7 @@
                 "consumerFacing": true,
                 "intent": "Sinaliza que o objeto é acionável sem gritar.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -2151,7 +2151,7 @@
                 "consumerFacing": true,
                 "intent": "Aumento de contraste sob intenção, não decoração.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -2171,7 +2171,7 @@
                 "consumerFacing": true,
                 "intent": "Violeta = estou escolhendo. Seleção, identidade, foco.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -2189,7 +2189,7 @@
                 "consumerFacing": true,
                 "intent": "Hover comunica affordance, não urgência.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -2207,7 +2207,7 @@
                 "consumerFacing": true,
                 "intent": "Laranja = estou tornando real. Deploy, publicar, aplicar.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -2225,7 +2225,7 @@
                 "consumerFacing": true,
                 "intent": "Hover de commit, não de primary.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -2243,7 +2243,7 @@
                 "consumerFacing": true,
                 "intent": "Seleção/contexto INTEIRO sem Costura decorativa.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -2263,7 +2263,7 @@
                 "consumerFacing": true,
                 "intent": "Confirmação factual, não celebração.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -2281,7 +2281,7 @@
                 "consumerFacing": true,
                 "intent": "Cautela sem ruptura. Não é laranja de commit.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -2299,7 +2299,7 @@
                 "consumerFacing": true,
                 "intent": "Excluir, falha, invalid.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -2317,7 +2317,7 @@
                 "consumerFacing": true,
                 "intent": "Dado que entra no sistema, não identidade.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -2335,7 +2335,7 @@
                 "consumerFacing": true,
                 "intent": "Estado sem gritar. Resolução em segundo plano perceptivo.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -2353,7 +2353,7 @@
                 "consumerFacing": true,
                 "intent": "Atenção contida.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -2371,7 +2371,7 @@
                 "consumerFacing": true,
                 "intent": "Ruptura visível sem inundar a tela de vermelho.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -2389,7 +2389,7 @@
                 "consumerFacing": true,
                 "intent": "Informação externa, silenciada.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -2409,7 +2409,7 @@
                 "consumerFacing": true,
                 "intent": "Foco ≠ seleção. Navegação atual deve ser distinguível.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -2429,7 +2429,7 @@
                 "consumerFacing": true,
                 "intent": "Seleção é estado persistente, distinto de foco.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -2458,7 +2458,7 @@
                 "consumerFacing": true,
                 "intent": "Modal e command palette precisam de recuo do contexto.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -2479,7 +2479,7 @@
                   "consumerFacing": true,
                   "intent": "Primary = escolher. Nunca quatro botões violet na mesma fileira.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -2497,7 +2497,7 @@
                   "consumerFacing": true,
                   "intent": "Affordance, não urgência.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -2523,7 +2523,7 @@
                   "consumerFacing": true,
                   "intent": "Foreground escuro no dark sobre violeta; claro no light.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             }
@@ -2543,7 +2543,7 @@
                   "consumerFacing": true,
                   "intent": "Publicar, deploy, aplicar mudança externa.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -2561,7 +2561,7 @@
                   "consumerFacing": true,
                   "intent": "A decisão se aproxima.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -2587,7 +2587,7 @@
                   "consumerFacing": true,
                   "intent": "Foreground escuro no dark; branco no light.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             }
@@ -2607,7 +2607,7 @@
                   "consumerFacing": true,
                   "intent": "Excluir, ruptura.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -2633,7 +2633,7 @@
                   "consumerFacing": true,
                   "intent": "Legível sobre rupture.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             }
@@ -2653,7 +2653,7 @@
                   "consumerFacing": true,
                   "intent": "Disabled é estado real, distinto de readonly.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -2671,7 +2671,7 @@
                   "consumerFacing": true,
                   "intent": "Ainda precisa ser perceptível como desabilitado, não invisível.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             }
@@ -2693,7 +2693,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -2711,7 +2711,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -2729,7 +2729,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -2747,7 +2747,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -2765,7 +2765,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -2783,7 +2783,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -2809,7 +2809,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -2835,7 +2835,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             }
@@ -2869,7 +2869,7 @@
                 "consumerFacing": true,
                 "intent": "Interior e silêncio. Fundo sobre o qual a hierarquia se revela.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -2895,7 +2895,7 @@
                 "consumerFacing": true,
                 "intent": "Camada imediatamente acima do canvas, sem flutuação teatral.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -2921,7 +2921,7 @@
                 "consumerFacing": true,
                 "intent": "Elevação por diferença de superfície + borda, não por sombra enorme.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -2939,7 +2939,7 @@
                 "consumerFacing": true,
                 "intent": "Recuo perceptivo para conteúdo não editável ou agrupado.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -2967,7 +2967,7 @@
                 "consumerFacing": true,
                 "intent": "Voz racional da interface. Humano, não frio.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -2985,7 +2985,7 @@
                 "consumerFacing": true,
                 "intent": "Hierarquia por cor semântica, não por opacity.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -3003,7 +3003,7 @@
                 "consumerFacing": true,
                 "intent": "Ainda deve ser legível. Densidade permitida; desordem não.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -3029,7 +3029,7 @@
                 "consumerFacing": true,
                 "intent": "Garante contraste sobre identity e commit.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -3049,7 +3049,7 @@
                 "consumerFacing": true,
                 "intent": "A estrutura deve ser silenciosa.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -3067,7 +3067,7 @@
                 "consumerFacing": true,
                 "intent": "Sinaliza que o objeto é acionável sem gritar.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -3085,7 +3085,7 @@
                 "consumerFacing": true,
                 "intent": "Aumento de contraste sob intenção, não decoração.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -3105,7 +3105,7 @@
                 "consumerFacing": true,
                 "intent": "Violeta = estou escolhendo. Seleção, identidade, foco.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -3123,7 +3123,7 @@
                 "consumerFacing": true,
                 "intent": "Hover comunica affordance, não urgência.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -3141,7 +3141,7 @@
                 "consumerFacing": true,
                 "intent": "Laranja = estou tornando real. Deploy, publicar, aplicar.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -3159,7 +3159,7 @@
                 "consumerFacing": true,
                 "intent": "Hover de commit, não de primary.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -3177,7 +3177,7 @@
                 "consumerFacing": true,
                 "intent": "Seleção/contexto INTEIRO sem Costura decorativa.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -3197,7 +3197,7 @@
                 "consumerFacing": true,
                 "intent": "Confirmação factual, não celebração.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -3215,7 +3215,7 @@
                 "consumerFacing": true,
                 "intent": "Cautela sem ruptura. Não é laranja de commit.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -3233,7 +3233,7 @@
                 "consumerFacing": true,
                 "intent": "Excluir, falha, invalid.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -3251,7 +3251,7 @@
                 "consumerFacing": true,
                 "intent": "Dado que entra no sistema, não identidade.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -3269,7 +3269,7 @@
                 "consumerFacing": true,
                 "intent": "Estado sem gritar. Resolução em segundo plano perceptivo.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -3287,7 +3287,7 @@
                 "consumerFacing": true,
                 "intent": "Atenção contida.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -3305,7 +3305,7 @@
                 "consumerFacing": true,
                 "intent": "Ruptura visível sem inundar a tela de vermelho.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           },
@@ -3323,7 +3323,7 @@
                 "consumerFacing": true,
                 "intent": "Informação externa, silenciada.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -3343,7 +3343,7 @@
                 "consumerFacing": true,
                 "intent": "Foco ≠ seleção. Navegação atual deve ser distinguível.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -3363,7 +3363,7 @@
                 "consumerFacing": true,
                 "intent": "Seleção é estado persistente, distinto de foco.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -3392,7 +3392,7 @@
                 "consumerFacing": true,
                 "intent": "Modal e command palette precisam de recuo do contexto.",
                 "spec": "2025.10",
-                "version": "1.0.0"
+                "version": "1.2.0"
               }
             }
           }
@@ -3413,7 +3413,7 @@
                   "consumerFacing": true,
                   "intent": "Primary = escolher. Nunca quatro botões violet na mesma fileira.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -3431,7 +3431,7 @@
                   "consumerFacing": true,
                   "intent": "Affordance, não urgência.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -3457,7 +3457,7 @@
                   "consumerFacing": true,
                   "intent": "Foreground escuro no dark sobre violeta; claro no light.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             }
@@ -3477,7 +3477,7 @@
                   "consumerFacing": true,
                   "intent": "Publicar, deploy, aplicar mudança externa.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -3495,7 +3495,7 @@
                   "consumerFacing": true,
                   "intent": "A decisão se aproxima.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -3521,7 +3521,7 @@
                   "consumerFacing": true,
                   "intent": "Foreground escuro no dark; branco no light.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             }
@@ -3541,7 +3541,7 @@
                   "consumerFacing": true,
                   "intent": "Excluir, ruptura.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -3567,7 +3567,7 @@
                   "consumerFacing": true,
                   "intent": "Legível sobre rupture.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             }
@@ -3587,7 +3587,7 @@
                   "consumerFacing": true,
                   "intent": "Disabled é estado real, distinto de readonly.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -3605,7 +3605,7 @@
                   "consumerFacing": true,
                   "intent": "Ainda precisa ser perceptível como desabilitado, não invisível.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             }
@@ -3627,7 +3627,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -3645,7 +3645,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -3663,7 +3663,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -3681,7 +3681,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -3699,7 +3699,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -3717,7 +3717,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -3743,7 +3743,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             },
@@ -3761,7 +3761,7 @@
                   "consumerFacing": true,
                   "intent": "Cores não carregam significado sozinhas. Séries críticas precisam de label, posição, marker, pattern ou forma.",
                   "spec": "2025.10",
-                  "version": "1.0.0"
+                  "version": "1.2.0"
                 }
               }
             }

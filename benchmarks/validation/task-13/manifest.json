@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "public-worker-validation",
+  "governanceContractHash": "9b4864d548d799f25ed7cb174c6e9e95e3e7ede5e65544f07e8bb88d4b36347d",
+  "caseId": "task-13",
+  "patternIds": [
+    "tabs"
+  ],
+  "coverage": {
+    "states": {
+      "default": {
+        "applicable": true,
+        "scenario": "default",
+        "phase": "final"
+      },
+      "loading": {
+        "applicable": false,
+        "reason": "Task family 13 does not expose loading in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      },
+      "empty": {
+        "applicable": false,
+        "reason": "Task family 13 does not expose empty in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      },
+      "error": {
+        "applicable": false,
+        "reason": "Task family 13 does not expose error in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      },
+      "disabled": {
+        "applicable": false,
+        "reason": "Task family 13 does not expose disabled in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      },
+      "invalid": {
+        "applicable": false,
+        "reason": "Task family 13 does not expose invalid in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      },
+      "success": {
+        "applicable": false,
+        "reason": "Task family 13 does not expose success in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      },
+      "modal": {
+        "applicable": false,
+        "reason": "Task family 13 does not expose modal in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      },
+      "selected": {
+        "applicable": true,
+        "scenario": "primary-flow",
+        "phase": "final"
+      },
+      "readonly": {
+        "applicable": false,
+        "reason": "Task family 13 does not expose readonly in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      },
+      "long-content": {
+        "applicable": false,
+        "reason": "Task family 13 does not expose long-content in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      }
+    },
+    "viewports": [
+      "mobile",
+      "tablet",
+      "desktop"
+    ],
+    "themes": [
+      "light",
+      "dark",
+      "contrast-light",
+      "contrast-dark"
+    ],
+    "densities": [
+      "calm",
+      "focus"
+    ],
+    "keyboard": [
+      {
+        "scenario": "primary-flow",
+        "actionIndex": 1
+      },
+      {
+        "scenario": "primary-flow",
+        "actionIndex": 2
+      },
+      {
+        "scenario": "primary-flow",
+        "actionIndex": 3
+      },
+      {
+        "scenario": "primary-flow",
+        "actionIndex": 4
+      },
+      {
+        "scenario": "primary-flow",
+        "actionIndex": 5
+      },
+      {
+        "scenario": "primary-flow",
+        "actionIndex": 6
+      }
+    ],
+    "content": {
+      "classification": "synthetic",
+      "fixture": {
+        "path": "benchmarks/validation/task-13/fixture.json",
+        "sha256": "965081c9db4db3c70281e79788c56831642ec557d6101a9787bd31349a8a31a3"
+      }
+    },
+    "reducedMotion": "reduce"
+  },
+  "routes": {
+    "path": "benchmarks/validation/task-13/routes.json",
+    "sha256": "b22c9649798d3594b5d8d185519ec5fd0a82c45101c78b9837f3551a8be15e79"
+  },
+  "fixtures": [
+    {
+      "id": "task-13",
+      "path": "benchmarks/validation/task-13/fixture.json",
+      "sha256": "965081c9db4db3c70281e79788c56831642ec557d6101a9787bd31349a8a31a3"
+    }
+  ],
+  "technicalPolicy": {
+    "path": "benchmarks/validation/technical-authority-policy.json",
+    "sha256": "adcb4bb12807f564cb60e4de963f4ed2a8adfeb25526056132a3cfe58aec5020"
+  }
+}

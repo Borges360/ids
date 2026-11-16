@@ -71,7 +71,8 @@ Status: source ${stats.byStatus.source}, derived ${stats.byStatus.derived}, exte
 - JSON DTCG: grupos aninhados (ponto proibido no nome individual)
 - CSS: \`--in-color-identity-primary\`
 - Primitivos de cor: \`--in-ref-color-violet-400\` (não usar em componentes)
-- Temas: dark, light, contrast-dark, contrast-light (os dois últimos são extensão proposta)
+- Fonte editável: \`packages/tokens/source/catalog.json\`; as saídas DTCG incluem extensões do IDS.
+- Temas: dark, light, contrast-dark, contrast-light
 - Densidade: calm / focus
 
 ## Catálogo individual
@@ -89,7 +90,9 @@ Fonte: \`deep-research-report.md\` — INTEIRO — Identity Design System pessoa
 |---|---|---|
 ${tokens.map((t) => `| \`${t.id}\` | ${t.sourceSection} | ${t.status} |`).join("\n")}
 
-## Extensões propostas (não estavam com valores completos na fonte)
+## Extensões e derivados
+
+As 22 extensões da versão 1.2 foram implementadas a partir do relatório de expansão de 18/10/2026: dimensões de avatar, dialog e gráficos, aliases de espaço/conteúdo/estados, elevação de card, iconografia de alertas e camada de tooltip. Consulte EXPANSION.md para a matriz completa de recomendações.
 
 - Temas \`contrast-dark\` e \`contrast-light\`: o documento cita High Contrast na arquitetura e no Figma, sem tabela completa de pares. Valores derivados para maior contraste, documentados como extension no tema (não no id do token).
 - Tokens de ação (\`color.action.*\`): derivados dos exemplos CSS/React da seção Contrato de tokens.

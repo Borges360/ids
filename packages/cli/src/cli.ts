@@ -1,5 +1,12 @@
 #!/usr/bin/env node
-import { mkdir, readFile, readdir, stat, writeFile } from "node:fs/promises";
+import {
+  mkdir,
+  readFile,
+  readdir,
+  stat,
+  writeFile,
+  realpath,
+} from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import {
@@ -11,7 +18,7 @@ import {
   getTheme,
   searchTokens,
   suggestTokens,
-  validateUsage
+  validateUsage,
 } from "@inteiro/agent-core";
 import {
   allTokens,
@@ -24,7 +31,7 @@ import {
   emitSwift,
   emitTailwind,
   emitTypescript,
-  validateCatalog
+  validateCatalog,
 } from "@inteiro/tokens";
 import { bool, EXIT, flag, parseArgs } from "./args.ts";
 import { collectFiles, exists, writeManaged } from "./fsutil.ts";
@@ -32,6 +39,14 @@ import { HARNESSES, getHarness, type HarnessId } from "./harnesses.ts";
 import { HELP } from "./help.ts";
 import { installHarness, uninstallHarness } from "./install-agents.ts";
 import { generateSkills, skillIndex, topLevelSkills } from "./skills-gen.ts";
+import { gateCommand } from "./gates.ts";
+import { DEFAULTS } from "@inteiro/contracts";
+import { safeRead, exitCode } from "@inteiro/contracts";
+import {
+  planMigration,
+  applyMigration,
+  type MigrationPolicy,
+} from "@inteiro/lint";
 
 export interface CliResult {
   exitCode: number;
@@ -40,24 +55,63 @@ export interface CliResult {
 }
 
 function print(result: CliResult, json: boolean): number {
-  if (json) console.log(JSON.stringify(result.data ?? { ok: result.exitCode === 0, text: result.text }, null, 2));
+  if (json)
+    console.log(
+      JSON.stringify(
+        result.data ?? { ok: result.exitCode === 0, text: result.text },
+        null,
+        2,
+      ),
+    );
   else if (result.text) console.log(result.text);
   return result.exitCode;
 }
 
-async function cmdInit(cwd: string, flags: Record<string, string | boolean>): Promise<CliResult> {
+async function cmdInit(
+  cwd: string,
+  flags: Record<string, string | boolean>,
+): Promise<CliResult> {
   const dryRun = bool(flags, "dry-run");
   const yes = bool(flags, "yes") || bool(flags, "y");
+  const harness = flag(flags, "harness") || "auto";
+  if (harness !== "auto" && !HARNESSES.some((item) => item.id === harness))
+    return {
+      exitCode: EXIT.usage,
+      data: { status: "blocked", nextAction: "Select a supported --harness" },
+    };
   const pkgPath = join(cwd, "package.json");
   const hasPkg = await exists(pkgPath);
-  const pkg = hasPkg ? JSON.parse(await readFile(pkgPath, "utf8")) as Record<string, unknown> : {};
-  const deps = { ...(pkg.dependencies as object ?? {}), ...(pkg.devDependencies as object ?? {}) };
-  const framework = flag(flags, "framework") ||
-    ("next" in deps ? "next" : "react" in deps ? "react" : "vue" in deps ? "vue" : "svelte" in deps ? "svelte" : "html");
+  const pkg = hasPkg
+    ? (JSON.parse(await readFile(pkgPath, "utf8")) as Record<string, unknown>)
+    : {};
+  const deps = {
+    ...((pkg.dependencies as object) ?? {}),
+    ...((pkg.devDependencies as object) ?? {}),
+  };
+  const framework =
+    flag(flags, "framework") ||
+    ("next" in deps
+      ? "next"
+      : "react" in deps
+        ? "react"
+        : "vue" in deps
+          ? "vue"
+          : "svelte" in deps
+            ? "svelte"
+            : "html");
   const cssSnippet = `/* INTEIRO */\n@import "@inteiro/tokens/css";\n`;
   const actions: string[] = [];
+  const configPath = join(cwd, "inteiro.config.json");
+  if (!(await exists(configPath)))
+    actions.push(
+      `${await writeManaged(configPath, JSON.stringify({ ...DEFAULTS, project: { ...DEFAULTS.project, id: String(pkg.name ?? "app"), framework }, context: { ...DEFAULTS.context, harness } }, null, 2) + "\n", { dryRun, yes: false })} ${configPath}`,
+    );
   const cssPath = join(cwd, "inteiro.css");
-  const status = await writeManaged(cssPath, cssSnippet, { dryRun, yes });
+  // Confirmation permits creating integration files, not replacing consumer styles.
+  const status = await writeManaged(cssPath, cssSnippet, {
+    dryRun,
+    yes: false,
+  });
   actions.push(`${status} ${cssPath}`);
   const marker = "<!-- inteiro:start -->";
   const agentsPath = join(cwd, "AGENTS.md");
@@ -66,7 +120,10 @@ async function cmdInit(cwd: string, flags: Record<string, string | boolean>): Pr
     const current = await readFile(agentsPath, "utf8");
     if (!current.includes("inteiro:start")) {
       const next = current.trimEnd() + "\n\n" + snippet;
-      const st = await writeManaged(agentsPath, next, { dryRun, yes: yes || true });
+      const st = await writeManaged(agentsPath, next, {
+        dryRun,
+        yes: yes || true,
+      });
       actions.push(`${st} ${agentsPath} (append)`);
     } else actions.push(`skipped ${agentsPath} (já contém INTEIRO)`);
   } else {
@@ -76,7 +133,7 @@ async function cmdInit(cwd: string, flags: Record<string, string | boolean>): Pr
   return {
     exitCode: EXIT.ok,
     data: { framework, hasPkg, actions, dryRun },
-    text: `init (${framework})\n${actions.join("\n")}\n\nInstale: npm install @inteiro/design-system\nImporte o CSS gerado e use var(--in-color-*).`
+    text: `init (${framework})\n${actions.join("\n")}\n\nInstale: npm install @inteiro/design-system\nImporte o CSS gerado e use var(--in-color-*).`,
   };
 }
 
@@ -88,12 +145,21 @@ async function cmdDoctor(cwd: string): Promise<CliResult> {
   const checks = [
     { name: "Tokens DTCG válidos", ok: errors.length === 0 },
     { name: "Catálogo carregado", ok: stats.total > 0 },
-    { name: "Temas dark/light", ok: info.themes.includes("dark") && info.themes.includes("light") },
+    {
+      name: "Temas dark/light",
+      ok: info.themes.includes("dark") && info.themes.includes("light"),
+    },
     { name: "AGENTS.md", ok: await exists(join(cwd, "AGENTS.md")) },
-    { name: ".agents/skills", ok: await exists(join(cwd, ".agents/skills")) }
+    { name: ".agents/skills", ok: await exists(join(cwd, ".agents/skills")) },
   ];
-  const text = checks.map((c) => `${c.ok ? "✓" : "○"} ${c.name}`).join("\n") + `\n\n${stats.total} tokens`;
-  return { exitCode: errors.length ? EXIT.invalid : EXIT.ok, data: { checks, stats, errors }, text };
+  const text =
+    checks.map((c) => `${c.ok ? "✓" : "○"} ${c.name}`).join("\n") +
+    `\n\n${stats.total} tokens`;
+  return {
+    exitCode: errors.length ? EXIT.invalid : EXIT.ok,
+    data: { checks, stats, errors },
+    text,
+  };
 }
 
 function cmdTokensList(flags: Record<string, string | boolean>): CliResult {
@@ -103,17 +169,28 @@ function cmdTokensList(flags: Record<string, string | boolean>): CliResult {
   if (layer) tokens = tokens.filter((t) => t.layer === layer);
   if (category) tokens = tokens.filter((t) => t.category === category);
   const lines = tokens.map((t) => `${t.id}\t${t.layer}\t${t.cssVar}`);
-  return { exitCode: EXIT.ok, data: { count: tokens.length, tokens: tokens.map((t) => t.id) }, text: `${tokens.length} tokens\n${lines.join("\n")}` };
+  return {
+    exitCode: EXIT.ok,
+    data: { count: tokens.length, tokens: tokens.map((t) => t.id) },
+    text: `${tokens.length} tokens\n${lines.join("\n")}`,
+  };
 }
 
 function cmdTokensSearch(query: string): CliResult {
-  if (!query) return { exitCode: EXIT.usage, text: "Uso: inteiro tokens search <query>" };
+  if (!query)
+    return { exitCode: EXIT.usage, text: "Uso: inteiro tokens search <query>" };
   const tokens = searchTokens(query);
-  return { exitCode: EXIT.ok, data: tokens.map((t) => t.id), text: tokens.map((t) => `${t.id} — ${t.description}`).join("\n") || "(nenhum)" };
+  return {
+    exitCode: EXIT.ok,
+    data: tokens.map((t) => t.id),
+    text:
+      tokens.map((t) => `${t.id} — ${t.description}`).join("\n") || "(nenhum)",
+  };
 }
 
 function cmdTokensExplain(name: string): CliResult {
-  if (!name) return { exitCode: EXIT.usage, text: "Uso: inteiro tokens explain <name>" };
+  if (!name)
+    return { exitCode: EXIT.usage, text: "Uso: inteiro tokens explain <name>" };
   try {
     const exp = explainToken(name);
     const text = [
@@ -128,15 +205,20 @@ function cmdTokensExplain(name: string): CliResult {
       `valores: ${JSON.stringify(exp.values)}`,
       `fonte: ${exp.sourceSection}`,
       `bom: ${exp.examples.good}`,
-      `ruim: ${exp.examples.bad}`
+      `ruim: ${exp.examples.bad}`,
     ].join("\n");
     return { exitCode: EXIT.ok, data: exp, text };
   } catch (error) {
-    return { exitCode: EXIT.notFound, text: error instanceof Error ? error.message : String(error) };
+    return {
+      exitCode: EXIT.notFound,
+      text: error instanceof Error ? error.message : String(error),
+    };
   }
 }
 
-async function cmdExport(flags: Record<string, string | boolean>): Promise<CliResult> {
+async function cmdExport(
+  flags: Record<string, string | boolean>,
+): Promise<CliResult> {
   const format = flag(flags, "format") || "css";
   const out = flag(flags, "out");
   const map: Record<string, string> = {
@@ -146,15 +228,20 @@ async function cmdExport(flags: Record<string, string | boolean>): Promise<CliRe
     scss: emitScss(),
     tailwind: emitTailwind(),
     flutter: emitFlutter(),
-    swift: emitSwift()
+    swift: emitSwift(),
   };
   const contents = map[format];
-  if (!contents) return { exitCode: EXIT.usage, text: `Formato inválido: ${format}` };
+  if (!contents)
+    return { exitCode: EXIT.usage, text: `Formato inválido: ${format}` };
   if (out && !bool(flags, "dry-run")) {
     await mkdir(dirname(resolve(out)), { recursive: true });
     await writeFile(resolve(out), contents, "utf8");
   }
-  return { exitCode: EXIT.ok, data: { format, bytes: contents.length, out: out || null }, text: out ? `exportado ${format} → ${out}` : contents };
+  return {
+    exitCode: EXIT.ok,
+    data: { format, bytes: contents.length, out: out || null },
+    text: out ? `exportado ${format} → ${out}` : contents,
+  };
 }
 
 async function cmdAudit(target: string): Promise<CliResult> {
@@ -165,20 +252,69 @@ async function cmdAudit(target: string): Promise<CliResult> {
     findings.push(...auditSource(file, source));
   }
   const text = findings.length
-    ? findings.map((f) => `${f.file}:${f.line} [${f.kind}] ${f.message}${f.suggestion ? " → " + f.suggestion : ""}`).join("\n")
+    ? findings
+        .map(
+          (f) =>
+            `${f.file}:${f.line} [${f.kind}] ${f.message}${f.suggestion ? " → " + f.suggestion : ""}`,
+        )
+        .join("\n")
     : "Nenhum achado.";
-  return { exitCode: findings.length ? EXIT.invalid : EXIT.ok, data: { findings, files: files.length }, text };
+  return {
+    exitCode: findings.length ? EXIT.invalid : EXIT.ok,
+    data: { findings, files: files.length },
+    text,
+  };
 }
 
-async function cmdMigrate(target: string): Promise<CliResult> {
-  const audit = await cmdAudit(target);
-  const findings = (audit.data as { findings: ReturnType<typeof auditSource> }).findings.filter((f) => f.kind === "hardcoded-hex" || f.kind === "type");
+async function cmdMigrate(
+  root: string,
+  target: string,
+  flags: Record<string, string | boolean>,
+): Promise<CliResult> {
+  const policy: MigrationPolicy = flag(flags, "mapping")
+    ? JSON.parse(await safeRead(root, flag(flags, "mapping")))
+    : { schemaVersion: "1.0", mappings: [] };
+  const preview = await planMigration(root, target, policy);
+  if (
+    bool(flags, "yes") &&
+    !bool(flags, "dry-run") &&
+    preview.patches.length &&
+    !flag(flags, "plan-hash")
+  )
+    return {
+      exitCode: EXIT.review,
+      data: {
+        ...preview,
+        status: "blocked",
+        applied: false,
+        nextAction:
+          "Inspect --dry-run, then apply with --yes --plan-hash " +
+          preview.planHash,
+      },
+    };
+  const result =
+    bool(flags, "yes") && !bool(flags, "dry-run")
+      ? await applyMigration(
+          root,
+          target,
+          policy,
+          flag(flags, "plan-hash") || preview.planHash,
+        )
+      : { ...preview, applied: false, backups: [] };
   return {
-    exitCode: EXIT.ok,
-    data: { replacements: findings },
-    text: findings.length
-      ? "Migração sugerida (não é search-and-replace cego):\n" + findings.map((f) => `${f.file}:${f.line} ${f.message} → ${f.suggestion}`).join("\n")
-      : "Nada a migrar nos arquivos varridos."
+    exitCode: bool(flags, "yes")
+      ? exitCode(result.status)
+      : result.status === "blocked"
+        ? EXIT.review
+        : EXIT.ok,
+    data: {
+      ...result,
+      replacements: result.diagnostics.filter((item) =>
+        ["hardcoded-hex", "type"].includes(item.kind),
+      ),
+    },
+    text:
+      result.patches.map((patch) => patch.diff).join("\n") || result.nextAction,
   };
 }
 
@@ -186,96 +322,224 @@ export async function run(argv: string[]): Promise<number> {
   const parsed = parseArgs(argv);
   const flags = parsed.flags;
   if (bool(flags, "help") || bool(flags, "h") || parsed.command[0] === "help") {
-    return print({ exitCode: 0, text: HELP, data: { help: true } }, bool(flags, "json"));
+    return print(
+      { exitCode: 0, text: HELP, data: { help: true } },
+      bool(flags, "json"),
+    );
   }
   const cwd = resolve(flag(flags, "cwd") || process.cwd());
   const cmd = parsed.command;
   const json = bool(flags, "json");
 
   try {
-    if (cmd.length === 0) return print({ exitCode: EXIT.usage, text: HELP }, json);
+    const gateResult = await gateCommand(cmd, flags, cwd);
+    if (gateResult)
+      return print(gateResult, json || flag(flags, "format") === "json");
+    if (cmd.length === 0)
+      return print({ exitCode: EXIT.usage, text: HELP }, json);
 
     if (cmd[0] === "init") return print(await cmdInit(cwd, flags), json);
     if (cmd[0] === "doctor") return print(await cmdDoctor(cwd), json);
-    if (cmd[0] === "audit") return print(await cmdAudit(resolve(cwd, cmd[1] || ".")), json);
-    if (cmd[0] === "migrate") return print(await cmdMigrate(resolve(cwd, cmd[1] || ".")), json);
+    if (cmd[0] === "audit")
+      return print(await cmdAudit(resolve(cwd, cmd[1] || ".")), json);
+    if (cmd[0] === "migrate")
+      return print(await cmdMigrate(cwd, cmd[1] || ".", flags), json);
 
-    if (cmd[0] === "tokens" && cmd[1] === "list") return print(cmdTokensList(flags), json);
-    if (cmd[0] === "tokens" && cmd[1] === "search") return print(cmdTokensSearch(cmd.slice(2).join(" ")), json);
-    if (cmd[0] === "tokens" && cmd[1] === "explain") return print(cmdTokensExplain(cmd.slice(2).join(" ")), json);
+    if (cmd[0] === "tokens" && cmd[1] === "list")
+      return print(cmdTokensList(flags), json);
+    if (cmd[0] === "tokens" && cmd[1] === "search")
+      return print(cmdTokensSearch(cmd.slice(2).join(" ")), json);
+    if (cmd[0] === "tokens" && cmd[1] === "explain")
+      return print(cmdTokensExplain(cmd.slice(2).join(" ")), json);
     if (cmd[0] === "tokens" && cmd[1] === "validate") {
       const issues = validateCatalog();
       const errors = issues.filter((i) => i.severity === "error");
-      return print({
-        exitCode: errors.length ? EXIT.invalid : EXIT.ok,
-        data: { issues, stats: catalogStats() },
-        text: errors.length ? errors.map((e) => `${e.code} ${e.token} ${e.message}`).join("\n") : `ok — ${catalogStats().total} tokens`
-      }, json);
+      return print(
+        {
+          exitCode: errors.length ? EXIT.invalid : EXIT.ok,
+          data: { issues, stats: catalogStats() },
+          text: errors.length
+            ? errors.map((e) => `${e.code} ${e.token} ${e.message}`).join("\n")
+            : `ok — ${catalogStats().total} tokens`,
+        },
+        json,
+      );
     }
     if (cmd[0] === "tokens" && cmd[1] === "build") {
-      if (bool(flags, "dry-run")) return print({ exitCode: 0, text: "dry-run: tokens build", data: { dryRun: true } }, json);
+      if (bool(flags, "dry-run"))
+        return print(
+          {
+            exitCode: 0,
+            text: "dry-run: tokens build",
+            data: { dryRun: true },
+          },
+          json,
+        );
       const result = await buildTokens();
-      return print({ exitCode: 0, data: result, text: `build ${result.stats.total} tokens, ${result.files.length} arquivos` }, json);
+      return print(
+        {
+          exitCode: 0,
+          data: result,
+          text: `build ${result.stats.total} tokens, ${result.files.length} arquivos`,
+        },
+        json,
+      );
     }
-    if (cmd[0] === "tokens" && cmd[1] === "export") return print(await cmdExport(flags), json);
+    if (cmd[0] === "tokens" && cmd[1] === "export")
+      return print(await cmdExport(flags), json);
 
     if (cmd[0] === "themes" && cmd[1] === "list") {
-      return print({ exitCode: 0, data: coreInfo().themes, text: coreInfo().themes.join("\n") }, json);
+      return print(
+        {
+          exitCode: 0,
+          data: coreInfo().themes,
+          text: coreInfo().themes.join("\n"),
+        },
+        json,
+      );
     }
     if (cmd[0] === "themes" && cmd[1] === "inspect") {
       const name = cmd[2];
-      if (!name) return print({ exitCode: EXIT.usage, text: "Uso: inteiro themes inspect <name>" }, json);
+      if (!name)
+        return print(
+          { exitCode: EXIT.usage, text: "Uso: inteiro themes inspect <name>" },
+          json,
+        );
       const theme = getTheme(name);
-      return print({ exitCode: 0, data: theme, text: `${theme.name}\n${Object.keys(theme.tokens).length} tokens temáticos` }, json);
+      return print(
+        {
+          exitCode: 0,
+          data: theme,
+          text: `${theme.name}\n${Object.keys(theme.tokens).length} tokens temáticos`,
+        },
+        json,
+      );
     }
 
     if (cmd[0] === "skills" && cmd[1] === "list") {
       const top = topLevelSkills();
       const generated = skillIndex();
-      return print({
-        exitCode: 0,
-        data: { top: top.map((s) => s.name), generated: generated.length },
-        text: `canônicas:\n${top.map((s) => s.name).join("\n")}\n\ngeradas: ${generated.length}`
-      }, json);
+      return print(
+        {
+          exitCode: 0,
+          data: { top: top.map((s) => s.name), generated: generated.length },
+          text: `canônicas:\n${top.map((s) => s.name).join("\n")}\n\ngeradas: ${generated.length}`,
+        },
+        json,
+      );
     }
     if (cmd[0] === "skills" && cmd[1] === "generate") {
-      const outDir = flag(flags, "out") || join(cwd, "packages", "skills", "generated");
-      const result = await generateSkills(outDir, { dryRun: bool(flags, "dry-run") });
-      return print({ exitCode: 0, data: result, text: `skills generate: ${result.count} em ${outDir}` }, json);
+      const outDir =
+        flag(flags, "out") || join(cwd, "packages", "skills", "generated");
+      const result = await generateSkills(outDir, {
+        dryRun: bool(flags, "dry-run"),
+      });
+      return print(
+        {
+          exitCode: 0,
+          data: result,
+          text: `skills generate: ${result.count} em ${outDir}`,
+        },
+        json,
+      );
     }
     if (cmd[0] === "skills" && cmd[1] === "explain") {
       const name = cmd[2];
-      if (!name) return print({ exitCode: EXIT.usage, text: "Uso: inteiro skills explain <name>" }, json);
+      if (!name)
+        return print(
+          { exitCode: EXIT.usage, text: "Uso: inteiro skills explain <name>" },
+          json,
+        );
       const top = topLevelSkills().find((s) => s.name === name);
-      if (top) return print({ exitCode: 0, data: top, text: `${top.name}\n${top.description}\n\n${top.body}` }, json);
+      if (top)
+        return print(
+          {
+            exitCode: 0,
+            data: top,
+            text: `${top.name}\n${top.description}\n\n${top.body}`,
+          },
+          json,
+        );
       try {
         const exp = explainToken(name.replaceAll("-", "."));
-        return print({ exitCode: 0, data: exp, text: `skill de token ${exp.id}\n${exp.intent}` }, json);
+        return print(
+          {
+            exitCode: 0,
+            data: exp,
+            text: `skill de token ${exp.id}\n${exp.intent}`,
+          },
+          json,
+        );
       } catch {
-        return print({ exitCode: EXIT.notFound, text: `Skill não encontrada: ${name}` }, json);
+        return print(
+          { exitCode: EXIT.notFound, text: `Skill não encontrada: ${name}` },
+          json,
+        );
       }
     }
 
     if (cmd[0] === "agents" && cmd[1] === "list") {
-      const text = HARNESSES.map((h) => `${h.id}\t${h.mechanism}\t${h.verified}`).join("\n");
+      const text = HARNESSES.map(
+        (h) => `${h.id}\t${h.mechanism}\t${h.verified}`,
+      ).join("\n");
       return print({ exitCode: 0, data: HARNESSES, text }, json);
     }
     if (cmd[0] === "agents" && cmd[1] === "install") {
       const target = cmd[2];
-      if (!target) return print({ exitCode: EXIT.usage, text: "Uso: inteiro agents install <harness|all>" }, json);
-      const ids = target === "all" ? HARNESSES.map((h) => h.id) : [target as HarnessId];
+      if (!target)
+        return print(
+          {
+            exitCode: EXIT.usage,
+            text: "Uso: inteiro agents install <harness|all>",
+          },
+          json,
+        );
+      const ids =
+        target === "all" ? HARNESSES.map((h) => h.id) : [target as HarnessId];
       const reports = [];
       for (const id of ids) {
         getHarness(id);
-        reports.push(await installHarness(cwd, id, { dryRun: bool(flags, "dry-run"), yes: bool(flags, "yes") || bool(flags, "y") }));
+        reports.push(
+          await installHarness(cwd, id, {
+            dryRun: bool(flags, "dry-run"),
+            yes: bool(flags, "yes") || bool(flags, "y"),
+            contextOnly: bool(flags, 'context-only'),
+          }),
+        );
       }
-      return print({ exitCode: 0, data: reports, text: reports.map((r) => `${r.harness}: ${r.actions.join(", ")}`).join("\n") }, json);
+      return print(
+        {
+          exitCode: reports.some((r) => r.status === "needs_review") ? 7 : 0,
+          data: reports,
+          text: reports
+            .map((r) => `${r.harness}: ${r.actions.join(", ")}`)
+            .join("\n"),
+        },
+        json,
+      );
     }
     if (cmd[0] === "agents" && cmd[1] === "uninstall") {
       const target = cmd[2];
-      if (!target) return print({ exitCode: EXIT.usage, text: "Uso: inteiro agents uninstall <harness>" }, json);
-      const report = await uninstallHarness(cwd, target as HarnessId, { dryRun: bool(flags, "dry-run"), yes: bool(flags, "yes") });
-      return print({ exitCode: 0, data: report, text: `uninstall ${target}: ${report.actions.join(", ")}` }, json);
+      if (!target)
+        return print(
+          {
+            exitCode: EXIT.usage,
+            text: "Uso: inteiro agents uninstall <harness>",
+          },
+          json,
+        );
+      const report = await uninstallHarness(cwd, target as HarnessId, {
+        dryRun: bool(flags, "dry-run"),
+        yes: bool(flags, "yes"),
+      });
+      return print(
+        {
+          exitCode: 0,
+          data: report,
+          text: `uninstall ${target}: ${report.actions.join(", ")}`,
+        },
+        json,
+      );
     }
     if (cmd[0] === "agents" && cmd[1] === "doctor") {
       const rows = [];
@@ -286,38 +550,116 @@ export async function run(argv: string[]): Promise<number> {
         }
         rows.push({ id: h.id, present, verified: h.verified });
       }
-      return print({
-        exitCode: 0,
-        data: rows,
-        text: rows.map((r) => `${r.id}: ${r.present.length ? r.present.join(", ") : "não instalado"} (${r.verified})`).join("\n")
-      }, json);
+      return print(
+        {
+          exitCode: 0,
+          data: rows,
+          text: rows
+            .map(
+              (r) =>
+                `${r.id}: ${r.present.length ? r.present.join(", ") : "não instalado"} (${r.verified})`,
+            )
+            .join("\n"),
+        },
+        json,
+      );
     }
 
     if (cmd[0] === "suggest") {
       const tokens = suggestTokens(cmd.slice(1).join(" "));
-      return print({ exitCode: 0, data: tokens.map((t) => t.id), text: tokens.map((t) => t.id).join("\n") }, json);
+      return print(
+        {
+          exitCode: 0,
+          data: tokens.map((t) => t.id),
+          text: tokens.map((t) => t.id).join("\n"),
+        },
+        json,
+      );
     }
     if (cmd[0] === "guidelines") {
       const g = getGuidelines(cmd.slice(1).join(" "));
-      return print({ exitCode: 0, data: g, text: g.map((x) => `# ${x.title}\n${x.body}`).join("\n\n") }, json);
+      return print(
+        {
+          exitCode: 0,
+          data: g,
+          text: g.map((x) => `# ${x.title}\n${x.body}`).join("\n\n"),
+        },
+        json,
+      );
     }
     if (cmd[0] === "recipe") {
       const r = getComponentRecipe(cmd.slice(1).join(" "));
-      return print({ exitCode: 0, data: r, text: r.map((x) => `# ${x.title}\n${x.good}`).join("\n\n") }, json);
+      return print(
+        {
+          exitCode: 0,
+          data: r,
+          text: r.map((x) => `# ${x.title}\n${x.good}`).join("\n\n"),
+        },
+        json,
+      );
     }
     if (cmd[0] === "validate-usage") {
       const result = validateUsage({ code: cmd.slice(1).join(" ") });
-      return print({ exitCode: result.ok ? 0 : EXIT.invalid, data: result, text: result.ok ? "ok" : result.issues.join("\n") }, json);
+      return print(
+        {
+          exitCode: result.ok ? 0 : EXIT.invalid,
+          data: result,
+          text: result.ok ? "ok" : result.issues.join("\n"),
+        },
+        json,
+      );
     }
 
-    return print({ exitCode: EXIT.usage, text: `Comando desconhecido: ${cmd.join(" ")}\n\n${HELP}` }, json);
+    return print(
+      {
+        exitCode: EXIT.usage,
+        text: `Comando desconhecido: ${cmd.join(" ")}\n\n${HELP}`,
+      },
+      json,
+    );
   } catch (error) {
-    return print({ exitCode: EXIT.io, text: error instanceof Error ? error.message : String(error) }, json);
+    if (
+      [
+        "contract",
+        "context",
+        "compose",
+        "lint",
+        "visual",
+        "gate",
+        "review",
+        "repair",
+        "benchmark",
+      ].includes(cmd[0] ?? "") ||
+      bool(flags, "deep")
+    )
+      return print(
+        {
+          exitCode: 8,
+          data: {
+            status: "error",
+            message: error instanceof Error ? error.message : String(error),
+            nextAction:
+              "Correct configuration, dependency or infrastructure and rerun the same command.",
+          },
+        },
+        json || flag(flags, "format") === "json",
+      );
+    return print(
+      {
+        exitCode: EXIT.io,
+        text: error instanceof Error ? error.message : String(error),
+      },
+      json,
+    );
   }
 }
 
-const isMain = process.argv[1] && (fileURLToPath(import.meta.url) === process.argv[1] || pathToFileURL(process.argv[1]).href === pathToFileURL(fileURLToPath(import.meta.url)).href);
-if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href || process.argv[1]?.endsWith("cli.ts") || process.argv[1]?.endsWith("cli.js") || process.argv[1]?.endsWith("inteiro")) {
+let entryURL = "";
+try {
+  if (process.argv[1])
+    entryURL = pathToFileURL(await realpath(process.argv[1])).href;
+} catch {}
+if (import.meta.url === entryURL) {
   const code = await run(process.argv.slice(2));
   process.exitCode = code;
 }

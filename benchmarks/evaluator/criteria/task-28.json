@@ -1,0 +1,214 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "task-28",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/task-28.json",
+    "sha256": "e81947697c0dd8c6d9f4a814a6290d149c8ef62fb82ac0110e15c13e2c853516"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 320,
+        "height": 900
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "click",
+          "locator": {
+            "role": "link",
+            "name": "Pessoas"
+          }
+        },
+        {
+          "op": "expect-path",
+          "value": "/src/index.html?view=people"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "route-title"
+          },
+          "value": "Pessoas"
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Nota persistente"
+          },
+          "value": "Nota entre rotas"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "link",
+            "name": "Projetos"
+          }
+        },
+        {
+          "op": "expect-path",
+          "value": "/src/index.html?view=projects"
+        },
+        {
+          "op": "expect-value",
+          "locator": {
+            "label": "Nota persistente"
+          },
+          "value": "Nota entre rotas"
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Dados da rota"
+          },
+          "values": [
+            "Documento revisado"
+          ]
+        },
+        {
+          "op": "back"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "route-title"
+          },
+          "value": "Pessoas"
+        },
+        {
+          "op": "expect-value",
+          "locator": {
+            "label": "Nota persistente"
+          },
+          "value": "Nota entre rotas"
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Dados da rota"
+          },
+          "values": [
+            "Registro especial"
+          ]
+        },
+        {
+          "op": "expect-request",
+          "id": "projects",
+          "count": 1,
+          "body": null
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    },
+    {
+      "id": "desktop-functional",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "density": "focus",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "click",
+          "locator": {
+            "role": "link",
+            "name": "Pessoas"
+          }
+        },
+        {
+          "op": "expect-path",
+          "value": "/src/index.html?view=people"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "route-title"
+          },
+          "value": "Pessoas"
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Nota persistente"
+          },
+          "value": "Nota entre rotas"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "link",
+            "name": "Projetos"
+          }
+        },
+        {
+          "op": "expect-path",
+          "value": "/src/index.html?view=projects"
+        },
+        {
+          "op": "expect-value",
+          "locator": {
+            "label": "Nota persistente"
+          },
+          "value": "Nota entre rotas"
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Dados da rota"
+          },
+          "values": [
+            "Documento revisado"
+          ]
+        },
+        {
+          "op": "back"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "route-title"
+          },
+          "value": "Pessoas"
+        },
+        {
+          "op": "expect-value",
+          "locator": {
+            "label": "Nota persistente"
+          },
+          "value": "Nota entre rotas"
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Dados da rota"
+          },
+          "values": [
+            "Registro especial"
+          ]
+        },
+        {
+          "op": "expect-request",
+          "id": "projects",
+          "count": 1,
+          "body": null
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

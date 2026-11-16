@@ -16,7 +16,7 @@
             "consumerFacing": true,
             "intent": "A mesma voz que escreve código consegue pensar em voz alta.",
             "spec": "2025.10",
-            "version": "1.0.0"
+            "version": "1.2.0"
           }
         }
       },
@@ -34,7 +34,7 @@
             "consumerFacing": true,
             "intent": "Leitura humana com a mesma família.",
             "spec": "2025.10",
-            "version": "1.0.0"
+            "version": "1.2.0"
           }
         }
       },
@@ -52,7 +52,7 @@
             "consumerFacing": true,
             "intent": "Costura marca interpretação, não todos os cards.",
             "spec": "2025.10",
-            "version": "1.0.0"
+            "version": "1.2.0"
           }
         }
       }
@@ -77,7 +77,7 @@
             "consumerFacing": true,
             "intent": "Ícones em densidade focus / inline.",
             "spec": "2025.10",
-            "version": "1.0.0"
+            "version": "1.2.0"
           }
         }
       },
@@ -98,7 +98,7 @@
             "consumerFacing": true,
             "intent": "Tamanho padrão.",
             "spec": "2025.10",
-            "version": "1.0.0"
+            "version": "1.2.0"
           }
         }
       }
@@ -121,7 +121,7 @@
             "consumerFacing": true,
             "intent": "Gramática de traço única.",
             "spec": "2025.10",
-            "version": "1.0.0"
+            "version": "1.2.0"
           }
         }
       },
@@ -142,7 +142,7 @@
             "consumerFacing": true,
             "intent": "Destaque raro.",
             "spec": "2025.10",
-            "version": "1.0.0"
+            "version": "1.2.0"
           }
         }
       }
@@ -168,7 +168,7 @@
               "consumerFacing": true,
               "intent": "Primary/commit compartilham a escala. sm pode ficar abaixo de 44px; md é o padrão de target.",
               "spec": "2025.10",
-              "version": "1.0.0"
+              "version": "1.2.0"
             }
           }
         },
@@ -189,7 +189,7 @@
               "consumerFacing": true,
               "intent": "Respiração horizontal proporcional à altura.",
               "spec": "2025.10",
-              "version": "1.0.0"
+              "version": "1.2.0"
             }
           }
         },
@@ -210,7 +210,7 @@
               "consumerFacing": true,
               "intent": "Label semibold, voz rational.",
               "spec": "2025.10",
-              "version": "1.0.0"
+              "version": "1.2.0"
             }
           }
         }
@@ -233,7 +233,7 @@
               "consumerFacing": true,
               "intent": "Primary/commit compartilham a escala. sm pode ficar abaixo de 44px; md é o padrão de target.",
               "spec": "2025.10",
-              "version": "1.0.0"
+              "version": "1.2.0"
             }
           }
         },
@@ -254,7 +254,7 @@
               "consumerFacing": true,
               "intent": "Respiração horizontal proporcional à altura.",
               "spec": "2025.10",
-              "version": "1.0.0"
+              "version": "1.2.0"
             }
           }
         },
@@ -275,7 +275,7 @@
               "consumerFacing": true,
               "intent": "Label semibold, voz rational.",
               "spec": "2025.10",
-              "version": "1.0.0"
+              "version": "1.2.0"
             }
           }
         }
@@ -298,7 +298,7 @@
               "consumerFacing": true,
               "intent": "Primary/commit compartilham a escala. sm pode ficar abaixo de 44px; md é o padrão de target.",
               "spec": "2025.10",
-              "version": "1.0.0"
+              "version": "1.2.0"
             }
           }
         },
@@ -319,7 +319,7 @@
               "consumerFacing": true,
               "intent": "Respiração horizontal proporcional à altura.",
               "spec": "2025.10",
-              "version": "1.0.0"
+              "version": "1.2.0"
             }
           }
         },
@@ -340,7 +340,7 @@
               "consumerFacing": true,
               "intent": "Label semibold, voz rational.",
               "spec": "2025.10",
-              "version": "1.0.0"
+              "version": "1.2.0"
             }
           }
         }
@@ -366,7 +366,7 @@
             "consumerFacing": true,
             "intent": "Erro nunca é “borda vermelha e só”. Label, campo, helper/erro.",
             "spec": "2025.10",
-            "version": "1.0.0"
+            "version": "1.2.0"
           }
         }
       },
@@ -387,7 +387,7 @@
             "consumerFacing": true,
             "intent": "Erro nunca é “borda vermelha e só”. Label, campo, helper/erro.",
             "spec": "2025.10",
-            "version": "1.0.0"
+            "version": "1.2.0"
           }
         }
       },
@@ -408,7 +408,7 @@
             "consumerFacing": true,
             "intent": "Erro nunca é “borda vermelha e só”. Label, campo, helper/erro.",
             "spec": "2025.10",
-            "version": "1.0.0"
+            "version": "1.2.0"
           }
         }
       }
@@ -431,7 +431,7 @@
             "consumerFacing": true,
             "intent": "Erro nunca é “borda vermelha e só”. Label, campo, helper/erro.",
             "spec": "2025.10",
-            "version": "1.0.0"
+            "version": "1.2.0"
           }
         }
       },
@@ -452,7 +452,7 @@
             "consumerFacing": true,
             "intent": "Erro nunca é “borda vermelha e só”. Label, campo, helper/erro.",
             "spec": "2025.10",
-            "version": "1.0.0"
+            "version": "1.2.0"
           }
         }
       }
@@ -471,7 +471,7 @@
           "consumerFacing": true,
           "intent": "Erro nunca é “borda vermelha e só”. Label, campo, helper/erro.",
           "spec": "2025.10",
-          "version": "1.0.0"
+          "version": "1.2.0"
         }
       }
     },
@@ -490,7 +490,7 @@
             "consumerFacing": true,
             "intent": "Erro nunca é “borda vermelha e só”. Label, campo, helper/erro.",
             "spec": "2025.10",
-            "version": "1.0.0"
+            "version": "1.2.0"
           }
         }
       }
@@ -510,7 +510,7 @@
             "consumerFacing": true,
             "intent": "Erro nunca é “borda vermelha e só”. Label, campo, helper/erro.",
             "spec": "2025.10",
-            "version": "1.0.0"
+            "version": "1.2.0"
           }
         }
       }
@@ -530,7 +530,7 @@
             "consumerFacing": true,
             "intent": "Erro nunca é “borda vermelha e só”. Label, campo, helper/erro.",
             "spec": "2025.10",
-            "version": "1.0.0"
+            "version": "1.2.0"
           }
         }
       }
@@ -550,7 +550,7 @@
             "consumerFacing": true,
             "intent": "Erro nunca é “borda vermelha e só”. Label, campo, helper/erro.",
             "spec": "2025.10",
-            "version": "1.0.0"
+            "version": "1.2.0"
           }
         }
       }
@@ -571,7 +571,7 @@
           "consumerFacing": true,
           "intent": "O card normal não precisa flutuar.",
           "spec": "2025.10",
-          "version": "1.0.0"
+          "version": "1.2.0"
         }
       }
     },
@@ -589,7 +589,231 @@
           "consumerFacing": true,
           "intent": "Cards 16px. Não cápsulas.",
           "spec": "2025.10",
-          "version": "1.0.0"
+          "version": "1.2.0"
+        }
+      }
+    },
+    "elevation": {
+      "$type": "shadow",
+      "$value": "{elevation.0}",
+      "$description": "Alias semântico de elevation.0.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "card.elevation",
+          "layer": "component",
+          "status": "extension",
+          "cssVar": "--in-card-elevation",
+          "sourceSection": "Expansão 1.2 / Biblioteca e interoperabilidade",
+          "consumerFacing": true,
+          "intent": "Alias semântico de elevation.0.",
+          "spec": "2025.10",
+          "version": "1.2.0"
+        }
+      }
+    }
+  },
+  "avatar": {
+    "size": {
+      "sm": {
+        "$type": "dimension",
+        "$value": {
+          "value": 24,
+          "unit": "px"
+        },
+        "$description": "Dimensão de avatar.size.sm.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "avatar.size.sm",
+            "layer": "component",
+            "status": "extension",
+            "cssVar": "--in-avatar-size-sm",
+            "sourceSection": "Expansão 1.2 / Biblioteca e interoperabilidade",
+            "consumerFacing": true,
+            "intent": "Dimensão de avatar.size.sm.",
+            "spec": "2025.10",
+            "version": "1.2.0"
+          }
+        }
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": {
+          "value": 40,
+          "unit": "px"
+        },
+        "$description": "Dimensão de avatar.size.md.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "avatar.size.md",
+            "layer": "component",
+            "status": "extension",
+            "cssVar": "--in-avatar-size-md",
+            "sourceSection": "Expansão 1.2 / Biblioteca e interoperabilidade",
+            "consumerFacing": true,
+            "intent": "Dimensão de avatar.size.md.",
+            "spec": "2025.10",
+            "version": "1.2.0"
+          }
+        }
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": {
+          "value": 64,
+          "unit": "px"
+        },
+        "$description": "Dimensão de avatar.size.lg.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "avatar.size.lg",
+            "layer": "component",
+            "status": "extension",
+            "cssVar": "--in-avatar-size-lg",
+            "sourceSection": "Expansão 1.2 / Biblioteca e interoperabilidade",
+            "consumerFacing": true,
+            "intent": "Dimensão de avatar.size.lg.",
+            "spec": "2025.10",
+            "version": "1.2.0"
+          }
+        }
+      }
+    }
+  },
+  "dialog": {
+    "width": {
+      "$type": "dimension",
+      "$value": {
+        "value": 560,
+        "unit": "px"
+      },
+      "$description": "Dimensão de dialog.width.",
+      "$extensions": {
+        "dev.inteiro": {
+          "id": "dialog.width",
+          "layer": "component",
+          "status": "extension",
+          "cssVar": "--in-dialog-width",
+          "sourceSection": "Expansão 1.2 / Biblioteca e interoperabilidade",
+          "consumerFacing": true,
+          "intent": "Dimensão de dialog.width.",
+          "spec": "2025.10",
+          "version": "1.2.0"
+        }
+      }
+    }
+  },
+  "chart": {
+    "line": {
+      "width": {
+        "$type": "dimension",
+        "$value": {
+          "value": 3,
+          "unit": "px"
+        },
+        "$description": "Dimensão de chart.line.width.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "chart.line.width",
+            "layer": "component",
+            "status": "extension",
+            "cssVar": "--in-chart-line-width",
+            "sourceSection": "Expansão 1.2 / Biblioteca e interoperabilidade",
+            "consumerFacing": true,
+            "intent": "Dimensão de chart.line.width.",
+            "spec": "2025.10",
+            "version": "1.2.0"
+          }
+        }
+      }
+    },
+    "marker": {
+      "size": {
+        "$type": "dimension",
+        "$value": {
+          "value": 6,
+          "unit": "px"
+        },
+        "$description": "Dimensão de chart.marker.size.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "chart.marker.size",
+            "layer": "component",
+            "status": "extension",
+            "cssVar": "--in-chart-marker-size",
+            "sourceSection": "Expansão 1.2 / Biblioteca e interoperabilidade",
+            "consumerFacing": true,
+            "intent": "Dimensão de chart.marker.size.",
+            "spec": "2025.10",
+            "version": "1.2.0"
+          }
+        }
+      }
+    },
+    "grid": {
+      "width": {
+        "$type": "dimension",
+        "$value": {
+          "value": 1,
+          "unit": "px"
+        },
+        "$description": "Dimensão de chart.grid.width.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "chart.grid.width",
+            "layer": "component",
+            "status": "extension",
+            "cssVar": "--in-chart-grid-width",
+            "sourceSection": "Expansão 1.2 / Biblioteca e interoperabilidade",
+            "consumerFacing": true,
+            "intent": "Dimensão de chart.grid.width.",
+            "spec": "2025.10",
+            "version": "1.2.0"
+          }
+        }
+      }
+    },
+    "density": {
+      "compact": {
+        "$type": "dimension",
+        "$value": {
+          "value": 24,
+          "unit": "px"
+        },
+        "$description": "Distância mínima entre marcas de gráfico.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "chart.density.compact",
+            "layer": "component",
+            "status": "extension",
+            "cssVar": "--in-chart-density-compact",
+            "sourceSection": "Expansão 1.2 / Biblioteca e interoperabilidade",
+            "consumerFacing": true,
+            "intent": "Distância mínima entre marcas de gráfico.",
+            "spec": "2025.10",
+            "version": "1.2.0"
+          }
+        }
+      }
+    }
+  },
+  "alert": {
+    "icon": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{icon.size.default}",
+        "$description": "Alias semântico de icon.size.default.",
+        "$extensions": {
+          "dev.inteiro": {
+            "id": "alert.icon.size",
+            "layer": "component",
+            "status": "extension",
+            "cssVar": "--in-alert-icon-size",
+            "sourceSection": "Expansão 1.2 / Biblioteca e interoperabilidade",
+            "consumerFacing": true,
+            "intent": "Alias semântico de icon.size.default.",
+            "spec": "2025.10",
+            "version": "1.2.0"
+          }
         }
       }
     }

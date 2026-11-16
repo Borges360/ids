@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "1.0",
+  "id": "action-commit",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Publicação fronteira ação commit",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring",
+    "color.action.commit.background",
+    "color.action.commit.foreground"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "form",
+      "p",
+      "button"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/action-commit.html",
+    "examples/action-commit-default.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "publicação",
+    "fronteira",
+    "ação",
+    "commit"
+  ],
+  "markup": "<form><p id=\"commit-reason\">Publicar torna o conteúdo visível ao público.</p><button class=\"in-button in-button--commit\" data-variant=\"commit\" aria-describedby=\"commit-reason\">Publicar conteúdo</button></form>"
+}

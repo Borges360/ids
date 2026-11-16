@@ -1,0 +1,246 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "task-20",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/task-20.json",
+    "sha256": "36bb81d6b2b1d66586adf6ecf1eb8d44894ca9f9ca7e626cc2028b62ce47d719"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Ações"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "menuitem",
+            "name": "Editar"
+          }
+        },
+        {
+          "op": "press",
+          "locator": {
+            "role": "menuitem",
+            "name": "Editar"
+          },
+          "value": "ArrowDown"
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "menuitem",
+            "name": "Arquivar"
+          }
+        },
+        {
+          "op": "press",
+          "locator": {
+            "role": "menuitem",
+            "name": "Arquivar"
+          },
+          "value": "Escape"
+        },
+        {
+          "op": "expect-hidden",
+          "locator": {
+            "role": "menu",
+            "name": "Ações do registro"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "button",
+            "name": "Ações"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "archive",
+          "count": 0,
+          "body": null
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Ações"
+          }
+        },
+        {
+          "op": "press",
+          "locator": {
+            "role": "menuitem",
+            "name": "Editar"
+          },
+          "value": "End"
+        },
+        {
+          "op": "press",
+          "locator": {
+            "role": "menuitem",
+            "name": "Arquivar"
+          },
+          "value": "Enter"
+        },
+        {
+          "op": "expect-request",
+          "id": "archive",
+          "count": 1,
+          "body": {
+            "id": "item-1"
+          }
+        },
+        {
+          "op": "expect-hidden",
+          "locator": {
+            "role": "menu",
+            "name": "Ações do registro"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Registro arquivado"
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    },
+    {
+      "id": "desktop-functional",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "density": "focus",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Ações"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "menuitem",
+            "name": "Editar"
+          }
+        },
+        {
+          "op": "press",
+          "locator": {
+            "role": "menuitem",
+            "name": "Editar"
+          },
+          "value": "ArrowDown"
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "menuitem",
+            "name": "Arquivar"
+          }
+        },
+        {
+          "op": "press",
+          "locator": {
+            "role": "menuitem",
+            "name": "Arquivar"
+          },
+          "value": "Escape"
+        },
+        {
+          "op": "expect-hidden",
+          "locator": {
+            "role": "menu",
+            "name": "Ações do registro"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "button",
+            "name": "Ações"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "archive",
+          "count": 0,
+          "body": null
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Ações"
+          }
+        },
+        {
+          "op": "press",
+          "locator": {
+            "role": "menuitem",
+            "name": "Editar"
+          },
+          "value": "End"
+        },
+        {
+          "op": "press",
+          "locator": {
+            "role": "menuitem",
+            "name": "Arquivar"
+          },
+          "value": "Enter"
+        },
+        {
+          "op": "expect-request",
+          "id": "archive",
+          "count": 1,
+          "body": {
+            "id": "item-1"
+          }
+        },
+        {
+          "op": "expect-hidden",
+          "locator": {
+            "role": "menu",
+            "name": "Ações do registro"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Registro arquivado"
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

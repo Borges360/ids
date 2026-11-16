@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "1.0",
+  "id": "details-panel",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Painel detalhes",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default",
+    "loading",
+    "empty",
+    "error"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "section",
+      "h2",
+      "dl",
+      "dt",
+      "dd"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/details-panel.html",
+    "examples/details-panel-default.html",
+    "examples/details-panel-loading.html",
+    "examples/details-panel-empty.html",
+    "examples/details-panel-error.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "painel",
+    "detalhes"
+  ],
+  "markup": "<section aria-label=\"Detalhes\"><h2>Registro</h2><dl><dt>Estado</dt><dd>Ativo</dd></dl></section>"
+}

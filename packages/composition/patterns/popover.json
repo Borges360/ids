@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "1.0",
+  "id": "popover",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Conteúdo flutuante não modal",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default",
+    "open",
+    "closed"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "button",
+      "div",
+      "h2",
+      "p"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/popover.html",
+    "examples/popover-default.html",
+    "examples/popover-open.html",
+    "examples/popover-closed.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "conteúdo",
+    "flutuante",
+    "não",
+    "modal"
+  ],
+  "markup": "<button class=\"in-button in-button--secondary\" popovertarget=\"popover\">Mais informações</button><div id=\"popover\" popover><h2>Informações</h2><p>Conteúdo complementar.</p></div>"
+}

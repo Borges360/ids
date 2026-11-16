@@ -1,0 +1,28 @@
+{
+  "name": "@inteiro/composition",
+  "version": "1.2.0",
+  "type": "module",
+  "exports": {
+    "./coverage": "./coverage-matrix.json",
+    ".": "./src/index.ts",
+    "./behavior": "./src/behavior.js",
+    "./css": "./dist/composition.css",
+    "./render": "./src/render.ts",
+    "./fonts": "./src/fonts.css"
+  },
+  "files": [
+    "src",
+    "patterns",
+    "examples",
+    "catalog.index.json",
+    "story-matrix.json",
+    "coverage-matrix.json",
+    "dist",
+    "fonts"
+  ],
+  "dependencies": {
+    "@inteiro/contracts": "^1.2.0",
+    "@inteiro/tokens": "^1.2.0"
+  },
+  "license": "MIT"
+}

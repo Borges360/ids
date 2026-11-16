@@ -4,12 +4,15 @@ import { describe, expect, it } from "vitest";
 describe("documentação INTEIRO", () => {
   it("expõe menu, busca, trilha e índice no HTML", () => {
     const html = readFileSync(new URL("../apps/demo/index.html", import.meta.url), "utf8");
+    expect(html).toContain('<html lang="en"');
     expect(html).toContain('id="sidebar"');
-    expect(html).toContain('aria-label="Documentação"');
+    expect(html).toContain('data-i18n-aria="documentation"');
+    expect(html).toContain('aria-label="Documentation"');
     expect(html).toContain('id="search-dialog"');
     expect(html).toContain('id="toc"');
     expect(html).toContain('id="crumbs"');
-    expect(html).toContain("Saltar para o conteúdo");
+    expect(html).toContain('data-i18n="skip"');
+    expect(html).toContain("Skip to content");
     expect(html).toContain('id="theme"');
     expect(html).toContain('id="density"');
   });

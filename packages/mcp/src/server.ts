@@ -20,11 +20,12 @@ function err(id: Rpc["id"], message: string): Rpc {
   return { jsonrpc: "2.0", id: id ?? null, error: { code: -32000, message } };
 }
 
-async function handle(msg: Rpc): Promise<Rpc> {
+async function handle(msg: Rpc): Promise<Rpc|undefined> {
+  if(msg.id===undefined)return;
   if (msg.method === "initialize") {
     return result(msg.id, {
       protocolVersion: "2024-11-05",
-      serverInfo: { name: "inteiro", version: "1.1.0" },
+      serverInfo: { name: "inteiro", version: "1.2.0" },
       capabilities: { tools: {}, resources: {} }
     });
   }
@@ -34,7 +35,7 @@ async function handle(msg: Rpc): Promise<Rpc> {
     const name = String(msg.params?.name ?? "");
     const args = (msg.params?.arguments ?? {}) as Record<string, unknown>;
     try {
-      const output = callMcpTool(name, args);
+      const output = await callMcpTool(name, args);
       return result(msg.id, { content: [{ type: "text", text: JSON.stringify(output, null, 2) }] });
     } catch (error) {
       const message = error instanceof Error ? error.message : "Falha ao executar a ferramenta.";
@@ -68,26 +69,26 @@ async function handle(msg: Rpc): Promise<Rpc> {
 }
 
 if (process.argv.includes("--help")) {
-  console.log("INTEIRO MCP server v1.1.0 (stdio JSON-RPC). Ferramentas:\n" + MCP_TOOLS.map((t) => `- ${t.name}: ${t.description}`).join("\n"));
+  console.log("INTEIRO MCP server v1.2.0 (stdio JSON-RPC). Ferramentas:\n" + MCP_TOOLS.map((t) => `- ${t.name}: ${t.description}`).join("\n"));
   process.exit(0);
 }
 
-let buffer = "";
-stdin.setEncoding("utf8");
+let buffer = Buffer.alloc(0);
 stdin.on("data", async (chunk) => {
-  buffer += chunk;
+  buffer = Buffer.concat([buffer,chunk]);
+  if(buffer.length>4*1024*1024){stdout.write(JSON.stringify(err(null,'Message exceeds 4 MiB limit'))+'\n');buffer=Buffer.alloc(0);return;}
   while (true) {
     const headerEnd = buffer.indexOf("\r\n\r\n");
     if (headerEnd === -1) {
       const nl = buffer.indexOf("\n");
-      if (nl !== -1 && !buffer.startsWith("Content-Length:")) {
-        const line = buffer.slice(0, nl).trim();
+      if (nl !== -1 && !buffer.subarray(0,15).toString('utf8').startsWith("Content-Length:")) {
+        const line = buffer.subarray(0, nl).toString('utf8').trim();
         buffer = buffer.slice(nl + 1);
         if (!line) continue;
         try {
           const msg = JSON.parse(line) as Rpc;
           const response = await handle(msg);
-          stdout.write(JSON.stringify(response) + "\n");
+          if(response)stdout.write(JSON.stringify(response) + "\n");
         } catch {
           /* ignore */
         }
@@ -95,7 +96,7 @@ stdin.on("data", async (chunk) => {
       }
       break;
     }
-    const header = buffer.slice(0, headerEnd);
+    const header = buffer.subarray(0, headerEnd).toString('ascii');
     const match = header.match(/Content-Length:\s*(\d+)/i);
     if (!match) {
       buffer = buffer.slice(headerEnd + 4);
@@ -104,11 +105,11 @@ stdin.on("data", async (chunk) => {
     const len = Number(match[1]);
     const bodyStart = headerEnd + 4;
     if (buffer.length < bodyStart + len) break;
-    const body = buffer.slice(bodyStart, bodyStart + len);
+    const body = buffer.subarray(bodyStart, bodyStart + len).toString('utf8');
     buffer = buffer.slice(bodyStart + len);
-    const msg = JSON.parse(body) as Rpc;
+    try{const msg = JSON.parse(body) as Rpc;
     const response = await handle(msg);
-    const payload = JSON.stringify(response);
-    stdout.write(`Content-Length: ${Buffer.byteLength(payload)}\r\n\r\n${payload}`);
+    if(response){const payload = JSON.stringify(response);
+    stdout.write(`Content-Length: ${Buffer.byteLength(payload)}\r\n\r\n${payload}`);}}catch{const payload=JSON.stringify(err(null,'Invalid JSON-RPC request'));stdout.write(`Content-Length: ${Buffer.byteLength(payload)}\r\n\r\n${payload}`);}
   }
 });

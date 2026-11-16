@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "task-08",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/task-08.json",
+    "sha256": "e37b7a6ee23983716729712b9e545f4903b91c18ad61357f3948b3b91a5dd206"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Abrir detalhes"
+          }
+        },
+        {
+          "op": "expect-visible",
+          "locator": {
+            "role": "dialog",
+            "name": "Detalhes do item"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "button",
+            "name": "Fechar detalhes"
+          }
+        },
+        {
+          "op": "expect-no-overflow"
+        },
+        {
+          "op": "press",
+          "locator": {
+            "role": "button",
+            "name": "Fechar detalhes"
+          },
+          "value": "Escape"
+        },
+        {
+          "op": "expect-hidden",
+          "locator": {
+            "role": "dialog",
+            "name": "Detalhes do item"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "button",
+            "name": "Abrir detalhes"
+          }
+        }
+      ]
+    }
+  ]
+}

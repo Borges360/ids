@@ -1,31 +1,213 @@
 import {
   auditSource,
+  createVisualReviewPlan,
   explainToken,
   getComponentRecipe,
+  getComponentContract,
   getGuidelines,
   getTheme,
   getToken,
   getVisualReviewGuidance,
   searchTokens,
   suggestTokens,
-  validateUsage
+  validateUsage,
 } from "@inteiro/agent-core";
+import { findPatterns, validateComposition } from "@inteiro/composition";
+import { resolveConfig, readEvidence } from "@inteiro/contracts";
+import { resolveContext, resolvedRepairContext } from "@inteiro/agent-core";
 
 export const MCP_TOOLS = [
-  { name: "inteiro_get_token", description: "Obtém um token INTEIRO pelo id canônico.", inputSchema: { type: "object", properties: { name: { type: "string" } }, required: ["name"] } },
-  { name: "inteiro_search_tokens", description: "Busca tokens por intenção, categoria ou id.", inputSchema: { type: "object", properties: { query: { type: "string" } }, required: ["query"] } },
-  { name: "inteiro_explain_token", description: "Explica um token: intenção, uso, a11y, valores por tema.", inputSchema: { type: "object", properties: { name: { type: "string" } }, required: ["name"] } },
-  { name: "inteiro_get_guidelines", description: "Guidelines de identidade, voz, a11y, marca.", inputSchema: { type: "object", properties: { topic: { type: "string" } } } },
-  { name: "inteiro_get_component_recipe", description: "Recipe INTEIRO de componente, inclusive padrões para shells de aplicação, navegação mobile, perfil e fluxos por etapas.", inputSchema: { type: "object", properties: { name: { type: "string" } } } },
-  { name: "inteiro_get_theme", description: "Inspeciona um tema.", inputSchema: { type: "object", properties: { name: { type: "string" } }, required: ["name"] } },
-  { name: "inteiro_suggest_tokens", description: "Sugere tokens a partir de um contexto em linguagem natural.", inputSchema: { type: "object", properties: { context: { type: "string" } }, required: ["context"] } },
-  { name: "inteiro_validate_usage", description: "Valida um trecho de código contra regras INTEIRO.", inputSchema: { type: "object", properties: { code: { type: "string" }, token: { type: "string" } } } },
-  { name: "inteiro_audit", description: "Auditoria estática do texto-fonte. Não avalia hierarquia, alinhamento, escala, quebras ou responsividade renderizada; consulte inteiro_get_visual_review para revisar evidência visual.", inputSchema: { type: "object", properties: { file: { type: "string" }, source: { type: "string" } }, required: ["file", "source"] } },
-  { name: "inteiro_get_visual_review", description: "Entrega o protocolo de revisão visual INTEIRO: cobertura de rotas e estados, viewports, checklist de harmonia e critérios para capturas. A aprovação exige revisão humana da interface renderizada.", inputSchema: { type: "object", properties: {} } }
+  ...[
+    [
+      "inteiro_get_contract",
+      "Resolve versioned project contract and provenance",
+    ],
+    [
+      "inteiro_find_pattern",
+      "Find local patterns with examples and lexical rationale",
+    ],
+    [
+      "inteiro_validate_composition",
+      "Validate slots, variants and states against catalog",
+    ],
+    [
+      "inteiro_get_gate_report",
+      "Read existing project evidence without running browser",
+    ],
+    [
+      "inteiro_get_repair_context",
+      "Get prioritized failures and bounded repair policy",
+    ],
+  ].map(([name, description]) => ({
+    name: name!,
+    description: description!,
+    inputSchema: {
+      type: "object",
+      properties: {
+        query: { type: "string" },
+        patternId: { type: "string" },
+        variant: { type: "string" },
+        slots: { type: "array", items: { type: "string" } },
+        states: { type: "array", items: { type: "string" } },
+      },
+      additionalProperties: false,
+    },
+  })),
+  {
+    name: "inteiro_get_component",
+    description:
+      "Biblioteca implementada: imports, exemplos, estados e acessibilidade de componentes e templates React.",
+    inputSchema: {
+      type: "object",
+      properties: { name: { type: "string" } },
+      additionalProperties: false,
+    },
+  },
+  {
+    name: "inteiro_get_token",
+    description: "Obtém um token INTEIRO pelo id canônico.",
+    inputSchema: {
+      type: "object",
+      properties: { name: { type: "string" } },
+      required: ["name"],
+    },
+  },
+  {
+    name: "inteiro_search_tokens",
+    description: "Busca tokens por intenção, categoria ou id.",
+    inputSchema: {
+      type: "object",
+      properties: { query: { type: "string" } },
+      required: ["query"],
+    },
+  },
+  {
+    name: "inteiro_explain_token",
+    description: "Explica um token: intenção, uso, a11y, valores por tema.",
+    inputSchema: {
+      type: "object",
+      properties: { name: { type: "string" } },
+      required: ["name"],
+    },
+  },
+  {
+    name: "inteiro_get_guidelines",
+    description: "Guidelines de identidade, voz, a11y, marca.",
+    inputSchema: { type: "object", properties: { topic: { type: "string" } } },
+  },
+  {
+    name: "inteiro_get_component_recipe",
+    description:
+      "Recipe INTEIRO de componente, inclusive padrões para shells de aplicação, navegação mobile, perfil e fluxos por etapas.",
+    inputSchema: { type: "object", properties: { name: { type: "string" } } },
+  },
+  {
+    name: "inteiro_get_theme",
+    description: "Inspeciona um tema.",
+    inputSchema: {
+      type: "object",
+      properties: { name: { type: "string" } },
+      required: ["name"],
+    },
+  },
+  {
+    name: "inteiro_suggest_tokens",
+    description: "Sugere tokens a partir de um contexto em linguagem natural.",
+    inputSchema: {
+      type: "object",
+      properties: { context: { type: "string" } },
+      required: ["context"],
+    },
+  },
+  {
+    name: "inteiro_validate_usage",
+    description: "Valida um trecho de código contra regras INTEIRO.",
+    inputSchema: {
+      type: "object",
+      properties: { code: { type: "string" }, token: { type: "string" } },
+    },
+  },
+  {
+    name: "inteiro_audit",
+    description:
+      "Auditoria estática do texto-fonte: encontra regras conhecidas e sinaliza riscos de quebra arbitrária e clipping. Não mede a interface renderizada; confirme o contexto nas capturas com inteiro_get_visual_review.",
+    inputSchema: {
+      type: "object",
+      properties: { file: { type: "string" }, source: { type: "string" } },
+      required: ["file", "source"],
+    },
+  },
+  {
+    name: "inteiro_get_visual_review",
+    description:
+      "Entrega critérios de harmonia e prevenção visual. Passe routes[] com path, shell e estados para gerar uma matriz concreta por rota, viewport e tema. O MCP não captura nem interpreta pixels; a aprovação requer revisão humana.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        routes: {
+          type: "array",
+          minItems: 1,
+          maxItems: 100,
+          items: {
+            type: "object",
+            properties: {
+              path: { type: "string", maxLength: 240 },
+              shell: { type: "string", maxLength: 120 },
+              profile: { type: "string", maxLength: 120 },
+              complexForm: { type: "boolean" },
+              complexTable: { type: "boolean" },
+              states: {
+                type: "array",
+                maxItems: 20,
+                items: { type: "string", maxLength: 80 },
+              },
+            },
+            required: ["path", "shell"],
+            additionalProperties: false,
+          },
+        },
+      },
+      additionalProperties: false,
+    },
+  },
 ] as const;
 
-export function callMcpTool(name: string, args: Record<string, unknown>): unknown {
+export function callMcpTool(
+  name: string,
+  args: Record<string, unknown>,
+): unknown {
   switch (name) {
+    case "inteiro_find_pattern":
+      return {
+        status: "passed",
+        provenance: "local-catalog",
+        results: findPatterns(String(args.query ?? "")),
+      };
+    case "inteiro_validate_composition":
+      return validateComposition(
+        args as unknown as Parameters<typeof validateComposition>[0],
+      );
+    case "inteiro_get_contract":
+      return resolveConfig(process.cwd()).then(async ({ config, root }) =>
+        resolveContext(
+          { type: "change-page", description: String(args.query ?? "") },
+          root,
+          config,
+        ),
+      );
+    case "inteiro_get_gate_report":
+    case "inteiro_get_repair_context":
+      return resolveConfig(process.cwd()).then(async ({ config, root }) => {
+        const report = await readEvidence(
+          root,
+          config.reporting.outDir + "/latest.json",
+        );
+        return name === "inteiro_get_repair_context"
+          ? resolvedRepairContext(root, config, report)
+          : report;
+      });
+    case "inteiro_get_component":
+      return getComponentContract(args.name ? String(args.name) : undefined);
     case "inteiro_get_token":
       return getToken(String(args.name));
     case "inteiro_search_tokens":
@@ -43,12 +225,17 @@ export function callMcpTool(name: string, args: Record<string, unknown>): unknow
     case "inteiro_validate_usage":
       return validateUsage({
         ...(args.code ? { code: String(args.code) } : {}),
-        ...(args.token ? { token: String(args.token) } : {})
+        ...(args.token ? { token: String(args.token) } : {}),
       });
     case "inteiro_audit":
       return auditSource(String(args.file), String(args.source));
     case "inteiro_get_visual_review":
-      return getVisualReviewGuidance();
+      return args.routes === undefined
+        ? getVisualReviewGuidance()
+        : {
+            ...getVisualReviewGuidance(),
+            plan: createVisualReviewPlan(args.routes),
+          };
     default:
       throw new Error(`Ferramenta desconhecida: ${name}`);
   }

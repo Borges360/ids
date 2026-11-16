@@ -25,7 +25,7 @@ Abra `http://127.0.0.1:4173/apps/demo/index.html`. A raiz `/` também serve essa
 
 Não há componentes React de interface. Dialog, tabela, navegação, empty state e loading são recipes ou exemplos locais. IconButton, Select, Tabs, Toast e os demais citados no brief de documentação não existem no catálogo.
 
-A paleta Interior / `#8B5CF6` / `#FF9138` e as famílias Space Grotesk, IBM Plex Mono e Instrument Serif não foram adotadas. A fonte de verdade continua `deep-research-report.md` e `packages/tokens/src/catalog`. O conflito está na página Recursos.
+A paleta Interior / `#8B5CF6` / `#FF9138` e as famílias Space Grotesk, IBM Plex Mono e Instrument Serif não foram adotadas. A fonte de verdade continua `deep-research-report.md` e `packages/tokens/source/catalog.json`. O conflito está na página Recursos.
 
 ## Testes desta entrega
 

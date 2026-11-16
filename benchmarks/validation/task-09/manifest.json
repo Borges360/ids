@@ -1,0 +1,99 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "public-worker-validation",
+  "governanceContractHash": "9b4864d548d799f25ed7cb174c6e9e95e3e7ede5e65544f07e8bb88d4b36347d",
+  "caseId": "task-09",
+  "patternIds": [
+    "select"
+  ],
+  "coverage": {
+    "states": {
+      "default": {
+        "applicable": true,
+        "scenario": "default",
+        "phase": "final"
+      },
+      "loading": {
+        "applicable": false,
+        "reason": "Task family 9 does not expose loading in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      },
+      "empty": {
+        "applicable": false,
+        "reason": "Task family 9 does not expose empty in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      },
+      "error": {
+        "applicable": false,
+        "reason": "Task family 9 does not expose error in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      },
+      "disabled": {
+        "applicable": false,
+        "reason": "Task family 9 does not expose disabled in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      },
+      "invalid": {
+        "applicable": false,
+        "reason": "Task family 9 does not expose invalid in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      },
+      "success": {
+        "applicable": false,
+        "reason": "Task family 9 does not expose success in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      },
+      "modal": {
+        "applicable": false,
+        "reason": "Task family 9 does not expose modal in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      },
+      "selected": {
+        "applicable": true,
+        "scenario": "primary-flow",
+        "phase": "action-capture",
+        "actionIndex": 2
+      },
+      "readonly": {
+        "applicable": false,
+        "reason": "Task family 9 does not expose readonly in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      },
+      "long-content": {
+        "applicable": false,
+        "reason": "Task family 9 does not expose long-content in its published functional/fixture contract. Declared API statuses: no API. General component state robustness is covered by the composition matrix."
+      }
+    },
+    "viewports": [
+      "mobile",
+      "tablet",
+      "desktop"
+    ],
+    "themes": [
+      "light",
+      "dark",
+      "contrast-light",
+      "contrast-dark"
+    ],
+    "densities": [
+      "calm",
+      "focus"
+    ],
+    "keyboard": [],
+    "content": {
+      "classification": "synthetic",
+      "fixture": {
+        "path": "benchmarks/validation/task-09/fixture.json",
+        "sha256": "61d2e301099c92fef442311662cc84dc1b2d3e59e6d6a69964cd554b30530bc5"
+      }
+    },
+    "reducedMotion": "reduce"
+  },
+  "routes": {
+    "path": "benchmarks/validation/task-09/routes.json",
+    "sha256": "735514a3da01f333484c0c5203f88a3a643a31a13c2c3a772bc544d506af2c81"
+  },
+  "fixtures": [
+    {
+      "id": "task-09",
+      "path": "benchmarks/validation/task-09/fixture.json",
+      "sha256": "61d2e301099c92fef442311662cc84dc1b2d3e59e6d6a69964cd554b30530bc5"
+    }
+  ],
+  "technicalPolicy": {
+    "path": "benchmarks/validation/technical-authority-policy.json",
+    "sha256": "adcb4bb12807f564cb60e4de963f4ed2a8adfeb25526056132a3cfe58aec5020"
+  }
+}

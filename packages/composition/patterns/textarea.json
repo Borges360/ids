@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "1.0",
+  "id": "textarea",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Texto longo multiline",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default",
+    "disabled",
+    "invalid",
+    "readonly"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring",
+    "input.height.md",
+    "color.border.interactive",
+    "color.background.surface"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "div",
+      "label",
+      "textarea"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/textarea.html",
+    "examples/textarea-default.html",
+    "examples/textarea-disabled.html",
+    "examples/textarea-invalid.html",
+    "examples/textarea-readonly.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "texto",
+    "longo",
+    "multiline"
+  ],
+  "markup": "<div class=\"in-field-group\"><label class=\"in-field__label\" for=\"text\">Descrição</label><textarea class=\"in-input\" id=\"text\" rows=\"4\"></textarea></div>"
+}

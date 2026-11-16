@@ -1,0 +1,208 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "heldout-3",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/heldout-3.json",
+    "sha256": "2eeac94503aee5f73aaeedeb7e516f0ebb00a2dbdda0c376c855aa5c03e264f2"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 320,
+        "height": 900
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "rtl",
+      "steps": [
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Registros"
+          },
+          "values": [
+            "تقرير تشغيلي مترجم — Alfa",
+            "تقرير تشغيلي مترجم — Beta",
+            "تقرير تشغيلي مترجم — Gama"
+          ]
+        },
+        {
+          "op": "check",
+          "locator": {
+            "role": "checkbox",
+            "name": "Selecionar تقرير تشغيلي مترجم — Beta"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Selecionados 1"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Ordenar"
+          }
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Registros"
+          },
+          "values": [
+            "تقرير تشغيلي مترجم — Gama",
+            "تقرير تشغيلي مترجم — Beta",
+            "تقرير تشغيلي مترجم — Alfa"
+          ]
+        },
+        {
+          "op": "expect-attribute",
+          "locator": {
+            "role": "checkbox",
+            "name": "Selecionar تقرير تشغيلي مترجم — Beta"
+          },
+          "name": "aria-checked",
+          "value": "true"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Limpar seleção"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Selecionados 0"
+        },
+        {
+          "op": "expect-attribute",
+          "locator": {
+            "role": "checkbox",
+            "name": "Selecionar تقرير تشغيلي مترجم — Beta"
+          },
+          "name": "aria-checked",
+          "value": "false"
+        },
+        {
+          "op": "expect-request",
+          "id": "selection",
+          "count": 1,
+          "body": null
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    },
+    {
+      "id": "desktop-functional",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "density": "focus",
+      "direction": "rtl",
+      "steps": [
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Registros"
+          },
+          "values": [
+            "تقرير تشغيلي مترجم — Alfa",
+            "تقرير تشغيلي مترجم — Beta",
+            "تقرير تشغيلي مترجم — Gama"
+          ]
+        },
+        {
+          "op": "check",
+          "locator": {
+            "role": "checkbox",
+            "name": "Selecionar تقرير تشغيلي مترجم — Beta"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Selecionados 1"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Ordenar"
+          }
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Registros"
+          },
+          "values": [
+            "تقرير تشغيلي مترجم — Gama",
+            "تقرير تشغيلي مترجم — Beta",
+            "تقرير تشغيلي مترجم — Alfa"
+          ]
+        },
+        {
+          "op": "expect-attribute",
+          "locator": {
+            "role": "checkbox",
+            "name": "Selecionar تقرير تشغيلي مترجم — Beta"
+          },
+          "name": "aria-checked",
+          "value": "true"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Limpar seleção"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Selecionados 0"
+        },
+        {
+          "op": "expect-attribute",
+          "locator": {
+            "role": "checkbox",
+            "name": "Selecionar تقرير تشغيلي مترجم — Beta"
+          },
+          "name": "aria-checked",
+          "value": "false"
+        },
+        {
+          "op": "expect-request",
+          "id": "selection",
+          "count": 1,
+          "body": null
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

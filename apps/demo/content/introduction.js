@@ -15,7 +15,7 @@ export const introductionPages = [
         html: `
           <blockquote class="manifesto in-voice-signal">Não eliminar a tensão. Dar forma a ela.</blockquote>
           <p>INTEIRO não é uma personalidade artificialmente perfeita, nem uma marca que precisa parecer profunda. É a infraestrutura visual de alguém que pensa de modo estruturado, questiona premissas e reconhece conflito sem dissolver a estrutura.</p>
-          <p>O repositório transforma o documento mestre em artefatos instaláveis: tokens DTCG 2025.10, CSS, CLI, API para agentes, MCP e recipes. O IDS está na versão <span class="in-voice-machine">1.1.0</span>; o catálogo de tokens permanece em <span class="in-voice-machine">1.0.0</span>. Os pacotes são instalados pelo monorepo ou por tarball local.</p>
+          <p>O repositório transforma o documento mestre em artefatos instaláveis: tokens DTCG 2025.10, CSS, CLI, API para agentes, MCP e recipes. O IDS está na versão <span class="in-voice-machine">1.2.0</span>; o catálogo de tokens passa a <span class="in-voice-machine">1.1.0</span>. Os pacotes são instalados pelo monorepo ou por tarball local.</p>
           ${reflection("<p>Inteiro não é não ter partes em conflito. É conseguir fazê-las pertencer ao mesmo sistema.</p>")}
         `
       },
@@ -49,7 +49,7 @@ export const introductionPages = [
         html: `
           <ul>
             <li>Não há pacote npm público. A instalação é local ou por tarball.</li>
-            <li>Não há componentes React de Button, Input ou Dialog. Existe <span class="in-voice-machine">InteiroProvider</span>.</li>
+            <li>A biblioteca React inclui Button, TextField, Dialog, tabelas, gráficos e templates. Consulte a Biblioteca React e o Storybook.</li>
             <li>Classes CSS publicadas: botão, campo, card, badge, vozes e agrupamentos.</li>
             <li>Dialog, tabela, navegação, empty state e loading são recipes — especificação com passos, sem classe <span class="in-voice-machine">.in-*</span> própria.</li>
             <li>IconButton, Textarea, Select, Checkbox, Radio, Switch, Tabs, Toast, Tooltip, Popover, Drawer, Pagination e similares não existem no catálogo. Não devem ser inventados como se já fizessem parte do sistema.</li>
@@ -69,14 +69,14 @@ export const introductionPages = [
                 <tr><td><code>@inteiro/design-system</code></td><td>CSS de recipes e reexportação do núcleo</td><td>Implementado</td></tr>
                 <tr><td><code>@inteiro/cli</code></td><td><code>inteiro init</code>, <code>doctor</code>, <code>tokens</code>, <code>agents</code></td><td>Implementado</td></tr>
                 <tr><td><code>@inteiro/agent-core</code></td><td>explain, search, recipes, guidelines, audit, visual review</td><td>Implementado</td></tr>
-                <tr><td><code>@inteiro/mcp</code></td><td>Servidor stdio: tokens, recipes, auditoria estática e protocolo de revisão visual</td><td>Implementado</td></tr>
-                <tr><td><code>@inteiro/react</code></td><td>Provider e tema por CSS variables</td><td>Implementado</td></tr>
+                <tr><td><code>@inteiro/mcp</code></td><td>Servidor stdio: tokens, recipes, riscos de layout e plano de revisão visual por rota</td><td>Implementado</td></tr>
+                <tr><td><code>@inteiro/react</code></td><td>Biblioteca, templates e temas por CSS variables</td><td>Implementado</td></tr>
                 <tr><td><code>@inteiro/skills</code></td><td>Geração de SKILL.md</td><td>Implementado</td></tr>
                 <tr><td><code>@inteiro/adapter-*</code></td><td>Codex, Claude, Devin, Cursor, Pi, Hermes</td><td>Adaptadores; harness nativo não validado nesta sessão</td></tr>
               </tbody>
             </table>
           </div>
-          <p>Fonte de identidade: <span class="in-voice-machine">deep-research-report.md</span>. Fonte de tokens: <span class="in-voice-machine">packages/tokens/src/catalog</span>. Arquivos em <span class="in-voice-machine">dist/</span> e <span class="in-voice-machine">docs/tokens/generated/</span> são gerados.</p>
+          <p>Fonte de identidade: <span class="in-voice-machine">deep-research-report.md</span>. Fonte de tokens: <span class="in-voice-machine">packages/tokens/source/catalog.json</span>. Arquivos em <span class="in-voice-machine">dist/</span> e <span class="in-voice-machine">docs/tokens/generated/</span> são gerados.</p>
         `
       }
     ]

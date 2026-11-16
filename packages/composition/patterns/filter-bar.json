@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "1.0",
+  "id": "filter-bar",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Filtros busca",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring",
+    "input.height.md",
+    "color.border.interactive",
+    "color.background.surface",
+    "color.action.primary.background",
+    "color.action.primary.foreground"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "form",
+      "div",
+      "label",
+      "input",
+      "button"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/filter-bar.html",
+    "examples/filter-bar-default.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "filtros",
+    "busca"
+  ],
+  "markup": "<form role=\"search\" class=\"in-filter-bar\"><div class=\"in-field-group\"><label class=\"in-field__label\" for=\"search\">Buscar</label><input class=\"in-input\" id=\"search\" type=\"search\"></div><button class=\"in-button in-button--primary\">Filtrar</button></form>"
+}

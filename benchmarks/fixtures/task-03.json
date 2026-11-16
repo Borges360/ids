@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "1.0",
+  "classification": "synthetic",
+  "clock": "2026-01-01T12:00:00.000Z",
+  "seed": 3,
+  "routes": [
+    {
+      "id": "dashboard",
+      "path": "/api/dashboard",
+      "method": "GET",
+      "responses": [
+        {
+          "status": 200,
+          "json": {
+            "total": 120,
+            "active": 90,
+            "overdue": 30
+          }
+        },
+        {
+          "status": 200,
+          "json": {
+            "total": 145,
+            "active": 110,
+            "overdue": 35
+          }
+        }
+      ]
+    }
+  ]
+}

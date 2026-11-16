@@ -1,0 +1,143 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://inteiro.dev/schemas/1.0/review-request.schema.json",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "kind",
+    "runId",
+    "evidenceHash",
+    "configHash",
+    "sourceHash",
+    "sourceCommit",
+    "taskHash",
+    "artifactHashes",
+    "captures",
+    "status",
+    "validationErrors"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "kind": {
+      "const": "review-request"
+    },
+    "runId": {
+      "type": "string",
+      "pattern": "^run-[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$"
+    },
+    "evidenceHash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "configHash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceHash": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceCommit": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "taskHash": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "artifactHashes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      }
+    },
+    "captures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "gate",
+          "kind",
+          "actual",
+          "sha256"
+        ],
+        "properties": {
+          "gate": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "final",
+              "action"
+            ]
+          },
+          "actual": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      }
+    },
+    "status": {
+      "enum": [
+        "blocked",
+        "needs_review"
+      ]
+    },
+    "validationErrors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "needs_review"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "sourceHash": {
+            "type": "string"
+          },
+          "sourceCommit": {
+            "type": "string"
+          },
+          "taskHash": {
+            "type": "string"
+          },
+          "artifactHashes": {
+            "minItems": 1
+          },
+          "captures": {
+            "minItems": 1
+          },
+          "validationErrors": {
+            "maxItems": 0
+          }
+        }
+      }
+    }
+  ]
+}

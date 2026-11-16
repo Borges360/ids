@@ -1,0 +1,182 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "task-19",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/task-19.json",
+    "sha256": "581f73d470e6c8b118ca75313b40280057e24f299fd7049c0da11a205aa411c3"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Ajuda sobre prazo"
+          }
+        },
+        {
+          "op": "expect-visible",
+          "locator": {
+            "testId": "help-panel"
+          }
+        },
+        {
+          "op": "expect-attribute",
+          "locator": {
+            "role": "button",
+            "name": "Ajuda sobre prazo"
+          },
+          "name": "aria-expanded",
+          "value": "true"
+        },
+        {
+          "op": "expect-visible",
+          "locator": {
+            "role": "heading",
+            "name": "Prazo em dias úteis"
+          }
+        },
+        {
+          "op": "press",
+          "locator": {
+            "role": "link",
+            "name": "Política de prazos"
+          },
+          "value": "Escape"
+        },
+        {
+          "op": "expect-hidden",
+          "locator": {
+            "testId": "help-panel"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "button",
+            "name": "Ajuda sobre prazo"
+          }
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Ajuda sobre prazo"
+          }
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Ajuda sobre prazo"
+          }
+        },
+        {
+          "op": "expect-hidden",
+          "locator": {
+            "testId": "help-panel"
+          }
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    },
+    {
+      "id": "desktop-functional",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "density": "focus",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Ajuda sobre prazo"
+          }
+        },
+        {
+          "op": "expect-visible",
+          "locator": {
+            "testId": "help-panel"
+          }
+        },
+        {
+          "op": "expect-attribute",
+          "locator": {
+            "role": "button",
+            "name": "Ajuda sobre prazo"
+          },
+          "name": "aria-expanded",
+          "value": "true"
+        },
+        {
+          "op": "expect-visible",
+          "locator": {
+            "role": "heading",
+            "name": "Prazo em dias úteis"
+          }
+        },
+        {
+          "op": "press",
+          "locator": {
+            "role": "link",
+            "name": "Política de prazos"
+          },
+          "value": "Escape"
+        },
+        {
+          "op": "expect-hidden",
+          "locator": {
+            "testId": "help-panel"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "button",
+            "name": "Ajuda sobre prazo"
+          }
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Ajuda sobre prazo"
+          }
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Ajuda sobre prazo"
+          }
+        },
+        {
+          "op": "expect-hidden",
+          "locator": {
+            "testId": "help-panel"
+          }
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,902 @@
+{
+  "InteiroProvider": [
+    {
+      "name": "appearance",
+      "required": false,
+      "type": "Appearance | \"auto\" | undefined"
+    },
+    {
+      "name": "density",
+      "required": false,
+      "type": "Density | undefined"
+    },
+    {
+      "name": "overrides",
+      "required": false,
+      "type": "Record<string, string> | undefined"
+    },
+    {
+      "name": "children",
+      "required": true,
+      "type": "ReactNode"
+    }
+  ],
+  "Button": [
+    {
+      "name": "variant",
+      "required": false,
+      "type": "\"text\" | \"primary\" | \"commit\" | \"danger\" | \"secondary\" | \"ghost\" | \"quiet\" | \"solid\" | \"outline\" | undefined"
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "\"sm\" | \"md\" | \"lg\" | undefined"
+    },
+    {
+      "name": "loading",
+      "required": false,
+      "type": "boolean | undefined"
+    }
+  ],
+  "IconButton": [
+    {
+      "name": "variant",
+      "required": false,
+      "type": "\"text\" | \"primary\" | \"commit\" | \"danger\" | \"secondary\" | \"ghost\" | \"quiet\" | \"solid\" | \"outline\" | undefined"
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "\"sm\" | \"md\" | \"lg\" | undefined"
+    },
+    {
+      "name": "loading",
+      "required": false,
+      "type": "boolean | undefined"
+    },
+    {
+      "name": "label",
+      "required": true,
+      "type": "string"
+    }
+  ],
+  "TextField": [
+    {
+      "name": "label",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "error",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "helpText",
+      "required": false,
+      "type": "string | undefined"
+    }
+  ],
+  "Textarea": [
+    {
+      "name": "label",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "error",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "helpText",
+      "required": false,
+      "type": "string | undefined"
+    }
+  ],
+  "Select": [
+    {
+      "name": "label",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "error",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "helpText",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "options",
+      "required": true,
+      "type": "SelectOption[]"
+    }
+  ],
+  "MultiSelect": [
+    {
+      "name": "label",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "error",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "helpText",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "options",
+      "required": true,
+      "type": "SelectOption[]"
+    }
+  ],
+  "Search": [
+    {
+      "name": "label",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "error",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "helpText",
+      "required": false,
+      "type": "string | undefined"
+    }
+  ],
+  "DatePicker": [
+    {
+      "name": "label",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "error",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "helpText",
+      "required": false,
+      "type": "string | undefined"
+    }
+  ],
+  "TimePicker": [
+    {
+      "name": "label",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "error",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "helpText",
+      "required": false,
+      "type": "string | undefined"
+    }
+  ],
+  "Checkbox": [
+    {
+      "name": "label",
+      "required": true,
+      "type": "string"
+    }
+  ],
+  "Radio": [
+    {
+      "name": "label",
+      "required": true,
+      "type": "string"
+    }
+  ],
+  "Switch": [
+    {
+      "name": "label",
+      "required": true,
+      "type": "string"
+    }
+  ],
+  "Form": [],
+  "Card": [
+    {
+      "name": "title",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "footer",
+      "required": false,
+      "type": "ReactNode"
+    },
+    {
+      "name": "image",
+      "required": false,
+      "type": "{ src: string; alt: string; } | undefined"
+    }
+  ],
+  "CardHeader": [
+    {
+      "name": "title",
+      "required": true,
+      "type": "string"
+    }
+  ],
+  "CardBody": [
+    {
+      "name": "children",
+      "required": true,
+      "type": "ReactNode"
+    }
+  ],
+  "CardFooter": [
+    {
+      "name": "children",
+      "required": true,
+      "type": "ReactNode"
+    }
+  ],
+  "Badge": [
+    {
+      "name": "severity",
+      "required": false,
+      "type": "Severity | undefined"
+    }
+  ],
+  "Tag": [
+    {
+      "name": "children",
+      "required": true,
+      "type": "ReactNode"
+    },
+    {
+      "name": "onRemove",
+      "required": false,
+      "type": "(() => void) | undefined"
+    },
+    {
+      "name": "removeLabel",
+      "required": false,
+      "type": "string | undefined"
+    }
+  ],
+  "Avatar": [
+    {
+      "name": "name",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "src",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "size",
+      "required": false,
+      "type": "\"sm\" | \"md\" | \"lg\" | undefined"
+    }
+  ],
+  "AvatarGroup": [
+    {
+      "name": "children",
+      "required": true,
+      "type": "ReactNode"
+    },
+    {
+      "name": "label",
+      "required": false,
+      "type": "string | undefined"
+    }
+  ],
+  "Alert": [
+    {
+      "name": "title",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "children",
+      "required": false,
+      "type": "ReactNode"
+    },
+    {
+      "name": "severity",
+      "required": false,
+      "type": "Severity | undefined"
+    },
+    {
+      "name": "onDismiss",
+      "required": false,
+      "type": "(() => void) | undefined"
+    },
+    {
+      "name": "dismissLabel",
+      "required": false,
+      "type": "string | undefined"
+    }
+  ],
+  "Dialog": [
+    {
+      "name": "open",
+      "required": true,
+      "type": "boolean"
+    },
+    {
+      "name": "title",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "children",
+      "required": true,
+      "type": "ReactNode"
+    },
+    {
+      "name": "onClose",
+      "required": true,
+      "type": "() => void"
+    },
+    {
+      "name": "closeLabel",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "className",
+      "required": false,
+      "type": "string | undefined"
+    }
+  ],
+  "Drawer": [
+    {
+      "name": "open",
+      "required": true,
+      "type": "boolean"
+    },
+    {
+      "name": "title",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "children",
+      "required": true,
+      "type": "ReactNode"
+    },
+    {
+      "name": "onClose",
+      "required": true,
+      "type": "() => void"
+    },
+    {
+      "name": "closeLabel",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "className",
+      "required": false,
+      "type": "string | undefined"
+    }
+  ],
+  "Tooltip": [
+    {
+      "name": "text",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "children",
+      "required": true,
+      "type": "ReactNode"
+    }
+  ],
+  "Popover": [
+    {
+      "name": "label",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "children",
+      "required": false,
+      "type": "ReactNode"
+    }
+  ],
+  "Tabs": [
+    {
+      "name": "items",
+      "required": true,
+      "type": "TabItem[]"
+    },
+    {
+      "name": "label",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "orientation",
+      "required": false,
+      "type": "\"horizontal\" | \"vertical\" | undefined"
+    }
+  ],
+  "Navigation": [
+    {
+      "name": "items",
+      "required": true,
+      "type": "NavItem[]"
+    },
+    {
+      "name": "label",
+      "required": false,
+      "type": "string | undefined"
+    }
+  ],
+  "Breadcrumbs": [
+    {
+      "name": "items",
+      "required": true,
+      "type": "NavItem[]"
+    },
+    {
+      "name": "label",
+      "required": false,
+      "type": "string | undefined"
+    }
+  ],
+  "Pagination": [
+    {
+      "name": "page",
+      "required": true,
+      "type": "number"
+    },
+    {
+      "name": "pageCount",
+      "required": true,
+      "type": "number"
+    },
+    {
+      "name": "onPageChange",
+      "required": true,
+      "type": "(page: number) => void"
+    },
+    {
+      "name": "label",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "previousLabel",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "nextLabel",
+      "required": false,
+      "type": "string | undefined"
+    }
+  ],
+  "DataTable": [
+    {
+      "name": "rows",
+      "required": true,
+      "type": "T[]"
+    },
+    {
+      "name": "columns",
+      "required": true,
+      "type": "DataColumn<T>[]"
+    },
+    {
+      "name": "caption",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "rowKey",
+      "required": true,
+      "type": "keyof T"
+    },
+    {
+      "name": "pageSize",
+      "required": false,
+      "type": "number | undefined"
+    },
+    {
+      "name": "searchLabel",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "emptyMessage",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "paginationLabels",
+      "required": false,
+      "type": "{ label?: string | undefined; previousLabel?: string | undefined; nextLabel?: string | undefined; } | undefined"
+    }
+  ],
+  "List": [
+    {
+      "name": "items",
+      "required": true,
+      "type": "ReactNode[]"
+    },
+    {
+      "name": "label",
+      "required": false,
+      "type": "string | undefined"
+    }
+  ],
+  "Grid": [],
+  "Progress": [
+    {
+      "name": "value",
+      "required": false,
+      "type": "number | undefined"
+    },
+    {
+      "name": "max",
+      "required": false,
+      "type": "number | undefined"
+    },
+    {
+      "name": "label",
+      "required": true,
+      "type": "string"
+    }
+  ],
+  "Spinner": [
+    {
+      "name": "label",
+      "required": false,
+      "type": "string | undefined"
+    }
+  ],
+  "Skeleton": [
+    {
+      "name": "label",
+      "required": false,
+      "type": "string | undefined"
+    }
+  ],
+  "Heading": [
+    {
+      "name": "level",
+      "required": false,
+      "type": "1 | 2 | 3 | 4 | 5 | 6 | undefined"
+    },
+    {
+      "name": "children",
+      "required": true,
+      "type": "ReactNode"
+    }
+  ],
+  "Text": [
+    {
+      "name": "children",
+      "required": true,
+      "type": "ReactNode"
+    }
+  ],
+  "Code": [
+    {
+      "name": "children",
+      "required": true,
+      "type": "ReactNode"
+    }
+  ],
+  "CodeBlock": [
+    {
+      "name": "children",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "label",
+      "required": false,
+      "type": "string | undefined"
+    }
+  ],
+  "InlineEdit": [
+    {
+      "name": "label",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "value",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "onSave",
+      "required": true,
+      "type": "(value: string) => void"
+    },
+    {
+      "name": "saveLabel",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "cancelLabel",
+      "required": false,
+      "type": "string | undefined"
+    }
+  ],
+  "Chart": [
+    {
+      "name": "title",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "data",
+      "required": true,
+      "type": "ChartPoint[]"
+    },
+    {
+      "name": "kind",
+      "required": false,
+      "type": "\"line\" | \"bar\" | \"pie\" | undefined"
+    },
+    {
+      "name": "labels",
+      "required": false,
+      "type": "{ series: string; value: string; data: string; } | undefined"
+    }
+  ],
+  "Panel": [
+    {
+      "name": "title",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "footer",
+      "required": false,
+      "type": "ReactNode"
+    },
+    {
+      "name": "image",
+      "required": false,
+      "type": "{ src: string; alt: string; } | undefined"
+    }
+  ],
+  "Banner": [
+    {
+      "name": "title",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "children",
+      "required": false,
+      "type": "ReactNode"
+    },
+    {
+      "name": "severity",
+      "required": false,
+      "type": "Severity | undefined"
+    },
+    {
+      "name": "onDismiss",
+      "required": false,
+      "type": "(() => void) | undefined"
+    },
+    {
+      "name": "dismissLabel",
+      "required": false,
+      "type": "string | undefined"
+    }
+  ],
+  "Toast": [
+    {
+      "name": "title",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "children",
+      "required": false,
+      "type": "ReactNode"
+    },
+    {
+      "name": "severity",
+      "required": false,
+      "type": "Severity | undefined"
+    },
+    {
+      "name": "onDismiss",
+      "required": false,
+      "type": "(() => void) | undefined"
+    },
+    {
+      "name": "dismissLabel",
+      "required": false,
+      "type": "string | undefined"
+    }
+  ],
+  "SideNav": [
+    {
+      "name": "items",
+      "required": true,
+      "type": "NavItem[]"
+    },
+    {
+      "name": "label",
+      "required": false,
+      "type": "string | undefined"
+    }
+  ],
+  "PageTemplate": [
+    {
+      "name": "title",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "description",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "children",
+      "required": true,
+      "type": "ReactNode"
+    },
+    {
+      "name": "actions",
+      "required": false,
+      "type": "ReactNode"
+    }
+  ],
+  "AppShell": [
+    {
+      "name": "navigation",
+      "required": true,
+      "type": "NavItem[]"
+    },
+    {
+      "name": "children",
+      "required": true,
+      "type": "ReactNode"
+    },
+    {
+      "name": "title",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "footer",
+      "required": false,
+      "type": "ReactNode"
+    }
+  ],
+  "LoginTemplate": [
+    {
+      "name": "onSubmit",
+      "required": true,
+      "type": "(credentials: { email: string; password: string; }) => Promise<void>"
+    },
+    {
+      "name": "title",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "error",
+      "required": false,
+      "type": "string | undefined"
+    }
+  ],
+  "DashboardTemplate": [
+    {
+      "name": "title",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "metrics",
+      "required": true,
+      "type": "{ label: string; value: string; }[]"
+    },
+    {
+      "name": "data",
+      "required": true,
+      "type": "ChartPoint[]"
+    }
+  ],
+  "MasterDetailTemplate": [
+    {
+      "name": "title",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "list",
+      "required": true,
+      "type": "ReactNode"
+    },
+    {
+      "name": "detail",
+      "required": true,
+      "type": "ReactNode"
+    }
+  ],
+  "EmptyState": [
+    {
+      "name": "title",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "description",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "action",
+      "required": false,
+      "type": "ReactNode"
+    }
+  ],
+  "ErrorTemplate": [
+    {
+      "name": "code",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "title",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "description",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "homeHref",
+      "required": false,
+      "type": "string | undefined"
+    }
+  ],
+  "SettingsTemplate": [
+    {
+      "name": "title",
+      "required": false,
+      "type": "string | undefined"
+    },
+    {
+      "name": "children",
+      "required": true,
+      "type": "ReactNode"
+    }
+  ],
+  "DataTemplate": [
+    {
+      "name": "rows",
+      "required": true,
+      "type": "{ id: string; name: string; status: string; }[]"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "task-09",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/task-09.json",
+    "sha256": "818aa49a8965da7b7238fb44cc967ad0f0396b9c50e90682420a128669b1e353"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "select",
+          "locator": {
+            "label": "Tema"
+          },
+          "value": "dark"
+        },
+        {
+          "op": "expect-root-attribute",
+          "name": "data-in-theme",
+          "value": "dark"
+        },
+        {
+          "op": "select",
+          "locator": {
+            "label": "Densidade"
+          },
+          "value": "focus"
+        },
+        {
+          "op": "expect-root-attribute",
+          "name": "data-in-density",
+          "value": "focus"
+        },
+        {
+          "op": "reload"
+        },
+        {
+          "op": "expect-root-attribute",
+          "name": "data-in-theme",
+          "value": "dark"
+        },
+        {
+          "op": "expect-root-attribute",
+          "name": "data-in-density",
+          "value": "focus"
+        },
+        {
+          "op": "expect-visible",
+          "locator": {
+            "text": "Documento de teste"
+          }
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

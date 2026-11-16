@@ -1,0 +1,271 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://inteiro.dev/schemas/1.0/organization-policy.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "human-approval",
+            "technical-autonomous"
+          ]
+        }
+      }
+    },
+    "design": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "strictTokens": {
+          "type": "boolean"
+        },
+        "theme": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "dark",
+              "light",
+              "contrast-dark",
+              "contrast-light"
+            ]
+          }
+        },
+        "density": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "calm",
+              "focus"
+            ]
+          }
+        }
+      }
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "requireProof": {
+          "type": "boolean"
+        },
+        "maxTokens": {
+          "type": "number"
+        }
+      }
+    },
+    "composition": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "allowed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "static": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "adoption": {
+          "type": "string"
+        },
+        "include": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "exclude": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "forbiddenImports": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "forbiddenTokens": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "browser": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "allowedOrigins": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "requiredFonts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "fontAssets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "path",
+              "sha256"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            }
+          }
+        },
+        "criticalRoutes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "viewports": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "width": {
+                "type": "number"
+              },
+              "height": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "id",
+              "width",
+              "height"
+            ]
+          }
+        },
+        "timeoutMs": {
+          "type": "number"
+        }
+      }
+    },
+    "visual": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "maxDiffPixelRatio": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "colorThreshold": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "fullPage": {
+          "type": "boolean"
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "requiredFor": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "new-page",
+              "change-page",
+              "component",
+              "fix",
+              "refactor",
+              "new-pattern",
+              "significant-layout-change",
+              "identity-change"
+            ]
+          }
+        },
+        "allowExternalProvider": {
+          "type": "boolean"
+        }
+      }
+    },
+    "repair": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "maxAttempts": {
+          "type": "number"
+        },
+        "maxChangedFiles": {
+          "type": "number"
+        },
+        "maxDiffLines": {
+          "type": "number"
+        }
+      }
+    },
+    "reporting": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "formats": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "json",
+              "html",
+              "sarif",
+              "junit"
+            ]
+          }
+        },
+        "retentionDays": {
+          "type": "number"
+        },
+        "baselineRetentionDays": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}

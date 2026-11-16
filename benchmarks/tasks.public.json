@@ -1,0 +1,885 @@
+{
+  "schemaVersion": "1.0",
+  "protocol": {
+    "samples": 3,
+    "maxRepairAttempts": 2,
+    "ablations": [
+      "unassisted",
+      "context",
+      "composition-lint",
+      "visual-repair"
+    ]
+  },
+  "tasks": [
+    {
+      "id": "task-01",
+      "difficulty": "simple",
+      "requirement": "Cadastro com validação",
+      "initialImplementation": "benchmarks/workers/task-01/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-01/src/index.html",
+        "benchmarks/workers/task-01/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-01/TASK.md",
+      "functionalRequirement": "Cadastre uma pessoa com nome e e-mail. Nome e e-mail são obrigatórios; um e-mail inválido impede envio e recebe foco. Envie JSON {name,email} para POST /api/users somente após validação. Confirme ‘Cadastro criado’ em uma região de status após HTTP 201. Não faça envios duplicados.",
+      "fixtures": [
+        "benchmarks/fixtures/task-01.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-01.json",
+        "sha256": "58fe3d3ad5e6eb6a1fb3d448e069996939a25c95ccd7769bdabc340c1eabe0b8"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-01/manifest.json",
+        "sha256": "36db4fb96dac0faf61a3d18666329808c93affe75cca838f86acdad12d2a93a2"
+      }
+    },
+    {
+      "id": "task-02",
+      "difficulty": "simple",
+      "requirement": "Lista com paginação",
+      "initialImplementation": "benchmarks/workers/task-02/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-02/src/index.html",
+        "benchmarks/workers/task-02/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-02/TASK.md",
+      "functionalRequirement": "Carregue GET /api/people?page=N. Mostre a lista ‘Pessoas’, os nomes retornados e ‘Página N de 3’. Próxima página e Página anterior preservam a ordem dos registros. Desabilite anterior na primeira e próxima na última página. Use as páginas do fixture, sem duplicar ou perder pessoas.",
+      "fixtures": [
+        "benchmarks/fixtures/task-02.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-02.json",
+        "sha256": "4279078dfcdbe25edad40d83180c1298b1d6e530aa8889c7bd7dc0eb34e65d4e"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-02/manifest.json",
+        "sha256": "0ebb0ce5daf85109f91b2317de8d1b5078f1b6f02ee057a875d9942e6f7abe03"
+      }
+    },
+    {
+      "id": "task-03",
+      "difficulty": "simple",
+      "requirement": "Dashboard operacional",
+      "initialImplementation": "benchmarks/workers/task-03/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-03/src/index.html",
+        "benchmarks/workers/task-03/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-03/TASK.md",
+      "functionalRequirement": "Carregue GET /api/dashboard e mostre os valores total, active e overdue nos elementos data-testid kpi-total, kpi-active e kpi-overdue. Atualizar dados refaz a consulta e substitui todos os valores, sem acumulá-los. O layout deve caber em 375 e 1440 CSS px.",
+      "fixtures": [
+        "benchmarks/fixtures/task-03.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-03.json",
+        "sha256": "e4d82f38b4b1feab30a95adcf839f38bcd655d442adee2a6a998b8dda14dc52c"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-03/manifest.json",
+        "sha256": "809cb60a9cf8ac6464ff81dd5fe4fe860dee2d4e8558bd2849e46f1f384698b6"
+      }
+    },
+    {
+      "id": "task-04",
+      "difficulty": "simple",
+      "requirement": "App shell responsivo",
+      "initialImplementation": "benchmarks/workers/task-04/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-04/src/index.html",
+        "benchmarks/workers/task-04/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-04/TASK.md",
+      "functionalRequirement": "Em mobile, Abrir navegação abre a navegação ‘Navegação principal’ e atualiza aria-expanded. Escape fecha, devolve foco ao acionador e atualiza aria-expanded=false. Em desktop a navegação está disponível sem abrir overlay. Navegue por Início e Pessoas por links acessíveis; não provoque overflow.",
+      "fixtures": [
+        "benchmarks/fixtures/task-04.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-04.json",
+        "sha256": "12b410e8b129e502556c60028b93b6a4c39046164f27330b463b0d669fc10a52"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-04/manifest.json",
+        "sha256": "8e7945d98067152494dc1eac9d3dacb8d2b68332b6eaccb2537469ea258a26b6"
+      }
+    },
+    {
+      "id": "task-05",
+      "difficulty": "simple",
+      "requirement": "CRUD com confirmação",
+      "initialImplementation": "benchmarks/workers/task-05/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-05/src/index.html",
+        "benchmarks/workers/task-05/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-05/TASK.md",
+      "functionalRequirement": "Implemente CRUD via GET /api/items, POST /api/items {name}, PUT /api/items/1 {name} e DELETE /api/items/1. Adicionar item e Salvar alterações atualizam a lista. Ações de linha têm nomes ‘Editar <nome>’ e ‘Excluir <nome>’. Excluir abre diálogo ‘Excluir item’; Cancelar preserva o item e não envia DELETE. Excluir item confirma a operação. Sem itens, mostre ‘Nenhum item’.",
+      "fixtures": [
+        "benchmarks/fixtures/task-05.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-05.json",
+        "sha256": "4144dc4e1e855da3469fd5c0fb90ef4defe6a426e7e5cf70bfc7c616ab33acd7"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-05/manifest.json",
+        "sha256": "df0f810958aab29e34526753cb3673dd126fbbac7608c8261bdbba547cf56c00"
+      }
+    },
+    {
+      "id": "task-06",
+      "difficulty": "simple",
+      "requirement": "Estados loading empty error",
+      "initialImplementation": "benchmarks/workers/task-06/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-06/src/index.html",
+        "benchmarks/workers/task-06/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-06/TASK.md",
+      "functionalRequirement": "Carregue GET /api/items. Enquanto a resposta está pendente, anuncie ‘Carregando’. Em falha, exponha ‘Não foi possível carregar’ em alert e Tentar novamente. Uma resposta vazia mostra ‘Nenhum item’ e Atualizar. Depois de retry/atualização bem-sucedidos, mostre os itens recebidos, sem polling automático ou acumular estados antigos.",
+      "fixtures": [
+        "benchmarks/fixtures/task-06.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-06.json",
+        "sha256": "3062d39d3191eae2612d4d46eea2f3c695ebf6063906b290fcacf626f9648dd9"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-06/manifest.json",
+        "sha256": "7c34ef129b4c86bc7c5d2375a14a07b43dc92fe5d9ffc2a9c16c815cb599240c"
+      }
+    },
+    {
+      "id": "task-07",
+      "difficulty": "simple",
+      "requirement": "Diálogo com retorno do foco",
+      "initialImplementation": "benchmarks/workers/task-07/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-07/src/index.html",
+        "benchmarks/workers/task-07/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-07/TASK.md",
+      "functionalRequirement": "Editar observação abre diálogo ‘Editar observação’. O campo Assunto recebe foco. Tab e Shift+Tab ficam no diálogo; Fechar é o último controle, antes de voltar ao primeiro. Escape fecha e restaura foco ao acionador. O conteúdo de fundo não pode receber foco enquanto o diálogo está aberto.",
+      "fixtures": [
+        "benchmarks/fixtures/task-07.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-07.json",
+        "sha256": "a67a6f7a03bffc3bb799498e7f253a994ad546c7664ee91231a6289fb501aa0b"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-07/manifest.json",
+        "sha256": "c6127cfcaa969264aa595602d42638cd7215dfc3158bff834d43bd75d27e56fa"
+      }
+    },
+    {
+      "id": "task-08",
+      "difficulty": "simple",
+      "requirement": "Drawer mobile",
+      "initialImplementation": "benchmarks/workers/task-08/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-08/src/index.html",
+        "benchmarks/workers/task-08/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-08/TASK.md",
+      "functionalRequirement": "Abrir detalhes abre drawer modal ‘Detalhes do item’ no mobile. Fechar detalhes recebe foco, Escape fecha e devolve foco ao acionador. O drawer cabe em 375 CSS px, mantém seu conteúdo legível e não permite interação com o fundo enquanto está aberto.",
+      "fixtures": [
+        "benchmarks/fixtures/task-08.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-08.json",
+        "sha256": "53b4435a8139a8f537eada98b44fce203cc587bb464b1acc0aed3dc34b903562"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-08/manifest.json",
+        "sha256": "1e6ef0bacf16e0f749d2fe5ebd68fc63085a63daabc2cdf168dfc06f0b46c85c"
+      }
+    },
+    {
+      "id": "task-09",
+      "difficulty": "simple",
+      "requirement": "Tema e densidade",
+      "initialImplementation": "benchmarks/workers/task-09/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-09/src/index.html",
+        "benchmarks/workers/task-09/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-09/TASK.md",
+      "functionalRequirement": "Tema seleciona dark, light, contrast-dark ou contrast-light em data-in-theme no elemento html. Densidade seleciona calm ou focus em data-in-density. Preserve ambas as escolhas após recarregar a página. Use as variáveis semânticas INTEIRO, sem trocar dados ou ações da tela.",
+      "fixtures": [
+        "benchmarks/fixtures/task-09.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-09.json",
+        "sha256": "167701f3c24aac874ce4f31b625566317496456a4be0e60a1230ce253df6ba43"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-09/manifest.json",
+        "sha256": "e6569d17ae7b55cd7323d4c54d2988e2b848e73ba6cf77f080e309189212baca"
+      }
+    },
+    {
+      "id": "task-10",
+      "difficulty": "simple",
+      "requirement": "RTL e conteúdo longo",
+      "initialImplementation": "benchmarks/workers/task-10/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-10/src/index.html",
+        "benchmarks/workers/task-10/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-10/TASK.md",
+      "functionalRequirement": "Carregue GET /api/content e apresente title e body completos. O fixture é RTL e contém uma palavra longa. A leitura, ordem e propriedades lógicas seguem rtl, o texto não é removido ou truncado e a página cabe em 320 CSS px sem overflow horizontal.",
+      "fixtures": [
+        "benchmarks/fixtures/task-10.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-10.json",
+        "sha256": "007a66a584fef958a9d14e3e98dd674375c6361a9b95fd24e720a268adbd754c"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-10/manifest.json",
+        "sha256": "a02d2aa0d051e40634229090d81a640287c38d5682eeac46a28f9b7c9c43a22f"
+      }
+    },
+    {
+      "id": "task-11",
+      "difficulty": "medium",
+      "requirement": "Refatorar formulário legado",
+      "initialImplementation": "benchmarks/workers/task-11/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-11/src/index.html",
+        "benchmarks/workers/task-11/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-11/TASK.md",
+      "functionalRequirement": "Refatore o cadastro legado preservando Nome e E-mail, validação nativa e envio único de JSON {name,email} para POST /api/legacy-profile. Nome é obrigatório. E-mail inválido impede envio e recebe foco. Após sucesso anuncie Perfil salvo sem perder os valores informados.",
+      "fixtures": [
+        "benchmarks/fixtures/task-11.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-11.json",
+        "sha256": "8a88e9081a0aa409c82cca1d67223891673462495218d8d35e1b3c06561ec786"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-11/manifest.json",
+        "sha256": "a41ac0925e34b2b9093d29e09934b7f420c7df13c6063445f38fb2c70d61aed8"
+      }
+    },
+    {
+      "id": "task-12",
+      "difficulty": "medium",
+      "requirement": "Corrigir drift de tokens",
+      "initialImplementation": "benchmarks/workers/task-12/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-12/src/index.html",
+        "benchmarks/workers/task-12/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-12/TASK.md",
+      "functionalRequirement": "Corrija o painel legado para usar o token --in-color-text-primary no texto e --in-color-background-surface no fundo de data-testid painel. Preserve Atualizar e a leitura de GET /api/token-summary. O valor total recebido aparece em status. A correção precisa acompanhar light e dark, sem cores literais.",
+      "fixtures": [
+        "benchmarks/fixtures/task-12.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-12.json",
+        "sha256": "d672b30f31f76c9d07663f75657611ce4f72bb9afba345d62467b9aa03ebb0f2"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-12/manifest.json",
+        "sha256": "7d5b215cac1b663103d1df4ae13636bbfef5a8a83f45c138c6158fe191790745"
+      }
+    },
+    {
+      "id": "task-13",
+      "difficulty": "medium",
+      "requirement": "Navegação por teclado",
+      "initialImplementation": "benchmarks/workers/task-13/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-13/src/index.html",
+        "benchmarks/workers/task-13/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-13/TASK.md",
+      "functionalRequirement": "Implemente abas Visão geral e Histórico por teclado. A primeira começa selecionada. ArrowRight/ArrowLeft alternam foco e seleção com wrap; Home vai à primeira e End à última. Somente a aba ativa tem tabindex=0 e aria-selected=true. Exiba o tabpanel correspondente e esconda o outro.",
+      "fixtures": [
+        "benchmarks/fixtures/task-13.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-13.json",
+        "sha256": "37ce1ddd041bcbc553f797e16f96559c5f5309401dfcf01b9c3efd7335450fd1"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-13/manifest.json",
+        "sha256": "b492bfd3afa1bd0a8879aa9eee5ec30a68bb4609d9a2c45f11a56be4428fe468"
+      }
+    },
+    {
+      "id": "task-14",
+      "difficulty": "medium",
+      "requirement": "Filtro de tabela",
+      "initialImplementation": "benchmarks/workers/task-14/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-14/src/index.html",
+        "benchmarks/workers/task-14/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-14/TASK.md",
+      "functionalRequirement": "Carregue GET /api/records e filtre localmente pelo campo Buscar, ignorando caixa. Mostre nomes na lista Registros e contagem em status. Filtrar por mar retorna Mara e Marcos, uma busca sem resultado anuncia Nenhum resultado, Limpar remove o filtro e restaura a lista original sem nova requisição.",
+      "fixtures": [
+        "benchmarks/fixtures/task-14.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-14.json",
+        "sha256": "7317ba8778dbefef70ea7bfba57156460f19a1fdc96c0f2ac2e27864673f64c4"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-14/manifest.json",
+        "sha256": "cd90f6f127c4a62ab07917a0ddce8e17013dc477bf9b6b8dff1bb924b91fc3eb"
+      }
+    },
+    {
+      "id": "task-15",
+      "difficulty": "medium",
+      "requirement": "Alertas de validação",
+      "initialImplementation": "benchmarks/workers/task-15/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-15/src/index.html",
+        "benchmarks/workers/task-15/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-15/TASK.md",
+      "functionalRequirement": "Valide o campo Código antes de enviar. Valor vazio ou com menos de seis caracteres mostra Informe seis caracteres em alert, aria-invalid=true e aria-describedby=code-error, e recebe foco. Não envie entradas inválidas. Um código válido envia POST /api/code {code}, limpa erro/aria-invalid e anuncia Código salvo.",
+      "fixtures": [
+        "benchmarks/fixtures/task-15.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-15.json",
+        "sha256": "78c156a351a12ed5c5120dc003289f160819b444f99aa0f85e0897d1b9046386"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-15/manifest.json",
+        "sha256": "6d4d483282ce566f0b8425a4f8651d6aef56e044f47e13625266b4738359b091"
+      }
+    },
+    {
+      "id": "task-16",
+      "difficulty": "medium",
+      "requirement": "Upload com progresso",
+      "initialImplementation": "benchmarks/workers/task-16/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-16/src/index.html",
+        "benchmarks/workers/task-16/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-16/TASK.md",
+      "functionalRequirement": "Selecione um arquivo de texto em Arquivo e envie com Enviar arquivo. Envie POST /api/upload em JSON {name,content} usando nome e conteúdo do arquivo real escolhido. Enquanto a resposta estiver pendente, mostre progressbar Progresso do envio com aria-valuenow=0 e botão desabilitado. Após sucesso, atualize para 100, habilite o botão e anuncie Envio concluído. Sem arquivo não envie.",
+      "fixtures": [
+        "benchmarks/fixtures/task-16.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-16.json",
+        "sha256": "0dd95d721dedccffc1397506831c3d3f239ffcf454deb07657fbead21783362c"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-16/manifest.json",
+        "sha256": "bbf40c056913e83d6f41cecfeba610a0593d58aa4a0a4c4246f470dd804bbfdd"
+      }
+    },
+    {
+      "id": "task-17",
+      "difficulty": "medium",
+      "requirement": "Perfil com fallback",
+      "initialImplementation": "benchmarks/workers/task-17/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-17/src/index.html",
+        "benchmarks/workers/task-17/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-17/TASK.md",
+      "functionalRequirement": "Carregue GET /api/profile. Exiba nome e e-mail retornados e use iniciais do nome no elemento data-testid avatar quando avatarUrl estiver ausente. Não solicite imagem inexistente. Recarregar perfil consulta novamente, atualiza nome/e-mail e recalcula iniciais, sem preservar dados anteriores.",
+      "fixtures": [
+        "benchmarks/fixtures/task-17.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-17.json",
+        "sha256": "86e9e07eb1e90a974955978abd0a1e056b1cd9508540fddb84792f60754fc2fa"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-17/manifest.json",
+        "sha256": "8d2fca48d3ca8e8ef4c8dce9974ef71951ee66665a808703511aad394bc56e0a"
+      }
+    },
+    {
+      "id": "task-18",
+      "difficulty": "medium",
+      "requirement": "Fluxo em etapas",
+      "initialImplementation": "benchmarks/workers/task-18/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-18/src/index.html",
+        "benchmarks/workers/task-18/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-18/TASK.md",
+      "functionalRequirement": "Implemente duas etapas de pedido. Na primeira, Nome é obrigatório e Continuar impede avanço vazio, focando Nome. A segunda mostra revisão do nome e botões Voltar/Confirmar pedido. Voltar preserva o nome; mudar o nome atualiza a revisão. Somente Confirmar pedido envia POST /api/order {name} e anuncia Pedido confirmado.",
+      "fixtures": [
+        "benchmarks/fixtures/task-18.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-18.json",
+        "sha256": "1993f68bf1df357cb7ca7e5b69d2027dc9eddc47469148b56781131ad47af2c6"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-18/manifest.json",
+        "sha256": "62624f5dd09356b5b9b037183d3247b52e63ac2365d06d5eed2dae2dab9eea03"
+      }
+    },
+    {
+      "id": "task-19",
+      "difficulty": "medium",
+      "requirement": "Popover de ajuda",
+      "initialImplementation": "benchmarks/workers/task-19/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-19/src/index.html",
+        "benchmarks/workers/task-19/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-19/TASK.md",
+      "functionalRequirement": "Ajuda sobre prazo abre um popover não modal identificado como region de ajuda pelo data-testid help-panel. Atualize aria-expanded/aria-controls no acionador. O popover contém Prazo em dias úteis e link Política de prazos. Escape no link fecha e devolve foco ao acionador. Reabrir e clicar novamente no acionador também fecha.",
+      "fixtures": [
+        "benchmarks/fixtures/task-19.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-19.json",
+        "sha256": "ab6a6c3c3a3ef6f20a8910398b79c9a7cd05a1a277385e4d54aedbdde4d048fc"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-19/manifest.json",
+        "sha256": "839950c66617dd5c506f0e5eea511bcd54d7b47e3fde922231856f31db199156"
+      }
+    },
+    {
+      "id": "task-20",
+      "difficulty": "medium",
+      "requirement": "Menu de ações",
+      "initialImplementation": "benchmarks/workers/task-20/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-20/src/index.html",
+        "benchmarks/workers/task-20/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-20/TASK.md",
+      "functionalRequirement": "Ações abre menu Ações do registro e foca Editar. ArrowDown/ArrowUp circulam entre Editar e Arquivar; Home/End vão aos extremos. Escape fecha e devolve foco. Enter em Arquivar executa POST /api/archive {id:\"item-1\"} uma vez, fecha o menu e anuncia Registro arquivado. Atualize aria-expanded no acionador.",
+      "fixtures": [
+        "benchmarks/fixtures/task-20.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-20.json",
+        "sha256": "6a4887358cd33d814c381162abf03c9c278b7e82a30f2736250e06aabf5d1fba"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-20/manifest.json",
+        "sha256": "f493b479f0050b27415d31d66548f0525c035b5e5bfcff26e75647787b7eb09f"
+      }
+    },
+    {
+      "id": "task-21",
+      "difficulty": "complex",
+      "requirement": "Dashboard com dados extensos",
+      "initialImplementation": "benchmarks/workers/task-21/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-21/src/index.html",
+        "benchmarks/workers/task-21/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-21/TASK.md",
+      "functionalRequirement": "Carregue GET /api/metrics. Mostre todos os registros na lista Relatórios, total no elemento total e quantidade no elemento quantidade. Buscar filtra localmente o nome exato informado, sem nova consulta. Limpar restaura todos os registros e os totais originais. Preserve os nomes completos e evite overflow.",
+      "fixtures": [
+        "benchmarks/fixtures/task-21.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-21.json",
+        "sha256": "9cea9ab2ad0865143ff94c94618565c52cbfdd945ecb105ea1732ac0a9e045dd"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-21/manifest.json",
+        "sha256": "4b7de17363582253702043d0e4db176acee7a7b2c0da789f53dfb154cf1a431f"
+      }
+    },
+    {
+      "id": "task-22",
+      "difficulty": "complex",
+      "requirement": "Formulário multietapas com revisão",
+      "initialImplementation": "benchmarks/workers/task-22/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-22/src/index.html",
+        "benchmarks/workers/task-22/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-22/TASK.md",
+      "functionalRequirement": "Implemente cadastro em três etapas: Nome obrigatório; Endereço obrigatório; revisão final. Continuar valida e foca o campo vazio. Voltar preserva os valores e permite editar Nome antes da revisão. A revisão deve refletir os valores atuais. Somente Confirmar cadastro envia POST /api/enrollment {name,address} uma vez e anuncia Cadastro confirmado.",
+      "fixtures": [
+        "benchmarks/fixtures/task-22.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-22.json",
+        "sha256": "318360a18e49e832cc4f6affd71e08f3d30133da0cd4e00c55f18bd15a521eed"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-22/manifest.json",
+        "sha256": "cb38fc62be1fc660f670de8bbcca6dea39088839838866fdc3d3b2f22080e90e"
+      }
+    },
+    {
+      "id": "task-23",
+      "difficulty": "complex",
+      "requirement": "Tabela com seleção e ordenação",
+      "initialImplementation": "benchmarks/workers/task-23/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-23/src/index.html",
+        "benchmarks/workers/task-23/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-23/TASK.md",
+      "functionalRequirement": "Carregue GET /api/selection e ordene a lista Registros por nome. Ordenar inverte ascendente/descendente sem perder seleção. Cada registro contém checkbox com nome Selecionar seguido do nome completo. Selecionar um registro atualiza contagem Selecionados N. Limpar seleção zera a seleção e desmarca os checkboxes. Não refaça a consulta para ordenar.",
+      "fixtures": [
+        "benchmarks/fixtures/task-23.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-23.json",
+        "sha256": "3b767a1a41ec423fc5cc08923d5b3a36924302a29f63b445427e09c2704e8747"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-23/manifest.json",
+        "sha256": "495033467a921f33b5a7d0a1d61d1fc97143bb342260b3d9cebdc73942e62245"
+      }
+    },
+    {
+      "id": "task-24",
+      "difficulty": "complex",
+      "requirement": "Migração de identidade",
+      "initialImplementation": "benchmarks/workers/task-24/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-24/src/index.html",
+        "benchmarks/workers/task-24/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-24/TASK.md",
+      "functionalRequirement": "Migre a identidade legada do painel data-testid identity para Recursive via --in-font-family-sans, texto --in-color-text-primary e fundo --in-color-background-surface. Preserve o fluxo Buscar perfil: GET /api/identity e exibição integral do nome no status. O resultado acompanha tema claro e escuro sem cores ou fontes literais.",
+      "fixtures": [
+        "benchmarks/fixtures/task-24.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-24.json",
+        "sha256": "3868b7839577f17796719cb26aff2b7b42b3de6890950e6ebadaef4ae939e675"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-24/manifest.json",
+        "sha256": "72c25b3103f73c642523fcda0ff32f3c1e2590c11c785f55ff96cd0bb3d61bf5"
+      }
+    },
+    {
+      "id": "task-25",
+      "difficulty": "complex",
+      "requirement": "Regressão de overflow",
+      "initialImplementation": "benchmarks/workers/task-25/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-25/src/index.html",
+        "benchmarks/workers/task-25/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-25/TASK.md",
+      "functionalRequirement": "Corrija overflow no artigo data-testid content. Carregue GET /api/long-content e preserve title, body e identificador longo sem truncar, esconder ou remover conteúdo. Copiar identificador coloca o identificador integral no campo Identificador copiado. A página precisa caber no viewport, incluindo palavras sem espaços e conteúdo RTL.",
+      "fixtures": [
+        "benchmarks/fixtures/task-25.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-25.json",
+        "sha256": "4aefdab4cff2683ab5194cd937008c296d7c51d927c3287940607b96d1d65fe3"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-25/manifest.json",
+        "sha256": "ebc3f8540561fa60ed22111c81dc39722cf3dc2b90bf51d437ebb6df7ecb3ea2"
+      }
+    },
+    {
+      "id": "task-26",
+      "difficulty": "complex",
+      "requirement": "Modal com conteúdo longo",
+      "initialImplementation": "benchmarks/workers/task-26/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-26/src/index.html",
+        "benchmarks/workers/task-26/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-26/TASK.md",
+      "functionalRequirement": "Ler documento abre diálogo modal Documento completo, carrega GET /api/document e mostra o texto integral em data-testid document-body. Fechar documento recebe foco. O conteúdo longo rola dentro do diálogo e o botão Aceitar documento ao final deve ser alcançável. Aceitar fecha, devolve foco e anuncia Documento aceito. Escape também fecha e restaura foco; o fundo fica indisponível.",
+      "fixtures": [
+        "benchmarks/fixtures/task-26.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-26.json",
+        "sha256": "f5218f717ba8cd74b73e2d44ad39fcecdbf9bd1718a81f8979ae0344e0ebc0b5"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-26/manifest.json",
+        "sha256": "d43d05c6c72a85e96849015cf9b8c306e2386c4c7901b3b958bf1fb5c4e0839d"
+      }
+    },
+    {
+      "id": "task-27",
+      "difficulty": "complex",
+      "requirement": "Layout a 200% zoom",
+      "initialImplementation": "benchmarks/workers/task-27/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-27/src/index.html",
+        "benchmarks/workers/task-27/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-27/TASK.md",
+      "functionalRequirement": "Faça o formulário funcionar em zoom nativo do navegador de 100% e 200%, com reflow sem overflow e sem remover campos. Nome e E-mail continuam acessíveis; Enviar dados envia POST /api/zoom-form {name,email} e anuncia Dados enviados. Não use CSS zoom, transform ou redução de fonte para simular o zoom do navegador.",
+      "fixtures": [
+        "benchmarks/fixtures/task-27.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-27.json",
+        "sha256": "d49e3a898810352d29ed69eadc65b48787ea0d075bb96a5e64667cb7553bda64"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-27/manifest.json",
+        "sha256": "dc9bbf4ca3a15051e3c08f2c70485a49c6e943750a4e8b41df58091691502369"
+      }
+    },
+    {
+      "id": "task-28",
+      "difficulty": "complex",
+      "requirement": "Integração entre rotas",
+      "initialImplementation": "benchmarks/workers/task-28/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-28/src/index.html",
+        "benchmarks/workers/task-28/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-28/TASK.md",
+      "functionalRequirement": "Integre rotas reais /src/index.html?view=people e /src/index.html?view=projects por links Pessoas e Projetos. Cada rota mostra o heading correspondente e seus dados de GET /api/route-people ou /api/route-projects. O campo Nota persistente preserva o texto entre navegação e retorno pelo histórico. Não mostre dados da rota anterior.",
+      "fixtures": [
+        "benchmarks/fixtures/task-28.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-28.json",
+        "sha256": "863b6e63614305d7fb49d90ab88870274e265908b4225efe5240497527c21030"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-28/manifest.json",
+        "sha256": "ba9927638fa5fd96023f8518156efa5e43723719b50e386cc772f2092e8639a9"
+      }
+    },
+    {
+      "id": "task-29",
+      "difficulty": "complex",
+      "requirement": "Recuperação de erro de rede",
+      "initialImplementation": "benchmarks/workers/task-29/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-29/src/index.html",
+        "benchmarks/workers/task-29/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-29/TASK.md",
+      "functionalRequirement": "Recupere uma falha real de conexão em GET /api/recovery. A falha mostra Não foi possível conectar em alert e Tentar novamente. Retry carrega a lista Documentos com os nomes recebidos, esconde erro, anuncia Conexão restaurada e não duplica dados ou consulta em loop.",
+      "fixtures": [
+        "benchmarks/fixtures/task-29.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-29.json",
+        "sha256": "a9fa249f466725f034cfc1d52b9107f7b959cc5fc8af342e04781113938cea15"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-29/manifest.json",
+        "sha256": "39e9507eb4e926acef9bab3687aa1f2dbbce6132c62566d7781b9ce4c5296f07"
+      }
+    },
+    {
+      "id": "task-30",
+      "difficulty": "complex",
+      "requirement": "Publicação com ação commit",
+      "initialImplementation": "benchmarks/workers/task-30/src/index.html",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "maxRepairAttempts": 2,
+      "initialFiles": [
+        "benchmarks/workers/task-30/src/index.html",
+        "benchmarks/workers/task-30/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/task-30/TASK.md",
+      "functionalRequirement": "Carregue GET /api/draft, preserve revision e permita editar Título. Visualizar mostra a prévia em data-testid preview-title e não publica. Publicar conteúdo, com data-variant=commit, abre diálogo Publicar versão. Cancelar fecha sem POST. Confirmar publicação envia POST /api/publish {title,revision}; enquanto aguarda desabilita confirmação; depois fecha e anuncia Publicação concluída. Não publique duas vezes.",
+      "fixtures": [
+        "benchmarks/fixtures/task-30.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/task-30.json",
+        "sha256": "b1c8b7fda6f6dab277ea83f30d5f747af89fe41f03ff0b52830e7be4dd1bc745"
+      },
+      "validation": {
+        "path": "benchmarks/validation/task-30/manifest.json",
+        "sha256": "b2012f1ebc05ae4a9129fa4df3b92bbb510d9914878bc0993a90bae7a7ebf000"
+      }
+    }
+  ]
+}

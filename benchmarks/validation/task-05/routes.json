@@ -1,0 +1,153 @@
+{
+  "schemaVersion": "1.0",
+  "routes": [
+    {
+      "id": "task-05",
+      "path": "/src/index.html",
+      "criticality": "high",
+      "fixture": "task-05",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "light-calm",
+        "light-focus",
+        "dark-calm",
+        "dark-focus",
+        "contrast-light-calm",
+        "contrast-light-focus",
+        "contrast-dark-calm",
+        "contrast-dark-focus"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "primary-flow",
+          "actions": [
+            {
+              "type": "waitForResponseAlias",
+              "alias": "items-0"
+            },
+            {
+              "type": "fill",
+              "target": {
+                "role": "textbox",
+                "name": "Nome do item"
+              },
+              "value": "Caderno"
+            },
+            {
+              "type": "click",
+              "target": {
+                "role": "button",
+                "name": "Adicionar item"
+              }
+            },
+            {
+              "type": "waitForResponseAlias",
+              "alias": "create-0"
+            },
+            {
+              "type": "click",
+              "target": {
+                "role": "button",
+                "name": "Editar Caderno"
+              }
+            },
+            {
+              "type": "fill",
+              "target": {
+                "role": "textbox",
+                "name": "Nome do item"
+              },
+              "value": "Caderno revisado"
+            },
+            {
+              "type": "click",
+              "target": {
+                "role": "button",
+                "name": "Salvar alterações"
+              }
+            },
+            {
+              "type": "waitForResponseAlias",
+              "alias": "update-0"
+            },
+            {
+              "type": "click",
+              "target": {
+                "role": "button",
+                "name": "Excluir Caderno revisado"
+              }
+            },
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "dialog",
+                "name": "Excluir item"
+              }
+            },
+            {
+              "type": "screenshot",
+              "stateId": "modal"
+            },
+            {
+              "type": "click",
+              "target": {
+                "role": "button",
+                "name": "Cancelar"
+              }
+            },
+            {
+              "type": "click",
+              "target": {
+                "role": "button",
+                "name": "Excluir Caderno revisado"
+              }
+            },
+            {
+              "type": "click",
+              "target": {
+                "role": "button",
+                "name": "Excluir item"
+              }
+            },
+            {
+              "type": "waitForResponseAlias",
+              "alias": "delete-0"
+            },
+            {
+              "type": "expectText",
+              "target": {
+                "role": "main"
+              },
+              "value": "Nenhum item"
+            }
+          ]
+        }
+      ],
+      "not_applicable": {
+        "loading": "Task family 5 does not expose loading in its published functional/fixture contract. Declared API statuses: 200, 201. General component state robustness is covered by the composition matrix.",
+        "empty": "Task family 5 does not expose empty in its published functional/fixture contract. Declared API statuses: 200, 201. General component state robustness is covered by the composition matrix.",
+        "error": "Task family 5 does not expose error in its published functional/fixture contract. Declared API statuses: 200, 201. General component state robustness is covered by the composition matrix.",
+        "disabled": "Task family 5 does not expose disabled in its published functional/fixture contract. Declared API statuses: 200, 201. General component state robustness is covered by the composition matrix.",
+        "invalid": "Task family 5 does not expose invalid in its published functional/fixture contract. Declared API statuses: 200, 201. General component state robustness is covered by the composition matrix.",
+        "selected": "Task family 5 does not expose selected in its published functional/fixture contract. Declared API statuses: 200, 201. General component state robustness is covered by the composition matrix.",
+        "readonly": "Task family 5 does not expose readonly in its published functional/fixture contract. Declared API statuses: 200, 201. General component state robustness is covered by the composition matrix.",
+        "long-content": "Task family 5 does not expose long-content in its published functional/fixture contract. Declared API statuses: 200, 201. General component state robustness is covered by the composition matrix."
+      }
+    }
+  ]
+}

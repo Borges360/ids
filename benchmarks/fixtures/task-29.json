@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0",
+  "classification": "synthetic",
+  "clock": "2026-02-01T12:00:00.000Z",
+  "seed": 308,
+  "routes": [
+    {
+      "id": "recovery",
+      "path": "/api/recovery",
+      "method": "GET",
+      "responses": [
+        {
+          "status": 503,
+          "json": null,
+          "abort": "connectionreset"
+        },
+        {
+          "status": 200,
+          "json": {
+            "items": [
+              "Registro especial",
+              "Documento revisado"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

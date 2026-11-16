@@ -1,0 +1,1 @@
+button('Ordenar').onclick=()=>{document.querySelector('ul').replaceChildren(...[...document.querySelector('ul').children].reverse());document.querySelectorAll('input').forEach(x=>{x.checked=false;x.setAttribute('aria-checked','false');});};

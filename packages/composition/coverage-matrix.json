@@ -1,0 +1,4392 @@
+{
+  "schemaVersion": "1.0",
+  "patterns": [
+    {
+      "patternId": "app-shell",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "hover": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "page-header",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": false,
+          "reason": "Default rendering has no enabled interactive controls; component semantics are tested without inventing a keyboard flow."
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. focus is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "hover": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. hover is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "content-container",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": false,
+          "reason": "Default rendering has no enabled interactive controls; component semantics are tested without inventing a keyboard flow."
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. focus is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "hover": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. hover is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "sidebar",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "hover": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "topbar",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "hover": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "mobile-navigation",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "hover": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "data-table",
+      "states": [
+        "default",
+        "loading",
+        "empty",
+        "error"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "hover": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "empty": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "error": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "data-list",
+      "states": [
+        "default",
+        "loading",
+        "empty",
+        "error"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": false,
+          "reason": "Default rendering has no enabled interactive controls; component semantics are tested without inventing a keyboard flow."
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. focus is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "hover": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. hover is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "empty": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "error": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "details-panel",
+      "states": [
+        "default",
+        "loading",
+        "empty",
+        "error"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": false,
+          "reason": "Default rendering has no enabled interactive controls; component semantics are tested without inventing a keyboard flow."
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. focus is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "hover": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. hover is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "empty": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "error": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "stat-card",
+      "states": [
+        "default",
+        "loading",
+        "empty",
+        "error"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": false,
+          "reason": "Default rendering has no enabled interactive controls; component semantics are tested without inventing a keyboard flow."
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. focus is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "hover": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. hover is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "empty": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "error": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "dashboard-grid",
+      "states": [
+        "default",
+        "loading",
+        "empty",
+        "error"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": false,
+          "reason": "Default rendering has no enabled interactive controls; component semantics are tested without inventing a keyboard flow."
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. focus is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "hover": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. hover is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "empty": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "error": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, loading, empty, error. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "filter-bar",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "hover": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "form-layout",
+      "states": [
+        "default",
+        "disabled",
+        "invalid",
+        "readonly"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "hover": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "readonly": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "field-group",
+      "states": [
+        "default",
+        "disabled",
+        "invalid",
+        "readonly"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "hover": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "readonly": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "select",
+      "states": [
+        "default",
+        "disabled",
+        "invalid",
+        "readonly"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "hover": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "readonly": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "checkbox",
+      "states": [
+        "default",
+        "disabled",
+        "invalid",
+        "readonly"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "hover": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "readonly": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "radio-group",
+      "states": [
+        "default",
+        "disabled",
+        "invalid",
+        "readonly"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "hover": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "readonly": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "textarea",
+      "states": [
+        "default",
+        "disabled",
+        "invalid",
+        "readonly"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "hover": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "readonly": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, disabled, invalid, readonly. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "form-actions",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "hover": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "stepper",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": false,
+          "reason": "Default rendering has no enabled interactive controls; component semantics are tested without inventing a keyboard flow."
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. focus is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "hover": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. hover is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "dialog",
+      "states": [
+        "default",
+        "open",
+        "closed"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "hover": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "closed": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "drawer",
+      "states": [
+        "default",
+        "open",
+        "closed"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "hover": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "closed": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "popover",
+      "states": [
+        "default",
+        "open",
+        "closed"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "hover": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "closed": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "dropdown-menu",
+      "states": [
+        "default",
+        "open",
+        "closed"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "hover": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default, open, closed. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "closed": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "tooltip",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "hover": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "alert",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": false,
+          "reason": "Default rendering has no enabled interactive controls; component semantics are tested without inventing a keyboard flow."
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. focus is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "hover": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. hover is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "toast",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": false,
+          "reason": "Default rendering has no enabled interactive controls; component semantics are tested without inventing a keyboard flow."
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. focus is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "hover": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. hover is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "inline-error",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "hover": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "success",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": false,
+          "reason": "Default rendering has no enabled interactive controls; component semantics are tested without inventing a keyboard flow."
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. focus is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "hover": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. hover is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "empty-state",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "hover": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "skeleton",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": false,
+          "reason": "Default rendering has no enabled interactive controls; component semantics are tested without inventing a keyboard flow."
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. focus is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "hover": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. hover is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "spinner",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": false,
+          "reason": "Default rendering has no enabled interactive controls; component semantics are tested without inventing a keyboard flow."
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. focus is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "hover": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. hover is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "progress",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": false,
+          "reason": "Default rendering has no enabled interactive controls; component semantics are tested without inventing a keyboard flow."
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. focus is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "hover": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. hover is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "tabs",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "hover": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "breadcrumb",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "hover": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "pagination",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "hover": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "navigation-menu",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "hover": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "editorial",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": false,
+          "reason": "Default rendering has no enabled interactive controls; component semantics are tested without inventing a keyboard flow."
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. focus is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "hover": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. hover is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "profile",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": false,
+          "reason": "Default rendering has no enabled interactive controls; component semantics are tested without inventing a keyboard flow."
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. focus is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "hover": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. hover is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "costura",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": false,
+          "reason": "Default rendering has no enabled interactive controls; component semantics are tested without inventing a keyboard flow."
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. focus is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "hover": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. hover is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    },
+    {
+      "patternId": "action-commit",
+      "states": [
+        "default"
+      ],
+      "dimensions": {
+        "themes": [
+          "dark",
+          "light",
+          "contrast-dark",
+          "contrast-light"
+        ],
+        "densities": [
+          "calm",
+          "focus"
+        ],
+        "viewports": [
+          320,
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "content": [
+          "default",
+          "empty-optional-strings",
+          "long-translated"
+        ],
+        "direction": [
+          "ltr",
+          "rtl"
+        ],
+        "motion": [
+          "reduce"
+        ],
+        "zoom": {
+          "method": "native-browser-tab-zoom",
+          "factors": [
+            2
+          ]
+        },
+        "keyboard": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        }
+      },
+      "stateApplicability": {
+        "default": {
+          "applicable": true,
+          "test": "tests/browser/composition.spec.ts"
+        },
+        "focus": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "hover": {
+          "applicable": true,
+          "test": "tests/browser/composition-robustness.spec.ts"
+        },
+        "selected": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. selected is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "disabled": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. disabled is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "loading": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. loading is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "empty": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. empty is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "error": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. error is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "success": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. success is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "invalid": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. invalid is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "readonly": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. readonly is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "open": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. open is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        },
+        "closed": {
+          "applicable": false,
+          "reason": "This presentation contract declares default. closed is not a standalone state supported by this pattern; application-owned data transitions are tested in task fixtures."
+        }
+      },
+      "negative": {
+        "type": "induced-document-overflow",
+        "test": "tests/browser/composition-robustness.spec.ts"
+      },
+      "qualification": "verified-by-release-audit-index"
+    }
+  ]
+}

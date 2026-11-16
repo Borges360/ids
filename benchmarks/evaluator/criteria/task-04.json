@@ -1,0 +1,110 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "task-04",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/task-04.json",
+    "sha256": "6df7966a874afdc1b4a4efd8581fbe39c610ac61d40241ca037661919a08b1dc"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Abrir navegação"
+          }
+        },
+        {
+          "op": "expect-visible",
+          "locator": {
+            "role": "navigation",
+            "name": "Navegação principal"
+          }
+        },
+        {
+          "op": "expect-attribute",
+          "locator": {
+            "role": "button",
+            "name": "Abrir navegação"
+          },
+          "name": "aria-expanded",
+          "value": "true"
+        },
+        {
+          "op": "press",
+          "locator": {
+            "role": "link",
+            "name": "Início"
+          },
+          "value": "Escape"
+        },
+        {
+          "op": "expect-hidden",
+          "locator": {
+            "role": "navigation",
+            "name": "Navegação principal"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "button",
+            "name": "Abrir navegação"
+          }
+        },
+        {
+          "op": "expect-attribute",
+          "locator": {
+            "role": "button",
+            "name": "Abrir navegação"
+          },
+          "name": "aria-expanded",
+          "value": "false"
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    },
+    {
+      "id": "desktop-functional",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "density": "focus",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "expect-visible",
+          "locator": {
+            "role": "navigation",
+            "name": "Navegação principal"
+          }
+        },
+        {
+          "op": "expect-visible",
+          "locator": {
+            "role": "link",
+            "name": "Pessoas"
+          }
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 # Contribuir
 
 1. Identidade Owner decide se a mudança continua sendo INTEIRO.
-2. Altere o catálogo em `packages/tokens/src/catalog`, nunca os arquivos gerados.
+2. Altere o catálogo em `packages/tokens/source/catalog.json`, nunca os arquivos gerados.
 3. `npm run build && npm test`.
 4. Changelog com categorias: Added, Changed, Fixed, Accessibility, Deprecated, Removed, Migration.
 5. ADR curto para decisões estruturais (`docs/adrs/` se necessário).

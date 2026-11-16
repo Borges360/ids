@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.0",
+  "id": "page-header",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Cabeçalho de página header",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "header",
+      "h1",
+      "p"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/page-header.html",
+    "examples/page-header-default.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "cabeçalho",
+    "de",
+    "página",
+    "header"
+  ],
+  "markup": "<header class=\"in-page-header\"><h1>Página</h1><p>Descrição</p></header>"
+}

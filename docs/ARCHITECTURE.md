@@ -1,7 +1,7 @@
 # Arquitetura
 
 Fonte de verdade de identidade: `deep-research-report.md`.
-Fonte de verdade de tokens: catálogo TypeScript em `packages/tokens/src/catalog`, emitido para JSON DTCG 2025.10.
+Fonte de verdade de tokens: JSON em `packages/tokens/source/catalog.json`, consumido por `src/catalog/index.ts` e emitido para CSS, SCSS, JS, TypeScript e intercâmbio DTCG 2025.10. Extensões do IDS mantêm metadados de origem e acessibilidade.
 
 ```
 decisões de identidade

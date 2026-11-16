@@ -1,0 +1,33 @@
+{
+  "classification": "synthetic",
+  "clock": "2026-02-01T12:00:00.000Z",
+  "seed": 308,
+  "syntheticText": [
+    "rafa@example.test"
+  ],
+  "responses": [
+    {
+      "url": "/api/recovery",
+      "method": "GET",
+      "sequence": [
+        {
+          "body": null,
+          "status": 503,
+          "alias": "recovery-0",
+          "expectedFailure": true,
+          "abort": "connectionreset"
+        },
+        {
+          "body": {
+            "items": [
+              "Registro especial",
+              "Documento revisado"
+            ]
+          },
+          "status": 200,
+          "alias": "recovery-1"
+        }
+      ]
+    }
+  ]
+}
