@@ -1057,7 +1057,6 @@
       },
       "proof": {
         "tests": [
-          "tests/p0/ci-profiles.test.ts",
           "tests/p0/compatibility.test.ts",
           "tests/p0/impact.test.ts",
           "tests/p0/migration.test.ts",
@@ -2752,12 +2751,14 @@
         ".github/workflows/ci.yml",
         "scripts/verify-p0.mjs",
         "scripts/pack-p0.mjs",
-        "scripts/smoke-offline.mjs"
+        "scripts/smoke-offline.mjs",
+        "docs/P0_OPERATIONS.md"
       ],
-      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "remaining": "Gate visual do perfil pr sem execução no GitHub Actions: o CI do GitHub é o padrão do harness (secrets.yml, gitflow.yml, config.yml) mais ci.yml. A prova visual é local, no host de atestação, conforme docs/P0_OPERATIONS.md (\"Prova local obrigatória do gate visual\"): `gate run --profile pr --start --json` em c6a602c (run-46e4998d-6f92-498c-b074-ff18f0b5efa7) → passed, saída 0, gates context/task-context/static/browser/review, baselineComparisons compared 492, authorized 492, different 0, missing 0.",
       "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
       "verification": [
-        "npm run verify:p0"
+        "npm run verify:p0",
+        "node packages/cli/src/cli.ts gate run --profile pr --start --json"
       ],
       "status": "passed",
       "evidence": [
@@ -2768,6 +2769,10 @@
         {
           "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
           "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        {
+          "path": ".inteiro/reports/run-46e4998d-6f92-498c-b074-ff18f0b5efa7/summary.json",
+          "sha256": "e9bfff2e3ae69bde95c17d99cbd22afc0c6755d8c08c1347d013067960ce6dc0"
         }
       ],
       "qualification": {
@@ -2816,7 +2821,6 @@
       },
       "proof": {
         "tests": [
-          "tests/p0/ci-profiles.test.ts",
           "tests/p0/impact.test.ts"
         ],
         "checks": [
