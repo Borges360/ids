@@ -70,6 +70,20 @@ npx inteiro visual baseline approve --review-id PR-123 --approval review-123.jso
 
 Proteja política de revisão, configuração, registro e imagens com CODEOWNERS e regras da branch. A assinatura é verificada novamente no runner. Chaves criadas pelos testes são temporárias e aceitas apenas nas fixtures isoladas; não constituem aprovação do produto.
 
+### Prova local obrigatória do gate visual
+
+No modo `technical-autonomous`, a chave de cada baseline inclui `environmentFingerprint`: plataforma, arquitetura, `os.release()`, `os.version()`, Playwright, Chromium, perfil de aleatoriedade e fontes. As baselines aprovadas valem só para o ambiente em que `scripts/attest-baselines.mjs` capturou, repetiu e atestou as imagens; hoje, Windows `win32`/`10.0.26200`. Um runner hospedado do GitHub (`ubuntu`, kernel variável a cada imagem) gera outra impressão e recebe `VIS-BASE-001 "Approved baseline missing"` em todos os casos. A chave privada da autoridade técnica não pode ir para o runner. Por isso o workflow `inteiro-gates.yml` fica fora de `develop` até existir um executor atestado com ambiente fixo; a proposta está na branch `feature/inteiro-gates-ci`.
+
+Até lá, todo PR que altere UI (CSS, tokens, componentes, padrões de composição, exemplos, rotas, fixtures ou baselines) exige a prova local, no host de atestação e com a árvore limpa:
+
+```sh
+node packages/cli/src/cli.ts agents install pi --yes --json   # quando o contexto ainda não estiver instalado
+node packages/cli/src/cli.ts context resolve --record --json
+node packages/cli/src/cli.ts gate run --profile pr --start --json
+```
+
+O resultado aceito é `status: "passed"`, saída `0` e `baselineComparisons` com `missing: 0` e `different: 0`. Registre no PR o `runId`, o commit e esses contadores. Uma diferença visual deliberada segue o fluxo de intenção declarada e atestação técnica acima; não se substitui baseline para fazer o gate passar.
+
 ## Review e repair
 
 `.inteiro/task.json` declara o tipo de alteração. `new-page`, `new-pattern` e `significant-layout-change` exigem revisão qualitativa. `review request --run-id <id>` produz uma solicitação com sete eixos de rubrica. Uma decisão assinada em `.inteiro/reviews/decision.json` deve vincular run, hash de evidência, commit de origem, `sourceHash`, config, tarefa, hashes de imagens e expiração. `reviewSourceHash()` de `@inteiro/contracts` calcula o hash dos arquivos avaliados, excluindo a própria decisão e o registro de baselines; assim a decisão pode ser versionada sem referência circular ao seu commit. Uma média alta nunca anula falhas determinísticas. Revisores externos permanecem desabilitados por padrão.
