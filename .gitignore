@@ -37,6 +37,7 @@ examples/nextjs/*.tsbuildinfo
 !.harness/project.mjs.harness-managed
 !.harness/install-manifest.json
 !.harness/install-manifest.json.harness-managed
+!.harness/mcp-managed.json
 # harness:versioned-instructions:end
 
 # Cópias instaladas pelo harness e preferências locais de runtime.
@@ -46,7 +47,5 @@ examples/nextjs/*.tsbuildinfo
 .cursor/skills/harness-*/
 .cursor/skills/grill-me/
 .pi/skills/grill-me/
-.cursor/mcp.json
-.mcp.json
-.pi/mcp.json
-.codex/
+.codex/*
+!.codex/config.toml
