@@ -156,7 +156,7 @@ const page = {
       title: "Catálogo de componentes",
       html: TERMINAL_COMPONENTS.map(
         (c) =>
-          `<h3 id="terminal-${c.name}">${c.name}</h3><p>${esc(c.purpose)}</p><pre><code>${esc(c.example)}</code></pre><p>${esc(c.keyboard)}. ${esc(c.linear)}. ${esc(c.resize)}.</p>`,
+          `<h3>${c.name}</h3><p>${esc(c.purpose)}</p><pre><code>${esc(c.example)}</code></pre><p>${esc(c.keyboard)}. ${esc(c.linear)}. ${esc(c.resize)}.</p>`,
       ).join("\n"),
     },
   ],
@@ -211,7 +211,7 @@ const english = [
     title: "Component catalogue",
     html: TERMINAL_COMPONENTS.map(
       (c, i) =>
-        `<h3 id="terminal-${c.name}">${c.name}</h3><p>${englishPurpose[i]}.</p><pre><code>${esc(c.example)}</code></pre><p>States: ${esc(c.states.join(", "))}. Semantic actions: ${esc(c.actions.join(", "))}.</p><p>Use the host or renderer's resolved bindings. The linear representation uses labeled text; compact layouts reflow in terminal cells. Complete content remains available without relying on color. Persistence and external actions belong to the consumer.</p>`,
+        `<h3>${c.name}</h3><p>${englishPurpose[i]}.</p><pre><code>${esc(c.example)}</code></pre><p>States: ${esc(c.states.join(", "))}. Semantic actions: ${esc(c.actions.join(", "))}.</p><p>Use the host or renderer's resolved bindings. The linear representation uses labeled text; compact layouts reflow in terminal cells. Complete content remains available without relying on color. Persistence and external actions belong to the consumer.</p>`,
     ).join("\n"),
   },
 ];
