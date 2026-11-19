@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://inteiro.dev/schemas/terminal/1.0.0/action.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "version",
+    "label",
+    "scope",
+    "effect",
+    "essential"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "label": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "effect": {
+      "enum": [
+        "local",
+        "external",
+        "destructive"
+      ]
+    },
+    "destination": {
+      "type": "string"
+    },
+    "consequence": {
+      "type": "string"
+    },
+    "essential": {
+      "type": "boolean"
+    },
+    "binding": {
+      "type": "string"
+    }
+  }
+}

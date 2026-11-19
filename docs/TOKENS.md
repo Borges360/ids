@@ -1,6 +1,6 @@
 # Tokens INTEIRO
 
-Especificação de intercâmbio: DTCG 2025.10. Prefixo CSS: `--in-`. Versão 1.2.0.
+Especificação de intercâmbio: DTCG 2025.10. Prefixo CSS: `--in-`. Versão 1.3.0.
 
 ## Números
 

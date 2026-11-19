@@ -1,6 +1,6 @@
 {
   "name": "inteiro",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "private": true,
   "type": "module",
   "description": "INTEIRO — Identity Design System pessoal, completo e production-ready",
@@ -12,7 +12,7 @@
     "node": ">=22.14"
   },
   "scripts": {
-    "build": "npm run build -w @inteiro/tokens && npm run build:composition && npm run build -w @inteiro/agent-core && npm run build -w @inteiro/cli && npm run build -w @inteiro/mcp && npm run build -w @inteiro/design-system && npm run build -w @inteiro/react && npm run build -w @inteiro/skills",
+    "build": "npm run build -w @inteiro/tokens && npm run build:composition && npm run build -w @inteiro/agent-core && npm run build -w @inteiro/cli && npm run build -w @inteiro/mcp && npm run build -w @inteiro/design-system && npm run build -w @inteiro/react && npm run build -w @inteiro/skills && npm run build:terminal",
     "validate": "npm run validate -w @inteiro/tokens",
     "pretest": "npm run build -w @inteiro/tokens && npm run build:composition",
     "test": "vitest run",
@@ -21,7 +21,7 @@
     "test:watch": "vitest",
     "lint": "tsc --noEmit -p tsconfig.json && eslint packages/react/src",
     "typecheck": "tsc --noEmit -p tsconfig.json",
-    "pack:check": "npm pack --dry-run -w @inteiro/tokens && npm pack --dry-run -w @inteiro/cli && npm pack --dry-run -w @inteiro/design-system && npm pack --dry-run -w @inteiro/react && npm pack --dry-run -w @inteiro/mcp && npm pack --dry-run -w @inteiro/agent-core",
+    "pack:check": "npm pack --dry-run -w @inteiro/tokens && npm pack --dry-run -w @inteiro/cli && npm pack --dry-run -w @inteiro/design-system && npm pack --dry-run -w @inteiro/react && npm pack --dry-run -w @inteiro/mcp && npm pack --dry-run -w @inteiro/agent-core && npm pack --dry-run -w @inteiro/terminal",
     "generate": "npm run build -w @inteiro/tokens && npm run generate -w @inteiro/skills",
     "demo": "node scripts/serve-demo.mjs",
     "ci": "npm run lint && npm run validate && npm test && npm run build && npm run build:platforms && npm run build:docs && npm run build:fixtures && npm run build:storybook && npm run build:site && npm run check:tokens && npm run check:bundle && npm run pack:check && npm run check:p0 && npm run check:compat",
@@ -53,11 +53,19 @@
     "measure:p0": "node scripts/measure-p0.mjs --canary",
     "build:composition": "node scripts/build-composition.mjs",
     "verify:p0": "node scripts/verify-p0.mjs",
-    "check:compat": "node scripts/check-legacy-compat.mjs"
+    "check:compat": "node scripts/check-legacy-compat.mjs",
+    "generate:terminal": "node scripts/generate-terminal.mjs",
+    "test:terminal": "vitest run tests/terminal",
+    "smoke:terminal": "node scripts/smoke-terminal.mjs",
+    "build:terminal": "node scripts/generate-terminal.mjs",
+    "smoke:terminal:pi": "node scripts/smoke-terminal-pi.mjs",
+    "smoke:terminal:posix": "python3 scripts/smoke-terminal-posix.py"
   },
   "devDependencies": {
+    "@earendil-works/pi-tui": "^1.5.2",
     "@fontsource-variable/recursive": "5.3.0",
-    "@inteiro/visual": "^1.2.0",
+    "@inquirer/prompts": "^7.10.1",
+    "@inteiro/visual": "^1.3.0",
     "@playwright/test": "^1.64.1",
     "@storybook/addon-a11y": "^10.6.2",
     "@storybook/addon-docs": "^10.6.2",
@@ -74,7 +82,8 @@
     "eslint": "^10.13.0",
     "http-server": "^14.1.1",
     "jsdom": "^29.1.1",
-    "next": "16.4.2",
+    "next": "^16.4.6",
+    "node-pty": "^1.1.0",
     "prettier": "^3.9.10",
     "storybook": "^10.6.2",
     "typescript": "^5.9.2",

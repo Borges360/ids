@@ -116,6 +116,7 @@ const itemLabels = Object.freeze({
     "foundations/themes": "Themes",
     "components/catalog": "Catalog",
     "components/library": "React library",
+    "components/terminal": "Terminal components and interaction",
     "components/button": "Button",
     "components/input": "Input",
     "components/card": "Card",
@@ -134,6 +135,7 @@ const itemLabels = Object.freeze({
 });
 
 const englishPages = Object.freeze({
+  "components/terminal": ["INTEIRO Terminal", "Portable components and interaction. Contract 1.0.0; opt-in adoption in IDS 1.3.0."],
   "introduction/overview": [
     "What is INTEIRO",
     "A personal identity system that gives tension a form instead of erasing it. A reference for language, tokens and implementation recipes.",

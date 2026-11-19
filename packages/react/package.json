@@ -1,6 +1,6 @@
 {
   "name": "@inteiro/react",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "INTEIRO — biblioteca React acessível e templates",
   "type": "module",
   "exports": {
@@ -13,7 +13,7 @@
     "react": ">=18"
   },
   "dependencies": {
-    "@inteiro/tokens": "1.2.0"
+    "@inteiro/tokens": "1.3.0"
   },
   "scripts": {
     "build": "node ../../scripts/build-react.mjs"

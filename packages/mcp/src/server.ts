@@ -25,7 +25,7 @@ async function handle(msg: Rpc): Promise<Rpc|undefined> {
   if (msg.method === "initialize") {
     return result(msg.id, {
       protocolVersion: "2024-11-05",
-      serverInfo: { name: "inteiro", version: "1.2.0" },
+      serverInfo: { name: "inteiro", version: "1.3.0" },
       capabilities: { tools: {}, resources: {} }
     });
   }
@@ -69,7 +69,7 @@ async function handle(msg: Rpc): Promise<Rpc|undefined> {
 }
 
 if (process.argv.includes("--help")) {
-  console.log("INTEIRO MCP server v1.2.0 (stdio JSON-RPC). Ferramentas:\n" + MCP_TOOLS.map((t) => `- ${t.name}: ${t.description}`).join("\n"));
+  console.log("INTEIRO MCP server v1.3.0 (stdio JSON-RPC). Ferramentas:\n" + MCP_TOOLS.map((t) => `- ${t.name}: ${t.description}`).join("\n"));
   process.exit(0);
 }
 

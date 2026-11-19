@@ -68,6 +68,7 @@ export interface BootstrapPlan {
   options: BootstrapOptions;
 }
 const packageNames = [
+  "terminal",
   "tokens",
   "contracts",
   "composition",
@@ -280,7 +281,7 @@ export async function planWorkerBootstrap(
   for (const pkg of manifest.packages) {
     if (
       !packageNames.includes(pkg.name) ||
-      pkg.version !== "1.2.0" ||
+      pkg.version !== "1.3.0" ||
       !/^[a-zA-Z0-9][a-zA-Z0-9._-]*\.tgz$/.test(pkg.filename) ||
       typeof pkg.integrity !== "string"
     )

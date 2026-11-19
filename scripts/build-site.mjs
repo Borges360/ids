@@ -6,6 +6,7 @@ for (const directory of [
   "apps/catalog",
   "packages/composition",
   "docs/assets",
+  "docs/terminal",
   "packages/tokens/dist/css",
   "packages/tokens/dist/json",
   "packages/tokens/dist/figma",

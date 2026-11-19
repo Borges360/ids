@@ -13,6 +13,7 @@ import {
 } from "@inteiro/contracts";
 import { findPatterns, getPattern } from "@inteiro/composition";
 import { cursorActivation } from "./cursor-activation.ts";
+import { TERMINAL_COMPONENTS, TERMINAL_CONTEXT } from "@inteiro/terminal";
 const paths: Record<string, string[]> = {
   pi: ["AGENTS.md", ".pi/skills/inteiro/SKILL.md"],
   codex: ["AGENTS.md", ".agents/skills/inteiro/SKILL.md"],
@@ -263,7 +264,10 @@ export async function resolveContext(
         }
       }
   }
+  const terminal = task.surface === "terminal" || /\b(terminal|tui)\b/i.test(task.description);
+  const terminalPatterns = TERMINAL_COMPONENTS.map(c => ({ pattern: { id: c.id, states: c.states, requiredTokens: c.tokens, markup: c.example, examples: ["examples/terminal/standalone.ts", "examples/terminal/pi-extension.ts"] }, score: 1, reason: "Terminal surface contract" }));
   const explicit = (task.patternIds ?? []).flatMap((id) => {
+    if (terminal) return terminalPatterns.filter(p => p.pattern.id === id);
     const pattern = getPattern(id);
     return pattern
       ? [{ pattern, score: 1, reason: "Explicit task selection" }]
@@ -271,7 +275,7 @@ export async function resolveContext(
   });
   const selected = [
     ...new Map(
-      [...explicit, ...findPatterns(task.description, 5)].map((p) => [
+      [...explicit, ...(terminal ? terminalPatterns.filter(p => ["terminal.TerminalPanel", "terminal.SettingsList", "terminal.KeyHints", "terminal.Progress"].includes(p.pattern.id)) : findPatterns(task.description, 5))].map((p) => [
         p.pattern.id,
         p,
       ]),
@@ -293,7 +297,7 @@ export async function resolveContext(
     missing.push("pattern-unavailable");
   const payload = {
     schemaVersion: "1.0",
-    inteiroVersion: "1.2.0",
+    inteiroVersion: "1.3.0",
     createdAt: new Date().toISOString(),
     configId: config.project.id,
     requestId: randomUUID(),
@@ -301,7 +305,7 @@ export async function resolveContext(
     harness: config.context.harness,
     taskType: task.type,
     taskHash: contextTaskHash(task),
-    identity: [
+    identity: terminal ? TERMINAL_CONTEXT.identity : [
       "Use semantic tokens",
       "Set data-in-theme and data-in-density",
       "Commit indicates publication/business boundary",
@@ -317,12 +321,13 @@ export async function resolveContext(
     })),
     provenance,
     resolutionErrors,
-    requiredChecks: [
+    requiredChecks: terminal ? TERMINAL_CONTEXT.requiredChecks : [
       "inteiro lint . --format json",
       "inteiro visual test --json",
       "inteiro gate run --profile pr --json",
     ],
     acceptance: {
+      ...(terminal ? { surface: "terminal", terminalMatrix: TERMINAL_CONTEXT.matrix, terminalContractVersion: "1.0.0", terminalEvidence: "docs/terminal/qualification.json" } : {}),
       viewports: config.browser.viewports,
       routesFile: config.browser.routesFile,
       fixturesDirectory: ".inteiro/fixtures",

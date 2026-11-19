@@ -170,6 +170,7 @@ export async function bootstrapFixture(realDistribution = false) {
     );
   } else {
     const names = [
+      "terminal",
       "tokens",
       "contracts",
       "composition",
@@ -189,7 +190,7 @@ export async function bootstrapFixture(realDistribution = false) {
       packages: { "": { name: "synthetic-bootstrap", dependencies: {} } },
     };
     for (const name of names) {
-      const filename = `inteiro-${name}-1.2.0.tgz`,
+      const filename = `inteiro-${name}-1.3.0.tgz`,
         bytes = Buffer.from(
           "Synthetic dry-run integrity fixture only: " + name,
         ),
@@ -201,14 +202,14 @@ export async function bootstrapFixture(realDistribution = false) {
       );
       packages.push({
         name: "@inteiro/" + name,
-        version: "1.2.0",
+        version: "1.3.0",
         filename,
         integrity,
       });
       lock.packages[""].dependencies["@inteiro/" + name] =
         "file:../tarballs/" + filename;
       lock.packages["node_modules/@inteiro/" + name] = {
-        version: "1.2.0",
+        version: "1.3.0",
         resolved: "file:../tarballs/" + filename,
         integrity,
       };

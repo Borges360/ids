@@ -1,0 +1,35 @@
+{
+  "name": "@inteiro/terminal",
+  "version": "1.3.0",
+  "description": "INTEIRO Terminal: contratos, estado e componentes portáveis; adaptadores optativos Pi e prompts",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./pi": "./src/pi.ts",
+    "./prompts": "./src/prompts.ts",
+    "./linear": "./src/linear.ts"
+  },
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.14"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "string-width": "7.2.0"
+  },
+  "peerDependencies": {
+    "@inquirer/prompts": "^7.10.1",
+    "@earendil-works/pi-tui": "^1.5.2"
+  },
+  "peerDependenciesMeta": {
+    "@inquirer/prompts": {
+      "optional": true
+    },
+    "@earendil-works/pi-tui": {
+      "optional": true
+    }
+  }
+}

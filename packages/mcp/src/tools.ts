@@ -4,6 +4,7 @@ import {
   explainToken,
   getComponentRecipe,
   getComponentContract,
+  getTerminalComponent,
   getGuidelines,
   getTheme,
   getToken,
@@ -17,6 +18,7 @@ import { resolveConfig, readEvidence } from "@inteiro/contracts";
 import { resolveContext, resolvedRepairContext } from "@inteiro/agent-core";
 
 export const MCP_TOOLS = [
+  { name: "inteiro_get_terminal_component", description: "Contratos INTEIRO Terminal versionados: componentes, foco, teclado, modo linear e resize. IDs terminal.*; separados da biblioteca web.", inputSchema: { type: "object", properties: { query: { type: "string" } }, additionalProperties: false } },
   ...[
     [
       "inteiro_get_contract",
@@ -177,6 +179,8 @@ export function callMcpTool(
   args: Record<string, unknown>,
 ): unknown {
   switch (name) {
+    case "inteiro_get_terminal_component":
+      return getTerminalComponent(String(args.query ?? ""));
     case "inteiro_find_pattern":
       return {
         status: "passed",

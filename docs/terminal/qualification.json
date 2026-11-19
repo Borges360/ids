@@ -1,0 +1,153 @@
+{
+  "schemaVersion": "1.0.0",
+  "idsVersion": "1.3.0",
+  "terminalContractVersion": "1.0.0",
+  "status": "pending",
+  "meaning": "Implementation exists; full qualification and deployment are not implied.",
+  "checks": [
+    {
+      "name": "Terminal state, keyboard, geometry, serialization and recovery",
+      "command": "npm run test:terminal",
+      "status": "passed",
+      "executed": 49,
+      "skipped": 0,
+      "evidence": "tests/terminal/terminal.test.ts; runtime JSON results in artifacts/terminal/"
+    },
+    {
+      "name": "Windows standalone actual PTY",
+      "command": "npm run smoke:terminal",
+      "status": "passed",
+      "evidence": "artifacts/terminal/smoke.json",
+      "scope": "40x12,80x24,120x36 edit/save/resize/close and 80x24 Ctrl+C/raw cleanup"
+    },
+    {
+      "name": "Actual Pi 1.5.2 host",
+      "command": "npm run smoke:terminal:pi",
+      "status": "passed",
+      "evidence": "artifacts/terminal/pi-host.json",
+      "scope": "native overlay open/edit/save/resize/close and table workspace/sort"
+    },
+    {
+      "name": "Linux WSL Ubuntu actual POSIX PTY / Node 22.14.0",
+      "command": "python3 scripts/smoke-terminal-posix.py <node22-path>",
+      "status": "passed",
+      "evidence": "artifacts/terminal/linux-smoke.json",
+      "scope": "40x12,80x24,120x36 edit/save/resize/close/raw cleanup"
+    },
+    {
+      "name": "Historical public compatibility",
+      "command": "npm run check:compat",
+      "status": "passed",
+      "evidence": "artifacts/p0-legacy-compatibility.json"
+    },
+    {
+      "name": "Unchanged semantic token contract",
+      "command": "npm run check:tokens",
+      "status": "passed",
+      "scope": "338 historical tokens, zero additions or removals"
+    },
+    {
+      "name": "Dependency audit",
+      "command": "npm audit --json",
+      "status": "passed",
+      "scope": "zero vulnerabilities; Next.js development fixture patched to 16.4.6"
+    },
+    {
+      "name": "PR gate",
+      "command": "npx inteiro gate run --profile pr --json",
+      "status": "passed",
+      "evidence": "artifacts/terminal/pr-gate.json",
+      "scope": "492/492 browser cases, 41/41 routes, no differences or new baseline approvals. Must be rerun for the final commit."
+    }
+  ],
+  "pending": [
+    "Windows Terminal GUI qualitative review",
+    "Identified screen-reader review of primary and linear flows (TERM-12); see accessibility-review.md",
+    "Final committed-source qualification receipt (runtime artifacts bind actual source, not this aggregate document)",
+    "Gitflow main-to-develop ancestry PR (three merge commits, no file differences)",
+    "Jenkins MCP authentication, ids-dev deployment and deployed commit/health verification"
+  ],
+  "unsupportedUntilQualified": [
+    "macOS",
+    "terminal RTL equivalence"
+  ],
+  "baselineApproved": false,
+  "requirements": [
+    {
+      "id": "TERM-01",
+      "implementation": "implemented",
+      "automatedEvidence": "tests/terminal/terminal.test.ts",
+      "qualification": "automated checks passed; see per-test names and runtime receipts"
+    },
+    {
+      "id": "TERM-02",
+      "implementation": "implemented",
+      "automatedEvidence": "tests/terminal/terminal.test.ts",
+      "qualification": "automated checks passed; see per-test names and runtime receipts"
+    },
+    {
+      "id": "TERM-03",
+      "implementation": "implemented",
+      "automatedEvidence": "tests/terminal/terminal.test.ts",
+      "qualification": "automated checks passed; see per-test names and runtime receipts"
+    },
+    {
+      "id": "TERM-04",
+      "implementation": "implemented",
+      "automatedEvidence": "tests/terminal/terminal.test.ts",
+      "qualification": "automated checks passed; see per-test names and runtime receipts"
+    },
+    {
+      "id": "TERM-05",
+      "implementation": "implemented",
+      "automatedEvidence": "tests/terminal/terminal.test.ts",
+      "qualification": "automated checks passed; see per-test names and runtime receipts"
+    },
+    {
+      "id": "TERM-06",
+      "implementation": "implemented",
+      "automatedEvidence": "tests/terminal/terminal.test.ts",
+      "qualification": "automated checks passed; see per-test names and runtime receipts"
+    },
+    {
+      "id": "TERM-07",
+      "implementation": "implemented",
+      "automatedEvidence": "tests/terminal/terminal.test.ts",
+      "qualification": "automated checks passed; see per-test names and runtime receipts"
+    },
+    {
+      "id": "TERM-08",
+      "implementation": "implemented",
+      "automatedEvidence": "tests/terminal/terminal.test.ts",
+      "qualification": "automated checks passed; see per-test names and runtime receipts"
+    },
+    {
+      "id": "TERM-09",
+      "implementation": "implemented",
+      "automatedEvidence": "tests/terminal/terminal.test.ts",
+      "qualification": "automated checks passed; see per-test names and runtime receipts"
+    },
+    {
+      "id": "TERM-10",
+      "implementation": "implemented",
+      "automatedEvidence": "tests/terminal/terminal.test.ts",
+      "qualification": "automated checks passed; see per-test names and runtime receipts"
+    },
+    {
+      "id": "TERM-11",
+      "implementation": "implemented",
+      "automatedEvidence": "tests/terminal/terminal.test.ts",
+      "qualification": "automated checks passed; see per-test names and runtime receipts"
+    },
+    {
+      "id": "TERM-12",
+      "implementation": "implemented",
+      "automatedEvidence": "tests/terminal/terminal.test.ts",
+      "qualification": "pending screen-reader review"
+    }
+  ],
+  "limitations": [
+    "This file records scoped checks, not a release approval or baseline promotion.",
+    "Uncommitted-source runs use baseCommit plus a working-tree fingerprint; a Git SHA alone does not identify their changed bytes."
+  ]
+}
