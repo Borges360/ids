@@ -14,6 +14,7 @@ import {
   coreInfo,
   explainToken,
   getComponentRecipe,
+  getTerminalComponent,
   getGuidelines,
   getTheme,
   searchTokens,
@@ -588,6 +589,10 @@ export async function run(argv: string[]): Promise<number> {
       );
     }
     if (cmd[0] === "recipe") {
+      if ((cmd[1] ?? "").startsWith("terminal.")) {
+        const components = getTerminalComponent(cmd.slice(1).join(" "));
+        return print({ exitCode: components.length ? 0 : EXIT.usage, data: components, text: components.map(c => `# ${c.id}\n${c.purpose}\n${c.example}\n${c.keyboard}\n${c.linear}`).join("\n\n") }, json);
+      }
       const r = getComponentRecipe(cmd.slice(1).join(" "));
       return print(
         {

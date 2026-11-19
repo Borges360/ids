@@ -22,6 +22,7 @@ export {
 } from "./visual-review.ts";
 export type { VisualReviewRoute } from "./visual-review.ts";
 export { COMPONENTS, getComponentContract } from "./library.ts";
+export { TERMINAL_COMPONENTS, TERMINAL_CONTEXT, getTerminalComponent } from "@inteiro/terminal";
 export type { ComponentContract } from "./library.ts";
 export {
   resolveContext,

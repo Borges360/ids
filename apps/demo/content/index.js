@@ -5,6 +5,7 @@ import { patternPages, practicePages } from "./patterns.js";
 import { qualityPages } from "./quality.js";
 import { startPages } from "./start.js";
 import { libraryPages } from "./library.js";
+import { terminalPages } from "./terminal.js";
 
 /** @typedef {{ id: string, title: string, lede: string, keywords?: string[], status: string, source: string, sections: { id: string, title: string, html: string }[] }} DocPage */
 
@@ -15,12 +16,14 @@ export const pages = [
   ...foundationPages,
   ...componentPages,
   ...libraryPages,
+  ...terminalPages,
   ...patternPages,
   ...practicePages,
   ...qualityPages
 ];
 
 export const nav = [
+  { id: "terminal", label: "Terminal", items: [{ id: "components/terminal", label: "Componentes e interação" }] },
   {
     id: "introduction",
     label: "Introduction",

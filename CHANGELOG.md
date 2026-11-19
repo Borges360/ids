@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.3.0 — implementação em qualificação
+
+### Added
+- INTEIRO Terminal 1.0.0: 23 componentes em 18 famílias, contratos de teclado/foco, cinco regiões de painel e alternativas em células/linear.
+- `@inteiro/terminal`: núcleo sem IO/renderer, rascunho/persistência/override separados, validação, descarte explícito, operações canceláveis com timeout e resultado desconhecido.
+- Entradas optativas `/pi`, `/prompts` e `/linear`, dois pilotos com tarefa compartilhada, workspace de lista/detalhe, tabela ordenável e logs limitados/exportáveis.
+- Schemas Terminal de componente, ação, capacidades e evidências; catálogo consultável por agentes, MCP `inteiro_get_terminal_component` e `recipe terminal.*`.
+- Contexto reconhece superfície Terminal; testes de estado, teclado, Unicode/sanitização, automação e ensaio PTY 40/80/120 colunas. Qualificação real e pendências em `docs/terminal/qualification.json`.
+
+### Changed
+- Release train dos pacotes em 1.3.0; catálogo semântico e valores de tokens preservados. Metadados de documentos gerados acompanham os pacotes.
+- Distribuição offline inclui Terminal para preservar o carregamento do agent-core. Nenhum consumidor Pi ou padrão do harness é migrado implicitamente.
+
+### Qualification
+- Sem aprovação automática de baseline. Disponibilidade do código não implica revisão com leitor de tela, aprovação visual, CI remoto ou deploy concluído.
+
 ## 1.1.1
 
 ### Added

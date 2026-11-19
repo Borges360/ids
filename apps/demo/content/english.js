@@ -2,6 +2,7 @@ import { code, doDont, reflection } from "./format.js";
 import { componentPages } from "./components.js";
 import { foundationPages } from "./foundations.js";
 import { libraryPages } from "./library.js";
+import { terminalEnglishSections } from "./terminal-en.js";
 
 // English translations are added page by page; absent pages retain Portuguese.
 const englishCode = (language, source) => code(language, source).replace(">Copiar</button>", ">Copy</button>");
@@ -114,6 +115,7 @@ function translatedComponent(id, replacements) {
   });
 }
 export const englishSections = Object.freeze({
+  "components/terminal": terminalEnglishSections,
   "foundations/color": translatedColor(),
   "foundations/type": translatedTypography(),
   "components/library": translatedLibrary(),

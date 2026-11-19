@@ -15,6 +15,7 @@ import { reviewSourceHash } from "../packages/contracts/src/index.ts";
 import { transform } from "esbuild";
 import { spawnSync } from "node:child_process";
 const names = [
+  "terminal",
   "tokens",
   "contracts",
   "composition",
