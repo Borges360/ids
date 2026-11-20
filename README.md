@@ -8,7 +8,7 @@ Sistema de identidade pessoal. Tokens, CSS, linha de comando e um contrato para 
 
 **Não eliminar a tensão. Dar forma a ela.**
 
-Este repositório transforma o documento de identidade em infraestrutura instalável: catálogo DTCG 2025.10, CSS, CLI, API para agentes, servidor MCP, adaptadores de harness, demonstração e testes. A versão do IDS é `1.3.0`; o catálogo semântico de tokens permanece em `1.1.0`, preservando IDs e valores anteriores. Metadados exportados acompanham a versão dos pacotes. A instalação é local, pelo monorepo ou por tarball.
+Este repositório transforma o documento de identidade em infraestrutura instalável: catálogo DTCG 2025.10, CSS, CLI, API para agentes, servidor MCP, adaptadores de harness, demonstração e testes. A versão do IDS é `1.3.1`; o catálogo semântico de tokens permanece em `1.1.0`, preservando IDs e valores anteriores. Metadados exportados acompanham a versão dos pacotes. A instalação é local, pelo monorepo ou por tarball.
 
 [INTEIRO Terminal](docs/terminal/README.md) acrescenta contratos e componentes de interação para CLIs e TUIs: menus, edição, salvamento, teclado, feedback, dados e integrações optativas Pi/prompts/linear. Contrato Terminal 1.0.0. Consulte o [estado de qualificação](docs/terminal/qualification.json); implementação não certifica plataformas ou leitores de tela sem ensaio.
 

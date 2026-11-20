@@ -69,7 +69,6 @@ Inquirer possui streams e limpeza do terminal que alterou; Pi possui seu rendere
 ```sh
 npm run generate:terminal
 npm run test:terminal
-npm run smoke:terminal
 node examples/terminal/standalone.ts --config /caminho/preferencias.json
 node examples/terminal/standalone.ts --config /caminho/preferencias.json --ui linear
 node examples/terminal/standalone.ts --json --no-input

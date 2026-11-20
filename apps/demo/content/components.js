@@ -3,7 +3,7 @@ export const componentPages = [
   {
     "id": "components/catalog",
     "title": "Catálogo",
-    "lede": "Biblioteca implementada em @inteiro/react 1.3.0, com CSS compartilhado e API tipada.",
+    "lede": "Biblioteca implementada em @inteiro/react 1.3.1, com CSS compartilhado e API tipada.",
     "status": "implementado",
     "source": "docs/LIBRARY.md · packages/react/src · components.css",
     "sections": [
@@ -27,7 +27,7 @@ export const componentPages = [
   {
     "id": "components/button",
     "title": "Button",
-    "lede": "Biblioteca implementada em @inteiro/react 1.3.0, com CSS compartilhado e API tipada.",
+    "lede": "Biblioteca implementada em @inteiro/react 1.3.1, com CSS compartilhado e API tipada.",
     "status": "implementado",
     "source": "docs/LIBRARY.md · packages/react/src · components.css",
     "sections": [
@@ -51,7 +51,7 @@ export const componentPages = [
   {
     "id": "components/input",
     "title": "Formulários",
-    "lede": "Biblioteca implementada em @inteiro/react 1.3.0, com CSS compartilhado e API tipada.",
+    "lede": "Biblioteca implementada em @inteiro/react 1.3.1, com CSS compartilhado e API tipada.",
     "status": "implementado",
     "source": "docs/LIBRARY.md · packages/react/src · components.css",
     "sections": [
@@ -75,7 +75,7 @@ export const componentPages = [
   {
     "id": "components/card",
     "title": "Card e painéis",
-    "lede": "Biblioteca implementada em @inteiro/react 1.3.0, com CSS compartilhado e API tipada.",
+    "lede": "Biblioteca implementada em @inteiro/react 1.3.1, com CSS compartilhado e API tipada.",
     "status": "implementado",
     "source": "docs/LIBRARY.md · packages/react/src · components.css",
     "sections": [
@@ -99,7 +99,7 @@ export const componentPages = [
   {
     "id": "components/badge",
     "title": "Badge e identidade",
-    "lede": "Biblioteca implementada em @inteiro/react 1.3.0, com CSS compartilhado e API tipada.",
+    "lede": "Biblioteca implementada em @inteiro/react 1.3.1, com CSS compartilhado e API tipada.",
     "status": "implementado",
     "source": "docs/LIBRARY.md · packages/react/src · components.css",
     "sections": [
@@ -123,7 +123,7 @@ export const componentPages = [
   {
     "id": "components/specified",
     "title": "Composição e interação",
-    "lede": "Biblioteca implementada em @inteiro/react 1.3.0, com CSS compartilhado e API tipada.",
+    "lede": "Biblioteca implementada em @inteiro/react 1.3.1, com CSS compartilhado e API tipada.",
     "status": "implementado",
     "source": "docs/LIBRARY.md · packages/react/src · components.css",
     "sections": [

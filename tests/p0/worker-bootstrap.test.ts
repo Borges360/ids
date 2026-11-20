@@ -145,7 +145,7 @@ for (const mutation of [
     try {
       if (mutation === "archive")
         await writeFile(
-          join(fixture.dataset, "artifacts/tarballs/inteiro-cli-1.3.0.tgz"),
+          join(fixture.dataset, "artifacts/tarballs/inteiro-cli-1.3.1.tgz"),
           "changed",
         );
       if (mutation === "invalid-seed") {

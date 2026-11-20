@@ -1,4 +1,4 @@
-# @inteiro/terminal 1.3.0
+# @inteiro/terminal 1.3.1
 
 Contrato INTEIRO Terminal 1.0.0: componentes como projeções em células, estado, ações e modelos independentes de renderer. Entradas optativas `/pi`, `/prompts` e `/linear` isolam host e IO.
 
