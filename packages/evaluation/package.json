@@ -1,6 +1,6 @@
 {
   "name": "@inteiro/evaluation",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
@@ -14,9 +14,9 @@
     "src"
   ],
   "dependencies": {
-    "@inteiro/contracts": "1.3.1",
-    "@inteiro/lint": "1.3.1",
-    "@inteiro/composition": "1.3.1"
+    "@inteiro/contracts": "1.3.2",
+    "@inteiro/lint": "1.3.2",
+    "@inteiro/composition": "1.3.2"
   },
   "peerDependencies": {
     "@playwright/test": ">=1.58.0"

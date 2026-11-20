@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.3.2
+
+### Changed
+- Documentação do Terminal reorganizada: o grupo sai do topo do menu e passa a vir depois de Patterns, com cinco páginas (Visão geral, Fundamentos, Componentes, Padrões e Qualificação), em português e inglês.
+- Os 23 componentes mostram a saída real das projeções de `@inteiro/terminal` em quadros de terminal, pintados com os papéis de cor do IDS e acompanhando o tema da documentação. As páginas são geradas por `scripts/terminal-docs.mjs`.
+- Release train dos pacotes em 1.3.2; catálogo semântico e valores de tokens preservados.
+
+### Added
+- Fundamentos visuais do Terminal: papéis de cor ligados aos tokens, a mesma saída com e sem cor, marcadores, texto em células e comportamento por largura.
+- Padrões do Terminal: configurar e salvar, confirmar uma ação destrutiva, acompanhar uma tarefa longa, explorar lista e detalhe, e estados vazio e de erro.
+
+### Migration
+- O endereço `#/components/terminal` passa a redirecionar para `#/terminal/components`.
+
 ## 1.3.1
 
 ### Fixed

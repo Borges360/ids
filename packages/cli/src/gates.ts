@@ -199,7 +199,7 @@ export async function gateCommand(
       ...loaded,
       ...projectContracts(config),
       schemaVersion: "1.0",
-      inteiroVersion: "1.3.1",
+      inteiroVersion: "1.3.2",
       createdAt: new Date().toISOString(),
       hash: hash(config),
       patterns: patterns.map((p) => p.id),
