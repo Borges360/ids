@@ -310,7 +310,6 @@ export const TERMINAL_CONTEXT = {
   ],
   requiredChecks: [
     "npm run test:terminal",
-    "npm run smoke:terminal",
     "inteiro gate run --profile pr --json",
   ],
   limitations: [

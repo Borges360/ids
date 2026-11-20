@@ -14,20 +14,6 @@
       "evidence": "tests/terminal/terminal.test.ts; runtime JSON results in artifacts/terminal/"
     },
     {
-      "name": "Windows standalone actual PTY",
-      "command": "npm run smoke:terminal",
-      "status": "passed",
-      "evidence": "artifacts/terminal/smoke.json",
-      "scope": "40x12,80x24,120x36 edit/save/resize/close and 80x24 Ctrl+C/raw cleanup"
-    },
-    {
-      "name": "Actual Pi 1.5.2 host",
-      "command": "npm run smoke:terminal:pi",
-      "status": "passed",
-      "evidence": "artifacts/terminal/pi-host.json",
-      "scope": "native overlay open/edit/save/resize/close and table workspace/sort"
-    },
-    {
       "name": "Linux WSL Ubuntu actual POSIX PTY / Node 22.14.0",
       "command": "python3 scripts/smoke-terminal-posix.py <node22-path>",
       "status": "passed",

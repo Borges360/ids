@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.3.1
+
+### Fixed
+- A imagem da demo volta a compilar no Jenkins (`ids-dev`): `node-pty`, que exige Python e g++ para compilar, deixa de ser dependência.
+
+### Removed
+- Testes de fumaça `smoke:terminal` e `smoke:terminal:pi` (e a dependência de desenvolvimento `node-pty`). O ensaio POSIX (`smoke:terminal:posix`) e `test:terminal` permanecem; a evidência anterior em `artifacts/terminal/` é histórica.
+
+### Changed
+- Release train dos pacotes em 1.3.1; catálogo semântico e valores de tokens preservados.
+
 ## 1.3.0 — implementação em qualificação
 
 ### Added

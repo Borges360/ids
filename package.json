@@ -1,6 +1,6 @@
 {
   "name": "inteiro",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "private": true,
   "type": "module",
   "description": "INTEIRO — Identity Design System pessoal, completo e production-ready",
@@ -56,16 +56,14 @@
     "check:compat": "node scripts/check-legacy-compat.mjs",
     "generate:terminal": "node scripts/generate-terminal.mjs",
     "test:terminal": "vitest run tests/terminal",
-    "smoke:terminal": "node scripts/smoke-terminal.mjs",
     "build:terminal": "node scripts/generate-terminal.mjs",
-    "smoke:terminal:pi": "node scripts/smoke-terminal-pi.mjs",
     "smoke:terminal:posix": "python3 scripts/smoke-terminal-posix.py"
   },
   "devDependencies": {
     "@earendil-works/pi-tui": "^1.5.2",
     "@fontsource-variable/recursive": "5.3.0",
     "@inquirer/prompts": "^7.10.1",
-    "@inteiro/visual": "^1.3.0",
+    "@inteiro/visual": "^1.3.1",
     "@playwright/test": "^1.64.1",
     "@storybook/addon-a11y": "^10.6.2",
     "@storybook/addon-docs": "^10.6.2",
@@ -83,7 +81,6 @@
     "http-server": "^14.1.1",
     "jsdom": "^29.1.1",
     "next": "^16.4.6",
-    "node-pty": "^1.1.0",
     "prettier": "^3.9.10",
     "storybook": "^10.6.2",
     "typescript": "^5.9.2",
