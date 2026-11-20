@@ -116,7 +116,6 @@ const itemLabels = Object.freeze({
     "foundations/themes": "Themes",
     "components/catalog": "Catalog",
     "components/library": "React library",
-    "components/terminal": "Terminal components and interaction",
     "components/button": "Button",
     "components/input": "Input",
     "components/card": "Card",
@@ -125,6 +124,11 @@ const itemLabels = Object.freeze({
     "patterns/forms": "Forms",
     "patterns/data": "Navigation and data",
     "patterns/feedback": "Feedback",
+    "terminal/overview": "Overview",
+    "terminal/foundations": "Foundations",
+    "terminal/components": "Components",
+    "terminal/patterns": "Patterns",
+    "terminal/quality": "Qualification",
     "practice/identity": "In practice",
     "a11y/guide": "Requirements",
     "engineering/guide": "Architecture",
@@ -135,7 +139,26 @@ const itemLabels = Object.freeze({
 });
 
 const englishPages = Object.freeze({
-  "components/terminal": ["INTEIRO Terminal", "Portable components and interaction. Contract 1.0.0; opt-in adoption in IDS 1.3.0."],
+  "terminal/overview": [
+    "INTEIRO Terminal",
+    "The INTEIRO identity in text cells: violet chooses, orange confirms, and nothing depends on color alone.",
+  ],
+  "terminal/foundations": [
+    "Terminal foundations",
+    "Color roles, markers, text in cells and widths. The visual rules shared by every component.",
+  ],
+  "terminal/components": [
+    "Terminal components",
+    "All 23 components, each with the real output it produces, its keyboard and its behavior at small widths.",
+  ],
+  "terminal/patterns": [
+    "Terminal patterns",
+    "Complete flows: configure and save, confirm a destructive action, follow a task and explore data.",
+  ],
+  "terminal/quality": [
+    "Terminal qualification",
+    "What was verified, what is pending and what the implementation does not yet prove.",
+  ],
   "introduction/overview": [
     "What is INTEIRO",
     "A personal identity system that gives tension a form instead of erasing it. A reference for language, tokens and implementation recipes.",

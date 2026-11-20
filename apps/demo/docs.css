@@ -641,3 +641,56 @@ html[dir="rtl"] select.in-input { background-position: var(--in-space-300) 50%; 
 @media (prefers-reduced-motion: reduce) {
   .skeleton span { animation: none; }
 }
+
+/* INTEIRO Terminal: quadros com a saída real dos componentes. Pintura = papéis de cor do IDS. */
+.term-set { display: flex; flex-direction: column; gap: var(--in-space-400); }
+.term {
+  margin: 0;
+  inline-size: min(100%, calc(var(--cols, 80) * 1ch + 2 * var(--in-space-400) + 2px));
+  min-inline-size: 0;
+  background: var(--in-color-background-sunken);
+  border: var(--in-border-hairline) solid var(--in-color-border-subtle);
+  border-radius: var(--in-radius-md);
+}
+.term figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--in-space-200) var(--in-space-300);
+  padding: var(--in-space-200) var(--in-space-300);
+  border-block-end: var(--in-border-hairline) solid var(--in-color-border-subtle);
+  font-size: var(--in-type-caption-size);
+  color: var(--in-color-text-secondary);
+}
+.term__name { font-family: var(--in-font-family-machine); color: var(--in-color-text-primary); }
+.term__screen {
+  margin: 0;
+  padding: var(--in-space-400);
+  overflow-x: auto;
+  font-family: var(--in-font-family-machine);
+  font-variation-settings: var(--in-font-voice-machine);
+  font-size: var(--in-type-code-size);
+  line-height: var(--in-type-code-line-height);
+  color: var(--in-color-text-primary);
+}
+.tm-line { display: block; white-space: pre; min-block-size: 1lh; }
+.tm-line--focus { background: var(--in-color-selection-background); }
+.tm-line--title { font-weight: var(--in-font-weight-semibold); }
+.tm-line--muted, .tm-muted { color: var(--in-color-text-secondary); }
+.tm-marker { color: var(--in-color-focus-ring); font-weight: var(--in-font-weight-semibold); }
+.tm-choose { color: var(--in-color-identity-primary); }
+.tm-commit { color: var(--in-color-identity-commit); }
+.tm-success { color: var(--in-color-status-success); }
+.tm-warning { color: var(--in-color-status-warning); }
+.tm-danger { color: var(--in-color-status-danger); }
+.tm-info { color: var(--in-color-status-info); }
+.term-chip {
+  display: inline-block;
+  inline-size: 1rem;
+  block-size: 1rem;
+  margin-inline-end: var(--in-space-200);
+  vertical-align: -0.2em;
+  border: var(--in-border-hairline) solid var(--in-color-border-subtle);
+  border-radius: var(--in-radius-sm);
+}
+.term-token { overflow-wrap: normal; word-break: keep-all; white-space: nowrap; }
