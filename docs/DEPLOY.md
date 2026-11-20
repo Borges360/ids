@@ -10,4 +10,8 @@ O Jenkinsfile neste repositório adapta a esteira K3s existente do ids-dev e man
 
 O Dockerfile canônico da entrega é `deploy/Dockerfile`: constrói biblioteca, tokens, interoperabilidade, docs e Storybook. A configuração antiga do job ids-dev usa `platform/ids-dockerfile`, que constrói apenas tokens e não copia o Storybook. O novo Jenkinsfile usa o Dockerfile do checkout. Isso precisa acompanhar a implantação; disparar o job antigo sem essa adaptação publica documentação sem o Storybook.
 
+## MCP do INTEIRO no cluster
+
+A imagem do `ids` também carrega o servidor MCP por HTTP (`/app/inteiro-mcp`, empacotado por `scripts/build-mcp-runtime.mjs`). O Deployment `inteiro-mcp` (namespace dev, repositório jenkies) usa essa mesma imagem com o comando `node inteiro-mcp/dist/inteiro-mcp.mjs`, e o MCPHub o acessa por URL interna. O `ids-dev` troca a imagem dos dois Deployments pelo mesmo digest e só conclui se o `/health` do MCP devolver a versão do `package.json` buildado. Por isso não existe cópia nem atualização manual do MCP: publicou o IDS, o MCP acompanha. Antes de publicar, `npm run test:mcp-runtime` prova o pacote isolado do monorepo (também roda no `npm run ci`).
+
 Se a API retornar 401, renovar a credencial Jenkins na configuração segura do MCP. Não registrar token no repositório ou na saída de terminal. HTTP 401 bloqueia tanto a consulta ao estado atual como o deploy verificável.

@@ -40,6 +40,9 @@ examples/nextjs/*.tsbuildinfo
 !.harness/mcp-managed.json
 # harness:versioned-instructions:end
 
+# Saída do empacotamento do MCP HTTP (scripts/build-mcp-runtime.mjs).
+/runtime/
+
 # Cópias instaladas pelo harness e preferências locais de runtime.
 .claude/settings.local.json
 .claude/skills/harness-*/
