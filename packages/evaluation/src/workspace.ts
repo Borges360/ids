@@ -388,9 +388,9 @@ export async function prepareBenchmarkWorker(
           private: true,
           type: "module",
           dependencies: {
-            "@inteiro/cli": "1.3.1",
-            "@inteiro/evaluation": "1.3.1",
-            "@inteiro/composition": "1.3.1",
+            "@inteiro/cli": "1.3.2",
+            "@inteiro/evaluation": "1.3.2",
+            "@inteiro/composition": "1.3.2",
           },
         },
         null,

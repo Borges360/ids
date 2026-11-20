@@ -150,7 +150,7 @@ export async function installHarness(
     const plugin = {
       $schema: "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
       name: "inteiro",
-      version: "1.3.1",
+      version: "1.3.2",
       description: "INTEIRO Identity Design System for Codex",
       license: "MIT",
       keywords: ["design-system", "inteiro", "tokens"],
@@ -168,7 +168,7 @@ export async function installHarness(
         JSON.stringify(
           {
             name: "inteiro",
-            version: "1.3.1",
+            version: "1.3.2",
             description: "INTEIRO for Codex",
             skills: "./.agents/skills/",
             mcpServers: "mcp.json",
@@ -192,7 +192,7 @@ export async function installHarness(
           {
             name: "inteiro",
             displayName: "INTEIRO",
-            version: "1.3.1",
+            version: "1.3.2",
             description: "Identity Design System INTEIRO",
             author: { name: "INTEIRO" },
             license: "MIT",
@@ -262,7 +262,7 @@ ${topLevelSkills()[0]!.body}
         JSON.stringify(
           {
             name: "inteiro",
-            version: "1.3.1",
+            version: "1.3.2",
             description: "INTEIRO Cursor plugin",
             skills: "./.cursor/skills",
             rules: "./.cursor/rules",
@@ -281,7 +281,7 @@ ${topLevelSkills()[0]!.body}
             $schema:
               "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
             name: "inteiro",
-            version: "1.3.1",
+            version: "1.3.2",
             description: "INTEIRO Agent Plugin",
             license: "MIT",
           },
@@ -330,7 +330,7 @@ ${topLevelSkills()[0]!.body}
             $schema:
               "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
             name: "inteiro",
-            version: "1.3.1",
+            version: "1.3.2",
             license: "MIT",
           },
           null,
@@ -348,7 +348,7 @@ ${topLevelSkills()[0]!.body}
       JSON.stringify(
         {
           harness: id,
-          version: "1.3.1",
+          version: "1.3.2",
           mechanism: opts.contextOnly ? 'AGENTS.md + Agent Skills (.agents/skills)' : harness.mechanism,
           ...(opts.contextOnly ? { integrationMode: 'context-only' } : {}),
           verified: harness.verified,
