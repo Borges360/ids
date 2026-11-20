@@ -81,6 +81,8 @@ function esc(value) {
 function parseHash() {
   const raw = decodeURIComponent(location.hash.replace(/^#\/?/, ""));
   const parts = raw.split("/").filter(Boolean);
+  // Endereço antigo da página única do Terminal (IDS 1.3.0 a 1.3.1).
+  if (parts[0] === "components" && parts[1] === "terminal") return { page: "terminal/components", anchor: parts[2] ?? "" };
   if (parts.length >= 2 && pageById.has(`${parts[0]}/${parts[1]}`)) {
     return { page: `${parts[0]}/${parts[1]}`, anchor: parts[2] ?? "" };
   }
@@ -709,7 +711,7 @@ function openSearch() {
 }
 
 function localizedPageStatus(status) {
-  return activeLocale === "en" ? ({ implementado: "implemented", misto: "mixed", especificado: "specified" }[status] ?? status) : status;
+  return activeLocale === "en" ? ({ implementado: "implemented", misto: "mixed", especificado: "specified", "em qualificação": "in qualification" }[status] ?? status) : status;
 }
 
 function runSearch() {

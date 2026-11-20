@@ -115,7 +115,7 @@ function translatedComponent(id, replacements) {
   });
 }
 export const englishSections = Object.freeze({
-  "components/terminal": terminalEnglishSections,
+  ...terminalEnglishSections,
   "foundations/color": translatedColor(),
   "foundations/type": translatedTypography(),
   "components/library": translatedLibrary(),

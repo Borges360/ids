@@ -23,7 +23,6 @@ export const pages = [
 ];
 
 export const nav = [
-  { id: "terminal", label: "Terminal", items: [{ id: "components/terminal", label: "Componentes e interação" }] },
   {
     id: "introduction",
     label: "Introduction",
@@ -74,6 +73,17 @@ export const nav = [
       { id: "patterns/forms", label: "Formulários" },
       { id: "patterns/data", label: "Navegação e dados" },
       { id: "patterns/feedback", label: "Feedback" }
+    ]
+  },
+  {
+    id: "terminal",
+    label: "Terminal",
+    items: [
+      { id: "terminal/overview", label: "Visão geral" },
+      { id: "terminal/foundations", label: "Fundamentos" },
+      { id: "terminal/components", label: "Componentes" },
+      { id: "terminal/patterns", label: "Padrões" },
+      { id: "terminal/quality", label: "Qualificação" }
     ]
   },
   {
