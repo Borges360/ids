@@ -6,6 +6,9 @@
 - Servidor MCP por HTTP (`packages/mcp/src/http.ts`, streamable-http sem sessão): `POST /mcp` com JSON-RPC e `GET /health` com a versão. Roda na mesma imagem do site, em `/app/inteiro-mcp`, de modo que a versão do MCP é sempre a do container. O modo `stdio` do pacote continua igual.
 - `scripts/build-mcp-runtime.mjs` empacota o servidor numa pasta autossuficiente, e `npm run test:mcp-runtime` roda esse pacote isolado do monorepo (entra no `npm run ci`).
 
+### Fixed
+- `@inteiro/cli` declara `@inteiro/visual`, que importa em `gates.ts`. Sem a declaração, quem instalava os tarballs sem `@inteiro/visual` via `inteiro doctor` falhar com `ERR_MODULE_NOT_FOUND`. O teste `tests/package-dependencies.test.ts` passa a recusar import de `@inteiro/*` não declarado em qualquer pacote.
+
 ### Changed
 - O tratamento das mensagens do MCP foi movido para `packages/mcp/src/rpc.ts`, compartilhado por `stdio` e HTTP, sem mudança de comportamento.
 

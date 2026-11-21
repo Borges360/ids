@@ -10,6 +10,7 @@ export default defineConfig({
       "tests/catalog.test.ts",
       "tests/agent-core.test.ts",
       "tests/exports.test.ts",
+      "tests/package-dependencies.test.ts",
       "tests/library.test.ts",
       "tests/lint.test.ts",
       "tests/react.test.ts",
