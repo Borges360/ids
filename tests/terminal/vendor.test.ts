@@ -51,6 +51,33 @@ describe("vendor:terminal", () => {
       rmSync(join(out, "extra.ts"));
       expect(verify().status).toBe(0);
     });
+  it("checks with its own verifier, never the copy's, and lists only Pi peers", async () => {
+    const out = join(base, "tamper");
+    const m = vendor({ out, format: "ts", date: "2026-11-23T00:00:00Z", allowDirty: true });
+    expect(m.peerDependencies).toEqual({ "@earendil-works/pi-tui": expect.any(String) });
+    expect(Object.keys(m.peerDependencies)).toEqual(m.externals);
+    expect((await check(out)).ok).toBe(true);
+    appendFileSync(join(out, "pi.ts"), "\n// local edit\n");
+    const stub =
+      'import { readFileSync } from "node:fs";\n' +
+      "globalThis.__vendorStubRan = true;\n" +
+      'export function verifyVendor(d) { return { ok: true, problems: [], manifest: JSON.parse(readFileSync(d + "/VENDOR.json", "utf8")) }; }\n';
+    writeFileSync(join(out, "verify-vendor.mjs"), stub);
+    for (const upstream of [false, true]) {
+      const r = await check(out, { upstream });
+      expect(r.ok).toBe(false);
+      expect(r.problems).toContain("modified: pi.ts");
+      expect(r.problems.some((p: string) => p.includes("verify-vendor.mjs"))).toBe(true);
+    }
+    expect((globalThis as { __vendorStubRan?: boolean }).__vendorStubRan).toBeUndefined();
+    const cli = spawnSync(
+      process.execPath,
+      [resolve("scripts/vendor-terminal.mjs"), "--check", out],
+      { encoding: "utf8" },
+    );
+    expect(cli.status).toBe(1);
+    expect(cli.stderr).toContain("drift: modified: pi.ts");
+  });
   it("imports the js copy with plain Node and renders through the real pi-tui", () => {
     const pi = pathToFileURL(join(base, "js", "pi.js")).href;
     const settings = pathToFileURL(join(base, "js", "settings.js")).href;

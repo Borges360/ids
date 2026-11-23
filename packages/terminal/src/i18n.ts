@@ -23,9 +23,12 @@ export interface TerminalMessages {
   confirmBack: Text;
   confirmRun: Fn<[label: string]>;
   unknownOutcomeConfirm: Text;
+  saveRetryConfirm: Text;
+  confirmSaveAgain: Text;
   actionRequiresSaved: Text;
   actionDisabled: Fn<[reason: string]>;
   actionDone: Fn<[label: string]>;
+  finishedBeforeCancel: Fn<[label: string]>;
   noSearchResults: Text;
   searchItems: Text;
   searchPrompt: Text;
@@ -136,6 +139,8 @@ export interface TerminalMessages {
     [columns: number, rows: number, minColumns: number, minRows: number]
   >;
   enlargeOrClose: Text;
+  /** Resize message for surfaces without a draft (workspace). */
+  enlargeOrGoBack: Text;
   valueOn: Text;
   valueOff: Text;
   emptyValue: Text;
@@ -179,10 +184,15 @@ const pt: TerminalMessages = {
   confirmRun: (label) => `Executar: ${label}`,
   unknownOutcomeConfirm:
     "A execução anterior não confirmou o resultado. Confira o destino antes de repetir.",
+  saveRetryConfirm:
+    "O salvamento anterior não foi confirmado. Salvar de novo grava o rascunho outra vez.",
+  confirmSaveAgain: "Salvar de novo",
   actionRequiresSaved:
     "Salve (Ctrl+S) ou descarte as alterações antes de executar esta ação.",
   actionDisabled: (reason) => `Indisponível: ${reason}`,
   actionDone: (label) => `${label}: concluído.`,
+  finishedBeforeCancel: (label) =>
+    `${label} terminou antes de o cancelamento valer. O resultado não foi usado.`,
   noSearchResults: "Nenhum resultado. Limpe a busca.",
   searchItems: "Buscar itens",
   searchPrompt: "Buscar itens (vazio limpa)",
@@ -323,6 +333,8 @@ const pt: TerminalMessages = {
     `Terminal pequeno demais (${columns}×${rows}; mínimo ${minColumns}×${minRows}).`,
   enlargeOrClose:
     "Aumente a janela para continuar ou pressione Esc para voltar. O rascunho foi preservado.",
+  enlargeOrGoBack:
+    "Aumente a janela para continuar ou pressione Esc para voltar.",
   valueOn: "ligado",
   valueOff: "desligado",
   emptyValue: "(vazio)",
@@ -366,10 +378,15 @@ const en: TerminalMessages = {
   confirmRun: (label) => `Run: ${label}`,
   unknownOutcomeConfirm:
     "The previous run did not confirm its result. Check the destination before running it again.",
+  saveRetryConfirm:
+    "The previous save was not confirmed. Saving again writes your draft again.",
+  confirmSaveAgain: "Save again",
   actionRequiresSaved:
     "Save (Ctrl+S) or discard your changes before running this action.",
   actionDisabled: (reason) => `Unavailable: ${reason}`,
   actionDone: (label) => `${label}: done.`,
+  finishedBeforeCancel: (label) =>
+    `${label} finished before the cancellation took effect. Its result was not used.`,
   noSearchResults: "No results. Clear the search.",
   searchItems: "Search items",
   searchPrompt: "Search items (empty clears)",
@@ -505,6 +522,7 @@ const en: TerminalMessages = {
     `Terminal too small (${columns}×${rows}; minimum ${minColumns}×${minRows}).`,
   enlargeOrClose:
     "Enlarge the window to continue or press Esc to go back. Your draft was kept.",
+  enlargeOrGoBack: "Enlarge the window to continue or press Esc to go back.",
   valueOn: "on",
   valueOff: "off",
   emptyValue: "(empty)",

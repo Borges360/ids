@@ -11,7 +11,7 @@ Núcleo: Node 22.14+, sem dependências de runtime. Pi opcional: pi-tui 1.5.2 a 
 - Mensagens em `en` e `pt-BR` (`locale`, `messages` parciais); o padrão do pacote continua `pt-BR`.
 - `presentation: "standard"`, Esc duplo para descartar, linhas de ação com operação cancelável, `formatError`, salvamento cancelável e reconciliação, escolhas carregadas sob demanda, prévia do rascunho (`onDraftChange`, `setLocale`, `relabel`).
 - Largura medida pela função injetada (`setCellWidthMeasure`); o adaptador Pi usa `visibleWidth` do host e nenhuma linha passa da largura pedida.
-- `openPiSettings` liga o perfil Pi por padrão (`standard`, Esc duplo, save cancelável) e devolve `action` quando uma linha de ação fecha o painel.
+- `openPiSettings` liga o perfil Pi por padrão (inglês, `standard`, Esc duplo, save cancelável) e devolve `action` quando uma linha de ação fecha o painel. `openPiWorkspace` também abre em inglês sem `locale`.
 
 ## Cópia em outro projeto (vendoring)
 

@@ -12,7 +12,7 @@ export const graphemes = (value: string) =>
   [...segmenter.segment(value)].map((s) => s.segment);
 /** East Asian Wide/Fullwidth blocks (UAX #11) and emoji blocks rendered in two cells. */
 const WIDE: readonly (readonly [number, number])[] = [
-  [0x1100, 0x115f],
+  [0x1100, 0x115e],
   [0x231a, 0x231b],
   [0x2329, 0x232a],
   [0x23e9, 0x23ec],
@@ -116,15 +116,18 @@ const isWide = (cp: number) => {
 };
 const chr = (code: number) => String.fromCodePoint(code);
 const span = (from: number, to: number) => `${chr(from)}-${chr(to)}`;
-/** Combining marks, format controls, zero-width spaces/joiners and variation selectors. */
+/**
+ * Combining marks, format controls, zero-width spaces/joiners, variation selectors and the
+ * default-ignorable Hangul fillers (U+115F, U+3164, U+FFA0) with standalone medial/final jamo.
+ */
 const ZERO = new RegExp(
-  `^(?:\\p{Mn}|\\p{Me}|\\p{Cf}|[${span(0x200b, 0x200f)}${span(0x2028, 0x202e)}${span(0x2060, 0x206f)}${span(0xfe00, 0xfe0f)}])+$`,
+  `^(?:\\p{Mn}|\\p{Me}|\\p{Cf}|[${span(0x200b, 0x200f)}${span(0x2028, 0x202e)}${span(0x2060, 0x206f)}${span(0xfe00, 0xfe0f)}${span(0x115f, 0x11ff)}${chr(0x3164)}${chr(0xffa0)}])+$`,
   "u",
 );
 /** Zero width joiner or emoji presentation selector (VS16). */
 const EMOJI_JOIN = new RegExp(`[${chr(0x200d)}${chr(0xfe0f)}]`, "u");
-/** Combining enclosing keycap (emoji keycap sequences). */
-const KEYCAP = new RegExp(chr(0x20e3), "u");
+/** Emoji keycap sequences: [0-9#*], optional VS16, combining enclosing keycap. */
+const KEYCAP = new RegExp(`^[0-9#*]${chr(0xfe0f)}?${chr(0x20e3)}$`, "u");
 const PICTOGRAPHIC = /\p{Extended_Pictographic}/u;
 const REGIONAL = /^\p{Regional_Indicator}{2}$/u;
 /** Dependency-free UAX #11 approximation per grapheme: CJK/fullwidth and emoji take two cells. */
@@ -168,24 +171,48 @@ export function truncate(value: string, columns: number, marker = "…") {
   }
   return result + suffix;
 }
-export function wrap(value: string, columns: number): string[] {
+/**
+ * Splits text into lines of at most `columns` cells. `grapheme` (default) fills each line;
+ * `word` breaks at the last space when there is one and splits only words wider than a line.
+ */
+export function wrap(
+  value: string,
+  columns: number,
+  mode: "grapheme" | "word" = "grapheme",
+): string[] {
   const width = Math.max(1, Math.floor(columns)),
     lines: string[] = [];
-  let line = "";
+  let line: string[] = [];
+  const text = () => line.join("");
   for (const g of graphemes(safeText(value))) {
     if (cellWidth(g) > width) {
-      if (line) lines.push(line);
+      if (line.length) lines.push(text());
       lines.push("?");
-      line = "";
+      line = [];
       continue;
     }
-    if (cellWidth(line + g) > width) {
-      lines.push(line);
-      line = "";
+    if (cellWidth(text() + g) > width) {
+      if (mode === "word" && g === " ") {
+        lines.push(text().trimEnd());
+        line = [];
+        continue;
+      }
+      const space = mode === "word" ? line.lastIndexOf(" ") : -1;
+      if (space > 0 && line.slice(0, space).join("").trim()) {
+        lines.push(line.slice(0, space).join("").trimEnd());
+        line = line.slice(space + 1);
+        if (cellWidth(text() + g) > width) {
+          lines.push(text());
+          line = [];
+        }
+      } else {
+        lines.push(text());
+        line = [];
+      }
     }
-    line += g;
+    line.push(g);
   }
-  if (line || !lines.length) lines.push(line);
+  if (line.length || !lines.length) lines.push(text());
   return lines;
 }
 /** Pads with spaces to an exact cell width (truncating first when needed). */

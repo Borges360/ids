@@ -363,14 +363,21 @@ export type PiSettingsResult = TerminalResult<Values> & {
   actionValue?: unknown;
 };
 /**
- * Pi defaults: standard presentation, second Esc discards, cancellable save, resize message below
- * 40×12. Pass the options explicitly to opt out.
+ * Pi defaults: English unless `locale` (or a session locale) is given, standard presentation,
+ * second Esc discards, cancellable save, resize message below 40×12. Pass the options explicitly
+ * to opt out.
+ *
+ * With a cancellable save, a `persist` that ignores its AbortSignal past `cancelGraceMs` leaves
+ * the outcome unknown: pass `reconcile` (a fresh storage read), or the panel asks before writing
+ * the draft again.
  */
 export async function openPiSettings(
   ui: PiUI,
   options: PiSettingsOptions,
 ): Promise<PiSettingsResult> {
-  const locale = options.locale ?? options.session.locale;
+  const locale =
+    options.locale ??
+    (options.session.hasLocale ? options.session.locale : "en");
   const messages =
     options.locale !== undefined || options.messages
       ? resolveMessages(locale, options.messages)
@@ -406,6 +413,7 @@ export async function openPiSettings(
             cancellableSave: true,
             narrow: "resize",
             ...rest,
+            locale,
             bindings: piBindings(keys, reservedKeys, ctrlS ?? true, {
               locale,
               ...(options.messages ? { messages: options.messages } : {}),
@@ -459,6 +467,11 @@ export interface PiWorkspaceOptions {
   title?: string;
   scope?: string;
   help?: string;
+  /**
+   * Below 40×12. Default: the model's own `narrow` when it was given to `new WorkspaceModel`,
+   * otherwise `resize`.
+   */
+  narrow?: "linear" | "resize";
 }
 export async function openPiWorkspace(
   ui: PiUI,
@@ -471,12 +484,15 @@ export async function openPiWorkspace(
     ? { reservedKeys: reservedKeysOrOptions }
     : reservedKeysOrOptions;
   const reservedKeys = options.reservedKeys ?? ["ctrl+c"];
+  // English by default in Pi, unless the caller or the model chose a locale.
   if (options.locale !== undefined)
     model.setLocale(options.locale, options.messages);
+  else if (!model.hasLocale) model.setLocale("en", options.messages);
   if (options.title !== undefined) model.title = options.title;
   if (options.scope !== undefined) model.scope = options.scope;
   if (options.help !== undefined) model.help = options.help;
-  model.narrow = "resize";
+  model.narrow =
+    options.narrow ?? (model.narrowChosen ? model.narrow : "resize");
   const overlay: PiOverlayOptions = {
     width: "100%",
     maxHeight: "100%",

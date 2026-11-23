@@ -137,6 +137,8 @@ function fakeUi(rows = 24) {
         await tick();
       }
     },
+    /** Input without waiting for the work it starts. */
+    send: (k: string) => component.handleInput(k),
     render: (w = 80) => component.render(w) as string[],
   };
 }
@@ -688,4 +690,273 @@ describe("1.4 values, choices, preview and geometry", () => {
     await openPiWorkspace(ui, model, new AbortController().signal, { locale: "en" });
     expect(model.closed).toBe(true);
   });
+});
+
+describe("1.4 review fixes", () => {
+  it("ignores a result that arrives after Esc cancelled a closeWith action", async () => {
+    let seen: AbortSignal | undefined;
+    const late: PanelAction = {
+      id: "pick",
+      label: "Pick device",
+      closeWith: true,
+      run: (_d, signal) => {
+        seen = signal;
+        return new Promise((r) => setTimeout(() => r({ value: "late-device" }), 30));
+      },
+    };
+    const { p, s, done, press, text } = panel({ actions: [late] });
+    await press(KEY.down, KEY.down, KEY.down);
+    p.handleInput(KEY.enter);
+    await tick();
+    await press(KEY.esc);
+    expect(seen?.aborted).toBe(true);
+    expect(p.controller.closedWith).toBeUndefined();
+    expect(s.closed).toBe(false);
+    expect(done).not.toHaveBeenCalled();
+    expect(text()).toContain("Pick device finished before the cancellation took effect");
+    // the closing action did not leak into the Pi result either
+    const f = fakeUi();
+    const result = openPiSettings(f.ui, {
+      title: "T",
+      scope: "S",
+      session: session(),
+      persist: async () => {},
+      signal: new AbortController().signal,
+      actions: [late],
+    });
+    await tick();
+    await f.press(KEY.down, KEY.down, KEY.down);
+    f.send(KEY.enter);
+    await tick();
+    await f.press(KEY.esc);
+    await wait(40);
+    expect(f.render().join(" ")).toContain("finished before the cancellation");
+    await f.press(KEY.esc);
+    const r = await result;
+    expect(r.status).toBe("succeeded");
+    expect(r).not.toHaveProperty("action");
+    expect(r).not.toHaveProperty("actionValue");
+  });
+  it("flags a value that resolved after abort without changing the 1.3 outcome", async () => {
+    const lateValue = (signal: AbortSignal) =>
+      new Promise<string>((r) => {
+        signal.addEventListener("abort", () => setTimeout(() => r("late"), 5), { once: true });
+      });
+    const op = new Operation<string>("l", "local");
+    const r1 = op.run(lateValue, 1000);
+    op.cancel();
+    expect(await r1).toMatchObject({ status: "succeeded", value: "late" });
+    expect(op.cancelRequested).toBe(true);
+    expect(await op.run(async () => "now", 1000)).toMatchObject({ status: "succeeded" });
+    expect(op.cancelRequested).toBe(false);
+    const timed = new Operation<string>("t", "local");
+    await timed.run(lateValue, 5);
+    expect(timed.cancelRequested).toBe(true);
+  });
+  it("does not open the submenu with choices that arrive after Esc", async () => {
+    const loadChoices = vi.fn(
+      () =>
+        new Promise<{ id: string; label: string }[]>((r) =>
+          setTimeout(() => r([{ id: "late", label: "LATE" }]), 20),
+        ),
+    );
+    const mic: Field = { id: "mic", label: "Microphone", description: "d", kind: "select", loadChoices };
+    const { p, s, press, text } = panel({ session: session([mic], { mic: "default" }) });
+    await press(KEY.down, KEY.down, KEY.down);
+    p.handleInput(KEY.enter);
+    await tick();
+    expect(text()).toContain("Loading options for Microphone");
+    await press(KEY.esc);
+    await wait(30);
+    expect(s.editing).toBeUndefined();
+    expect(text()).not.toContain("LATE");
+  });
+  it("offers an explicit retry after an unconfirmed save without reconcile", async () => {
+    let calls = 0;
+    const persist = vi.fn(
+      () =>
+        new Promise<void>((r) => {
+          calls++;
+          // the first write ignores the abort and takes longer than the grace period
+          setTimeout(r, calls === 1 ? 40 : 0);
+        }),
+    );
+    const { p, s, done, press, text } = panel({ persist, cancelGraceMs: 5 });
+    await press(KEY.down, KEY.enter);
+    p.handleInput(KEY.ctrlS);
+    await tick();
+    await press(KEY.esc);
+    expect(s.outcomeUnknown).toBe(true);
+    await wait(50);
+    await press(KEY.ctrlS);
+    expect(persist).toHaveBeenCalledTimes(1);
+    expect(text()).toContain("previous save was not confirmed");
+    expect(text()).toContain("> [Go back]");
+    await press(KEY.esc);
+    expect(s.outcomeUnknown).toBe(true);
+    await press(KEY.ctrlS, KEY.down, KEY.enter);
+    expect(persist).toHaveBeenCalledTimes(2);
+    expect(s.outcomeUnknown).toBe(false);
+    expect(s.persisted.enabled).toBe(true);
+    expect(done).not.toHaveBeenCalled();
+  });
+  it("retries Save and close after an unconfirmed save without reconcile", async () => {
+    let calls = 0;
+    const persist = vi.fn(
+      () => new Promise<void>((r) => setTimeout(r, ++calls === 1 ? 40 : 0)),
+    );
+    const { p, s, done, press } = panel({ persist, cancelGraceMs: 5 });
+    await press(KEY.down, KEY.enter);
+    p.handleInput(KEY.ctrlS);
+    await tick();
+    await press(KEY.esc);
+    await wait(50);
+    await press(KEY.esc, KEY.down, KEY.enter);
+    expect(persist).toHaveBeenCalledTimes(1);
+    expect(p.controller.confirm).toBeDefined();
+    await press(KEY.down, KEY.enter);
+    expect(persist).toHaveBeenCalledTimes(2);
+    expect(s.persisted.enabled).toBe(true);
+    expect(done).toHaveBeenCalledOnce();
+  });
+  it("clears a validation error when the field edit is abandoned with Esc", async () => {
+    const { s, press, text } = panel();
+    await press(KEY.down, KEY.down, KEY.enter, "\x7f", "9", KEY.enter);
+    expect(s.errors.limit).toBe("Use 1 to 8.");
+    await press(KEY.esc);
+    expect(s.draft.limit).toBe(3);
+    expect(s.errors).toEqual({});
+    expect(text()).not.toContain("Use 1 to 8.");
+  });
+  it("drops the saved status once the draft changes again", async () => {
+    const { s, press, text } = panel();
+    await press(KEY.down, KEY.enter, KEY.ctrlS);
+    expect(text()).toContain("Changes saved.");
+    await press(KEY.enter);
+    expect(s.dirty).toBe(true);
+    expect(text()).not.toContain("Changes saved.");
+  });
+  it("opens the Pi panel and workspace in English unless a locale is chosen", async () => {
+    const f = fakeUi();
+    const result = openPiSettings(f.ui, {
+      title: "T",
+      scope: "S",
+      session: session(),
+      persist: async () => {},
+      signal: new AbortController().signal,
+    });
+    await tick();
+    const en = f.render().join("\n");
+    expect(en).toContain("Save changes");
+    expect(en).not.toMatch(/Salvar|Sem altera|desligado/);
+    await f.press(KEY.esc);
+    await result;
+    const g = fakeUi();
+    const pt = openPiSettings(g.ui, {
+      title: "T",
+      scope: "S",
+      session: new SettingsSession(fields, initial, { locale: "pt-BR" }),
+      persist: async () => {},
+      signal: new AbortController().signal,
+    });
+    await tick();
+    expect(g.render().join("\n")).toContain("Salvar alterações");
+    await g.press(KEY.esc);
+    await pt;
+    const model = new WorkspaceModel({
+      records: [{ id: "a", label: "Check", fields: { Result: "OK" } }],
+      columns: [{ id: "Result", label: "Result", priority: 0 }],
+    });
+    const w = fakeUi();
+    const opened = openPiWorkspace(w.ui, model, new AbortController().signal);
+    await tick();
+    const ws = w.render().join("\n");
+    expect(ws).toContain("Esc close");
+    expect(ws).not.toContain("Diagnóstico");
+    await w.press(KEY.esc);
+    await opened;
+  });
+  it("keeps an explicit narrow mode on the workspace and words the resize message without a draft", async () => {
+    const records = [{ id: "a", label: "Check", fields: { Result: "OK" } }];
+    const columns = [{ id: "Result", label: "Result", priority: 0 }];
+    const linear = new WorkspaceModel({ records, columns, narrow: "linear", locale: "en" });
+    const a = fakeUi();
+    const o1 = openPiWorkspace(a.ui, linear, new AbortController().signal, { locale: "en" });
+    await tick();
+    expect(linear.narrow).toBe("linear");
+    expect(a.render(30).join("\n")).not.toContain("Terminal too small");
+    await a.press(KEY.esc);
+    await o1;
+    const fresh = new WorkspaceModel({ records, columns, locale: "en" });
+    const b = fakeUi();
+    const o2 = openPiWorkspace(b.ui, fresh, new AbortController().signal, { locale: "en" });
+    await tick();
+    const small = b.render(30).join("\n");
+    expect(fresh.narrow).toBe("resize");
+    expect(small).toContain("Terminal too small");
+    expect(small).not.toMatch(/draft/i);
+    await b.press(KEY.esc);
+    await o2;
+    const forced = new WorkspaceModel({ records, columns, locale: "en" });
+    const c = fakeUi();
+    const o3 = openPiWorkspace(c.ui, forced, new AbortController().signal, { locale: "en", narrow: "linear" });
+    await tick();
+    expect(forced.narrow).toBe("linear");
+    await c.press(KEY.esc);
+    await o3;
+  });
+  it("wraps long text at spaces in the standard presentation", async () => {
+    const text =
+      "The previous run did not confirm its result. Check the destination before running it again.";
+    const { p, press } = panel({
+      actions: [{ id: "x", label: "Send", confirm: text, run: async () => "ok" }],
+    });
+    await press(KEY.down, KEY.down, KEY.down, KEY.enter);
+    for (let width = 40; width <= 100; width++) {
+      const rendered = p.render(width).join("\n");
+      for (const word of text.split(" ")) expect(rendered, `${width}`).toContain(word);
+    }
+    // a word longer than the width is still split (never dropped)
+    const { p: q, press: pressQ } = panel({
+      actions: [{ id: "y", label: "Send", confirm: "x".repeat(50), run: async () => "ok" }],
+    });
+    await pressQ(KEY.down, KEY.down, KEY.down, KEY.enter);
+    expect(q.render(40).join("").replace(/[^x]/g, "").length).toBeGreaterThanOrEqual(50);
+  });
+});
+
+describe("1.4 fallback width corpus", () => {
+  // Pinned widths of the dependency-free measure (used outside Pi). Differences from
+  // string-width 7.2.0 are intentional and listed in packages/terminal/CHANGELOG.md.
+  const corpus: [string, number][] = [
+    ["abc", 3],
+    ["界", 2],
+    ["ｱ", 1],
+    ["Ａ", 2],
+    ["©", 1],
+    ["®", 1],
+    ["™", 1],
+    ["‼", 1],
+    ["ℹ", 1],
+    ["↔", 1],
+    ["❤️", 2],
+    ["👩‍💻", 2],
+    ["🇧🇷", 2],
+    ["1️⃣", 2],
+    ["#⃣", 2],
+    ["a⃣", 1],
+    ["é", 1],
+    ["؀", 0],
+    ["ᅟ", 0],
+    ["ᅠ", 0],
+    ["ㅤ", 0],
+    ["ﾠ", 0],
+    [" ", 0],
+    ["​", 0],
+    ["한", 2],
+  ];
+  for (const [text, width] of corpus)
+    it(`measures U+${[...text].map((c) => c.codePointAt(0)!.toString(16).padStart(4, "0")).join(" U+")} as ${width}`, () => {
+      expect(fallbackCellWidth(text)).toBe(width);
+    });
 });

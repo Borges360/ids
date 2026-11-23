@@ -67,6 +67,8 @@ export class SettingsSession {
   messages: TerminalMessages;
   /** Current UI locale of the session messages. */
   locale: Locale;
+  /** False while the locale is the package default (no `locale` option, no `setLocale`). */
+  private localeChosen: boolean;
   errors: Record<string, string> = {};
   focusedId: string;
   private statusText = "";
@@ -82,6 +84,7 @@ export class SettingsSession {
     this.options = options;
     this.messages = resolveMessages(options.locale, options.messages);
     this.locale = normalizeLocale(options.locale);
+    this.localeChosen = options.locale !== undefined;
     this.currentFields = fields;
     if (new Set(fields.map((f) => f.id)).size !== fields.length)
       throw new Error(this.messages.duplicateFieldIds);
@@ -118,7 +121,7 @@ export class SettingsSession {
   get cancellableSave() {
     return !!this.options.cancellableSave;
   }
-  /** True after an unconfirmed save; saving stays blocked until `reconcilePersistence`. */
+  /** True after an unconfirmed save; saving stays blocked until `reconcilePersistence` or `allowSaveRetry`. */
   get outcomeUnknown() {
     return this.persistenceUnknown;
   }
@@ -126,6 +129,11 @@ export class SettingsSession {
   setLocale(locale: Locale | string, messages?: MessageOverrides) {
     this.messages = resolveMessages(locale, messages ?? this.options.messages);
     this.locale = normalizeLocale(locale);
+    this.localeChosen = true;
+  }
+  /** True when a locale was given (constructor option or `setLocale`), not the package default. */
+  get hasLocale() {
+    return this.localeChosen;
   }
   /** Replaces labels/descriptions/choices with a translated set. Ids and kinds must match. */
   relabelFields(fields: readonly Field[]) {
@@ -250,12 +258,17 @@ export class SettingsSession {
       this.focusedId = id;
       return false;
     }
+    // A success status describes the previous saved state; a new change makes it stale.
+    if (!same(this.working[id], value) && this.statusKind === "success")
+      this.setStatus("");
     this.working[id] = clone(value);
     delete this.errors[id];
     this.editor = undefined;
     return true;
   }
+  /** Leaves the field without applying the edit; its validation error goes with it. */
   abandonEdit() {
+    if (this.editor) delete this.errors[this.editor.id];
     this.editor = undefined;
   }
   validate(): boolean {
@@ -372,6 +385,15 @@ export class SettingsSession {
       options.signal?.removeEventListener("abort", abort);
       if (generation === this.generation) this.controller = undefined;
     }
+  }
+  /**
+   * After an unconfirmed save without a storage read, lets the user explicitly write the draft
+   * again. The persisted snapshot is unchanged, so the draft stays dirty until that save succeeds.
+   */
+  allowSaveRetry() {
+    if (this.disposed || this.saving || !this.persistenceUnknown) return;
+    this.persistenceUnknown = false;
+    this.setStatus("");
   }
   /** The consumer supplies a fresh storage read; this never repeats a write. */
   reconcilePersistence(current: Values) {

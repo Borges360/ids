@@ -564,6 +564,10 @@ export interface PanelOptions {
   narrow?: "linear" | "resize";
   /** `always` (default) shows the `x-y of N lines` position; `overflow` only when content scrolls. */
   position?: "always" | "overflow";
+  /** `grapheme` (default, 1.3 output) fills each line; `word` breaks at spaces when it can. */
+  wrap?: "grapheme" | "word";
+  /** Whether the surface has a draft to keep (resize message wording). Default true. */
+  draft?: boolean;
 }
 const MIN_COLUMNS = 40,
   MIN_ROWS = 12;
@@ -580,7 +584,7 @@ export function TerminalPanel(p: PanelOptions): View {
       outKinds: (LineKind | undefined)[] = [];
     lines.forEach((line, i) => {
       const kind = kinds[i] ?? (line.startsWith(">") ? "focus" : undefined);
-      for (const piece of wrap(line, width)) {
+      for (const piece of wrap(line, width, p.wrap ?? "grapheme")) {
         out.push(piece);
         outKinds.push(kind);
       }
@@ -624,7 +628,7 @@ export function TerminalPanel(p: PanelOptions): View {
             [
               p.title,
               m.terminalTooSmall(width, height, MIN_COLUMNS, MIN_ROWS),
-              m.enlargeOrClose,
+              p.draft === false ? m.enlargeOrGoBack : m.enlargeOrClose,
             ],
             ["title", "warning", "muted"],
           )

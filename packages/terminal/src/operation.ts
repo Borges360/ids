@@ -30,6 +30,8 @@ export interface RunOptions<T> {
   context?: ErrorContext;
   /** Final message from the returned value; empty/undefined keeps the default. */
   describe?: (value: T) => string | undefined;
+  /** Progress label shown until the work reports its own. Default: the "starting" message. */
+  label?: string;
 }
 export class Operation<T> {
   state: OperationState = "idle";
@@ -37,6 +39,11 @@ export class Operation<T> {
   progress: { label: string; completed?: number; total?: number } = {
     label: "",
   };
+  /**
+   * True when the last run succeeded although Esc (`cancel`) or the timeout had already aborted
+   * its signal. The value is real, but the person asked to stop: do not act on it.
+   */
+  cancelRequested = false;
   private controller: AbortController | undefined;
   private generation = 0;
   private disposed = false;
@@ -96,8 +103,11 @@ export class Operation<T> {
       controller = new AbortController();
     this.controller = controller;
     this.state = "running";
+    this.cancelRequested = false;
     this.message = m.operationRunning;
-    this.progress = { label: m.operationStarting };
+    this.progress = {
+      label: runOptions.label?.trim() ? runOptions.label : m.operationStarting,
+    };
     let timeout: ReturnType<typeof setTimeout> | undefined;
     let cancellationDeadline: ReturnType<typeof setTimeout> | undefined;
     const abortResult = new Promise<never>((_, reject) => {
@@ -134,6 +144,9 @@ export class Operation<T> {
       ]);
       if (this.disposed || generation !== this.generation)
         return { status: "cancelled", message: m.sessionEnded };
+      // Work that completed is reported as completed (1.3 contract), but callers can tell that
+      // the person had already asked to stop and must not act on the value (close, open, …).
+      this.cancelRequested = controller.signal.aborted;
       let message = m.operationDone;
       try {
         const described = runOptions.describe?.(value);

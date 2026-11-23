@@ -56,6 +56,9 @@ export class WorkspaceModel {
   help: string | undefined;
   hints: string | undefined;
   narrow: "linear" | "resize";
+  /** True when `narrow` was given to the constructor (adapters keep it instead of their default). */
+  readonly narrowChosen: boolean;
+  private localeChosen: boolean;
   private readonly overrides: MessageOverrides | undefined;
   constructor(readonlyOptions: WorkspaceOptions) {
     this.records = readonlyOptions.records;
@@ -65,11 +68,13 @@ export class WorkspaceModel {
       readonlyOptions.messages,
     );
     this.locale = normalizeLocale(readonlyOptions.locale);
+    this.localeChosen = readonlyOptions.locale !== undefined;
     this.title = readonlyOptions.title;
     this.scope = readonlyOptions.scope;
     this.help = readonlyOptions.help;
     this.hints = readonlyOptions.hints;
     this.narrow = readonlyOptions.narrow ?? "linear";
+    this.narrowChosen = readonlyOptions.narrow !== undefined;
     this.navigation = new Navigation("workspace", this.records);
     this.table = new TableModel(
       readonlyOptions.columns,
@@ -84,8 +89,13 @@ export class WorkspaceModel {
   setLocale(locale: Locale | string, messages?: MessageOverrides) {
     this.messages = resolveMessages(locale, messages ?? this.overrides);
     this.locale = normalizeLocale(locale);
+    this.localeChosen = true;
     this.table.messages = this.messages;
     this.log.messages = this.messages;
+  }
+  /** True when a locale was given (constructor option or `setLocale`), not the package default. */
+  get hasLocale() {
+    return this.localeChosen;
   }
   get actions() {
     const m = this.messages;
@@ -208,6 +218,7 @@ export class WorkspaceModel {
       rows,
       messages: m,
       narrow: this.narrow,
+      draft: false,
     });
   }
 }

@@ -158,9 +158,18 @@ export class PanelController {
   searchEditing = false;
   search = "";
   helpOffset = 0;
-  /** Pending confirmation of an action row. */
+  /**
+   * Pending confirmation of an action row, or of writing the draft again after an unconfirmed
+   * save without `reconcile` (`save`).
+   */
   confirm:
-    | { action: PanelAction; text: string; unknown: boolean; index: number }
+    | {
+        action: PanelAction;
+        text: string;
+        unknown: boolean;
+        index: number;
+        save?: "save" | "saveClose";
+      }
     | undefined;
   /** Set when an action closed the panel. */
   closedWith: PanelActionResult | undefined;
@@ -429,7 +438,16 @@ export class PanelController {
           this.modalIndex
         ]!;
         if (decision === "discard") await this.discard();
-        else await this.session.decide(decision, this.options.persist);
+        else if (decision === "saveClose" && this.session.outcomeUnknown) {
+          if (this.options.reconcile) {
+            await this.reconcileStorage();
+            if (!this.session.outcomeUnknown)
+              await this.session.decide(decision, this.options.persist);
+          } else {
+            this.session.closeDecision = false;
+            this.askSaveRetry("saveClose");
+          }
+        } else await this.session.decide(decision, this.options.persist);
       }
       return;
     }
@@ -440,7 +458,13 @@ export class PanelController {
       else if (action === "navigate.down") this.move(1);
       else if (action === "activate") {
         this.confirm = undefined;
-        if (pending.index === 1) {
+        if (pending.index === 1 && pending.save) {
+          this.session.allowSaveRetry();
+          if (pending.save === "saveClose") {
+            this.session.closeDecision = true;
+            await this.session.decide("saveClose", this.options.persist);
+          } else await this.save();
+        } else if (pending.index === 1) {
           if (pending.unknown)
             this.operationFor(
               pending.action.id,
@@ -485,6 +509,10 @@ export class PanelController {
         this.session.edit(c.id);
       }
       if (f?.kind === "multiselect") this.session.edit(this.selected);
+      if (this.session.outcomeUnknown) {
+        this.askSaveRetry("save");
+        return;
+      }
       await this.save();
       return;
     }
@@ -538,6 +566,7 @@ export class PanelController {
     if (id === "save") {
       if (this.session.outcomeUnknown && this.options.reconcile)
         await this.reconcileStorage();
+      else if (this.session.outcomeUnknown) this.askSaveRetry("save");
       else await this.save();
     }
     if (id === "help") this.help = true;
@@ -555,6 +584,17 @@ export class PanelController {
         { context: { phase: "task", label: this.task.label } },
       );
     }
+  }
+  /** Without a storage read, writing the draft again needs an explicit choice (focus on Go back). */
+  private askSaveRetry(mode: "save" | "saveClose") {
+    const m = this.messages;
+    this.confirm = {
+      action: { id: "@save", label: m.actionSave },
+      text: m.saveRetryConfirm,
+      unknown: true,
+      index: 0,
+      save: mode,
+    };
   }
   private async save() {
     const result = await this.session.save(this.options.persist);
@@ -593,9 +633,18 @@ export class PanelController {
       const result = await op.run(
         (signal) => load(signal),
         f.loadTimeoutMs ?? 15000,
-        { context: { phase: "loadChoices", id, label: f.label } },
+        {
+          context: { phase: "loadChoices", id, label: f.label },
+          label: this.messages.loadingChoices(f.label),
+        },
       );
       if (result.status !== "succeeded" || this.session.closed) return;
+      if (op.cancelRequested) {
+        // Esc already cancelled the load (read-only): late choices never open the submenu.
+        op.state = "cancelled";
+        op.message = this.messages.operationCancelled;
+        return;
+      }
       const choices = Array.isArray(result.value)
         ? (result.value as Choice[])
         : [];
@@ -670,6 +719,11 @@ export class PanelController {
       },
     );
     if (result.status !== "succeeded" || this.session.closed) return;
+    if (op.cancelRequested) {
+      // The work finished despite Esc: report it, but never close or hand its value over.
+      op.message = m.finishedBeforeCancel(a.label);
+      return;
+    }
     const value = result.value as
       | { close?: unknown; value?: unknown }
       | undefined;
@@ -952,7 +1006,7 @@ export class PanelController {
         c.action.label,
         c.text,
         `${c.index === 0 ? ">" : " "} [${m.confirmBack}]`,
-        `${c.index === 1 ? ">" : " "} [${m.confirmRun(c.action.label)}]`,
+        `${c.index === 1 ? ">" : " "} [${c.save ? m.confirmSaveAgain : m.confirmRun(c.action.label)}]`,
       ];
       body = {
         lines,
@@ -1015,6 +1069,7 @@ export class PanelController {
       messages: m,
       narrow: this.options.narrow ?? (standard ? "resize" : "linear"),
       position: standard ? "overflow" : "always",
+      wrap: standard ? "word" : "grapheme",
     });
   }
   private focusedDescription() {
