@@ -37,6 +37,7 @@ Minor retrocompatível: opções novas com padrões que preservam a saída 1.3 (
 - `Operation`: trabalho local que rejeita depois do abort conta como cancelado; `code: "CANCELLED"` e `OperationCancelled` (também por `name`, entre cópias) confirmam cancelamento em efeito externo. `AbortError` em efeito externo continua `outcomeUnknown`.
 - Campo de texto em edição: o cursor começa no fim do valor e a linha digitada fica visível mesmo com rótulo quebrado.
 - `SEMANTIC_ROLES` mudou para `roles.ts` (ainda exportado pela raiz), fora do fecho do adaptador Pi.
+- Modo de ajuda (`?`/F1): a descrição do campo focado aparece uma vez, no corpo; o rodapé não a repete.
 
 ### Migration
 - Nenhuma ação obrigatória para quem usa a raiz. Quem dependia do layout 1.3 do adaptador Pi passa `presentation: "legacy"`, `discardOnSecondEscape: false`, `cancellableSave: false` e `locale: "pt-BR"` a `openPiSettings`. No workspace, passa `narrow: "linear"` e `locale: "pt-BR"` a `openPiWorkspace` (ou ao `WorkspaceModel`).

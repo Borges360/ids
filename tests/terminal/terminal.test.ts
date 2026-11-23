@@ -162,6 +162,32 @@ describe("Terminal recovery and portable interaction regressions", () => {
     expect(text).toContain("a·b…界");
     expect(text).toContain("projeto | Sem alterações");
   });
+  it("help mode shows the focused description once (body only, not repeated in the footer)", async () => {
+    const description =
+      "Unique field description that only the help screen should print.";
+    for (const locale of ["en", "pt-BR"]) {
+      const s = new SettingsSession(
+        [{ id: "x", label: "Field", description, kind: "text" }],
+        { x: "a" },
+      );
+      const p = new PanelController({
+        session: s,
+        title: "Product",
+        scope: "scope",
+        persist,
+        locale,
+        presentation: "standard",
+        bindings: resolveBindings(),
+      });
+      const count = () =>
+        p.render(80, 40).lines.join("\n").split(description).length - 1;
+      expect(count()).toBe(1);
+      await p.dispatch("help");
+      expect(p.help).toBe(true);
+      expect(count()).toBe(1);
+      p.dispose();
+    }
+  });
   it("search uses remapped actions and keeps typed help keys as data", async () => {
     const fields = Array.from({ length: 12 }, (_, i) => ({
       id: `f${i}`,
