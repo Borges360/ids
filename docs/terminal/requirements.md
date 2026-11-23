@@ -12,7 +12,7 @@ As seis frentes são implementadas em contrato/documentação, núcleo, componen
 | TERM-06 | resolveBindings/keyAction/KeyHints e piBindings | remap, reservas, paste e salvar por ação visível |
 | TERM-07 | Operation, cancel, timeout, reconcile e dispose | duplicidade, desconhecido, timeout e resultado atrasado |
 | TERM-08 | TerminalPanel, SettingsList, ResultList e WorkspaceModel | 40×12/80×24/120×36 + resize em PTY |
-| TERM-09 | safeText, Intl.Segmenter, string-width, wrap/truncate | acentos, combinantes, CJK, emoji, OSC/CSI/DCS/C1 |
+| TERM-09 | safeText, Intl.Segmenter, medida injetável (`visibleWidth` no Pi, tabela UAX #11 sem dependência), wrap/truncate | acentos, combinantes, CJK, emoji, OSC/CSI/DCS/C1 |
 | TERM-10 | detectCapabilities, requireInput e piloto standalone | CI/sem TTY/sem entrada/JSON; import isolado |
 | TERM-11 | dispose/sinais; host controla processo, Inquirer controla raw | teste Pi Input real + Ctrl+C/raw em ConPTY; host real separado |
 | TERM-12 | runLinear, HelpView, decisões numeradas | transcript teclado/EOF; leitor de tela real ainda exige revisão |

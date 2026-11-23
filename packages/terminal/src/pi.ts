@@ -1,29 +1,55 @@
 import {
   Input,
   matchesKey,
+  truncateToWidth,
+  visibleWidth,
   type Component,
   type KeybindingsManager,
   type Keybinding,
   type KeyId,
 } from "@earendil-works/pi-tui";
 import type { Binding, ActionId, TerminalResult, Values } from "./contracts.ts";
-import { resolveBindings, keyAction, keyHints } from "./keyboard.ts";
+import {
+  keyAction,
+  keyLabel,
+  resolveBindingsLenient,
+  standardKeyHints,
+} from "./keyboard.ts";
 import {
   PanelController,
   type PanelControllerOptions,
   type PanelTask,
 } from "./controller.ts";
-import { safeText } from "./text.ts";
+import type { LineKind } from "./components.ts";
+import { setCellWidthMeasure } from "./text.ts";
+import {
+  resolveMessages,
+  type Locale,
+  type MessageOverrides,
+} from "./i18n.ts";
 import { WorkspaceModel } from "./workspace.ts";
+// Layout must measure exactly like the host renderer: pi-tui stops the TUI when a line is wider
+// than the terminal. The adapter therefore never depends on another width library.
+setCellWidthMeasure(visibleWidth);
 export interface PiTheme {
   fg(
     name: "accent" | "muted" | "error" | "success" | "warning",
     text: string,
   ): string;
+  bold?(text: string): string;
 }
 export interface PiRuntime {
   requestRender(): void;
   terminal?: { rows: number };
+}
+export interface PiOverlayOptions {
+  /** Columns or percentage of the terminal. Default `100%`. */
+  width?: number | `${number}%`;
+  minWidth?: number;
+  /** Rows or percentage of the terminal. Default `100%`. */
+  maxHeight?: number | `${number}%`;
+  anchor?: "center" | "top-center" | "bottom-center";
+  margin?: number;
 }
 export interface PiUI {
   custom<T>(
@@ -35,11 +61,7 @@ export interface PiUI {
     ) => Component & { focused?: boolean },
     options?: {
       overlay: boolean;
-      overlayOptions: {
-        width: `${number}%`;
-        maxHeight: `${number}%`;
-        anchor: "center";
-      };
+      overlayOptions: PiOverlayOptions;
     },
   ): Promise<T>;
 }
@@ -51,22 +73,65 @@ const HOST_ACTIONS: [ActionId, Keybinding][] = [
   ["navigate.pageUp", "tui.select.pageUp"],
   ["navigate.pageDown", "tui.select.pageDown"],
 ];
+export interface PiBindingOptions {
+  locale?: Locale | string;
+  messages?: MessageOverrides;
+}
+/**
+ * Host keys first (`tui.select.*`), with readable labels (`↑`, `Enter`, `Esc`, `PgDn`). A host remap
+ * that collides with a default no longer prevents the panel from opening: the host key wins.
+ */
 export function piBindings(
   keys: KeybindingsManager,
   reserved: readonly string[] = [],
   ctrlS = true,
+  options: PiBindingOptions = {},
 ): Binding[] {
+  const messages = resolveMessages(options.locale, options.messages);
   const host: Binding[] = HOST_ACTIONS.flatMap(([action, id]) =>
     keys.getKeys(id).map((key) => ({
       action,
       key,
-      label: key,
+      label: keyLabel(key, messages),
       scope: action.startsWith("navigate.")
         ? ("navigation" as const)
         : ("panel" as const),
     })),
   );
-  return resolveBindings(host, reserved, ctrlS);
+  return resolveBindingsLenient(host, reserved, ctrlS, options);
+}
+/** Paints semantic line kinds with the host theme only; no fixed ANSI. */
+function paint(theme: PiTheme, kind: LineKind | "raw" | undefined, line: string) {
+  switch (kind) {
+    case "focus":
+      return theme.fg("accent", line);
+    case "error":
+      return theme.fg("error", line);
+    case "warning":
+      return theme.fg("warning", line);
+    case "success":
+      return theme.fg("success", line);
+    case "muted":
+      return theme.fg("muted", line);
+    case "title":
+      return theme.bold ? theme.bold(line) : line;
+    default:
+      return line;
+  }
+}
+/** Never return a line wider than the host asked for (pi-tui aborts the TUI on overflow). */
+function fit(line: string, width: number) {
+  return visibleWidth(line) > width ? truncateToWidth(line, width, "") : line;
+}
+function overlayRows(total: number, overlay: PiOverlayOptions | undefined) {
+  const max = overlay?.maxHeight;
+  if (typeof max === "number") return Math.max(1, Math.min(total, max));
+  if (typeof max === "string") {
+    const pct = Number.parseFloat(max);
+    if (Number.isFinite(pct) && pct > 0)
+      return Math.max(1, Math.floor((total * Math.min(100, pct)) / 100));
+  }
+  return Math.max(1, total);
 }
 /** A temporary host component: no writes to process streams, no editor/footer replacement. */
 export class PiSettingsPanel implements Component {
@@ -96,10 +161,12 @@ export class PiSettingsPanel implements Component {
     this.done = done;
     this.rows = rows;
     this.reserved = reserved;
+    const onChange = options.onChange;
     this.controller = new PanelController(
       {
         ...options,
         onChange: () => {
+          onChange?.();
           if (!this.disposed) this.requestRender();
         },
       },
@@ -124,11 +191,14 @@ export class PiSettingsPanel implements Component {
     ) {
       this.input = new Input();
       this.input.focused = true;
-      this.input.setValue(
+      const value =
         f.kind === "secret"
           ? ""
-          : String(this.controller.session.editing?.value ?? ""),
-      );
+          : String(this.controller.session.editing?.value ?? "");
+      // Paste-style insertion leaves the cursor at the end of the current value.
+      if (value && !value.includes("\x1b"))
+        this.input.handleInput(`\x1b[200~${value}\x1b[201~`);
+      else this.input.setValue(value);
       this.editingId = f.id;
     }
     if (!f) {
@@ -156,8 +226,10 @@ export class PiSettingsPanel implements Component {
       })
       .catch(() => {
         if (!this.disposed) {
-          this.controller.session.status =
-            "Ação falhou. O rascunho foi preservado.";
+          this.controller.session.setStatus(
+            this.controller.messages.actionFailed,
+            "error",
+          );
           this.requestRender();
         }
       })
@@ -179,13 +251,10 @@ export class PiSettingsPanel implements Component {
       this.requestRender();
       return;
     }
+    const bindings = this.controller.bindings;
     if (this.controller.searchEditing && this.input) {
-      const binding = this.controller.options.bindings.find((b) =>
-        matchesKey(data, b.key as KeyId),
-      );
-      const action =
-        binding &&
-        keyAction(binding.key, this.controller.options.bindings, "field");
+      const binding = bindings.find((b) => matchesKey(data, b.key as KeyId));
+      const action = binding && keyAction(binding.key, bindings, "field");
       if (action === "back" || action === "activate") {
         if (action === "activate")
           this.controller.filter(this.input.getValue());
@@ -200,14 +269,12 @@ export class PiSettingsPanel implements Component {
       ? "navigation"
       : this.input
         ? "field"
-        : this.controller.operation.active
+        : this.controller.busy
           ? "operation"
           : "navigation";
-    const binding = this.controller.options.bindings.find((b) =>
-      matchesKey(data, b.key as KeyId),
-    );
+    const binding = bindings.find((b) => matchesKey(data, b.key as KeyId));
     const action = binding
-      ? keyAction(binding.key, this.controller.options.bindings, context)
+      ? keyAction(binding.key, bindings, context)
       : undefined;
     if (action) this.execute(action);
     else if (this.input) {
@@ -217,39 +284,55 @@ export class PiSettingsPanel implements Component {
   }
   render(columns: number): string[] {
     this.syncInput();
-    const frame = this.controller.render(columns, this.rows());
-    if (this.controller.searchEditing && this.input)
-      return [
-        "Buscar itens (vazio limpa)",
-        ...this.input.render(columns),
-        keyHints(this.controller.options.bindings, {
-          activate: "aplicar",
-          back: "voltar",
-        }),
+    const width = Math.max(1, Math.floor(columns)),
+      rows = Math.max(1, this.rows()),
+      c = this.controller,
+      m = c.messages;
+    let lines: string[], kinds: (LineKind | "raw" | undefined)[];
+    if (c.searchEditing && this.input) {
+      const edit = this.input.render(width);
+      lines = [
+        m.searchPrompt,
+        ...edit,
+        standardKeyHints(c.bindings, [
+          ["activate", m.hintApply],
+          ["back", m.hintBack],
+        ]),
       ];
-    if (
-      this.input &&
-      this.controller.field &&
-      !this.controller.session.closeDecision &&
-      !this.controller.help
-    ) {
-      const secret = this.controller.field.kind === "secret";
-      const editLines = secret
-        ? ["[entrada protegida]"]
-        : this.input.render(Math.max(1, columns));
-      const label = safeText(this.controller.field.label);
-      const labelIndex = frame.lines.findIndex((l) => l === label);
-      if (labelIndex >= 0) frame.lines.splice(labelIndex + 1, 1, ...editLines);
+      kinds = ["label", ...edit.map(() => "raw" as const), "muted"];
+    } else {
+      const frame = c.render(width, rows);
+      lines = [...frame.lines];
+      kinds = frame.lines.map((_, i) => frame.kinds?.[i]);
+      if (
+        this.input &&
+        c.field &&
+        !c.session.closeDecision &&
+        !c.help &&
+        !c.confirm &&
+        width >= 40 &&
+        rows >= 12
+      ) {
+        const secret = c.field.kind === "secret";
+        const edit = secret ? [m.protectedInput] : this.input.render(width);
+        const editKinds = edit.map(() => (secret ? undefined : "raw" as const));
+        // The value line is marked by the projection, so a wrapped or repeated label never hides it.
+        const at = kinds.indexOf("input");
+        if (at >= 0) {
+          let end = at;
+          while (kinds[end + 1] === "input") end++;
+          lines.splice(at, end - at + 1, ...edit);
+          kinds.splice(at, end - at + 1, ...editKinds);
+        } else {
+          const after = Math.min(2, lines.length);
+          lines.splice(after, 0, ...edit);
+          kinds.splice(after, 0, ...editKinds);
+        }
+      }
     }
-    return frame.lines
-      .map((line) =>
-        line.startsWith(">")
-          ? this.theme.fg("accent", line)
-          : line.startsWith("Erro:")
-            ? this.theme.fg("error", line)
-            : line,
-      )
-      .slice(0, this.rows());
+    return lines
+      .slice(0, rows)
+      .map((line, i) => paint(this.theme, kinds[i], fit(line, width)));
   }
   async drain() {
     await Promise.all([...this.pending]);
@@ -262,18 +345,45 @@ export class PiSettingsPanel implements Component {
     this.controller.dispose();
   }
 }
+export interface PiSettingsOptions
+  extends Omit<PanelControllerOptions, "bindings"> {
+  signal: AbortSignal;
+  reservedKeys?: string[];
+  /** Ctrl+S saves and keeps the panel open. Default true. */
+  ctrlS?: boolean;
+  task?: PanelTask;
+  overlay?: PiOverlayOptions;
+}
+/**
+ * `value` is always the persisted snapshot. `action` is the id of an action row that closed the
+ * panel (`closeWith`), with its `actionValue`.
+ */
+export type PiSettingsResult = TerminalResult<Values> & {
+  action?: string;
+  actionValue?: unknown;
+};
+/**
+ * Pi defaults: standard presentation, second Esc discards, cancellable save, resize message below
+ * 40×12. Pass the options explicitly to opt out.
+ */
 export async function openPiSettings(
   ui: PiUI,
-  options: Omit<PanelControllerOptions, "bindings"> & {
-    signal: AbortSignal;
-    reservedKeys?: string[];
-    ctrlS?: boolean;
-    task?: PanelTask;
-  },
-): Promise<TerminalResult<Values>> {
+  options: PiSettingsOptions,
+): Promise<PiSettingsResult> {
+  const locale = options.locale ?? options.session.locale;
+  const messages =
+    options.locale !== undefined || options.messages
+      ? resolveMessages(locale, options.messages)
+      : options.session.messages;
   if (options.signal.aborted)
-    return { status: "cancelled", message: "Sessão encerrada." };
+    return { status: "cancelled", message: messages.sessionEnded };
   let component: PiSettingsPanel | undefined;
+  const overlay: PiOverlayOptions = {
+    width: "100%",
+    maxHeight: "100%",
+    anchor: "center",
+    ...options.overlay,
+  };
   try {
     await ui.custom<void>(
       (tui, theme, keys, done) => {
@@ -281,64 +391,114 @@ export async function openPiSettings(
           component?.dispose();
           done();
         };
+        const {
+          signal,
+          reservedKeys,
+          ctrlS,
+          task,
+          overlay: _overlay,
+          ...rest
+        } = options;
         component = new PiSettingsPanel(
           {
-            ...options,
-            bindings: piBindings(
-              keys,
-              options.reservedKeys,
-              options.ctrlS ?? true,
-            ),
+            presentation: "standard",
+            discardOnSecondEscape: true,
+            cancellableSave: true,
+            narrow: "resize",
+            ...rest,
+            bindings: piBindings(keys, reservedKeys, ctrlS ?? true, {
+              locale,
+              ...(options.messages ? { messages: options.messages } : {}),
+            }),
           },
           theme,
           () => tui.requestRender(),
           () => {
-            options.signal.removeEventListener("abort", abort);
+            signal.removeEventListener("abort", abort);
             done();
           },
-          () => Math.max(1, tui.terminal?.rows ?? 24),
-          options.task,
-          options.reservedKeys,
+          () => overlayRows(tui.terminal?.rows ?? 24, overlay),
+          task,
+          reservedKeys,
         );
-        options.signal.addEventListener("abort", abort, { once: true });
+        signal.addEventListener("abort", abort, { once: true });
         const dispose = component.dispose.bind(component);
         component.dispose = () => {
-          options.signal.removeEventListener("abort", abort);
+          signal.removeEventListener("abort", abort);
           dispose();
         };
         return component;
       },
-      {
-        overlay: true,
-        overlayOptions: { width: "100%", maxHeight: "100%", anchor: "center" },
-      },
+      { overlay: true, overlayOptions: overlay },
     );
-    return options.signal.aborted
-      ? { status: "cancelled", message: "Sessão encerrada." }
-      : { status: "succeeded", value: options.session.persisted };
-  } catch {
+    if (options.signal.aborted)
+      return { status: "cancelled", message: messages.sessionEnded };
+    const closed = component?.controller.closedWith;
     return {
-      status: "failed",
-      message: "Não foi possível abrir o painel. Verifique a API do host.",
+      status: "succeeded",
+      value: options.session.persisted,
+      ...(closed
+        ? {
+            action: closed.id,
+            ...("value" in closed ? { actionValue: closed.value } : {}),
+          }
+        : {}),
     };
+  } catch {
+    return { status: "failed", message: messages.openFailed };
   } finally {
     component?.dispose();
   }
 }
-
+export interface PiWorkspaceOptions {
+  /** Default `["ctrl+c"]` (the host keeps Ctrl+C). */
+  reservedKeys?: string[];
+  overlay?: PiOverlayOptions;
+  locale?: Locale | string;
+  messages?: MessageOverrides;
+  title?: string;
+  scope?: string;
+  help?: string;
+}
 export async function openPiWorkspace(
   ui: PiUI,
   model: WorkspaceModel,
   signal: AbortSignal,
-  reservedKeys: string[] = ["ctrl+c"],
+  reservedKeysOrOptions: string[] | PiWorkspaceOptions = ["ctrl+c"],
 ): Promise<void> {
   if (signal.aborted) return;
+  const options: PiWorkspaceOptions = Array.isArray(reservedKeysOrOptions)
+    ? { reservedKeys: reservedKeysOrOptions }
+    : reservedKeysOrOptions;
+  const reservedKeys = options.reservedKeys ?? ["ctrl+c"];
+  if (options.locale !== undefined)
+    model.setLocale(options.locale, options.messages);
+  if (options.title !== undefined) model.title = options.title;
+  if (options.scope !== undefined) model.scope = options.scope;
+  if (options.help !== undefined) model.help = options.help;
+  model.narrow = "resize";
+  const overlay: PiOverlayOptions = {
+    width: "100%",
+    maxHeight: "100%",
+    anchor: "center",
+    ...options.overlay,
+  };
   let dispose: (() => void) | undefined;
   try {
     await ui.custom<void>(
       (tui, theme, keys, done) => {
         let closed = false;
-        const bindings = piBindings(keys, reservedKeys, false);
+        const bindings = piBindings(keys, reservedKeys, false, {
+          locale: model.locale,
+          ...(options.messages ? { messages: options.messages } : {}),
+        });
+        const m = model.messages;
+        model.hints ??= standardKeyHints(bindings, [
+          ["navigate", m.hintNavigate],
+          ["nextRegion", m.hintActions],
+          ["activate", m.hintChoose],
+          ["back", m.hintClose],
+        ]);
         const close = () => {
           if (closed) return;
           closed = true;
@@ -352,11 +512,14 @@ export async function openPiWorkspace(
           invalidate() {},
           dispose: close,
           render(columns) {
-            return model
-              .render(columns, Math.max(1, tui.terminal?.rows ?? 24))
-              .lines.map((l) =>
-                l.startsWith(">") ? theme.fg("accent", l) : l,
-              );
+            const width = Math.max(1, Math.floor(columns));
+            const frame = model.render(
+              width,
+              overlayRows(tui.terminal?.rows ?? 24, overlay),
+            );
+            return frame.lines.map((l, i) =>
+              paint(theme, frame.kinds?.[i], fit(l, width)),
+            );
           },
           handleInput(data) {
             if (
@@ -375,10 +538,7 @@ export async function openPiWorkspace(
           },
         };
       },
-      {
-        overlay: true,
-        overlayOptions: { width: "100%", maxHeight: "100%", anchor: "center" },
-      },
+      { overlay: true, overlayOptions: overlay },
     );
   } finally {
     dispose?.();

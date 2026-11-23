@@ -813,8 +813,8 @@ export async function buildTerminalDocs() {
         title: t("Texto e células", "Text and cells"),
         html:
           `<ul><li>${t(
-            "A unidade é a célula do terminal, não o pixel. A largura de acentos, caracteres combinados, CJK e emoji é medida por <code>string-width</code> e <code>Intl.Segmenter</code>.",
-            "The unit is the terminal cell, not the pixel. The width of accents, combining characters, CJK and emoji is measured with <code>string-width</code> and <code>Intl.Segmenter</code>.",
+            "A unidade é a célula do terminal, não o pixel. A largura de acentos, caracteres combinados, CJK e emoji é medida por grafema (<code>Intl.Segmenter</code>) com uma tabela UAX #11 sem dependência; um renderer pode injetar a própria medida com <code>setCellWidthMeasure</code> (o adaptador Pi usa <code>visibleWidth</code> do host).",
+            "The unit is the terminal cell, not the pixel. The width of accents, combining characters, CJK and emoji is measured per grapheme (<code>Intl.Segmenter</code>) with a dependency-free UAX #11 table; a renderer can inject its own measure with <code>setCellWidthMeasure</code> (the Pi adapter uses the host's <code>visibleWidth</code>).",
           )}</li><li>${t(
             "Fonte monoespaçada do próprio terminal. O Terminal não escolhe fonte nem tamanho.",
             "The terminal's own monospace font. Terminal does not choose a font or size.",

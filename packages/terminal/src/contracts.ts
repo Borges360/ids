@@ -41,6 +41,17 @@ export interface Field {
   choices?: Choice[];
   override?: { value: Value; source: string };
   validate?: (value: Value, draft: Readonly<Values>) => string | undefined;
+  /** Not editable here; the current value stays in the draft and the row shows the source. */
+  locked?: { source: string };
+  /** Display text for the value (never used for persistence). Errors fall back to the default display. */
+  format?: (value: Value, draft: Readonly<Values>) => string;
+  /**
+   * select/multiselect only: loads choices when the field is activated (never when the panel opens).
+   * Runs as a cancellable operation; the result replaces `choices` for this session.
+   */
+  loadChoices?: (signal: AbortSignal) => Promise<Choice[]>;
+  /** Timeout for `loadChoices`, default 15000 ms. */
+  loadTimeoutMs?: number;
 }
 export interface MenuItem extends Choice {
   kind: "value" | "route" | "action" | "status";
@@ -87,15 +98,3 @@ export type TerminalResult<T> =
       status: "failed" | "invalid" | "cancelled" | "outcomeUnknown";
       message: string;
     };
-export const SEMANTIC_ROLES = {
-  text: "color.text.primary",
-  muted: "color.text.secondary",
-  choose: "color.identity.primary",
-  commit: "color.identity.commit",
-  focus: "color.focus.ring",
-  selection: "color.selection.background",
-  success: "color.status.success",
-  warning: "color.status.warning",
-  danger: "color.status.danger",
-  info: "color.status.info",
-} as const;
