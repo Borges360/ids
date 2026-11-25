@@ -35,6 +35,17 @@ import {
   HelpView,
 } from "../packages/terminal/src/index.ts";
 import { fields, defaults } from "../examples/terminal/shared.ts";
+import { piBindings } from "../packages/terminal/src/pi.ts";
+import { getKeybindings } from "@earendil-works/pi-tui";
+import {
+  themes as piThemes,
+  ROLES as PI_ROLES,
+  ROLES_EN as PI_ROLES_EN,
+  GROUPS_EN as PI_GROUPS_EN,
+  EXPORT as PI_EXPORT,
+  previewSvg,
+  varTokenLabel,
+} from "./generate-pi-theme.mjs";
 
 const esc = (s) =>
   String(s)
@@ -79,7 +90,8 @@ function paintLine(raw, index, { title, color }) {
     if (
       (title && index === 1) ||
       /^\d+-\d+ de \d+ linhas$/.test(raw) ||
-      /^Enter .* · .*Esc /.test(raw)
+      /^Enter .* · .*Esc /.test(raw) ||
+      /^↑↓ .* · .*Esc /.test(raw)
     )
       cls += " tm-line--muted";
   }
@@ -103,13 +115,23 @@ const join = (...views) =>
 const bindings = resolveBindings();
 const session = (list = fields) =>
   new SettingsSession(list, structuredClone(defaults));
-const controller = (list = fields) =>
+const controller = (list = fields, extra = {}) =>
   new PanelController({
     session: session(list),
     title: "Preferências",
     scope: "projeto atual",
     persist: async () => {},
     bindings,
+    ...extra,
+  });
+/** Perfil Pi de `openPiSettings`: apresentação `standard` (o idioma aqui fica em pt-BR). */
+const piProfile = () =>
+  controller(fields, {
+    presentation: "standard",
+    locale: "pt-BR",
+    bindings: piBindings(getKeybindings(), ["ctrl+c"], true, {
+      locale: "pt-BR",
+    }),
   });
 const withOverride = fields.map((f) =>
   f.id === "language"
@@ -576,6 +598,19 @@ export async function buildTerminalDocs() {
             "Cinco regiões, sempre na mesma ordem: contexto e escopo, estado, conteúdo, ajuda e feedback, ações e atalhos. O item com foco é marcado por <code>&gt;</code> e por fundo, não só pela cor.",
             "Five regions, always in the same order: context and scope, state, content, help and feedback, actions and hints. The focused item is marked by <code>&gt;</code> and by background, not by color alone.",
           )}</p>` +
+          `<p>${t(
+            "Dentro do Pi, <code>openPiSettings</code> usa o perfil do host: valores alinhados em colunas, posição só quando há rolagem e dicas compactas. As regiões e os papéis são os mesmos; as cores vêm do tema do Pi, e o pacote <code>@inteiro/pi-theme</code> as leva às cores do IDS.",
+            "Inside Pi, <code>openPiSettings</code> uses the host profile: values aligned in columns, position only when the content scrolls, and compact hints. Regions and roles are the same; colors come from the Pi theme, and the <code>@inteiro/pi-theme</code> package maps them to the IDS colors.",
+          )}</p>` +
+          set(
+            frame({
+              name: t("Perfil Pi", "Pi profile"),
+              cols: 80,
+              title: true,
+              lines: piProfile().render(80, 12).lines,
+              note: "openPiSettings",
+            }),
+          ) +
           `<aside class="callout"><div class="callout__body"><p>${t(
             "Os quadros mostram o texto em português porque as mensagens vêm dos componentes. A pintura segue os papéis de cor do IDS e acompanha o tema escolhido nesta documentação.",
             "Frames show Portuguese text because messages come from the components. Painting follows the IDS color roles and follows the theme chosen in this documentation.",
@@ -1123,11 +1158,106 @@ export async function buildTerminalDocs() {
       },
     ];
 
+
+    /* ----------------------------------------------------------- tema do Pi */
+    // Crases do texto da tabela viram <code>; o resto é escapado.
+    const inline = (s) => esc(s).replace(/`([^`]+)`/g, (_, c) => `<code>${c}</code>`);
+    // Papel e token não quebram no meio (a coluna da regra é que quebra).
+    const tok = (s) => `<code class="term-token">${esc(s)}</code>`;
+    const piTheme = [
+      {
+        id: "como-fica",
+        title: t("Como fica", "What it looks like"),
+        html:
+          `<p>${t("Os temas <code>inteiro-dark</code>, <code>inteiro-light</code>, <code>inteiro-contrast-dark</code> e <code>inteiro-contrast-light</code> levam o IDS para todo o Pi, não só para os painéis das extensões. As prévias abaixo são geradas dos próprios temas e mostram cada componente do Pi: mensagens, ferramentas, diff, markdown, código, painel, escada de raciocínio e status.", "The <code>inteiro-dark</code>, <code>inteiro-light</code>, <code>inteiro-contrast-dark</code> and <code>inteiro-contrast-light</code> themes bring the IDS to all of Pi, not only to extension panels. The previews below are generated from the themes themselves and show every Pi component: messages, tools, diff, markdown, code, panel, thinking ladder and status.")}</p>` +
+          `<div class="pi-preview-set">${piThemes
+            .map(
+              (th) =>
+                `<figure class="pi-preview"><figcaption><span class="term__name">${esc(th.name)}</span></figcaption>${previewSvg(th)}</figure>`,
+            )
+            .join("")}</div>` +
+          `<p>${t("As prévias mostram o texto em português; os papéis de cor são os mesmos em qualquer idioma.", "Previews show Portuguese text; color roles are the same in any language.")}</p>`,
+      },
+      {
+        id: "regras",
+        title: t("Regras", "Rules"),
+        html:
+          `<p>${t("O schema de tema do Pi é estrito e só aceita os papéis do host. Cada papel recebe o token semântico do IDS que cumpre a mesma função. O tema Dracula para Pi serviu de referência de <strong>componentes</strong> (quais papéis existem e o que cada um diferencia), não de visual.", "Pi's theme schema is strict and only accepts the host's roles. Each role receives the IDS semantic token that serves the same purpose. The Dracula theme for Pi was a reference for <strong>components</strong> (which roles exist and what each one distinguishes), not for visuals.")}</p>` +
+          `<ol>${[t("<strong>Neutros dominam.</strong> Texto, títulos, variáveis, saídas e estrutura usam os tokens de texto e de borda: cerca de 80% da tela.", "<strong>Neutrals dominate.</strong> Text, headings, variables, outputs and structure use the text and border tokens: about 80% of the screen."),
+            t("<strong>Violeta escolhe.</strong> <code>accent</code>, links (como no IDS web), palavras-chave, rótulos de identidade, a borda da citação (a Costura) e o fundo de seleção.", "<strong>Violet chooses.</strong> <code>accent</code>, links (as on the IDS web), keywords, identity labels, the quote border (the Seam) and the selection background."),
+            t("<strong>Laranja só para efeito real.</strong> <code>bashMode</code> (executar comandos de verdade e, nos painéis, o botão que grava) e o topo da escada de raciocínio. Nunca em sintaxe nem como decoração.", "<strong>Orange only for real effects.</strong> <code>bashMode</code> (running commands for real and, in panels, the button that saves) and the top of the thinking ladder. Never in syntax or as decoration."),
+            t("<strong>Status mantém o papel.</strong> Mint, âmbar e vermelho só para sucesso, aviso e erro; as caixas de ferramenta usam a versão sutil.", "<strong>Status keeps its role.</strong> Mint, amber and red only for success, warning and error; tool boxes use the subtle variant."),
+            t("<strong>Sintaxe usa a paleta categórica, na ordem e sem a 02.</strong> Categorias de código são dados categóricos (<code>color.dataviz.categorical.*</code>), não status.", "<strong>Syntax uses the categorical palette, in order and without 02.</strong> Code categories are categorical data (<code>color.dataviz.categorical.*</code>), not status."),
+            t("<strong>Superfícies se afastam do canvas.</strong> Caixas de mensagem e de ferramenta usam <code>raised</code>/<code>surface</code> no escuro e <code>sunken</code> no claro.", "<strong>Surfaces step away from the canvas.</strong> Message and tool boxes use <code>raised</code>/<code>surface</code> on dark and <code>sunken</code> on light."),
+            t("<strong>Foco não depende só de cor.</strong> Item com foco = <code>&gt;</code> + <code>selectedBg</code>.", "<strong>Focus does not rely on color alone.</strong> Focused item = <code>&gt;</code> + <code>selectedBg</code>."),
+            t("<strong>Contraste.</strong> Todo papel de texto tem pelo menos 4,5:1 sobre o canvas do IDS e sobre a própria caixa; o violeta tem 4,5:1 sobre <code>selectedBg</code>; <code>border</code> tem 3:1. <code>tests/terminal/pi-theme.test.ts</code> verifica.", "<strong>Contrast.</strong> Every text role has at least 4.5:1 on the IDS canvas and on its own box; violet has 4.5:1 on <code>selectedBg</code>; <code>border</code> has 3:1. <code>tests/terminal/pi-theme.test.ts</code> checks it.")]
+            .map((r) => `<li>${r}</li>`)
+            .join("")}</ol>`,
+      },
+      {
+        id: "papeis",
+        title: t("Papéis do Pi", "Pi roles"),
+        html:
+          "<div class=\"pi-roles\">" +
+          `<p>${t("Todos os papéis de cor do Pi 1.6, agrupados pelo componente que pintam. A tabela é a mesma que gera os temas.", "Every Pi 1.6 color role, grouped by the component it paints. This is the same table that generates the themes.")}</p>` +
+          [...new Set(PI_ROLES.map((r) => r[1]))]
+            .map(
+              (g) =>
+                `<h3>${esc(L === "pt" ? g : PI_GROUPS_EN[g])}</h3>` +
+                table_(
+                  [t("Papel", "Role"), t("Componente", "Component"), t("Token do IDS", "IDS token"), t("Regra", "Rule")],
+                  PI_ROLES.filter((r) => r[1] === g).map(([role, , comp, v, rule]) => [
+                    tok(role),
+                    inline(L === "pt" ? comp : PI_ROLES_EN[role][0]),
+                    tok(varTokenLabel(v)),
+                    inline(L === "pt" ? rule : PI_ROLES_EN[role][1]),
+                  ]),
+                ),
+            )
+            .join("") +
+          `<h3>${t("Exportação HTML", "HTML export")}</h3>` +
+          table_(
+            [t("Campo", "Field"), t("Token do IDS", "IDS token")],
+            Object.entries(PI_EXPORT).map(([k, [v]]) => [tok(`export.${k}`), tok(varTokenLabel(v))]),
+          ) +
+          "</div>",
+      },
+      {
+        id: "instalacao",
+        title: t("Instalação e escolha", "Installation and choice"),
+        html:
+          `<p>${t("Não há passo de instalação. As extensões que usam <code>@inteiro/terminal/pi</code> chamam <code>registerInteiroPiThemes(pi)</code> ao carregar: os temas vão para <code>&lt;agent-dir&gt;/themes/</code> e aparecem em <code>/settings</code> já na primeira sessão. Com várias extensões instaladas, o Pi junta os caminhos iguais e não há colisão de nomes.", "There is no install step. Extensions that use <code>@inteiro/terminal/pi</code> call <code>registerInteiroPiThemes(pi)</code> when they load: the themes go to <code>&lt;agent-dir&gt;/themes/</code> and show up in <code>/settings</code> in the very first session. With several extensions installed, Pi merges equal paths and there is no name collision.")}</p>` +
+          `<ul>${[t("<strong>Escolher:</strong> <code>/settings</code> → <strong>Theme</strong>, ou <code>{ \"theme\": \"inteiro-light/inteiro-dark\" }</code> no <code>settings.json</code> do Pi para seguir a aparência do terminal. Para testar sem salvar: <code>pi --use-theme inteiro-dark</code>.", "<strong>Choose:</strong> <code>/settings</code> → <strong>Theme</strong>, or <code>{ \"theme\": \"inteiro-light/inteiro-dark\" }</code> in Pi's <code>settings.json</code> to follow the terminal appearance. To try without saving: <code>pi --use-theme inteiro-dark</code>."),
+            t("<strong>A extensão nunca escolhe o tema.</strong> A escolha é sempre de quem usa o Pi.", "<strong>The extension never selects the theme.</strong> The choice always belongs to whoever uses Pi."),
+            t("<strong>Atualização:</strong> o próximo <code>/reload</code> traz a versão nova; um tema editado por você nunca é sobrescrito, e uma cópia antiga nunca substitui uma mais nova.", "<strong>Updates:</strong> the next <code>/reload</code> brings the new version; a theme you edited is never overwritten, and an older copy never replaces a newer one."),
+            t("<strong>Desligar:</strong> <code>PI_DESIGN_THEMES=off</code>.", "<strong>Turn off:</strong> <code>PI_DESIGN_THEMES=off</code>."),
+            t("<strong>Sem extensão:</strong> <code>pi install ./packages/pi-theme</code> no checkout do IDS.", "<strong>Without an extension:</strong> <code>pi install ./packages/pi-theme</code> in the IDS checkout.")]
+            .map((r) => `<li>${r}</li>`)
+            .join("")}</ul>`,
+      },
+      {
+        id: "fundo",
+        title: t("Fundo do terminal", "Terminal background"),
+        html:
+          `<p>${t("O Pi não tem papel para o fundo do terminal, então o tema não consegue defini-lo. Os contrastes verificados usam o canvas do IDS. Para obter o resultado das prévias, configure o fundo do terminal com o canvas do tema; no Windows Terminal, na cor de fundo do perfil (<strong>Configurações → perfil → Aparência</strong>).", "Pi has no role for the terminal background, so the theme cannot set it. The verified contrasts use the IDS canvas. To get the result shown in the previews, set the terminal background to the theme canvas; in Windows Terminal, in the profile background color (<strong>Settings → profile → Appearance</strong>).")}</p>` +
+          table_(
+            [t("Tema", "Theme"), t("Fundo do terminal", "Terminal background")],
+            piThemes.map((th) => [tok(th.name), tok(th.vars.canvas)]),
+          ),
+      },
+      {
+        id: "fonte",
+        title: t("Fonte da verdade", "Source of truth"),
+        html: `<p>${t("A tabela de papéis em <code>scripts/generate-pi-theme.mjs</code> gera os temas (<code>packages/pi-theme/themes/</code>), a cópia instalada pelas extensões (<code>packages/terminal/src/pi-themes.ts</code>), as prévias (<code>packages/pi-theme/preview/</code>), a especificação em Markdown (<code>docs/terminal/pi-theme.md</code>) e esta página. Quando um token muda, rode <code>npm run generate:pi-theme</code> e <code>npm run generate:terminal</code>.", "The role table in <code>scripts/generate-pi-theme.mjs</code> generates the themes (<code>packages/pi-theme/themes/</code>), the copy extensions install (<code>packages/terminal/src/pi-themes.ts</code>), the previews (<code>packages/pi-theme/preview/</code>), the Markdown specification (<code>docs/terminal/pi-theme.md</code>) and this page. When a token changes, run <code>npm run generate:pi-theme</code> and <code>npm run generate:terminal</code>.")}</p>`,
+      },
+    ];
+
     return {
       overview,
       foundations,
       components: componentsPage,
       patterns,
+      piTheme,
       quality,
     };
   };
@@ -1166,6 +1296,14 @@ export async function buildTerminalDocs() {
       lede: "Fluxos completos: configurar e salvar, confirmar uma ação destrutiva, acompanhar uma tarefa e explorar dados.",
       keywords: ["fluxo", "configurar", "confirmar", "progresso", "erro"],
       source: "@inteiro/terminal · controller.ts",
+    },
+    {
+      id: "terminal/pi-theme",
+      key: "piTheme",
+      title: "Tema do Pi",
+      lede: "Os temas INTEIRO para todo o Pi: cada papel de cor do host com o token do IDS que cumpre a mesma função, instalados pelas extensões.",
+      keywords: ["pi", "tema", "theme", "cores", "sintaxe", "dracula", "settings"],
+      source: "@inteiro/pi-theme · scripts/generate-pi-theme.mjs · docs/terminal/pi-theme.md",
     },
     {
       id: "terminal/quality",

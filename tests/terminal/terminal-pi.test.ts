@@ -1,6 +1,8 @@
 import { describe, it, expect, vi } from "vitest";
-import { readFileSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
+import { existsSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { tmpdir } from "node:os";
+import { basename, dirname, join, resolve } from "node:path";
 import { getKeybindings, visibleWidth } from "@earendil-works/pi-tui";
 import {
   MESSAGES,
@@ -27,9 +29,12 @@ import {
   openPiSettings,
   openPiWorkspace,
   piBindings,
+  installInteiroPiThemes,
+  registerInteiroPiThemes,
   type PiTheme,
   type PiUI,
 } from "../../packages/terminal/src/pi.ts";
+import { olderVersion } from "../../packages/terminal/src/pi-theme-install.ts";
 
 const plain: PiTheme = { fg: (_n, text) => text };
 const tagged: PiTheme = {
@@ -337,7 +342,10 @@ describe("1.4 width measure", () => {
       }
     };
     visit(join(root, "pi.ts"));
-    expect([...external]).toEqual(["@earendil-works/pi-tui"]);
+    // Node built-ins exist in every Pi host; the only package is the host's pi-tui.
+    expect([...external].filter((s) => !s.startsWith("node:"))).toEqual([
+      "@earendil-works/pi-tui",
+    ]);
     expect([...seen].some((f) => /prompts|linear/.test(f))).toBe(false);
   });
 });
@@ -959,4 +967,126 @@ describe("1.4 fallback width corpus", () => {
     it(`measures U+${[...text].map((c) => c.codePointAt(0)!.toString(16).padStart(4, "0")).join(" U+")} as ${width}`, () => {
       expect(fallbackCellWidth(text)).toBe(width);
     });
+});
+
+describe("IDS roles in the host theme", () => {
+  const roles: PiTheme = {
+    fg: (name, text) => `<${name}>${text}</${name}>`,
+    bg: (name, text) => `<${name}>${text}</${name}>`,
+    bold: (text) => `<b>${text}</b>`,
+  };
+  const strip = (l: string) => l.replace(/<\/?[a-zA-Z]+>/g, "");
+  it("marks the focused row by > and by the selection background across the width", () => {
+    const { p } = panel({}, roles);
+    const focus = p.render(60).find((l) => strip(l).startsWith("> Mode"))!;
+    expect(focus.startsWith("<selectedBg><accent>")).toBe(true);
+    expect(strip(focus)).toHaveLength(60);
+  });
+  it("degrades to color only when the host theme has no background", () => {
+    const { p } = panel({}, tagged);
+    const focus = p.render(60).find((l) => strip(l).startsWith("> Mode"))!;
+    expect(focus.startsWith("<accent>")).toBe(true);
+  });
+  it("paints Save as a real effect and Help/Close as choices, without changing the text", async () => {
+    const { p, press } = panel({}, roles);
+    const bar = () => p.render(80).find((l) => strip(l).includes("[Save changes]"))!;
+    expect(bar()).toContain("<b><bashMode>[Save changes]</bashMode></b>");
+    expect(bar()).toContain("<accent>[Help]</accent>");
+    expect(bar()).toContain("<accent>[Close]</accent>");
+    expect(strip(bar())).toBe("[Save changes] [Help] [Close]");
+    await press(KEY.tab);
+    expect(bar()).toContain("<selectedBg><b><bashMode>>[Save changes]</bashMode></b></selectedBg>");
+  });
+  it("shows the search line only while a filter is active, as secondary text", async () => {
+    const many: Field[] = Array.from({ length: 11 }, (_, i) => ({
+      id: `f${i}`,
+      label: `Field ${i}`,
+      description: "d",
+      kind: "boolean" as const,
+    }));
+    const values = Object.fromEntries(many.map((f) => [f.id, false]));
+    const { p, text } = panel({ session: new SettingsSession(many, values) }, roles);
+    expect(text()).not.toContain("Search items");
+    p.controller.filter("Field 1");
+    const line = p.render(80).find((l) => strip(l).startsWith("Search items"))!;
+    expect(line).toBe("<muted>Search items: Field 1</muted>");
+  });
+});
+
+describe("INTEIRO Pi themes installed by extensions", () => {
+  const read = (f: string) => readFileSync(f, "utf8");
+  const tmp = () => mkdtempSync(join(tmpdir(), "inteiro-pi-themes-"));
+  it("writes the four themes into <agent-dir>/themes and lists them for the running session", () => {
+    const agentDir = tmp();
+    const handlers: (() => { themePaths: string[] })[] = [];
+    const r = registerInteiroPiThemes({ on: (_e, h) => handlers.push(h) }, { agentDir, env: {} });
+    expect(r.errors).toEqual([]);
+    expect(r.written.map((f) => basename(f)).sort()).toEqual([
+      "inteiro-contrast-dark.json",
+      "inteiro-contrast-light.json",
+      "inteiro-dark.json",
+      "inteiro-light.json",
+    ]);
+    expect(handlers).toHaveLength(1);
+    expect(handlers[0]!().themePaths).toEqual(r.paths);
+    const dark = JSON.parse(read(join(agentDir, "themes", "inteiro-dark.json")));
+    expect(dark.name).toBe("inteiro-dark");
+    expect(existsSync(join(agentDir, "themes", "pi-themes.json"))).toBe(false);
+  });
+  it("is idempotent: a second extension returns the same paths and writes nothing", () => {
+    const agentDir = tmp();
+    const a = installInteiroPiThemes({ agentDir, env: {} });
+    const b = installInteiroPiThemes({ agentDir, env: {} });
+    expect(b.written).toEqual([]);
+    expect(b.kept).toEqual([]);
+    expect(b.paths).toEqual(a.paths);
+  });
+  it("never overwrites a theme the user edited", () => {
+    const agentDir = tmp();
+    installInteiroPiThemes({ agentDir, env: {} });
+    const file = join(agentDir, "themes", "inteiro-dark.json");
+    const edited = read(file).replace('"accent": "choose"', '"accent": "info"');
+    writeFileSync(file, edited);
+    const r = installInteiroPiThemes({ agentDir, env: {} });
+    expect(r.kept).toEqual([file]);
+    expect(read(file)).toBe(edited);
+  });
+  it("updates its own untouched copy, but an older copy never replaces a newer one", () => {
+    const agentDir = tmp();
+    installInteiroPiThemes({ agentDir, env: {} });
+    const file = join(agentDir, "themes", "inteiro-light.json");
+    const ledgerFile = join(agentDir, "state", "inteiro-terminal", "pi-themes.json");
+    const ledger = JSON.parse(read(ledgerFile));
+    // Simulate a previous version written by us: different content, hash recorded in the ledger.
+    const old = read(file).replace('"name": "inteiro-light"', '"name": "inteiro-light" ');
+    writeFileSync(file, old);
+    ledger.files["inteiro-light"] = createHash("sha256").update(old).digest("hex");
+    writeFileSync(ledgerFile, JSON.stringify(ledger));
+    expect(installInteiroPiThemes({ agentDir, env: {} }).written).toEqual([file]);
+    // Now a newer copy recorded its version: this (older) copy keeps the file as it is.
+    writeFileSync(file, old);
+    ledger.version = "99.0.0";
+    writeFileSync(ledgerFile, JSON.stringify(ledger));
+    const r = installInteiroPiThemes({ agentDir, env: {} });
+    expect(r.kept).toContain(file);
+    expect(read(file)).toBe(old);
+  });
+  it("can be turned off and never throws on an unwritable agent directory", () => {
+    const off = installInteiroPiThemes({ agentDir: tmp(), env: { PI_DESIGN_THEMES: "off" } });
+    expect(off.disabled).toBe(true);
+    expect(off.paths).toEqual([]);
+    const base = tmp();
+    const blocker = join(base, "file");
+    writeFileSync(blocker, "x");
+    const r = installInteiroPiThemes({ agentDir: join(blocker, "agent"), env: {} });
+    expect(r.errors.length).toBeGreaterThan(0);
+    expect(r.paths).toEqual([]);
+  });
+  it("orders versions with pre-releases below the release", () => {
+    expect(olderVersion("2.0.0-rc.1", "2.0.0")).toBe(true);
+    expect(olderVersion("2.0.0-rc.2", "2.0.0-rc.10")).toBe(true);
+    expect(olderVersion("2.0.0", "2.0.0-rc.1")).toBe(false);
+    expect(olderVersion("1.9.9", "2.0.0-rc.1")).toBe(true);
+    expect(olderVersion("2.0.0", "2.0.0")).toBe(false);
+  });
 });

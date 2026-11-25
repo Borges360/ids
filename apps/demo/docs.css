@@ -655,6 +655,12 @@ html[dir="rtl"] select.in-input { background-position: var(--in-space-300) 50%; 
 }
 
 /* INTEIRO Terminal: quadros com a saída real dos componentes. Pintura = papéis de cor do IDS. */
+.pi-roles table { min-inline-size: 40rem; }
+.pi-roles th, .pi-roles td { overflow-wrap: normal; }
+.pi-preview-set { display: flex; flex-wrap: wrap; gap: var(--in-space-400); }
+.pi-preview { margin: 0; display: flex; flex-direction: column; gap: var(--in-space-200); flex: 1 1 100%; min-inline-size: 0; max-inline-size: 44rem; }
+.pi-preview figcaption { font-size: var(--in-type-caption-size); color: var(--in-color-text-secondary); }
+.pi-preview svg { inline-size: 100%; block-size: auto; border: var(--in-border-hairline) solid var(--in-color-border-subtle); border-radius: var(--in-radius-md); }
 .term-set { display: flex; flex-direction: column; gap: var(--in-space-400); }
 .term {
   margin: 0;

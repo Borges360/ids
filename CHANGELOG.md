@@ -1,5 +1,25 @@
 # Changelog
 
+## Unreleased
+
+### Added
+- `@inteiro/pi-theme`: temas `inteiro-dark`, `inteiro-light`, `inteiro-contrast-dark` e `inteiro-contrast-light` para o Pi, gerados dos tokens por `npm run generate:pi-theme`. Violeta em `accent`, laranja só em `bashMode` e `thinkingMax`, `color.selection.background` em `selectedBg`. O teste confere o arquivo gerado, os papéis do Pi 1.6 e contraste de 4,5:1.
+- Temas do Pi revistos papel por papel, com o tema Dracula para Pi como referência de componentes (não de visual):
+  - links em violeta, como no IDS web;
+  - sintaxe com a paleta categórica (`dataviz.categorical` 01, 03, 04, 06 e 07), sem a 02, porque laranja é efeito real;
+  - código inline em azul categórico e bloco de código em texto primário;
+  - caixas de mensagem e de ferramenta afastadas do canvas (`raised`/`surface` no escuro, `sunken` no claro);
+  - escada de raciocínio do neutro ao laranja.
+
+  A tabela de papéis em `scripts/generate-pi-theme.mjs` gera também a especificação (`docs/terminal/pi-theme.md`) e uma prévia SVG por tema (`packages/pi-theme/preview/`). Os testes cobrem 4,5:1 para todo texto sobre o canvas e sobre a própria caixa, 3:1 para `border`, e as regras de violeta, laranja e sintaxe.
+- Instalação automática dos temas: `registerInteiroPiThemes(pi)` (em `@inteiro/terminal/pi`) grava os temas em `<agent-dir>/themes/` e os lista no `resources_discover` da sessão. Várias extensões não geram colisão; temas editados pelo usuário não são sobrescritos; `PI_DESIGN_THEMES=off` desliga. O fecho copiado por `vendor:terminal` passa a aceitar módulos `node:`.
+- Página **Terminal → Tema do Pi** na documentação web (pt-BR e inglês), gerada da mesma tabela de papéis. Traz as prévias dos 4 temas, as regras, todos os papéis por componente com token e regra, a instalação e a escolha do tema, e o fundo do terminal.
+- Página Terminal: quadro "Perfil Pi" com a saída real de `openPiSettings`.
+
+### Fixed
+- Adaptador Pi do `@inteiro/terminal`: o item com foco ganha o fundo `selectedBg` na largura toda, além de `>` e `accent`, como manda a regra de foco. A barra de ações pinta cada botão pelo papel: salvar e tarefas com efeito externo em `bashMode` e negrito, as demais em `accent`, e o botão com foco com `selectedBg`. Antes a barra saía sem cor e o foco dependia só da cor do texto.
+- Perfil `standard`: a linha `[Buscar itens]` deixa de aparecer vazia no topo da lista; agora só aparece com filtro ativo, como texto secundário. A saída `legacy` não muda.
+
 ## 2.0.0-rc.1
 
 Release candidate: todos os pacotes numa única versão (`2.0.0-rc.1`). O visual mais suave da 2.0.0 ainda é proposta e não está nesta versão.
