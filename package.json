@@ -55,6 +55,7 @@
     "verify:p0": "node scripts/verify-p0.mjs",
     "check:compat": "node scripts/check-legacy-compat.mjs",
     "generate:terminal": "node scripts/generate-terminal.mjs",
+    "generate:pi-theme": "node scripts/generate-pi-theme.mjs",
     "test:terminal": "vitest run tests/terminal",
     "build:mcp-runtime": "node scripts/build-mcp-runtime.mjs",
     "test:mcp-runtime": "node scripts/test-mcp-runtime.mjs",

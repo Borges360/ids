@@ -1,0 +1,20 @@
+{
+  "name": "@inteiro/pi-theme",
+  "version": "2.0.0-rc.1",
+  "description": "Temas INTEIRO para o Pi Coding Agent (escuro, claro e alto contraste), gerados dos tokens do IDS",
+  "license": "MIT",
+  "keywords": [
+    "pi-package",
+    "pi-theme"
+  ],
+  "files": [
+    "themes",
+    "README.md",
+    "LICENSE"
+  ],
+  "pi": {
+    "themes": [
+      "./themes/*.json"
+    ]
+  }
+}

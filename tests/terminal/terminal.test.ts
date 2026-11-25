@@ -29,6 +29,7 @@ import {
   SettingsList,
   TerminalPanel,
   ActionBar,
+  actionSegments,
   KeyHints,
   Select,
   MultiSelect,
@@ -793,5 +794,24 @@ describe("Data patterns, catalogue, context and schemas", () => {
     expect(c.identity.join()).not.toContain("data-in-theme");
     expect(c.requiredChecks).toContain("npm run test:terminal");
     expect(validateSchema("context-bundle", c).valid).toBe(true);
+  });
+});
+
+describe("action roles", () => {
+  it("splits an action bar into role segments without changing the text", () => {
+    const actions = [
+      { id: "save", label: "Salvar alterações", role: "commit" as const },
+      { id: "help", label: "Ajuda", role: "choose" as const },
+      { id: "close", label: "Fechar", disabled: "ocupado" },
+    ];
+    const line = ActionBar(actions, "help").lines[0]!;
+    const segments = actionSegments(line, actions, "help");
+    expect(segments.map((s) => s.text).join("")).toBe(line);
+    expect(segments.filter((s) => s.role)).toEqual([
+      { text: "[Salvar alterações]", role: "commit" },
+      { text: ">[Ajuda]", role: "choose", focused: true },
+      { text: "[Fechar]", role: "muted" },
+    ]);
+    expect(ActionBar(actions).kinds).toEqual(["actions"]);
   });
 });

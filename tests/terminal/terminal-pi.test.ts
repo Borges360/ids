@@ -960,3 +960,47 @@ describe("1.4 fallback width corpus", () => {
       expect(fallbackCellWidth(text)).toBe(width);
     });
 });
+
+describe("IDS roles in the host theme", () => {
+  const roles: PiTheme = {
+    fg: (name, text) => `<${name}>${text}</${name}>`,
+    bg: (name, text) => `<${name}>${text}</${name}>`,
+    bold: (text) => `<b>${text}</b>`,
+  };
+  const strip = (l: string) => l.replace(/<\/?[a-zA-Z]+>/g, "");
+  it("marks the focused row by > and by the selection background across the width", () => {
+    const { p } = panel({}, roles);
+    const focus = p.render(60).find((l) => strip(l).startsWith("> Mode"))!;
+    expect(focus.startsWith("<selectedBg><accent>")).toBe(true);
+    expect(strip(focus)).toHaveLength(60);
+  });
+  it("degrades to color only when the host theme has no background", () => {
+    const { p } = panel({}, tagged);
+    const focus = p.render(60).find((l) => strip(l).startsWith("> Mode"))!;
+    expect(focus.startsWith("<accent>")).toBe(true);
+  });
+  it("paints Save as a real effect and Help/Close as choices, without changing the text", async () => {
+    const { p, press } = panel({}, roles);
+    const bar = () => p.render(80).find((l) => strip(l).includes("[Save changes]"))!;
+    expect(bar()).toContain("<b><bashMode>[Save changes]</bashMode></b>");
+    expect(bar()).toContain("<accent>[Help]</accent>");
+    expect(bar()).toContain("<accent>[Close]</accent>");
+    expect(strip(bar())).toBe("[Save changes] [Help] [Close]");
+    await press(KEY.tab);
+    expect(bar()).toContain("<selectedBg><b><bashMode>>[Save changes]</bashMode></b></selectedBg>");
+  });
+  it("shows the search line only while a filter is active, as secondary text", async () => {
+    const many: Field[] = Array.from({ length: 11 }, (_, i) => ({
+      id: `f${i}`,
+      label: `Field ${i}`,
+      description: "d",
+      kind: "boolean" as const,
+    }));
+    const values = Object.fromEntries(many.map((f) => [f.id, false]));
+    const { p, text } = panel({ session: new SettingsSession(many, values) }, roles);
+    expect(text()).not.toContain("Search items");
+    p.controller.filter("Field 1");
+    const line = p.render(80).find((l) => strip(l).startsWith("Search items"))!;
+    expect(line).toBe("<muted>Search items: Field 1</muted>");
+  });
+});

@@ -35,6 +35,8 @@ import {
   HelpView,
 } from "../packages/terminal/src/index.ts";
 import { fields, defaults } from "../examples/terminal/shared.ts";
+import { piBindings } from "../packages/terminal/src/pi.ts";
+import { getKeybindings } from "@earendil-works/pi-tui";
 
 const esc = (s) =>
   String(s)
@@ -79,7 +81,8 @@ function paintLine(raw, index, { title, color }) {
     if (
       (title && index === 1) ||
       /^\d+-\d+ de \d+ linhas$/.test(raw) ||
-      /^Enter .* · .*Esc /.test(raw)
+      /^Enter .* · .*Esc /.test(raw) ||
+      /^↑↓ .* · .*Esc /.test(raw)
     )
       cls += " tm-line--muted";
   }
@@ -103,13 +106,23 @@ const join = (...views) =>
 const bindings = resolveBindings();
 const session = (list = fields) =>
   new SettingsSession(list, structuredClone(defaults));
-const controller = (list = fields) =>
+const controller = (list = fields, extra = {}) =>
   new PanelController({
     session: session(list),
     title: "Preferências",
     scope: "projeto atual",
     persist: async () => {},
     bindings,
+    ...extra,
+  });
+/** Perfil Pi de `openPiSettings`: apresentação `standard` (o idioma aqui fica em pt-BR). */
+const piProfile = () =>
+  controller(fields, {
+    presentation: "standard",
+    locale: "pt-BR",
+    bindings: piBindings(getKeybindings(), ["ctrl+c"], true, {
+      locale: "pt-BR",
+    }),
   });
 const withOverride = fields.map((f) =>
   f.id === "language"
@@ -576,6 +589,19 @@ export async function buildTerminalDocs() {
             "Cinco regiões, sempre na mesma ordem: contexto e escopo, estado, conteúdo, ajuda e feedback, ações e atalhos. O item com foco é marcado por <code>&gt;</code> e por fundo, não só pela cor.",
             "Five regions, always in the same order: context and scope, state, content, help and feedback, actions and hints. The focused item is marked by <code>&gt;</code> and by background, not by color alone.",
           )}</p>` +
+          `<p>${t(
+            "Dentro do Pi, <code>openPiSettings</code> usa o perfil do host: valores alinhados em colunas, posição só quando há rolagem e dicas compactas. As regiões e os papéis são os mesmos; as cores vêm do tema do Pi, e o pacote <code>@inteiro/pi-theme</code> as leva às cores do IDS.",
+            "Inside Pi, <code>openPiSettings</code> uses the host profile: values aligned in columns, position only when the content scrolls, and compact hints. Regions and roles are the same; colors come from the Pi theme, and the <code>@inteiro/pi-theme</code> package maps them to the IDS colors.",
+          )}</p>` +
+          set(
+            frame({
+              name: t("Perfil Pi", "Pi profile"),
+              cols: 80,
+              title: true,
+              lines: piProfile().render(80, 12).lines,
+              note: "openPiSettings",
+            }),
+          ) +
           `<aside class="callout"><div class="callout__body"><p>${t(
             "Os quadros mostram o texto em português porque as mensagens vêm dos componentes. A pintura segue os papéis de cor do IDS e acompanha o tema escolhido nesta documentação.",
             "Frames show Portuguese text because messages come from the components. Painting follows the IDS color roles and follows the theme chosen in this documentation.",

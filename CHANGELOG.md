@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+### Added
+- `@inteiro/pi-theme`: temas `inteiro-dark`, `inteiro-light`, `inteiro-contrast-dark` e `inteiro-contrast-light` para o Pi, gerados dos tokens por `npm run generate:pi-theme`. Violeta em `accent`, laranja só em `bashMode` e `thinkingMax`, `color.selection.background` em `selectedBg`. O teste confere o arquivo gerado, os papéis do Pi 1.6 e contraste de 4,5:1.
+- Página Terminal: quadro "Perfil Pi" com a saída real de `openPiSettings`.
+
+### Fixed
+- Adaptador Pi do `@inteiro/terminal`: o item com foco ganha o fundo `selectedBg` na largura toda, além de `>` e `accent`, como manda a regra de foco. A barra de ações pinta cada botão pelo papel: salvar e tarefas com efeito externo em `bashMode` e negrito, as demais em `accent`, e o botão com foco com `selectedBg`. Antes a barra saía sem cor e o foco dependia só da cor do texto.
+- Perfil `standard`: a linha `[Buscar itens]` deixa de aparecer vazia no topo da lista; agora só aparece com filtro ativo, como texto secundário. A saída `legacy` não muda.
+
 ## 2.0.0-rc.1
 
 Release candidate: todos os pacotes numa única versão (`2.0.0-rc.1`). O visual mais suave da 2.0.0 ainda é proposta e não está nesta versão.
