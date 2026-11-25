@@ -25,7 +25,7 @@ describe("vendor:terminal", () => {
     it(`writes a verifiable ${format} copy with provenance and detects drift`, async () => {
       const out = join(base, format);
       const m = vendor({ out, format, date: "2026-11-23T00:00:00Z", allowDirty: true });
-      expect(m.version).toBe("1.4.0");
+      expect(m.version).toBe("2.0.0-rc.1");
       expect(m.contract).toBe("1.0.0");
       expect(m.source.commit).toMatch(/^[a-f0-9]{40}$/);
       expect(m.source.date).toBe("2026-11-23T00:00:00.000Z");

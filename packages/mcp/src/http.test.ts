@@ -24,7 +24,7 @@ describe("MCP por HTTP", () => {
     expect(res.status).toBe(200);
     const body = await res.json();
     expect(body).toMatchObject({ status: "ok", name: "inteiro" });
-    expect(body.version).toMatch(/^\d+\.\d+\.\d+$/);
+    expect(body.version).toMatch(/^\d+\.\d+\.\d+(-[0-9A-Za-z.]+)?$/);
   });
 
   it("inicializa e lista exatamente as ferramentas do pacote", async () => {

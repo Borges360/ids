@@ -4,7 +4,7 @@ import { hash, validateSchema, type Config } from "@inteiro/contracts";
 export function projectContracts(config: Config) {
   const base = {
     schemaVersion: "1.0",
-    inteiroVersion: "1.3.2",
+    inteiroVersion: "2.0.0-rc.1",
     configId: config.project.id,
     createdAt: new Date().toISOString(),
   };

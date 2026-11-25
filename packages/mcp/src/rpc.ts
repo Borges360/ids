@@ -1,7 +1,7 @@
 import { allTokens, catalogStats } from "@inteiro/tokens";
 import { callMcpTool, MCP_TOOLS } from "./tools.ts";
 
-export const SERVER_VERSION = "1.3.2";
+export const SERVER_VERSION = "2.0.0-rc.1";
 
 export interface Rpc {
   jsonrpc: "2.0";

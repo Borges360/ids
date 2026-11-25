@@ -116,7 +116,7 @@ const titles = {
 const componentPages = Object.entries(selections).map(([key, items]) => ({
   id: `components/${key}`,
   title: titles[key],
-  lede: "Biblioteca implementada em @inteiro/react 1.3.2, com CSS compartilhado e API tipada.",
+  lede: "Biblioteca implementada em @inteiro/react 2.0.0-rc.1, com CSS compartilhado e API tipada.",
   status: "implementado",
   source: "docs/LIBRARY.md · packages/react/src · components.css",
   sections: [

@@ -297,7 +297,7 @@ export async function resolveContext(
     missing.push("pattern-unavailable");
   const payload = {
     schemaVersion: "1.0",
-    inteiroVersion: "1.3.2",
+    inteiroVersion: "2.0.0-rc.1",
     createdAt: new Date().toISOString(),
     configId: config.project.id,
     requestId: randomUUID(),

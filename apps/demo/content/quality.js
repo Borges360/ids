@@ -235,8 +235,8 @@ npm run test:contrast`)}
             <table>
               <thead><tr><th>Versão</th><th>Situação</th><th>Documentação</th></tr></thead>
               <tbody>
-                <tr><td><span class="in-voice-machine">2.0.0</span></td><td>Em desenvolvimento</td><td>Ainda não publicada. Reúne o visual mais suave (superfícies, bordas e espaçamento padrão) e o <code>@inteiro/terminal</code> numa única versão de todos os pacotes.</td></tr>
-                <tr><td><span class="in-voice-machine">1.3.2</span></td><td>Atual</td><td><a href="/">Esta página</a> · <a href="/v/1.3.2/">cópia congelada</a></td></tr>
+                <tr><td><span class="in-voice-machine">2.0.0-rc.1</span></td><td>Atual (release candidate)</td><td><a href="/">Esta página</a>. Todos os pacotes numa única versão, com o <code>@inteiro/terminal</code> e a documentação versionada. O visual mais suave (superfícies, bordas e espaçamento padrão) ainda é proposta e entra antes da 2.0.0.</td></tr>
+                <tr><td><span class="in-voice-machine">1.3.2</span></td><td>Arquivada</td><td><a href="/v/1.3.2/">/v/1.3.2/</a></td></tr>
                 <tr><td><span class="in-voice-machine">1.3.1</span></td><td>Arquivada</td><td><a href="/v/1.3.1/">/v/1.3.1/</a></td></tr>
                 <tr><td><span class="in-voice-machine">1.1.1</span></td><td>Arquivada</td><td><a href="/v/1.1.1/">/v/1.1.1/</a></td></tr>
                 <tr><td><span class="in-voice-machine">1.1.0</span></td><td>Arquivada</td><td><a href="/v/1.1.0/">/v/1.1.0/</a></td></tr>
@@ -250,7 +250,7 @@ npm run test:contrast`)}
         id: "changelog",
         title: "Changelog",
         html: `
-          <h3>Em desenvolvimento (2.0.0)</h3>
+          <h3>2.0.0-rc.1</h3>
           <ul>
             <li>Added — <code>@inteiro/terminal</code> com mensagens <code>en</code>/<code>pt-BR</code>, apresentação <code>standard</code>, Esc duplo para descartar, linhas de ação cancelável e cópia versionada para extensões (<code>vendor:terminal</code>).</li>
             <li>Added — servidor MCP por HTTP na mesma imagem do site, e documentação versionada com versões anteriores em <code>/v/&lt;versão&gt;/</code>.</li>

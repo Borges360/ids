@@ -1,6 +1,6 @@
 {
   "name": "@inteiro/design-system",
-  "version": "1.3.2",
+  "version": "2.0.0-rc.1",
   "description": "INTEIRO Design System SDK — tokens, CSS, recipes e CLI",
   "type": "module",
   "bin": {
@@ -21,9 +21,9 @@
     "build": "node --experimental-strip-types ../tokens/src/build.ts"
   },
   "dependencies": {
-    "@inteiro/tokens": "1.3.2",
-    "@inteiro/cli": "1.3.2",
-    "@inteiro/agent-core": "1.3.2"
+    "@inteiro/tokens": "2.0.0-rc.1",
+    "@inteiro/cli": "2.0.0-rc.1",
+    "@inteiro/agent-core": "2.0.0-rc.1"
   },
   "engines": {
     "node": ">=22.14"

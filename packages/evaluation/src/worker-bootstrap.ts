@@ -281,7 +281,7 @@ export async function planWorkerBootstrap(
   for (const pkg of manifest.packages) {
     if (
       !packageNames.includes(pkg.name) ||
-      pkg.version !== "1.3.2" ||
+      pkg.version !== "2.0.0-rc.1" ||
       !/^[a-zA-Z0-9][a-zA-Z0-9._-]*\.tgz$/.test(pkg.filename) ||
       typeof pkg.integrity !== "string"
     )

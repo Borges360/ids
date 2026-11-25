@@ -1,6 +1,6 @@
 {
   "name": "@inteiro/adapter-hermes",
-  "version": "1.3.2",
+  "version": "2.0.0-rc.1",
   "description": "Adaptador INTEIRO para Hermes Agent (AGENTS.md cwd, HERMES.md, Agent Plugins, MCP)",
   "license": "MIT"
 }

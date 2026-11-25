@@ -1,6 +1,6 @@
 {
   "name": "@inteiro/terminal",
-  "version": "1.4.0",
+  "version": "2.0.0-rc.1",
   "description": "INTEIRO Terminal: contratos, estado e componentes portáveis; adaptadores optativos Pi e prompts",
   "type": "module",
   "exports": {

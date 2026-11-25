@@ -1,6 +1,6 @@
 # INTEIRO Terminal
 
-IDS **1.3.0** acrescenta a superfície Terminal com contrato **1.0.0**; o pacote `@inteiro/terminal` **1.4.0** acrescenta mensagens em inglês e português, o perfil de apresentação do Pi e a cópia versionada para extensões (seção [Adaptador Pi 1.4](#adaptador-pi-14)). A adoção é optativa e independente do renderer. Trata de componentes e interação de ferramentas e extensões; não cria um novo CLI para operar o design system.
+IDS **1.3.0** acrescenta a superfície Terminal com contrato **1.0.0**; o pacote `@inteiro/terminal` **2.0.0-rc.1** (antes 1.4.0, na linha única de versões) acrescenta mensagens em inglês e português, o perfil de apresentação do Pi e a cópia versionada para extensões (seção [Adaptador Pi 1.4](#adaptador-pi-14)). A adoção é optativa e independente do renderer. Trata de componentes e interação de ferramentas e extensões; não cria um novo CLI para operar o design system.
 
 Estado: implementação em qualificação. Consulte [a matriz de requisitos](requirements.md) e [a evidência](qualification.json). Código, testes de estado, ensaio em terminal e revisão com leitor de tela são provas diferentes. Pendência não conta como aprovação.
 

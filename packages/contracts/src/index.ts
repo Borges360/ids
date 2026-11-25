@@ -561,7 +561,7 @@ export function bundle(config: Config, gates: GateResult[]): EvidenceBundle {
     ...(config.governance.mode === "technical-autonomous"
       ? { governanceContractHash: governanceContractHash() }
       : {}),
-    inteiroVersion: "1.3.2",
+    inteiroVersion: "2.0.0-rc.1",
     configId: config.project.id,
     configHash: hash(config),
     createdAt: new Date().toISOString(),
