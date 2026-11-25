@@ -146,6 +146,18 @@ a:hover { color: var(--in-color-identity-primary-hover); }
   line-height: var(--in-type-caption-line-height);
 }
 .sidebar__foot a:hover { color: var(--in-color-text-primary); }
+.version-select {
+  min-block-size: 44px;
+  max-inline-size: 100%;
+  padding-inline: var(--in-space-200);
+  color: var(--in-color-text-primary);
+  background: var(--in-color-background-surface);
+  border: var(--in-border-width-thin, 1px) solid var(--in-color-border-interactive);
+  border-radius: var(--in-radius-sm, 4px);
+  font: inherit;
+  font-size: var(--in-type-caption-size);
+}
+.version-select[hidden] { display: none; }
 
 .docs-main { min-inline-size: 0; max-inline-size: 100%; overflow-x: clip; }
 .topbar {

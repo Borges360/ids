@@ -1,0 +1,72 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+.skip {
+  position: absolute;
+  inset-inline-start: var(--in-space-200);
+  inset-block-start: var(--in-space-200);
+  transform: translateY(-200%);
+}
+.skip:focus { transform: none; background: var(--in-color-background-raised); padding: var(--in-space-200); }
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--in-space-400);
+  padding: var(--in-space-400) var(--in-space-600);
+  border-block-end: var(--in-border-hairline) solid var(--in-color-border-subtle);
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--in-z-sticky);
+  background: var(--in-color-background-canvas);
+}
+.brand {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: var(--in-type-overline-size);
+}
+.manifesto { color: var(--in-color-text-secondary); margin: 0; }
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--in-density-section-gap);
+  padding: var(--in-space-800) var(--in-space-600) var(--in-space-1600);
+  max-inline-size: var(--in-layout-content-dashboard);
+  margin-inline: auto;
+}
+.kicker {
+  font-size: var(--in-type-overline-size);
+  letter-spacing: var(--in-type-overline-tracking);
+  font-weight: var(--in-type-overline-weight);
+  color: var(--in-color-identity-primary);
+  text-transform: uppercase;
+}
+.display {
+  font-size: clamp(2rem, 6vw, var(--in-type-display-lg-size));
+  line-height: 1.06;
+  letter-spacing: -0.032em;
+  font-weight: 700;
+  max-inline-size: 18ch;
+  margin: 0 0 var(--in-space-400);
+}
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--in-space-400);
+  margin-block: var(--in-space-400);
+}
+.metric { font-size: var(--in-type-heading-h2-size); margin: var(--in-space-100) 0; }
+select {
+  background: var(--in-color-background-surface);
+  color: var(--in-color-text-primary);
+  border: var(--in-border-hairline) solid var(--in-color-border-interactive);
+  border-radius: var(--in-radius-sm);
+  min-block-size: 44px;
+  padding-inline: var(--in-space-200);
+}
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); gap: var(--in-space-200); }
+.swatch { border-radius: var(--in-radius-md); min-block-size: 72px; padding: var(--in-space-200); border: var(--in-border-hairline) solid var(--in-color-border-subtle); }
+.swatch span { display: block; font-size: var(--in-type-caption-size); }
+@media (max-width: 480px) {
+  .wrap { padding-inline: var(--in-space-400); }
+  .display { max-inline-size: none; }
+}

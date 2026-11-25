@@ -39,6 +39,29 @@ activeLocale = languageState?.getLocale() ?? "en";
 
 if (versionLabel) versionLabel.textContent = `v${IDS_VERSION}`;
 
+// Seletor de versão: /versions.json lista a versão atual e as arquivadas (/v/<x.y.z>/).
+const versionSelect = document.querySelector("#version-select");
+if (versionSelect) {
+  fetch("/versions.json")
+    .then((response) => (response.ok ? response.json() : null))
+    .then((data) => {
+      if (!data?.versions?.length) return;
+      for (const entry of data.versions) {
+        const option = document.createElement("option");
+        option.value = entry.path;
+        const tag = entry.status === "atual" ? " (current)" : entry.status === "arquivada" ? " (archived)" : "";
+        option.textContent = `v${entry.version}${tag}`;
+        if (entry.version === IDS_VERSION) option.selected = true;
+        versionSelect.append(option);
+      }
+      versionSelect.hidden = false;
+      versionSelect.addEventListener("change", () => {
+        window.location.assign(versionSelect.value + (window.location.hash || ""));
+      });
+    })
+    .catch(() => {});
+}
+
 const flat = nav.flatMap((group) => group.items.map((item) => ({ ...item, group })));
 const searchIndex = pages.flatMap((page) => {
   const group = flat.find((item) => item.id === page.id)?.group.label ?? "";
