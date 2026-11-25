@@ -2,6 +2,8 @@ import { describe, it, expect } from "vitest";
 import { readFile } from "node:fs/promises";
 // @ts-expect-error script .mjs sem tipos
 import { themes } from "../../scripts/generate-pi-theme.mjs";
+import { PI_THEMES, PI_THEMES_VERSION } from "../../packages/terminal/src/pi-themes.ts";
+import pkg from "../../packages/pi-theme/package.json" with { type: "json" };
 
 /** Papéis de cor do schema de tema do Pi 1.6 (`theme-tokens.js`), na ordem do schema. */
 const PI_1_6_TOKENS = [
@@ -35,6 +37,10 @@ const ratio = (a: string, b: string) => {
 };
 
 describe("INTEIRO Pi themes", () => {
+  it("embeds the same themes and version in the adapter that extensions install", () => {
+    expect(PI_THEMES).toEqual(themes);
+    expect(PI_THEMES_VERSION).toBe(pkg.version);
+  });
   for (const theme of themes as Theme[]) {
     describe(theme.name, () => {
       const color = (role: string) => theme.vars[theme.colors[role]!]!;
