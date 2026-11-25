@@ -83,6 +83,7 @@ export const nav = [
       { id: "terminal/foundations", label: "Fundamentos" },
       { id: "terminal/components", label: "Componentes" },
       { id: "terminal/patterns", label: "Padrões" },
+      { id: "terminal/pi-theme", label: "Tema do Pi" },
       { id: "terminal/quality", label: "Qualificação" }
     ]
   },

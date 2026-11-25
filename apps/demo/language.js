@@ -128,6 +128,7 @@ const itemLabels = Object.freeze({
     "terminal/foundations": "Foundations",
     "terminal/components": "Components",
     "terminal/patterns": "Patterns",
+    "terminal/pi-theme": "Pi theme",
     "terminal/quality": "Qualification",
     "practice/identity": "In practice",
     "a11y/guide": "Requirements",
@@ -154,6 +155,10 @@ const englishPages = Object.freeze({
   "terminal/patterns": [
     "Terminal patterns",
     "Complete flows: configure and save, confirm a destructive action, follow a task and explore data.",
+  ],
+  "terminal/pi-theme": [
+    "Pi theme",
+    "The INTEIRO themes for all of Pi: each host color role with the IDS token that serves the same purpose, installed by the extensions.",
   ],
   "terminal/quality": [
     "Terminal qualification",

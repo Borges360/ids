@@ -66,7 +66,7 @@ Inquirer possui streams e limpeza do terminal que alterou; Pi possui seu rendere
 
 ## Tema do Pi
 
-`packages/pi-theme` é um pacote Pi com `inteiro-dark`, `inteiro-light`, `inteiro-contrast-dark` e `inteiro-contrast-light`, gerados dos tokens por `npm run generate:pi-theme`. A especificação completa, papel por papel (componente do Pi, token do IDS e regra), é gerada da mesma tabela em [pi-theme.md](pi-theme.md), com uma prévia SVG por tema. O tema Dracula para Pi serviu de referência de **componentes**, não de visual. As regras, em resumo:
+`packages/pi-theme` é um pacote Pi com `inteiro-dark`, `inteiro-light`, `inteiro-contrast-dark` e `inteiro-contrast-light`, gerados dos tokens por `npm run generate:pi-theme`. A especificação completa, papel por papel (componente do Pi, token do IDS e regra), é gerada da mesma tabela em [pi-theme.md](pi-theme.md) e na página **Terminal → Tema do Pi** da documentação web, com uma prévia SVG por tema. O tema Dracula para Pi serviu de referência de **componentes**, não de visual. As regras, em resumo:
 
 - os neutros dominam;
 - violeta escolhe: `accent`, links, palavras-chave, a Costura na citação e a seleção;

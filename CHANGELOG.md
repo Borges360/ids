@@ -13,6 +13,7 @@
 
   A tabela de papéis em `scripts/generate-pi-theme.mjs` gera também a especificação (`docs/terminal/pi-theme.md`) e uma prévia SVG por tema (`packages/pi-theme/preview/`). Os testes cobrem 4,5:1 para todo texto sobre o canvas e sobre a própria caixa, 3:1 para `border`, e as regras de violeta, laranja e sintaxe.
 - Instalação automática dos temas: `registerInteiroPiThemes(pi)` (em `@inteiro/terminal/pi`) grava os temas em `<agent-dir>/themes/` e os lista no `resources_discover` da sessão. Várias extensões não geram colisão; temas editados pelo usuário não são sobrescritos; `PI_DESIGN_THEMES=off` desliga. O fecho copiado por `vendor:terminal` passa a aceitar módulos `node:`.
+- Página **Terminal → Tema do Pi** na documentação web (pt-BR e inglês), gerada da mesma tabela de papéis. Traz as prévias dos 4 temas, as regras, todos os papéis por componente com token e regra, a instalação e a escolha do tema, e o fundo do terminal.
 - Página Terminal: quadro "Perfil Pi" com a saída real de `openPiSettings`.
 
 ### Fixed
