@@ -1072,7 +1072,7 @@ describe("INTEIRO Pi themes installed by extensions", () => {
     expect(read(file)).toBe(old);
   });
   it("can be turned off and never throws on an unwritable agent directory", () => {
-    const off = installInteiroPiThemes({ agentDir: tmp(), env: { INTEIRO_PI_THEMES: "off" } });
+    const off = installInteiroPiThemes({ agentDir: tmp(), env: { PI_DESIGN_THEMES: "off" } });
     expect(off.disabled).toBe(true);
     expect(off.paths).toEqual([]);
     const base = tmp();

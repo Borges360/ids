@@ -4,7 +4,7 @@
 
 ### Added
 - `@inteiro/pi-theme`: temas `inteiro-dark`, `inteiro-light`, `inteiro-contrast-dark` e `inteiro-contrast-light` para o Pi, gerados dos tokens por `npm run generate:pi-theme`. Violeta em `accent`, laranja só em `bashMode` e `thinkingMax`, `color.selection.background` em `selectedBg`. O teste confere o arquivo gerado, os papéis do Pi 1.6 e contraste de 4,5:1.
-- Instalação automática dos temas: `registerInteiroPiThemes(pi)` (em `@inteiro/terminal/pi`) grava os temas em `<agent-dir>/themes/` e os lista no `resources_discover` da sessão. Várias extensões não geram colisão; temas editados pelo usuário não são sobrescritos; `INTEIRO_PI_THEMES=off` desliga. O fecho copiado por `vendor:terminal` passa a aceitar módulos `node:`.
+- Instalação automática dos temas: `registerInteiroPiThemes(pi)` (em `@inteiro/terminal/pi`) grava os temas em `<agent-dir>/themes/` e os lista no `resources_discover` da sessão. Várias extensões não geram colisão; temas editados pelo usuário não são sobrescritos; `PI_DESIGN_THEMES=off` desliga. O fecho copiado por `vendor:terminal` passa a aceitar módulos `node:`.
 - Página Terminal: quadro "Perfil Pi" com a saída real de `openPiSettings`.
 
 ### Fixed

@@ -4,7 +4,7 @@ Temas do INTEIRO para o [Pi Coding Agent](https://github.com/earendil-works/pi):
 
 ## Instalar
 
-Não é preciso instalar à parte. As extensões que usam `@inteiro/terminal/pi` chamam `registerInteiroPiThemes(pi)` ao carregar: os temas vão para `<agent-dir>/themes/` e aparecem em `/settings` já na primeira sessão. Um tema que você editou nunca é sobrescrito; `INTEIRO_PI_THEMES=off` desliga a instalação.
+Não é preciso instalar à parte. As extensões que usam `@inteiro/terminal/pi` chamam `registerInteiroPiThemes(pi)` ao carregar: os temas vão para `<agent-dir>/themes/` e aparecem em `/settings` já na primeira sessão. Um tema que você editou nunca é sobrescrito; `PI_DESIGN_THEMES=off` desliga a instalação.
 
 Sem nenhuma dessas extensões, instale o pacote a partir do checkout do IDS:
 

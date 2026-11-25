@@ -11,7 +11,7 @@
  * The extension never selects a theme: choosing one stays in `/settings`. A file the user edited is
  * never overwritten, and an older copy never replaces a newer one. Failures (read-only home,
  * permissions) are reported in the result and never stop the extension from loading.
- * Opt out with `INTEIRO_PI_THEMES=off`.
+ * Opt out with `PI_DESIGN_THEMES=off`.
  */
 import { createHash } from "node:crypto";
 import {
@@ -115,7 +115,7 @@ export function installInteiroPiThemes(
     errors: [],
     disabled: false,
   };
-  if (/^(0|off|false|no)$/i.test(env.INTEIRO_PI_THEMES ?? "")) {
+  if (/^(0|off|false|no)$/i.test(env.PI_DESIGN_THEMES ?? "")) {
     result.disabled = true;
     return result;
   }
