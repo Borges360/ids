@@ -66,7 +66,20 @@ Inquirer possui streams e limpeza do terminal que alterou; Pi possui seu rendere
 
 ## Tema do Pi
 
-`packages/pi-theme` é um pacote Pi com `inteiro-dark`, `inteiro-light`, `inteiro-contrast-dark` e `inteiro-contrast-light`, gerados dos tokens resolvidos por `npm run generate:pi-theme`. O schema de tema do Pi é estrito, então cada papel do host recebe o token semântico mais próximo: violeta (`color.identity.primary`) em `accent`; laranja (`color.identity.commit`) só em `bashMode` e `thinkingMax`; `color.selection.background` em `selectedBg`; texto primário, secundário e terciário em `text`, `muted` e `dim`. `tests/terminal/pi-theme.test.ts` confere o arquivo gerado, a cobertura dos papéis do Pi 1.6 e contraste de 4,5:1. **Instalação automática:** a extensão que usa o adaptador chama `registerInteiroPiThemes(pi)` na fábrica. Os temas são gravados em `<agent-dir>/themes/`, onde o Pi os encontra a cada início, e também devolvidos no `resources_discover`, para aparecerem já na primeira sessão. Várias extensões devolvem os mesmos caminhos, e o Pi junta caminhos iguais, então não há colisão de nomes. Um tema editado pelo usuário nunca é sobrescrito; uma cópia antiga nunca substitui uma mais nova (registro em `<agent-dir>/state/inteiro-terminal/pi-themes.json`); falhas de escrita não impedem a extensão de carregar; `PI_DESIGN_THEMES=off` desliga. A extensão não escolhe o tema: isso continua em `/settings`. Fora de uma extensão, o pacote também instala com `pi install ./packages/pi-theme`.
+`packages/pi-theme` é um pacote Pi com `inteiro-dark`, `inteiro-light`, `inteiro-contrast-dark` e `inteiro-contrast-light`, gerados dos tokens por `npm run generate:pi-theme`. A especificação completa, papel por papel (componente do Pi, token do IDS e regra), é gerada da mesma tabela em [pi-theme.md](pi-theme.md), com uma prévia SVG por tema. O tema Dracula para Pi serviu de referência de **componentes**, não de visual. As regras, em resumo:
+
+- os neutros dominam;
+- violeta escolhe: `accent`, links, palavras-chave, a Costura na citação e a seleção;
+- laranja só para efeito real: `bashMode` e o topo da escada de raciocínio;
+- status mantém o papel;
+- sintaxe usa a paleta categórica, sem a 02;
+- caixas se afastam do canvas;
+- foco é `>` com `selectedBg`;
+- texto com 4,5:1 sobre o canvas e sobre a própria caixa.
+
+`tests/terminal/pi-theme.test.ts` confere arquivos, prévias, especificação, regras e contraste.
+
+**Instalação automática:** a extensão que usa o adaptador chama `registerInteiroPiThemes(pi)` na fábrica. Os temas são gravados em `<agent-dir>/themes/`, onde o Pi os encontra a cada início, e também devolvidos no `resources_discover`, para aparecerem já na primeira sessão. Várias extensões devolvem os mesmos caminhos, e o Pi junta caminhos iguais, então não há colisão de nomes. Um tema editado pelo usuário nunca é sobrescrito; uma cópia antiga nunca substitui uma mais nova (registro em `<agent-dir>/state/inteiro-terminal/pi-themes.json`); falhas de escrita não impedem a extensão de carregar; `PI_DESIGN_THEMES=off` desliga. A extensão não escolhe o tema: isso continua em `/settings`. Fora de uma extensão, o pacote também instala com `pi install ./packages/pi-theme`.
 
 ## Adaptador Pi 1.4
 

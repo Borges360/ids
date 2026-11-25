@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { readFile } from "node:fs/promises";
 // @ts-expect-error script .mjs sem tipos
-import { themes } from "../../scripts/generate-pi-theme.mjs";
+import { themes, previewSvg, specMarkdown } from "../../scripts/generate-pi-theme.mjs";
 import { PI_THEMES, PI_THEMES_VERSION } from "../../packages/terminal/src/pi-themes.ts";
 import pkg from "../../packages/pi-theme/package.json" with { type: "json" };
 
@@ -37,6 +37,9 @@ const ratio = (a: string, b: string) => {
 };
 
 describe("INTEIRO Pi themes", () => {
+  it("keeps the generated specification in docs/terminal/pi-theme.md", async () => {
+    expect(await readFile("docs/terminal/pi-theme.md", "utf8")).toBe(specMarkdown());
+  });
   it("embeds the same themes and version in the adapter that extensions install", () => {
     expect(PI_THEMES).toEqual(themes);
     expect(PI_THEMES_VERSION).toBe(pkg.version);
@@ -55,21 +58,51 @@ describe("INTEIRO Pi themes", () => {
         for (const ref of [...Object.values(theme.colors), ...Object.values(theme.export)])
           expect(theme.vars[ref], ref).toMatch(/^#[0-9a-f]{6}$/);
       });
-      it("keeps text, choice, effect and status readable (WCAG 4.5:1)", () => {
+      it("keeps every text role readable on the canvas (WCAG 4.5:1)", () => {
         const canvas = theme.vars.canvas!;
-        for (const role of ["text", "muted", "dim", "accent", "bashMode", "success", "warning", "error", "mdLink"])
+        const TEXT = [
+          "text", "muted", "dim", "accent", "bashMode", "success", "warning", "error", "thinkingText",
+          "toolTitle", "toolOutput", "mdHeading", "mdLink", "mdLinkUrl", "mdCode", "mdCodeBlock", "mdQuote",
+          "mdListBullet", "toolDiffAdded", "toolDiffRemoved", "toolDiffContext", "customMessageLabel",
+          "customMessageText", "userMessageText",
+          ...PI_1_6_TOKENS.filter((r) => r.startsWith("syntax")),
+        ];
+        for (const role of TEXT)
           expect(ratio(color(role), canvas), role).toBeGreaterThanOrEqual(4.5);
-        expect(ratio(color("accent"), color("selectedBg"))).toBeGreaterThanOrEqual(4.5);
-        expect(ratio(color("text"), color("selectedBg"))).toBeGreaterThanOrEqual(4.5);
-        expect(ratio(color("text"), color("userMessageBg"))).toBeGreaterThanOrEqual(4.5);
+      });
+      it("keeps text readable on its own box and the focus on the selection background", () => {
+        const PAIRS = [
+          ["userMessageText", "userMessageBg"], ["customMessageText", "customMessageBg"],
+          ["customMessageLabel", "customMessageBg"], ["toolTitle", "toolPendingBg"],
+          ["toolOutput", "toolPendingBg"], ["toolOutput", "toolSuccessBg"], ["toolOutput", "toolErrorBg"],
+          ["success", "toolSuccessBg"], ["error", "toolErrorBg"], ["accent", "selectedBg"],
+          ["text", "selectedBg"], ["searchMatchText", "searchMatchBg"],
+        ];
+        for (const [fg, bg] of PAIRS)
+          expect(ratio(color(fg!), color(bg!)), `${fg} on ${bg}`).toBeGreaterThanOrEqual(4.5);
+        // Boxes step away from the canvas; the editor border is a UI component (3:1).
+        expect(color("userMessageBg")).not.toBe(theme.vars.canvas);
+        expect(color("toolPendingBg")).not.toBe(theme.vars.canvas);
+        expect(ratio(color("border"), theme.vars.canvas!)).toBeGreaterThanOrEqual(3);
       });
       it("keeps violet for choosing and orange only for real effects", () => {
         expect(theme.colors.accent).toBe("choose");
+        expect(theme.colors.mdLink).toBe("choose");
+        expect(theme.colors.mdQuoteBorder).toBe("choose");
         expect(theme.colors.bashMode).toBe("commit");
         const orange = Object.entries(theme.colors)
-          .filter(([, v]) => v === "commit")
+          .filter(([, v]) => v === "commit" || v === "commitHover")
           .map(([k]) => k);
-        expect(orange.sort()).toEqual(["bashMode", "thinkingMax"]);
+        expect(orange.sort()).toEqual(["bashMode", "thinkingMax", "thinkingXhigh"]);
+      });
+      it("paints syntax with the categorical palette or neutrals, never status or orange", () => {
+        for (const [role, v] of Object.entries(theme.colors).filter(([r]) => r.startsWith("syntax")))
+          expect(v, role).toMatch(/^(cat0[13467]|text|textSecondary|textTertiary)$/);
+      });
+      it("ships a generated preview of every component", async () => {
+        const svg = await readFile(`packages/pi-theme/preview/${theme.name}.svg`, "utf8");
+        expect(svg).toBe(previewSvg(theme));
+        expect(svg).toContain(`fill="${color("selectedBg")}"`);
       });
     });
   }

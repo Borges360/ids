@@ -4,6 +4,14 @@
 
 ### Added
 - `@inteiro/pi-theme`: temas `inteiro-dark`, `inteiro-light`, `inteiro-contrast-dark` e `inteiro-contrast-light` para o Pi, gerados dos tokens por `npm run generate:pi-theme`. Violeta em `accent`, laranja só em `bashMode` e `thinkingMax`, `color.selection.background` em `selectedBg`. O teste confere o arquivo gerado, os papéis do Pi 1.6 e contraste de 4,5:1.
+- Temas do Pi revistos papel por papel, com o tema Dracula para Pi como referência de componentes (não de visual):
+  - links em violeta, como no IDS web;
+  - sintaxe com a paleta categórica (`dataviz.categorical` 01, 03, 04, 06 e 07), sem a 02, porque laranja é efeito real;
+  - código inline em azul categórico e bloco de código em texto primário;
+  - caixas de mensagem e de ferramenta afastadas do canvas (`raised`/`surface` no escuro, `sunken` no claro);
+  - escada de raciocínio do neutro ao laranja.
+
+  A tabela de papéis em `scripts/generate-pi-theme.mjs` gera também a especificação (`docs/terminal/pi-theme.md`) e uma prévia SVG por tema (`packages/pi-theme/preview/`). Os testes cobrem 4,5:1 para todo texto sobre o canvas e sobre a própria caixa, 3:1 para `border`, e as regras de violeta, laranja e sintaxe.
 - Instalação automática dos temas: `registerInteiroPiThemes(pi)` (em `@inteiro/terminal/pi`) grava os temas em `<agent-dir>/themes/` e os lista no `resources_discover` da sessão. Várias extensões não geram colisão; temas editados pelo usuário não são sobrescritos; `PI_DESIGN_THEMES=off` desliga. O fecho copiado por `vendor:terminal` passa a aceitar módulos `node:`.
 - Página Terminal: quadro "Perfil Pi" com a saída real de `openPiSettings`.
 

@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="670" height="592" viewBox="0 0 670 592" role="img" aria-label="Prévia do tema inteiro-contrast-dark no Pi">
+<rect width="670" height="592" rx="8" fill="#0c0d12"/>
+<g font-family="'Recursive Mono','Cascadia Mono',Consolas,monospace" font-size="14">
+<text x="16.0" y="30" fill="#fffdf8" font-weight="700" xml:space="preserve">Pi · inteiro-contrast-dark</text>
+<text x="16.0" y="50" fill="#e7e2da" xml:space="preserve">Mensagens</text>
+<rect x="12" y="56" width="646" height="20" fill="#1a1920"/>
+<text x="16.0" y="70" fill="#fffdf8" xml:space="preserve">  refatore o parser e rode os testes</text>
+<rect x="12" y="76" width="646" height="20" fill="#352472"/>
+<text x="16.0" y="90" fill="#c5b4ff" font-weight="700" xml:space="preserve">  [hook] </text>
+<text x="91.6" y="90" fill="#e7e2da" xml:space="preserve">contexto do projeto carregado</text>
+<text x="16.0" y="110" fill="#e7e2da" xml:space="preserve">  pensando: o parser mistura leitura e validação</text>
+<text x="16.0" y="130" fill="#e7e2da" xml:space="preserve">Ferramentas</text>
+<rect x="12" y="136" width="646" height="20" fill="#050508"/>
+<text x="16.0" y="150" fill="#fffdf8" font-weight="700" xml:space="preserve">  read </text>
+<text x="74.8" y="150" fill="#e7e2da" xml:space="preserve">src/parser.ts</text>
+<rect x="12" y="156" width="646" height="20" fill="#08251f"/>
+<text x="16.0" y="170" fill="#fffdf8" font-weight="700" xml:space="preserve">  edit </text>
+<text x="74.8" y="170" fill="#e7e2da" xml:space="preserve">src/parser.ts </text>
+<text x="192.4" y="170" fill="#6edfc4" xml:space="preserve">concluído</text>
+<rect x="12" y="176" width="646" height="20" fill="#370f16"/>
+<text x="16.0" y="190" fill="#fffdf8" font-weight="700" xml:space="preserve">  bash </text>
+<text x="74.8" y="190" fill="#e7e2da" xml:space="preserve">npm test </text>
+<text x="150.4" y="190" fill="#ff8c9a" xml:space="preserve">1 falha</text>
+<text x="16.0" y="210" fill="#6edfc4" xml:space="preserve">  + const valid = check(input);</text>
+<text x="16.0" y="230" fill="#ff8c9a" xml:space="preserve">  - validate(input, true);</text>
+<text x="16.0" y="250" fill="#d0c9c2" xml:space="preserve">    return parse(input);</text>
+<text x="16.0" y="270" fill="#e7e2da" xml:space="preserve">Markdown</text>
+<text x="16.0" y="290" fill="#fffdf8" font-weight="700" xml:space="preserve">  Resultado</text>
+<text x="16.0" y="310" fill="#d0c9c2" xml:space="preserve">  • </text>
+<text x="49.6" y="310" fill="#fffdf8" xml:space="preserve">use </text>
+<text x="83.2" y="310" fill="#72a7ff" xml:space="preserve">parse()</text>
+<text x="142.0" y="310" fill="#fffdf8" xml:space="preserve"> e veja </text>
+<text x="209.2" y="310" fill="#c5b4ff" xml:space="preserve">o guia</text>
+<text x="259.6" y="310" fill="#d0c9c2" xml:space="preserve"> (https://ids.lab)</text>
+<text x="16.0" y="330" fill="#c5b4ff" xml:space="preserve">  │ </text>
+<text x="49.6" y="330" fill="#e7e2da" xml:space="preserve">a validação agora fica num só lugar</text>
+<text x="16.0" y="350" fill="#fffdf8" xml:space="preserve">  </text>
+<text x="32.8" y="350" fill="#aaa3a6" xml:space="preserve">──────────────────────────────</text>
+<text x="16.0" y="370" fill="#e7e2da" xml:space="preserve">Código</text>
+<text x="16.0" y="390" fill="#d0c9c2" xml:space="preserve">  // lê e valida a entrada</text>
+<text x="16.0" y="410" fill="#a78bfa" xml:space="preserve">  export function </text>
+<text x="167.2" y="410" fill="#72a7ff" xml:space="preserve">parse</text>
+<text x="209.2" y="410" fill="#d0c9c2" xml:space="preserve">(</text>
+<text x="217.6" y="410" fill="#fffdf8" xml:space="preserve">input</text>
+<text x="259.6" y="410" fill="#d0c9c2" xml:space="preserve">: </text>
+<text x="276.4" y="410" fill="#e58ce8" xml:space="preserve">string</text>
+<text x="326.8" y="410" fill="#d0c9c2" xml:space="preserve">) {</text>
+<text x="16.0" y="430" fill="#a78bfa" xml:space="preserve">    return </text>
+<text x="108.4" y="430" fill="#fffdf8" xml:space="preserve">input.length </text>
+<text x="217.6" y="430" fill="#e7e2da" xml:space="preserve">&gt; </text>
+<text x="234.4" y="430" fill="#f2c66d" xml:space="preserve">42 </text>
+<text x="259.6" y="430" fill="#e7e2da" xml:space="preserve">? </text>
+<text x="276.4" y="430" fill="#4fd1b5" xml:space="preserve">"longo"</text>
+<text x="335.2" y="430" fill="#e7e2da" xml:space="preserve"> : </text>
+<text x="360.4" y="430" fill="#4fd1b5" xml:space="preserve">"curto"</text>
+<text x="419.2" y="430" fill="#d0c9c2" xml:space="preserve">;</text>
+<text x="16.0" y="450" fill="#e7e2da" xml:space="preserve">Painel</text>
+<rect x="12" y="456" width="646" height="20" fill="#452f99"/>
+<text x="16.0" y="470" fill="#c5b4ff" xml:space="preserve">  &gt; Idioma            Português</text>
+<text x="16.0" y="490" fill="#fffdf8" xml:space="preserve">    Modelo            sonnet</text>
+<text x="16.0" y="510" fill="#ffb27f" font-weight="700" xml:space="preserve">  [Salvar alterações]</text>
+<text x="192.4" y="510" fill="#fffdf8" xml:space="preserve"> </text>
+<text x="200.8" y="510" fill="#c5b4ff" xml:space="preserve">[Ajuda]</text>
+<text x="259.6" y="510" fill="#fffdf8" xml:space="preserve"> </text>
+<text x="268.0" y="510" fill="#c5b4ff" xml:space="preserve">[Fechar]</text>
+<text x="16.0" y="530" fill="#e7e2da" xml:space="preserve">  ↑↓ navegar · Enter editar · Ctrl+S salvar · Esc fechar</text>
+<text x="16.0" y="550" fill="#e7e2da" xml:space="preserve">Raciocínio  </text>
+<text x="116.8" y="550" fill="#aaa3a6" xml:space="preserve">off </text>
+<text x="150.4" y="550" fill="#d0c9c2" xml:space="preserve">min </text>
+<text x="184.0" y="550" fill="#92bbff" xml:space="preserve">low </text>
+<text x="217.6" y="550" fill="#c5b4ff" xml:space="preserve">med </text>
+<text x="251.2" y="550" fill="#e58ce8" xml:space="preserve">high </text>
+<text x="293.2" y="550" fill="#ffcdaa" xml:space="preserve">xhigh </text>
+<text x="343.6" y="550" fill="#ffb27f" xml:space="preserve">max</text>
+<text x="16.0" y="570" fill="#e7e2da" xml:space="preserve">Status      </text>
+<text x="116.8" y="570" fill="#6edfc4" xml:space="preserve">sucesso </text>
+<text x="184.0" y="570" fill="#f8d98e" xml:space="preserve">aviso </text>
+<text x="234.4" y="570" fill="#ff8c9a" xml:space="preserve">erro </text>
+<text x="276.4" y="570" fill="#e7e2da" xml:space="preserve">secundário </text>
+<text x="368.8" y="570" fill="#d0c9c2" xml:space="preserve">apagado</text>
+</g>
+</svg>
