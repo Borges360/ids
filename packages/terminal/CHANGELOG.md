@@ -1,6 +1,6 @@
 # Changelog — @inteiro/terminal
 
-## 1.4.0
+## 2.0.0-rc.1 (antes 1.4.0)
 
 Minor retrocompatível: opções novas com padrões que preservam a saída 1.3 (`presentation: "legacy"`, `pt-BR`). O adaptador Pi (`openPiSettings`, `openPiWorkspace`, `piBindings`) muda os padrões onde indicado.
 

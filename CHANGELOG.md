@@ -1,10 +1,12 @@
 # Changelog
 
-## Não lançado
+## 2.0.0-rc.1
+
+Release candidate: todos os pacotes numa única versão (`2.0.0-rc.1`). O visual mais suave da 2.0.0 ainda é proposta e não está nesta versão.
 
 ### Added
 - Documentação versionada: cópias congeladas das versões 1.1.0, 1.1.1, 1.3.1 e 1.3.2 em `docs-archive/<versão>/`, servidas em `/v/<versão>/`, lista em `/versions.json` e seletor de versão no menu da página. `scripts/archive-docs-version.mjs <ref> <versão>` gera a cópia a partir de um `release/x.y.z`; as páginas arquivadas mostram uma faixa de aviso. Novas seções "Versões da documentação" e changelog atualizado até 1.3.2.
-- `@inteiro/terminal` 1.4.0 (minor optativo; detalhes em `packages/terminal/CHANGELOG.md`): mensagens `en`/`pt-BR` com override parcial, apresentação `standard`, Esc duplo para descartar, linhas de ação com operação cancelável, `formatError`, salvamento cancelável e reconciliação, escolhas sob demanda, prévia do rascunho, workspace parametrizável e `npm run vendor:terminal` para copiar o adaptador Pi em extensões com `VENDOR.json` e verificador autônomo.
+- `@inteiro/terminal` (antes 1.4.0, agora na versão única `2.0.0-rc.1`; detalhes em `packages/terminal/CHANGELOG.md`): mensagens `en`/`pt-BR` com override parcial, apresentação `standard`, Esc duplo para descartar, linhas de ação com operação cancelável, `formatError`, salvamento cancelável e reconciliação, escolhas sob demanda, prévia do rascunho, workspace parametrizável e `npm run vendor:terminal` para copiar o adaptador Pi em extensões com `VENDOR.json` e verificador autônomo.
 - Servidor MCP por HTTP (`packages/mcp/src/http.ts`, streamable-http sem sessão): `POST /mcp` com JSON-RPC e `GET /health` com a versão. Roda na mesma imagem do site, em `/app/inteiro-mcp`, de modo que a versão do MCP é sempre a do container. O modo `stdio` do pacote continua igual.
 - `scripts/build-mcp-runtime.mjs` empacota o servidor numa pasta autossuficiente, e `npm run test:mcp-runtime` roda esse pacote isolado do monorepo (entra no `npm run ci`).
 

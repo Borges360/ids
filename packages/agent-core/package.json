@@ -1,6 +1,6 @@
 {
   "name": "@inteiro/agent-core",
-  "version": "1.3.2",
+  "version": "2.0.0-rc.1",
   "description": "INTEIRO Agent Core — consulta de tokens, guidelines, recipes, auditoria e sugestão semântica",
   "type": "module",
   "exports": {
@@ -18,10 +18,10 @@
     "build": "node --experimental-strip-types ../tokens/src/build.ts"
   },
   "dependencies": {
-    "@inteiro/composition": "^1.3.2",
-    "@inteiro/contracts": "^1.3.2",
-    "@inteiro/terminal": "^1.3.2",
-    "@inteiro/tokens": "1.3.2",
+    "@inteiro/composition": "^2.0.0-rc.1",
+    "@inteiro/contracts": "^2.0.0-rc.1",
+    "@inteiro/terminal": "^2.0.0-rc.1",
+    "@inteiro/tokens": "2.0.0-rc.1",
     "yaml": "2.9.1"
   },
   "engines": {

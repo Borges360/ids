@@ -78,7 +78,7 @@ name: ${skill.name}
 description: ${JSON.stringify(skill.description)}
 license: MIT
 metadata:
-  inteiro: "1.3.2"
+  inteiro: "2.0.0-rc.1"
 ---
 
 ${skill.body}
