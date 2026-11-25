@@ -57,6 +57,7 @@ function specifiers(source) {
 export function closure(entry = ENTRY, read = (f) => readFileSync(join(SRC, f), "utf8")) {
   const seen = new Set(),
     externals = new Set(),
+    builtins = new Set(),
     queue = [entry];
   while (queue.length) {
     const file = queue.shift();
@@ -66,13 +67,19 @@ export function closure(entry = ENTRY, read = (f) => readFileSync(join(SRC, f), 
     for (const spec of specifiers(read(file))) {
       if (spec.startsWith("./")) queue.push(spec.slice(2));
       else if (spec.startsWith(".")) throw new Error(`Unsupported import ${spec} in ${file}`);
+      // Node built-ins (`node:fs`, …) exist in every Pi host; they are not peers.
+      else if (spec.startsWith("node:")) builtins.add(spec);
       else externals.add(spec);
     }
   }
   for (const e of externals)
     if (!ALLOWED_EXTERNAL.has(e))
       throw new Error(`External import "${e}" is not available in the Pi host`);
-  return { files: [...seen].sort(), externals: [...externals].sort() };
+  return {
+    files: [...seen].sort(),
+    externals: [...externals].sort(),
+    builtins: [...builtins].sort(),
+  };
 }
 
 let typescript;

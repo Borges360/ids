@@ -149,6 +149,26 @@ if (import.meta.url === `file://${process.argv[1]?.replaceAll("\\", "/")}` ||
       `${OUT}/${theme.name}.json`,
       JSON.stringify(theme, null, 2) + "\n",
     );
+  const { version } = JSON.parse(
+    await readFile("packages/pi-theme/package.json", "utf8"),
+  );
+  const header = [
+    "// Gerado por scripts/generate-pi-theme.mjs a partir dos tokens. Não edite.",
+    "// Instalado pelas extensões com registerInteiroPiThemes (pi-theme-install.ts).",
+    `export const PI_THEMES_VERSION = ${JSON.stringify(version)};`,
+    "export interface PiThemeFile {",
+    "  $schema: string;",
+    "  name: string;",
+    '  appearance: "dark" | "light";',
+    "  vars: Record<string, string>;",
+    "  colors: Record<string, string>;",
+    "  export: Record<string, string>;",
+    "}",
+  ];
+  await writeFile(
+    "packages/terminal/src/pi-themes.ts",
+    [...header, `export const PI_THEMES: readonly PiThemeFile[] = ${JSON.stringify(themes, null, 2)};`, ""].join("\n"),
+  );
   console.log(
     `Pi: ${themes.length} temas gerados em ${OUT} (${themes.map((t) => t.name).join(", ")}).`,
   );
