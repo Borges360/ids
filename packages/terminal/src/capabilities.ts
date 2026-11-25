@@ -1,4 +1,5 @@
 import type { Capabilities } from "./contracts.ts";
+import { resolveMessages, type TerminalMessages } from "./i18n.ts";
 export interface Environment {
   inputTTY: boolean;
   outputTTY: boolean;
@@ -46,11 +47,12 @@ export function detectCapabilities(e: Environment): Capabilities {
 export function requireInput(
   capabilities: Capabilities,
   missing: readonly string[],
+  messages: TerminalMessages = resolveMessages(),
 ) {
   if (missing.length && !capabilities.interactive)
     return {
       status: "invalid" as const,
-      message: `Entrada necessária: ${missing.join(", ")}. Informe os argumentos em modo sem entrada.`,
+      message: messages.inputRequired(missing.join(", ")),
     };
   return undefined;
 }

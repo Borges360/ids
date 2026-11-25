@@ -227,9 +227,48 @@ npm run test:contrast`)}
         `
       },
       {
-        id: "changelog",
-        title: "Changelog 1.1.1",
+        id: "versoes",
+        title: "Versões da documentação",
         html: `
+          <p>Esta documentação é versionada. Cada versão publicada fica congelada em <code>/v/&lt;versão&gt;/</code>, com os tokens, o CSS dos componentes e o conteúdo daquela versão. Use o seletor no rodapé do menu ou os links abaixo. As páginas arquivadas mostram uma faixa de aviso e não recebem correções.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Versão</th><th>Situação</th><th>Documentação</th></tr></thead>
+              <tbody>
+                <tr><td><span class="in-voice-machine">2.0.0</span></td><td>Em desenvolvimento</td><td>Ainda não publicada. Reúne o visual mais suave (superfícies, bordas e espaçamento padrão) e o <code>@inteiro/terminal</code> numa única versão de todos os pacotes.</td></tr>
+                <tr><td><span class="in-voice-machine">1.3.2</span></td><td>Atual</td><td><a href="/">Esta página</a> · <a href="/v/1.3.2/">cópia congelada</a></td></tr>
+                <tr><td><span class="in-voice-machine">1.3.1</span></td><td>Arquivada</td><td><a href="/v/1.3.1/">/v/1.3.1/</a></td></tr>
+                <tr><td><span class="in-voice-machine">1.1.1</span></td><td>Arquivada</td><td><a href="/v/1.1.1/">/v/1.1.1/</a></td></tr>
+                <tr><td><span class="in-voice-machine">1.1.0</span></td><td>Arquivada</td><td><a href="/v/1.1.0/">/v/1.1.0/</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>O Storybook e as fontes são sempre os da versão atual. A lista de versões vem de <a href="/versions.json"><code>/versions.json</code></a>. Para arquivar uma versão nova: <code>node scripts/archive-docs-version.mjs release/x.y.z x.y.z</code>.</p>
+        `
+      },
+      {
+        id: "changelog",
+        title: "Changelog",
+        html: `
+          <h3>Em desenvolvimento (2.0.0)</h3>
+          <ul>
+            <li>Added — <code>@inteiro/terminal</code> com mensagens <code>en</code>/<code>pt-BR</code>, apresentação <code>standard</code>, Esc duplo para descartar, linhas de ação cancelável e cópia versionada para extensões (<code>vendor:terminal</code>).</li>
+            <li>Added — servidor MCP por HTTP na mesma imagem do site, e documentação versionada com versões anteriores em <code>/v/&lt;versão&gt;/</code>.</li>
+            <li>Changed — todos os pacotes passam a sair com uma versão única.</li>
+          </ul>
+          <h3>1.3.2</h3>
+          <ul>
+            <li>Changed — documentação do Terminal reorganizada em cinco páginas, em português e inglês, com a saída real das projeções.</li>
+            <li>Added — fundamentos visuais e padrões do Terminal.</li>
+          </ul>
+          <h3>1.3.1</h3>
+          <ul>
+            <li>Fixed — a imagem da demo volta a compilar no Jenkins; <code>node-pty</code> deixa de ser dependência.</li>
+          </ul>
+          <h3>1.3.0</h3>
+          <ul>
+            <li>Added — INTEIRO Terminal 1.0.0: 23 componentes em 18 famílias e contratos de teclado e foco.</li>
+          </ul>
           <h3>1.1.1</h3>
           <ul>
             <li>Added — matriz MCP por rota a partir do inventário informado, com viewports de 320px, 390px, 768px, 1280px e 1440px conforme shell e complexidade.</li>

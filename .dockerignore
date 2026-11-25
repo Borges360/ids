@@ -14,3 +14,6 @@ docs/tokens/generated
 *.tgz
 *.log
 .env*
+
+# Documentação versionada precisa entrar no contexto (tem dist/ próprio)
+!docs-archive/**

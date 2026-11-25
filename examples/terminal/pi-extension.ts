@@ -31,9 +31,10 @@ export default function terminalPilot(pi: ExtensionAPI) {
       const abort = new AbortController();
       owner = abort;
       try {
-        const { session, persist } = await loadSession(
-          join(ctx.cwd, ".inteiro", "terminal-preferences.json"),
-        );
+        const file = join(ctx.cwd, ".inteiro", "terminal-preferences.json");
+        const { session, persist } = await loadSession(file);
+        // Perfil Pi do adaptador: apresentação standard, Esc duplo descarta, Ctrl+S salva e
+        // mantém o painel; Esc durante o salvamento cancela pelo sinal do persist.
         await openPiSettings(ctx.ui, {
           title: "Preferências",
           scope: "projeto atual",
@@ -42,6 +43,8 @@ export default function terminalPilot(pi: ExtensionAPI) {
           signal: abort.signal,
           reservedKeys: ["ctrl+c"],
           task: diagnostics,
+          // Leitura atual do arquivo quando um salvamento não foi confirmado.
+          reconcile: async () => (await loadSession(file)).session.persisted,
         });
       } finally {
         abort.abort();
@@ -70,6 +73,8 @@ export default function terminalPilot(pi: ExtensionAPI) {
             { id: "Valor", label: "Valor", priority: 1 },
           ],
           logLimit: 100,
+          title: "Preferências / Workspace",
+          scope: "projeto atual",
         });
         model.log.append(
           "Preferências carregadas localmente.\nNenhuma rede foi consultada.\nUse Pausar/Retomar e exportação textual do modelo.",

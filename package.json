@@ -59,7 +59,8 @@
     "build:mcp-runtime": "node scripts/build-mcp-runtime.mjs",
     "test:mcp-runtime": "node scripts/test-mcp-runtime.mjs",
     "build:terminal": "node scripts/generate-terminal.mjs",
-    "smoke:terminal:posix": "python3 scripts/smoke-terminal-posix.py"
+    "smoke:terminal:posix": "python3 scripts/smoke-terminal-posix.py",
+    "vendor:terminal": "node scripts/vendor-terminal.mjs"
   },
   "devDependencies": {
     "@earendil-works/pi-tui": "^1.5.2",

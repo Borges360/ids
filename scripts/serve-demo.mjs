@@ -23,7 +23,13 @@ const server = createServer(async (req, res) => {
     return;
   }
   let rel;
-  if (url.pathname === "/" || url.pathname === "/index.html")
+  const archived = /^\/v\/(\d+\.\d+\.\d+)(\/.*)?$/.exec(url.pathname);
+  if (url.pathname === "/versions.json") rel = "/docs-archive/versions.json";
+  else if (archived) {
+    // Documentação congelada: /v/1.3.2/ → docs-archive/1.3.2/index.html
+    const sub = archived[2] && archived[2] !== "/" ? archived[2] : "/index.html";
+    rel = `/docs-archive/${archived[1]}${sub}`;
+  } else if (url.pathname === "/" || url.pathname === "/index.html")
     rel = "/apps/demo/index.html";
   else if (url.pathname.startsWith("/storybook/"))
     rel =

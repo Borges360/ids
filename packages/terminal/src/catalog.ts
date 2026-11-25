@@ -1,5 +1,5 @@
 import type { ComponentContract } from "./contracts.ts";
-import { SEMANTIC_ROLES } from "./contracts.ts";
+import { SEMANTIC_ROLES } from "./roles.ts";
 const definitions = [
   [
     "TerminalPanel",

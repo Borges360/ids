@@ -52,3 +52,6 @@ examples/nextjs/*.tsbuildinfo
 .pi/skills/grill-me/
 .codex/*
 !.codex/config.toml
+
+# Documentação congelada (inclui packages/tokens/dist/css de cada versão)
+!docs-archive/**/dist/

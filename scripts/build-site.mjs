@@ -1,4 +1,4 @@
-import { cp, mkdir, writeFile, readFile } from "node:fs/promises";
+import { cp, mkdir, writeFile, readFile, readdir } from "node:fs/promises";
 import { createHash } from "node:crypto";
 await mkdir("dist/site", { recursive: true });
 for (const directory of [
@@ -14,6 +14,12 @@ for (const directory of [
 ])
   await cp(directory, `dist/site/${directory}`, { recursive: true });
 await cp("apps/demo/index.html", "dist/site/index.html");
+// Documentação versionada: /v/<versão>/ e /versions.json.
+await mkdir("dist/site/v", { recursive: true });
+await cp("docs-archive/versions.json", "dist/site/versions.json");
+for (const entry of await readdir("docs-archive", { withFileTypes: true }))
+  if (entry.isDirectory())
+    await cp(`docs-archive/${entry.name}`, `dist/site/v/${entry.name}`, { recursive: true });
 await cp("storybook-static", "dist/site/storybook", { recursive: true });
 const version = JSON.parse(await readFile("package.json", "utf8")).version;
 await writeFile(

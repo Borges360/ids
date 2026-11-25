@@ -1,0 +1,4826 @@
+{
+  "schemaVersion": "1.0",
+  "mode": "technical-autonomous",
+  "historicalSpecification": {
+    "path": "docs/INTEIRO_ESPECIFICACAO_P0.md",
+    "sha256": "e73f1ff32e92e6cc412226e9afe56f18c7ba8768bbfa8f25230e13094b1dccd9"
+  },
+  "exclusions": [
+    "Deploy Jenkins",
+    "Comparação real entre modelos",
+    "Smoke com agentes reais",
+    "Aprovação humana final da meta",
+    "Julgamento estético humano",
+    "Calibração com corpus humano"
+  ],
+  "requirements": [
+    {
+      "id": "E00",
+      "title": "Foundation & Contracts",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/contracts.test.ts",
+        "packages/contracts/schemas/config.schema.json",
+        "tests/p0/organization-policy.test.ts",
+        "packages/contracts/schemas/organization-policy.schema.json",
+        "packages/contracts/src/governance.ts",
+        "packages/contracts/src/attestation.ts",
+        "packages/contracts/src/policy.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/contracts.test.ts tests/p0/organization-policy.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/contracts.test.ts",
+              "cases": 19,
+              "passed": 19
+            },
+            {
+              "file": "tests/p0/organization-policy.test.ts",
+              "cases": 8,
+              "passed": 8
+            }
+          ],
+          "checks": [
+            "ci"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/contracts.test.ts",
+          "tests/p0/organization-policy.test.ts"
+        ],
+        "checks": [
+          "ci"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "E01",
+      "title": "Context Gate",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/context.test.ts",
+        "tests/p0/task-context.test.ts",
+        "tests/p0/cursor-activation.test.ts",
+        "tests/p0/context-integrity.test.ts",
+        "packages/agent-core/src/context.ts",
+        "packages/agent-core/src/task-context.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/context.test.ts tests/p0/task-context.test.ts tests/p0/cursor-activation.test.ts tests/p0/context-integrity.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/context-integrity.test.ts",
+              "cases": 3,
+              "passed": 3
+            },
+            {
+              "file": "tests/p0/context.test.ts",
+              "cases": 9,
+              "passed": 9
+            },
+            {
+              "file": "tests/p0/cursor-activation.test.ts",
+              "cases": 22,
+              "passed": 22
+            },
+            {
+              "file": "tests/p0/task-context.test.ts",
+              "cases": 13,
+              "passed": 13
+            }
+          ],
+          "checks": [
+            "ci"
+          ],
+          "gates": [
+            "context",
+            "task-context"
+          ],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/context-integrity.test.ts",
+          "tests/p0/context.test.ts",
+          "tests/p0/cursor-activation.test.ts",
+          "tests/p0/task-context.test.ts"
+        ],
+        "checks": [
+          "ci"
+        ],
+        "gates": [
+          "context",
+          "task-context"
+        ]
+      }
+    },
+    {
+      "id": "E02",
+      "title": "Composition Kit",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/composition.test.ts",
+        "packages/composition/src/composition.css",
+        "tests/p0/browser-runner.test.ts",
+        "tests/browser/composition.spec.ts",
+        "packages/composition/src/render.ts",
+        "packages/composition/src/behavior.js",
+        "tests/browser/composition-robustness.spec.ts",
+        "packages/agent-core/src/coverage-evidence.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/composition.test.ts tests/p0/browser-runner.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/browser/composition-robustness.spec.ts",
+              "cases": 82,
+              "passed": 82
+            },
+            {
+              "file": "tests/browser/composition.spec.ts",
+              "cases": 3339,
+              "passed": 3339
+            },
+            {
+              "file": "tests/p0/browser-runner.test.ts",
+              "cases": 7,
+              "passed": 7
+            },
+            {
+              "file": "tests/p0/composition.test.ts",
+              "cases": 45,
+              "passed": 45
+            },
+            {
+              "file": "tests/p0/coverage-evidence.test.ts",
+              "cases": 4,
+              "passed": 4
+            }
+          ],
+          "checks": [
+            "ci",
+            "browser-full",
+            "stories"
+          ],
+          "gates": [],
+          "coverage": [
+            {
+              "path": "packages/composition/coverage-matrix.json",
+              "expected": 3485,
+              "passed": 3485,
+              "notApplicable": 417
+            }
+          ],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/browser/composition-robustness.spec.ts",
+          "tests/browser/composition.spec.ts",
+          "tests/p0/browser-runner.test.ts",
+          "tests/p0/composition.test.ts",
+          "tests/p0/coverage-evidence.test.ts"
+        ],
+        "checks": [
+          "ci",
+          "browser-full",
+          "stories"
+        ],
+        "gates": [],
+        "coverage": [
+          "packages/composition/coverage-matrix.json"
+        ]
+      }
+    },
+    {
+      "id": "E03",
+      "title": "Static Guard",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/static.test.ts",
+        "packages/lint/src/index.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/static.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/static.test.ts",
+              "cases": 24,
+              "passed": 24
+            }
+          ],
+          "checks": [
+            "ci"
+          ],
+          "gates": [
+            "static"
+          ],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/static.test.ts"
+        ],
+        "checks": [
+          "ci"
+        ],
+        "gates": [
+          "static"
+        ]
+      }
+    },
+    {
+      "id": "E04",
+      "title": "Browser & Visual Gate",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/browser-runner.test.ts",
+        "tests/p0/visual.test.ts",
+        "packages/visual/src/targets.ts",
+        "packages/visual/src/index.ts",
+        "packages/visual/src/clipping.ts",
+        "packages/visual/src/fixture-responder.ts",
+        "tests/p0/browser-interaction.test.ts",
+        "tests/p0/browser-async-fixtures.test.ts",
+        "packages/visual/src/trace-privacy.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/browser-runner.test.ts tests/p0/visual.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/browser-async-fixtures.test.ts",
+              "cases": 2,
+              "passed": 2
+            },
+            {
+              "file": "tests/p0/browser-interaction.test.ts",
+              "cases": 11,
+              "passed": 11
+            },
+            {
+              "file": "tests/p0/browser-runner.test.ts",
+              "cases": 7,
+              "passed": 7
+            },
+            {
+              "file": "tests/p0/visual.test.ts",
+              "cases": 14,
+              "passed": 14
+            }
+          ],
+          "checks": [
+            "browser-gate",
+            "browser-full",
+            "public-contracts"
+          ],
+          "gates": [
+            "browser"
+          ],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/browser-async-fixtures.test.ts",
+          "tests/p0/browser-interaction.test.ts",
+          "tests/p0/browser-runner.test.ts",
+          "tests/p0/visual.test.ts"
+        ],
+        "checks": [
+          "browser-gate",
+          "browser-full",
+          "public-contracts"
+        ],
+        "gates": [
+          "browser"
+        ]
+      }
+    },
+    {
+      "id": "E05",
+      "title": "Baseline Governance",
+      "applicability": "technical-substitution",
+      "scope": "Promoção técnica por executor separado, intenção visual prévia, checks e cadeia auditável; sem autoaprovação do implementador.",
+      "implementation": [
+        "tests/p0/governance.test.ts",
+        "packages/visual/src/technical-baseline.ts",
+        "tests/p0/technical-baseline.test.ts",
+        "scripts/attest-baselines.mjs",
+        "tests/p0/technical-attestor.test.ts",
+        "tests/p0/baseline-replay.test.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/governance.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/baseline-replay.test.ts",
+              "cases": 1,
+              "passed": 1
+            },
+            {
+              "file": "tests/p0/governance.test.ts",
+              "cases": 15,
+              "passed": 15
+            },
+            {
+              "file": "tests/p0/registry-storage.test.ts",
+              "cases": 4,
+              "passed": 4
+            },
+            {
+              "file": "tests/p0/technical-attestor.test.ts",
+              "cases": 1,
+              "passed": 1
+            },
+            {
+              "file": "tests/p0/technical-baseline.test.ts",
+              "cases": 1,
+              "passed": 1
+            },
+            {
+              "file": "tests/p0/workspace.test.ts",
+              "cases": 11,
+              "passed": 11
+            }
+          ],
+          "checks": [
+            "browser-gate",
+            "worker-isolation"
+          ],
+          "gates": [
+            "browser"
+          ],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/baseline-replay.test.ts",
+          "tests/p0/governance.test.ts",
+          "tests/p0/registry-storage.test.ts",
+          "tests/p0/technical-attestor.test.ts",
+          "tests/p0/technical-baseline.test.ts",
+          "tests/p0/workspace.test.ts"
+        ],
+        "checks": [
+          "browser-gate",
+          "worker-isolation"
+        ],
+        "gates": [
+          "browser"
+        ]
+      }
+    },
+    {
+      "id": "E06",
+      "title": "Visual Catalog",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "packages/composition/story-matrix.json",
+        "scripts/generate-pattern-stories.mjs",
+        "packages/agent-core/src/release-qualification.ts",
+        "scripts/verify-p0.mjs",
+        "scripts/audit-autonomous-release.mjs",
+        "tests/p0/autonomous-audit.test.ts",
+        "packages/agent-core/src/coverage-evidence.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npm run verify:p0"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/autonomous-audit.test.ts",
+              "cases": 1,
+              "passed": 1
+            },
+            {
+              "file": "tests/p0/coverage-evidence.test.ts",
+              "cases": 4,
+              "passed": 4
+            }
+          ],
+          "checks": [
+            "ci",
+            "stories",
+            "browser-full"
+          ],
+          "gates": [],
+          "coverage": [
+            {
+              "path": "packages/composition/coverage-matrix.json",
+              "expected": 3485,
+              "passed": 3485,
+              "notApplicable": 417
+            }
+          ],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/autonomous-audit.test.ts",
+          "tests/p0/coverage-evidence.test.ts"
+        ],
+        "checks": [
+          "ci",
+          "stories",
+          "browser-full"
+        ],
+        "gates": [],
+        "coverage": [
+          "packages/composition/coverage-matrix.json"
+        ]
+      }
+    },
+    {
+      "id": "E07",
+      "title": "Agent Repair Protocol",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/repair-controller.test.ts",
+        "tests/p0/task-context.test.ts",
+        "packages/agent-core/src/repair-validation.ts",
+        "packages/agent-core/src/gate-protocol.ts",
+        "tests/p0/repair-acceptance.test.ts",
+        "tests/helpers/repair-evidence.ts",
+        "examples/pi/repair-adapter.ts",
+        "packages/agent-core/src/repair-controller.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/repair-controller.test.ts tests/p0/task-context.test.ts tests/p0/repair-acceptance.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/repair-acceptance.test.ts",
+              "cases": 25,
+              "passed": 25
+            },
+            {
+              "file": "tests/p0/repair-controller.test.ts",
+              "cases": 16,
+              "passed": 16
+            },
+            {
+              "file": "tests/p0/task-context.test.ts",
+              "cases": 13,
+              "passed": 13
+            }
+          ],
+          "checks": [
+            "ci"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/repair-acceptance.test.ts",
+          "tests/p0/repair-controller.test.ts",
+          "tests/p0/task-context.test.ts"
+        ],
+        "checks": [
+          "ci"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "E08",
+      "title": "Multimodal/Human Review",
+      "applicability": "technical-substitution",
+      "scope": "Somente revisão técnica objetiva; preservar rubrica humana opcional e identificar avaliação sintética.",
+      "implementation": [
+        "tests/p0/review.test.ts",
+        "tests/p0/source-hash.test.ts",
+        "tests/p0/cli.test.ts",
+        "packages/contracts/schemas/review-request.schema.json",
+        "packages/contracts/schemas/repair-context.schema.json",
+        "packages/evaluation/src/calibration.ts",
+        "packages/contracts/schemas/review-calibration-input.schema.json",
+        "packages/contracts/schemas/review-calibration-reference.schema.json",
+        "packages/contracts/schemas/review-calibration-reviewers.schema.json",
+        "tests/p0/calibration.test.ts",
+        "tests/helpers/calibration-fixture.ts",
+        "docs/P0_OPERATIONS.md",
+        "packages/agent-core/src/review.ts",
+        "tests/p0/autonomous-governance.test.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/review.test.ts tests/p0/source-hash.test.ts tests/p0/cli.test.ts tests/p0/calibration.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/autonomous-governance.test.ts",
+              "cases": 5,
+              "passed": 5
+            },
+            {
+              "file": "tests/p0/calibration.test.ts",
+              "cases": 41,
+              "passed": 41
+            },
+            {
+              "file": "tests/p0/cli.test.ts",
+              "cases": 17,
+              "passed": 17
+            },
+            {
+              "file": "tests/p0/review.test.ts",
+              "cases": 2,
+              "passed": 2
+            },
+            {
+              "file": "tests/p0/source-hash.test.ts",
+              "cases": 6,
+              "passed": 6
+            }
+          ],
+          "checks": [
+            "ci"
+          ],
+          "gates": [
+            "review"
+          ],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/autonomous-governance.test.ts",
+          "tests/p0/calibration.test.ts",
+          "tests/p0/cli.test.ts",
+          "tests/p0/review.test.ts",
+          "tests/p0/source-hash.test.ts"
+        ],
+        "checks": [
+          "ci"
+        ],
+        "gates": [
+          "review"
+        ]
+      }
+    },
+    {
+      "id": "E09",
+      "title": "Evaluation & Benchmark",
+      "applicability": "technical-substitution",
+      "scope": "Preparação/validação das 40 tarefas e métricas observadas; comparação entre modelos e agentes reais excluídas.",
+      "implementation": [
+        "tests/p0/evaluation.test.ts",
+        "packages/contracts/schemas/experiment-input.schema.json",
+        "tests/p0/experiment-input.test.ts",
+        "packages/contracts/schemas/benchmark-protocol.schema.json",
+        "packages/evaluation/src/protocol.ts",
+        "tests/p0/benchmark-protocol.test.ts",
+        "docs/P0_OPERATIONS.md",
+        "packages/visual/src/index.ts",
+        "tests/p0/browser-runner.test.ts",
+        "packages/evaluation/src/calibration.ts",
+        "tests/p0/calibration.test.ts",
+        "benchmarks/tasks.public.json",
+        "benchmarks/tasks.heldout.json",
+        "packages/evaluation/src/grading.ts",
+        "packages/contracts/schemas/task-grading.schema.json",
+        "packages/contracts/schemas/task-fixture.schema.json",
+        "tests/p0/task-grading.test.ts",
+        "benchmarks/validation",
+        "scripts/generate-public-validation.mjs",
+        "tests/p0/public-validation.test.ts",
+        "scripts/public-validation-flows.mjs",
+        "scripts/qualify-public-workers.mjs",
+        "tests/p0/public-control.test.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/evaluation.test.ts tests/p0/experiment-input.test.ts tests/p0/benchmark-protocol.test.ts tests/p0/browser-runner.test.ts tests/p0/calibration.test.ts tests/p0/task-grading.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/benchmark-protocol.test.ts",
+              "cases": 34,
+              "passed": 34
+            },
+            {
+              "file": "tests/p0/browser-runner.test.ts",
+              "cases": 7,
+              "passed": 7
+            },
+            {
+              "file": "tests/p0/calibration.test.ts",
+              "cases": 41,
+              "passed": 41
+            },
+            {
+              "file": "tests/p0/evaluation.test.ts",
+              "cases": 4,
+              "passed": 4
+            },
+            {
+              "file": "tests/p0/experiment-input.test.ts",
+              "cases": 45,
+              "passed": 45
+            },
+            {
+              "file": "tests/p0/public-control.test.ts",
+              "cases": 40,
+              "passed": 40
+            },
+            {
+              "file": "tests/p0/public-validation.test.ts",
+              "cases": 3,
+              "passed": 3
+            },
+            {
+              "file": "tests/p0/task-grading.test.ts",
+              "cases": 126,
+              "passed": 126
+            },
+            {
+              "file": "tests/p0/worker-bootstrap.test.ts",
+              "cases": 12,
+              "passed": 12
+            }
+          ],
+          "checks": [
+            "benchmark-grading",
+            "public-contracts",
+            "worker-isolation",
+            "worker-bootstrap",
+            "public-workers"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/benchmark-protocol.test.ts",
+          "tests/p0/browser-runner.test.ts",
+          "tests/p0/calibration.test.ts",
+          "tests/p0/evaluation.test.ts",
+          "tests/p0/experiment-input.test.ts",
+          "tests/p0/public-control.test.ts",
+          "tests/p0/public-validation.test.ts",
+          "tests/p0/task-grading.test.ts",
+          "tests/p0/worker-bootstrap.test.ts"
+        ],
+        "checks": [
+          "benchmark-grading",
+          "public-contracts",
+          "worker-isolation",
+          "worker-bootstrap",
+          "public-workers"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "E10",
+      "title": "CI, Security & Adoption",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "docs/P0_OPERATIONS.md",
+        "tests/p0/migration.test.ts",
+        "tests/p0/compatibility.test.ts",
+        "scripts/verify-p0.mjs",
+        "scripts/pack-p0.mjs",
+        "scripts/smoke-offline.mjs",
+        "scripts/audit-dependencies.mjs",
+        "scripts/prepare-source-snapshot.mjs",
+        "packages/contracts/src/portable.ts",
+        "packages/contracts/src/retention.ts",
+        "packages/contracts/src/metrics.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/migration.test.ts tests/p0/compatibility.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/ci-profiles.test.ts",
+              "cases": 1,
+              "passed": 1
+            },
+            {
+              "file": "tests/p0/compatibility.test.ts",
+              "cases": 4,
+              "passed": 4
+            },
+            {
+              "file": "tests/p0/impact.test.ts",
+              "cases": 6,
+              "passed": 6
+            },
+            {
+              "file": "tests/p0/migration.test.ts",
+              "cases": 8,
+              "passed": 8
+            },
+            {
+              "file": "tests/p0/portable-evidence.test.ts",
+              "cases": 3,
+              "passed": 3
+            },
+            {
+              "file": "tests/p0/retention.test.ts",
+              "cases": 1,
+              "passed": 1
+            }
+          ],
+          "checks": [
+            "ci",
+            "dependency-security",
+            "pack",
+            "offline",
+            "performance"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/compatibility.test.ts",
+          "tests/p0/impact.test.ts",
+          "tests/p0/migration.test.ts",
+          "tests/p0/portable-evidence.test.ts",
+          "tests/p0/retention.test.ts"
+        ],
+        "checks": [
+          "ci",
+          "dependency-security",
+          "pack",
+          "offline",
+          "performance"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "WP-01",
+      "title": "Inventário de pacotes/APIs reais do 1.1.0 + ADRs",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "docs/P0_IMPLEMENTATION.md",
+        "packages/contracts/src/governance.ts",
+        "packages/contracts/src/attestation.ts",
+        "packages/contracts/src/policy.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npm run verify:p0"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/compatibility.test.ts",
+              "cases": 4,
+              "passed": 4
+            }
+          ],
+          "checks": [
+            "ci",
+            "offline"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "sourceRequirement": {
+        "dependencies": "—",
+        "deliverable": "Inventário de pacotes/APIs reais do 1.1.0 + ADRs",
+        "exitCriteria": "Paths atuais mapeados, divergências registradas"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/compatibility.test.ts"
+        ],
+        "checks": [
+          "ci",
+          "offline"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "WP-02",
+      "title": "`@inteiro/contracts`, schemas e estados",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/contracts.test.ts",
+        "packages/contracts/src/governance.ts",
+        "packages/contracts/src/attestation.ts",
+        "packages/contracts/src/policy.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/contracts.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/contracts.test.ts",
+              "cases": 19,
+              "passed": 19
+            }
+          ],
+          "checks": [
+            "ci"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "sourceRequirement": {
+        "dependencies": "WP-01",
+        "deliverable": "`@inteiro/contracts`, schemas e estados",
+        "exitCriteria": "Validação de exemplos válidos/inválidos"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/contracts.test.ts"
+        ],
+        "checks": [
+          "ci"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "WP-03",
+      "title": "`inteiro.config.json` + resolver de precedência",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/contracts.test.ts",
+        "packages/contracts/src/governance.ts",
+        "packages/contracts/src/attestation.ts",
+        "packages/contracts/src/policy.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/contracts.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/contracts.test.ts",
+              "cases": 19,
+              "passed": 19
+            }
+          ],
+          "checks": [
+            "ci"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "sourceRequirement": {
+        "dependencies": "WP-02",
+        "deliverable": "`inteiro.config.json` + resolver de precedência",
+        "exitCriteria": "Tests de precedence, paths e overrides"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/contracts.test.ts"
+        ],
+        "checks": [
+          "ci"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "WP-04",
+      "title": "Context resolver + bundle compacto",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/context.test.ts",
+        "tests/p0/task-context.test.ts",
+        "packages/agent-core/src/context.ts",
+        "packages/agent-core/src/task-context.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/context.test.ts tests/p0/task-context.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/context.test.ts",
+              "cases": 9,
+              "passed": 9
+            },
+            {
+              "file": "tests/p0/task-context.test.ts",
+              "cases": 13,
+              "passed": 13
+            }
+          ],
+          "checks": [
+            "ci"
+          ],
+          "gates": [
+            "context",
+            "task-context"
+          ],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "sourceRequirement": {
+        "dependencies": "WP-02",
+        "deliverable": "Context resolver + bundle compacto",
+        "exitCriteria": "Proveniência e orçamento auditáveis"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/context.test.ts",
+          "tests/p0/task-context.test.ts"
+        ],
+        "checks": [
+          "ci"
+        ],
+        "gates": [
+          "context",
+          "task-context"
+        ]
+      }
+    },
+    {
+      "id": "WP-05",
+      "title": "Doctor/adapter Pi e smoke tests dos demais",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/context.test.ts",
+        "packages/agent-core/src/context.ts",
+        "packages/agent-core/src/task-context.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/context.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/context.test.ts",
+              "cases": 9,
+              "passed": 9
+            }
+          ],
+          "checks": [
+            "ci",
+            "offline"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "sourceRequirement": {
+        "dependencies": "WP-04",
+        "deliverable": "Doctor/adapter Pi e smoke tests dos demais",
+        "exitCriteria": "Instalação idempotente e detecção de conflitos"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/context.test.ts"
+        ],
+        "checks": [
+          "ci",
+          "offline"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "WP-06",
+      "title": "Manifesto de padrões + Composition Kit básico",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/composition.test.ts",
+        "packages/composition/src/render.ts",
+        "packages/composition/src/behavior.js",
+        "tests/browser/composition-robustness.spec.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/composition.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/browser/composition-robustness.spec.ts",
+              "cases": 82,
+              "passed": 82
+            },
+            {
+              "file": "tests/p0/composition.test.ts",
+              "cases": 45,
+              "passed": 45
+            }
+          ],
+          "checks": [
+            "ci",
+            "browser-full"
+          ],
+          "gates": [],
+          "coverage": [
+            {
+              "path": "packages/composition/coverage-matrix.json",
+              "expected": 3485,
+              "passed": 3485,
+              "notApplicable": 417
+            }
+          ],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "sourceRequirement": {
+        "dependencies": "WP-02",
+        "deliverable": "Manifesto de padrões + Composition Kit básico",
+        "exitCriteria": "API documentada, sem React obrigatório"
+      },
+      "proof": {
+        "tests": [
+          "tests/browser/composition-robustness.spec.ts",
+          "tests/p0/composition.test.ts"
+        ],
+        "checks": [
+          "ci",
+          "browser-full"
+        ],
+        "gates": [],
+        "coverage": [
+          "packages/composition/coverage-matrix.json"
+        ]
+      }
+    },
+    {
+      "id": "WP-07",
+      "title": "Padrões estrutura/navegação",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/browser/composition.spec.ts",
+        "packages/composition/src/render.ts",
+        "packages/composition/src/behavior.js",
+        "tests/browser/composition-robustness.spec.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npm run verify:p0"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/browser/composition-robustness.spec.ts",
+              "cases": 82,
+              "passed": 82
+            },
+            {
+              "file": "tests/browser/composition.spec.ts",
+              "cases": 3339,
+              "passed": 3339
+            }
+          ],
+          "checks": [
+            "browser-full",
+            "stories"
+          ],
+          "gates": [],
+          "coverage": [
+            {
+              "path": "packages/composition/coverage-matrix.json",
+              "expected": 3485,
+              "passed": 3485,
+              "notApplicable": 417
+            }
+          ],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "sourceRequirement": {
+        "dependencies": "WP-06",
+        "deliverable": "Padrões estrutura/navegação",
+        "exitCriteria": "A11y, mobile, states e stories"
+      },
+      "proof": {
+        "tests": [
+          "tests/browser/composition-robustness.spec.ts",
+          "tests/browser/composition.spec.ts"
+        ],
+        "checks": [
+          "browser-full",
+          "stories"
+        ],
+        "gates": [],
+        "coverage": [
+          "packages/composition/coverage-matrix.json"
+        ]
+      }
+    },
+    {
+      "id": "WP-08",
+      "title": "Padrões forms/feedback/overlays",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/browser/composition.spec.ts",
+        "packages/composition/src/render.ts",
+        "packages/composition/src/behavior.js",
+        "tests/browser/composition-robustness.spec.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npm run verify:p0"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/browser/composition-robustness.spec.ts",
+              "cases": 82,
+              "passed": 82
+            },
+            {
+              "file": "tests/browser/composition.spec.ts",
+              "cases": 3339,
+              "passed": 3339
+            }
+          ],
+          "checks": [
+            "browser-full",
+            "stories"
+          ],
+          "gates": [],
+          "coverage": [
+            {
+              "path": "packages/composition/coverage-matrix.json",
+              "expected": 3485,
+              "passed": 3485,
+              "notApplicable": 417
+            }
+          ],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "sourceRequirement": {
+        "dependencies": "WP-06",
+        "deliverable": "Padrões forms/feedback/overlays",
+        "exitCriteria": "A11y, teclado, estados e stories"
+      },
+      "proof": {
+        "tests": [
+          "tests/browser/composition-robustness.spec.ts",
+          "tests/browser/composition.spec.ts"
+        ],
+        "checks": [
+          "browser-full",
+          "stories"
+        ],
+        "gates": [],
+        "coverage": [
+          "packages/composition/coverage-matrix.json"
+        ]
+      }
+    },
+    {
+      "id": "WP-09",
+      "title": "Padrões dados/dashboard/editorial",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/browser/composition.spec.ts",
+        "packages/composition/src/render.ts",
+        "packages/composition/src/behavior.js",
+        "tests/browser/composition-robustness.spec.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npm run verify:p0"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/browser/composition-robustness.spec.ts",
+              "cases": 82,
+              "passed": 82
+            },
+            {
+              "file": "tests/browser/composition.spec.ts",
+              "cases": 3339,
+              "passed": 3339
+            }
+          ],
+          "checks": [
+            "browser-full",
+            "stories"
+          ],
+          "gates": [],
+          "coverage": [
+            {
+              "path": "packages/composition/coverage-matrix.json",
+              "expected": 3485,
+              "passed": 3485,
+              "notApplicable": 417
+            }
+          ],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "sourceRequirement": {
+        "dependencies": "WP-06",
+        "deliverable": "Padrões dados/dashboard/editorial",
+        "exitCriteria": "Overflow, densidade e dados longos"
+      },
+      "proof": {
+        "tests": [
+          "tests/browser/composition-robustness.spec.ts",
+          "tests/browser/composition.spec.ts"
+        ],
+        "checks": [
+          "browser-full",
+          "stories"
+        ],
+        "gates": [],
+        "coverage": [
+          "packages/composition/coverage-matrix.json"
+        ]
+      }
+    },
+    {
+      "id": "WP-10",
+      "title": "Static Guard JS/TS/CSS",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/static.test.ts",
+        "packages/lint/src/index.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/static.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/static.test.ts",
+              "cases": 24,
+              "passed": 24
+            }
+          ],
+          "checks": [
+            "ci"
+          ],
+          "gates": [
+            "static"
+          ],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "sourceRequirement": {
+        "dependencies": "WP-02/06",
+        "deliverable": "Static Guard JS/TS/CSS",
+        "exitCriteria": "Rules por AST + corpus positivo/negativo"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/static.test.ts"
+        ],
+        "checks": [
+          "ci"
+        ],
+        "gates": [
+          "static"
+        ]
+      }
+    },
+    {
+      "id": "WP-11",
+      "title": "Adaptadores de lint Vue/Svelte/HTML",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/static.test.ts",
+        "packages/lint/src/index.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/static.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/static.test.ts",
+              "cases": 24,
+              "passed": 24
+            }
+          ],
+          "checks": [
+            "ci"
+          ],
+          "gates": [
+            "static"
+          ],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "sourceRequirement": {
+        "dependencies": "WP-10",
+        "deliverable": "Adaptadores de lint Vue/Svelte/HTML",
+        "exitCriteria": "Sem silêncio em sintaxe não suportada"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/static.test.ts"
+        ],
+        "checks": [
+          "ci"
+        ],
+        "gates": [
+          "static"
+        ]
+      }
+    },
+    {
+      "id": "WP-12",
+      "title": "Browser runner, lifecycle e fixtures",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/browser-runner.test.ts",
+        "packages/visual/src/index.ts",
+        "packages/visual/src/clipping.ts",
+        "packages/visual/src/fixture-responder.ts",
+        "tests/p0/browser-interaction.test.ts",
+        "tests/p0/browser-async-fixtures.test.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/browser-runner.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/browser-async-fixtures.test.ts",
+              "cases": 2,
+              "passed": 2
+            },
+            {
+              "file": "tests/p0/browser-interaction.test.ts",
+              "cases": 11,
+              "passed": 11
+            },
+            {
+              "file": "tests/p0/browser-runner.test.ts",
+              "cases": 7,
+              "passed": 7
+            }
+          ],
+          "checks": [
+            "browser-gate"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "sourceRequirement": {
+        "dependencies": "WP-02",
+        "deliverable": "Browser runner, lifecycle e fixtures",
+        "exitCriteria": "Isolamento, readiness e JSON status"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/browser-async-fixtures.test.ts",
+          "tests/p0/browser-interaction.test.ts",
+          "tests/p0/browser-runner.test.ts"
+        ],
+        "checks": [
+          "browser-gate"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "WP-13",
+      "title": "Checks DOM, flow, a11y, console",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/browser/composition.spec.ts",
+        "packages/visual/src/index.ts",
+        "packages/visual/src/clipping.ts",
+        "packages/visual/src/fixture-responder.ts",
+        "tests/p0/browser-interaction.test.ts",
+        "tests/p0/browser-async-fixtures.test.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npm run verify:p0"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/browser/composition.spec.ts",
+              "cases": 3339,
+              "passed": 3339
+            },
+            {
+              "file": "tests/p0/browser-async-fixtures.test.ts",
+              "cases": 2,
+              "passed": 2
+            },
+            {
+              "file": "tests/p0/browser-interaction.test.ts",
+              "cases": 11,
+              "passed": 11
+            }
+          ],
+          "checks": [
+            "browser-gate",
+            "browser-full"
+          ],
+          "gates": [
+            "browser"
+          ],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "sourceRequirement": {
+        "dependencies": "WP-12",
+        "deliverable": "Checks DOM, flow, a11y, console",
+        "exitCriteria": "Casos negativos detectados e evidências"
+      },
+      "proof": {
+        "tests": [
+          "tests/browser/composition.spec.ts",
+          "tests/p0/browser-async-fixtures.test.ts",
+          "tests/p0/browser-interaction.test.ts"
+        ],
+        "checks": [
+          "browser-gate",
+          "browser-full"
+        ],
+        "gates": [
+          "browser"
+        ]
+      }
+    },
+    {
+      "id": "WP-14",
+      "title": "Screenshot comparator determinístico",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/visual.test.ts",
+        "packages/visual/src/index.ts",
+        "packages/visual/src/clipping.ts",
+        "packages/visual/src/fixture-responder.ts",
+        "tests/p0/browser-interaction.test.ts",
+        "tests/p0/browser-async-fixtures.test.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/visual.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/browser-async-fixtures.test.ts",
+              "cases": 2,
+              "passed": 2
+            },
+            {
+              "file": "tests/p0/browser-interaction.test.ts",
+              "cases": 11,
+              "passed": 11
+            },
+            {
+              "file": "tests/p0/visual.test.ts",
+              "cases": 14,
+              "passed": 14
+            }
+          ],
+          "checks": [
+            "browser-gate"
+          ],
+          "gates": [
+            "browser"
+          ],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "sourceRequirement": {
+        "dependencies": "WP-12",
+        "deliverable": "Screenshot comparator determinístico",
+        "exitCriteria": "Diff reproduzível em env fixo"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/browser-async-fixtures.test.ts",
+          "tests/p0/browser-interaction.test.ts",
+          "tests/p0/visual.test.ts"
+        ],
+        "checks": [
+          "browser-gate"
+        ],
+        "gates": [
+          "browser"
+        ]
+      }
+    },
+    {
+      "id": "WP-15",
+      "title": "Baseline Registry + aprovação",
+      "applicability": "technical-substitution",
+      "scope": "Promoção técnica protegida substitui assinatura humana.",
+      "implementation": [
+        "tests/p0/governance.test.ts",
+        "packages/visual/src/technical-baseline.ts",
+        "tests/p0/technical-baseline.test.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/governance.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/governance.test.ts",
+              "cases": 15,
+              "passed": 15
+            },
+            {
+              "file": "tests/p0/registry-storage.test.ts",
+              "cases": 4,
+              "passed": 4
+            },
+            {
+              "file": "tests/p0/technical-baseline.test.ts",
+              "cases": 1,
+              "passed": 1
+            }
+          ],
+          "checks": [
+            "browser-gate",
+            "worker-isolation"
+          ],
+          "gates": [
+            "browser"
+          ],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "sourceRequirement": {
+        "dependencies": "WP-14",
+        "deliverable": "Baseline Registry + aprovação",
+        "exitCriteria": "Sem autoapprove e hashes auditáveis"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/governance.test.ts",
+          "tests/p0/registry-storage.test.ts",
+          "tests/p0/technical-baseline.test.ts"
+        ],
+        "checks": [
+          "browser-gate",
+          "worker-isolation"
+        ],
+        "gates": [
+          "browser"
+        ]
+      }
+    },
+    {
+      "id": "WP-16",
+      "title": "Catálogo Storybook e índice JSON",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "packages/composition/story-matrix.json",
+        "scripts/generate-pattern-stories.mjs",
+        "packages/agent-core/src/coverage-evidence.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npm run verify:p0"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "stories/Patterns.stories.ts",
+              "cases": 82,
+              "passed": 82
+            },
+            {
+              "file": "tests/p0/coverage-evidence.test.ts",
+              "cases": 4,
+              "passed": 4
+            }
+          ],
+          "checks": [
+            "ci",
+            "stories"
+          ],
+          "gates": [],
+          "coverage": [
+            {
+              "path": "packages/composition/coverage-matrix.json",
+              "expected": 3485,
+              "passed": 3485,
+              "notApplicable": 417
+            }
+          ],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "sourceRequirement": {
+        "dependencies": "WP-06/12",
+        "deliverable": "Catálogo Storybook e índice JSON",
+        "exitCriteria": "100% padrões P0 documentados"
+      },
+      "proof": {
+        "tests": [
+          "stories/Patterns.stories.ts",
+          "tests/p0/coverage-evidence.test.ts"
+        ],
+        "checks": [
+          "ci",
+          "stories"
+        ],
+        "gates": [],
+        "coverage": [
+          "packages/composition/coverage-matrix.json"
+        ]
+      }
+    },
+    {
+      "id": "WP-17",
+      "title": "Evidence Bundle JSON/SARIF/JUnit/HTML",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/contracts.test.ts",
+        "packages/agent-core/src/repair-validation.ts",
+        "packages/agent-core/src/gate-protocol.ts",
+        "tests/p0/repair-acceptance.test.ts",
+        "tests/helpers/repair-evidence.ts",
+        "examples/pi/repair-adapter.ts",
+        "scripts/verify-p0.mjs",
+        "scripts/pack-p0.mjs",
+        "scripts/smoke-offline.mjs"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/contracts.test.ts tests/p0/repair-acceptance.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/contracts.test.ts",
+              "cases": 19,
+              "passed": 19
+            },
+            {
+              "file": "tests/p0/portable-evidence.test.ts",
+              "cases": 3,
+              "passed": 3
+            },
+            {
+              "file": "tests/p0/repair-acceptance.test.ts",
+              "cases": 25,
+              "passed": 25
+            }
+          ],
+          "checks": [
+            "ci"
+          ],
+          "gates": [
+            "context",
+            "task-context",
+            "static",
+            "browser",
+            "review"
+          ],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "sourceRequirement": {
+        "dependencies": "WP-02/13",
+        "deliverable": "Evidence Bundle JSON/SARIF/JUnit/HTML",
+        "exitCriteria": "Consumer parseável e report consistente"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/contracts.test.ts",
+          "tests/p0/portable-evidence.test.ts",
+          "tests/p0/repair-acceptance.test.ts"
+        ],
+        "checks": [
+          "ci"
+        ],
+        "gates": [
+          "context",
+          "task-context",
+          "static",
+          "browser",
+          "review"
+        ]
+      }
+    },
+    {
+      "id": "WP-18",
+      "title": "Repair Envelope e controller de tentativas",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/repair-controller.test.ts",
+        "packages/agent-core/src/repair-validation.ts",
+        "packages/agent-core/src/gate-protocol.ts",
+        "tests/p0/repair-acceptance.test.ts",
+        "tests/helpers/repair-evidence.ts",
+        "examples/pi/repair-adapter.ts",
+        "packages/agent-core/src/repair-controller.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/repair-controller.test.ts tests/p0/repair-acceptance.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/repair-acceptance.test.ts",
+              "cases": 25,
+              "passed": 25
+            },
+            {
+              "file": "tests/p0/repair-controller.test.ts",
+              "cases": 16,
+              "passed": 16
+            }
+          ],
+          "checks": [
+            "ci"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "sourceRequirement": {
+        "dependencies": "WP-17",
+        "deliverable": "Repair Envelope e controller de tentativas",
+        "exitCriteria": "Sem loops/alterações indevidas"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/repair-acceptance.test.ts",
+          "tests/p0/repair-controller.test.ts"
+        ],
+        "checks": [
+          "ci"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "WP-19",
+      "title": "Human/Multimodal Review Gate",
+      "applicability": "technical-substitution",
+      "scope": "Revisão técnica objetiva substitui requisito humano/multimodal obrigatório.",
+      "implementation": [
+        "tests/p0/review.test.ts",
+        "packages/evaluation/src/calibration.ts",
+        "packages/contracts/schemas/review-calibration-input.schema.json",
+        "packages/contracts/schemas/review-calibration-reference.schema.json",
+        "packages/contracts/schemas/review-calibration-reviewers.schema.json",
+        "tests/p0/calibration.test.ts",
+        "tests/helpers/calibration-fixture.ts",
+        "docs/P0_OPERATIONS.md",
+        "packages/agent-core/src/review.ts",
+        "tests/p0/autonomous-governance.test.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/review.test.ts tests/p0/calibration.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/autonomous-governance.test.ts",
+              "cases": 5,
+              "passed": 5
+            },
+            {
+              "file": "tests/p0/calibration.test.ts",
+              "cases": 41,
+              "passed": 41
+            },
+            {
+              "file": "tests/p0/review.test.ts",
+              "cases": 2,
+              "passed": 2
+            }
+          ],
+          "checks": [
+            "ci"
+          ],
+          "gates": [
+            "review"
+          ],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "sourceRequirement": {
+        "dependencies": "WP-15/17",
+        "deliverable": "Human/Multimodal Review Gate",
+        "exitCriteria": "Rubrica, política e controle de egress"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/autonomous-governance.test.ts",
+          "tests/p0/calibration.test.ts",
+          "tests/p0/review.test.ts"
+        ],
+        "checks": [
+          "ci"
+        ],
+        "gates": [
+          "review"
+        ]
+      }
+    },
+    {
+      "id": "WP-20",
+      "title": "Dataset de benchmark + runner",
+      "applicability": "technical-substitution",
+      "scope": "Contratos públicos, grading privado e execução determinística; sem experimento real.",
+      "implementation": [
+        "tests/p0/evaluation.test.ts",
+        "packages/contracts/schemas/benchmark-protocol.schema.json",
+        "packages/evaluation/src/protocol.ts",
+        "tests/p0/benchmark-protocol.test.ts",
+        "docs/P0_OPERATIONS.md",
+        "benchmarks/tasks.public.json",
+        "benchmarks/tasks.heldout.json",
+        "packages/evaluation/src/grading.ts",
+        "packages/contracts/schemas/task-grading.schema.json",
+        "packages/contracts/schemas/task-fixture.schema.json",
+        "tests/p0/task-grading.test.ts",
+        "benchmarks/validation",
+        "scripts/generate-public-validation.mjs",
+        "tests/p0/public-validation.test.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/evaluation.test.ts tests/p0/benchmark-protocol.test.ts tests/p0/task-grading.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/benchmark-protocol.test.ts",
+              "cases": 34,
+              "passed": 34
+            },
+            {
+              "file": "tests/p0/evaluation.test.ts",
+              "cases": 4,
+              "passed": 4
+            },
+            {
+              "file": "tests/p0/public-validation.test.ts",
+              "cases": 3,
+              "passed": 3
+            },
+            {
+              "file": "tests/p0/task-grading.test.ts",
+              "cases": 126,
+              "passed": 126
+            }
+          ],
+          "checks": [
+            "benchmark-grading",
+            "public-contracts",
+            "public-workers"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "sourceRequirement": {
+        "dependencies": "WP-16/18",
+        "deliverable": "Dataset de benchmark + runner",
+        "exitCriteria": "Ablações, métricas e resultados"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/benchmark-protocol.test.ts",
+          "tests/p0/evaluation.test.ts",
+          "tests/p0/public-validation.test.ts",
+          "tests/p0/task-grading.test.ts"
+        ],
+        "checks": [
+          "benchmark-grading",
+          "public-contracts",
+          "public-workers"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "WP-21",
+      "title": "Integração CI e profiles",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        ".github/workflows/ci.yml",
+        "scripts/verify-p0.mjs",
+        "scripts/pack-p0.mjs",
+        "scripts/smoke-offline.mjs",
+        "docs/P0_OPERATIONS.md"
+      ],
+      "remaining": "Gate visual do perfil pr sem execução no GitHub Actions: o CI do GitHub é o padrão do harness (secrets.yml, gitflow.yml, config.yml) mais ci.yml. A prova visual é local, no host de atestação, conforme docs/P0_OPERATIONS.md (\"Prova local obrigatória do gate visual\"): `gate run --profile pr --start --json` em c6a602c (run-46e4998d-6f92-498c-b074-ff18f0b5efa7) → passed, saída 0, gates context/task-context/static/browser/review, baselineComparisons compared 492, authorized 492, different 0, missing 0.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npm run verify:p0",
+        "node packages/cli/src/cli.ts gate run --profile pr --start --json"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        {
+          "path": ".inteiro/reports/run-46e4998d-6f92-498c-b074-ff18f0b5efa7/summary.json",
+          "sha256": "e9bfff2e3ae69bde95c17d99cbd22afc0c6755d8c08c1347d013067960ce6dc0"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/ci-profiles.test.ts",
+              "cases": 1,
+              "passed": 1
+            },
+            {
+              "file": "tests/p0/impact.test.ts",
+              "cases": 6,
+              "passed": 6
+            }
+          ],
+          "checks": [
+            "ci"
+          ],
+          "gates": [
+            "context",
+            "task-context",
+            "static",
+            "browser",
+            "review"
+          ],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "sourceRequirement": {
+        "dependencies": "WP-05/15/17",
+        "deliverable": "Integração CI e profiles",
+        "exitCriteria": "PR/main/nightly/release funcionais"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/impact.test.ts"
+        ],
+        "checks": [
+          "ci"
+        ],
+        "gates": [
+          "context",
+          "task-context",
+          "static",
+          "browser",
+          "review"
+        ]
+      }
+    },
+    {
+      "id": "WP-22",
+      "title": "Migração 1.1.0 + guias por framework",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "docs/P0_OPERATIONS.md",
+        "tests/p0/compatibility.test.ts",
+        "tests/p0/migration.test.ts",
+        "scripts/verify-p0.mjs",
+        "scripts/pack-p0.mjs",
+        "scripts/smoke-offline.mjs"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/compatibility.test.ts tests/p0/migration.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/compatibility.test.ts",
+              "cases": 4,
+              "passed": 4
+            },
+            {
+              "file": "tests/p0/migration.test.ts",
+              "cases": 8,
+              "passed": 8
+            }
+          ],
+          "checks": [
+            "ci",
+            "offline"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "sourceRequirement": {
+        "dependencies": "WP-21",
+        "deliverable": "Migração 1.1.0 + guias por framework",
+        "exitCriteria": "App legado migra sem regressão"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/compatibility.test.ts",
+          "tests/p0/migration.test.ts"
+        ],
+        "checks": [
+          "ci",
+          "offline"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "WP-23",
+      "title": "Hardening, security checks, performance",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/release.test.ts",
+        "scripts/verify-p0.mjs",
+        "scripts/pack-p0.mjs",
+        "scripts/smoke-offline.mjs"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/release.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/release.test.ts",
+              "cases": 1,
+              "passed": 1
+            }
+          ],
+          "checks": [
+            "dependency-security",
+            "performance",
+            "pack"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "sourceRequirement": {
+        "dependencies": "Todos",
+        "deliverable": "Hardening, security checks, performance",
+        "exitCriteria": "DoD-01 a DoD-12 e release readiness"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/release.test.ts"
+        ],
+        "checks": [
+          "dependency-security",
+          "performance",
+          "pack"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "DoD-01",
+      "title": "Os 11 épicos E00–E10 atingem suas condições de aceite",
+      "applicability": "technical-substitution",
+      "scope": "Auditoria automática das 58 linhas substitui assinatura do mantenedor.",
+      "implementation": [
+        "tests/p0/release.test.ts",
+        "scripts/verify-p0.mjs",
+        "scripts/pack-p0.mjs",
+        "scripts/smoke-offline.mjs"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/release.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/release.test.ts",
+              "cases": 1,
+              "passed": 1
+            },
+            {
+              "file": "tests/p0/requirement-evidence.test.ts",
+              "cases": 4,
+              "passed": 4
+            }
+          ],
+          "checks": [
+            "ci",
+            "browser-gate",
+            "benchmark-grading",
+            "public-contracts",
+            "worker-isolation",
+            "stories",
+            "browser-full",
+            "performance",
+            "dependency-security",
+            "pack",
+            "offline",
+            "worker-bootstrap",
+            "public-workers"
+          ],
+          "gates": [
+            "context",
+            "task-context",
+            "static",
+            "browser",
+            "review"
+          ],
+          "coverage": [],
+          "requirements": [
+            "E00",
+            "E01",
+            "E02",
+            "E03",
+            "E04",
+            "E05",
+            "E06",
+            "E07",
+            "E08",
+            "E09",
+            "E10"
+          ]
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/release.test.ts",
+          "tests/p0/requirement-evidence.test.ts"
+        ],
+        "checks": [
+          "ci",
+          "browser-gate",
+          "benchmark-grading",
+          "public-contracts",
+          "worker-isolation",
+          "stories",
+          "browser-full",
+          "performance",
+          "dependency-security",
+          "pack",
+          "offline",
+          "worker-bootstrap",
+          "public-workers"
+        ],
+        "gates": [
+          "context",
+          "task-context",
+          "static",
+          "browser",
+          "review"
+        ],
+        "requirements": [
+          "E00",
+          "E01",
+          "E02",
+          "E03",
+          "E04",
+          "E05",
+          "E06",
+          "E07",
+          "E08",
+          "E09",
+          "E10"
+        ]
+      }
+    },
+    {
+      "id": "DoD-02",
+      "title": "`npm run ci` legado continua passando, com novos checks compatíveis",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "scripts/verify-p0.mjs",
+        "scripts/pack-p0.mjs",
+        "scripts/smoke-offline.mjs"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npm run verify:p0"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/library.test.ts",
+              "cases": 4,
+              "passed": 4
+            },
+            {
+              "file": "tests/cli/cli.test.ts",
+              "cases": 7,
+              "passed": 7
+            },
+            {
+              "file": "tests/exports.test.ts",
+              "cases": 4,
+              "passed": 4
+            },
+            {
+              "file": "tests/lint.test.ts",
+              "cases": 1,
+              "passed": 1
+            },
+            {
+              "file": "tests/p0/compatibility.test.ts",
+              "cases": 4,
+              "passed": 4
+            }
+          ],
+          "checks": [
+            "ci"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/library.test.ts",
+          "tests/cli/cli.test.ts",
+          "tests/exports.test.ts",
+          "tests/lint.test.ts",
+          "tests/p0/compatibility.test.ts"
+        ],
+        "checks": [
+          "ci"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "DoD-03",
+      "title": "Projetos HTML, React/Next, Vue e Svelte adotam e validam o núcleo",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "packages/composition/src/render.ts",
+        "packages/composition/src/behavior.js",
+        "tests/browser/composition-robustness.spec.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npm run verify:p0"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/browser/composition-robustness.spec.ts",
+              "cases": 82,
+              "passed": 82
+            },
+            {
+              "file": "tests/browser/frameworks.spec.ts",
+              "cases": 5,
+              "passed": 5
+            }
+          ],
+          "checks": [
+            "ci",
+            "browser-full"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/browser/composition-robustness.spec.ts",
+          "tests/browser/frameworks.spec.ts"
+        ],
+        "checks": [
+          "ci",
+          "browser-full"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "DoD-04",
+      "title": "CLI e MCP continuam funcionais offline após instalação",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "scripts/verify-p0.mjs",
+        "scripts/pack-p0.mjs",
+        "scripts/smoke-offline.mjs"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npm run verify:p0"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/worker-bootstrap.test.ts",
+              "cases": 12,
+              "passed": 12
+            },
+            {
+              "file": "tests/p0/mcp-transport.test.ts",
+              "cases": 2,
+              "passed": 2
+            },
+            {
+              "file": "tests/p0/cli.test.ts",
+              "cases": 17,
+              "passed": 17
+            }
+          ],
+          "checks": [
+            "pack",
+            "offline",
+            "worker-bootstrap"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/worker-bootstrap.test.ts",
+          "tests/p0/mcp-transport.test.ts",
+          "tests/p0/cli.test.ts"
+        ],
+        "checks": [
+          "pack",
+          "offline",
+          "worker-bootstrap"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "DoD-05",
+      "title": "Todas as regras detectáveis possuem testes positivo/negativo",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/static.test.ts",
+        "packages/lint/src/index.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/static.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/static.test.ts",
+              "cases": 24,
+              "passed": 24
+            }
+          ],
+          "checks": [
+            "ci"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/static.test.ts"
+        ],
+        "checks": [
+          "ci"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "DoD-06",
+      "title": "Nenhuma baseline é promovida pelo agente sem aprovação",
+      "applicability": "technical-substitution",
+      "scope": "Implementador não pode promover referências; executor técnico separado e auditável.",
+      "implementation": [
+        "tests/p0/governance.test.ts",
+        "packages/visual/src/technical-baseline.ts",
+        "tests/p0/technical-baseline.test.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/governance.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/governance.test.ts",
+              "cases": 15,
+              "passed": 15
+            },
+            {
+              "file": "tests/p0/technical-baseline.test.ts",
+              "cases": 1,
+              "passed": 1
+            }
+          ],
+          "checks": [
+            "browser-gate",
+            "worker-isolation"
+          ],
+          "gates": [
+            "browser"
+          ],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/governance.test.ts",
+          "tests/p0/technical-baseline.test.ts"
+        ],
+        "checks": [
+          "browser-gate",
+          "worker-isolation"
+        ],
+        "gates": [
+          "browser"
+        ]
+      }
+    },
+    {
+      "id": "DoD-07",
+      "title": "Toda UI crítica alterada possui comparação visual + checks DOM/a11y",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "inteiro.routes.json",
+        "packages/visual/src/index.ts",
+        "packages/visual/src/clipping.ts",
+        "packages/visual/src/fixture-responder.ts",
+        "tests/p0/browser-interaction.test.ts",
+        "tests/p0/browser-async-fixtures.test.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npm run verify:p0"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/browser-async-fixtures.test.ts",
+              "cases": 2,
+              "passed": 2
+            },
+            {
+              "file": "tests/p0/browser-interaction.test.ts",
+              "cases": 11,
+              "passed": 11
+            }
+          ],
+          "checks": [
+            "browser-gate",
+            "public-contracts"
+          ],
+          "gates": [
+            "browser"
+          ],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/browser-async-fixtures.test.ts",
+          "tests/p0/browser-interaction.test.ts"
+        ],
+        "checks": [
+          "browser-gate",
+          "public-contracts"
+        ],
+        "gates": [
+          "browser"
+        ]
+      }
+    },
+    {
+      "id": "DoD-08",
+      "title": "Nenhum `blocked`, `error`, `not_run` ou `needs_review` vira `passed`",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/contracts.test.ts",
+        "packages/contracts/src/governance.ts",
+        "packages/contracts/src/attestation.ts",
+        "packages/contracts/src/policy.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/contracts.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/contracts.test.ts",
+              "cases": 19,
+              "passed": 19
+            }
+          ],
+          "checks": [
+            "ci"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/contracts.test.ts"
+        ],
+        "checks": [
+          "ci"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "DoD-09",
+      "title": "Benchmarks reproduzíveis medem custo por tarefa aceita",
+      "applicability": "technical-substitution",
+      "scope": "Custo desconhecido permanece null; sem benefício atribuído a experimento excluído.",
+      "implementation": [
+        "tests/p0/evaluation.test.ts",
+        "benchmarks/validation",
+        "scripts/generate-public-validation.mjs",
+        "tests/p0/public-validation.test.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/evaluation.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/evaluation.test.ts",
+              "cases": 4,
+              "passed": 4
+            },
+            {
+              "file": "tests/p0/public-validation.test.ts",
+              "cases": 3,
+              "passed": 3
+            },
+            {
+              "file": "tests/p0/cost-accounting.test.ts",
+              "cases": 20,
+              "passed": 20
+            }
+          ],
+          "checks": [
+            "benchmark-grading",
+            "public-workers"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/evaluation.test.ts",
+          "tests/p0/public-validation.test.ts",
+          "tests/p0/cost-accounting.test.ts"
+        ],
+        "checks": [
+          "benchmark-grading",
+          "public-workers"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "DoD-10",
+      "title": "Artefatos não contêm secrets/PII de fixtures de teste",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/browser-runner.test.ts",
+        "tests/p0/contracts.test.ts",
+        "scripts/verify-p0.mjs",
+        "scripts/pack-p0.mjs",
+        "scripts/smoke-offline.mjs"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/browser-runner.test.ts tests/p0/contracts.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/browser-runner.test.ts",
+              "cases": 7,
+              "passed": 7
+            },
+            {
+              "file": "tests/p0/contracts.test.ts",
+              "cases": 19,
+              "passed": 19
+            },
+            {
+              "file": "tests/p0/trace-privacy.test.ts",
+              "cases": 2,
+              "passed": 2
+            }
+          ],
+          "checks": [
+            "ci",
+            "browser-gate"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/browser-runner.test.ts",
+          "tests/p0/contracts.test.ts",
+          "tests/p0/trace-privacy.test.ts"
+        ],
+        "checks": [
+          "ci",
+          "browser-gate"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "DoD-11",
+      "title": "Docs e exemplos são reexecutáveis da versão publicada",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "scripts/smoke-offline.mjs",
+        "scripts/generate-pattern-stories.mjs",
+        "packages/composition/story-matrix.json"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npm run verify:p0"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/docs-site.test.ts",
+              "cases": 3,
+              "passed": 3
+            },
+            {
+              "file": "tests/browser/frameworks.spec.ts",
+              "cases": 5,
+              "passed": 5
+            },
+            {
+              "file": "stories/Library.stories.ts",
+              "cases": 7,
+              "passed": 7
+            }
+          ],
+          "checks": [
+            "pack",
+            "offline",
+            "stories"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/docs-site.test.ts",
+          "tests/browser/frameworks.spec.ts",
+          "stories/Library.stories.ts"
+        ],
+        "checks": [
+          "pack",
+          "offline",
+          "stories"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "DoD-12",
+      "title": "Adoção de projeto 1.1.0 não exige reescrita do frontend",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "docs/P0_IMPLEMENTATION.md",
+        "tests/p0/compatibility.test.ts",
+        "scripts/verify-p0.mjs",
+        "scripts/pack-p0.mjs",
+        "scripts/smoke-offline.mjs"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/compatibility.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/compatibility.test.ts",
+              "cases": 4,
+              "passed": 4
+            }
+          ],
+          "checks": [
+            "offline"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/compatibility.test.ts"
+        ],
+        "checks": [
+          "offline"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "SCN-01",
+      "title": "Drift de token detectado:",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/static.test.ts",
+        "packages/lint/src/index.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/static.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/static.test.ts",
+              "cases": 24,
+              "passed": 24
+            }
+          ],
+          "checks": [
+            "ci"
+          ],
+          "gates": [
+            "static"
+          ],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/static.test.ts"
+        ],
+        "checks": [
+          "ci"
+        ],
+        "gates": [
+          "static"
+        ]
+      }
+    },
+    {
+      "id": "SCN-02",
+      "title": "Overflow em mobile detectado:",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/browser-runner.test.ts",
+        "packages/visual/src/index.ts",
+        "packages/visual/src/clipping.ts",
+        "packages/visual/src/fixture-responder.ts",
+        "tests/p0/browser-interaction.test.ts",
+        "tests/p0/browser-async-fixtures.test.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/browser-runner.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/browser-async-fixtures.test.ts",
+              "cases": 2,
+              "passed": 2
+            },
+            {
+              "file": "tests/p0/browser-interaction.test.ts",
+              "cases": 11,
+              "passed": 11
+            },
+            {
+              "file": "tests/p0/browser-runner.test.ts",
+              "cases": 7,
+              "passed": 7
+            }
+          ],
+          "checks": [
+            "browser-gate"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/browser-async-fixtures.test.ts",
+          "tests/p0/browser-interaction.test.ts",
+          "tests/p0/browser-runner.test.ts"
+        ],
+        "checks": [
+          "browser-gate"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "SCN-03",
+      "title": "Baseline inexistente:",
+      "applicability": "technical-substitution",
+      "scope": "Baseline ausente bloqueia; criação inicial somente após checks independentes.",
+      "implementation": [
+        "tests/p0/browser-runner.test.ts",
+        "packages/visual/src/technical-baseline.ts",
+        "tests/p0/technical-baseline.test.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/browser-runner.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/browser-runner.test.ts",
+              "cases": 7,
+              "passed": 7
+            },
+            {
+              "file": "tests/p0/technical-baseline.test.ts",
+              "cases": 1,
+              "passed": 1
+            }
+          ],
+          "checks": [
+            "browser-gate"
+          ],
+          "gates": [
+            "browser"
+          ],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/browser-runner.test.ts",
+          "tests/p0/technical-baseline.test.ts"
+        ],
+        "checks": [
+          "browser-gate"
+        ],
+        "gates": [
+          "browser"
+        ]
+      }
+    },
+    {
+      "id": "SCN-04",
+      "title": "Mudança legítima aprovada:",
+      "applicability": "technical-substitution",
+      "scope": "Intenção prévia e promoção técnica verificável substituem revisor humano.",
+      "implementation": [
+        "tests/p0/browser-runner.test.ts",
+        "packages/visual/src/technical-baseline.ts",
+        "tests/p0/technical-baseline.test.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/browser-runner.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/browser-runner.test.ts",
+              "cases": 7,
+              "passed": 7
+            },
+            {
+              "file": "tests/p0/technical-baseline.test.ts",
+              "cases": 1,
+              "passed": 1
+            }
+          ],
+          "checks": [
+            "browser-gate"
+          ],
+          "gates": [
+            "browser"
+          ],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/browser-runner.test.ts",
+          "tests/p0/technical-baseline.test.ts"
+        ],
+        "checks": [
+          "browser-gate"
+        ],
+        "gates": [
+          "browser"
+        ]
+      }
+    },
+    {
+      "id": "SCN-05",
+      "title": "Instrução ignorada pelo modelo:",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/context.test.ts",
+        "packages/agent-core/src/context.ts",
+        "packages/agent-core/src/task-context.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/context.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/context.test.ts",
+              "cases": 9,
+              "passed": 9
+            }
+          ],
+          "checks": [
+            "ci"
+          ],
+          "gates": [
+            "context",
+            "task-context"
+          ],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/context.test.ts"
+        ],
+        "checks": [
+          "ci"
+        ],
+        "gates": [
+          "context",
+          "task-context"
+        ]
+      }
+    },
+    {
+      "id": "SCN-06",
+      "title": "Falha de browser:",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/browser-runner.test.ts",
+        "packages/visual/src/index.ts",
+        "packages/visual/src/clipping.ts",
+        "packages/visual/src/fixture-responder.ts",
+        "tests/p0/browser-interaction.test.ts",
+        "tests/p0/browser-async-fixtures.test.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/browser-runner.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/browser-async-fixtures.test.ts",
+              "cases": 2,
+              "passed": 2
+            },
+            {
+              "file": "tests/p0/browser-interaction.test.ts",
+              "cases": 11,
+              "passed": 11
+            },
+            {
+              "file": "tests/p0/browser-runner.test.ts",
+              "cases": 7,
+              "passed": 7
+            }
+          ],
+          "checks": [
+            "browser-gate"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/browser-async-fixtures.test.ts",
+          "tests/p0/browser-interaction.test.ts",
+          "tests/p0/browser-runner.test.ts"
+        ],
+        "checks": [
+          "browser-gate"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "SCN-07",
+      "title": "Loop guard:",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/repair-controller.test.ts",
+        "packages/agent-core/src/repair-controller.ts",
+        "packages/agent-core/src/repair-validation.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/repair-controller.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/repair-controller.test.ts",
+              "cases": 16,
+              "passed": 16
+            }
+          ],
+          "checks": [
+            "ci"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/repair-controller.test.ts"
+        ],
+        "checks": [
+          "ci"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "SCN-08",
+      "title": "UI de dados sensíveis:",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/review.test.ts",
+        "packages/agent-core/src/review.ts",
+        "tests/p0/autonomous-governance.test.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/review.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/autonomous-governance.test.ts",
+              "cases": 5,
+              "passed": 5
+            },
+            {
+              "file": "tests/p0/review.test.ts",
+              "cases": 2,
+              "passed": 2
+            }
+          ],
+          "checks": [
+            "ci"
+          ],
+          "gates": [
+            "review"
+          ],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/autonomous-governance.test.ts",
+          "tests/p0/review.test.ts"
+        ],
+        "checks": [
+          "ci"
+        ],
+        "gates": [
+          "review"
+        ]
+      }
+    },
+    {
+      "id": "SCN-09",
+      "title": "Componente inexistente:",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/cli.test.ts",
+        "tests/p0/composition.test.ts",
+        "packages/composition/src/render.ts",
+        "packages/composition/src/behavior.js",
+        "tests/browser/composition-robustness.spec.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/cli.test.ts tests/p0/composition.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/browser/composition-robustness.spec.ts",
+              "cases": 82,
+              "passed": 82
+            },
+            {
+              "file": "tests/p0/cli.test.ts",
+              "cases": 17,
+              "passed": 17
+            },
+            {
+              "file": "tests/p0/composition.test.ts",
+              "cases": 45,
+              "passed": 45
+            }
+          ],
+          "checks": [
+            "ci"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/browser/composition-robustness.spec.ts",
+          "tests/p0/cli.test.ts",
+          "tests/p0/composition.test.ts"
+        ],
+        "checks": [
+          "ci"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "SCN-10",
+      "title": "Monorepo:",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "tests/p0/context.test.ts",
+        "packages/contracts/src/governance.ts",
+        "packages/contracts/src/attestation.ts",
+        "packages/contracts/src/policy.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/context.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/context.test.ts",
+              "cases": 9,
+              "passed": 9
+            }
+          ],
+          "checks": [
+            "ci"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/context.test.ts"
+        ],
+        "checks": [
+          "ci"
+        ],
+        "gates": []
+      }
+    },
+    {
+      "id": "SCN-11",
+      "title": "Layout novo com UI aparentemente válida:",
+      "applicability": "technical-substitution",
+      "scope": "Julgamento estético excluído; checks objetivos continuam obrigatórios.",
+      "implementation": [
+        "tests/p0/review.test.ts",
+        "packages/agent-core/src/review.ts",
+        "tests/p0/autonomous-governance.test.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npx vitest run tests/p0/review.test.ts"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/autonomous-governance.test.ts",
+              "cases": 5,
+              "passed": 5
+            },
+            {
+              "file": "tests/p0/review.test.ts",
+              "cases": 2,
+              "passed": 2
+            }
+          ],
+          "checks": [
+            "ci"
+          ],
+          "gates": [
+            "review"
+          ],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/autonomous-governance.test.ts",
+          "tests/p0/review.test.ts"
+        ],
+        "checks": [
+          "ci"
+        ],
+        "gates": [
+          "review"
+        ]
+      }
+    },
+    {
+      "id": "SCN-12",
+      "title": "Teste que oscila:",
+      "applicability": "mandatory",
+      "scope": "Requisito técnico original integralmente aplicável.",
+      "implementation": [
+        "scripts/measure-p0.mjs",
+        "packages/visual/src/index.ts",
+        "packages/visual/src/clipping.ts",
+        "packages/visual/src/fixture-responder.ts",
+        "tests/p0/browser-interaction.test.ts",
+        "tests/p0/browser-async-fixtures.test.ts"
+      ],
+      "remaining": "Nenhum requisito técnico pendente na versão qualificada.",
+      "requiredEvidence": "Resultado estruturado da verificação, código de saída, sourceHash, policyHash e hashes dos artefatos.",
+      "verification": [
+        "npm run verify:p0"
+      ],
+      "status": "passed",
+      "evidence": [
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        }
+      ],
+      "qualification": {
+        "status": "passed",
+        "sourceHash": "f740b1e792724e04b1d13ed328ae6684d31aa460d3754bbd2214d5944c40701d",
+        "receipt": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/technical-verification.json",
+          "sha256": "7cfe1af17917e6adca1726aedcfa1d8d3dda3678b2ce734c79ce4ae47e5c0efa"
+        },
+        "index": {
+          "path": ".inteiro/reports/final-audit-8eb05926-c8c8-4e1b-a1d0-ea3a15785506/requirements-index.json",
+          "sha256": "489995483175b532d0bae3cf87c1374955eb5bf195e19d986dd6dba7e6318d43"
+        },
+        "proof": {
+          "tests": [
+            {
+              "file": "tests/p0/browser-async-fixtures.test.ts",
+              "cases": 2,
+              "passed": 2
+            },
+            {
+              "file": "tests/p0/browser-interaction.test.ts",
+              "cases": 11,
+              "passed": 11
+            }
+          ],
+          "checks": [
+            "performance",
+            "browser-gate"
+          ],
+          "gates": [],
+          "coverage": [],
+          "requirements": []
+        },
+        "verifiedAt": "2026-11-13T22:35:28.338Z"
+      },
+      "proof": {
+        "tests": [
+          "tests/p0/browser-async-fixtures.test.ts",
+          "tests/p0/browser-interaction.test.ts"
+        ],
+        "checks": [
+          "performance",
+          "browser-gate"
+        ],
+        "gates": []
+      }
+    }
+  ]
+}

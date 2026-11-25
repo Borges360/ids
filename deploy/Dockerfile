@@ -4,6 +4,7 @@ WORKDIR /src
 COPY package.json package-lock.json ./
 COPY packages packages
 COPY apps apps
+COPY docs-archive docs-archive
 COPY scripts scripts
 COPY docs docs
 COPY .storybook .storybook
@@ -22,6 +23,7 @@ COPY --from=build /src/runtime/scripts/serve-demo.mjs ./scripts/serve-demo.mjs
 COPY --from=build /src/apps/demo ./apps/demo
 COPY --from=build /src/apps/catalog ./apps/catalog
 COPY --from=build /src/docs ./docs
+COPY --from=build /src/docs-archive ./docs-archive
 COPY --from=build /src/packages/tokens/dist ./packages/tokens/dist
 COPY --from=build /src/packages/design-system/src/components.css ./packages/design-system/src/components.css
 COPY --from=build /src/packages/composition ./packages/composition

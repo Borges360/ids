@@ -1,0 +1,814 @@
+{
+  "contractVersion": "1.0.0",
+  "components": [
+    {
+      "id": "terminal.TerminalPanel",
+      "version": "1.0.0",
+      "name": "TerminalPanel",
+      "purpose": "Organizar contexto, estado, conteúdo, feedback e ações",
+      "states": [
+        "default",
+        "dirty",
+        "compact",
+        "linear"
+      ],
+      "actions": [
+        "activate",
+        "back",
+        "save",
+        "help"
+      ],
+      "focus": "Primeiro item seguro; devolver foco ao chamador",
+      "keyboard": "Tab alterna regiões; Esc volta",
+      "linear": "Cinco regiões em linhas novas",
+      "resize": "Rolagem preserva foco e ações; abaixo de 40×12 oferecer linear",
+      "requiredCapabilities": [],
+      "tokens": [
+        "color.text.primary",
+        "color.text.secondary",
+        "color.identity.primary",
+        "color.identity.commit",
+        "color.focus.ring",
+        "color.selection.background",
+        "color.status.success",
+        "color.status.warning",
+        "color.status.danger",
+        "color.status.info"
+      ],
+      "example": "TerminalPanel(options)"
+    },
+    {
+      "id": "terminal.MenuList",
+      "version": "1.0.0",
+      "name": "MenuList",
+      "purpose": "Distinguir valores, rotas, ações e estados",
+      "states": [
+        "default",
+        "disabled",
+        "filtered",
+        "empty"
+      ],
+      "actions": [
+        "navigate.up",
+        "navigate.down",
+        "activate",
+        "back"
+      ],
+      "focus": "Primeiro item seguro; indisponível é inspecionável",
+      "keyboard": "Setas limitadas nas extremidades; Enter ativa",
+      "linear": "Escolhas numeradas e motivo de indisponibilidade",
+      "resize": "Manter item focado visível",
+      "requiredCapabilities": [],
+      "tokens": [
+        "color.text.primary",
+        "color.text.secondary",
+        "color.identity.primary",
+        "color.identity.commit",
+        "color.focus.ring",
+        "color.selection.background",
+        "color.status.success",
+        "color.status.warning",
+        "color.status.danger",
+        "color.status.info"
+      ],
+      "example": "MenuList(items, focusedId)"
+    },
+    {
+      "id": "terminal.SettingsList",
+      "version": "1.0.0",
+      "name": "SettingsList",
+      "purpose": "Separar persistido, rascunho e efetivo",
+      "states": [
+        "clean",
+        "editing",
+        "dirty",
+        "saving",
+        "error",
+        "overridden"
+      ],
+      "actions": [
+        "activate",
+        "back",
+        "save"
+      ],
+      "focus": "Erro aponta primeiro campo; salvar mantém painel",
+      "keyboard": "Enter edita; Esc abandona campo; salvar é explícito",
+      "linear": "Valores atuais e origem em linhas",
+      "resize": "Valor sob rótulo em largura compacta",
+      "requiredCapabilities": [],
+      "tokens": [
+        "color.text.primary",
+        "color.text.secondary",
+        "color.identity.primary",
+        "color.identity.commit",
+        "color.focus.ring",
+        "color.selection.background",
+        "color.status.success",
+        "color.status.warning",
+        "color.status.danger",
+        "color.status.info"
+      ],
+      "example": "SettingsList(session, columns)"
+    },
+    {
+      "id": "terminal.TextInput",
+      "version": "1.0.0",
+      "name": "TextInput",
+      "purpose": "Editar texto com rótulo e validação",
+      "states": [
+        "default",
+        "editing",
+        "error"
+      ],
+      "actions": [
+        "activate",
+        "back",
+        "save"
+      ],
+      "focus": "Caret pertence ao editor nativo",
+      "keyboard": "Colagem é dado; ? é texto; Enter valida",
+      "linear": "Linha com :voltar para abandonar",
+      "resize": "Editor nativo rola; valor integral disponível",
+      "requiredCapabilities": [],
+      "tokens": [
+        "color.text.primary",
+        "color.text.secondary",
+        "color.identity.primary",
+        "color.identity.commit",
+        "color.focus.ring",
+        "color.selection.background",
+        "color.status.success",
+        "color.status.warning",
+        "color.status.danger",
+        "color.status.info"
+      ],
+      "example": "TextInput(label, value, error)"
+    },
+    {
+      "id": "terminal.SecretInput",
+      "version": "1.0.0",
+      "name": "SecretInput",
+      "purpose": "Receber segredo sem exposição",
+      "states": [
+        "editing",
+        "error"
+      ],
+      "actions": [
+        "activate",
+        "back"
+      ],
+      "focus": "Campo com rótulo permanente",
+      "keyboard": "Editor mascarado; sem eco nem resumo",
+      "linear": "Requer canal sem eco; nunca pedir em canal com eco",
+      "resize": "Nunca medir ou mostrar segredo como resumo",
+      "requiredCapabilities": [],
+      "tokens": [
+        "color.text.primary",
+        "color.text.secondary",
+        "color.identity.primary",
+        "color.identity.commit",
+        "color.focus.ring",
+        "color.selection.background",
+        "color.status.success",
+        "color.status.warning",
+        "color.status.danger",
+        "color.status.info"
+      ],
+      "example": "SecretInput(label, error)"
+    },
+    {
+      "id": "terminal.Select",
+      "version": "1.0.0",
+      "name": "Select",
+      "purpose": "Escolher um valor sem confundir foco e seleção",
+      "states": [
+        "default",
+        "editing",
+        "disabled"
+      ],
+      "actions": [
+        "navigate.up",
+        "navigate.down",
+        "activate",
+        "back"
+      ],
+      "focus": "Foco inicial no valor atual",
+      "keyboard": "Setas movem; Enter confirma rascunho; Esc abandona",
+      "linear": "Opções numeradas; valor atual indicado",
+      "resize": "Lista rola mantendo foco",
+      "requiredCapabilities": [],
+      "tokens": [
+        "color.text.primary",
+        "color.text.secondary",
+        "color.identity.primary",
+        "color.identity.commit",
+        "color.focus.ring",
+        "color.selection.background",
+        "color.status.success",
+        "color.status.warning",
+        "color.status.danger",
+        "color.status.info"
+      ],
+      "example": "Select(label, choices, focusedId, selectedId)"
+    },
+    {
+      "id": "terminal.MultiSelect",
+      "version": "1.0.0",
+      "name": "MultiSelect",
+      "purpose": "Marcar vários valores e concluir",
+      "states": [
+        "default",
+        "editing",
+        "disabled"
+      ],
+      "actions": [
+        "navigate.up",
+        "navigate.down",
+        "toggle",
+        "activate",
+        "back"
+      ],
+      "focus": "Mover foco não marca",
+      "keyboard": "Espaço marca; Enter conclui; Esc abandona",
+      "linear": "Números separados por vírgula",
+      "resize": "Contagem e seleção preservadas",
+      "requiredCapabilities": [],
+      "tokens": [
+        "color.text.primary",
+        "color.text.secondary",
+        "color.identity.primary",
+        "color.identity.commit",
+        "color.focus.ring",
+        "color.selection.background",
+        "color.status.success",
+        "color.status.warning",
+        "color.status.danger",
+        "color.status.info"
+      ],
+      "example": "MultiSelect(label, choices, focusedId, selected)"
+    },
+    {
+      "id": "terminal.SearchField",
+      "version": "1.0.0",
+      "name": "SearchField",
+      "purpose": "Filtrar sem executar ações por digitação",
+      "states": [
+        "default",
+        "editing",
+        "empty"
+      ],
+      "actions": [
+        "activate",
+        "back"
+      ],
+      "focus": "Texto permanece no campo",
+      "keyboard": "Enter aplica filtro; vazio limpa; Esc abandona",
+      "linear": "Pergunta de filtro; sem resultados distinto de vazio",
+      "resize": "Filtro e posição preservados ao voltar",
+      "requiredCapabilities": [],
+      "tokens": [
+        "color.text.primary",
+        "color.text.secondary",
+        "color.identity.primary",
+        "color.identity.commit",
+        "color.focus.ring",
+        "color.selection.background",
+        "color.status.success",
+        "color.status.warning",
+        "color.status.danger",
+        "color.status.info"
+      ],
+      "example": "SearchField(query, count)"
+    },
+    {
+      "id": "terminal.ActionBar",
+      "version": "1.0.0",
+      "name": "ActionBar",
+      "purpose": "Manter ações alcançáveis sem atalhos",
+      "states": [
+        "default",
+        "focused",
+        "disabled"
+      ],
+      "actions": [
+        "activate",
+        "nextRegion",
+        "previousRegion"
+      ],
+      "focus": "Principal e secundárias em ordem estável",
+      "keyboard": "Tab acessa ações; Enter ativa",
+      "linear": "Ações numeradas ou comandos rotulados",
+      "resize": "Ações quebram em linhas",
+      "requiredCapabilities": [],
+      "tokens": [
+        "color.text.primary",
+        "color.text.secondary",
+        "color.identity.primary",
+        "color.identity.commit",
+        "color.focus.ring",
+        "color.selection.background",
+        "color.status.success",
+        "color.status.warning",
+        "color.status.danger",
+        "color.status.info"
+      ],
+      "example": "ActionBar(actions, focusedId)"
+    },
+    {
+      "id": "terminal.KeyHints",
+      "version": "1.0.0",
+      "name": "KeyHints",
+      "purpose": "Mostrar somente bindings resolvidos",
+      "states": [
+        "default",
+        "remapped"
+      ],
+      "actions": [
+        "help"
+      ],
+      "focus": "Sem foco independente",
+      "keyboard": "Mesmo registro usado para despacho",
+      "linear": "Rótulos sem atalho se indisponível",
+      "resize": "Quebrar hints sem cortar tecla",
+      "requiredCapabilities": [],
+      "tokens": [
+        "color.text.primary",
+        "color.text.secondary",
+        "color.identity.primary",
+        "color.identity.commit",
+        "color.focus.ring",
+        "color.selection.background",
+        "color.status.success",
+        "color.status.warning",
+        "color.status.danger",
+        "color.status.info"
+      ],
+      "example": "KeyHints(bindings, actions)"
+    },
+    {
+      "id": "terminal.Breadcrumbs",
+      "version": "1.0.0",
+      "name": "Breadcrumbs",
+      "purpose": "Orientar seções e retorno",
+      "states": [
+        "root",
+        "nested"
+      ],
+      "actions": [
+        "back"
+      ],
+      "focus": "Voltar restaura foco, filtro e scroll",
+      "keyboard": "Movimento não navega",
+      "linear": "Caminho textual",
+      "resize": "Quebrar caminho; evitar profundidade desnecessária",
+      "requiredCapabilities": [],
+      "tokens": [
+        "color.text.primary",
+        "color.text.secondary",
+        "color.identity.primary",
+        "color.identity.commit",
+        "color.focus.ring",
+        "color.selection.background",
+        "color.status.success",
+        "color.status.warning",
+        "color.status.danger",
+        "color.status.info"
+      ],
+      "example": "Breadcrumbs(parts)"
+    },
+    {
+      "id": "terminal.ConfirmAction",
+      "version": "1.0.0",
+      "name": "ConfirmAction",
+      "purpose": "Revisar objeto, destino e consequência",
+      "states": [
+        "review",
+        "submitting",
+        "error"
+      ],
+      "actions": [
+        "activate",
+        "back"
+      ],
+      "focus": "Opção segura inicialmente",
+      "keyboard": "Modal tem precedência; Esc retorna",
+      "linear": "Decisão explícita com verbos concretos",
+      "resize": "Conteúdo completo em linhas",
+      "requiredCapabilities": [],
+      "tokens": [
+        "color.text.primary",
+        "color.text.secondary",
+        "color.identity.primary",
+        "color.identity.commit",
+        "color.focus.ring",
+        "color.selection.background",
+        "color.status.success",
+        "color.status.warning",
+        "color.status.danger",
+        "color.status.info"
+      ],
+      "example": "ConfirmAction(object, consequence, destination, label)"
+    },
+    {
+      "id": "terminal.ChangeSummary",
+      "version": "1.0.0",
+      "name": "ChangeSummary",
+      "purpose": "Revisar diferenças sem executar",
+      "states": [
+        "clean",
+        "dirty"
+      ],
+      "actions": [
+        "save",
+        "back"
+      ],
+      "focus": "Navegar não salva nem aplica",
+      "keyboard": "Execução é ação separada",
+      "linear": "Antes/depois com segredos ocultos",
+      "resize": "Quebrar diferenças e manter escopo",
+      "requiredCapabilities": [],
+      "tokens": [
+        "color.text.primary",
+        "color.text.secondary",
+        "color.identity.primary",
+        "color.identity.commit",
+        "color.focus.ring",
+        "color.selection.background",
+        "color.status.success",
+        "color.status.warning",
+        "color.status.danger",
+        "color.status.info"
+      ],
+      "example": "ChangeSummary(session.changes, scope)"
+    },
+    {
+      "id": "terminal.StatusMessage",
+      "version": "1.0.0",
+      "name": "StatusMessage",
+      "purpose": "Informar fato, causa e recuperação",
+      "states": [
+        "success",
+        "warning",
+        "danger",
+        "info"
+      ],
+      "actions": [
+        "help"
+      ],
+      "focus": "Erro permanece disponível",
+      "keyboard": "Mensagem não captura foco",
+      "linear": "Texto inclui status sem cor",
+      "resize": "Quebra em linhas; sem toast efêmero",
+      "requiredCapabilities": [],
+      "tokens": [
+        "color.text.primary",
+        "color.text.secondary",
+        "color.identity.primary",
+        "color.identity.commit",
+        "color.focus.ring",
+        "color.selection.background",
+        "color.status.success",
+        "color.status.warning",
+        "color.status.danger",
+        "color.status.info"
+      ],
+      "example": "StatusMessage(kind, message, next)"
+    },
+    {
+      "id": "terminal.Progress",
+      "version": "1.0.0",
+      "name": "Progress",
+      "purpose": "Mostrar progresso real e cancelabilidade",
+      "states": [
+        "idle",
+        "running",
+        "cancelling",
+        "succeeded",
+        "failed",
+        "cancelled",
+        "outcomeUnknown"
+      ],
+      "actions": [
+        "cancelOperation",
+        "help"
+      ],
+      "focus": "Cancelamento e ajuda continuam disponíveis",
+      "keyboard": "Esc solicita cancelamento sem prometer rollback",
+      "linear": "Atualizações append-only; percentual só com total",
+      "resize": "Etapa e estado preservados",
+      "requiredCapabilities": [],
+      "tokens": [
+        "color.text.primary",
+        "color.text.secondary",
+        "color.identity.primary",
+        "color.identity.commit",
+        "color.focus.ring",
+        "color.selection.background",
+        "color.status.success",
+        "color.status.warning",
+        "color.status.danger",
+        "color.status.info"
+      ],
+      "example": "Progress(label, state, completed, total, cancellable)"
+    },
+    {
+      "id": "terminal.TaskList",
+      "version": "1.0.0",
+      "name": "TaskList",
+      "purpose": "Apresentar etapas e resultados",
+      "states": [
+        "running",
+        "succeeded",
+        "failed",
+        "cancelled"
+      ],
+      "actions": [
+        "help"
+      ],
+      "focus": "Não roubar foco a cada atualização",
+      "keyboard": "Leitura e cancelamento via ação própria",
+      "linear": "Uma etapa por linha",
+      "resize": "Lista rola; resultado final permanece",
+      "requiredCapabilities": [],
+      "tokens": [
+        "color.text.primary",
+        "color.text.secondary",
+        "color.identity.primary",
+        "color.identity.commit",
+        "color.focus.ring",
+        "color.selection.background",
+        "color.status.success",
+        "color.status.warning",
+        "color.status.danger",
+        "color.status.info"
+      ],
+      "example": "TaskList(tasks)"
+    },
+    {
+      "id": "terminal.ResultList",
+      "version": "1.0.0",
+      "name": "ResultList",
+      "purpose": "Explorar lista e detalhe preservando seleção",
+      "states": [
+        "default",
+        "filtered",
+        "empty"
+      ],
+      "actions": [
+        "navigate.up",
+        "navigate.down",
+        "activate",
+        "back"
+      ],
+      "focus": "IDs estáveis; busca preservada",
+      "keyboard": "Setas navegam; Enter abre detalhe",
+      "linear": "Registros sequenciais",
+      "resize": "Detalhe lateral em 120; empilhado abaixo",
+      "requiredCapabilities": [],
+      "tokens": [
+        "color.text.primary",
+        "color.text.secondary",
+        "color.identity.primary",
+        "color.identity.commit",
+        "color.focus.ring",
+        "color.selection.background",
+        "color.status.success",
+        "color.status.warning",
+        "color.status.danger",
+        "color.status.info"
+      ],
+      "example": "ResultList(items, focusedId, detail, columns)"
+    },
+    {
+      "id": "terminal.DetailView",
+      "version": "1.0.0",
+      "name": "DetailView",
+      "purpose": "Expor valor integral e atributos",
+      "states": [
+        "default",
+        "unavailable"
+      ],
+      "actions": [
+        "back"
+      ],
+      "focus": "Retorno ao item de origem",
+      "keyboard": "Esc volta sem mudar seleção",
+      "linear": "Rótulo e valor completos",
+      "resize": "Quebrar conteúdo sem truncamento definitivo",
+      "requiredCapabilities": [],
+      "tokens": [
+        "color.text.primary",
+        "color.text.secondary",
+        "color.identity.primary",
+        "color.identity.commit",
+        "color.focus.ring",
+        "color.selection.background",
+        "color.status.success",
+        "color.status.warning",
+        "color.status.danger",
+        "color.status.info"
+      ],
+      "example": "DetailView(label, fields)"
+    },
+    {
+      "id": "terminal.DataTable",
+      "version": "1.0.0",
+      "name": "DataTable",
+      "purpose": "Comparar registros com ordem anunciada",
+      "states": [
+        "default",
+        "sorted",
+        "empty"
+      ],
+      "actions": [
+        "activate",
+        "back"
+      ],
+      "focus": "Ordenação é ação explícita",
+      "keyboard": "Consumidor oferece ação de ordenar e detalhe",
+      "linear": "Todos os campos por registro",
+      "resize": "Prioridade de colunas; compacta vira registros",
+      "requiredCapabilities": [],
+      "tokens": [
+        "color.text.primary",
+        "color.text.secondary",
+        "color.identity.primary",
+        "color.identity.commit",
+        "color.focus.ring",
+        "color.selection.background",
+        "color.status.success",
+        "color.status.warning",
+        "color.status.danger",
+        "color.status.info"
+      ],
+      "example": "DataTable(table, columns, linear)"
+    },
+    {
+      "id": "terminal.LogView",
+      "version": "1.0.0",
+      "name": "LogView",
+      "purpose": "Acompanhar logs com memória limitada",
+      "states": [
+        "following",
+        "paused",
+        "empty"
+      ],
+      "actions": [
+        "activate",
+        "back"
+      ],
+      "focus": "Pausa congela visualização",
+      "keyboard": "Ações Pausar, Retomar, Exportar explícitas",
+      "linear": "Texto exportável sem decoração",
+      "resize": "Histórico limitado e perdas anunciadas",
+      "requiredCapabilities": [],
+      "tokens": [
+        "color.text.primary",
+        "color.text.secondary",
+        "color.identity.primary",
+        "color.identity.commit",
+        "color.focus.ring",
+        "color.selection.background",
+        "color.status.success",
+        "color.status.warning",
+        "color.status.danger",
+        "color.status.info"
+      ],
+      "example": "LogView(log)"
+    },
+    {
+      "id": "terminal.EmptyState",
+      "version": "1.0.0",
+      "name": "EmptyState",
+      "purpose": "Distinguir vazio, filtro e indisponibilidade",
+      "states": [
+        "empty",
+        "filtered",
+        "unavailable"
+      ],
+      "actions": [
+        "back",
+        "help"
+      ],
+      "focus": "Próxima ação disponível",
+      "keyboard": "Não bloquear ajuda e diagnóstico",
+      "linear": "Motivo e próximo passo",
+      "resize": "Texto quebra integralmente",
+      "requiredCapabilities": [],
+      "tokens": [
+        "color.text.primary",
+        "color.text.secondary",
+        "color.identity.primary",
+        "color.identity.commit",
+        "color.focus.ring",
+        "color.selection.background",
+        "color.status.success",
+        "color.status.warning",
+        "color.status.danger",
+        "color.status.info"
+      ],
+      "example": "EmptyState(kind, next)"
+    },
+    {
+      "id": "terminal.ErrorState",
+      "version": "1.0.0",
+      "name": "ErrorState",
+      "purpose": "Preservar contexto e oferecer recuperação",
+      "states": [
+        "error"
+      ],
+      "actions": [
+        "back",
+        "help"
+      ],
+      "focus": "Erro junto ao campo quando aplicável",
+      "keyboard": "Repetir só após resultado conhecido",
+      "linear": "Mensagem e recuperação persistentes",
+      "resize": "Texto completo; nunca só cor",
+      "requiredCapabilities": [],
+      "tokens": [
+        "color.text.primary",
+        "color.text.secondary",
+        "color.identity.primary",
+        "color.identity.commit",
+        "color.focus.ring",
+        "color.selection.background",
+        "color.status.success",
+        "color.status.warning",
+        "color.status.danger",
+        "color.status.info"
+      ],
+      "example": "ErrorState(message, next)"
+    },
+    {
+      "id": "terminal.HelpView",
+      "version": "1.0.0",
+      "name": "HelpView",
+      "purpose": "Expor ações efetivas, modo e saída",
+      "states": [
+        "default"
+      ],
+      "actions": [
+        "back"
+      ],
+      "focus": "Retorna ao foco anterior",
+      "keyboard": "Bindings do registro; Esc fecha ajuda",
+      "linear": "Ajuda em linhas sem redesenho",
+      "resize": "Rolagem para textos longos",
+      "requiredCapabilities": [],
+      "tokens": [
+        "color.text.primary",
+        "color.text.secondary",
+        "color.identity.primary",
+        "color.identity.commit",
+        "color.focus.ring",
+        "color.selection.background",
+        "color.status.success",
+        "color.status.warning",
+        "color.status.danger",
+        "color.status.info"
+      ],
+      "example": "HelpView(mode, bindings)"
+    }
+  ],
+  "context": {
+    "surface": "terminal",
+    "contractVersion": "1.0.0",
+    "formats": [
+      "linear",
+      "prompts",
+      "panel",
+      "workspace",
+      "host"
+    ],
+    "identity": [
+      "Preserve host theme and terminal preferences",
+      "Use semantic roles, visible text and cell dimensions",
+      "Draft, persistence and external effects are distinct",
+      "No external window or nested host buffer",
+      "No baseline self-approval"
+    ],
+    "matrix": [
+      {
+        "columns": 40,
+        "rows": 12
+      },
+      {
+        "columns": 80,
+        "rows": 24
+      },
+      {
+        "columns": 120,
+        "rows": 36
+      }
+    ],
+    "requiredChecks": [
+      "npm run test:terminal",
+      "inteiro gate run --profile pr --json"
+    ],
+    "limitations": [
+      "State tests and cell transcripts do not qualify a real terminal, host or screen reader",
+      "macOS and RTL terminal support require platform-specific evidence"
+    ]
+  }
+}
