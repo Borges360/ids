@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "1.0",
+  "id": "toast",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Notificação status",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "div"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/toast.html",
+    "examples/toast-default.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "notificação",
+    "status"
+  ],
+  "markup": "<div role=\"status\" aria-live=\"polite\">Rascunho salvo.</div>"
+}

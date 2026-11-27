@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "1.0",
+  "classification": "synthetic",
+  "clock": "2026-02-01T12:00:00.000Z",
+  "seed": 407,
+  "routes": [
+    {
+      "id": "people",
+      "path": "/api/route-people",
+      "method": "GET",
+      "responses": [
+        {
+          "status": 200,
+          "json": {
+            "items": [
+              "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana "
+            ]
+          }
+        },
+        {
+          "status": 200,
+          "json": {
+            "items": [
+              "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana "
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "projects",
+      "path": "/api/route-projects",
+      "method": "GET",
+      "responses": [
+        {
+          "status": 200,
+          "json": {
+            "items": [
+              "Documentação internacional com revisão detalhada"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

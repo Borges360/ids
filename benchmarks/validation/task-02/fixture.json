@@ -1,0 +1,119 @@
+{
+  "classification": "synthetic",
+  "clock": "2026-01-01T12:00:00.000Z",
+  "seed": 2,
+  "syntheticText": [
+    "rafa@example.test"
+  ],
+  "responses": [
+    {
+      "url": "/api/people?page=1",
+      "method": "GET",
+      "sequence": [
+        {
+          "body": {
+            "items": [
+              {
+                "id": 1,
+                "name": "Ana Lima"
+              },
+              {
+                "id": 2,
+                "name": "Beto Reis"
+              }
+            ],
+            "page": 1,
+            "totalPages": 3,
+            "total": 5
+          },
+          "status": 200,
+          "alias": "page1-0"
+        },
+        {
+          "body": {
+            "items": [
+              {
+                "id": 1,
+                "name": "Ana Lima"
+              },
+              {
+                "id": 2,
+                "name": "Beto Reis"
+              }
+            ],
+            "page": 1,
+            "totalPages": 3,
+            "total": 5
+          },
+          "status": 200,
+          "alias": "page1-1"
+        }
+      ]
+    },
+    {
+      "url": "/api/people?page=2",
+      "method": "GET",
+      "sequence": [
+        {
+          "body": {
+            "items": [
+              {
+                "id": 3,
+                "name": "Cris Luz"
+              },
+              {
+                "id": 4,
+                "name": "Dani Melo"
+              }
+            ],
+            "page": 2,
+            "totalPages": 3,
+            "total": 5
+          },
+          "status": 200,
+          "alias": "page2-0"
+        },
+        {
+          "body": {
+            "items": [
+              {
+                "id": 3,
+                "name": "Cris Luz"
+              },
+              {
+                "id": 4,
+                "name": "Dani Melo"
+              }
+            ],
+            "page": 2,
+            "totalPages": 3,
+            "total": 5
+          },
+          "status": 200,
+          "alias": "page2-1"
+        }
+      ]
+    },
+    {
+      "url": "/api/people?page=3",
+      "method": "GET",
+      "sequence": [
+        {
+          "body": {
+            "items": [
+              {
+                "id": 5,
+                "name": "Eva Dias"
+              }
+            ],
+            "page": 3,
+            "totalPages": 3,
+            "total": 5
+          },
+          "status": 200,
+          "alias": "page3-0"
+        }
+      ]
+    }
+  ]
+}

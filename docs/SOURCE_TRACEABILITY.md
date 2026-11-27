@@ -320,8 +320,32 @@ Fonte: `deep-research-report.md` — INTEIRO — Identity Design System pessoal,
 | `card.padding` | Componentes / Cards | source |
 | `card.radius` | Componentes / Cards | source |
 | `color.accent` | Pacotes npm / $deprecated | source |
+| `avatar.size.sm` | Expansão 1.2 / Biblioteca e interoperabilidade | extension |
+| `avatar.size.md` | Expansão 1.2 / Biblioteca e interoperabilidade | extension |
+| `avatar.size.lg` | Expansão 1.2 / Biblioteca e interoperabilidade | extension |
+| `dialog.width` | Expansão 1.2 / Biblioteca e interoperabilidade | extension |
+| `chart.line.width` | Expansão 1.2 / Biblioteca e interoperabilidade | extension |
+| `chart.marker.size` | Expansão 1.2 / Biblioteca e interoperabilidade | extension |
+| `chart.grid.width` | Expansão 1.2 / Biblioteca e interoperabilidade | extension |
+| `space.small` | Expansão 1.2 / Biblioteca e interoperabilidade | extension |
+| `space.medium` | Expansão 1.2 / Biblioteca e interoperabilidade | extension |
+| `space.large` | Expansão 1.2 / Biblioteca e interoperabilidade | extension |
+| `content.measure` | Expansão 1.2 / Biblioteca e interoperabilidade | extension |
+| `content.width` | Expansão 1.2 / Biblioteca e interoperabilidade | extension |
+| `card.elevation` | Expansão 1.2 / Biblioteca e interoperabilidade | extension |
+| `alert.icon.size` | Expansão 1.2 / Biblioteca e interoperabilidade | extension |
+| `color.icon.default` | Expansão 1.2 / Biblioteca e interoperabilidade | extension |
+| `color.icon.muted` | Expansão 1.2 / Biblioteca e interoperabilidade | extension |
+| `color.state.hover` | Expansão 1.2 / Biblioteca e interoperabilidade | extension |
+| `color.state.focus` | Expansão 1.2 / Biblioteca e interoperabilidade | extension |
+| `color.state.disabled` | Expansão 1.2 / Biblioteca e interoperabilidade | extension |
+| `z.tooltip` | Expansão 1.2 / Biblioteca e interoperabilidade | extension |
+| `layout.grid.columns` | Expansão 1.2 / Biblioteca e interoperabilidade | extension |
+| `chart.density.compact` | Expansão 1.2 / Biblioteca e interoperabilidade | extension |
 
-## Extensões propostas (não estavam com valores completos na fonte)
+## Extensões e derivados
+
+As 22 extensões da versão 1.2 foram implementadas a partir do relatório de expansão de 18/10/2026: dimensões de avatar, dialog e gráficos, aliases de espaço/conteúdo/estados, elevação de card, iconografia de alertas e camada de tooltip. Consulte EXPANSION.md para a matriz completa de recomendações.
 
 - Temas `contrast-dark` e `contrast-light`: o documento cita High Contrast na arquitetura e no Figma, sem tabela completa de pares. Valores derivados para maior contraste, documentados como extension no tema (não no id do token).
 - Tokens de ação (`color.action.*`): derivados dos exemplos CSS/React da seção Contrato de tokens.

@@ -1,0 +1,152 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "task-17",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/task-17.json",
+    "sha256": "711af708cdad2bc10b7608aee557f1e63b537a963750bd634429c1b9a8f73137"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "profile-name"
+          },
+          "value": "Lia Moura"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "profile-email"
+          },
+          "value": "lia@example.test"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "avatar"
+          },
+          "value": "LM"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Recarregar perfil"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "profile-name"
+          },
+          "value": "Rui Sá"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "profile-email"
+          },
+          "value": "rui@example.test"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "avatar"
+          },
+          "value": "RS"
+        },
+        {
+          "op": "expect-request",
+          "id": "profile",
+          "count": 2,
+          "body": null
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    },
+    {
+      "id": "desktop-functional",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "density": "focus",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "profile-name"
+          },
+          "value": "Lia Moura"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "profile-email"
+          },
+          "value": "lia@example.test"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "avatar"
+          },
+          "value": "LM"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Recarregar perfil"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "profile-name"
+          },
+          "value": "Rui Sá"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "profile-email"
+          },
+          "value": "rui@example.test"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "avatar"
+          },
+          "value": "RS"
+        },
+        {
+          "op": "expect-request",
+          "id": "profile",
+          "count": 2,
+          "body": null
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

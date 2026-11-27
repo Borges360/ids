@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "1.0",
+  "id": "form-layout",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Formulário cadastro layout",
+  "slots": [
+    "fields",
+    "help",
+    "errors",
+    "actions"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default",
+    "disabled",
+    "invalid",
+    "readonly"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring",
+    "input.height.md",
+    "color.border.interactive",
+    "color.background.surface",
+    "color.action.primary.background",
+    "color.action.primary.foreground"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "form",
+      "div",
+      "label",
+      "input",
+      "p",
+      "button"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/form-layout.html",
+    "examples/form-layout-default.html",
+    "examples/form-layout-disabled.html",
+    "examples/form-layout-invalid.html",
+    "examples/form-layout-readonly.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "formulário",
+    "cadastro",
+    "layout"
+  ],
+  "markup": "<form class=\"in-form-layout\" data-in-validate><div class=\"in-field-group\"><label class=\"in-field__label\" for=\"name\">Nome (obrigatório)</label><input class=\"in-input\" id=\"name\" required aria-describedby=\"help\"><p class=\"in-field-help\" id=\"help\">Informe um nome fictício.</p></div><div class=\"in-form-actions\"><button class=\"in-button in-button--primary\">Salvar rascunho</button></div></form>"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "@inteiro/demo",
+  "version": "1.3.2",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node ../../scripts/serve-demo.mjs"
+  }
+}

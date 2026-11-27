@@ -8,9 +8,13 @@ Sistema de identidade pessoal. Tokens, CSS, linha de comando e um contrato para 
 
 **Não eliminar a tensão. Dar forma a ela.**
 
-Este repositório transforma o documento de identidade em infraestrutura instalável: catálogo DTCG 2025.10, CSS, CLI, API para agentes, servidor MCP, adaptadores de harness, demonstração e testes. A versão do IDS é `1.1.0`; o catálogo de tokens, sem alteração de valores nesta release, permanece em `1.0.0`. A instalação é local, pelo monorepo ou por tarball.
+Este repositório transforma o documento de identidade em infraestrutura instalável: catálogo DTCG 2025.10, CSS, CLI, API para agentes, servidor MCP, adaptadores de harness, demonstração e testes. A versão do IDS é `2.0.0-rc.1`; o catálogo semântico de tokens permanece em `1.1.0`, preservando IDs e valores anteriores. Metadados exportados acompanham a versão dos pacotes. A instalação é local, pelo monorepo ou por tarball.
+
+[INTEIRO Terminal](docs/terminal/README.md) acrescenta contratos e componentes de interação para CLIs e TUIs: menus, edição, salvamento, teclado, feedback, dados e integrações optativas Pi/prompts/linear. Contrato Terminal 1.0.0. Consulte o [estado de qualificação](docs/terminal/qualification.json); implementação não certifica plataformas ou leitores de tela sem ensaio.
 
 A estrutura pesa mais que a expressão. A interface deve ficar mais interessante com o tempo, não mais impressionante em cinco segundos.
+
+A evolução P0 adiciona contratos versionados, 41 padrões portáteis, lint por parsers, Browser Gate, baselines com aprovação assinada e protocolos de revisão/reparo. Consulte a [especificação](docs/INTEIRO_ESPECIFICACAO_P0.md), os [padrões](docs/P0_PATTERNS.md) e a [operação dos gates](docs/P0_OPERATIONS.md). Capturas iniciais permanecem pendentes de aprovação; disponibilidade das APIs não equivale a certificação P0 da release.
 
 ## Sinais
 
@@ -49,7 +53,7 @@ A demonstração abre em `http://127.0.0.1:4173/`. Temas light e dark, densidade
 
 ### Num projeto
 
-Os quatro tarballs entram no mesmo `npm install`. A dependência cruzada é `1.1.0`.
+Os quatro tarballs entram no mesmo `npm install`. A dependência cruzada é `1.2.0`.
 
 ```bash
 mkdir -p artifacts
@@ -61,10 +65,10 @@ npm pack -w @inteiro/design-system --pack-destination artifacts
 
 ```bash
 npm install \
-  ../IDS/artifacts/inteiro-tokens-1.1.0.tgz \
-  ../IDS/artifacts/inteiro-agent-core-1.1.0.tgz \
-  ../IDS/artifacts/inteiro-cli-1.1.0.tgz \
-  ../IDS/artifacts/inteiro-design-system-1.1.0.tgz
+  ../IDS/artifacts/inteiro-tokens-1.2.0.tgz \
+  ../IDS/artifacts/inteiro-agent-core-1.2.0.tgz \
+  ../IDS/artifacts/inteiro-cli-1.2.0.tgz \
+  ../IDS/artifacts/inteiro-design-system-1.2.0.tgz
 
 npx inteiro init --yes
 npx inteiro doctor
@@ -97,19 +101,19 @@ Exemplos em [`examples/html`](examples/html), [`examples/react`](examples/react)
 
 | Pacote | Função |
 |---|---|
-| `@inteiro/tokens` | 316 tokens DTCG. CSS, JSON, TypeScript, SCSS, Flutter, Swift, Tailwind. |
+| `@inteiro/tokens` | 338 tokens. CSS, JSON, JS, TypeScript, SCSS, Flutter, Swift, Android, Figma e Tailwind. |
 | `@inteiro/design-system` | CSS das recipes e o binário `inteiro`. |
 | `@inteiro/cli` | `init`, `doctor`, `tokens`, `themes`, `skills`, `agents`, `audit`, `migrate`. |
 | `@inteiro/agent-core` | Explicação, busca, recipes, guidelines e auditoria. |
 | `@inteiro/mcp` | Servidor MCP em stdio: consulta tokens, recipes, guidelines, auditoria estática e protocolo de revisão visual. |
-| `@inteiro/react` | Provider. O tema chega por variáveis CSS. |
+| `@inteiro/react` | Componentes acessíveis, provider e templates. ESM e declarações TypeScript. |
 | `@inteiro/skills` | Geração de `SKILL.md`. |
 | `@inteiro/adapter-*` | Codex, Claude, Devin, Cursor, Pi, Hermes. |
 | `@inteiro/integrations` | Tailwind, Vue, Svelte. |
 
-O produto declarável é um contrato: tokens, CSS e recipes. Classes publicadas: botão, campo, card, badge e vozes. Dialog, tabela, navegação, empty state e loading são recipes, com passos e sem classe própria.
+A biblioteca implementa formulários, navegação, overlays, feedback, tabelas e gráficos, além de templates completos. Consulte [Biblioteca](docs/LIBRARY.md), [Expansão](docs/EXPANSION.md), [Governança](docs/GOVERNANCE.md) e [Deploy](docs/DEPLOY.md). `npm run storybook` abre a documentação interativa.
 
-Camadas do catálogo: 134 primitivos, 154 semânticos, 28 de componente. Prefixo CSS: `--in-`.
+Camadas do catálogo: 134 primitivos, 166 semânticos, 38 de componente. Prefixo CSS: `--in-`.
 
 ## Linha de comando
 
@@ -147,7 +151,7 @@ npx inteiro agents install cursor --yes
 npx inteiro agents doctor
 ```
 
-São dez skills de entrada: `inteiro`, `inteiro-interface`, `inteiro-audit`, `inteiro-migrate`, `inteiro-choose-token`, `inteiro-identity`, `inteiro-a11y`, `inteiro-voice`, `inteiro-components`, `inteiro-validate`. A consulta fina de um token fica na CLI ou no MCP. A ferramenta `inteiro_get_visual_review` fornece cobertura de rotas, viewports e estados, além de critérios para revisão humana das capturas; a auditoria de fonte continua explicitamente estática.
+São dez skills de entrada: `inteiro`, `inteiro-interface`, `inteiro-audit`, `inteiro-migrate`, `inteiro-choose-token`, `inteiro-identity`, `inteiro-a11y`, `inteiro-voice`, `inteiro-components`, `inteiro-validate`. A consulta fina de um token fica na CLI ou no MCP. `inteiro_get_visual_review` aceita um inventário de rotas para gerar cobertura concreta por viewport, tema e estado; `inteiro_audit` sinaliza riscos no fonte, enquanto capturas renderizadas ainda exigem avaliação humana.
 
 ## Documentação
 
@@ -175,7 +179,7 @@ decisões de identidade
   CSS · TypeScript · Flutter · skills · agentes
 ```
 
-A dependência segue um sentido. Componente não aponta para hex nem para primitivo de cor. A fonte de identidade é `deep-research-report.md`. A fonte de tokens é `packages/tokens/src/catalog`. Arquivos em `dist/` são gerados.
+A dependência segue um sentido. Componente não aponta para hex nem para primitivo de cor. A fonte de identidade é `deep-research-report.md`. A fonte de tokens é `packages/tokens/source/catalog.json`. Arquivos em `dist/` são gerados.
 
 Mudar o significado de `primary` — de violeta para laranja, por exemplo — é uma versão maior, mesmo que o TypeScript continue compilando.
 

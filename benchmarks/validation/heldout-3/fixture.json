@@ -1,0 +1,36 @@
+{
+  "classification": "synthetic",
+  "clock": "2026-02-01T12:00:00.000Z",
+  "seed": 402,
+  "syntheticText": [
+    "rafa@example.test"
+  ],
+  "responses": [
+    {
+      "url": "/api/selection",
+      "method": "GET",
+      "sequence": [
+        {
+          "body": {
+            "items": [
+              {
+                "id": "b",
+                "name": "تقرير تشغيلي مترجم — Beta"
+              },
+              {
+                "id": "a",
+                "name": "تقرير تشغيلي مترجم — Alfa"
+              },
+              {
+                "id": "c",
+                "name": "تقرير تشغيلي مترجم — Gama"
+              }
+            ]
+          },
+          "status": 200,
+          "alias": "selection-0"
+        }
+      ]
+    }
+  ]
+}

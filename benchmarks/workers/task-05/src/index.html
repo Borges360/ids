@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-BR" data-in-theme="light" data-in-density="calm">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Itens · INTEIRO</title>
+    <link rel="stylesheet" href="/__inteiro__/composition.css" />
+  </head>
+  <body class="in-composition">
+    <main class="in-content-container">
+      <header class="in-page-header"><h1>Itens</h1></header>
+      <form>
+        <div class="in-field-group">
+          <label for="name">Nome do item</label
+          ><input class="in-input" id="name" name="name" type="text" />
+        </div>
+        <button class="in-button in-button--commit" type="submit">
+          Adicionar item
+        </button>
+      </form>
+      <ul aria-label="Itens"></ul>
+      <p role="status" aria-live="polite"></p>
+      <dialog aria-label="Excluir item">
+        <h2>Excluir item</h2>
+        <button class="in-button in-button--secondary">Cancelar</button
+        ><button class="in-button in-button--commit">Excluir item</button>
+      </dialog>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

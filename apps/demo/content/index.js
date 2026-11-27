@@ -4,6 +4,8 @@ import { introductionPages } from "./introduction.js";
 import { patternPages, practicePages } from "./patterns.js";
 import { qualityPages } from "./quality.js";
 import { startPages } from "./start.js";
+import { libraryPages } from "./library.js";
+import { terminalPages } from "./terminal.js";
 
 /** @typedef {{ id: string, title: string, lede: string, keywords?: string[], status: string, source: string, sections: { id: string, title: string, html: string }[] }} DocPage */
 
@@ -13,6 +15,8 @@ export const pages = [
   ...startPages,
   ...foundationPages,
   ...componentPages,
+  ...libraryPages,
+  ...terminalPages,
   ...patternPages,
   ...practicePages,
   ...qualityPages
@@ -54,6 +58,7 @@ export const nav = [
     label: "Components",
     items: [
       { id: "components/catalog", label: "Catálogo" },
+      { id: "components/library", label: "Biblioteca React" },
       { id: "components/button", label: "Button" },
       { id: "components/input", label: "Input" },
       { id: "components/card", label: "Card" },
@@ -68,6 +73,18 @@ export const nav = [
       { id: "patterns/forms", label: "Formulários" },
       { id: "patterns/data", label: "Navegação e dados" },
       { id: "patterns/feedback", label: "Feedback" }
+    ]
+  },
+  {
+    id: "terminal",
+    label: "Terminal",
+    items: [
+      { id: "terminal/overview", label: "Visão geral" },
+      { id: "terminal/foundations", label: "Fundamentos" },
+      { id: "terminal/components", label: "Componentes" },
+      { id: "terminal/patterns", label: "Padrões" },
+      { id: "terminal/pi-theme", label: "Tema do Pi" },
+      { id: "terminal/quality", label: "Qualificação" }
     ]
   },
   {

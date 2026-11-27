@@ -2,6 +2,7 @@ import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 import { extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
+import { safePath } from "../packages/contracts/src/index.ts";
 
 const root = join(fileURLToPath(new URL("..", import.meta.url)));
 const types = {
@@ -11,7 +12,7 @@ const types = {
   ".json": "application/json",
   ".svg": "image/svg+xml",
   ".md": "text/plain; charset=utf-8",
-  ".woff2": "font/woff2"
+  ".woff2": "font/woff2",
 };
 
 const server = createServer(async (req, res) => {
@@ -22,23 +23,42 @@ const server = createServer(async (req, res) => {
     return;
   }
   let rel;
-  if (url.pathname === "/" || url.pathname === "/index.html") rel = "/apps/demo/index.html";
+  const archived = /^\/v\/(\d+\.\d+\.\d+)(\/.*)?$/.exec(url.pathname);
+  if (url.pathname === "/versions.json") rel = "/docs-archive/versions.json";
+  else if (archived) {
+    // Documentação congelada: /v/2.0.0-rc.1/ → docs-archive/2.0.0-rc.1/index.html
+    const sub = archived[2] && archived[2] !== "/" ? archived[2] : "/index.html";
+    rel = `/docs-archive/${archived[1]}${sub}`;
+  } else if (url.pathname === "/" || url.pathname === "/index.html")
+    rel = "/apps/demo/index.html";
+  else if (url.pathname.startsWith("/storybook/"))
+    rel =
+      "/storybook-static/" +
+      (url.pathname.slice("/storybook/".length) || "index.html");
   else if (
     url.pathname.startsWith("/packages/") ||
     url.pathname.startsWith("/docs/") ||
     url.pathname.startsWith("/apps/")
-  ) rel = url.pathname;
+  )
+    rel = url.pathname;
   else rel = "/apps/demo" + url.pathname;
-  const file = normalize(join(root, rel.replace(/^\/+/, "")));
-  if (!file.startsWith(root)) {
-    res.writeHead(403); res.end("forbidden"); return;
+  let file;
+  try {
+    file = safePath(root, rel.replace(/^\/+/, ""));
+  } catch {
+    res.writeHead(403);
+    res.end("forbidden");
+    return;
   }
   try {
     const body = await readFile(file);
-    res.writeHead(200, { "content-type": types[extname(file)] ?? "application/octet-stream" });
+    res.writeHead(200, {
+      "content-type": types[extname(file)] ?? "application/octet-stream",
+    });
     res.end(body);
   } catch {
-    res.writeHead(404); res.end("not found");
+    res.writeHead(404);
+    res.end("not found");
   }
 });
 

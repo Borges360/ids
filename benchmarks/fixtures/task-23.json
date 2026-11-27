@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "1.0",
+  "classification": "synthetic",
+  "clock": "2026-02-01T12:00:00.000Z",
+  "seed": 302,
+  "routes": [
+    {
+      "id": "selection",
+      "path": "/api/selection",
+      "method": "GET",
+      "responses": [
+        {
+          "status": 200,
+          "json": {
+            "items": [
+              {
+                "id": "b",
+                "name": "Registro Beta"
+              },
+              {
+                "id": "a",
+                "name": "Registro Alfa"
+              },
+              {
+                "id": "c",
+                "name": "Registro Gama"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

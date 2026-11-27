@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://inteiro.dev/schemas/1.0/task-cost-breakdown.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "currency",
+    "modelTokens",
+    "tools",
+    "humanReview",
+    "infrastructure"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "modelTokens": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "tools": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "humanReview": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "infrastructure": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    }
+  }
+}

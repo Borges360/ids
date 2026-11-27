@@ -1,0 +1,19 @@
+.git
+.codex
+.cursor
+.pi
+node_modules
+**/node_modules
+**/dist
+artifacts
+storybook-static
+playwright-report
+test-results
+packages/skills/generated
+docs/tokens/generated
+*.tgz
+*.log
+.env*
+
+# Documentação versionada precisa entrar no contexto (tem dist/ próprio)
+!docs-archive/**

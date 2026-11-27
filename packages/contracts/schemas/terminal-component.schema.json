@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://inteiro.dev/schemas/terminal/1.0.0/component.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "version",
+    "name",
+    "purpose",
+    "states",
+    "actions",
+    "focus",
+    "keyboard",
+    "linear",
+    "resize",
+    "requiredCapabilities",
+    "tokens",
+    "example"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^terminal\\.[A-Za-z]+$"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 1
+    },
+    "states": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "focus": {
+      "type": "string",
+      "minLength": 1
+    },
+    "keyboard": {
+      "type": "string",
+      "minLength": 1
+    },
+    "linear": {
+      "type": "string",
+      "minLength": 1
+    },
+    "resize": {
+      "type": "string",
+      "minLength": 1
+    },
+    "requiredCapabilities": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "tokens": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "example": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

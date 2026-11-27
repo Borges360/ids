@@ -1,0 +1,29 @@
+{
+  "versions": [
+    {
+      "version": "2.0.0-rc.1",
+      "status": "atual",
+      "path": "/"
+    },
+    {
+      "version": "1.3.2",
+      "status": "arquivada",
+      "path": "/v/1.3.2/"
+    },
+    {
+      "version": "1.3.1",
+      "status": "arquivada",
+      "path": "/v/1.3.1/"
+    },
+    {
+      "version": "1.1.1",
+      "status": "arquivada",
+      "path": "/v/1.1.1/"
+    },
+    {
+      "version": "1.1.0",
+      "status": "arquivada",
+      "path": "/v/1.1.0/"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.0",
+  "id": "editorial",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Texto editorial identidade",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "article",
+      "header",
+      "h2",
+      "p"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/editorial.html",
+    "examples/editorial-default.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "texto",
+    "editorial",
+    "identidade"
+  ],
+  "markup": "<article><header><h2>Identidade que conecta</h2></header><p>Uma linguagem clara para interfaces consistentes.</p></article>"
+}

@@ -1,6 +1,14 @@
+<script setup>
+import { ref } from 'vue';
+const name = ref('');
+const saved = ref(false);
+</script>
 <template>
-  <div class="in-root" data-in-theme="dark" data-in-density="focus">
-    <button class="in-button in-button--primary">Salvar rascunho</button>
-    <button class="in-button in-button--commit">Publicar</button>
-  </div>
+  <main class="in-content-container"><h1>Vue fixture</h1>
+    <form class="in-form-layout" @submit.prevent="saved = true">
+      <div class="in-field-group"><label for="name">Nome</label><input id="name" v-model="name" required /></div>
+      <button type="submit">Salvar rascunho</button>
+      <p v-if="saved" role="status">Rascunho salvo</p>
+    </form>
+  </main>
 </template>

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.0",
+  "id": "mobile-navigation",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Menu navegação mobile",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "details",
+      "summary",
+      "nav",
+      "a"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/mobile-navigation.html",
+    "examples/mobile-navigation-default.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "menu",
+    "navegação",
+    "mobile"
+  ],
+  "markup": "<details><summary>Navegação</summary><nav aria-label=\"Mobile\"><a href=\"#content\">Início</a></nav></details>"
+}

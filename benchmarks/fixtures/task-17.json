@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "1.0",
+  "classification": "synthetic",
+  "clock": "2026-01-01T12:00:00.000Z",
+  "seed": 106,
+  "routes": [
+    {
+      "id": "profile",
+      "path": "/api/profile",
+      "method": "GET",
+      "responses": [
+        {
+          "status": 200,
+          "json": {
+            "name": "Lia Moura",
+            "email": "lia@example.test",
+            "avatarUrl": null
+          }
+        },
+        {
+          "status": 200,
+          "json": {
+            "name": "Rui Sá",
+            "email": "rui@example.test",
+            "avatarUrl": null
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,296 @@
+{
+  "schemaVersion": "1.0",
+  "visibility": "evaluator-only",
+  "tasks": [
+    {
+      "id": "heldout-1",
+      "requirement": "Dashboard com dados extensos com strings traduzidas e estados extremos",
+      "contextExposure": false,
+      "maxRepairAttempts": 2,
+      "initialImplementation": "benchmarks/workers/heldout-1/src/index.html",
+      "initialFiles": [
+        "benchmarks/workers/heldout-1/src/index.html",
+        "benchmarks/workers/heldout-1/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/heldout-1/TASK.md",
+      "functionalRequirement": "Carregue GET /api/metrics. Mostre todos os registros na lista Relatórios, total no elemento total e quantidade no elemento quantidade. Buscar filtra localmente o nome exato informado, sem nova consulta. Limpar restaura todos os registros e os totais originais. Preserve os nomes completos e evite overflow.",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "fixtures": [
+        "benchmarks/fixtures/heldout-1.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/heldout-1.json",
+        "sha256": "a6d252a735bc75a4e848b619ae786117b35f37806450e9bbb6ce08345f7a96ed"
+      },
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "validation": {
+        "path": "benchmarks/validation/heldout-1/manifest.json",
+        "sha256": "03077e54237b1264de28a24a89cea6b00dd30fefeeac9c9569c74125ed433d65"
+      }
+    },
+    {
+      "id": "heldout-2",
+      "requirement": "Formulário multietapas com revisão com strings traduzidas e estados extremos",
+      "contextExposure": false,
+      "maxRepairAttempts": 2,
+      "initialImplementation": "benchmarks/workers/heldout-2/src/index.html",
+      "initialFiles": [
+        "benchmarks/workers/heldout-2/src/index.html",
+        "benchmarks/workers/heldout-2/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/heldout-2/TASK.md",
+      "functionalRequirement": "Implemente cadastro em três etapas: Nome obrigatório; Endereço obrigatório; revisão final. Continuar valida e foca o campo vazio. Voltar preserva os valores e permite editar Nome antes da revisão. A revisão deve refletir os valores atuais. Somente Confirmar cadastro envia POST /api/enrollment {name,address} uma vez e anuncia Cadastro confirmado.",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "fixtures": [
+        "benchmarks/fixtures/heldout-2.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/heldout-2.json",
+        "sha256": "0e609d8cc255322a25212285801bfa87e487b574b96ebe0fe69fa6476e1d68c7"
+      },
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "validation": {
+        "path": "benchmarks/validation/heldout-2/manifest.json",
+        "sha256": "08916cc3e91f9919e04b4ec69640d2ace3f6e194db12279303bb65ac4ce6a47d"
+      }
+    },
+    {
+      "id": "heldout-3",
+      "requirement": "Tabela com seleção e ordenação com strings traduzidas e estados extremos",
+      "contextExposure": false,
+      "maxRepairAttempts": 2,
+      "initialImplementation": "benchmarks/workers/heldout-3/src/index.html",
+      "initialFiles": [
+        "benchmarks/workers/heldout-3/src/index.html",
+        "benchmarks/workers/heldout-3/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/heldout-3/TASK.md",
+      "functionalRequirement": "Carregue GET /api/selection e ordene a lista Registros por nome. Ordenar inverte ascendente/descendente sem perder seleção. Cada registro contém checkbox com nome Selecionar seguido do nome completo. Selecionar um registro atualiza contagem Selecionados N. Limpar seleção zera a seleção e desmarca os checkboxes. Não refaça a consulta para ordenar.",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "fixtures": [
+        "benchmarks/fixtures/heldout-3.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/heldout-3.json",
+        "sha256": "b644f96d7acded789b435a03f72e553fad7bbad54fb1ca1f56f7d22a2bd45796"
+      },
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "validation": {
+        "path": "benchmarks/validation/heldout-3/manifest.json",
+        "sha256": "c885f6a52e4d870dd6f2eb23d5e8ecb18bd7bd50af34876689816bc6408b3773"
+      }
+    },
+    {
+      "id": "heldout-4",
+      "requirement": "Migração de identidade com strings traduzidas e estados extremos",
+      "contextExposure": false,
+      "maxRepairAttempts": 2,
+      "initialImplementation": "benchmarks/workers/heldout-4/src/index.html",
+      "initialFiles": [
+        "benchmarks/workers/heldout-4/src/index.html",
+        "benchmarks/workers/heldout-4/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/heldout-4/TASK.md",
+      "functionalRequirement": "Migre a identidade legada do painel data-testid identity para Recursive via --in-font-family-sans, texto --in-color-text-primary e fundo --in-color-background-surface. Preserve o fluxo Buscar perfil: GET /api/identity e exibição integral do nome no status. O resultado acompanha tema claro e escuro sem cores ou fontes literais.",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "fixtures": [
+        "benchmarks/fixtures/heldout-4.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/heldout-4.json",
+        "sha256": "d0546d6901f093bd93629cb4b98e60a2ad3c9a676de2092f8567fd915b5bb9ca"
+      },
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "validation": {
+        "path": "benchmarks/validation/heldout-4/manifest.json",
+        "sha256": "e3f1f474dc927841f61cf313d6d23f7650a39ca6fe76fa893c45fbb6512669ea"
+      }
+    },
+    {
+      "id": "heldout-5",
+      "requirement": "Regressão de overflow com strings traduzidas e estados extremos",
+      "contextExposure": false,
+      "maxRepairAttempts": 2,
+      "initialImplementation": "benchmarks/workers/heldout-5/src/index.html",
+      "initialFiles": [
+        "benchmarks/workers/heldout-5/src/index.html",
+        "benchmarks/workers/heldout-5/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/heldout-5/TASK.md",
+      "functionalRequirement": "Corrija overflow no artigo data-testid content. Carregue GET /api/long-content e preserve title, body e identificador longo sem truncar, esconder ou remover conteúdo. Copiar identificador coloca o identificador integral no campo Identificador copiado. A página precisa caber no viewport, incluindo palavras sem espaços e conteúdo RTL.",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "fixtures": [
+        "benchmarks/fixtures/heldout-5.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/heldout-5.json",
+        "sha256": "db6a5cb6f38328002bd0b26d9d43f2aed1fb00bf7618ba62ec39756b0dcbd74c"
+      },
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "validation": {
+        "path": "benchmarks/validation/heldout-5/manifest.json",
+        "sha256": "b4790baa35511dbdebf64311b30a7c7fc8dd0c6a550309d0631ad2cfd552784e"
+      }
+    },
+    {
+      "id": "heldout-6",
+      "requirement": "Modal com conteúdo longo com strings traduzidas e estados extremos",
+      "contextExposure": false,
+      "maxRepairAttempts": 2,
+      "initialImplementation": "benchmarks/workers/heldout-6/src/index.html",
+      "initialFiles": [
+        "benchmarks/workers/heldout-6/src/index.html",
+        "benchmarks/workers/heldout-6/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/heldout-6/TASK.md",
+      "functionalRequirement": "Ler documento abre diálogo modal Documento completo, carrega GET /api/document e mostra o texto integral em data-testid document-body. Fechar documento recebe foco. O conteúdo longo rola dentro do diálogo e o botão Aceitar documento ao final deve ser alcançável. Aceitar fecha, devolve foco e anuncia Documento aceito. Escape também fecha e restaura foco; o fundo fica indisponível.",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "fixtures": [
+        "benchmarks/fixtures/heldout-6.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/heldout-6.json",
+        "sha256": "5219c83800e7371bf24abb2bff38207d54954c446b86bbe5dca6edf86f100d73"
+      },
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "validation": {
+        "path": "benchmarks/validation/heldout-6/manifest.json",
+        "sha256": "d7c0c2042caa1af970149aef7315c460c8a6055e6813ce8e7c4fa0def8603363"
+      }
+    },
+    {
+      "id": "heldout-7",
+      "requirement": "Layout a 200% zoom com strings traduzidas e estados extremos",
+      "contextExposure": false,
+      "maxRepairAttempts": 2,
+      "initialImplementation": "benchmarks/workers/heldout-7/src/index.html",
+      "initialFiles": [
+        "benchmarks/workers/heldout-7/src/index.html",
+        "benchmarks/workers/heldout-7/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/heldout-7/TASK.md",
+      "functionalRequirement": "Faça o formulário funcionar em zoom nativo do navegador de 100% e 200%, com reflow sem overflow e sem remover campos. Nome e E-mail continuam acessíveis; Enviar dados envia POST /api/zoom-form {name,email} e anuncia Dados enviados. Não use CSS zoom, transform ou redução de fonte para simular o zoom do navegador.",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "fixtures": [
+        "benchmarks/fixtures/heldout-7.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/heldout-7.json",
+        "sha256": "5a63b8b44d1345b953d726fe15b1777b87a38dfa604a3293e06fd6f594b0011c"
+      },
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "validation": {
+        "path": "benchmarks/validation/heldout-7/manifest.json",
+        "sha256": "2c50ae9f06ba4c81f58d6b832f6a61db97f89ea2e4a6f6d41fb1c453bb495c87"
+      }
+    },
+    {
+      "id": "heldout-8",
+      "requirement": "Integração entre rotas com strings traduzidas e estados extremos",
+      "contextExposure": false,
+      "maxRepairAttempts": 2,
+      "initialImplementation": "benchmarks/workers/heldout-8/src/index.html",
+      "initialFiles": [
+        "benchmarks/workers/heldout-8/src/index.html",
+        "benchmarks/workers/heldout-8/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/heldout-8/TASK.md",
+      "functionalRequirement": "Integre rotas reais /src/index.html?view=people e /src/index.html?view=projects por links Pessoas e Projetos. Cada rota mostra o heading correspondente e seus dados de GET /api/route-people ou /api/route-projects. O campo Nota persistente preserva o texto entre navegação e retorno pelo histórico. Não mostre dados da rota anterior.",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "fixtures": [
+        "benchmarks/fixtures/heldout-8.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/heldout-8.json",
+        "sha256": "46fe584987dddbb181f8552743224ab280d8ba2b6b691c847ab95332f17ec377"
+      },
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "validation": {
+        "path": "benchmarks/validation/heldout-8/manifest.json",
+        "sha256": "124094dc19ed8273dac04eec7b7a6540781bd52a08323fb632d9ee4ee178be24"
+      }
+    },
+    {
+      "id": "heldout-9",
+      "requirement": "Recuperação de erro de rede com strings traduzidas e estados extremos",
+      "contextExposure": false,
+      "maxRepairAttempts": 2,
+      "initialImplementation": "benchmarks/workers/heldout-9/src/index.html",
+      "initialFiles": [
+        "benchmarks/workers/heldout-9/src/index.html",
+        "benchmarks/workers/heldout-9/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/heldout-9/TASK.md",
+      "functionalRequirement": "Recupere uma falha real de conexão em GET /api/recovery. A falha mostra Não foi possível conectar em alert e Tentar novamente. Retry carrega a lista Documentos com os nomes recebidos, esconde erro, anuncia Conexão restaurada e não duplica dados ou consulta em loop.",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "fixtures": [
+        "benchmarks/fixtures/heldout-9.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/heldout-9.json",
+        "sha256": "9ce7fbc624d5dc87a1ed321f2735ce02d190a0a4065a5b891741c9fd187b482c"
+      },
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "validation": {
+        "path": "benchmarks/validation/heldout-9/manifest.json",
+        "sha256": "0237ba15fc7bd8451c24cac29881c36032f00469199a1be8ef58e2020ba9ca18"
+      }
+    },
+    {
+      "id": "heldout-10",
+      "requirement": "Publicação com ação commit com strings traduzidas e estados extremos",
+      "contextExposure": false,
+      "maxRepairAttempts": 2,
+      "initialImplementation": "benchmarks/workers/heldout-10/src/index.html",
+      "initialFiles": [
+        "benchmarks/workers/heldout-10/src/index.html",
+        "benchmarks/workers/heldout-10/src/app.js"
+      ],
+      "instructions": "benchmarks/workers/heldout-10/TASK.md",
+      "functionalRequirement": "Carregue GET /api/draft, preserve revision e permita editar Título. Visualizar mostra a prévia em data-testid preview-title e não publica. Publicar conteúdo, com data-variant=commit, abre diálogo Publicar versão. Cancelar fecha sem POST. Confirmar publicação envia POST /api/publish {title,revision}; enquanto aguarda desabilita confirmação; depois fecha e anuncia Publicação concluída. Não publique duas vezes.",
+      "contract": "benchmarks/contract/inteiro.config.json",
+      "fixtures": [
+        "benchmarks/fixtures/heldout-10.json"
+      ],
+      "grading": {
+        "path": "benchmarks/evaluator/criteria/heldout-10.json",
+        "sha256": "040d14a355809c49352a15e7e64f21e052b220f1325cf02cc144721ee2c9e402"
+      },
+      "acceptance": [
+        "Independent functional criteria in the immutable grading snapshot",
+        "Full INTEIRO static/browser/review gates remain required"
+      ],
+      "validation": {
+        "path": "benchmarks/validation/heldout-10/manifest.json",
+        "sha256": "493f13549ef1206aeb825503550b7de31ba8a8ae5a20755598adba2cd3dfd217"
+      }
+    }
+  ]
+}

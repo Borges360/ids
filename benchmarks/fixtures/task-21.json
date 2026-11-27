@@ -1,0 +1,322 @@
+{
+  "schemaVersion": "1.0",
+  "classification": "synthetic",
+  "clock": "2026-02-01T12:00:00.000Z",
+  "seed": 300,
+  "routes": [
+    {
+      "id": "metrics",
+      "path": "/api/metrics",
+      "method": "GET",
+      "responses": [
+        {
+          "status": 200,
+          "json": {
+            "items": [
+              {
+                "id": "1",
+                "name": "Registro 001",
+                "amount": 1
+              },
+              {
+                "id": "2",
+                "name": "Registro 002",
+                "amount": 2
+              },
+              {
+                "id": "3",
+                "name": "Registro 003",
+                "amount": 3
+              },
+              {
+                "id": "4",
+                "name": "Registro 004",
+                "amount": 4
+              },
+              {
+                "id": "5",
+                "name": "Registro 005",
+                "amount": 5
+              },
+              {
+                "id": "6",
+                "name": "Registro 006",
+                "amount": 6
+              },
+              {
+                "id": "7",
+                "name": "Registro 007",
+                "amount": 7
+              },
+              {
+                "id": "8",
+                "name": "Registro 008",
+                "amount": 8
+              },
+              {
+                "id": "9",
+                "name": "Registro 009",
+                "amount": 9
+              },
+              {
+                "id": "10",
+                "name": "Registro 010",
+                "amount": 10
+              },
+              {
+                "id": "11",
+                "name": "Registro 011",
+                "amount": 11
+              },
+              {
+                "id": "12",
+                "name": "Registro 012",
+                "amount": 12
+              },
+              {
+                "id": "13",
+                "name": "Registro 013",
+                "amount": 13
+              },
+              {
+                "id": "14",
+                "name": "Registro 014",
+                "amount": 14
+              },
+              {
+                "id": "15",
+                "name": "Registro 015",
+                "amount": 15
+              },
+              {
+                "id": "16",
+                "name": "Registro 016",
+                "amount": 16
+              },
+              {
+                "id": "17",
+                "name": "Registro 017",
+                "amount": 17
+              },
+              {
+                "id": "18",
+                "name": "Registro 018",
+                "amount": 18
+              },
+              {
+                "id": "19",
+                "name": "Registro 019",
+                "amount": 19
+              },
+              {
+                "id": "20",
+                "name": "Registro 020",
+                "amount": 20
+              },
+              {
+                "id": "21",
+                "name": "Registro 021",
+                "amount": 21
+              },
+              {
+                "id": "22",
+                "name": "Registro 022",
+                "amount": 22
+              },
+              {
+                "id": "23",
+                "name": "Registro 023",
+                "amount": 23
+              },
+              {
+                "id": "24",
+                "name": "Registro 024",
+                "amount": 24
+              },
+              {
+                "id": "25",
+                "name": "Registro 025",
+                "amount": 25
+              },
+              {
+                "id": "26",
+                "name": "Registro 026",
+                "amount": 26
+              },
+              {
+                "id": "27",
+                "name": "Registro 027",
+                "amount": 27
+              },
+              {
+                "id": "28",
+                "name": "Registro 028",
+                "amount": 28
+              },
+              {
+                "id": "29",
+                "name": "Registro 029",
+                "amount": 29
+              },
+              {
+                "id": "30",
+                "name": "Registro 030",
+                "amount": 30
+              },
+              {
+                "id": "31",
+                "name": "Registro 031",
+                "amount": 31
+              },
+              {
+                "id": "32",
+                "name": "Registro 032",
+                "amount": 32
+              },
+              {
+                "id": "33",
+                "name": "Registro 033",
+                "amount": 33
+              },
+              {
+                "id": "34",
+                "name": "Registro 034",
+                "amount": 34
+              },
+              {
+                "id": "35",
+                "name": "Registro 035",
+                "amount": 35
+              },
+              {
+                "id": "36",
+                "name": "Registro 036",
+                "amount": 36
+              },
+              {
+                "id": "37",
+                "name": "Registro 037",
+                "amount": 37
+              },
+              {
+                "id": "38",
+                "name": "Registro 038",
+                "amount": 38
+              },
+              {
+                "id": "39",
+                "name": "Registro 039",
+                "amount": 39
+              },
+              {
+                "id": "40",
+                "name": "Registro 040",
+                "amount": 40
+              },
+              {
+                "id": "41",
+                "name": "Registro 041",
+                "amount": 41
+              },
+              {
+                "id": "42",
+                "name": "Registro 042",
+                "amount": 42
+              },
+              {
+                "id": "43",
+                "name": "Registro 043",
+                "amount": 43
+              },
+              {
+                "id": "44",
+                "name": "Registro 044",
+                "amount": 44
+              },
+              {
+                "id": "45",
+                "name": "Registro 045",
+                "amount": 45
+              },
+              {
+                "id": "46",
+                "name": "Registro 046",
+                "amount": 46
+              },
+              {
+                "id": "47",
+                "name": "Registro 047",
+                "amount": 47
+              },
+              {
+                "id": "48",
+                "name": "Registro 048",
+                "amount": 48
+              },
+              {
+                "id": "49",
+                "name": "Registro 049",
+                "amount": 49
+              },
+              {
+                "id": "50",
+                "name": "Registro 050",
+                "amount": 50
+              },
+              {
+                "id": "51",
+                "name": "Registro 051",
+                "amount": 51
+              },
+              {
+                "id": "52",
+                "name": "Registro 052",
+                "amount": 52
+              },
+              {
+                "id": "53",
+                "name": "Registro 053",
+                "amount": 53
+              },
+              {
+                "id": "54",
+                "name": "Registro 054",
+                "amount": 54
+              },
+              {
+                "id": "55",
+                "name": "Registro 055",
+                "amount": 55
+              },
+              {
+                "id": "56",
+                "name": "Registro 056",
+                "amount": 56
+              },
+              {
+                "id": "57",
+                "name": "Registro 057",
+                "amount": 57
+              },
+              {
+                "id": "58",
+                "name": "Registro 058",
+                "amount": 58
+              },
+              {
+                "id": "59",
+                "name": "Registro 059",
+                "amount": 59
+              },
+              {
+                "id": "60",
+                "name": "Registro 060",
+                "amount": 60
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

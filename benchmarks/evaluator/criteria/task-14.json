@@ -1,0 +1,226 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "task-14",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/task-14.json",
+    "sha256": "a3c8a3046900166a6a52b71c1128cdb3aecb00047e216dacc02eac0da1f5ab6a"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "3 registros"
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Buscar"
+          },
+          "value": "MAR"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Filtrar"
+          }
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Registros"
+          },
+          "values": [
+            "Mara",
+            "Marcos"
+          ]
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "2 registros"
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Buscar"
+          },
+          "value": "zzz"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Filtrar"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Nenhum resultado"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Limpar"
+          }
+        },
+        {
+          "op": "expect-value",
+          "locator": {
+            "label": "Buscar"
+          },
+          "value": ""
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Registros"
+          },
+          "values": [
+            "Mara",
+            "Marcos",
+            "Bia"
+          ]
+        },
+        {
+          "op": "expect-request",
+          "id": "records",
+          "count": 1,
+          "body": null
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    },
+    {
+      "id": "desktop-functional",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "density": "focus",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "3 registros"
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Buscar"
+          },
+          "value": "MAR"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Filtrar"
+          }
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Registros"
+          },
+          "values": [
+            "Mara",
+            "Marcos"
+          ]
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "2 registros"
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Buscar"
+          },
+          "value": "zzz"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Filtrar"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Nenhum resultado"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Limpar"
+          }
+        },
+        {
+          "op": "expect-value",
+          "locator": {
+            "label": "Buscar"
+          },
+          "value": ""
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Registros"
+          },
+          "values": [
+            "Mara",
+            "Marcos",
+            "Bia"
+          ]
+        },
+        {
+          "op": "expect-request",
+          "id": "records",
+          "count": 1,
+          "body": null
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

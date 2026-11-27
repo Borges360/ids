@@ -1,0 +1,198 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "task-26",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/task-26.json",
+    "sha256": "adb9855754f948ea052d9d90a046682d817d45e0f48ddd63e790d7736c0f11b1"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 320,
+        "height": 900
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Ler documento"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "button",
+            "name": "Fechar documento"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "document-body"
+          },
+          "value": "Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. "
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Aceitar documento"
+          }
+        },
+        {
+          "op": "expect-hidden",
+          "locator": {
+            "role": "dialog",
+            "name": "Documento completo"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "button",
+            "name": "Ler documento"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Documento aceito"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Ler documento"
+          }
+        },
+        {
+          "op": "press",
+          "locator": {
+            "role": "button",
+            "name": "Fechar documento"
+          },
+          "value": "Escape"
+        },
+        {
+          "op": "expect-hidden",
+          "locator": {
+            "role": "dialog",
+            "name": "Documento completo"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "button",
+            "name": "Ler documento"
+          }
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    },
+    {
+      "id": "desktop-functional",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "density": "focus",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Ler documento"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "button",
+            "name": "Fechar documento"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "document-body"
+          },
+          "value": "Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. Conteúdo sintético para leitura e revisão. "
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Aceitar documento"
+          }
+        },
+        {
+          "op": "expect-hidden",
+          "locator": {
+            "role": "dialog",
+            "name": "Documento completo"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "button",
+            "name": "Ler documento"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Documento aceito"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Ler documento"
+          }
+        },
+        {
+          "op": "press",
+          "locator": {
+            "role": "button",
+            "name": "Fechar documento"
+          },
+          "value": "Escape"
+        },
+        {
+          "op": "expect-hidden",
+          "locator": {
+            "role": "dialog",
+            "name": "Documento completo"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "role": "button",
+            "name": "Ler documento"
+          }
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

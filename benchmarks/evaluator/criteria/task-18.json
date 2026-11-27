@@ -1,0 +1,248 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "task-18",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/task-18.json",
+    "sha256": "537df5122e3e4b0f414d60bebfb3525006b2a84da92359e678e493c9a2e7ff70"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Continuar"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "label": "Nome"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "order",
+          "count": 0,
+          "body": null
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Nome"
+          },
+          "value": "Lia"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Continuar"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "review-name"
+          },
+          "value": "Lia"
+        },
+        {
+          "op": "expect-request",
+          "id": "order",
+          "count": 0,
+          "body": null
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Voltar"
+          }
+        },
+        {
+          "op": "expect-value",
+          "locator": {
+            "label": "Nome"
+          },
+          "value": "Lia"
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Nome"
+          },
+          "value": "Lia Moura"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Continuar"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "review-name"
+          },
+          "value": "Lia Moura"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Confirmar pedido"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "order",
+          "count": 1,
+          "body": {
+            "name": "Lia Moura"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Pedido confirmado"
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    },
+    {
+      "id": "desktop-functional",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "density": "focus",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Continuar"
+          }
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "label": "Nome"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "order",
+          "count": 0,
+          "body": null
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Nome"
+          },
+          "value": "Lia"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Continuar"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "review-name"
+          },
+          "value": "Lia"
+        },
+        {
+          "op": "expect-request",
+          "id": "order",
+          "count": 0,
+          "body": null
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Voltar"
+          }
+        },
+        {
+          "op": "expect-value",
+          "locator": {
+            "label": "Nome"
+          },
+          "value": "Lia"
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Nome"
+          },
+          "value": "Lia Moura"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Continuar"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "review-name"
+          },
+          "value": "Lia Moura"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Confirmar pedido"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "order",
+          "count": 1,
+          "body": {
+            "name": "Lia Moura"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Pedido confirmado"
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

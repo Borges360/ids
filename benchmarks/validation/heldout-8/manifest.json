@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "public-worker-validation",
+  "governanceContractHash": "9b4864d548d799f25ed7cb174c6e9e95e3e7ede5e65544f07e8bb88d4b36347d",
+  "caseId": "heldout-8",
+  "patternIds": [
+    "navigation-menu"
+  ],
+  "coverage": {
+    "states": {
+      "default": {
+        "applicable": true,
+        "scenario": "default",
+        "phase": "final"
+      },
+      "loading": {
+        "applicable": false,
+        "reason": "Task family 28 does not expose loading in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      },
+      "empty": {
+        "applicable": false,
+        "reason": "Task family 28 does not expose empty in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      },
+      "error": {
+        "applicable": false,
+        "reason": "Task family 28 does not expose error in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      },
+      "disabled": {
+        "applicable": false,
+        "reason": "Task family 28 does not expose disabled in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      },
+      "invalid": {
+        "applicable": false,
+        "reason": "Task family 28 does not expose invalid in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      },
+      "success": {
+        "applicable": false,
+        "reason": "Task family 28 does not expose success in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      },
+      "modal": {
+        "applicable": false,
+        "reason": "Task family 28 does not expose modal in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      },
+      "selected": {
+        "applicable": false,
+        "reason": "Task family 28 does not expose selected in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      },
+      "readonly": {
+        "applicable": false,
+        "reason": "Task family 28 does not expose readonly in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      },
+      "long-content": {
+        "applicable": false,
+        "reason": "Task family 28 does not expose long-content in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      }
+    },
+    "viewports": [
+      "mobile",
+      "tablet",
+      "desktop"
+    ],
+    "themes": [
+      "light",
+      "dark",
+      "contrast-light",
+      "contrast-dark"
+    ],
+    "densities": [
+      "calm",
+      "focus"
+    ],
+    "keyboard": [],
+    "content": {
+      "classification": "synthetic",
+      "fixture": {
+        "path": "benchmarks/validation/heldout-8/fixture.json",
+        "sha256": "5fedbf07e54276f0657e97db697bd98594c525d731412fb2505e2347d0c6ecc3"
+      }
+    },
+    "reducedMotion": "reduce"
+  },
+  "routes": {
+    "path": "benchmarks/validation/heldout-8/routes.json",
+    "sha256": "7011065e2776df9fbbde5d0cddea8c320661bdaa2d919df104fe5edc79c5361d"
+  },
+  "fixtures": [
+    {
+      "id": "heldout-8",
+      "path": "benchmarks/validation/heldout-8/fixture.json",
+      "sha256": "5fedbf07e54276f0657e97db697bd98594c525d731412fb2505e2347d0c6ecc3"
+    }
+  ],
+  "technicalPolicy": {
+    "path": "benchmarks/validation/technical-authority-policy.json",
+    "sha256": "adcb4bb12807f564cb60e4de963f4ed2a8adfeb25526056132a3cfe58aec5020"
+  }
+}

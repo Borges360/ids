@@ -1,0 +1,9 @@
+Preferências
+projeto atual · Alterações não salvas
+  Conexão: local
+  Idioma: pt-BR
+> Limite de tarefas: 5
+1-3 de 3 linhas
+Quantidade de tarefas simultâneas, entre 1 e 8.
+[Salvar alterações] [Ajuda] [Fechar]
+Enter editar/abrir · Tab ações · Esc voltar · salvar

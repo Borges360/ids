@@ -1,0 +1,157 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "task-05",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/task-05.json",
+    "sha256": "29cd6d483e3124b1fd12acebdff24b003952d11595f8e43be4d878c9d1c4768c"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Nome do item"
+          },
+          "value": "Caderno"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Adicionar item"
+          }
+        },
+        {
+          "op": "expect-visible",
+          "locator": {
+            "text": "Caderno"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "create",
+          "count": 1,
+          "body": {
+            "name": "Caderno"
+          }
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Editar Caderno"
+          }
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Nome do item"
+          },
+          "value": "Caderno revisado"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Salvar alterações"
+          }
+        },
+        {
+          "op": "expect-visible",
+          "locator": {
+            "text": "Caderno revisado"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "update",
+          "count": 1,
+          "body": {
+            "name": "Caderno revisado"
+          }
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Excluir Caderno revisado"
+          }
+        },
+        {
+          "op": "expect-visible",
+          "locator": {
+            "role": "dialog",
+            "name": "Excluir item"
+          }
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Cancelar"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "delete",
+          "count": 0,
+          "body": null
+        },
+        {
+          "op": "expect-visible",
+          "locator": {
+            "text": "Caderno revisado"
+          }
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Excluir Caderno revisado"
+          }
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Excluir item"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "delete",
+          "count": 1,
+          "body": null
+        },
+        {
+          "op": "expect-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Nenhum item"
+        },
+        {
+          "op": "expect-hidden",
+          "locator": {
+            "role": "dialog",
+            "name": "Excluir item"
+          }
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

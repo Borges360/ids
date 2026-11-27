@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0",
+  "id": "tabs",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Abas teclado tabs",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "div",
+      "button",
+      "section"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/tabs.html",
+    "examples/tabs-default.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "abas",
+    "teclado",
+    "tabs"
+  ],
+  "markup": "<div class=\"in-tabs\" role=\"tablist\" aria-label=\"Detalhes\"><button id=\"tab-one\" role=\"tab\" aria-selected=\"true\" aria-controls=\"panel-one\">Resumo</button><button id=\"tab-two\" role=\"tab\" tabindex=\"-1\" aria-selected=\"false\" aria-controls=\"panel-two\">Histórico</button></div><section id=\"panel-one\" role=\"tabpanel\" aria-labelledby=\"tab-one\">Resumo sintético</section><section id=\"panel-two\" role=\"tabpanel\" aria-labelledby=\"tab-two\" hidden>Histórico sintético</section>"
+}

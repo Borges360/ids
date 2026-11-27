@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "public-worker-validation",
+  "governanceContractHash": "9b4864d548d799f25ed7cb174c6e9e95e3e7ede5e65544f07e8bb88d4b36347d",
+  "caseId": "heldout-9",
+  "patternIds": [
+    "alert"
+  ],
+  "coverage": {
+    "states": {
+      "default": {
+        "applicable": true,
+        "scenario": "default",
+        "phase": "final"
+      },
+      "loading": {
+        "applicable": false,
+        "reason": "Task family 29 does not expose loading in its published functional/fixture contract. Declared API statuses: network-abort, 200. General component state robustness is covered by the composition matrix."
+      },
+      "empty": {
+        "applicable": false,
+        "reason": "Task family 29 does not expose empty in its published functional/fixture contract. Declared API statuses: network-abort, 200. General component state robustness is covered by the composition matrix."
+      },
+      "error": {
+        "applicable": true,
+        "scenario": "primary-flow",
+        "phase": "action-capture",
+        "actionIndex": 2
+      },
+      "disabled": {
+        "applicable": false,
+        "reason": "Task family 29 does not expose disabled in its published functional/fixture contract. Declared API statuses: network-abort, 200. General component state robustness is covered by the composition matrix."
+      },
+      "invalid": {
+        "applicable": false,
+        "reason": "Task family 29 does not expose invalid in its published functional/fixture contract. Declared API statuses: network-abort, 200. General component state robustness is covered by the composition matrix."
+      },
+      "success": {
+        "applicable": true,
+        "scenario": "primary-flow",
+        "phase": "final"
+      },
+      "modal": {
+        "applicable": false,
+        "reason": "Task family 29 does not expose modal in its published functional/fixture contract. Declared API statuses: network-abort, 200. General component state robustness is covered by the composition matrix."
+      },
+      "selected": {
+        "applicable": false,
+        "reason": "Task family 29 does not expose selected in its published functional/fixture contract. Declared API statuses: network-abort, 200. General component state robustness is covered by the composition matrix."
+      },
+      "readonly": {
+        "applicable": false,
+        "reason": "Task family 29 does not expose readonly in its published functional/fixture contract. Declared API statuses: network-abort, 200. General component state robustness is covered by the composition matrix."
+      },
+      "long-content": {
+        "applicable": false,
+        "reason": "Task family 29 does not expose long-content in its published functional/fixture contract. Declared API statuses: network-abort, 200. General component state robustness is covered by the composition matrix."
+      }
+    },
+    "viewports": [
+      "mobile",
+      "tablet",
+      "desktop"
+    ],
+    "themes": [
+      "light",
+      "dark",
+      "contrast-light",
+      "contrast-dark"
+    ],
+    "densities": [
+      "calm",
+      "focus"
+    ],
+    "keyboard": [],
+    "content": {
+      "classification": "synthetic",
+      "fixture": {
+        "path": "benchmarks/validation/heldout-9/fixture.json",
+        "sha256": "a1882ec0d3e1ff136d90e21aec56f04bc0aecca15749389167460db4155d9387"
+      }
+    },
+    "reducedMotion": "reduce"
+  },
+  "routes": {
+    "path": "benchmarks/validation/heldout-9/routes.json",
+    "sha256": "fff58a22087bf3d3fa0a1753226e323dd36a2eb3ab36301d2827b6671553230b"
+  },
+  "fixtures": [
+    {
+      "id": "heldout-9",
+      "path": "benchmarks/validation/heldout-9/fixture.json",
+      "sha256": "a1882ec0d3e1ff136d90e21aec56f04bc0aecca15749389167460db4155d9387"
+    }
+  ],
+  "technicalPolicy": {
+    "path": "benchmarks/validation/technical-authority-policy.json",
+    "sha256": "adcb4bb12807f564cb60e4de963f4ed2a8adfeb25526056132a3cfe58aec5020"
+  }
+}

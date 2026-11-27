@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0",
+  "classification": "synthetic",
+  "clock": "2026-02-01T12:00:00.000Z",
+  "seed": 306,
+  "routes": [
+    {
+      "id": "zoom",
+      "path": "/api/zoom-form",
+      "method": "POST",
+      "responses": [
+        {
+          "status": 200,
+          "json": {
+            "ok": true
+          }
+        }
+      ]
+    }
+  ]
+}

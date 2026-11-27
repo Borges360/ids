@@ -38,6 +38,12 @@ export function validateCatalog(tokens: TokenDef[] = allTokens()): ValidationIss
         values.push({ theme: theme as Appearance, value });
       }
     }
+    for (const value of Object.values(token.density ?? {})) {
+      values.push({ value });
+    }
+    if (!/^--in-[a-zA-Z0-9-]+$/.test(token.cssVar) || token.id !== token.path.join('.')) {
+      issues.push({ severity: "error", code: "naming", token: token.id, message: "Path/id ou variável CSS fora da taxonomia INTEIRO." });
+    }
     if (values.length === 0 && !token.density) {
       issues.push({ severity: "error", code: "missing-value", token: token.id, message: "Token sem valor." });
     }

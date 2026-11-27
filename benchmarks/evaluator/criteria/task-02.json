@@ -1,0 +1,148 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "task-02",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/task-02.json",
+    "sha256": "2b839f8298d0e2390fbc1b91b1952c8374ab8ec1379cf9dda80fc27feb16e7bb"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "expect-visible",
+          "locator": {
+            "text": "Ana Lima"
+          }
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Pessoas"
+          },
+          "values": [
+            "Ana Lima",
+            "Beto Reis"
+          ]
+        },
+        {
+          "op": "expect-disabled",
+          "locator": {
+            "role": "button",
+            "name": "Página anterior"
+          }
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Próxima página"
+          }
+        },
+        {
+          "op": "expect-visible",
+          "locator": {
+            "text": "Cris Luz"
+          }
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Pessoas"
+          },
+          "values": [
+            "Cris Luz",
+            "Dani Melo"
+          ]
+        },
+        {
+          "op": "expect-hidden",
+          "locator": {
+            "text": "Ana Lima"
+          }
+        },
+        {
+          "op": "expect-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Página 2 de 3"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Próxima página"
+          }
+        },
+        {
+          "op": "expect-visible",
+          "locator": {
+            "text": "Eva Dias"
+          }
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Pessoas"
+          },
+          "values": [
+            "Eva Dias"
+          ]
+        },
+        {
+          "op": "expect-disabled",
+          "locator": {
+            "role": "button",
+            "name": "Próxima página"
+          }
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Página anterior"
+          }
+        },
+        {
+          "op": "expect-visible",
+          "locator": {
+            "text": "Cris Luz"
+          }
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Pessoas"
+          },
+          "values": [
+            "Cris Luz",
+            "Dani Melo"
+          ]
+        },
+        {
+          "op": "expect-request",
+          "id": "page2",
+          "count": 2,
+          "body": null
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

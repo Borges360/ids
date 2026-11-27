@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "1.0",
+  "classification": "synthetic",
+  "clock": "2026-01-01T12:00:00.000Z",
+  "seed": 5,
+  "routes": [
+    {
+      "id": "items",
+      "path": "/api/items",
+      "method": "GET",
+      "responses": [
+        {
+          "status": 200,
+          "json": {
+            "items": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "create",
+      "path": "/api/items",
+      "method": "POST",
+      "responses": [
+        {
+          "status": 201,
+          "json": {
+            "id": 1,
+            "name": "Caderno"
+          }
+        }
+      ]
+    },
+    {
+      "id": "update",
+      "path": "/api/items/1",
+      "method": "PUT",
+      "responses": [
+        {
+          "status": 200,
+          "json": {
+            "id": 1,
+            "name": "Caderno revisado"
+          }
+        }
+      ]
+    },
+    {
+      "id": "delete",
+      "path": "/api/items/1",
+      "method": "DELETE",
+      "responses": [
+        {
+          "status": 200,
+          "json": {
+            "deleted": true
+          }
+        }
+      ]
+    }
+  ]
+}

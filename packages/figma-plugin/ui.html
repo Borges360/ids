@@ -1,0 +1,7 @@
+<!doctype html><html lang="pt-BR"><meta charset="utf-8"><body>
+<h1>INTEIRO Variables</h1><p>Selecione o arquivo figma.variables.json gerado pelo build. A importação atualiza a coleção INTEIRO.</p>
+<label>Arquivo de variáveis <input type="file" id="file" accept=".json"></label><p role="status" id="status"></p>
+<script>
+document.getElementById('file').onchange = async event => { try { const data = JSON.parse(await event.target.files[0].text()); parent.postMessage({ pluginMessage: { data } }, '*'); } catch { document.getElementById('status').textContent = 'Não foi possível ler o JSON.'; } };
+onmessage = event => { if (event.data.pluginMessage) document.getElementById('status').textContent = event.data.pluginMessage.message; };
+</script></body></html>

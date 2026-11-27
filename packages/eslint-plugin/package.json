@@ -1,0 +1,10 @@
+{
+  "name": "@inteiro/eslint-plugin",
+  "version": "2.0.0-rc.1",
+  "type": "module",
+  "exports": "./index.js",
+  "peerDependencies": {
+    "eslint": ">=9"
+  },
+  "license": "MIT"
+}

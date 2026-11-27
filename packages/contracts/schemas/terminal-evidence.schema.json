@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://inteiro.dev/schemas/terminal/1.0.0/evidence.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "criterion",
+    "status",
+    "kind",
+    "platform",
+    "terminal",
+    "renderer",
+    "command",
+    "sourceCommit",
+    "timestamp",
+    "artifact",
+    "sha256"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "criterion": {
+      "enum": [
+        "TERM-01",
+        "TERM-02",
+        "TERM-03",
+        "TERM-04",
+        "TERM-05",
+        "TERM-06",
+        "TERM-07",
+        "TERM-08",
+        "TERM-09",
+        "TERM-10",
+        "TERM-11",
+        "TERM-12"
+      ]
+    },
+    "status": {
+      "enum": [
+        "passed",
+        "failed",
+        "pending",
+        "blocked"
+      ]
+    },
+    "kind": {
+      "enum": [
+        "state",
+        "transcript",
+        "pty",
+        "host",
+        "screen-reader",
+        "review"
+      ]
+    },
+    "platform": {
+      "type": "string",
+      "minLength": 1
+    },
+    "terminal": {
+      "type": "string",
+      "minLength": 1
+    },
+    "renderer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "command": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sourceCommit": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "artifact": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

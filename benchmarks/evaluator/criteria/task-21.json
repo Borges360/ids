@@ -1,0 +1,186 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "task-21",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/task-21.json",
+    "sha256": "c6ff4f18f84035c9580a9994bf707300a92f1327f4900015192bc4b08f598b23"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 320,
+        "height": 900
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "quantidade"
+          },
+          "value": "60"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "total"
+          },
+          "value": "1830"
+        },
+        {
+          "op": "expect-count",
+          "locator": {
+            "role": "listitem"
+          },
+          "count": 60
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Buscar"
+          },
+          "value": "Registro 009"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Filtrar"
+          }
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Relatórios"
+          },
+          "values": [
+            "Registro 009"
+          ]
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "total"
+          },
+          "value": "9"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Limpar"
+          }
+        },
+        {
+          "op": "expect-count",
+          "locator": {
+            "role": "listitem"
+          },
+          "count": 60
+        },
+        {
+          "op": "expect-request",
+          "id": "metrics",
+          "count": 1,
+          "body": null
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    },
+    {
+      "id": "desktop-functional",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "density": "focus",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "quantidade"
+          },
+          "value": "60"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "total"
+          },
+          "value": "1830"
+        },
+        {
+          "op": "expect-count",
+          "locator": {
+            "role": "listitem"
+          },
+          "count": 60
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Buscar"
+          },
+          "value": "Registro 009"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Filtrar"
+          }
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Relatórios"
+          },
+          "values": [
+            "Registro 009"
+          ]
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "total"
+          },
+          "value": "9"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Limpar"
+          }
+        },
+        {
+          "op": "expect-count",
+          "locator": {
+            "role": "listitem"
+          },
+          "count": 60
+        },
+        {
+          "op": "expect-request",
+          "id": "metrics",
+          "count": 1,
+          "body": null
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

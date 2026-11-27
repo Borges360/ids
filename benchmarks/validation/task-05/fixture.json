@@ -1,0 +1,64 @@
+{
+  "classification": "synthetic",
+  "clock": "2026-01-01T12:00:00.000Z",
+  "seed": 5,
+  "syntheticText": [
+    "rafa@example.test"
+  ],
+  "responses": [
+    {
+      "url": "/api/items",
+      "method": "GET",
+      "sequence": [
+        {
+          "body": {
+            "items": []
+          },
+          "status": 200,
+          "alias": "items-0"
+        }
+      ]
+    },
+    {
+      "url": "/api/items",
+      "method": "POST",
+      "sequence": [
+        {
+          "body": {
+            "id": 1,
+            "name": "Caderno"
+          },
+          "status": 201,
+          "alias": "create-0"
+        }
+      ]
+    },
+    {
+      "url": "/api/items/1",
+      "method": "PUT",
+      "sequence": [
+        {
+          "body": {
+            "id": 1,
+            "name": "Caderno revisado"
+          },
+          "status": 200,
+          "alias": "update-0"
+        }
+      ]
+    },
+    {
+      "url": "/api/items/1",
+      "method": "DELETE",
+      "sequence": [
+        {
+          "body": {
+            "deleted": true
+          },
+          "status": 200,
+          "alias": "delete-0"
+        }
+      ]
+    }
+  ]
+}

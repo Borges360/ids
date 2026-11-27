@@ -59,7 +59,7 @@ export const qualityPages = [
         html: `
           ${code("bash", `npx inteiro tokens validate
 npm run test:contrast`)}
-          <p>O teste de contraste mede pares de contrato. Não é um scanner de página. Não há, neste repositório, suíte Playwright nem axe sobre a documentação no momento em que esta página foi escrita. Um teste de catálogo em Vitest confere links internos e a presença do menu. Isso não equivale a conformidade WCAG.</p>
+          <p>O teste de contraste mede pares de contrato. Não é um scanner de página. Há suíte Playwright com axe sobre os templates no Storybook e testes de interação em jsdom. Execute npm run test:browser. Um teste de catálogo em Vitest confere links internos e a presença do menu. Isso não equivale a conformidade WCAG.</p>
           <p>Manual mínimo antes de chamar uma tela de pronta: Tab por todos os controles, Escape nos diálogos, nome no leitor de tela, 320px sem perda de função, tema light e dark, reduced motion. Compare capturas de rotas críticas em 390px e 1280px; confira alinhamento, dimensões de componentes equivalentes, hierarquia e quebra de texto. Uma auditoria de tokens ou fonte não substitui essa leitura visual.</p>
         `
       }
@@ -95,7 +95,7 @@ npm run test:contrast`)}
         title: "CSS, TypeScript e temas",
         html: `
           <p>Custom properties usam o prefixo <code>--in-</code>. O arquivo <code>inteiro.css</code> reúne os temas. Classes de recipe vivem em <code>packages/design-system/src/components.css</code> e não são geradas pelo catálogo — essa é uma fronteira real: mudar um token de botão no catálogo atualiza a variável, e a classe já consome a variável.</p>
-          <p>TypeScript público de tokens sai em <code>packages/tokens/dist/ts/tokens.generated.ts</code>. O provider React está em <code>packages/react/src/InteiroProvider.ts</code>. Não há contrato de props para Button.</p>
+          <p>TypeScript público de tokens sai em <code>packages/tokens/dist/ts/tokens.generated.ts</code>. O provider React está em <code>packages/react/src/InteiroProvider.ts</code>. Os componentes React exportam tipos de props e ESM em packages/react/dist.</p>
           <p>Tema é atributo no ancestral mais CSS variables. Não há runtime de tema em JavaScript além do provider, que escreve <code>data-in-theme</code> e <code>data-in-density</code>.</p>
         `
       },
@@ -140,7 +140,7 @@ npm run test:contrast`)}
         html: `
           <ol>
             <li>Identity Owner decide se a mudança continua sendo INTEIRO.</li>
-            <li>Altere o catálogo em <code>packages/tokens/src/catalog</code>, nunca os arquivos gerados.</li>
+            <li>Altere o catálogo em <code>packages/tokens/source/catalog.json</code>, nunca os arquivos gerados.</li>
             <li><code>npm run build && npm test</code>.</li>
             <li>Changelog com Added, Changed, Fixed, Accessibility, Deprecated, Removed, Migration.</li>
             <li>ADR curto para decisão estrutural, em <code>docs/adrs/</code> quando necessário. Já existe o ADR “Orange is commit, not generic accent” no documento mestre.</li>
@@ -153,7 +153,7 @@ npm run test:contrast`)}
         id: "versao",
         title: "Versão, depreciação e migração",
         html: `
-          <p>SemVer mais contrato visual. Versão do IDS <span class="in-voice-machine">1.1.0</span>; os valores do catálogo seguem em <span class="in-voice-machine">1.0.0</span>. Changelog na raiz.</p>
+          <p>SemVer mais contrato visual. Versão do IDS <span class="in-voice-machine">1.2.0</span>; catálogo de tokens <span class="in-voice-machine">1.1.0</span>. Changelog na raiz.</p>
           <p><code>color.accent</code> está depreciado. O substituto é <code>color.identity.commit</code>. Não use <code>--in-color-accent</code> em código novo.</p>
           ${code("bash", "npx inteiro migrate .")}
           <p>A migração de um sistema genérico (Inter, roxo <span class="in-voice-machine">#8B5CF6</span>, laranja <span class="in-voice-machine">#FF9138</span>) para INTEIRO é mudança de linguagem, não search-and-replace. Ver <code>docs/MIGRATION.md</code>.</p>
@@ -227,9 +227,55 @@ npm run test:contrast`)}
         `
       },
       {
-        id: "changelog",
-        title: "Changelog 1.1.0",
+        id: "versoes",
+        title: "Versões da documentação",
         html: `
+          <p>Esta documentação é versionada. Cada versão publicada fica congelada em <code>/v/&lt;versão&gt;/</code>, com os tokens, o CSS dos componentes e o conteúdo daquela versão. Use o seletor no rodapé do menu ou os links abaixo. As páginas arquivadas mostram uma faixa de aviso e não recebem correções.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Versão</th><th>Situação</th><th>Documentação</th></tr></thead>
+              <tbody>
+                <tr><td><span class="in-voice-machine">2.0.0-rc.1</span></td><td>Atual (release candidate)</td><td><a href="/">Esta página</a>. Todos os pacotes numa única versão, com o <code>@inteiro/terminal</code> e a documentação versionada. O visual mais suave (superfícies, bordas e espaçamento padrão) ainda é proposta e entra antes da 2.0.0.</td></tr>
+                <tr><td><span class="in-voice-machine">1.3.2</span></td><td>Arquivada</td><td><a href="/v/1.3.2/">/v/1.3.2/</a></td></tr>
+                <tr><td><span class="in-voice-machine">1.3.1</span></td><td>Arquivada</td><td><a href="/v/1.3.1/">/v/1.3.1/</a></td></tr>
+                <tr><td><span class="in-voice-machine">1.1.1</span></td><td>Arquivada</td><td><a href="/v/1.1.1/">/v/1.1.1/</a></td></tr>
+                <tr><td><span class="in-voice-machine">1.1.0</span></td><td>Arquivada</td><td><a href="/v/1.1.0/">/v/1.1.0/</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>O Storybook e as fontes são sempre os da versão atual. A lista de versões vem de <a href="/versions.json"><code>/versions.json</code></a>. Para arquivar uma versão nova: <code>node scripts/archive-docs-version.mjs release/x.y.z x.y.z</code>.</p>
+        `
+      },
+      {
+        id: "changelog",
+        title: "Changelog",
+        html: `
+          <h3>2.0.0-rc.1</h3>
+          <ul>
+            <li>Added — <code>@inteiro/terminal</code> com mensagens <code>en</code>/<code>pt-BR</code>, apresentação <code>standard</code>, Esc duplo para descartar, linhas de ação cancelável e cópia versionada para extensões (<code>vendor:terminal</code>).</li>
+            <li>Added — servidor MCP por HTTP na mesma imagem do site, e documentação versionada com versões anteriores em <code>/v/&lt;versão&gt;/</code>.</li>
+            <li>Changed — todos os pacotes passam a sair com uma versão única.</li>
+          </ul>
+          <h3>1.3.2</h3>
+          <ul>
+            <li>Changed — documentação do Terminal reorganizada em cinco páginas, em português e inglês, com a saída real das projeções.</li>
+            <li>Added — fundamentos visuais e padrões do Terminal.</li>
+          </ul>
+          <h3>1.3.1</h3>
+          <ul>
+            <li>Fixed — a imagem da demo volta a compilar no Jenkins; <code>node-pty</code> deixa de ser dependência.</li>
+          </ul>
+          <h3>1.3.0</h3>
+          <ul>
+            <li>Added — INTEIRO Terminal 1.0.0: 23 componentes em 18 famílias e contratos de teclado e foco.</li>
+          </ul>
+          <h3>1.1.1</h3>
+          <ul>
+            <li>Added — matriz MCP por rota a partir do inventário informado, com viewports de 320px, 390px, 768px, 1280px e 1440px conforme shell e complexidade.</li>
+            <li>Changed — revisão visual explicita critérios para quebras naturais, clipping, alinhamento e escala consistente, com registro de causa, ação, validação e reversão.</li>
+            <li>Added — auditoria de fonte sinaliza regras CSS que podem fragmentar texto ou esconder conteúdo; a captura humana continua decidindo o resultado visual.</li>
+          </ul>
+          <h3>1.1.0</h3>
           <ul>
             <li>Added — protocolo MCP de revisão visual e recipes de shell de aplicação, navegação mobile, perfil e fluxo por etapas.</li>
             <li>Changed — auditoria estática deixa de ser confundida com aprovação visual; erros de ferramenta são devolvidos como erro MCP.</li>

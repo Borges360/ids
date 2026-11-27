@@ -1,0 +1,27 @@
+{
+  "classification": "synthetic",
+  "clock": "2026-01-01T12:00:00.000Z",
+  "seed": 103,
+  "syntheticText": [
+    "rafa@example.test"
+  ],
+  "responses": [
+    {
+      "url": "/api/records",
+      "method": "GET",
+      "sequence": [
+        {
+          "body": {
+            "items": [
+              "Mara",
+              "Marcos",
+              "Bia"
+            ]
+          },
+          "status": 200,
+          "alias": "records-0"
+        }
+      ]
+    }
+  ]
+}

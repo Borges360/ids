@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "1.0",
+  "routes": [
+    {
+      "id": "heldout-10",
+      "path": "/src/index.html",
+      "criticality": "high",
+      "fixture": "heldout-10",
+      "viewports": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "modes": [
+        "light-calm",
+        "light-focus",
+        "dark-calm",
+        "dark-focus",
+        "contrast-light-calm",
+        "contrast-light-focus",
+        "contrast-dark-calm",
+        "contrast-dark-focus"
+      ],
+      "states": [
+        {
+          "id": "default",
+          "actions": [
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "main"
+              }
+            }
+          ]
+        },
+        {
+          "id": "primary-flow",
+          "actions": [
+            {
+              "type": "waitForResponseAlias",
+              "alias": "draft-0"
+            },
+            {
+              "type": "fill",
+              "target": {
+                "role": "textbox",
+                "name": "Título"
+              },
+              "value": "Título sintético"
+            },
+            {
+              "type": "click",
+              "target": {
+                "role": "button",
+                "name": "Visualizar"
+              }
+            },
+            {
+              "type": "expectText",
+              "target": {
+                "testId": "preview-title"
+              },
+              "value": "Título sintético"
+            },
+            {
+              "type": "click",
+              "target": {
+                "role": "button",
+                "name": "Publicar conteúdo"
+              }
+            },
+            {
+              "type": "expectVisible",
+              "target": {
+                "role": "dialog",
+                "name": "Publicar versão"
+              }
+            },
+            {
+              "type": "click",
+              "target": {
+                "role": "button",
+                "name": "Confirmar publicação"
+              }
+            },
+            {
+              "type": "expectDisabled",
+              "target": {
+                "role": "button",
+                "name": "Confirmar publicação"
+              }
+            },
+            {
+              "type": "screenshot",
+              "stateId": "loading"
+            },
+            {
+              "type": "releaseResponseAlias",
+              "alias": "published"
+            },
+            {
+              "type": "waitForResponseAlias",
+              "alias": "publish-0"
+            },
+            {
+              "type": "expectText",
+              "target": {
+                "role": "status"
+              },
+              "value": "Publicação concluída"
+            }
+          ]
+        }
+      ],
+      "not_applicable": {
+        "empty": "Task family 30 does not expose empty in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix.",
+        "error": "Task family 30 does not expose error in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix.",
+        "invalid": "Task family 30 does not expose invalid in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix.",
+        "selected": "Task family 30 does not expose selected in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix.",
+        "readonly": "Task family 30 does not expose readonly in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix.",
+        "long-content": "Task family 30 does not expose long-content in its published functional/fixture contract. Declared API statuses: 200. General component state robustness is covered by the composition matrix."
+      }
+    }
+  ]
+}

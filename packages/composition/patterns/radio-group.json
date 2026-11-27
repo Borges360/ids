@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "1.0",
+  "id": "radio-group",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Opção exclusiva radio",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default",
+    "disabled",
+    "invalid",
+    "readonly"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "fieldset",
+      "legend",
+      "label",
+      "input"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/radio-group.html",
+    "examples/radio-group-default.html",
+    "examples/radio-group-disabled.html",
+    "examples/radio-group-invalid.html",
+    "examples/radio-group-readonly.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "opção",
+    "exclusiva",
+    "radio"
+  ],
+  "markup": "<fieldset class=\"in-choice-group\"><legend>Densidade</legend><label class=\"in-choice\"><input type=\"radio\" name=\"density\" checked> Calm</label><label class=\"in-choice\"><input type=\"radio\" name=\"density\"> Focus</label></fieldset>"
+}

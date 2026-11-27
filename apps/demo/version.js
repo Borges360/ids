@@ -1,1 +1,1 @@
-export const IDS_VERSION = "1.1.0";
+export const IDS_VERSION = "2.0.0-rc.1";

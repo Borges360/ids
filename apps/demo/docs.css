@@ -146,6 +146,18 @@ a:hover { color: var(--in-color-identity-primary-hover); }
   line-height: var(--in-type-caption-line-height);
 }
 .sidebar__foot a:hover { color: var(--in-color-text-primary); }
+.version-select {
+  min-block-size: 44px;
+  max-inline-size: 100%;
+  padding-inline: var(--in-space-200);
+  color: var(--in-color-text-primary);
+  background: var(--in-color-background-surface);
+  border: var(--in-border-width-thin, 1px) solid var(--in-color-border-interactive);
+  border-radius: var(--in-radius-sm, 4px);
+  font: inherit;
+  font-size: var(--in-type-caption-size);
+}
+.version-select[hidden] { display: none; }
 
 .docs-main { min-inline-size: 0; max-inline-size: 100%; overflow-x: clip; }
 .topbar {
@@ -203,6 +215,7 @@ kbd {
   color: var(--in-color-text-secondary);
 }
 .appearance select { min-inline-size: 8.5rem; flex: 1 1 auto; }
+.appearance #language { min-inline-size: 12rem; }
 
 .docs-body {
   display: grid;
@@ -627,8 +640,12 @@ html[dir="rtl"] select.in-input { background-position: var(--in-space-300) 50%; 
   }
   .menu-button { grid-column: 1; }
   .search-launch { grid-column: 2; min-inline-size: 0; }
-  .appearance { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; }
+  .appearance { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .appearance label[for="language"] { grid-column: 1 / -1; }
+  .appearance label { flex-direction: column; align-items: stretch; gap: var(--in-space-100); }
+  .appearance label span { overflow-wrap: anywhere; }
   .appearance select { min-inline-size: 0; inline-size: 100%; }
+  .appearance #language { min-inline-size: 0; }
   .crumbs { grid-column: 1 / -1; }
   .doc { padding-inline: var(--in-space-400); }
   .topbar { padding-inline: var(--in-space-300); }
@@ -636,3 +653,62 @@ html[dir="rtl"] select.in-input { background-position: var(--in-space-300) 50%; 
 @media (prefers-reduced-motion: reduce) {
   .skeleton span { animation: none; }
 }
+
+/* INTEIRO Terminal: quadros com a saída real dos componentes. Pintura = papéis de cor do IDS. */
+.pi-roles table { min-inline-size: 40rem; }
+.pi-roles th, .pi-roles td { overflow-wrap: normal; }
+.pi-preview-set { display: flex; flex-wrap: wrap; gap: var(--in-space-400); }
+.pi-preview { margin: 0; display: flex; flex-direction: column; gap: var(--in-space-200); flex: 1 1 100%; min-inline-size: 0; max-inline-size: 44rem; }
+.pi-preview figcaption { font-size: var(--in-type-caption-size); color: var(--in-color-text-secondary); }
+.pi-preview svg { inline-size: 100%; block-size: auto; border: var(--in-border-hairline) solid var(--in-color-border-subtle); border-radius: var(--in-radius-md); }
+.term-set { display: flex; flex-direction: column; gap: var(--in-space-400); }
+.term {
+  margin: 0;
+  inline-size: min(100%, calc(var(--cols, 80) * 1ch + 2 * var(--in-space-400) + 2px));
+  min-inline-size: 0;
+  background: var(--in-color-background-sunken);
+  border: var(--in-border-hairline) solid var(--in-color-border-subtle);
+  border-radius: var(--in-radius-md);
+}
+.term figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--in-space-200) var(--in-space-300);
+  padding: var(--in-space-200) var(--in-space-300);
+  border-block-end: var(--in-border-hairline) solid var(--in-color-border-subtle);
+  font-size: var(--in-type-caption-size);
+  color: var(--in-color-text-secondary);
+}
+.term__name { font-family: var(--in-font-family-machine); color: var(--in-color-text-primary); }
+.term__screen {
+  margin: 0;
+  padding: var(--in-space-400);
+  overflow-x: auto;
+  font-family: var(--in-font-family-machine);
+  font-variation-settings: var(--in-font-voice-machine);
+  font-size: var(--in-type-code-size);
+  line-height: var(--in-type-code-line-height);
+  color: var(--in-color-text-primary);
+}
+.tm-line { display: block; white-space: pre; min-block-size: 1lh; }
+.tm-line--focus { background: var(--in-color-selection-background); }
+.tm-line--title { font-weight: var(--in-font-weight-semibold); }
+.tm-line--muted, .tm-muted { color: var(--in-color-text-secondary); }
+.tm-marker { color: var(--in-color-focus-ring); font-weight: var(--in-font-weight-semibold); }
+.tm-choose { color: var(--in-color-identity-primary); }
+.tm-commit { color: var(--in-color-identity-commit); }
+.tm-success { color: var(--in-color-status-success); }
+.tm-warning { color: var(--in-color-status-warning); }
+.tm-danger { color: var(--in-color-status-danger); }
+.tm-info { color: var(--in-color-status-info); }
+.term-chip {
+  display: inline-block;
+  inline-size: 1rem;
+  block-size: 1rem;
+  margin-inline-end: var(--in-space-200);
+  vertical-align: -0.2em;
+  border: var(--in-border-hairline) solid var(--in-color-border-subtle);
+  border-radius: var(--in-radius-sm);
+}
+.term-token { overflow-wrap: normal; word-break: keep-all; white-space: nowrap; }

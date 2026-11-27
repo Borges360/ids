@@ -1,0 +1,128 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "task-01",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/task-01.json",
+    "sha256": "3c8d20591f282f79cb4e88d9406c0c2d0653b5d844c8a8bd6d8354102c8770a9"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Criar cadastro"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "create",
+          "count": 0,
+          "body": null
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "label": "Nome"
+          }
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Nome"
+          },
+          "value": "Rafa Silva"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Criar cadastro"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "create",
+          "count": 0,
+          "body": null
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "label": "E-mail"
+          }
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "E-mail"
+          },
+          "value": "inválido"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Criar cadastro"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "create",
+          "count": 0,
+          "body": null
+        },
+        {
+          "op": "expect-focused",
+          "locator": {
+            "label": "E-mail"
+          }
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "E-mail"
+          },
+          "value": "rafa@example.test"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Criar cadastro"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "create",
+          "count": 1,
+          "body": {
+            "name": "Rafa Silva",
+            "email": "rafa@example.test"
+          }
+        },
+        {
+          "op": "expect-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Cadastro criado"
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

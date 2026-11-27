@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.0",
+  "id": "IDS-mobile-language-20261028",
+  "type": "change-page",
+  "description": "Corrigir seletor EN/PT-BR cortado no mobile sem alterar rotas ou preferências persistentes do usuário; execução autônoma autorizada em 2026-10-28.",
+  "patternIds": [
+    "app-shell",
+    "mobile-navigation"
+  ],
+  "scope": {
+    "allowedFiles": [
+      "apps/demo/docs.css",
+      "tests/browser/demo-language-mobile.spec.ts"
+    ]
+  },
+  "acceptanceCriteria": [
+    "Seletor de idioma com texto e foco visíveis em 320/375/768/1440 pixels nos dois idiomas e sem overflow horizontal.",
+    "Troca de idioma preserva rota e permite navegação por teclado; nenhum perfil permanente de navegador é usado.",
+    "Preservar conteúdo e diferenças preexistentes; a tradução integral dos corpos documentais permanece uma entrega separada e não será declarada concluída por esta correção."
+  ],
+  "configHash": "580f849de89ba3900321717b039016e7369f24f44cb0e242a89632680c386246",
+  "contextBundleId": "context:0307123a3c467be1f79dfed829b446ea65d3b4561f3f898c24a9d36287907c15"
+}

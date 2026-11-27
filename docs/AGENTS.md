@@ -22,4 +22,4 @@ npx inteiro agents doctor
 
 Automático após install: o harness descobre skills de entrada (`inteiro`, `inteiro-interface`, …). Consulta fina de tokens é sob demanda (CLI/MCP), não por milhares de skills no prompt.
 
-No MCP, `inteiro_audit` é uma análise estática do texto-fonte. Para avaliar a interface renderizada, use `inteiro_get_visual_review`: percorra rotas e estados críticos em desktop e mobile, compare capturas e registre a revisão humana. Tokens e lint não substituem essa etapa.
+No MCP, `inteiro_audit` é uma análise estática do texto-fonte e sinaliza padrões que podem quebrar texto ou cortar conteúdo. Para avaliar a interface renderizada, passe o inventário `routes[]` a `inteiro_get_visual_review`, percorra a matriz de viewports e estados, compare capturas e registre cada defeito com causa provável, ação, validação e reversão. O MCP não captura nem interpreta pixels; tokens, lint e diff não substituem a revisão humana.

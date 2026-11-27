@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "1.0",
+  "id": "field-group",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Campo label ajuda validação",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default",
+    "disabled",
+    "invalid",
+    "readonly"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring",
+    "input.height.md",
+    "color.border.interactive",
+    "color.background.surface"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "div",
+      "label",
+      "input",
+      "p"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/field-group.html",
+    "examples/field-group-default.html",
+    "examples/field-group-disabled.html",
+    "examples/field-group-invalid.html",
+    "examples/field-group-readonly.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "campo",
+    "label",
+    "ajuda",
+    "validação"
+  ],
+  "markup": "<div class=\"in-field-group\"><label class=\"in-field__label\" for=\"field\">Nome</label><input class=\"in-input\" id=\"field\" aria-describedby=\"help\"><p class=\"in-field-help\" id=\"help\">Nome fictício.</p></div>"
+}

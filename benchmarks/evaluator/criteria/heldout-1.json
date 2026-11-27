@@ -1,0 +1,186 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "heldout-1",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/heldout-1.json",
+    "sha256": "6ffadeef8c0d46c1b19ea2e28c5708cd6e0935e694a8859e2106890366d4c68a"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 320,
+        "height": 900
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "rtl",
+      "steps": [
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "quantidade"
+          },
+          "value": "120"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "total"
+          },
+          "value": "7260"
+        },
+        {
+          "op": "expect-count",
+          "locator": {
+            "role": "listitem"
+          },
+          "count": 120
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Buscar"
+          },
+          "value": "تقرير تشغيلي مترجم — 009"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Filtrar"
+          }
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Relatórios"
+          },
+          "values": [
+            "تقرير تشغيلي مترجم — 009"
+          ]
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "total"
+          },
+          "value": "9"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Limpar"
+          }
+        },
+        {
+          "op": "expect-count",
+          "locator": {
+            "role": "listitem"
+          },
+          "count": 120
+        },
+        {
+          "op": "expect-request",
+          "id": "metrics",
+          "count": 1,
+          "body": null
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    },
+    {
+      "id": "desktop-functional",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "density": "focus",
+      "direction": "rtl",
+      "steps": [
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "quantidade"
+          },
+          "value": "120"
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "total"
+          },
+          "value": "7260"
+        },
+        {
+          "op": "expect-count",
+          "locator": {
+            "role": "listitem"
+          },
+          "count": 120
+        },
+        {
+          "op": "fill",
+          "locator": {
+            "label": "Buscar"
+          },
+          "value": "تقرير تشغيلي مترجم — 009"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Filtrar"
+          }
+        },
+        {
+          "op": "expect-ordered-text",
+          "locator": {
+            "role": "list",
+            "name": "Relatórios"
+          },
+          "values": [
+            "تقرير تشغيلي مترجم — 009"
+          ]
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "testId": "total"
+          },
+          "value": "9"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Limpar"
+          }
+        },
+        {
+          "op": "expect-count",
+          "locator": {
+            "role": "listitem"
+          },
+          "count": 120
+        },
+        {
+          "op": "expect-request",
+          "id": "metrics",
+          "count": 1,
+          "body": null
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

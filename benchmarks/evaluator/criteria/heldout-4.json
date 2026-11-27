@@ -1,0 +1,130 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "heldout-4",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/heldout-4.json",
+    "sha256": "65f3dc2105868ce30c4831fea197ee3c54f70be9bcdda08057b799e9f25c9034"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 320,
+        "height": 900
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "rtl",
+      "steps": [
+        {
+          "op": "expect-token-style",
+          "locator": {
+            "testId": "identity"
+          },
+          "name": "font-family",
+          "value": "--in-font-family-sans"
+        },
+        {
+          "op": "expect-token-style",
+          "locator": {
+            "testId": "identity"
+          },
+          "name": "color",
+          "value": "--in-color-text-primary"
+        },
+        {
+          "op": "expect-token-style",
+          "locator": {
+            "testId": "identity"
+          },
+          "name": "background-color",
+          "value": "--in-color-background-surface"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Buscar perfil"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana "
+        },
+        {
+          "op": "expect-request",
+          "id": "identity",
+          "count": 1,
+          "body": null
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    },
+    {
+      "id": "desktop-functional",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "density": "focus",
+      "direction": "rtl",
+      "steps": [
+        {
+          "op": "expect-token-style",
+          "locator": {
+            "testId": "identity"
+          },
+          "name": "font-family",
+          "value": "--in-font-family-sans"
+        },
+        {
+          "op": "expect-token-style",
+          "locator": {
+            "testId": "identity"
+          },
+          "name": "color",
+          "value": "--in-color-text-primary"
+        },
+        {
+          "op": "expect-token-style",
+          "locator": {
+            "testId": "identity"
+          },
+          "name": "background-color",
+          "value": "--in-color-background-surface"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Buscar perfil"
+          }
+        },
+        {
+          "op": "expect-exact-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "تقرير تشغيلي مترجم — nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana nome extenso para revisão humana "
+        },
+        {
+          "op": "expect-request",
+          "id": "identity",
+          "count": 1,
+          "body": null
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

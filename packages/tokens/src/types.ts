@@ -99,5 +99,6 @@ export interface CatalogStats {
 }
 
 export const PREFIX = "in";
-export const VERSION = "1.0.0";
+// Exported document metadata follows the package train; semantic token IDs/values are unchanged.
+export const VERSION = "2.0.0-rc.1";
 export const DTCG_SPEC = "2025.10";

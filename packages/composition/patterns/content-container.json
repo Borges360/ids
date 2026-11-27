@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0",
+  "id": "content-container",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Container conteúdo responsivo",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "section",
+      "h2",
+      "p"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/content-container.html",
+    "examples/content-container-default.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "container",
+    "conteúdo",
+    "responsivo"
+  ],
+  "markup": "<section class=\"in-content-container\" aria-label=\"Conteúdo\"><h2>Conteúdo</h2><p>Informação sintética</p></section>"
+}

@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "independent-task-criteria",
+  "caseId": "task-06",
+  "entry": "/src/index.html",
+  "fixture": {
+    "path": "benchmarks/fixtures/task-06.json",
+    "sha256": "8d0a77e799b3971a0036d062652aeafd3df7bdcf9145620684e24077e6c73432"
+  },
+  "scenarios": [
+    {
+      "id": "mobile-functional",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "theme": "light",
+      "density": "calm",
+      "direction": "ltr",
+      "steps": [
+        {
+          "op": "expect-request",
+          "id": "items",
+          "count": 1,
+          "body": null
+        },
+        {
+          "op": "expect-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Carregando"
+        },
+        {
+          "op": "respond",
+          "id": "initial"
+        },
+        {
+          "op": "expect-text",
+          "locator": {
+            "role": "alert"
+          },
+          "value": "Não foi possível carregar"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Tentar novamente"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "items",
+          "count": 2,
+          "body": null
+        },
+        {
+          "op": "respond",
+          "id": "empty"
+        },
+        {
+          "op": "expect-text",
+          "locator": {
+            "role": "status"
+          },
+          "value": "Nenhum item"
+        },
+        {
+          "op": "click",
+          "locator": {
+            "role": "button",
+            "name": "Atualizar"
+          }
+        },
+        {
+          "op": "expect-request",
+          "id": "items",
+          "count": 3,
+          "body": null
+        },
+        {
+          "op": "respond",
+          "id": "success"
+        },
+        {
+          "op": "expect-visible",
+          "locator": {
+            "text": "Documento de teste"
+          }
+        },
+        {
+          "op": "expect-no-overflow"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "1.0",
+  "id": "costura",
+  "version": "1.0.0",
+  "kind": "pattern",
+  "description": "Costura marca identidade",
+  "slots": [
+    "content"
+  ],
+  "variants": [
+    "default"
+  ],
+  "states": [
+    "default"
+  ],
+  "requiredTokens": [
+    "color.background.canvas",
+    "color.text.primary",
+    "touch.target.min",
+    "color.focus.ring"
+  ],
+  "allowedDependencies": [
+    "@inteiro/tokens",
+    "@inteiro/design-system"
+  ],
+  "accessibility": {
+    "semantics": [
+      "div",
+      "p"
+    ],
+    "keyboardSpec": "docs/P0_PATTERNS.md"
+  },
+  "responsive": {
+    "mobileStrategy": "reflow"
+  },
+  "examples": [
+    "examples/costura.html",
+    "examples/costura-default.html"
+  ],
+  "tests": [
+    "tests/browser/composition.spec.ts"
+  ],
+  "aliases": [
+    "costura",
+    "marca",
+    "identidade"
+  ],
+  "markup": "<div class=\"in-costura\" aria-hidden=\"true\"></div><p>Conexões entre conteúdo e ação.</p>"
+}

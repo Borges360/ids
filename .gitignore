@@ -11,3 +11,47 @@ apps/demo/.tmp/
 packages/skills/generated/
 docs/tokens/generated/
 artifacts/
+storybook-static/
+playwright-report/
+test-results/
+tests/visual/__snapshots__/history/
+.inteiro/reports/
+.inteiro/contexts/
+.inteiro/migration-backups/
+.inteiro/*.installed.json
+.inteiro/*.integrity.json
+.inteiro/reviews/*
+!.inteiro/reviews/decision.json
+apps/fixtures/
+examples/nextjs/.next/
+examples/nextjs/next-env.d.ts
+examples/nextjs/out/
+examples/nextjs/*.tsbuildinfo
+
+# harness:versioned-instructions:start
+# O contrato local é gerado e versionado; estado de execução fica fora do Git.
+.harness/*
+!.harness/project.json
+!.harness/project.json.harness-managed
+!.harness/project.mjs
+!.harness/project.mjs.harness-managed
+!.harness/install-manifest.json
+!.harness/install-manifest.json.harness-managed
+!.harness/mcp-managed.json
+# harness:versioned-instructions:end
+
+# Saída do empacotamento do MCP HTTP (scripts/build-mcp-runtime.mjs).
+/runtime/
+
+# Cópias instaladas pelo harness e preferências locais de runtime.
+.claude/settings.local.json
+.claude/skills/harness-*/
+.claude/skills/grill-me/
+.cursor/skills/harness-*/
+.cursor/skills/grill-me/
+.pi/skills/grill-me/
+.codex/*
+!.codex/config.toml
+
+# Documentação congelada (inclui packages/tokens/dist/css de cada versão)
+!docs-archive/**/dist/

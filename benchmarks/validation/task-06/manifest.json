@@ -1,0 +1,104 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "public-worker-validation",
+  "governanceContractHash": "9b4864d548d799f25ed7cb174c6e9e95e3e7ede5e65544f07e8bb88d4b36347d",
+  "caseId": "task-06",
+  "patternIds": [
+    "empty-state"
+  ],
+  "coverage": {
+    "states": {
+      "default": {
+        "applicable": true,
+        "scenario": "default",
+        "phase": "final"
+      },
+      "loading": {
+        "applicable": true,
+        "scenario": "primary-flow",
+        "phase": "action-capture",
+        "actionIndex": 1
+      },
+      "empty": {
+        "applicable": true,
+        "scenario": "primary-flow",
+        "phase": "action-capture",
+        "actionIndex": 10
+      },
+      "error": {
+        "applicable": true,
+        "scenario": "primary-flow",
+        "phase": "action-capture",
+        "actionIndex": 5
+      },
+      "disabled": {
+        "applicable": false,
+        "reason": "Task family 6 does not expose disabled in its published functional/fixture contract. Declared API statuses: 503, 200. General component state robustness is covered by the composition matrix."
+      },
+      "invalid": {
+        "applicable": false,
+        "reason": "Task family 6 does not expose invalid in its published functional/fixture contract. Declared API statuses: 503, 200. General component state robustness is covered by the composition matrix."
+      },
+      "success": {
+        "applicable": true,
+        "scenario": "primary-flow",
+        "phase": "final"
+      },
+      "modal": {
+        "applicable": false,
+        "reason": "Task family 6 does not expose modal in its published functional/fixture contract. Declared API statuses: 503, 200. General component state robustness is covered by the composition matrix."
+      },
+      "selected": {
+        "applicable": false,
+        "reason": "Task family 6 does not expose selected in its published functional/fixture contract. Declared API statuses: 503, 200. General component state robustness is covered by the composition matrix."
+      },
+      "readonly": {
+        "applicable": false,
+        "reason": "Task family 6 does not expose readonly in its published functional/fixture contract. Declared API statuses: 503, 200. General component state robustness is covered by the composition matrix."
+      },
+      "long-content": {
+        "applicable": false,
+        "reason": "Task family 6 does not expose long-content in its published functional/fixture contract. Declared API statuses: 503, 200. General component state robustness is covered by the composition matrix."
+      }
+    },
+    "viewports": [
+      "mobile",
+      "tablet",
+      "desktop"
+    ],
+    "themes": [
+      "light",
+      "dark",
+      "contrast-light",
+      "contrast-dark"
+    ],
+    "densities": [
+      "calm",
+      "focus"
+    ],
+    "keyboard": [],
+    "content": {
+      "classification": "synthetic",
+      "fixture": {
+        "path": "benchmarks/validation/task-06/fixture.json",
+        "sha256": "bfaaf9754ffa6d11c0721d06973ca2977b46406733caf8953fdad685cb2d95e2"
+      }
+    },
+    "reducedMotion": "reduce"
+  },
+  "routes": {
+    "path": "benchmarks/validation/task-06/routes.json",
+    "sha256": "266b74221dd4ba4552f7a493b276333450b3039eca3228a8d11ad4236a90a342"
+  },
+  "fixtures": [
+    {
+      "id": "task-06",
+      "path": "benchmarks/validation/task-06/fixture.json",
+      "sha256": "bfaaf9754ffa6d11c0721d06973ca2977b46406733caf8953fdad685cb2d95e2"
+    }
+  ],
+  "technicalPolicy": {
+    "path": "benchmarks/validation/technical-authority-policy.json",
+    "sha256": "adcb4bb12807f564cb60e4de963f4ed2a8adfeb25526056132a3cfe58aec5020"
+  }
+}

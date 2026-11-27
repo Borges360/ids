@@ -1,0 +1,25 @@
+{
+  "name": "@inteiro/evaluation",
+  "version": "2.0.0-rc.1",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./experiments": "./src/experiments.ts",
+    "./calibration": "./src/calibration.ts",
+    "./grading": "./src/grading.ts",
+    "./workspace": "./src/workspace.ts",
+    "./costs": "./src/cost-accounting.ts"
+  },
+  "files": [
+    "src"
+  ],
+  "dependencies": {
+    "@inteiro/contracts": "2.0.0-rc.1",
+    "@inteiro/lint": "2.0.0-rc.1",
+    "@inteiro/composition": "2.0.0-rc.1"
+  },
+  "peerDependencies": {
+    "@playwright/test": ">=1.58.0"
+  },
+  "license": "MIT"
+}
